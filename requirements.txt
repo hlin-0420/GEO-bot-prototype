@@ -1,0 +1,7 @@
+dash
+embedchain
+lxml
+youtube-transcript-api
+pytube
+langchain-community
+chromadb
