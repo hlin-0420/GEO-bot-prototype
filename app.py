@@ -44,16 +44,61 @@ class AIBot:
                     htm_files.append(self.base_directory + "/" + relative_path)
         return htm_files
 
+    # def _load_content(self):
+    #     """
+    #     Load and process all .htm files from the base directory.
+    #     """
+    #     file_paths = self._list_htm_files()
+    #     logging.info(f"Found {len(file_paths)} .htm files.")
+
+    #     for file_path in file_paths:
+    #         try:
+    #             with open(file_path, encoding="utf-8") as file:
+    #                 content = file.read()
+    #                 self._process_content(content)
+    #         except UnicodeDecodeError:
+    #             logging.error(f"Could not read the file {file_path}. Check the file encoding.")
+
     def _load_content(self):
         """
-        Load and process all .htm files from the base directory.
+        Load and process all .htm files from the base directory,
+        including files in nested directories. Also, list all folders and files.
         """
-        file_paths = self._list_htm_files()
-        logging.info(f"Found {len(file_paths)} .htm files.")
+        base_directory = os.getcwd()  # Ensure this is set to your root directory
+        logging.info(f"Starting to load content from base directory: {base_directory}")
+        
+        all_folders = []
+        all_files = []
+        htm_files = []
 
-        for file_path in file_paths:
+        try:
+            # Walk through the directory structure
+            for root, dirs, files in os.walk(base_directory):
+                all_folders.append(root)  # Collect all folders
+                all_files.extend([os.path.join(root, file) for file in files if file.endswith(".htm")])  # Collect all files
+
+                # Filter .htm files specifically
+                htm_files.extend([os.path.join(root, file) for file in files if file.endswith(".htm")])
+
+            logging.info(f"Total folders found: {len(all_folders)}")
+            logging.info(f"Total files found: {len(all_files)}")
+            logging.info(f"Total .htm files found: {len(htm_files)}")
+
+        except Exception as e:
+            logging.error(f"An error occurred while traversing the directory: {e}")
+
+        for file_path in all_files:
+            # remove the first part of the path to get the relative path
+            relative_path = file_path.replace(base_directory, "")
+
+            # remove the first slash if it exists
+            if relative_path.startswith(("/", "\\")):
+                relative_path = relative_path[1:]
+
+            print(f"Processing file: {relative_path}")
+
             try:
-                with open(file_path, encoding="utf-8") as file:
+                with open(relative_path, encoding="utf-8") as file:
                     content = file.read()
                     self._process_content(content)
             except UnicodeDecodeError:
@@ -184,7 +229,8 @@ def ask():
         return jsonify({"error": "Question cannot be empty"}), 400
     response = ai_bot.query(question)
 
-    return jsonify({"response": response, "dataFilePath": ai_bot._list_htm_files()})
+    # added file path for testing the locations of the stored uploaded files.
+    return jsonify({"response": response})
 
 if __name__ == "__main__":
     app.run(debug=True)
