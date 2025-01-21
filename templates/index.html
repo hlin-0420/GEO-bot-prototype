@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bot Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea, input[type="file"] { width: 100%; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>AI Bot Application</h1>
+
+    <!-- File Upload Section -->
+    <h3>Upload a File</h3>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" />
+        <button type="button" onclick="uploadFile()">Upload</button>
+    </form>
+    <div id="uploadResponse"></div>
+
+    <!-- Question-Answer Section -->
+    <h3>Ask a Question</h3>
+    <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+    <button onclick="submitQuestion()">Submit</button>
+    <div id="responseOutput"></div>
+
+    <script>
+        async function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            const response = await fetch("/upload", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById("uploadResponse").textContent = result.message || result.error;
+        }
+
+        async function submitQuestion() {
+            const question = document.getElementById("questionInput").value;
+            const response = await fetch("/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+            const result = await response.json();
+            document.getElementById("responseOutput").textContent = result.response || result.error;
+        }
+    </script>
+</body>
+</html>
