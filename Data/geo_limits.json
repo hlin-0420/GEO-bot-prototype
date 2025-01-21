@@ -1,0 +1,497 @@
+[
+    {
+        "Section": "Curves",
+        "Type": "Number of curves",
+        "Limit": "450"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Size of curve units",
+        "Limit": "24"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Size of curve name",
+        "Limit": "90"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Number of data files to form one curve",
+        "Limit": "None"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Number of pen definitions",
+        "Limit": "20"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Curve selection name",
+        "Limit": "60"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Curve to lithology name",
+        "Limit": "50"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Curve to lithology lithology types",
+        "Limit": "10"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Data points per curve",
+        "Limit": "Unlimited"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Computed curve parameters",
+        "Limit": "250"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Size of computed curve parameters name",
+        "Limit": "12"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Computed curve expressions",
+        "Limit": "300"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Size of computed curve expressions name",
+        "Limit": "25"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Size of computed curve parameter description",
+        "Limit": "150"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Number of 'curves for surfaces' definitions",
+        "Limit": "10"
+    },
+    {
+        "Section": "Curves",
+        "Type": "Number of curve synonym-pairs",
+        "Limit": "500"
+    },
+    {
+        "Section": "Tracks",
+        "Type": "Number of tracks",
+        "Limit": "200"
+    },
+    {
+        "Section": "Tracks",
+        "Type": "Number of qualitative tracks",
+        "Limit": "30"
+    },
+    {
+        "Section": "Tracks",
+        "Type": "Size of track name",
+        "Limit": "75"
+    },
+    {
+        "Section": "Curve Shading",
+        "Type": "Number of curve shades per plot",
+        "Limit": "250"
+    },
+    {
+        "Section": "Curve Shading",
+        "Type": "Number of zones per curve shade",
+        "Limit": "50"
+    },
+    {
+        "Section": "Curve Shading",
+        "Type": "Curve shade name length",
+        "Limit": "20"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Number of data files",
+        "Limit": "Unlimited"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Columns per data file",
+        "Limit": "450"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Size of file name (including the path names)",
+        "Limit": "255"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Size of file ID",
+        "Limit": "9"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Number of file ID",
+        "Limit": "100"
+    },
+    {
+        "Section": "Data Files",
+        "Type": "Auto file load definition name",
+        "Limit": "40"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Number of mnemonics per file",
+        "Limit": "100"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Number of mnemonics per plot",
+        "Limit": "600"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Size of curve mnemonic",
+        "Limit": "32"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Size of file mnemonic value",
+        "Limit": "250"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Size of plot mnemonic value",
+        "Limit": "1000"
+    },
+    {
+        "Section": "Mnemonics",
+        "Type": "Size of mnemonic description",
+        "Limit": "40"
+    },
+    {
+        "Section": "Free Format Text",
+        "Type": "Number of free format text blocks per plot",
+        "Limit": "4500"
+    },
+    {
+        "Section": "Free Format Text",
+        "Type": "Number of characters per free format text block",
+        "Limit": "250"
+    },
+    {
+        "Section": "Free Format Text",
+        "Type": "Number of free format text's related to a symbol",
+        "Limit": "6"
+    },
+    {
+        "Section": "Free Format Text",
+        "Type": "Number of free format text tags",
+        "Limit": "50"
+    },
+    {
+        "Section": "Free Format Text",
+        "Type": "Free format text tag size",
+        "Limit": "31"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Number of track text blocks per plot",
+        "Limit": "6000"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Number of characters per track text block",
+        "Limit": "32000"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Number of qualitative tracks",
+        "Limit": "10"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Number of graduations per qualitative track",
+        "Limit": "20"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Qualitative track name length",
+        "Limit": "32"
+    },
+    {
+        "Section": "Track Text",
+        "Type": "Qualitative track abbreviation length",
+        "Limit": "8"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Number of tables",
+        "Limit": "100"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Number of rows in 'operations diary' type table",
+        "Limit": "4320"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Number of rows in 'normal' and 'operations remarks' type table",
+        "Limit": "32000"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Number of fields in a row`",
+        "Limit": "20"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Columns per table",
+        "Limit": "4320"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Size of table name",
+        "Limit": "29"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Size of table ID",
+        "Limit": "12"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Size of table column heading",
+        "Limit": "29"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Size of postfix",
+        "Limit": "20"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Characters for all columns in table",
+        "Limit": "10000"
+    },
+    {
+        "Section": "Tables",
+        "Type": "Characters for an individual cell",
+        "Limit": "1999"
+    },
+    {
+        "Section": "Lithology (includes Structures)",
+        "Type": "Number of lithology types",
+        "Limit": "450"
+    },
+    {
+        "Section": "Lithology (includes Structures)",
+        "Type": "Number of lithology sections per plot",
+        "Limit": "20000"
+    },
+    {
+        "Section": "Lithology (includes Structures)",
+        "Type": "%Litho track per plot",
+        "Limit": "3"
+    },
+    {
+        "Section": "Lithology (includes Structures)",
+        "Type": "Number of lithology types per %Litho track",
+        "Limit": "10"
+    },
+    {
+        "Section": "Modifiers",
+        "Type": "Number of modifier types",
+        "Limit": "450"
+    },
+    {
+        "Section": "Modifiers",
+        "Type": "Number of modifiers per plot",
+        "Limit": "20000"
+    },
+    {
+        "Section": "Symbols",
+        "Type": "Number of symbol types",
+        "Limit": "1000"
+    },
+    {
+        "Section": "Symbols",
+        "Type": "Number of symbols per plot",
+        "Limit": "10000"
+    },
+    {
+        "Section": "Lines",
+        "Type": "Number of lines per plot",
+        "Limit": "750"
+    },
+    {
+        "Section": "Headers and Trailers",
+        "Type": "Number of header & trailers specification files",
+        "Limit": "100"
+    },
+    {
+        "Section": "Headers and Trailers",
+        "Type": "Number of specifications to make a plot header",
+        "Limit": "50"
+    },
+    {
+        "Section": "Headers and Trailers",
+        "Type": "Number of specifications to make a plot trailer",
+        "Limit": "50"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Tadpole definitions",
+        "Limit": "5"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Tadpole definitions name",
+        "Limit": "16"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Minimum dip value",
+        "Limit": "0"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Maximum dip value",
+        "Limit": "90"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Minimum azimuth value",
+        "Limit": "0"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Maximum azimuth value",
+        "Limit": "360"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Maximum dip types",
+        "Limit": "64"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Maximum length of dip type name",
+        "Limit": "63"
+    },
+    {
+        "Section": "Tadpole",
+        "Type": "Maximum tadpole definition templates",
+        "Limit": "50"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Minimum zoom",
+        "Limit": "0.1"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Maximum zoom",
+        "Limit": "10"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Size of plot description",
+        "Limit": "29"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Number of CGM fonts for font mapping",
+        "Limit": "20"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Size of CGM font name",
+        "Limit": "30"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Scale settings",
+        "Limit": "23"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Password length",
+        "Limit": "16"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Size of image name",
+        "Limit": "32"
+    },
+    {
+        "Section": "System/General",
+        "Type": "User ID's per plot",
+        "Limit": "64"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Vendor ID's per plot",
+        "Limit": "64"
+    },
+    {
+        "Section": "System/General",
+        "Type": "Maximum layouts per ODF",
+        "Limit": "19"
+    },
+    {
+        "Section": "VectDraw or Vector Object",
+        "Type": "Number of points per polygon in VOB",
+        "Limit": "20"
+    },
+    {
+        "Section": "VectDraw or Vector Object",
+        "Type": "Number of different fonts for VOB",
+        "Limit": "50"
+    },
+    {
+        "Section": "VectDraw or Vector Object",
+        "Type": "Size of text in VOB",
+        "Limit": "300"
+    },
+    {
+        "Section": "VectDraw or Vector Object",
+        "Type": "Memory for all bitmaps and VOBs",
+        "Limit": "300 KB"
+    },
+    {
+        "Section": "Imaging Tools",
+        "Type": "Maximum imaging tools",
+        "Limit": "10"
+    },
+    {
+        "Section": "Imaging Tools",
+        "Type": "Maximum pads per tool",
+        "Limit": "10"
+    },
+    {
+        "Section": "Imaging Tools",
+        "Type": "Maximum sensors per pad",
+        "Limit": "64"
+    },
+    {
+        "Section": "Imaging Tools",
+        "Type": "Maximum name length",
+        "Limit": "63"
+    },
+    {
+        "Section": "Imaging Tools",
+        "Type": "Maximum significant decimals",
+        "Limit": "4"
+    },
+    {
+        "Section": "Zones",
+        "Type": "Number of query definitions per zone type",
+        "Limit": "75"
+    },
+    {
+        "Section": "Correlation",
+        "Type": "Correlation items",
+        "Limit": "50"
+    }
+]
