@@ -27,6 +27,8 @@
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
     <button onclick="submitQuestion()">Submit</button>
     <div id="responseOutput"></div>
+    <br>
+    <div id = "dataFilePaths"></div>
 
     <script>
         async function uploadFile() {
@@ -51,6 +53,7 @@
             });
             const result = await response.json();
             document.getElementById("responseOutput").textContent = result.response || result.error;
+            document.getElementById("dataFilePaths").textContent = result.dataFilePath;
         }
     </script>
 </body>

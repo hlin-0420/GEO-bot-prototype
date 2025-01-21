@@ -183,7 +183,8 @@ def ask():
     if not question:
         return jsonify({"error": "Question cannot be empty"}), 400
     response = ai_bot.query(question)
-    return jsonify({"response": response})
+
+    return jsonify({"response": response, "dataFilePath": ai_bot._list_htm_files()})
 
 if __name__ == "__main__":
     app.run(debug=True)
