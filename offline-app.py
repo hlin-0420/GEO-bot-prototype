@@ -23,12 +23,7 @@ class OllamaBot:
             base_directory (str): Path to the base directory containing .htm files.
         """
         self.model = OllamaLLM(model=model_name)  # Instantiate the Ollama model
-
-        if os.getenv("VERCEL_ENV"):
-            self.base_directory = "/tmp/Data"
-        else:
-            self.base_directory = "Data"
-            
+        self.base_directory = "Data"
         self.contents = []  # Store processed content
         self._load_content()
 
