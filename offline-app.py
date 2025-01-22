@@ -148,6 +148,12 @@ def ask():
         return jsonify({"error": "Question cannot be empty"}), 400
     response = ai_bot.query(question)
 
+    print(response)
+    print(type(response))
+
+    # check through the response string and add <br> to replace the new line character
+    response = response.replace("\n", "<br>")
+
     return jsonify({"response": response})
 
 

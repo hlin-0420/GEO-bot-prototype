@@ -26,6 +26,7 @@
     <h3>Ask a Question</h3>
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
     <button onclick="submitQuestion()">Submit</button>
+    <br>
     <div id="responseOutput"></div>
 
     <script>
@@ -50,7 +51,11 @@
                 body: JSON.stringify({ question })
             });
             const result = await response.json();
-            document.getElementById("responseOutput").textContent = result.response || result.error;
+            if (result.error) {
+                document.getElementById("responseOutput").textContent = result.error;
+            } else {
+                document.getElementById("responseOutput").innerHTML = result.response;
+            }
         }
     </script>
 </body>
