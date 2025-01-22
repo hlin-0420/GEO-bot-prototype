@@ -22,7 +22,7 @@ class OllamaBot:
             model_name (str): Name of the Ollama model.
             base_directory (str): Path to the base directory containing .htm files.
         """
-        self.model = OllamaLLM(model=model_name)  # Instantiate the Ollama model
+        self.model = OllamaLLM(model=model_name, host="https://geo-bot-prototype.vercel.app/")  # Instantiate the Ollama model
         self.base_directory = "Data"
         self.contents = []  # Store processed content
         self._load_content()
