@@ -30,6 +30,15 @@
     <div id="responseOutput"></div>
 
     <script>
+        document.addEventListener("keydown", function(event) {
+            const questionInput = document.getElementById("questionInput");
+            
+            if (document.activeElement === questionInput && event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault(); 
+                submitQuestion(); 
+            }
+        });
+
         async function uploadFile() {
             const fileInput = document.getElementById("fileInput");
             const formData = new FormData();
