@@ -1,0 +1,23 @@
+{
+  "name": "geo-bot-prototype",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hlin-0420/GEO-bot-prototype.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hlin-0420/GEO-bot-prototype/issues"
+  },
+  "homepage": "https://github.com/hlin-0420/GEO-bot-prototype#readme",
+  "description": "",
+  "dependencies": {
+    "next": "^15.1.5"
+  }
+}

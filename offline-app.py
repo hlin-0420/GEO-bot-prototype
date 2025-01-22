@@ -5,6 +5,7 @@ import logging
 import os
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+import re
 
 app = Flask(__name__)
 
@@ -153,6 +154,9 @@ def ask():
 
     # check through the response string and add <br> to replace the new line character
     response = response.replace("\n", "<br>")
+
+    # check if both end of a string has "**", the replace with bold font tags
+    response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
 
     return jsonify({"response": response})
 
