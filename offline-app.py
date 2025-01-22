@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 
 class OllamaBot:
-    def __init__(self, model_name, base_directory="Data"):
+    def __init__(self, model_name):
         """
         Initialize the OllamaBot with the specified model.
         
@@ -23,7 +23,12 @@ class OllamaBot:
             base_directory (str): Path to the base directory containing .htm files.
         """
         self.model = OllamaLLM(model=model_name)  # Instantiate the Ollama model
-        self.base_directory = base_directory
+
+        if os.getenv("VERCEL_ENV"):
+            self.base_directory = "/tmp/Data"
+        else:
+            self.base_directory = "Data"
+            
         self.contents = []  # Store processed content
         self._load_content()
 
