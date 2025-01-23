@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "8.0_4";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Splice Curves</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Splice Curves">
+        <span>Splice Curves</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Splice Curves</h1>
+  <p>Take portions of different curves and splice them together to form a new curve. The selected source curve is spliced onto the destination curve over the specified depth interval. </p>
+  <p> </p>
+  <p>In general, the splicing operation is appropriate only for wireline curves. This is because each wireline curve has its own first and last reading and curves need to be spliced to eliminate or minimize data falling outside these points.</p>
+  <p><br/>
+    The <strong>File ID </strong>of a spliced curve is<strong> [Spliced]</strong>, indicating that the data is not original.<br/>
+    You are only able to splice curves into<strong> [Unused] </strong>or <strong>[Spliced]</strong> destinations so that the original data is left intact in case a spliced curve needs to be recreated with different splice points.</p>
+  <p><br/>
+    Mudlog data, on the other hand, should be appended rather than spliced as the data provided on a daily basis from the mudloggers constitute part of a continuous data-set.</p>
+  <p><br/>
+    However, sometimes, to satisfy the requirement of presenting ROP with different scales over different zones, the one ROP curve may be split up into the different zones using the splice function.</p>
+  <p><br/>
+    <a class="dropspot" href="../Load_Curve_Data/Append_Curve_Data.htm">Click here to learn how to append the curves.</a>
+  </p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves</strong> tab, select <strong>Splice</strong>. The <strong>Curve </strong><strong>Splicing </strong>dialog box will open.</p>
+    </li>
+    <li>
+      <p>Select a curve from <strong>Source Curve</strong>. The depth range of the curve will be displayed at the side.</p>
+    </li>
+    <li>
+      <p>In <strong>Select range to copy</strong> enter the start and end depth respectively. The depth range entered must be the same or a subset of the source curve depth range.</p>
+    </li>
+    <li>
+      <p>Select a curve from <strong>Destination Curve</strong> on to which the source curve will be spliced. Initially, the destination curve must be an [Unused] one.</p>
+    </li>
+    <li>
+      <p>Click <strong>Splice</strong>. The curve in <strong>Destination Curve</strong> will then bear the same mnemonic as the source curve and have a File ID of <strong>[Spliced]</strong>.</p>
+    </li>
+    <li>
+      <p>Another <strong>Source </strong><strong>Curve </strong>can be selected and a new data set can be spliced, by leaving the <strong>Destination </strong><strong>Curve </strong>the same as what you have in step 5.</p>
+    </li>
+    <li>
+      <p>Click <strong>Splice </strong>to then splice two different curves from the <strong>Source </strong><strong>Curve </strong>into one curve (as specified in the <strong>Destination Curve</strong>).</p>
+    </li>
+    <li>
+      <p>If the source curve is being copied onto an existing curve, and there is an overlap between the source and destination curves, a dialog box will be presented.</p>
+      <ol>
+        <li>
+          <p><strong>Yes: </strong>overwrites the overlapping section of the destination curve with source curve values.</p>
+        </li>
+        <li>
+          <p><strong>No: </strong>retains the destination curve values over the section of the overlap.</p>
+        </li>
+        <li>
+          <p><strong>Cancel: </strong>aborts the operation.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>The above process may be repeated on the same destination curve with other source curves.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Tip</strong>. Select <strong>Index </strong><strong>Converter </strong>to calculate the different depth values (in MD, TVD, TVDSS, TWT and VSEC) for a specific depth without exiting the dialog box.</p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

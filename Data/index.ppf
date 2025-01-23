@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ppfml version="2.00" project="v8 GEO Ribbons Help" type="4">
+  <contextmap>
+    
+    <contextentry id="12" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="173" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Tables/Navigate_Table_Definitions.htm">
+    </contextentry>
+    
+    <contextentry id="107" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Lines/Edit_Line.htm">
+    </contextentry>
+    
+    <contextentry id="124" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1604" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Create_Polyline_Curve.htm">
+    </contextentry>
+    
+    <contextentry id="130" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Headers_and_Trailers/Add_Headers_and_Trailers.htm">
+    </contextentry>
+    
+    <contextentry id="110" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Log_Presentation_and_Layout/Create_Presentation_or_Track_Format.htm">
+    </contextentry>
+    
+    <contextentry id="209" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Log_Presentation_and_Layout/Shifting_Tracks.htm">
+    </contextentry>
+    
+    <contextentry id="1349" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Log_Presentation_and_Layout/Create_a_Qualitative_Track.htm">
+    </contextentry>
+    
+    <contextentry id="1005" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Qualitative_Data/Export_Qualitative_Data.htm">
+    </contextentry>
+    
+    <contextentry id="1006" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Log_Presentation_and_Layout/Import_Qualitative_Data.htm">
+    </contextentry>
+    
+    <contextentry id="995" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1202" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="985" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="115" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Display/Define_New_Curve_Pens.htm">
+    </contextentry>
+    
+    <contextentry id="204" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1264" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="192" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="981" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="986" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="982" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1446" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Modifiers_and_Qualifiers/Add_Qualifiers.htm">
+    </contextentry>
+    
+    <contextentry id="1476" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="988" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Percent_Lithology/Import_Percent_Lithology.htm">
+    </contextentry>
+    
+    <contextentry id="1204" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1205" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="116" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Shading,_Splicing_and_Depth_Shifting/Splice.htm">
+    </contextentry>
+    
+    <contextentry id="1605" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="235" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Edit_Curve_Data.htm">
+    </contextentry>
+    
+    <contextentry id="1280" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Create_Multiple_Curve_Data.htm">
+    </contextentry>
+    
+    <contextentry id="1289" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="218" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1513" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="203" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Shading,_Splicing_and_Depth_Shifting/Apply_Curve_Shading.htm">
+    </contextentry>
+    
+    <contextentry id="1601" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Display/Create_Rose_Plots.htm">
+    </contextentry>
+    
+    <contextentry id="1386" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1236" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/View_Curve_Data_History.htm">
+    </contextentry>
+    
+    <contextentry id="1387" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Baggage_File_Mana.htm">
+    </contextentry>
+    
+    <contextentry id="969" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Baggage_File_Mana.htm">
+    </contextentry>
+    
+    <contextentry id="968" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Baggage_File_Mana.htm">
+    </contextentry>
+    
+    <contextentry id="123" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="122" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1004" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1283" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Create_a_Report_Link_to_an_Object_in_the_Log/Object_Links_in_GEO.htm">
+    </contextentry>
+    
+    <contextentry id="983" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1463" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1208" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1314" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Vertical_Track_Text_-_Chronological or Stratigraphic/Manage_Stratigraphy.htm">
+    </contextentry>
+    
+    <contextentry id="1224" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1319" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1324" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1290" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Create_a_Report_Link_to_an_Object_in_the_Log/Links_Mana.htm">
+    </contextentry>
+    
+    <contextentry id="1327" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1219" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1602" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="119" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Add_Lithology_Descriptions_or_Remarks.htm">
+    </contextentry>
+    
+    <contextentry id="127" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="140" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Headers_and_Trailers/Mnemonics_for_Header_and_Trailers/Mnemonics_in_G.htm">
+    </contextentry>
+    
+    <contextentry id="1320" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Headers_and_Trailers/Mnemonics_for_Header_and_Trailers/System_Variables_in_Header_Mnemonics.htm">
+    </contextentry>
+    
+    <contextentry id="160" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Headers_and_Trailers/Fonts_for_Vector_Objects.htm">
+    </contextentry>
+    
+    <contextentry id="174" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Create_Curve_Data_from_Table_Columns.htm">
+    </contextentry>
+    
+    <contextentry id="104" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Export_Curve_Data.htm">
+    </contextentry>
+    
+    <contextentry id="189" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Export_All_Other_Data_(except_curve_data).htm">
+    </contextentry>
+    
+    <contextentry id="975" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_as_Image.htm">
+    </contextentry>
+    
+    <contextentry id="1499" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1501" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1482" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1282" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1492" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1223" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Display/Modify_a_Tadpole_Curve.htm">
+    </contextentry>
+    
+    <contextentry id="1222" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Display/Present_Curve_in_Tadpole_Format.htm">
+    </contextentry>
+    
+    <contextentry id="1475" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1474" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1603" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Create_Cutoff_Curve.htm">
+    </contextentry>
+    
+    <contextentry id="1442" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1489" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1469" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1491" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1493" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="16954" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1530" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1531" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1404" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1403" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1406" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1352" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Data/Automatic_File_Load.htm">
+    </contextentry>
+    
+    <contextentry id="978" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Curve_Data/Automatic_File_Load.htm">
+    </contextentry>
+    
+    <contextentry id="215" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1494" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Create_Curve_Data/Generate_Integrated_Travel_Time_Pips.htm">
+    </contextentry>
+    
+    <contextentry id="1266" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Navigate_GEO/Log_On_as_GEO_User.htm">
+    </contextentry>
+    
+    <contextentry id="1209" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1455" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Help_Missing.htm">
+    </contextentry>
+    
+    <contextentry id="1265" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/ODF_Update_File_(OUF))/Concept_of_ODF_Update_File_(OUF).htm">
+    </contextentry>
+    
+    <contextentry id="1277" page="C:/Gitlab/GeologixLimited/Help/GEO/contents/Sharing/ODF_Update_File_(OUF))/Concept_of_ODF_Update_File_(OUF).htm">
+    </contextentry>
+    
+  </contextmap>
+  <topiclist defaulttopic="index.htm">
+    
+    <topic>
+      First_Topic.htm
+    </topic>
+    
+    <topic>
+      Introduction\System_Requirements.htm
+    </topic>
+    
+    <topic>
+      Introduction\GEO_Limits.htm
+    </topic>
+    
+    <topic>
+      Introduction\GEO_License_and_Version_Number.htm
+    </topic>
+    
+    <topic>
+      Introduction\RUS_Rental_Dongle_Guide.htm
+    </topic>
+    
+    <topic>
+      Introduction\Application_Look.htm
+    </topic>
+    
+    <topic>
+      Touch_Screen_Devices\Touch_Screen_Devices.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Starting_a_new_GEO_session.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Log_On_as_GEO_User.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Title_Bar.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Ribbons_Menu.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\GEO_Menu.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Quick_Access_Toolbar.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Status_Bar.htm
+    </topic>
+    
+    <topic>
+      Navigate_GEO\Split_Screen_GEO.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Files_in_GEO.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\File_Types_Handled_by_GEO.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\ODF_Template_File_(ODT).htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Output_Database_File_(ODF).htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\ODF_Interval_Files_(OIF).htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\ODF_Update_File_(OUF).htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\View_File_(VEW).htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Open_an_ODF_or_VEW_File.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Save_an_ODF.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Close_an_ODF.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\View_ODF_files_in_EView.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Open_an_ODT_File.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Save_an_ODT_File.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Load_a_VEW_File.htm
+    </topic>
+    
+    <topic>
+      Working_with_Files\Save_a_VEW_File.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Change_Plot_Index.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Date-Time_Formats.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Depth_tab_(for_Depth_Plots).htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Depth_Tab_(for_Time_Plots).htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Global_Settings_for_Depth_Plots.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Global_Settings_for_Date-Time_Plots.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Layout_Items.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Create_Presentation_or_Track_Format.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Shifting_Tracks.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Create_Multiple_Layouts.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Manage_Layouts.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Create_a_Qualitative_Track.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Templates_(ODT)\Create_Template_using_Wizard.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Types_of_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\General_Rules_of_Loadig_Data.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Load_Las_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Comma_and_Tab-delimited_ASCII_Files.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Load_Space-delimited_ASCII_Files.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Append_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Data_Import_Wizard_Step_1.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Load_Text_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Automatic_File_Load.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Convert_LIS_to_LAS.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Load_Lis_or_Binary_Files.htm
+    </topic>
+    
+    <topic>
+      Load_Curve_Data\Loading_XML_Files_(WellLogML).htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Curve_Types_in_GEO.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Present_Curves_on_the_Log.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Change_Curve_Attributed_using_Context_Tab.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Name_the_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Alter_the_Order_of_Curve_Legends.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Display_Wrapped_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Change_Curve_Pens.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Define_New_Curve_Pens.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Display_Data_Point_Markers.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Multiple_Scales_for_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Label_the_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Curve_as_Text.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Present_Curve_in_Tadpole_Format.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Modify_a_Tadpole_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Apply_Curve_Display_Settings_(Defaults).htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Save_the_Curve_Display_Settings_(Defaults).htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Automatic_Curve_Populate.htm
+    </topic>
+    
+    <topic>
+      Curve_Display\Create_Rose_Plots.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Create_User-defined_Curve_or_Gradi.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Create_Multiple_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Curve_Comp.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Edit_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\View_and_Edit_Existing_Multiple_Curve_Groups.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\View_Curve_Data_History.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Generate_Integrated_Travel_Time_Pips.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Create_Curve_Data_from_Table_Columns.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Mouse_Set_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Create_Polyline_Curve.htm
+    </topic>
+    
+    <topic>
+      Create_Curve_Data\Create_Cutoff_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Shading,_Splicing_and_Depth_Shifting\Apply_Curve_Shading.htm
+    </topic>
+    
+    <topic>
+      Curve_Shading,_Splicing_and_Depth_Shifting\Apply_Lithologies_as_Curve_Shading.htm
+    </topic>
+    
+    <topic>
+      Curve_Shading,_Splicing_and_Depth_Shifting\Shade_Wrapped_Curve.htm
+    </topic>
+    
+    <topic>
+      Curve_Shading,_Splicing_and_Depth_Shifting\Splice.htm
+    </topic>
+    
+    <topic>
+      Curve_Shading,_Splicing_and_Depth_Shifting\Curve_Depth_Shifting.htm
+    </topic>
+    
+    <topic>
+      TVD\Index_Convertor.htm
+    </topic>
+    
+    <topic>
+      TVD\Presenting_TVD.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Interpreted_Lithology\Add_Lithology.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Interpreted_Lithology\Edit_Lithology.htm
+    </topic>
+    
+    <topic>
+      Log_Structure_and_Presentation\Interpreted_Lithology\Delete_Lithology.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Add_Percent_Lithology.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Add_Percent_Lithology_Descriptions.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Import_Percent_Lithology.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Shape_Percent_Lithology_with_the_Mouse.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Export_Percent_Lithology_to_ASCII.htm
+    </topic>
+    
+    <topic>
+      Percent_Lithology\Export_Percent_Lithology_to_LAS.htm
+    </topic>
+    
+    <topic>
+      Modifiers_and_Qualifiers\Add_Modifiers.htm
+    </topic>
+    
+    <topic>
+      Modifiers_and_Qualifiers\Move_Modifiers.htm
+    </topic>
+    
+    <topic>
+      Modifiers_and_Qualifiers\Delete_modifier.htm
+    </topic>
+    
+    <topic>
+      Modifiers_and_Qualifiers\Add_Qualifiers.htm
+    </topic>
+    
+    <topic>
+      Modifiers_and_Qualifiers\Delete_Qualifiers.htm
+    </topic>
+    
+    <topic>
+      Symbols\Add_Symbols.htm
+    </topic>
+    
+    <topic>
+      Symbols\Delete_Symbol.htm
+    </topic>
+    
+    <topic>
+      Symbols\Move_Symbol.htm
+    </topic>
+    
+    <topic>
+      Qualitative_Data\Add_Qualitative_Data.htm
+    </topic>
+    
+    <topic>
+      Qualitative_Data\Import_Qualitative_Data.htm
+    </topic>
+    
+    <topic>
+      Qualitative_Data\Export_Qualitative_Data.htm
+    </topic>
+    
+    <topic>
+      Free_Format_Text\Add_Free_Format_Text.htm
+    </topic>
+    
+    <topic>
+      Free_Format_Text\Edit_Free_Format.htm
+    </topic>
+    
+    <topic>
+      Free_Format_Text\Moving_Free_Format_Text.htm
+    </topic>
+    
+    <topic>
+      Free_Format_Text\Delete_Free_Format_Text.htm
+    </topic>
+    
+    <topic>
+      Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks\Add_Lithology_Descriptions_or_Remarks.htm
+    </topic>
+    
+    <topic>
+      Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks\Import_Lithology_Descriptions_and_Remarks_Text.htm
+    </topic>
+    
+    <topic>
+      Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks\Edit_Lithology_Descriptions_or_Remarks_Text.htm
+    </topic>
+    
+    <topic>
+      Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks\Move_Lithology_Descriptions_or_Remarks_Text.htm
+    </topic>
+    
+    <topic>
+      Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks\Delete_Lithology_Descriptions_and_Remarks.htm
+    </topic>
+    
+    <topic>
+      Vertical_Track_Text_-_Chronological or Stratigraphic\Add_Chronological_or_Stratigraphic_Text.htm
+    </topic>
+    
+    <topic>
+      Vertical_Track_Text_-_Chronological or Stratigraphic\Edit_Chronological_and_Stratigraphic_Text.htm
+    </topic>
+    
+    <topic>
+      Vertical_Track_Text_-_Chronological or Stratigraphic\Adjust_Depth_Range_of_Chronological_or_Stratigraphic_text.htm
+    </topic>
+    
+    <topic>
+      Vertical_Track_Text_-_Chronological or Stratigraphic\Delete_Chronological_or_Stratigraphic_Text.htm
+    </topic>
+    
+    <topic>
+      Vertical_Track_Text_-_Chronological or Stratigraphic\Manage_Stratigraphy.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Format_Text_Using_the_Format_Text_Tab.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Format_Text_Using_the_Rich_Edit_Control.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Change_the_Font_Family.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Change_the_Font_Size.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Insert_a_Subscript_Character.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Insert_a_Superscript_Character.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Apply_Highlighting.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Change_the_Font_Color.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Change_Indents_and_Spacing.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Start_a_List.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Change_Text_Line_Spacing.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Align_Text.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Make_the_Text_Bold.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Make_the_Text_Italic.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Underline_Text.htm
+    </topic>
+    
+    <topic>
+      Rich_Format_Text\Strikethrough_the_Text.htm
+    </topic>
+    
+    <topic>
+      Text_and_Annotations\Spell_Check.htm
+    </topic>
+    
+    <topic>
+      Text_and_Annotations\Geological_Dictionary.htm
+    </topic>
+    
+    <topic>
+      Lines\Add_L.htm
+    </topic>
+    
+    <topic>
+      Lines\Edit_Line.htm
+    </topic>
+    
+    <topic>
+      Lines\Move_Line.htm
+    </topic>
+    
+    <topic>
+      Lines\Delete_Line.htm
+    </topic>
+    
+    <topic>
+      Tables\Navigate_Table_Definitions.htm
+    </topic>
+    
+    <topic>
+      Tables\Add_Table_Data.htm
+    </topic>
+    
+    <topic>
+      Tables\Import_table_data.htm
+    </topic>
+    
+    <topic>
+      Tables\Export_Table.htm
+    </topic>
+    
+    <topic>
+      Tables\Place_Symbols_from_Table_Data.htm
+    </topic>
+    
+    <topic>
+      Tables\Create_or_Amend_Table_Templates.htm
+    </topic>
+    
+    <topic>
+      Tables\Geotable.htm
+    </topic>
+    
+    <topic>
+      Tables\Replacing_an_Old_Table_Template_with_a_New_One.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Add_Header_Data.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Add_Headers_and_Trailers.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Header_and_Trailer_Display_Hierarchy.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Load_a_Header_or_Trailer.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Selecting_Fonts.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Fonts_for_Vector_Objects.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Mnemonics_for_Header_and_Trailers\Mnemonics_in_G.htm
+    </topic>
+    
+    <topic>
+      Headers_and_Trailers\Mnemonics_for_Header_and_Trailers\System_Variables_in_Header_Mnemonics.htm
+    </topic>
+    
+    <topic>
+      Print\Print.htm
+    </topic>
+    
+    <topic>
+      Print\Print_to_PDF.htm
+    </topic>
+    
+    <topic>
+      Sidetrack\Create_Sidetrac.htm
+    </topic>
+    
+    <topic>
+      Sharing\Protecting_your_ODF_File.htm
+    </topic>
+    
+    <topic>
+      Sharing\Login_for_Access_to_Document.htm
+    </topic>
+    
+    <topic>
+      Sharing\e-View_Enable_an_ODF.htm
+    </topic>
+    
+    <topic>
+      Sharing\Event_Log.htm
+    </topic>
+    
+    <topic>
+      Sharing\Jumping_to_a_certain_depth.htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\Concept_of_ODF_Update_File_(OUF).htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\OUF_Resave_Feature.htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\Send_OUF_as_mail_attachment.htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\Create_or_Save_an_OU.htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\Load_OUF_Files.htm
+    </topic>
+    
+    <topic>
+      Sharing\ODF_Update_File_(OUF))\OUF_Auto_merging.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_Curve_Data.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_Curve_Data_to_XML_Format.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_Data_to_WitsML.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_All_Other_Data_(except_curve_data).htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_Baggage_and_Library.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Baggage_File_Mana.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_as_Image.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_to_CGM.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_to_WMF.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_to_EM.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_to_TIFF.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_GEO_Plot_to_SVG.htm
+    </topic>
+    
+    <topic>
+      Sharing\Export_Data_and_Information\Export_to_Image_File\Export_to_HTM.htm
+    </topic>
+    
+    <topic>
+      Sharing\Create_a_Report_Link_to_an_Object_in_the_Log\Object_Links_in_GEO.htm
+    </topic>
+    
+    <topic>
+      Sharing\Create_a_Report_Link_to_an_Object_in_the_Log\Links_Mana.htm
+    </topic>
+    
+    <topic>
+      Sharing\Publish_ODF_to_Web_Folder\VUF_File_Transfe.htm
+    </topic>
+    
+    <topic>
+      VOB_Files\Concept_of_Vector_Objects_(VOB).htm
+    </topic>
+    
+    <topic>
+      VOB_Files\Vector_Object_Language_Compiler_(VLCP).htm
+    </topic>
+    
+    <topic>
+      GEOGraph\GEOGraph_Introduction.htm
+    </topic>
+    
+    <topic>
+      GEOGraph\Add_a_Graph.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Drilling\Cement_Volume.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Drilling\D_Exponent.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Drilling\Mechanical_Specific_Energy.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Drilling\Temperature_Gradient.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\C1_Sum.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Gas_Balance.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Gas_Character.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Gas_Wetness.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Inverse_Oil_Indicator.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Oil_Indicator.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Pixler_C1_C2_Gas_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Pixler_C1_C3_Gas_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Pixler_C1_C4_Gas_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Formation_Fluid_Evaluation\Pixler_C1_C5_Gas_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\C1_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\C2_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Delta_C1_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Delta_C2_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Delta_Total_Gas_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Gas_Quality_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Total_Gas_in_PPM.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Total_Gas_Moving_Average.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Gas\Gas_Quality\Total_Gas_Normalization.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_ARCHIE,_Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_ARCHIE,_Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_INDONESIAN,_Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_INDONESIAN,_Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_SCHLUMBERGER,_Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_SCHLUMBERGER,_Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_SIMANDOUX,_Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Net_Pay_(Sw_using_SIMANDOUX,_Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_Effective_(Clean_Zone).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_Effective_(with_Shale_Correction).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_from_Density_(Clean_Zone).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_from_Density_(with_Shale_Correction).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_from_Sonic_(Clean_Zone).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Porosity_from_Sonic_(with_Shale_Correction).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Rw_at_Formation_Temperature.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\RW_from_SP.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Shale_Volume_from_GR.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_ARCHIE_(Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_ARCHIE_(Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_INDONESIAN_(Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_INDONESIAN_(Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_SCHLUMBERGER_(Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_SCHLUMBERGER_(Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_SIMANDOUX_(Rw_from_SP).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Sw_using_SIMANDOUX_(Rw_known).htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\Petrophysical\Th_K_Ratio.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\Easting.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\Northing.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\TVD,_using_Minimum_Curvature_method.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\TVD_Average_Tangential.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\Vertical_Sect.htm
+    </topic>
+    
+    <topic>
+      Computed_Curve_Templates\TVD_&amp;_Well_Trajectory\Well_Departure.htm
+    </topic>
+    
+    <topic>
+      Contact_us.htm
+    </topic>
+    
+    <topic>
+      index.htm
+    </topic>
+    
+    <topic>
+      Help_Missing.htm
+    </topic>
+    
+    <topic>
+      Log_Presentation_and_Layout\Import_Qualitative_Data.htm
+    </topic>
+    
+    <topic>
+      Curve_Data\Automatic_File_Load.htm
+    </topic>
+    
+  </topiclist>
+  <filenamemap>
+    <filenameentry moniker="wh_languagetype">
+      <filename>
+        en_US
+      </filename>
+    </filenameentry>
+    <filenameentry moniker="wh_stoplist">
+      <filename>
+        whxdata/stopwords.xml
+      </filename>
+    </filenameentry>
+    <filenameentry moniker="startpage">
+      <filename>
+        index.htm
+      </filename>
+    </filenameentry>
+        
+  </filenamemap>
+</ppfml>

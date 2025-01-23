@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../../..";
+    gCommonRootRelPath = "../../..";
+    gTopicId = "17.2.1.0_6";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export GEO Plot to SVG</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export GEO Plot to SVG">
+        <span>Export GEO Plot to SVG</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 66px;"/>
+      <col style="width: 36px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export GEO Plot to SVG</h1>
+  <p>Scalable Vector Graphics (SVG) is an open standard vector graphics language.</p>
+  <p>It is XML-based and can be used for Web graphics.</p>
+  <p>The World Wide Web Consortium (W3C) maintains the SVG specification.</p>
+  <p> </p>
+  <p><strong>Export plot to SVG</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Depth </strong>tab, enter the Index Range you wish to export in <strong>From </strong>and <strong>To</strong>. </p>
+    </li>
+    <li>
+      <p>On the <strong>Export </strong>tab, select <span><strong>Export </strong><strong>as...</strong></span><strong> </strong>then <strong>SVG - Scaleable Vector Graphics</strong>.</p>
+    </li>
+    <li>
+      <p>An <strong>Export </strong><strong>To</strong> dialog box will open.  Enter a <strong>File </strong><strong>name </strong>and the directory where it is going to be stored.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>Save</span></strong><span>.</span></p>
+    </li>
+  </ol>
+  <p>The following video selects WMF as the export format. Simply replace this selection with SVG.</p>
+  <p><strong></strong></p>
+  <p><video src="Explot Plot as Image (WMF Example).mp4" width="480" height="320" controls=""></video></p>
+  <p>The resulting XML file (with extension .SVG) complies with the SVG specification and can be viewed by SVG viewers. The SVG file can also be embedded in a web page and viewed in a web browser that has the appropriate plug-in to view SVG.</p>
+  <p> </p>
+  <p>Since the SVG file uses a clear text representation to describe graphical information, the size of the generated file may be large depending on the length and density of graphical information present in your section of displayed log.</p>
+  <p> </p>
+  <p>In addition to the graphical output, SVG hotspots are generated for items that have links in the document.</p>
+  <p>If you view the generated SVG file in a browser (such as Internet Explorer<font face="Symbol">Ô</font>), the items with links (e.g. a core symbol) will have a hotspot. When your mouse is over such an item in your web browser, the mouse pointer will change to a hand and double-clicking should take you to the linked item.</p>
+  <p> </p>
+  <p>Currently, there is no support for generating SVG for bitmaps in the plot.</p>
+  <p>In the following example, a reference to a generated SVG file <font color="#0000ff">e:\temp\test.svg</font> has been embedded into an HTML page.</p>
+  <p>The height and width should correspond to the size of the graphic image in the SVG file. This is especially useful for efficient scrolling of relatively long sections of log in a Web browser.</p>
+  <p>
+    <font color="#0000ff">…..</font>
+  </p>
+  <p>
+    <font color="#0000ff">…..</font>
+  </p>
+  <p>
+    <font color="#0000ff">&lt;EMBED SRC=&quot;e:\temp\test.svg&quot; NAME=&quot;SVGEmbed&quot; TYPE=&quot;image/svg-xml&quot; PLUGINSPAGE=&quot;http://www.adobe.com/svg/viewer/install/&quot; height=10000 width=1000&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff">……</font>
+  </p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 66px;"/>
+      <col style="width: 36px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

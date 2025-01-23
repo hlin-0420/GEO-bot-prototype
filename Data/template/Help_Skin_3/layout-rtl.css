@@ -1,0 +1,4867 @@
+/*************************************************************************
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+* Copyright 2018 Adobe
+* All Rights Reserved.
+*
+* NOTICE: All information contained herein is, and remains
+* the property of Adobe and its suppliers, if any. The intellectual
+* and technical concepts contained herein are proprietary to Adobe
+* and its suppliers and are protected by all applicable intellectual
+* property laws, including trade secret and copyright laws.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe.
+**************************************************************************/
+/***** Import dependent style sheets *****/
+/* Skin Variables*/
+/* common  */
+/* single_page */
+/* home_page */
+.custom-button-0 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_0));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-0 a:focus {
+    background-image: url(var(--custom_button_selected_image_0)); }
+
+body.media-landscape div.header div.custom-button-0 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-1 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_1));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-1 a:focus {
+    background-image: url(var(--custom_button_selected_image_1)); }
+
+body.media-landscape div.header div.custom-button-1 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-2 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_2));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-2 a:focus {
+    background-image: url(var(--custom_button_selected_image_2)); }
+
+body.media-landscape div.header div.custom-button-2 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-3 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_3));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-3 a:focus {
+    background-image: url(var(--custom_button_selected_image_3)); }
+
+body.media-landscape div.header div.custom-button-3 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-4 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_4));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-4 a:focus {
+    background-image: url(var(--custom_button_selected_image_4)); }
+
+body.media-landscape div.header div.custom-button-4 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-5 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_5));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-5 a:focus {
+    background-image: url(var(--custom_button_selected_image_5)); }
+
+body.media-landscape div.header div.custom-button-5 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-6 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_6));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-6 a:focus {
+    background-image: url(var(--custom_button_selected_image_6)); }
+
+body.media-landscape div.header div.custom-button-6 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-7 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_7));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-7 a:focus {
+    background-image: url(var(--custom_button_selected_image_7)); }
+
+body.media-landscape div.header div.custom-button-7 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-8 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_8));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-8 a:focus {
+    background-image: url(var(--custom_button_selected_image_8)); }
+
+body.media-landscape div.header div.custom-button-8 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-9 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_9));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-9 a:focus {
+    background-image: url(var(--custom_button_selected_image_9)); }
+
+body.media-landscape div.header div.custom-button-9 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-10 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_10));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-10 a:focus {
+    background-image: url(var(--custom_button_selected_image_10)); }
+
+body.media-landscape div.header div.custom-button-10 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-11 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_11));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-11 a:focus {
+    background-image: url(var(--custom_button_selected_image_11)); }
+
+body.media-landscape div.header div.custom-button-11 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-12 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_12));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-12 a:focus {
+    background-image: url(var(--custom_button_selected_image_12)); }
+
+body.media-landscape div.header div.custom-button-12 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-13 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_13));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-13 a:focus {
+    background-image: url(var(--custom_button_selected_image_13)); }
+
+body.media-landscape div.header div.custom-button-13 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-14 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_14));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-14 a:focus {
+    background-image: url(var(--custom_button_selected_image_14)); }
+
+body.media-landscape div.header div.custom-button-14 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-15 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_15));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-15 a:focus {
+    background-image: url(var(--custom_button_selected_image_15)); }
+
+body.media-landscape div.header div.custom-button-15 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-16 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_16));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-16 a:focus {
+    background-image: url(var(--custom_button_selected_image_16)); }
+
+body.media-landscape div.header div.custom-button-16 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-17 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_17));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-17 a:focus {
+    background-image: url(var(--custom_button_selected_image_17)); }
+
+body.media-landscape div.header div.custom-button-17 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-18 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_18));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-18 a:focus {
+    background-image: url(var(--custom_button_selected_image_18)); }
+
+body.media-landscape div.header div.custom-button-18 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+.custom-button-19 a {
+  background-image: url("custom_button_place_holder.png");
+  background-image: url(var(--custom_button_image_19));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: unset; }
+  .custom-button-19 a:focus {
+    background-image: url(var(--custom_button_selected_image_19)); }
+
+body.media-landscape div.header div.custom-button-19 {
+  float: left;
+  width: 1.875em;
+  margin-left: 2.5em; }
+
+/***** File contains includes for grids *****/
+/***** File contains includes for overlays *****/
+body.media-desktop div.header div.toc-back a, body.media-desktop div.header div.favorites a,
+body.media-desktop div.header div.print-holder a,
+body.media-desktop div.header div.brs_next a,
+body.media-desktop div.header div.brs_previous a, body.media-tablet div.brs_next a,
+body.media-tablet div.brs_previous a,
+body.media-mobile div.brs_next a,
+body.media-mobile div.brs_previous a {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+div.overlay.index, div.overlay.glossary {
+  width: 100%; }
+  div.overlay.index input, div.overlay.glossary input {
+    width: 98%;
+    margin: .6rem 1% .3rem;
+    height: 3rem;
+    padding: 0 0.625rem 0 0;
+    font-size: 100%;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem; }
+    div.overlay.index input::-webkit-input-placeholder, div.overlay.glossary input::-webkit-input-placeholder {
+      font-style: italic;
+      padding-right: .3rem; }
+    div.overlay.index input:-moz-placeholder, div.overlay.glossary input:-moz-placeholder {
+      font-style: italic;
+      padding-right: .3rem; }
+    div.overlay.index input::-moz-placeholder, div.overlay.glossary input::-moz-placeholder {
+      font-style: italic;
+      padding-right: .3rem; }
+    div.overlay.index input::-ms-input-placeholder, div.overlay.glossary input::-ms-input-placeholder {
+      font-style: italic;
+      padding-right: .3rem; }
+  div.overlay.index .noResults, div.overlay.glossary .noResults {
+    margin-top: 1.875rem;
+    padding-left: 1.25rem; }
+  div.overlay.index a, div.overlay.glossary a {
+    color: inherit;
+    text-decoration: none; }
+    div.overlay.index a:hover, div.overlay.glossary a:hover, div.overlay.index a:active, div.overlay.glossary a:active {
+      text-decoration: underline; }
+  div.overlay.index ul.glossary-holder, div.overlay.glossary ul.glossary-holder,
+  div.overlay.index ul.index-holder,
+  div.overlay.glossary ul.index-holder {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  div.overlay.index li.IndexChildBlock, div.overlay.glossary li.IndexChildBlock {
+    padding-right: 1.25rem; }
+  div.overlay.index .treeitrem, div.overlay.glossary .treeitrem {
+    margin-right: .3rem; }
+    div.overlay.index .treeitrem .wIdxAlphabet, div.overlay.glossary .treeitrem .wIdxAlphabet,
+    div.overlay.index .treeitrem .wGloAlphabet,
+    div.overlay.glossary .treeitrem .wGloAlphabet {
+      font-size: 1.2rem;
+      border-bottom-style: solid;
+      border-bottom-width: .1rem;
+      margin: auto auto 0.5rem 0.3rem; }
+    div.overlay.index .treeitrem .wIdxKeyword, div.overlay.glossary .treeitrem .wIdxKeyword,
+    div.overlay.index .treeitrem .wIdxKeywordHover,
+    div.overlay.glossary .treeitrem .wIdxKeywordHover,
+    div.overlay.index .treeitrem .wIdxLink,
+    div.overlay.glossary .treeitrem .wIdxLink,
+    div.overlay.index .treeitrem .wIdxLinkHover,
+    div.overlay.glossary .treeitrem .wIdxLinkHover,
+    div.overlay.index .treeitrem .wGloTerm,
+    div.overlay.glossary .treeitrem .wGloTerm,
+    div.overlay.index .treeitrem .wGloTermHover,
+    div.overlay.glossary .treeitrem .wGloTermHover {
+      min-height: 1.2rem;
+      line-height: 1.5rem;
+      cursor: pointer; }
+    div.overlay.index .treeitrem .wGloTermHover, div.overlay.glossary .treeitrem .wGloTermHover {
+      text-decoration: underline; }
+    div.overlay.index .treeitrem .wIdxLink, div.overlay.glossary .treeitrem .wIdxLink,
+    div.overlay.index .treeitrem .wIdxLink,
+    div.overlay.glossary .treeitrem .wIdxLink {
+      margin-top: .75rem;
+      margin-bottom: .75rem;
+      padding-right: 1.6rem; }
+    div.overlay.index .treeitrem .wGloDefinition, div.overlay.glossary .treeitrem .wGloDefinition,
+    div.overlay.index .treeitrem .wGloDefinitionHover,
+    div.overlay.glossary .treeitrem .wGloDefinitionHover {
+      min-height: 1.2rem;
+      line-height: 1.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      margin-right: 1.5rem; }
+    div.overlay.index .treeitrem .wIdxChildBlock, div.overlay.glossary .treeitrem .wIdxChildBlock {
+      margin-right: 1.5rem; }
+      div.overlay.index .treeitrem .wIdxChildBlock.wIdxKeywordHover, div.overlay.glossary .treeitrem .wIdxChildBlock.wIdxKeywordHover {
+        text-decoration: none; }
+      div.overlay.index .treeitrem .wIdxChildBlock .treeitrem, div.overlay.glossary .treeitrem .wIdxChildBlock .treeitrem {
+        margin-right: 0; }
+
+div.overlay.search p.progressbar {
+  text-align: center; }
+div.overlay.search div.search-options {
+  margin-top: 1.875em;
+  font-size: 1rem; }
+  div.overlay.search div.search-options div.wSearchAND {
+    margin-bottom: 0.5rem; }
+  div.overlay.search div.search-options div.wSearchAND,
+  div.overlay.search div.search-options div.wSearchHighlight {
+    padding-right: 1.9rem;
+    text-indent: -2.25rem; }
+    div.overlay.search div.search-options div.wSearchAND span,
+    div.overlay.search div.search-options div.wSearchHighlight span {
+      position: relative;
+      top: .25rem;
+      margin-right: .4rem; }
+  div.overlay.search div.search-options div.wSearchHighlight {
+    margin-bottom: 1.875rem; }
+  div.overlay.search div.search-options input {
+    position: relative;
+    top: .2rem; }
+div.overlay.search div.wSearchMessage {
+  margin-bottom: 1.25rem; }
+div.overlay.search div.wSearchResultList {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+div.overlay.search div.wSearchResultItem {
+  margin-bottom: 1.875rem;
+  font-size: .875rem;
+  line-height: .9375rem; }
+  div.overlay.search div.wSearchResultItem div {
+    margin-bottom: .4rem; }
+  div.overlay.search div.wSearchResultItem div.wSearchResultTitle {
+    font-size: .9375rem; }
+  div.overlay.search div.wSearchResultItem span.wSearchURL {
+    white-space: pre-wrap;
+    word-break: break-word; }
+div.overlay.search .wSearchResultsEnd {
+  margin-bottom: .625rem; }
+
+div.topicpage-search-field div.search-list,
+div.frontpage-search-field div.search-list, div.overlay.search div.search-list {
+  bottom: auto !important;
+  z-index: 800 !important;
+  overflow: visible !important;
+  position: absolute; }
+  div.topicpage-search-field div.search-list table,
+  div.frontpage-search-field div.search-list table, div.overlay.search div.search-list table {
+    width: 100%;
+    border-spacing: 0; }
+    div.topicpage-search-field div.search-list table td,
+    div.frontpage-search-field div.search-list table td, div.overlay.search div.search-list table td {
+      padding: .5rem .25rem; }
+    div.topicpage-search-field div.search-list table td.search-text-column,
+    div.frontpage-search-field div.search-list table td.search-text-column, div.overlay.search div.search-list table td.search-text-column {
+      width: 92%;
+      padding-right: .5em; }
+    div.topicpage-search-field div.search-list table .search-suggestion,
+    div.frontpage-search-field div.search-list table .search-suggestion, div.overlay.search div.search-list table .search-suggestion {
+      margin-left: 0;
+      padding: .25rem;
+      clear: left;
+      line-height: 1.2rem;
+      cursor: pointer; }
+    div.topicpage-search-field div.search-list table .search-suggestion .search-delete,
+    div.frontpage-search-field div.search-list table .search-suggestion .search-delete, div.overlay.search div.search-list table .search-suggestion .search-delete {
+      min-width: 1rem;
+      min-height: 1rem;
+      cursor: pointer; }
+    div.topicpage-search-field div.search-list table .search-suggestion .topic-icon,
+    div.frontpage-search-field div.search-list table .search-suggestion .topic-icon, div.overlay.search div.search-list table .search-suggestion .topic-icon,
+    div.topicpage-search-field div.search-list table .search-suggestion .count-number,
+    div.frontpage-search-field div.search-list table .search-suggestion .count-number,
+    div.overlay.search div.search-list table .search-suggestion .count-number {
+      display: inline-block;
+      vertical-align: middle; }
+
+/***** General page settings *****/
+* {
+  box-sizing: border-box !important; }
+
+.rh-hide {
+  display: none !important; }
+
+.rh-screen-hide {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
+
+html {
+  font-size: 100%; }
+
+body {
+  font-size: 100%;
+  margin: 0;
+  padding: 0; }
+  body.popup-visible {
+    overflow: hidden !important; }
+  body.ios {
+    -webkit-text-size-adjust: none; }
+
+.loading {
+  min-height: 1.25in !important;
+  background-repeat: no-repeat !important;
+  background-position: center .25in !important;
+  background-size: 1in 1in !important; }
+
+div.topic-content.ios, body.media-desktop div.topicpage-spacer div.topic-content[data-to-top="true"].ios, body.media-desktop div.topicpage-spacer div.topic-content.ios, body.media-mobile div.topicpage-function-buttons div.overlay-body.ios,
+body.media-mobile div.frontpage-function-buttons div.overlay-body.ios, body.media-tablet div.frontpage-function-buttons div.overlay-body.ios,
+body.media-tablet div.topicpage-function-buttons div.overlay-body.ios, body.media-mobile div.topicpage-toc div.overlay-body.ios, body.media-tablet div.topicpage-toc div.overlay-body.ios, body.media-mobile div.overlay.index div.overlay-body.ios, body.media-tablet div.overlay.index div.overlay-body.ios, body.media-desktop div.overlay.index div.overlay-body.ios, body.media-mobile div.overlay.glossary div.overlay-body.ios, body.media-tablet div.overlay.glossary div.overlay-body.ios, body.media-desktop div.overlay.glossary div.overlay-body.ios, body.media-mobile div.overlay.filter div.overlay-body.ios, body.media-tablet div.overlay.filter div.overlay-body.ios,
+body.media-desktop div.overlay.filter div.overlay-body.ios, body.media-mobile div.overlay.favorites div.overlay-body.ios, body.media-tablet div.overlay.favorites div.overlay-body.ios, body.media-desktop div.overlay.favorites div.overlay-body.ios, body.media-mobile div.overlay.search div.overlay-body.ios, body.media-tablet div.overlay.search div.overlay-body.ios, body.media-desktop div.overlay.search div.overlay-body.ios {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll !important; }
+
+body:not(.media-mobile):not(.media-tablet):not(.media-desktop) div.search-list,
+body:not(.media-mobile):not(.media-tablet):not(.media-desktop) div.overlay,
+body:not(.media-mobile):not(.media-tablet):not(.media-desktop) div.frontpage-function-buttons,
+body:not(.media-mobile):not(.media-tablet):not(.media-desktop) div.topicpage-function-buttons {
+  display: none; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  user-select: none; }
+
+/****** Optimisations for screens with high DPI
+
+		Here we offset the HTML element's font size so that all elements are resized on displays with a high DPI count.
+
+******/
+@media (min-resolution: 150dpi) {
+  html {
+    font-size: 65%; } }
+@media (min-resolution: 125dpi) {
+  html {
+    font-size: 80%; } }
+/****** Common components ******/
+div.header {
+  height: 3rem;
+  position: relative; }
+  div.header div.header-project-info {
+    height: 3rem;
+    width: 100%; }
+    div.header div.header-project-info div.header-align {
+      width: calc(100% - 4em);
+      display: table;
+      overflow: hidden; }
+      div.header div.header-project-info div.header-align a {
+        display: table-cell;
+        margin: 0;
+        vertical-align: middle;
+        width: 36px; }
+        div.header div.header-project-info div.header-align a div.logo {
+          display: inline-block;
+          max-height: 2.25rem;
+          width: 3rem;
+          height: 3rem;
+          margin-top: 0.375rem;
+          margin-right: 1.25rem;
+          background-image: url(var(--logo));
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: contain; }
+      div.header div.header-project-info div.header-align div.title {
+        font-family: var(--title_font_family);
+        cursor: pointer;
+        display: table-cell;
+        margin: 0;
+        width: auto;
+        max-width: 100%;
+        padding-top: 0.6rem;
+        vertical-align: middle;
+        white-space: nowrap;
+        overflow: hidden; }
+        div.header div.header-project-info div.header-align div.title a:hover {
+          outline: none; }
+        div.header div.header-project-info div.header-align div.title h1 {
+          display: inline;
+          margin: 0;
+          font-size: 1.4rem; }
+    div.header div.header-project-info div.custom-link {
+      display: none; }
+  div.header div.header-nav {
+    width: 0;
+    height: 0;
+    overflow: hidden; }
+  div.header div.breadcrumbs {
+    display: none; }
+  div.header div.header-hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: 4em; }
+    div.header div.header-hamburger a {
+      display: block;
+      height: 3rem;
+      width: 4em; }
+
+body.media-desktop div.header {
+  font-size: 100%;
+  width: 100%;
+  margin: 0 0 2.5rem 0;
+  height: 8.125rem; }
+  body.media-desktop div.header > div {
+    margin: 0;
+    width: 100%; }
+    body.media-desktop div.header > div.header-project-info {
+      height: 5rem;
+      padding: 1rem; }
+      body.media-desktop div.header > div.header-project-info div.header-align {
+        padding: unset; }
+    body.media-desktop div.header > div.header-nav {
+      height: 3.125rem;
+      line-height: 3.125rem; }
+  body.media-desktop div.header div.header-align {
+    width: 100%;
+    max-width: 71.25rem;
+    margin: 0 auto;
+    overflow: hidden;
+    clear: both;
+    display: table; }
+    body.media-desktop div.header div.header-align div {
+      display: block; }
+    body.media-desktop div.header div.header-align div.toolbar {
+      display: flex;
+      justify-content: flex-end;
+      direction: rtl;
+      float: left; }
+    body.media-desktop div.header div.header-align div.title {
+      padding-top: 0px;
+      padding-right: 0.5rem; }
+    body.media-desktop div.header div.header-align a {
+      height: 3rem;
+      width: var(--logo_width);
+      padding-left: 2rem; }
+      body.media-desktop div.header div.header-align a div.logo {
+        margin-right: 0px;
+        max-width: 100rem;
+        margin-top: 0;
+        cursor: pointer;
+        width: var(--logo_width);
+        height: 3rem;
+        max-height: 3rem;
+        background-image: url(var(--logo));
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: var(--logo_width) var(--logo_height); }
+      body.media-desktop div.header div.header-align a div.logo[data-logo-selector="true"] {
+        margin-right: 0px;
+        display: inline-block;
+        max-width: 100rem;
+        max-height: 100%;
+        width: var(--logo_width);
+        height: 3rem;
+        background-image: url(var(--logo));
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain; }
+      body.media-desktop div.header div.header-align a.breadcrumb-link {
+        padding-left: 0; }
+    body.media-desktop div.header div.header-align div.buttons {
+      display: flex; }
+      body.media-desktop div.header div.header-align div.buttons > div {
+        height: 3rem;
+        width: 3rem;
+        margin-left: 2px; }
+        body.media-desktop div.header div.header-align div.buttons > div a {
+          color: transparent;
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: none;
+          text-decoration: none;
+          cursor: pointer;
+          background-color: transparent; }
+  body.media-desktop div.header .header-nav {
+    height: 3.125rem;
+    line-height: 3.125rem; }
+    body.media-desktop div.header .header-nav div.header-align .favorites,
+    body.media-desktop div.header .header-nav div.header-align .toc-back {
+      display: inline-block; }
+      body.media-desktop div.header .header-nav div.header-align .favorites a,
+      body.media-desktop div.header .header-nav div.header-align .toc-back a {
+        padding-left: 0; }
+    body.media-desktop div.header .header-nav div.header-align .favorites {
+      float: left;
+      width: auto;
+      height: auto; }
+  body.media-desktop div.header > a {
+    display: inline-block;
+    float: right;
+    height: fit-content;
+    min-width: 3rem;
+    margin-left: 2rem; }
+    body.media-desktop div.header > a div.logo {
+      margin-top: 0;
+      cursor: pointer;
+      width: var(--logo_width);
+      height: 3rem;
+      max-height: 3rem;
+      background-image: url(var(--logo));
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: var(--logo_width) var(--logo_height); }
+    body.media-desktop div.header > a div.logo[data-logo-selector="true"] {
+      display: inline-block;
+      max-height: 4.5rem;
+      width: var(--logo_width);
+      height: 3rem;
+      background-image: url(var(--logo));
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain; }
+  body.media-desktop div.header div.title {
+    float: right;
+    height: 3rem;
+    padding-top: 0px;
+    padding-right: 0.5rem;
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+    body.media-desktop div.header div.title h1 {
+      margin: 0;
+      line-height: 3rem; }
+  body.media-desktop div.header div.custom-link {
+    float: right;
+    width: 10rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0; }
+    body.media-desktop div.header div.custom-link:nth-of-type(3) {
+      padding-left: 1.875rem; }
+    body.media-desktop div.header div.custom-link a {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin: 0;
+      width: 100%;
+      max-width: 10rem; }
+  body.media-desktop div.header div.breadcrumbs {
+    display: table;
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    body.media-desktop div.header div.breadcrumbs div.breadcrumb-holder {
+      float: right;
+      width: auto;
+      height: 3rem;
+      overflow: hidden; }
+    body.media-desktop div.header div.breadcrumbs span.separator {
+      margin-left: .25rem; }
+  body.media-desktop div.header div.toc-back a {
+    display: inline-block;
+    background-color: inherit; }
+  body.media-desktop div.header div.favorites,
+  body.media-desktop div.header div.print-holder,
+  body.media-desktop div.header div.brs_next,
+  body.media-desktop div.header div.brs_previous {
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 0.5rem 0 0; }
+    body.media-desktop div.header div.favorites a,
+    body.media-desktop div.header div.print-holder a,
+    body.media-desktop div.header div.brs_next a,
+    body.media-desktop div.header div.brs_previous a {
+      display: block;
+      background-color: inherit; }
+
+div.footer {
+  margin: 0 0 1.25rem;
+  font-size: .8rem;
+  text-align: center; }
+
+div.topicpage-footer {
+  display: none; }
+
+body.media-desktop div.frontpage-footer {
+  display: block;
+  margin: 0 auto 1.25rem;
+  font-size: .8rem;
+  width: 60rem;
+  padding-right: 1.25rem;
+  color: #4b4b4b; }
+
+body.media-desktop div.topicpage-footer {
+  display: block;
+  position: absolute;
+  bottom: 1.25rem;
+  height: 1rem;
+  line-height: 1rem;
+  right: 0;
+  font-size: .8rem;
+  width: 60rem;
+  clear: both;
+  color: #4b4b4b;
+  margin: 0; }
+
+/***** Page layout for topic page & homepage *****/
+div.topic-content {
+  position: absolute;
+  top: 5.8rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden; }
+  div.topic-content iframe {
+    margin: 1.5rem;
+    width: calc(100% - 1.5rem * 2);
+    height: calc( 100% - 1.5rem * 2);
+    border: none; }
+
+body.media-desktop main {
+  display: flex; }
+  body.media-desktop main.column {
+    flex-direction: column; }
+
+body.media-desktop div.topicpage-spacer {
+  width: fit-content;
+  display: flex;
+  max-width: 71.25rem;
+  position: absolute;
+  top: 9.375rem;
+  bottom: 0;
+  right: calc( (100% - 71.25rem) / 2 ); }
+  body.media-desktop div.topicpage-spacer div.topic-content[data-to-top="true"] {
+    position: relative;
+    top: 0;
+    right: 0;
+    height: calc(100% - 3rem);
+    width: 50rem; }
+    body.media-desktop div.topicpage-spacer div.topic-content[data-to-top="true"] iframe {
+      margin: 0.5rem;
+      width: 49rem;
+      height: calc( 100% - 0.5rem * 7.5);
+      border: none; }
+  body.media-desktop div.topicpage-spacer div.topic-content {
+    position: relative;
+    top: 0;
+    right: 0;
+    height: calc(100% - 3rem);
+    width: 50rem; }
+    body.media-desktop div.topicpage-spacer div.topic-content iframe {
+      margin: 0.5rem;
+      width: 49rem;
+      height: calc( 100% - 0.5rem * 2);
+      border: none; }
+  body.media-desktop div.topicpage-spacer div.topic-sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: calc(100% - 2rem);
+    width: 21.25rem;
+    padding: 0 1.25rem 0 0; }
+
+div.topicpage-search-field,
+div.frontpage-search-field {
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  width: 100%;
+  height: 2.8rem;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  div.topicpage-search-field input.wSearchField,
+  div.frontpage-search-field input.wSearchField {
+    display: inline-block;
+    float: right;
+    width: calc(100% - 9.25rem);
+    margin: 0.4rem 1.25rem 0 0;
+    height: 2rem; }
+  div.topicpage-search-field div.toc-back,
+  div.topicpage-search-field div.favorites,
+  div.topicpage-search-field a.wSearchLink,
+  div.frontpage-search-field div.toc-back,
+  div.frontpage-search-field div.favorites,
+  div.frontpage-search-field a.wSearchLink {
+    display: inline-block;
+    float: right;
+    width: 4rem;
+    margin: 0;
+    height: 2.8rem;
+    text-decoration: none; }
+    div.topicpage-search-field div.toc-back:focus,
+    div.topicpage-search-field div.favorites:focus,
+    div.topicpage-search-field a.wSearchLink:focus,
+    div.frontpage-search-field div.toc-back:focus,
+    div.frontpage-search-field div.favorites:focus,
+    div.frontpage-search-field a.wSearchLink:focus {
+      outline: none; }
+  div.topicpage-search-field div.toc-back a,
+  div.topicpage-search-field div.favorites a,
+  div.frontpage-search-field div.toc-back a,
+  div.frontpage-search-field div.favorites a {
+    display: block;
+    height: 2.8rem; }
+  div.topicpage-search-field div.search-list,
+  div.frontpage-search-field div.search-list {
+    top: 2.425rem;
+    right: 1.25rem;
+    width: calc(100% - 5.25rem); }
+
+div.topicpage-search-field input.wSearchField,
+div.topicpage-search-field div.search-list {
+  width: calc(100% - 9.25rem); }
+
+body.media-desktop div.topic-content a.to_top {
+  position: absolute;
+  right: 0em;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  bottom: 0;
+  display: block;
+  height: 2.5em;
+  width: 2.5em;
+  cursor: pointer;
+  background-image: url(var(--back_to_top_image));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; }
+
+body.media-desktop div.topicpage-search-field {
+  position: static;
+  margin: 0 0 0.625rem 0;
+  width: 20rem;
+  height: 3rem;
+  overflow: hidden; }
+  body.media-desktop div.topicpage-search-field input {
+    width: 100%;
+    margin: 0;
+    height: 3rem;
+    line-height: 3rem;
+    width: 20rem;
+    padding-left: 3rem !important; }
+  body.media-desktop div.topicpage-search-field a.wSearchLink {
+    display: block;
+    position: relative;
+    float: left;
+    top: -3rem;
+    left: 0;
+    height: 3rem;
+    width: 3rem; }
+  body.media-desktop div.topicpage-search-field div.search-list {
+    width: 20rem; }
+
+body.media-desktop div.topicpage-function-buttons {
+  overflow: hidden;
+  height: 2rem; }
+  body.media-desktop div.topicpage-function-buttons div.grid-buttons {
+    display: flex;
+    justify-content: center; }
+    body.media-desktop div.topicpage-function-buttons div.grid-buttons div {
+      display: inline-block;
+      float: right;
+      height: 2rem;
+      line-height: 2rem;
+      width: 6.25rem;
+      cursor: pointer;
+      margin-left: 0.625rem;
+      overflow: hidden; }
+      @media (min-resolution: 150dpi) {
+        body.media-desktop div.topicpage-function-buttons div.grid-buttons div {
+          line-height: 2.2rem; } }
+      body.media-desktop div.topicpage-function-buttons div.grid-buttons div:last-child {
+        margin-left: 0; }
+      body.media-desktop div.topicpage-function-buttons div.grid-buttons div a {
+        display: block;
+        line-height: 2rem; }
+
+div.frontpage-welcome {
+  width: 100%;
+  margin-top: 4.5rem; }
+  div.frontpage-welcome p {
+    display: none; }
+
+body.media-desktop div.frontpage-welcome {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto 1.25rem; }
+  body.media-desktop div.frontpage-welcome p {
+    display: block; }
+
+body.media-desktop div.frontpage-search-field {
+  max-width: 60rem;
+  height: 3rem;
+  margin: 0 auto 1.25rem;
+  position: static;
+  overflow: hidden; }
+  body.media-desktop div.frontpage-search-field input.wSearchField {
+    color: var(--search_box_field_color);
+    display: block;
+    float: none;
+    width: 40rem;
+    height: 3rem;
+    margin: 0 auto;
+    font-size: 1em;
+    z-index: 200;
+    padding-left: 3rem !important; }
+  body.media-desktop div.frontpage-search-field a.wSearchLink {
+    display: block;
+    position: relative;
+    top: -3rem;
+    float: left;
+    left: 10rem;
+    height: 3rem;
+    width: 3rem; }
+  body.media-desktop div.frontpage-search-field div.search-list {
+    top: auto !important;
+    margin-top: -.75rem !important;
+    right: calc((100% - 40rem) / 2 + .0625rem);
+    padding: 0 1rem .5rem;
+    width: 39.87rem;
+    font-size: 1.15em; }
+
+body.media-mobile div.topicpage-function-buttons div.overlay-body,
+body.media-mobile div.frontpage-function-buttons div.overlay-body, body.media-tablet div.frontpage-function-buttons div.overlay-body,
+body.media-tablet div.topicpage-function-buttons div.overlay-body {
+  margin: 0;
+  padding: 0; }
+  body.media-mobile div.topicpage-function-buttons div.overlay-body div.no-grid,
+  body.media-mobile div.frontpage-function-buttons div.overlay-body div.no-grid, body.media-tablet div.frontpage-function-buttons div.overlay-body div.no-grid,
+  body.media-tablet div.topicpage-function-buttons div.overlay-body div.no-grid {
+    margin: 0;
+    padding: 0;
+    width: 100%; }
+  body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid),
+  body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid), body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid),
+  body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) {
+    margin: 0;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0; }
+    body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a,
+    body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a, body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a,
+    body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a {
+      cursor: pointer;
+      display: block; }
+
+body.media-mobile div.topicpage-function-buttons,
+body.media-mobile div.frontpage-function-buttons {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.topicpage-function-buttons.layout-visible,
+  body.media-mobile div.frontpage-function-buttons.layout-visible {
+    left: 0; }
+  body.media-mobile div.topicpage-function-buttons div.overlay-header,
+  body.media-mobile div.frontpage-function-buttons div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 5rem; }
+    body.media-mobile div.topicpage-function-buttons div.overlay-header div,
+    body.media-mobile div.frontpage-function-buttons div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.topicpage-function-buttons div.overlay-header div.title,
+      body.media-mobile div.frontpage-function-buttons div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.topicpage-function-buttons div.overlay-header div.title.filter-applied:after,
+        body.media-mobile div.frontpage-function-buttons div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.topicpage-function-buttons div.overlay-header div.overlay-close,
+      body.media-mobile div.frontpage-function-buttons div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.topicpage-function-buttons div.overlay-header div.overlay-close a,
+        body.media-mobile div.frontpage-function-buttons div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+  body.media-mobile div.topicpage-function-buttons div.overlay-body,
+  body.media-mobile div.frontpage-function-buttons div.overlay-body {
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 100%;
+    bottom: 0;
+    padding: 0 1.875rem;
+    overflow: auto; }
+
+body.media-tablet div.frontpage-function-buttons,
+body.media-tablet div.topicpage-function-buttons {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.frontpage-function-buttons.layout-visible,
+  body.media-tablet div.topicpage-function-buttons.layout-visible {
+    left: 0; }
+  body.media-tablet div.frontpage-function-buttons div.overlay-header,
+  body.media-tablet div.topicpage-function-buttons div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.frontpage-function-buttons div.overlay-header div,
+    body.media-tablet div.topicpage-function-buttons div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.frontpage-function-buttons div.overlay-header div.title,
+      body.media-tablet div.topicpage-function-buttons div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.frontpage-function-buttons div.overlay-header div.title.filter-applied:after,
+        body.media-tablet div.topicpage-function-buttons div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.frontpage-function-buttons div.overlay-header div.overlay-close,
+      body.media-tablet div.topicpage-function-buttons div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.frontpage-function-buttons div.overlay-header div.overlay-close a,
+        body.media-tablet div.topicpage-function-buttons div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.frontpage-function-buttons div.overlay-header input,
+    body.media-tablet div.topicpage-function-buttons div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.frontpage-function-buttons div.overlay-header div.search-list,
+    body.media-tablet div.topicpage-function-buttons div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.frontpage-function-buttons div.overlay-header a.wSearchLink,
+    body.media-tablet div.topicpage-function-buttons div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.frontpage-function-buttons div.overlay-header p,
+    body.media-tablet div.topicpage-function-buttons div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.frontpage-function-buttons div.overlay-body,
+  body.media-tablet div.topicpage-function-buttons div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 1rem;
+    overflow: auto; }
+  body.media-tablet div.frontpage-function-buttons div.overlay-footer,
+  body.media-tablet div.topicpage-function-buttons div.overlay-footer {
+    display: none; }
+
+body.media-desktop div.frontpage-function-buttons div.grid-buttons {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  body.media-desktop div.frontpage-function-buttons div.grid-buttons div {
+    display: inline-block;
+    width: 9.9rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    body.media-desktop div.frontpage-function-buttons div.grid-buttons {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      body.media-desktop div.frontpage-function-buttons div.grid-buttons div {
+        float: right;
+        display: inline-block;
+        width: 9.9rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  body.media-desktop div.frontpage-function-buttons div.grid-buttons div {
+    height: 2rem;
+    line-height: 2rem;
+    cursor: pointer; }
+    body.media-desktop div.frontpage-function-buttons div.grid-buttons div a {
+      display: block;
+      line-height: 2rem; }
+
+div.frontpage-toc.grid-2 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-2 div {
+    display: inline-block;
+    width: 27.75rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-2 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-2 div {
+        float: right;
+        display: inline-block;
+        width: 27.75rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-2 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-2 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-2 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-2 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-2 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-2 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-2 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-2 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-2 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-3 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-3 div {
+    display: inline-block;
+    width: 17.8333333333rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-3 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-3 div {
+        float: right;
+        display: inline-block;
+        width: 17.8333333333rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-3 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-3 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-3 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-3 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-3 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-3 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-3 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-3 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-3 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-4 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-4 div {
+    display: inline-block;
+    width: 12.875rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-4 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-4 div {
+        float: right;
+        display: inline-block;
+        width: 12.875rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-4 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-4 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-4 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-4 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-4 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-4 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-4 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-4 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-4 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-5 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-5 div {
+    display: inline-block;
+    width: 9.9rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-5 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-5 div {
+        float: right;
+        display: inline-block;
+        width: 9.9rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-5 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-5 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-5 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-5 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-5 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-5 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-5 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-5 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-5 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-6 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-6 div {
+    display: inline-block;
+    width: 7.9166666667rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-6 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-6 div {
+        float: right;
+        display: inline-block;
+        width: 7.9166666667rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-6 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-6 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-6 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-6 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-6 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-6 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-6 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-6 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-6 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-7 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-7 div {
+    display: inline-block;
+    width: 6.5rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-7 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-7 div {
+        float: right;
+        display: inline-block;
+        width: 6.5rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-7 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-7 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-7 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-7 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-7 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-7 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-7 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-7 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-7 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+div.frontpage-toc.grid-8 {
+  /**
+  	Set the grid to a fluid grid by default.
+  	Only when screen => $grid-with, will we fix the size. This will make the behaviour nicely resonsive.
+  	The reason first make the grid fluid is because SCSS doesn't allow @extend in media queries.
+  **/
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap; }
+  div.frontpage-toc.grid-8 div {
+    display: inline-block;
+    width: 5.4375rem;
+    margin: 0 1rem 2rem; }
+  @media (min-width: 60rem) {
+    div.frontpage-toc.grid-8 {
+      width: 60rem;
+      overflow: hidden;
+      margin: 0 auto;
+      /*
+      	We don't apply the grid-margin in this situation. The required white space is set in the item.
+      */
+      padding: 0; }
+      div.frontpage-toc.grid-8 div {
+        float: right;
+        display: inline-block;
+        width: 5.4375rem;
+        margin-top: 0;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem; } }
+  div.frontpage-toc.grid-8 div {
+    height: 10rem;
+    background-clip: padding-box;
+    		/*
+    			The Dynamic Filter tags are hidden because we hide an overflow.
+    			(The tags you see when opening the help with the paramter ?showtags=true)
+    
+    			We need additional styling to make them visible.
+    
+    			Regardless of the amount of tags, there is always 1 sup element to show the tags.
+    
+    		*/ }
+    div.frontpage-toc.grid-8 div:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    div.frontpage-toc.grid-8 div.active span.label.back-label {
+      display: inline-block; }
+    div.frontpage-toc.grid-8 div.active span.normal-label {
+      display: none; }
+    div.frontpage-toc.grid-8 div.inactive {
+      display: none; }
+    div.frontpage-toc.grid-8 div a {
+      -ms-box-orient: horizontal;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      position: relative;
+      height: 10rem;
+      background-clip: padding-box; }
+    div.frontpage-toc.grid-8 div span.label {
+      display: inline-block;
+      -webkit-align-self: flex-end;
+      align-self: flex-end;
+      margin: 0;
+      width: 100%;
+      padding: 0 5%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      text-align: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background-clip: padding-box; }
+      div.frontpage-toc.grid-8 div span.label.back-label {
+        display: none; }
+    div.frontpage-toc.grid-8 div sup {
+      display: inline-block;
+      position: relative;
+      top: -4rem;
+      max-width: 120%;
+      overflow: auto; }
+
+/***** Widgets and widget containers *****/
+body.media-tablet div.brs_next,
+body.media-tablet div.brs_previous,
+body.media-mobile div.brs_next,
+body.media-mobile div.brs_previous {
+  position: fixed;
+  bottom: 0.25rem;
+  width: 2rem;
+  height: 2rem;
+  z-index: 1000;
+  display: block; }
+  body.media-tablet div.brs_next.brs_previous,
+  body.media-tablet div.brs_previous.brs_previous,
+  body.media-mobile div.brs_next.brs_previous,
+  body.media-mobile div.brs_previous.brs_previous {
+    right: 0.125rem; }
+  body.media-tablet div.brs_next.brs_next,
+  body.media-tablet div.brs_previous.brs_next,
+  body.media-mobile div.brs_next.brs_next,
+  body.media-mobile div.brs_previous.brs_next {
+    left: 0.125rem; }
+  body.media-tablet div.brs_next a,
+  body.media-tablet div.brs_previous a,
+  body.media-mobile div.brs_next a,
+  body.media-mobile div.brs_previous a {
+    display: block;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0;
+    margin: 0; }
+
+body.media-mobile div.topicpage-toc {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.topicpage-toc.layout-visible {
+    left: 0; }
+  body.media-mobile div.topicpage-toc div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 5rem; }
+    body.media-mobile div.topicpage-toc div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.topicpage-toc div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.topicpage-toc div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.topicpage-toc div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.topicpage-toc div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+  body.media-mobile div.topicpage-toc div.overlay-body {
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.topicpage-toc div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.topicpage-toc div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.topicpage-toc div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.topicpage-toc div.overlay-footer div a {
+        display: block; }
+  body.media-mobile div.topicpage-toc div.overlay-body ul {
+    margin: 0;
+    padding: 0; }
+  body.media-mobile div.topicpage-toc div.overlay-body ul:focus {
+    outline: none; }
+  body.media-mobile div.topicpage-toc div.overlay-body ul, body.media-mobile div.topicpage-toc div.overlay-body li {
+    list-style: none; }
+  body.media-mobile div.topicpage-toc div.overlay-body ul.child {
+    overflow: hidden; }
+  body.media-mobile div.topicpage-toc div.overlay-body li {
+    margin-right: 0;
+    padding-right: 1.25rem;
+    margin-bottom: 0.625rem; }
+  body.media-mobile div.topicpage-toc div.overlay-body li.child {
+    display: block;
+    overflow-y: hidden;
+    max-height: 0em;
+    -o-transition-duration: 0.5s;
+    -o-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.5s;
+    -ms-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    margin-bottom: 0; }
+    body.media-mobile div.topicpage-toc div.overlay-body li.child:not(.show) {
+      overflow-x: hidden;
+      padding: 0; }
+  body.media-mobile div.topicpage-toc div.overlay-body li.child.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-y: visible;
+    -o-transition-duration: 0.7s;
+    -o-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.7s;
+    -ms-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.7s;
+    -moz-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000; }
+  body.media-mobile div.topicpage-toc div.overlay-body li.child.expanding.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: hidden; }
+  body.media-mobile div.topicpage-toc div.overlay-body li.child.collapsing {
+    overflow-x: hidden;
+    overflow-y: hidden; }
+  body.media-mobile div.topicpage-toc div.overlay-body li {
+    margin: 0;
+    width: 100%;
+    padding-right: 0;
+    min-height: 3rem;
+    cursor: pointer; }
+    body.media-mobile div.topicpage-toc div.overlay-body li:not(.show) {
+      min-height: 0;
+      min-width: 0; }
+    body.media-mobile div.topicpage-toc div.overlay-body li.book, body.media-mobile div.topicpage-toc div.overlay-body li.item {
+      padding: 1rem 0; }
+    body.media-mobile div.topicpage-toc div.overlay-body li.active.rh-hide {
+      display: list-item !important; }
+    body.media-mobile div.topicpage-toc div.overlay-body li.inactive {
+      display: none; }
+    body.media-mobile div.topicpage-toc div.overlay-body li.book.active {
+      padding-right: 1.5rem; }
+
+body.media-tablet div.topicpage-toc {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.topicpage-toc.layout-visible {
+    left: 0; }
+  body.media-tablet div.topicpage-toc div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.topicpage-toc div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.topicpage-toc div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.topicpage-toc div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.topicpage-toc div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.topicpage-toc div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.topicpage-toc div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.topicpage-toc div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.topicpage-toc div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.topicpage-toc div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.topicpage-toc div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.topicpage-toc div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.topicpage-toc div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.topicpage-toc div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.topicpage-toc div.overlay-footer div a {
+        display: block; }
+  body.media-tablet div.topicpage-toc div.overlay-body ul {
+    margin: 0;
+    padding: 0; }
+  body.media-tablet div.topicpage-toc div.overlay-body ul:focus {
+    outline: none; }
+  body.media-tablet div.topicpage-toc div.overlay-body ul, body.media-tablet div.topicpage-toc div.overlay-body li {
+    list-style: none; }
+  body.media-tablet div.topicpage-toc div.overlay-body ul.child {
+    overflow: hidden; }
+  body.media-tablet div.topicpage-toc div.overlay-body li {
+    margin-right: 0;
+    padding-right: 1.25rem;
+    margin-bottom: 0.625rem; }
+  body.media-tablet div.topicpage-toc div.overlay-body li.child {
+    display: block;
+    overflow-y: hidden;
+    max-height: 0em;
+    -o-transition-duration: 0.5s;
+    -o-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.5s;
+    -ms-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    margin-bottom: 0; }
+    body.media-tablet div.topicpage-toc div.overlay-body li.child:not(.show) {
+      overflow-x: hidden;
+      padding: 0; }
+  body.media-tablet div.topicpage-toc div.overlay-body li.child.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-y: visible;
+    -o-transition-duration: 0.7s;
+    -o-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.7s;
+    -ms-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.7s;
+    -moz-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000; }
+  body.media-tablet div.topicpage-toc div.overlay-body li.child.expanding.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: hidden; }
+  body.media-tablet div.topicpage-toc div.overlay-body li.child.collapsing {
+    overflow-x: hidden;
+    overflow-y: hidden; }
+
+body.media-desktop div.topicpage-toc {
+  font-size: 1rem;
+  position: absolute;
+  top: 6.875rem;
+  bottom: 0;
+  left: 0;
+  width: 20rem;
+  overflow: auto; }
+  body.media-desktop div.topicpage-toc div.overlay-header {
+    display: none; }
+  body.media-desktop div.topicpage-toc div.overlay-body ul {
+    margin: 0;
+    padding: 0; }
+  body.media-desktop div.topicpage-toc div.overlay-body ul:focus {
+    outline: none; }
+  body.media-desktop div.topicpage-toc div.overlay-body ul, body.media-desktop div.topicpage-toc div.overlay-body li {
+    list-style: none; }
+  body.media-desktop div.topicpage-toc div.overlay-body ul.child {
+    overflow: hidden; }
+  body.media-desktop div.topicpage-toc div.overlay-body li {
+    margin-right: 0;
+    padding-right: 1.25rem;
+    margin-bottom: 0.625rem; }
+  body.media-desktop div.topicpage-toc div.overlay-body li.child {
+    display: block;
+    overflow-y: hidden;
+    max-height: 0em;
+    -o-transition-duration: 0.5s;
+    -o-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.5s;
+    -ms-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0, 1.05, 0, 1);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    margin-bottom: 0; }
+    body.media-desktop div.topicpage-toc div.overlay-body li.child:not(.show) {
+      overflow-x: hidden;
+      padding: 0; }
+  body.media-desktop div.topicpage-toc div.overlay-body li.child.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-y: visible;
+    -o-transition-duration: 0.7s;
+    -o-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -o-transition-property: max-height;
+    -ms-transition-duration: 0.7s;
+    -ms-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -ms-transition-property: max-height;
+    -moz-transition-duration: 0.7s;
+    -moz-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -moz-transition-property: max-height;
+    -webkit-transition-duration: 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    -webkit-transition-property: max-height;
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(1, 0, 1, 0);
+    transition-property: max-height;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000; }
+  body.media-desktop div.topicpage-toc div.overlay-body li.child.expanding.show {
+    max-height: 5000em;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: hidden; }
+  body.media-desktop div.topicpage-toc div.overlay-body li.child.collapsing {
+    overflow-x: hidden;
+    overflow-y: hidden; }
+
+div.overlay.index input::-ms-clear, div.overlay.glossary input::-ms-clear {
+  display: none; }
+div.overlay.index ul.index-holder, div.overlay.glossary ul.index-holder,
+div.overlay.index ul.glossary-holder,
+div.overlay.glossary ul.glossary-holder {
+  margin-top: 1.875rem; }
+  div.overlay.index ul.index-holder > li, div.overlay.glossary ul.index-holder > li,
+  div.overlay.index ul.glossary-holder > li,
+  div.overlay.glossary ul.glossary-holder > li {
+    padding-left: 0; }
+div.overlay.index ul, div.overlay.glossary ul {
+  padding: 0; }
+div.overlay.index li, div.overlay.glossary li {
+  cursor: pointer;
+  padding-left: 1.25rem; }
+  div.overlay.index li span, div.overlay.glossary li span, div.overlay.index li a, div.overlay.glossary li a {
+    padding: .25rem 0.625rem; }
+  div.overlay.index li a span, div.overlay.glossary li a span {
+    padding: 0; }
+div.overlay.index li > ul, div.overlay.glossary li > ul {
+  margin-right: 0.625rem; }
+div.overlay.index div.GlossDefinition, div.overlay.glossary div.GlossDefinition {
+  margin-right: 1.25rem; }
+
+body.media-mobile div.overlay.index {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.overlay.index.layout-visible {
+    left: 0; }
+  body.media-mobile div.overlay.index div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be as wide as the search field. */ }
+    body.media-mobile div.overlay.index div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.overlay.index div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.overlay.index div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.overlay.index div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.overlay.index div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-mobile div.overlay.index div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: calc( 100% - (1.875rem * 2) );
+      height: 3rem;
+      margin: 0.0625rem 1.875rem 0;
+      font-size: 1rem !important; }
+    body.media-mobile div.overlay.index div.overlay-header div.search-list {
+      top: 8rem;
+      width: calc( 100% - (1.875rem * 2) );
+      margin-right: 1.875rem; }
+    body.media-mobile div.overlay.index div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc( 100% - (1.875rem + 3rem));
+      width: 3rem;
+      height: 3rem; }
+    body.media-mobile div.overlay.index div.overlay-header p {
+      height: 3.125rem;
+      line-height: 3.125rem;
+      clear: both;
+      margin: 0;
+      margin-right: 1.875rem; }
+  body.media-mobile div.overlay.index div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.overlay.index div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.overlay.index div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.overlay.index div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.overlay.index div.overlay-footer div a {
+        display: block; }
+
+body.media-tablet div.overlay.index {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.overlay.index.layout-visible {
+    left: 0; }
+  body.media-tablet div.overlay.index div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.overlay.index div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.overlay.index div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.overlay.index div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.overlay.index div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.overlay.index div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.overlay.index div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.overlay.index div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.overlay.index div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.overlay.index div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.overlay.index div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.overlay.index div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.overlay.index div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.overlay.index div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.overlay.index div.overlay-footer div a {
+        display: block; }
+
+body.media-desktop div.overlay.index {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-desktop div.overlay.index.layout-visible {
+    left: 0; }
+  body.media-desktop div.overlay.index div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-desktop div.overlay.index div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-desktop div.overlay.index div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-desktop div.overlay.index div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-desktop div.overlay.index div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-desktop div.overlay.index div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-desktop div.overlay.index div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-desktop div.overlay.index div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-desktop div.overlay.index div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-desktop div.overlay.index div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-desktop div.overlay.index div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 1rem;
+    overflow: auto; }
+  body.media-desktop div.overlay.index div.overlay-footer {
+    display: none; }
+
+body.media-mobile div.overlay.glossary {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.overlay.glossary.layout-visible {
+    left: 0; }
+  body.media-mobile div.overlay.glossary div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be as wide as the search field. */ }
+    body.media-mobile div.overlay.glossary div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.overlay.glossary div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.overlay.glossary div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.overlay.glossary div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.overlay.glossary div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-mobile div.overlay.glossary div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: calc( 100% - (1.875rem * 2) );
+      height: 3rem;
+      margin: 0.0625rem 1.875rem 0;
+      font-size: 1rem !important; }
+    body.media-mobile div.overlay.glossary div.overlay-header div.search-list {
+      top: 8rem;
+      width: calc( 100% - (1.875rem * 2) );
+      margin-right: 1.875rem; }
+    body.media-mobile div.overlay.glossary div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc( 100% - (1.875rem + 3rem));
+      width: 3rem;
+      height: 3rem; }
+    body.media-mobile div.overlay.glossary div.overlay-header p {
+      height: 3.125rem;
+      line-height: 3.125rem;
+      clear: both;
+      margin: 0;
+      margin-right: 1.875rem; }
+  body.media-mobile div.overlay.glossary div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.overlay.glossary div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.overlay.glossary div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.overlay.glossary div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.overlay.glossary div.overlay-footer div a {
+        display: block; }
+
+body.media-tablet div.overlay.glossary {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.overlay.glossary.layout-visible {
+    left: 0; }
+  body.media-tablet div.overlay.glossary div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.overlay.glossary div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.overlay.glossary div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.overlay.glossary div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.overlay.glossary div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.overlay.glossary div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.overlay.glossary div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.overlay.glossary div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.overlay.glossary div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.overlay.glossary div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.overlay.glossary div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.overlay.glossary div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.overlay.glossary div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.overlay.glossary div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.overlay.glossary div.overlay-footer div a {
+        display: block; }
+
+body.media-desktop div.overlay.glossary {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-desktop div.overlay.glossary.layout-visible {
+    left: 0; }
+  body.media-desktop div.overlay.glossary div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-desktop div.overlay.glossary div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-desktop div.overlay.glossary div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-desktop div.overlay.glossary div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-desktop div.overlay.glossary div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-desktop div.overlay.glossary div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-desktop div.overlay.glossary div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-desktop div.overlay.glossary div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-desktop div.overlay.glossary div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-desktop div.overlay.glossary div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-desktop div.overlay.glossary div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 1rem;
+    overflow: auto; }
+  body.media-desktop div.overlay.glossary div.overlay-footer {
+    display: none; }
+
+div.overlay.filter div.overlay-body ul.wFltOpts {
+  margin-top: .125rem; }
+div.overlay.filter div.overlay-body ul, div.overlay.filter div.overlay-body li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+div.overlay.filter div.overlay-body input {
+  display: none; }
+div.overlay.filter div.overlay-body label.tag-parent {
+  display: block;
+  padding-bottom: 0.625rem;
+  margin-bottom: 1.25rem; }
+div.overlay.filter div.overlay-body li.item {
+  margin-bottom: 0.625rem; }
+  div.overlay.filter div.overlay-body li.item > label {
+    cursor: pointer;
+    display: block;
+    padding-right: 1.5625rem;
+    background-repeat: no-repeat;
+    background-position: right center; }
+div.overlay.filter div.overlay-body ul.wFltOptsGrp {
+  margin-bottom: 1.25rem; }
+
+body.media-mobile div.overlay.filter {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.overlay.filter.layout-visible {
+    left: 0; }
+  body.media-mobile div.overlay.filter div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be as wide as the search field. */ }
+    body.media-mobile div.overlay.filter div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.overlay.filter div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.overlay.filter div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.overlay.filter div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.overlay.filter div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-mobile div.overlay.filter div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: calc( 100% - (1.875rem * 2) );
+      height: 3rem;
+      margin: 0.0625rem 1.875rem 0;
+      font-size: 1rem !important; }
+    body.media-mobile div.overlay.filter div.overlay-header div.search-list {
+      top: 8rem;
+      width: calc( 100% - (1.875rem * 2) );
+      margin-right: 1.875rem; }
+    body.media-mobile div.overlay.filter div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc( 100% - (1.875rem + 3rem));
+      width: 3rem;
+      height: 3rem; }
+    body.media-mobile div.overlay.filter div.overlay-header p {
+      height: 3.125rem;
+      line-height: 3.125rem;
+      clear: both;
+      margin: 0;
+      margin-right: 1.875rem; }
+  body.media-mobile div.overlay.filter div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.overlay.filter div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.overlay.filter div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.overlay.filter div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.overlay.filter div.overlay-footer div a {
+        display: block; }
+
+body.media-tablet div.overlay.filter,
+body.media-desktop div.overlay.filter {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.overlay.filter.layout-visible,
+  body.media-desktop div.overlay.filter.layout-visible {
+    left: 0; }
+  body.media-tablet div.overlay.filter div.overlay-header,
+  body.media-desktop div.overlay.filter div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.overlay.filter div.overlay-header div,
+    body.media-desktop div.overlay.filter div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.overlay.filter div.overlay-header div.title,
+      body.media-desktop div.overlay.filter div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.overlay.filter div.overlay-header div.title.filter-applied:after,
+        body.media-desktop div.overlay.filter div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.overlay.filter div.overlay-header div.overlay-close,
+      body.media-desktop div.overlay.filter div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.overlay.filter div.overlay-header div.overlay-close a,
+        body.media-desktop div.overlay.filter div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.overlay.filter div.overlay-header input,
+    body.media-desktop div.overlay.filter div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.overlay.filter div.overlay-header div.search-list,
+    body.media-desktop div.overlay.filter div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.overlay.filter div.overlay-header a.wSearchLink,
+    body.media-desktop div.overlay.filter div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.overlay.filter div.overlay-header p,
+    body.media-desktop div.overlay.filter div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.overlay.filter div.overlay-body,
+  body.media-desktop div.overlay.filter div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.overlay.filter div.overlay-footer,
+  body.media-desktop div.overlay.filter div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.overlay.filter div.overlay-footer:before,
+    body.media-desktop div.overlay.filter div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.overlay.filter div.overlay-footer div,
+    body.media-desktop div.overlay.filter div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.overlay.filter div.overlay-footer div a,
+      body.media-desktop div.overlay.filter div.overlay-footer div a {
+        display: block; }
+
+body.media-desktop div.overlay.filter {
+  /*
+  	For destktop, we hide the back button. But the reset button must be visible.
+  	The sidebar has a footer, but we override the close buttons here.
+  */ }
+  body.media-desktop div.overlay.filter div.overlay-footer div.overlay-close {
+    display: none; }
+
+div.overlay.favorites div.favoritestableintro {
+  padding-bottom: 0.625rem;
+  margin-bottom: 1.25rem; }
+div.overlay.favorites table.favoritesholder {
+  width: 100%; }
+  div.overlay.favorites table.favoritesholder tr {
+    min-height: 1.625rem; }
+  div.overlay.favorites table.favoritesholder td.favorite a {
+    display: inline-block;
+    word-wrap: break-word;
+    padding: 0.25rem 0.625rem 0.25rem 0.625rem; }
+    div.overlay.favorites table.favoritesholder td.favorite a:focus {
+      outline: none; }
+  div.overlay.favorites table.favoritesholder td.removelink {
+    width: 2rem; }
+    div.overlay.favorites table.favoritesholder td.removelink a {
+      display: block; }
+
+body.media-mobile div.overlay.favorites {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.overlay.favorites.layout-visible {
+    left: 0; }
+  body.media-mobile div.overlay.favorites div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be as wide as the search field. */ }
+    body.media-mobile div.overlay.favorites div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.overlay.favorites div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.overlay.favorites div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.overlay.favorites div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.overlay.favorites div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-mobile div.overlay.favorites div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: calc( 100% - (1.875rem * 2) );
+      height: 3rem;
+      margin: 0.0625rem 1.875rem 0;
+      font-size: 1rem !important; }
+    body.media-mobile div.overlay.favorites div.overlay-header div.search-list {
+      top: 8rem;
+      width: calc( 100% - (1.875rem * 2) );
+      margin-right: 1.875rem; }
+    body.media-mobile div.overlay.favorites div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc( 100% - (1.875rem + 3rem));
+      width: 3rem;
+      height: 3rem; }
+    body.media-mobile div.overlay.favorites div.overlay-header p {
+      height: 3.125rem;
+      line-height: 3.125rem;
+      clear: both;
+      margin: 0;
+      margin-right: 1.875rem; }
+  body.media-mobile div.overlay.favorites div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.overlay.favorites div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.overlay.favorites div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.overlay.favorites div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.overlay.favorites div.overlay-footer div a {
+        display: block; }
+
+body.media-tablet div.overlay.favorites {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.overlay.favorites.layout-visible {
+    left: 0; }
+  body.media-tablet div.overlay.favorites div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.overlay.favorites div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.overlay.favorites div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.overlay.favorites div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.overlay.favorites div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.overlay.favorites div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.overlay.favorites div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.overlay.favorites div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.overlay.favorites div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.overlay.favorites div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.overlay.favorites div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.overlay.favorites div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.overlay.favorites div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.overlay.favorites div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.overlay.favorites div.overlay-footer div a {
+        display: block; }
+
+body.media-desktop div.overlay.favorites {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-desktop div.overlay.favorites.layout-visible {
+    left: 0; }
+  body.media-desktop div.overlay.favorites div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-desktop div.overlay.favorites div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-desktop div.overlay.favorites div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-desktop div.overlay.favorites div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-desktop div.overlay.favorites div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-desktop div.overlay.favorites div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-desktop div.overlay.favorites div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-desktop div.overlay.favorites div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-desktop div.overlay.favorites div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-desktop div.overlay.favorites div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-desktop div.overlay.favorites div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 1rem;
+    overflow: auto; }
+  body.media-desktop div.overlay.favorites div.overlay-footer {
+    display: none; }
+
+div.overlay.search {
+  visibility: hidden;
+  	/*
+  		Some overrides to correctly position the search suggestions.
+  
+  		There are also overrides in the overlays: both full page and sidebar. (_overlays.scss)
+  		This is needed because we need to calculate the top position of the suggestions. But we can only calculate the height in the popup.
+  
+  		For mobile (full page popup) the width of the search bar is also set in the popup. Width of suggestions are placed in the popup-fullpage mixin as well.
+  	*/ }
+  div.overlay.search div.search-list {
+    height: auto !important;
+    line-height: 1rem !important;
+    width: 82.5%; }
+    div.overlay.search div.search-list div {
+      height: auto !important;
+      line-height: 1rem !important; }
+
+body.media-mobile div.overlay.search {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 21.875rem;
+  z-index: 2000;
+  overflow: hidden;
+  max-width: 80%;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-mobile div.overlay.search.layout-visible {
+    left: 0; }
+  body.media-mobile div.overlay.search div.overlay-header {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be as wide as the search field. */ }
+    body.media-mobile div.overlay.search div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-mobile div.overlay.search div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 70%;
+        font-size: 1.2rem;
+        padding-right: 1.875rem; }
+        body.media-mobile div.overlay.search div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-mobile div.overlay.search div.overlay-header div.overlay-close {
+        float: left;
+        width: 15%;
+        margin-left: 1.875rem; }
+        body.media-mobile div.overlay.search div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-mobile div.overlay.search div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: calc( 100% - (1.875rem * 2) );
+      height: 3rem;
+      margin: 0.0625rem 1.875rem 0;
+      font-size: 1rem !important; }
+    body.media-mobile div.overlay.search div.overlay-header div.search-list {
+      top: 8rem;
+      width: calc( 100% - (1.875rem * 2) );
+      margin-right: 1.875rem; }
+    body.media-mobile div.overlay.search div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc( 100% - (1.875rem + 3rem));
+      width: 3rem;
+      height: 3rem; }
+    body.media-mobile div.overlay.search div.overlay-header p {
+      height: 3.125rem;
+      line-height: 3.125rem;
+      clear: both;
+      margin: 0;
+      margin-right: 1.875rem; }
+  body.media-mobile div.overlay.search div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    bottom: 4.5rem;
+    padding: 0 1.875rem;
+    overflow: auto; }
+  body.media-mobile div.overlay.search div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-mobile div.overlay.search div.overlay-footer:before {
+      content: "";
+      width: calc(100% - 1.875rem * 2);
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      right: 1.875rem; }
+    body.media-mobile div.overlay.search div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-mobile div.overlay.search div.overlay-footer div a {
+        display: block; }
+  body.media-mobile div.overlay.search input.wSearchField {
+    padding-left: 2.5rem; }
+
+body.media-tablet div.overlay.search {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-tablet div.overlay.search.layout-visible {
+    left: 0; }
+  body.media-tablet div.overlay.search div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-tablet div.overlay.search div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-tablet div.overlay.search div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-tablet div.overlay.search div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-tablet div.overlay.search div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-tablet div.overlay.search div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-tablet div.overlay.search div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-tablet div.overlay.search div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-tablet div.overlay.search div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-tablet div.overlay.search div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-tablet div.overlay.search div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 4.5rem;
+    overflow: auto; }
+  body.media-tablet div.overlay.search div.overlay-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+    padding: 1.25rem 1.875rem 0; }
+    body.media-tablet div.overlay.search div.overlay-footer:before {
+      content: "";
+      width: 18.125rem;
+      height: .0625rem;
+      position: absolute;
+      top: 0;
+      left: 1.875rem; }
+    body.media-tablet div.overlay.search div.overlay-footer div {
+      display: inline-block;
+      width: 4rem;
+      height: 2rem;
+      line-height: 2rem;
+      float: right;
+      position: relative;
+      margin-left: 1.25rem; }
+      body.media-tablet div.overlay.search div.overlay-footer div a {
+        display: block; }
+
+body.media-desktop div.overlay.search {
+  position: fixed;
+  left: -21.875rem;
+  top: 0;
+  height: 100%;
+  width: 21.875rem;
+  padding: 0;
+  z-index: 1000;
+  overflow: hidden;
+  /**
+  	Only show the sidebar when the class is set to layout-visible.
+  **/ }
+  body.media-desktop div.overlay.search.layout-visible {
+    left: 0; }
+  body.media-desktop div.overlay.search div.overlay-header {
+    position: relative;
+    padding: 0 1.875rem;
+    overflow: visible;
+    height: 8.125rem;
+    /* The search list must be positioned directly below the input field */ }
+    body.media-desktop div.overlay.search div.overlay-header div {
+      height: 5rem;
+      line-height: 5rem;
+      margin: 0; }
+      body.media-desktop div.overlay.search div.overlay-header div.title {
+        position: relative;
+        float: right;
+        max-width: 14rem;
+        font-size: 1.2rem; }
+        body.media-desktop div.overlay.search div.overlay-header div.title.filter-applied:after {
+          content: "";
+          background-repeat: no-repeat;
+          background-position: left center;
+          height: 5rem;
+          width: 2rem;
+          display: block;
+          position: absolute;
+          top: 0;
+          right: -2.5rem; }
+      body.media-desktop div.overlay.search div.overlay-header div.overlay-close {
+        float: left;
+        width: 4rem; }
+        body.media-desktop div.overlay.search div.overlay-header div.overlay-close a {
+          display: block;
+          width: 100%;
+          height: 100%; }
+    body.media-desktop div.overlay.search div.overlay-header input {
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      height: 3rem;
+      margin-top: 0.0625rem;
+      font-size: 1rem !important;
+      padding-left: 3rem; }
+    body.media-desktop div.overlay.search div.overlay-header div.search-list {
+      top: 8rem; }
+    body.media-desktop div.overlay.search div.overlay-header a.wSearchLink {
+      display: block;
+      position: relative;
+      top: -3rem;
+      right: calc(100% - 3rem);
+      width: 3rem;
+      height: 3rem; }
+    body.media-desktop div.overlay.search div.overlay-header p {
+      height: 3.125rem;
+      clear: both; }
+  body.media-desktop div.overlay.search div.overlay-body {
+    position: absolute;
+    top: 8.125rem;
+    right: 0;
+    width: 100%;
+    padding: 0 1.875rem;
+    bottom: 1rem;
+    overflow: auto; }
+  body.media-desktop div.overlay.search div.overlay-footer {
+    display: none; }
+
+/****** Changes to width and positioning when a sidebar is opened ******/
+body.allow-tablet-transitions.popup-visible div.topicpage-search-field {
+  width: calc(100% - 21.875rem); }
+
+body.allow-tablet-transitions.popup-visible div.topic-content {
+  left: 21.875rem; }
+
+body.allow-tablet-transitions.popup-visible div.brs_next {
+  left: 22rem; }
+
+/***** Transitions for overlays and sidebar ******/
+body.popup-visible div.overlay.layout-visible {
+  z-index: 10000;
+  visibility: visible; }
+
+div.topicpage-function-buttons.has-delay,
+div.frontpage-function-buttons.has-delay {
+  transition-delay: .75s !important; }
+
+div.topicpage-function-buttons.no-transform,
+div.frontpage-function-buttons.no-transform {
+  transition: none !important; }
+
+body.allow-tablet-transitions div.topicpage-search-field {
+  transition: width .75s; }
+
+body.allow-tablet-transitions div.topic-content,
+body.allow-desktop-transitions div.overlay,
+body.allow-tablet-transitions div.overlay,
+body.allow-tablet-transitions div.brs_next,
+body.allow-phone-transitions div.overlay,
+body.allow-tablet-transitions div.frontpage-function-buttons,
+body.allow-tablet-transitions div.topicpage-function-buttons,
+body.allow-phone-transitions div.frontpage-function-buttons,
+body.allow-phone-transitions div.topicpage-function-buttons {
+  transition: left .75s, right .75s; }
+
+.skip-to-content-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  background-color: white; }
+
+.skip-to-content-link {
+  position: absolute;
+  top: -2rem;
+  margin: 0.25rem; }
+
+.skip-to-content-link:focus {
+  position: relative;
+  top: 0; }
+
+.placeholder {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  text-transform: inherit;
+  text-indent: inherit;
+  text-shadow: inherit;
+  text-align: inherit;
+  font: inherit;
+  cursor: inherit; }
+
+/***** Color settings *****/
+/****** Mixins ******/
+/****** Common ******/
+body {
+  font-family: var(--page_font_family);
+  background: var(--page_bgcolor); }
+
+.loading {
+  background-image: url(var(--loading_image)) !important; }
+
+div.overlay input[type=text]::-ms-clear {
+  color: #fff; }
+
+div.overlay.search input[type=text]::-ms-clear {
+  margin-right: 1.25rem; }
+
+div.header h1 {
+  color: var(--header_font_color); }
+div.header div.header-project-info {
+  background: var(--header_bgcolor); }
+  div.header div.header-project-info a {
+    color: var(--header_font_color);
+    text-decoration: none; }
+    div.header div.header-project-info a:active {
+      text-decoration: underline; }
+div.header div.header-nav {
+  background: var(--breadcrumb_bgcolor); }
+div.header a.breadcrumb-link {
+  color: var(--breadcrumb_text_color);
+  text-decoration: none; }
+  div.header a.breadcrumb-link:hover {
+    text-decoration: underline;
+    cursor: pointer; }
+  div.header a.breadcrumb-link.no-link:hover {
+    text-decoration: none;
+    cursor: default; }
+div.header span.separator {
+  color: var(--breadcrumb_text_color); }
+div.header div.custom-link a {
+  text-decoration: none;
+  color: var(--header_font_color);
+  text-align: center;
+  font-size: .95em; }
+  div.header div.custom-link a:active, div.header div.custom-link a:hover {
+    text-decoration: underline; }
+
+body.media-tablet div.header-hamburger,
+body.media-mobile div.header-hamburger {
+  background-color: var(--header_bgcolor);
+  cursor: pointer;
+  background-image: url(var(--menu_image));
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+div.footer {
+  color: var(--page_footer_color); }
+
+/****** Topic page ******/
+div.topic-content {
+  background: var(--topic_page_bgcolor); }
+
+body.media-desktop div.topic-content {
+  background: var(--topic_page_bgcolor);
+  border-radius: .25rem; }
+
+/****** Homepage ******/
+div.frontpage-welcome {
+  text-align: center; }
+  div.frontpage-welcome h1 {
+    color: var(--home_page_title_color);
+    font-size: 1.2rem; }
+  div.frontpage-welcome p {
+    color: var(--home_page_subtitle_color); }
+
+body.media-desktop div.frontpage-welcome {
+  text-align: center; }
+  body.media-desktop div.frontpage-welcome h1 {
+    font-size: 2rem; }
+  body.media-desktop div.frontpage-welcome p {
+    font-size: 1rem; }
+
+div.topicpage-search-field,
+div.frontpage-search-field {
+  background: var(--breadcrumb_bgcolor); }
+  div.topicpage-search-field input.wSearchField,
+  div.frontpage-search-field input.wSearchField {
+    background: var(--search_box_field_bgcolor);
+    border: none;
+    padding: 0 .625rem;
+    color: var(--search_box_field_color);
+    font-size: 1rem;
+    border-radius: .25rem; }
+  div.topicpage-search-field a.wSearchLink,
+  div.frontpage-search-field a.wSearchLink {
+    background-image: url(var(--search_button_image));
+    background-repeat: no-repeat;
+    background-position: center center; }
+  div.topicpage-search-field div.search-list,
+  div.frontpage-search-field div.search-list {
+    background-color: var(--autocomplete_item_bgcolor);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    color: var(--autocomplete_item_color); }
+    div.topicpage-search-field div.search-list table,
+    div.frontpage-search-field div.search-list table {
+      border-collapse: collapse;
+      border-top: 0.0625rem solid;
+      border-color: var(--autocomplete_seperator_color); }
+    div.topicpage-search-field div.search-list tr,
+    div.frontpage-search-field div.search-list tr {
+      border: 0px solid;
+      border-top-width: 0.0625rem;
+      border-color: #DDDDDD; }
+      div.topicpage-search-field div.search-list tr:first-child,
+      div.frontpage-search-field div.search-list tr:first-child {
+        border-top: none; }
+      div.topicpage-search-field div.search-list tr.search-selected,
+      div.frontpage-search-field div.search-list tr.search-selected {
+        text-decoration: underline !important; }
+    div.topicpage-search-field div.search-list div:hover,
+    div.frontpage-search-field div.search-list div:hover {
+      text-decoration: underline; }
+    div.topicpage-search-field div.search-list div.search-delete,
+    div.frontpage-search-field div.search-list div.search-delete {
+      background-image: url(var(--autocomplete_remove_image));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: auto; }
+    div.topicpage-search-field div.search-list div.search-delete:hover,
+    div.frontpage-search-field div.search-list div.search-delete:hover {
+      background-image: url(var(--autocomplete_remove_hover_image)); }
+
+body.media-desktop div.frontpage-search-field {
+  background: transparent; }
+  body.media-desktop div.frontpage-search-field input.wSearchField {
+    -webkit-border-radius: .4em;
+    -moz-border-radius: .4em;
+    border-radius: .4em;
+    border: none;
+    padding: .625rem .625rem; }
+  body.media-desktop div.frontpage-search-field a {
+    background-image: url(var(--search_button_image));
+    background-repeat: no-repeat;
+    background-position: center center; }
+  body.media-desktop div.frontpage-search-field div.search-list {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+body.media-desktop div.topicpage-search-field {
+  background: transparent; }
+  body.media-desktop div.topicpage-search-field input.wSearchField {
+    border: none;
+    border-radius: .4rem;
+    padding: 0 .625rem; }
+  body.media-desktop div.topicpage-search-field a {
+    background-image: url(var(--search_button_image));
+    background-repeat: no-repeat;
+    background-position: center center; }
+  body.media-desktop div.topicpage-search-field div.search-list {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+body.media-tablet div.topicpage-function-buttons,
+body.media-tablet div.frontpage-function-buttons,
+body.media-mobile div.topicpage-function-buttons,
+body.media-mobile div.frontpage-function-buttons {
+  background-color: var(--sidebar_bgcolor); }
+  body.media-tablet div.topicpage-function-buttons div.overlay-header div.title,
+  body.media-tablet div.frontpage-function-buttons div.overlay-header div.title,
+  body.media-mobile div.topicpage-function-buttons div.overlay-header div.title,
+  body.media-mobile div.frontpage-function-buttons div.overlay-header div.title {
+    color: var(--sidebar_title_color); }
+  body.media-tablet div.topicpage-function-buttons div.overlay-header div.overlay-close a,
+  body.media-tablet div.frontpage-function-buttons div.overlay-header div.overlay-close a,
+  body.media-mobile div.topicpage-function-buttons div.overlay-header div.overlay-close a,
+  body.media-mobile div.frontpage-function-buttons div.overlay-header div.overlay-close a {
+    cursor: pointer;
+    background-image: url(var(--sidebar_close_button_image));
+    background-repeat: no-repeat;
+    background-position: 100% center; }
+    body.media-tablet div.topicpage-function-buttons div.overlay-header div.overlay-close a:hover,
+    body.media-tablet div.frontpage-function-buttons div.overlay-header div.overlay-close a:hover,
+    body.media-mobile div.topicpage-function-buttons div.overlay-header div.overlay-close a:hover,
+    body.media-mobile div.frontpage-function-buttons div.overlay-header div.overlay-close a:hover {
+      background-image: url(var(--sidebar_close_button_hover_image)); }
+    body.media-tablet div.topicpage-function-buttons div.overlay-header div.overlay-close a:focus,
+    body.media-tablet div.frontpage-function-buttons div.overlay-header div.overlay-close a:focus,
+    body.media-mobile div.topicpage-function-buttons div.overlay-header div.overlay-close a:focus,
+    body.media-mobile div.frontpage-function-buttons div.overlay-header div.overlay-close a:focus {
+      outline: none; }
+  body.media-tablet div.topicpage-function-buttons div.no-grid:first-child,
+  body.media-tablet div.frontpage-function-buttons div.no-grid:first-child,
+  body.media-mobile div.topicpage-function-buttons div.no-grid:first-child,
+  body.media-mobile div.frontpage-function-buttons div.no-grid:first-child {
+    border-top: .0625rem solid;
+    border-top-color: var(--sidebar_divider_color); }
+  body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid),
+  body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid),
+  body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid),
+  body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) {
+    border-bottom: .0625rem solid;
+    border-bottom-color: var(--sidebar_divider_color); }
+    body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a,
+    body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a,
+    body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a,
+    body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: .25rem .625rem;
+      color: var(--sidebar_menu_color);
+      text-decoration: none; }
+      body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:active, body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:hover,
+      body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:active,
+      body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:hover,
+      body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:active,
+      body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:hover,
+      body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:active,
+      body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:hover {
+        color: var(--sidebar_menu_hover_color); }
+      body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:focus,
+      body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:focus,
+      body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid) a:focus,
+      body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid) a:focus {
+        outline: none;
+        border: none; }
+    body.media-tablet div.topicpage-function-buttons div.overlay-body div:not(.no-grid).filter-applied,
+    body.media-tablet div.frontpage-function-buttons div.overlay-body div:not(.no-grid).filter-applied,
+    body.media-mobile div.topicpage-function-buttons div.overlay-body div:not(.no-grid).filter-applied,
+    body.media-mobile div.frontpage-function-buttons div.overlay-body div:not(.no-grid).filter-applied {
+      background-image: url(var(--filter_applied_image));
+      background-repeat: no-repeat;
+      background-position: 100% center; }
+
+body.media-desktop div.frontpage-function-buttons div.grid-buttons div,
+body.media-desktop div.topicpage-function-buttons div.grid-buttons div {
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em;
+  border-radius: .2em;
+  background: var(--functionbar_button_bgcolor);
+  text-align: center;
+  overflow: hidden; }
+  body.media-desktop div.frontpage-function-buttons div.grid-buttons div.filter-applied a,
+  body.media-desktop div.topicpage-function-buttons div.grid-buttons div.filter-applied a {
+    background-image: url("theme-1-tick-button.png");
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    background-size: auto; }
+  body.media-desktop div.frontpage-function-buttons div.grid-buttons div a,
+  body.media-desktop div.topicpage-function-buttons div.grid-buttons div a {
+    color: var(--functionbar_button_text_color);
+    text-decoration: none; }
+    body.media-desktop div.frontpage-function-buttons div.grid-buttons div a:hover,
+    body.media-desktop div.topicpage-function-buttons div.grid-buttons div a:hover {
+      color: var(--functionbar_button_text_hover_color); }
+  body.media-desktop div.frontpage-function-buttons div.grid-buttons div:hover,
+  body.media-desktop div.topicpage-function-buttons div.grid-buttons div:hover {
+    background: var(--functionbar_button_hover_bgcolor); }
+
+/***** Widgets *****/
+div.topicpage-toc li {
+  color: var(--minitoc_item_text_color); }
+  div.topicpage-toc li.selected {
+    font-weight: bold;
+    color: var(--minitoc_selected_item_text_color);
+    background-image: url(var(--minitoc_selected_item_button_image));
+    background-repeat: no-repeat;
+    background-position: 0% center; }
+div.topicpage-toc a {
+  text-decoration: none;
+  color: inherit;
+  display: block; }
+  div.topicpage-toc a:hover {
+    color: var(--minitoc_item_text_hover_color); }
+
+body.media-mobile div.topicpage-toc ul.page-toc {
+  border-top: .0625rem solid;
+  border-top-color: #616e7c; }
+body.media-mobile div.topicpage-toc li {
+  color: var(--sidebar_toc_mobile_item_color); }
+  body.media-mobile div.topicpage-toc li:not(.inactive):not(.child) {
+    border-bottom: .0625rem solid;
+    border-bottom-color: #616e7c; }
+  body.media-mobile div.topicpage-toc li a {
+    color: var(--sidebar_toc_mobile_item_color);
+    text-decoration: none; }
+    body.media-mobile div.topicpage-toc li a:active, body.media-mobile div.topicpage-toc li a:hover {
+      color: var(--sidebar_toc_mobile_item_hover_color); }
+  body.media-mobile div.topicpage-toc li.selected {
+    background-image: none;
+    color: var(--sidebar_toc_mobile_item_selected_color); }
+  body.media-mobile div.topicpage-toc li.book:not(.active) {
+    background-image: url(var(--sidebar_toc_mobile_item_drill_down_image));
+    background-repeat: no-repeat;
+    background-position: 100% center; }
+    body.media-mobile div.topicpage-toc li.book:not(.active):hover, body.media-mobile div.topicpage-toc li.book:not(.active):active {
+      background-image: url(var(--sidebar_toc_mobile_item_drill_down_hover_image)); }
+  body.media-mobile div.topicpage-toc li.book.active {
+    background-image: url(var(--sidebar_toc_mobile_item_back_image));
+    background-repeat: no-repeat;
+    background-position: 0 center; }
+    body.media-mobile div.topicpage-toc li.book.active:hover, body.media-mobile div.topicpage-toc li.book.active:active {
+      background-image: url(var(--sidebar_toc_mobile_item_back_hover_image)); }
+
+body.media-tablet div.topicpage-toc li {
+  color: var(--sidebar_toc_tablet_item_color); }
+  body.media-tablet div.topicpage-toc li.selected {
+    background-image: url(var(--sidebar_toc_tablet_item_selected_image));
+    color: var(--sidebar_toc_tablet_item_selected_color); }
+body.media-tablet div.topicpage-toc a:hover {
+  color: var(--sidebar_toc_tablet_item_hover_color); }
+
+body.media-mobile div.topicpage-toc li.book.active {
+  font-weight: bold; }
+
+div.frontpage-toc div {
+  /**
+  	We need different radius for the borders to avoid the background of the parent bleeding through the label.
+  **/
+  border-top-right-radius: .4rem;
+  border-top-left-radius: .4rem;
+  border-bottom-right-radius: .4rem;
+  border-bottom-left-radius: .4rem;
+  background-color: var(--toc_tile_bgcolor);
+  background-position: center 1.75rem;
+  background-repeat: no-repeat;
+  overflow: hidden; }
+  div.frontpage-toc div:hover {
+    background-color: var(--toc_tile_hover_bgcolor); }
+  div.frontpage-toc div.book {
+    background-image: url(var(--toc_tile_book_image)); }
+    div.frontpage-toc div.book:hover {
+      background-image: url(var(--toc_tile_book_hover_image)); }
+    div.frontpage-toc div.book.expanded {
+      background-image: url(var(--toc_tile_back_image));
+      width: 100%;
+      margin: 0 calc(50% - 5rem);
+      margin-bottom: 2rem; }
+      div.frontpage-toc div.book.expanded:hover {
+        background-image: url(var(--toc_tile_back_hover_image)); }
+  div.frontpage-toc div.item {
+    background-image: url(var(--toc_tile_topic_image)); }
+    div.frontpage-toc div.item:hover {
+      background-image: url(var(--toc_tile_topic_hover_image)); }
+  div.frontpage-toc div.url {
+    background-image: url(var(--toc_tile_remote_url_image)); }
+    div.frontpage-toc div.url:hover {
+      background-image: url(var(--toc_tile_remote_url_hover_image)); }
+div.frontpage-toc a {
+  text-decoration: none; }
+div.frontpage-toc span.child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+div.frontpage-toc span.label {
+  font-size: 1rem;
+  background: var(--toc_tile_text_bgcolor);
+  color: var(--toc_tile_text_color);
+  /**
+  	We include bottom border radius to avoid pixels from the background bleeding through
+  **/
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
+  div.frontpage-toc span.label:hover {
+    background: var(--toc_tile_text_hover_bgcolor);
+    color: var(--toc_tile_text_hover_color); }
+
+div.overlay.filter {
+  background-color: var(--sidebar_bgcolor); }
+  div.overlay.filter div.overlay-header {
+    color: var(--sidebar_title_color); }
+    div.overlay.filter div.overlay-header div.overlay-close a {
+      cursor: pointer;
+      background-image: url(var(--sidebar_close_button_image));
+      background-repeat: no-repeat;
+      background-position: 100% center; }
+      div.overlay.filter div.overlay-header div.overlay-close a:hover {
+        background-image: url(var(--sidebar_close_button_hover_image)); }
+  div.overlay.filter div.overlay-footer:before {
+    background: #616e7c; }
+  div.overlay.filter div.overlay-footer div {
+    background: var(--sidebar_footer_button_bgcolor);
+    border-radius: .2rem;
+    text-align: center;
+    cursor: pointer; }
+    div.overlay.filter div.overlay-footer div:hover {
+      background: var(--sidebar_footer_button_hover_bgcolor); }
+    div.overlay.filter div.overlay-footer div a {
+      color: var(--filter_reset_button_color);
+      text-decoration: none; }
+      div.overlay.filter div.overlay-footer div a:hover {
+        color: var(--filter_reset_button_hover_color); }
+
+body.media-tablet div.topicpage-toc,
+body.media-mobile div.topicpage-toc,
+div.overlay.index,
+div.overlay.glossary,
+div.overlay.search,
+div.overlay.favorites,
+div.overlay.frontpage-search {
+  background-color: var(--sidebar_bgcolor); }
+  body.media-tablet div.topicpage-toc div.overlay-header,
+  body.media-mobile div.topicpage-toc div.overlay-header,
+  div.overlay.index div.overlay-header,
+  div.overlay.glossary div.overlay-header,
+  div.overlay.search div.overlay-header,
+  div.overlay.favorites div.overlay-header,
+  div.overlay.frontpage-search div.overlay-header {
+    color: var(--sidebar_title_color); }
+    body.media-tablet div.topicpage-toc div.overlay-header div.overlay-close a,
+    body.media-mobile div.topicpage-toc div.overlay-header div.overlay-close a,
+    div.overlay.index div.overlay-header div.overlay-close a,
+    div.overlay.glossary div.overlay-header div.overlay-close a,
+    div.overlay.search div.overlay-header div.overlay-close a,
+    div.overlay.favorites div.overlay-header div.overlay-close a,
+    div.overlay.frontpage-search div.overlay-header div.overlay-close a {
+      cursor: pointer;
+      background-image: url(var(--sidebar_close_button_image));
+      background-repeat: no-repeat;
+      background-position: 100% center; }
+      body.media-tablet div.topicpage-toc div.overlay-header div.overlay-close a:hover,
+      body.media-mobile div.topicpage-toc div.overlay-header div.overlay-close a:hover,
+      div.overlay.index div.overlay-header div.overlay-close a:hover,
+      div.overlay.glossary div.overlay-header div.overlay-close a:hover,
+      div.overlay.search div.overlay-header div.overlay-close a:hover,
+      div.overlay.favorites div.overlay-header div.overlay-close a:hover,
+      div.overlay.frontpage-search div.overlay-header div.overlay-close a:hover {
+        background-image: url(var(--sidebar_close_button_hover_image)); }
+  body.media-tablet div.topicpage-toc div.overlay-footer:before,
+  body.media-mobile div.topicpage-toc div.overlay-footer:before,
+  div.overlay.index div.overlay-footer:before,
+  div.overlay.glossary div.overlay-footer:before,
+  div.overlay.search div.overlay-footer:before,
+  div.overlay.favorites div.overlay-footer:before,
+  div.overlay.frontpage-search div.overlay-footer:before {
+    background: #616e7c; }
+  body.media-tablet div.topicpage-toc div.overlay-footer div,
+  body.media-mobile div.topicpage-toc div.overlay-footer div,
+  div.overlay.index div.overlay-footer div,
+  div.overlay.glossary div.overlay-footer div,
+  div.overlay.search div.overlay-footer div,
+  div.overlay.favorites div.overlay-footer div,
+  div.overlay.frontpage-search div.overlay-footer div {
+    background: var(--sidebar_footer_button_bgcolor);
+    border-radius: .2rem;
+    text-align: center;
+    cursor: pointer; }
+    body.media-tablet div.topicpage-toc div.overlay-footer div:hover,
+    body.media-mobile div.topicpage-toc div.overlay-footer div:hover,
+    div.overlay.index div.overlay-footer div:hover,
+    div.overlay.glossary div.overlay-footer div:hover,
+    div.overlay.search div.overlay-footer div:hover,
+    div.overlay.favorites div.overlay-footer div:hover,
+    div.overlay.frontpage-search div.overlay-footer div:hover {
+      background: var(--sidebar_footer_button_hover_bgcolor); }
+    body.media-tablet div.topicpage-toc div.overlay-footer div a,
+    body.media-mobile div.topicpage-toc div.overlay-footer div a,
+    div.overlay.index div.overlay-footer div a,
+    div.overlay.glossary div.overlay-footer div a,
+    div.overlay.search div.overlay-footer div a,
+    div.overlay.favorites div.overlay-footer div a,
+    div.overlay.frontpage-search div.overlay-footer div a {
+      color: var(--sidebar_footer_button_color);
+      text-decoration: none; }
+      body.media-tablet div.topicpage-toc div.overlay-footer div a:hover,
+      body.media-mobile div.topicpage-toc div.overlay-footer div a:hover,
+      div.overlay.index div.overlay-footer div a:hover,
+      div.overlay.glossary div.overlay-footer div a:hover,
+      div.overlay.search div.overlay-footer div a:hover,
+      div.overlay.favorites div.overlay-footer div a:hover,
+      div.overlay.frontpage-search div.overlay-footer div a:hover {
+        color: var(--sidebar_footer_button_hover_color); }
+
+div.overlay.search div.wGlossaryResult {
+  box-shadow: 0.1rem 0.1rem 0.5rem #2C1D2F;
+  padding: 0.01rem 0.1rem .3rem 0.7rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: 1rem; }
+  div.overlay.search div.wGlossaryResult .search_glossary_term {
+    color: var(--search_results_title_color);
+    font-weight: bold; }
+  div.overlay.search div.wGlossaryResult .search_glossary_result {
+    color: var(--search_result_preview_color); }
+div.overlay.search div.search-list {
+  background: var(--sidebar_autocomplete_item_bgcolor);
+  color: var(--sidebar_autocomplete_item_color);
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem; }
+  div.overlay.search div.search-list table {
+    border-collapse: collapse; }
+  div.overlay.search div.search-list tr {
+    border-style: solid;
+    border-width: 0;
+    border-top-width: 0.0625rem;
+    border-color: var(--sidebar_autocomplete_seperator_color); }
+    div.overlay.search div.search-list tr.search-selected {
+      text-decoration: underline !important; }
+    div.overlay.search div.search-list tr div:hover {
+      text-decoration: underline;
+      color: var(--sidebar_autocomplete_item_hover_color); }
+    div.overlay.search div.search-list tr div.search-delete {
+      background-image: url(var(--sidebar_autocomplete_remove_image));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: auto; }
+    div.overlay.search div.search-list tr div.search-delete:hover {
+      background-image: url(var(--sidebar_autocomplete_remove_hover_image)); }
+div.overlay.search div.search-options {
+  font-size: .9rem;
+  color: var(--search_box_mobile_options_color); }
+div.overlay.search label.wSearchAndLabelResults,
+div.overlay.search label.highlight-search {
+  position: relative; }
+  div.overlay.search label.wSearchAndLabelResults input[type=checkbox],
+  div.overlay.search label.highlight-search input[type=checkbox] {
+    display: none; }
+  div.overlay.search label.wSearchAndLabelResults span.checkbox-bg,
+  div.overlay.search label.highlight-search span.checkbox-bg {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background: transparent;
+    background-image: url(var(--search_box_mobile_options_checkbox_image));
+    background-repeat: no-repeat;
+    background-size: contain; }
+  div.overlay.search label.wSearchAndLabelResults[aria-checked=true] > span.checkbox-bg,
+  div.overlay.search label.highlight-search[aria-checked=true] > span.checkbox-bg {
+    background-image: url(var(--search_box_mobile_options_checkbox_selected_image)); }
+  div.overlay.search label.wSearchAndLabelResults span.checkbox-bg + span,
+  div.overlay.search label.highlight-search span.checkbox-bg + span {
+    position: relative;
+    top: -.02rem; }
+div.overlay.search input.wSearchField {
+  background: var(--search_box_mobile_field_bgcolor);
+  color: var(--search_box_mobile_color);
+  border: none;
+  border-radius: .25rem !important;
+  padding: 0 .625rem; }
+div.overlay.search a.wSearchLink {
+  background-image: url(var(--sidebar_search_box_image));
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer; }
+div.overlay.search.search-icons a.nolink {
+  /*
+  	Please note that the order of these selectors is important.
+  	If a file is something like myfile.docx.htm, we want to show the topic icon.
+  	In this order, the last applied rule wins.
+  */ }
+  div.overlay.search.search-icons a.nolink[href^='http'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_topic_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href^='file'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_topic_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.doc'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_document_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.odt'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_document_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.rtf'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_document_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.ppt'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_presentation_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.odp'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_presentation_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.xls'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_spreadsheet_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.ods'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_spreadsheet_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.txt'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_text_file_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.pdf'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_pdf_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+  div.overlay.search.search-icons a.nolink[href*='.htm'] div.wSearchResultTitle {
+    background-image: url("var(--search_results_topic_image)");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    padding-left: 1.5rem;
+    min-height: 1rem;
+    line-height: 1rem; }
+div.overlay.search div.wSearchMessage {
+  font-size: .9rem;
+  color: var(--search_results_message_color);
+  border-bottom-width: .0625rem;
+  border-bottom-style: solid;
+  border-bottom-color: var(--search_results_message_border_color); }
+div.overlay.search div.wSearchResultItem a {
+  color: inherit;
+  text-decoration: none; }
+div.overlay.search div.wSearchResultItem div.wSearchResultTitle {
+  color: var(--search_results_title_color);
+  font-weight: bold; }
+div.overlay.search div.wSearchResultItem span.wSearchContext {
+  color: var(--search_result_preview_color);
+  overflow-wrap: break-word; }
+div.overlay.search div.wSearchResultItem div.wSearchURL {
+  color: var(--search_results_breadcrumb_color); }
+div.overlay.search div.wSearchResultsEnd {
+  font-size: .9rem;
+  color: var(--search_results_end_result_color); }
+
+div.overlay.filter {
+  background-color: var(--sidebar_bgcolor); }
+  div.overlay.filter div.title.filter-applied:after {
+    background-image: url(var(--filter_applied_image)); }
+  div.overlay.filter div.reset-button a {
+    background-color: var(--filter_reset_button_bgcolor);
+    color: var(--filter_reset_button_color);
+    border-radius: .2rem;
+    text-align: center;
+    text-decoration: none; }
+    div.overlay.filter div.reset-button a:hover {
+      color: var(--filter_reset_button_hover_color);
+      background-color: var(--filter_reset_button_hover_bgcolor); }
+  div.overlay.filter label.tag-parent {
+    color: var(--filter_group_color);
+    border-bottom: 1px solid;
+    border-bottom-color: var(--filter_group_border_color); }
+  div.overlay.filter li.item {
+    color: var(--filter_entry_color); }
+  div.overlay.filter ul.checkbox li.item label {
+    background-image: url(var(--filter_inactive_checkbox_image)); }
+    div.overlay.filter ul.checkbox li.item label.checked {
+      background-image: url(var(--filter_active_checkbox_image)); }
+  div.overlay.filter ul.radio li.item label {
+    background-image: url(var(--filter_incative_radio_image)); }
+    div.overlay.filter ul.radio li.item label.checked {
+      background-image: url(var(--filter_radio_image)); }
+
+div.overlay.index a,
+div.overlay.glossary a {
+  cursor: pointer; }
+div.overlay.index li.IndexAlphabet,
+div.overlay.index li.GloAlphabet,
+div.overlay.glossary li.IndexAlphabet,
+div.overlay.glossary li.GloAlphabet {
+  display: none; }
+div.overlay.index input.IdxFilter,
+div.overlay.glossary input.IdxFilter {
+  background: var(--index_search_bcolor);
+  color: var(--index_search_text_color);
+  border: none;
+  border-radius: .25rem !important; }
+  div.overlay.index input.IdxFilter::-webkit-input-placeholder,
+  div.overlay.glossary input.IdxFilter::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: var(--index_search_text_color); }
+  div.overlay.index input.IdxFilter:-moz-placeholder,
+  div.overlay.glossary input.IdxFilter:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: var(--index_search_text_color);
+    opacity: 1; }
+  div.overlay.index input.IdxFilter::-moz-placeholder,
+  div.overlay.glossary input.IdxFilter::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: var(--index_search_text_color);
+    opacity: 1; }
+  div.overlay.index input.IdxFilter:-ms-input-placeholder,
+  div.overlay.glossary input.IdxFilter:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--index_search_text_color); }
+  div.overlay.index input.IdxFilter::-ms-input-placeholder,
+  div.overlay.glossary input.IdxFilter::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--index_search_text_color); }
+div.overlay.index input.GloFilter,
+div.overlay.glossary input.GloFilter {
+  background: var(--glossary_search_text_bgcolor);
+  color: var(--glossary_search_text_color);
+  border: none;
+  border-radius: .25rem !important; }
+  div.overlay.index input.GloFilter::-webkit-input-placeholder,
+  div.overlay.glossary input.GloFilter::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: var(--glossary_search_text_color); }
+  div.overlay.index input.GloFilter:-moz-placeholder,
+  div.overlay.glossary input.GloFilter:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: var(--glossary_search_text_color);
+    opacity: 1; }
+  div.overlay.index input.GloFilter::-moz-placeholder,
+  div.overlay.glossary input.GloFilter::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: var(--glossary_search_text_color);
+    opacity: 1; }
+  div.overlay.index input.GloFilter:-ms-input-placeholder,
+  div.overlay.glossary input.GloFilter:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--glossary_search_text_color); }
+  div.overlay.index input.GloFilter::-ms-input-placeholder,
+  div.overlay.glossary input.GloFilter::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--glossary_search_text_color); }
+
+div.overlay.index div.overlay-body a {
+  display: inline-block;
+  color: var(--index_text_color);
+  text-decoration: none; }
+  div.overlay.index div.overlay-body a:hover {
+    background: var(--index_hover_bgcolor);
+    border-radius: 0.125rem;
+    color: var(--index_hover_color); }
+div.overlay.index .noResults {
+  color: var(--index_text_color);
+  font-size: .9rem; }
+
+div.overlay.glossary span:not(.GlossDefinitionText),
+div.overlay.glossary div.overlay-body a {
+  display: inline-block;
+  color: var(--glossary_term_color);
+  text-decoration: none; }
+  div.overlay.glossary span:not(.GlossDefinitionText):hover,
+  div.overlay.glossary div.overlay-body a:hover {
+    background: var(--glossary_term_hover_bgcolor);
+    border-radius: 0.125rem;
+    color: var(--glossary_term_hover_color); }
+div.overlay.glossary span.GlossDefinitionText {
+  color: var(--glossary_definition_color);
+  font-size: .9rem; }
+div.overlay.glossary .noResults {
+  color: var(--glossary_definition_color);
+  font-size: .9rem; }
+
+/** Favorites **/
+div.overlay.favorites div.overlay-body span {
+  color: #fff; }
+div.overlay.favorites div.favoritestableintro {
+  color: var(--favorites_label_color);
+  border-bottom: 1px solid var(--favorites_label_bgcolor); }
+
+table.favoritesholder td.favorite a {
+  text-decoration: none;
+  color: var(--favorites_item_color); }
+  table.favoritesholder td.favorite a:hover {
+    color: #fff;
+    background: var(--favorites_item_bgcolor);
+    border-radius: 0.125rem; }
+table.favoritesholder td.removelink a {
+  background-image: url(var(--favorites_delete_button_image));
+  background-position: center top;
+  background-repeat: no-repeat;
+  cursor: pointer; }
+  table.favoritesholder td.removelink a:hover {
+    background-image: url(var(--favorites_delete_button_hover_image)); }
+
+div.favorites.toggle-button a {
+  cursor: pointer;
+  background-position: center center;
+  background-repeat: no-repeat; }
+  div.favorites.toggle-button a.favorite {
+    background-image: url("theme-1-bookmark-added.png"); }
+    div.favorites.toggle-button a.favorite:hover {
+      background-image: url("theme-1-bookmark-added-over.png"); }
+  div.favorites.toggle-button a.unfavorite {
+    background-image: url(var(--topic_page_favorites_add_button_image)); }
+    div.favorites.toggle-button a.unfavorite:hover {
+      background-image: url(var(--topic_page_favorites_add_button_hover_image)); }
+
+div.favorites.sidebar-button a {
+  background-image: url(var(--topic_page_favorites_button_image));
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  cursor: pointer; }
+  div.favorites.sidebar-button a:hover {
+    background-image: url(var(--topic_page_favorites_button_hover_image)); }
+
+div.toc-back.sidebar-button a {
+  background-image: url(var(--toc_tile_back_image));
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  cursor: pointer; }
+  div.toc-back.sidebar-button a:hover {
+    background-image: url(var(--toc_tile_back_hover_image)); }
+
+div.print-holder a {
+  background-image: url("print-icon.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  cursor: pointer; }
+  div.print-holder a:hover {
+    background-image: url("print-icon-hover.png"); }
+
+div.brs_next a {
+  text-decoration: none;
+  background-color: var(--topic_page_buttons_bgcolor);
+  background-image: url(var(--topic_page_next_button_image));
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  border-radius: .25rem; }
+  div.brs_next a:hover, div.brs_next a:active {
+    background-image: url(var(--topic_page_next_button_hover_image)); }
+
+div.brs_previous a {
+  text-decoration: none;
+  background-color: var(--topic_page_buttons_bgcolor);
+  background-image: url(var(--topic_page_previous_button_image));
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  border-radius: .25rem; }
+  div.brs_previous a:hover, div.brs_previous a:active {
+    background-image: url(var(--topic_page_previous_button_hover_image)); }
+
+div.grid-buttons a:focus {
+  border: 0.13rem outset #425B71; }
+
+div.frontpage-toc div.book a:focus,
+div.frontpage-toc div.item a:focus,
+div.frontpage-toc div.url a:focus {
+  border: 0.13rem solid #3BBCE0; }
+div.frontpage-toc div.book.expanded {
+  display: none; }
+
+/** Specific changes for RTL languages **/
+body[dir=rtl] div.overlay-close a {
+  background-position: 0 center !important; }
+body[dir=rtl] div.topicpage-toc li.selected {
+  background-position: 100% center !important; }
+body[dir=rtl] body.media-mobile div.topicpage-toc li.book:not(.expanded) {
+  background-position: 0% center; }
+body[dir=rtl] body.media-mobile div.topicpage-toc li.book.expanded {
+  background-position: 100% center; }
+body[dir=rtl] body.media-desktop div.frontpage-function-buttons div.grid-buttons div.filter-applied a,
+body[dir=rtl] body.media-desktop div.topicpage-function-buttons div.grid-buttons div.filter-applied a {
+  background-position: 5% center; }
+body[dir=rtl] div.brs_next a {
+  background-image: url(var(--topic_page_previous_button_image)); }
+body[dir=rtl] div.brs_previous a {
+  background-image: url(var(--topic_page_next_button_image)); }
+body[dir=rtl] div.overlay.search a.nolink[href^='http'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href^='file'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.doc'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.odt'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.rtf'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.ppt'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.odp'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.xls'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.ods'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.txt'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.pdf'] div.wSearchResultTitle, body[dir=rtl] div.overlay.search a.nolink[href*='.htm'] div.wSearchResultTitle {
+  background-position: right top;
+  padding-left: 0;
+  padding-right: 1.5rem; }
+
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_0 {
+  background-image: url("custom-toc-image-1.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_1 {
+  background-image: url("custom-toc-image-2.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_2 {
+  background-image: url("custom-toc-image-3.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_3 {
+  background-image: url("custom-toc-image-4.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_4 {
+  background-image: url("custom-toc-image-5.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_5 {
+  background-image: url("custom-toc-image-6.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_6 {
+  background-image: url("custom-toc-image-7.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_7 {
+  background-image: url("custom-toc-image-8.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_8 {
+  background-image: url("custom-toc-image-9.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_9 {
+  background-image: url("custom-toc-image-10.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_10 {
+  background-image: url("custom-toc-image-11.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_11 {
+  background-image: url("custom-toc-image-12.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_12 {
+  background-image: url("custom-toc-image-13.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_13 {
+  background-image: url("custom-toc-image-14.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_14 {
+  background-image: url("custom-toc-image-15.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_15 {
+  background-image: url("custom-toc-image-16.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_16 {
+  background-image: url("custom-toc-image-17.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_17 {
+  background-image: url("custom-toc-image-18.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_18 {
+  background-image: url("custom-toc-image-19.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_19 {
+  background-image: url("custom-toc-image-20.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_20 {
+  background-image: url("custom-toc-image-21.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_21 {
+  background-image: url("custom-toc-image-22.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_22 {
+  background-image: url("custom-toc-image-23.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_23 {
+  background-image: url("custom-toc-image-24.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_24 {
+  background-image: url("custom-toc-image-25.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_25 {
+  background-image: url("custom-toc-image-26.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_26 {
+  background-image: url("custom-toc-image-27.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_27 {
+  background-image: url("custom-toc-image-28.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_28 {
+  background-image: url("custom-toc-image-29.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_29 {
+  background-image: url("custom-toc-image-30.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_30 {
+  background-image: url("custom-toc-image-31.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_31 {
+  background-image: url("custom-toc-image-32.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_32 {
+  background-image: url("custom-toc-image-33.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_33 {
+  background-image: url("custom-toc-image-34.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_34 {
+  background-image: url("custom-toc-image-35.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_35 {
+  background-image: url("custom-toc-image-36.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_36 {
+  background-image: url("custom-toc-image-37.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_37 {
+  background-image: url("custom-toc-image-38.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_38 {
+  background-image: url("custom-toc-image-39.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_39 {
+  background-image: url("custom-toc-image-40.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_40 {
+  background-image: url("custom-toc-image-41.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_41 {
+  background-image: url("custom-toc-image-42.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_42 {
+  background-image: url("custom-toc-image-43.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_43 {
+  background-image: url("custom-toc-image-44.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_44 {
+  background-image: url("custom-toc-image-45.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_45 {
+  background-image: url("custom-toc-image-46.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_46 {
+  background-image: url("custom-toc-image-47.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_47 {
+  background-image: url("custom-toc-image-48.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_48 {
+  background-image: url("custom-toc-image-49.png"); }
+body.front-page div.frontpage-toc.use-custom-toc-icons div.toc_item_49 {
+  background-image: url("custom-toc-image-50.png"); }
+
+  .js-focus-visible :focus:not(.focus-visible) {
+    outline: none; }
+  
+  .js-focus-visible .focus-visible:not(input) {
+    outline-width: 0.125rem;
+    outline-style: solid;
+    outline-color: black;
+    outline-color: var(--focus-outline-color);
+    outline-offset: -0.125rem; }
+  
+/*# sourceMappingURL=layout.css.map */

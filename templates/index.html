@@ -53,17 +53,59 @@
         }
 
         async function submitQuestion() {
-            const question = document.getElementById("questionInput").value;
-            const response = await fetch("/ask", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question })
-            });
-            const result = await response.json();
-            if (result.error) {
-                document.getElementById("responseOutput").textContent = result.error;
-            } else {
-                document.getElementById("responseOutput").innerHTML = result.response;
+            const question = document.getElementById("questionInput").value.trim();
+            const responseOutput = document.getElementById("responseOutput");
+            responseOutput.innerHTML = ""; // Clear previous response
+
+            if (!question) {
+                responseOutput.textContent = "Question cannot be empty.";
+                return;
+            }
+
+            try {
+
+                // Step 1: Send question via POST
+                const postResponse = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question: question })
+                });
+
+                if (!postResponse.ok) {
+                    const error = await postResponse.json();
+                    responseOutput.textContent = error.error || "An error occurred.";
+                    return;
+                }
+
+                const { question_id } = await postResponse.json();
+
+                // Step 2: Use EventSource to poll for the response
+                const eventSource = new EventSource(`/response/${question_id}`);
+                eventSource.onmessage = function (event) {
+                    const data = event.data;
+                    console.log("Data received:", data);
+                    
+                    if (data.startsWith("Error:")) {
+                        responseOutput.textContent = data;
+                        eventSource.close();
+                    } else if (data === "Processing your question...") {
+                        responseOutput.textContent = data;
+                    } else {
+                        responseOutput.innerHTML = data; // Final response
+                        eventSource.close();
+                    }
+                };
+
+                eventSource.onerror = function () {
+                    responseOutput.textContent = "An error occurred while processing your question.";
+                    eventSource.close();
+                };
+                
+            } catch (error) {
+
+                console.error("Error during question submission:", error);
+                responseOutput.textContent = "Failure to submit question. Please try again later.";
+                
             }
         }
     </script>

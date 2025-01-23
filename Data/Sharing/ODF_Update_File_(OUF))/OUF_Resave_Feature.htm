@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.1.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>OUF Resave Feature</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="OUF Resave Feature">
+        <span>OUF Resave Feature</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <p><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>OUF Resave Feature</h1>
+  <p>What happens if somehow the chain of OUF file is broken (for instance, lost during sending) and cannot be re-sent? There is an OUF re-save feature that enables the parent OUF user to re-save over previously saved OUFs.</p>
+  <p> </p>
+  <p>Example:</p>
+  <p>The wellsite user saves 007.ouf after loading new data. This data happens to be corrupt and upon mailing, the recipient experiences difficulty loading the OUF. When the 007 is re-sent, the same problem occurs again so the well site user becomes aware of the problem. The corrupt data is stripped from the ODF, and new data is reloaded.</p>
+  <p> </p>
+  <p>You select <strong><span>Save OUF Updates</span></strong> from the <strong>GEO menu </strong>and GEO saves the OUF as 008. This OUF cannot be loaded by the user in the operation base, since the last OUF loaded successfully was 006 and the OUFs must be loaded in sequence.</p>
+  <p> </p>
+  <p>The wellsite user can click <strong><span>Resave Range of OUF Updates</span></strong> from the <strong>GEO </strong>menu and select the 007.ouf from the list in the <strong><span>Description</span> </strong>column of the dialog box.</p>
+  <p> </p>
+  <p>Clicking <strong><span>Save</span> </strong>will create a 007_009.ouf. The 007_ portion of this filename is created because the operations user must have a 007.ouf to maintain the sequence. The _009 portion is created because the wellsite user created a 008.ouf incorrectly. This must now be by-passed since the 008.ouf required the original 007.ouf to load correctly.</p>
+  <p> </p>
+  <p>The next OUF created by the wellsite user will be 010.ouf. The operations user will be able to load this 010.ouf because the last OUF loaded was the 007_009.ouf and the _009 portion of this OUF maintains the sequence.</p>
+  <p> </p>
+  <p>If an OUF sequence is ever broken, for any reasons, the <strong><span>Resave Range of OUF Updates</span></strong> option from the <strong>GEO </strong>menu can be utilized to successfully re-establish the link.</p>
+  <p> </p>
+  <p>If the recipient user accidentally deleted the child ODF and the constituent OUFs, the link could always be re-established as long as the parent ODF exists.</p>
+  <p> </p>
+  <p>In an extreme scenario, the wellsite user, after saving 1000 OUFs could click <strong><span>Re-Save Range of OUF Updates</span></strong> and select number 001.ouf from the dialog box list. GEO would then create a 001_1001.ouf, which would include every well data amendment and addition in those 1000 OUFs. This could be e-mailed to the operations base user, loaded, and saved as a new child ODF.</p>
+  <p> </p>
+  <p>The next OUF saved by the wellsite user will be 1002.ouf. The operations base user could then load this OUF without any problem.</p>
+  <h3><u><span style="color:#444444;"><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

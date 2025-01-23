@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify, render_template
-from bs4 import BeautifulSoup
-import json
+from flask import Flask, request, jsonify, render_template, Response
 import logging
 import os
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
+import threading
+import time
+from threading import Lock
 import re
 
 app = Flask(__name__)
@@ -106,7 +107,10 @@ class OllamaBot:
 # Initialize OllamaBot
 model_name = "llama3"  
 ai_bot = OllamaBot(model_name)
-
+pending_responses = {}
+stored_responses = {}
+question_id = 0
+lock = Lock()
 
 # Process uploaded file
 def process_file(file_path):
@@ -141,24 +145,74 @@ def upload():
         return jsonify({"message": result})
 
 
+def process_question(question_id, question):
+    """
+    Simulate long processing of the question and store the response.
+    """
+    time.sleep(2)  # Simulating "thinking time"
+    try:
+        print("Question: ", question)
+        response = ai_bot.query(question)
+
+        # check through the response string and add <br> to replace the new line character
+        response = response.replace("\n", "<br>")
+
+        # check if both end of a string has "**", the replace with bold font tags
+        response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
+
+        print("Response: ", response)
+
+        stored_responses[question_id] = response
+    except Exception as e:
+        stored_responses[question_id] = "Still thinking about how to answer..."
+
 @app.route("/ask", methods=["POST"])
 def ask():
-    data = request.json
-    question = data.get("question", "").strip()
-    if not question:
-        return jsonify({"error": "Question cannot be empty"}), 400
-    response = ai_bot.query(question)
+    global question_id
+    try:
+        data = request.json
+        if not data:
+            return jsonify({"error": "No JSON payload received"}), 400
+        
+        question = data.get("question", "").strip()
+        if not question:
+            return jsonify({"error": "Question cannot be empty"}), 400
+        
+        with lock:
+            current_id = str(question_id)
+            question_id += 1
 
-    print(response)
-    print(type(response))
+        pending_responses[current_id] = "Processing..."
 
-    # check through the response string and add <br> to replace the new line character
-    response = response.replace("\n", "<br>")
+        threading.Thread(target=process_question, args=(current_id, question)).start()
 
-    # check if both end of a string has "**", the replace with bold font tags
-    response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
+        return jsonify({"question_id": current_id}), 200
+    
+    except Exception as e:
 
-    return jsonify({"response": response})
+        app.logger.error(f"Error in /ask endpoint: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
+
+@app.route("/response/<question_id>", methods=["GET"])
+def get_response(question_id):
+    """
+    Endpoint for EventSource to fetch the response.
+    """
+    def generate_response():
+        while True:
+            response = stored_responses.get(question_id)
+            
+            if response == "Processing" or response is None:
+                yield "data: Processing your question...\n\n"
+            elif response:
+                yield f"data: {response}\n\n"
+                break
+            else:
+                yield "data: Error: Invalid question ID\n\n"
+                break
+            time.sleep(1)  # Polling interval
+
+    return Response(generate_response(), content_type="text/event-stream")
 
 
 if __name__ == "__main__":

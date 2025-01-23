@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Formation Fluid Evaluation","type":"book","tilePath":"assets/images/Formation Fluid Evaluation.bmp","key":"toc50"},{"name":"Gas Quality","type":"book","tilePath":"assets/images/Gas Quality.bmp","key":"toc51"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Northing"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Northing"," ","Description"," ","Calculation of well departure toward North (Northing), using Minimum Curvature Method.."," ","Formula"," ","NORMC = NIP + DNORMC [++]"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Northing"]],"id":"5"})

@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Pixler C1/C2 Gas Ratio"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Pixler C1/C2 Gas Ratio"," ","Description"," ","C1/C2 gas ratio calculated for the Pixler gas analysis method"," ","Formula"," ","C1C2 = C1/C2"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Pixler C1/C2 Gas Ratio"]],"id":"8"})

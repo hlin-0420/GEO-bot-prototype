@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+ <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes"/>
+	<meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>GEO Help 8.09</title>
+  
+	<script>//<![CDATA[
+
+		gCSHRedirectHTM = 'csh-redirect.htm'
+	
+//]]></script>
+	<link rel="StyleSheet" href="template/Help_Skin_3/layout.css" type="text/css"/>
+	<script type="text/javascript" src="template/scripts/csh-trigger.min.js"></script>
+  <script type="text/javascript" src="template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="template/scripts/layout.min.js"></script>
+  <script type="text/javascript" src="template/scripts/layoutwidgets.min.js"></script>
+  <script type="text/javascript" src="whxdata/projectsettings.js"></script>
+  <script type="text/javascript">//<![CDATA[
+
+	  gRootRelPath = ".";
+	  gCommonRootRelPath = ".";
+  
+//]]></script>
+</head>
+<body data-rhwidget="Basic" data-controller="FAQController: faq; JsLoadingController;FavoritesController:fav" data-class="media-desktop: KEY_SCREEN_DESKTOP; media-tablet: KEY_SCREEN_TABLET; media-mobile: KEY_SCREEN_PHONE; ios: KEY_SCREEN_IOS" data-attr="dir:KEY_DIR">
+	<div class="skip-to-content-container">
+		<a class="skip-to-content-link" href="#frontpage-toc" data-attr="title:@KEY_LNG.SkipToMainContent; aria-label:@KEY_LNG.SkipToMainContent;" data-text="@KEY_LNG.SkipToMainContent" role="link"></a>
+	</div>
+	<div class="header" role="banner" data-controller="HomeController: hc">
+		<div class="header-project-info">
+			<div class="header-align">
+				<a data-click="$hc.goToHome()" data-attr="title:@KEY_LNG.HomeButton; href: rh.model.get(rh.consts(&#39;KEY_LOGO_URL&#39;)) || rh.consts(&#39;DEFAULT_TOPIC&#39;)" tabindex="0"><div class="logo" data-attr="data-logo-selector:@KEY_DO_NOT_PRESERVE_AR"> </div></a>
+				<div class="title"><a data-click="$hc.goToHome()" data-attr="title:@KEY_LNG.HomeButton; href: rh.model.get(rh.consts(&#39;KEY_LOGO_URL&#39;)) || rh.consts(&#39;DEFAULT_TOPIC&#39;)" tabindex="0"><h1 class="title-text"><span>GEO Help 8.09</span></h1></a></div>
+				<div class="custom-link" id="custom-link-1-header" tabindex="0"></div>
+				<div class="custom-link" id="custom-link-2-header" tabindex="0"></div>
+			</div>
+		</div>
+		<div class="header-nav">
+			<div class="header-align">
+				<div class="toc-back sidebar-button" id="toc-back-button">
+					<a role="presentation" data-click="@KEY_TOC_BACK_BUTTON_PRESSED(&#39;close&#39;)" data-if="@KEY_SHOW_TOC_BACK_BUTTON &amp;&amp; @KEY_SCREEN_DESKTOP">
+						<button class="placeholder" data-attr="title:@KEY_LNG.Back" data-click="@KEY_TOC_BACK_BUTTON_PRESSED(&#39;close&#39;)">
+							<span aria-hidden="true" style="color: transparent; visibility: hidden;" data-html="@KEY_LNG.Back"></span>
+						</button>
+					</a>
+				</div>
+				<div class="favorites sidebar-button" id="favorites-toggle-button-header" data-if="@KEY_SCREEN_DESKTOP">
+					<a role="presentation" data-click="@SIDEBAR_STATE(&#39;favorites&#39;)">
+						<button class="placeholder" data-attr="title:@KEY_LNG.favoritesLabel" data-click="@SIDEBAR_STATE(&#39;favorites&#39;)">
+							<span aria-hidden="true" style="color: transparent; visibility: hidden;" data-html="@KEY_LNG.favoritesLabel"></span>
+						</button>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="header-hamburger" data-if="!@KEY_SCREEN_DESKTOP" data-css="display @KEY_SCREEN_DESKTOP ? &#39;none&#39; : null">
+			<a data-attr="aria-hidden:@KEY_SCREEN_DESKTOP; aria-label: @KEY_LNG.NavTip; title: @KEY_LNG.NavTip; tabindex: @SIDEBAR_STATE == &#39;menu&#39; ? -1 : 0" href="#" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-keyup="@SIDEBAR_STATE(&#39;menu&#39;)|keyCode: 32" role="button"></a>
+		</div>
+	</div>
+	<main class="column">
+	<div class="frontpage-welcome">
+		<h1 data-html="@KEY_LNG.Welcome_header"></h1>
+		<p data-html="@KEY_LNG.Welcome_text" data-if="@KEY_SCREEN_DESKTOP" data-attr="aria-hidden: !@KEY_SCREEN_DESKTOP"></p>
+	</div>
+
+	<div class="frontpage-search-field" role="search" data-controller="SearchController:sc">
+		<input class="wSearchField" type="text" data-class="no-filter: !@KEY_FEATURE.filter" data-attr="placeholder:  @KEY_LNG.Search; aria-label:@KEY_LNG.Search" data-value="KEY_SEARCH_TERM" data-focus="@focusin_searchbox(true)" data-blur="$sc.handleFocusOut(&#39;focusin_searchbox&#39;)|timeout:200" data-keyup="$mc.newSearch(node.value, event.keyCode),$sc.handleKey(event)|debounce:150" aria-controls="searchresults"/>
+		<a class="wSearchLink" role="presentation">
+			<button class="placeholder" data-attr="title: @KEY_LNG.SearchTitle" data-click="@EVT_SEARCH_TERM(true)"></button>
+		</a>
+		<div class="toc-back sidebar-button" id="toc-back-button" data-if="@KEY_SHOW_TOC_BACK_BUTTON &amp;&amp; !@KEY_SCREEN_DESKTOP">
+			<a role="presentation" data-click="@KEY_TOC_BACK_BUTTON_PRESSED(&#39;close&#39;)">
+				<button class="placeholder" data-attr="title:@KEY_LNG.Back" data-click="@KEY_TOC_BACK_BUTTON_PRESSED(&#39;close&#39;)">
+					<span aria-hidden="true" style="color: transparent; visibility: hidden;" data-html="@KEY_LNG.Back"></span>
+				</button>
+			</a>
+		</div>
+		<div data-if="@focusin_searchbox" class="search-list">
+		  <table>
+		    <tbody><tr data-repeat="search_results" data-class="search-suggestion:true; search-selected:@selected===#{@index}" data-click="$sc.handleClick(#{@index})">
+		    	<td class="search-text-column"><div class="search-text" data-itext="item.term"></div> </td>
+			    <td><div class="search-delete" data-if="$sc.canDelete(#{@index})" data-click="$sc.handleDelete(#{@index})"></div></td>
+		  	</tr>
+		  </tbody></table>
+		</div>
+	</div>
+
+	<div class="frontpage-function-buttons" id="mobile-menu-holder" data-attr="role: @KEY_SCREEN_PHONE || @KEY_SCREEN_TABLET ? &#39;dialog&#39; : null" aria-labelledby="menu-dialog-label" data-css="visibility (@SIDEBAR_STATE == &#39;menu&#39; || @KEY_SCREEN_DESKTOP) ? &#39;visible&#39; : &#39;hidden&#39;">
+		<div class="overlay-header" data-if="@KEY_SCREEN_PHONE || @KEY_SCREEN_TABLET">
+			<div id="menu-dialog-label" class="title" data-attr="title:@KEY_LNG.NavTip" data-html="@KEY_LNG.NavTip"></div>
+			<div class="overlay-close menu-close">
+				<a role="presentation">
+					<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+				</a>
+			</div>
+		</div>
+		<div class="overlay-body" data-class="ios: KEY_SCREEN_IOS">
+			<div class="grid-buttons no-grid">
+				<div class="index" id="idx-toggle-button" data-if="@KEY_FEATURE.idx">
+					<a data-attr="title:@KEY_LNG.Index" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;idx&#39;)" data-html="@KEY_LNG.Index"></button>
+					</a>
+				</div>
+				<div class="glossary" id="glo-toggle-button" data-if="@KEY_FEATURE.glo">
+					<a data-attr="title:@KEY_LNG.Glossary" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;glo&#39;)" data-html="@KEY_LNG.Glossary"></button>
+					</a>
+				</div>
+				<div class="filter" data-class="filter-applied: @.l.tag_expression.length" id="filter-toggle-button" data-if="@KEY_FEATURE.filter">
+					<a data-attr="title:@KEY_LNG.Filter" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;filter&#39;)" data-html="@KEY_LNG.Filter"></button>
+					</a>
+				</div>
+				<div class="favorites" id="favorites-toggle-button">
+					<a data-attr="title:@KEY_LNG.favoritesLabel" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;favorites&#39;)" data-html="@KEY_LNG.favoritesLabel"></button>
+					</a>
+				</div>
+			</div>
+			<div class="overlay-buttons no-grid" data-if="!@KEY_SCREEN_DESKTOP" data-attr="aria-hidden: @KEY_SCREEN_DESKTOP">
+				<div class="search">
+					<a data-attr="title:@KEY_LNG.SearchTitle" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;fts&#39;)" data-html="@KEY_LNG.SearchTitle"></button>
+					</a>
+				</div>
+				<div class="custom-link" id="custom-link-1-menu"></div>
+				<div class="custom-link" id="custom-link-2-menu"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="frontpage-toc" class="frontpage-toc" role="navigation" data-class="use-custom-toc-icons: useCustomTOCLinks==true; grid-2: numberOfTOCItemsInRow == 2; grid-3: numberOfTOCItemsInRow == 3; grid-4: numberOfTOCItemsInRow == 4; grid-5: numberOfTOCItemsInRow == 5; grid-6: numberOfTOCItemsInRow == 6; grid-7: numberOfTOCItemsInRow == 7; grid-8: numberOfTOCItemsInRow == 8;" data-attr="aria-label:@KEY_LNG.TableOfContents" data-rhwidget="List: .p.toc" data-controller="TocController: toc" data-click="$toc.onClick(event)" data-tocitem="true">
+		<div data-i-style="item.tilePath ? &quot;background-image: url(&quot; + &quot;\&quot;&quot; + item.tilePath + &quot;\&quot;&quot; + &quot;);&quot; : undefined" data-rif="item.type === &#39;item&#39; || item.type === &#39;remoteitem&#39;" data-i-class="$toc.class(item)" data-class="inactive: @bookid != &#39;#{@pid}&#39;; toc_item#{@id}: false == false" data-childorder="#{childOrder}" data-rhtags="#{$toc.tags(item)}" data-itemid="#{@id}" data-i-title="item.name" data-i-aria-label="item.name" data-i-id="toc_item#{@id}" data-tocitem="true">
+			<a data-i-href="$toc.url(item, &#39;#{@id}&#39;)" data-attr="aria-label: item.name" data-click="rh.model.publish(rh.consts(&#39;SIDEBAR_STATE&#39;), &#39;false&#39;);">
+				<span class="label noselect" data-itext="item.name"></span>
+			</a>
+		</div>
+		<div data-i-style="item.tilePath ? &quot;background-image: url(&quot; + &quot;\&quot;&quot; + item.tilePath + &quot;\&quot;&quot; + &quot;);&quot; : undefined" class="book" data-rif="item.type === &#39;book&#39;" data-class="active: @bookid == &#39;#{@id}&#39;; inactive: @bookid != &#39;#{@pid}&#39; &amp;&amp; @bookid != &#39;#{@id}&#39;; toc_item#{@id}: false == false" data-itemkey="#{$toc.key(item.absRef, item.key)}" data-itemid="#{@id}" data-itemlevel="#{@level}" data-rhtags="#{$toc.tags(item)}" data-tocitem="true">
+			<a data-i-href="$toc.url(item, &#39;#{@id}&#39;)" data-click="rh.model.publish(rh.consts(&#39;SIDEBAR_STATE&#39;), &#39;false&#39;);">
+				<span class="label noselect normal-label" data-itext="item.name"></span>
+				<span class="label noselect back-label" data-itext="@KEY_LNG.Back"></span>
+			</a>
+		</div>
+		<span class="child child-container" data-rif="item.key" data-class="show: @show_child#{@id}">
+		  <span class="child" data-child="$toc.key(item.absRef, item.key)"></span>
+		</span>
+	</div>
+	</main>
+	<div class="frontpage-footer footer" role="contentinfo" data-html="@KEY_LNG.Copyright"></div>
+
+	<div class="frontpage-index overlay index" role="dialog" data-class="layout-visible: @SIDEBAR_STATE == &#39;idx&#39;" id="idx-holder" data-attr="aria-hidden:@SIDEBAR_STATE!=&#39;idx&#39;;aria-label: @KEY_LNG.Index" data-css="visibility: @SIDEBAR_STATE == &#39;idx&#39;?&#39;visible&#39;:&#39;hidden&#39;"> 
+		<div class="overlay-dialog">
+			<div class="overlay-header">
+				<div class="title" data-attr="title:@KEY_LNG.Index" data-html="@KEY_LNG.Index"></div>
+				<div class="overlay-close">
+					<a role="presentation">
+						<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+					</a>
+				</div>
+				<input class="IdxFilter" data-attr="placeholder:@KEY_LNG.IndexFilterKewords; aria-label: @KEY_LNG.IndexFilterKewords" type="text" data-keyup="@.l.idxfilter(node.value)" aria-controls="idx-list"/>
+			</div>
+			<div class="overlay-body" data-class="ios: KEY_SCREEN_IOS" data-scroll="@.l.load_more_index(true) | debounce: 50, delta: 100">
+				<ul id="idx-list" data-rhwidget="List: key: PROJECT_INDEX_DATA, renderkey: .l.idxfilter , filter: $ic.showItem(item.name), spliton: index % 60 == 59" data-config="loadmore: &#39;.l.load_more_index&#39;" style="list-style-type: none;" data-controller="IndexController: ic" class="index-holder" data-attr="aria-label:@KEY_LNG.Index">
+					<li class="treeitem IndexAlphabet" data-rif="$ic.showCategory(item.name, this.path.length)" data-itemlevel="#{@level}">
+						<span class="IndexAlphabetText" data-itext="$ic.alphaText(item.name)"></span>
+					</li>
+					<li class="treeitem IndexKeyword" data-i-data-rhtags="item[&#39;data-rhtags&#39;]">
+						<a data-rif="item.topics &amp;&amp; item.topics.length == 1" class="nolink IndexKeywordText" data-i-href="item.topics[0].url" data-itext="item.name"></a>
+						<a class="IndexKeywordText IndexKeyword unselectable" data-itext="item.name" data-rif="item.topics &amp;&amp; item.topics.length != 1" data-i-title="item.name" data-click="@show.#{@id}(!@show.#{@id})"></a>
+						<ul data-if="@show.#{@id}" style="list-style-type: none;">
+							<li data-repeat="i, topic:#{@itemkey}.topics" data-rif="item.topics &amp;&amp; item.topics.length &gt; 1" class="IndexChildBlock IndexKeyword">
+								<a class="nolink IndexLink IndexLinkText" data-i-href="$topic.url" data-i-data-rhtags="$topic[&#39;data-rhtags&#39;]" data-itext="$topic.name" data-i-title="$topic.name" data-click="if(@KEY_SCREEN_PHONE){rh.model.publish(rh.consts(&#39;SIDEBAR_STATE&#39;), &#39;false&#39;);}"></a>
+							</li>
+						</ul>
+						<div class="IndexChildBlock" data-rif="item[&#39;keys&#39;]">
+							<ul class="child" data-child="#{@itemkey}.keys" style="list-style-type: none;"></ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="overlay-footer">
+				<div class="overlay-close">
+					<a data-if="!@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+					<a data-if="@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;false&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="frontpage-glossary overlay glossary" role="dialog" data-class="layout-visible: @SIDEBAR_STATE == &#39;glo&#39;" id="glo-holder" data-attr="aria-hidden:@SIDEBAR_STATE!=&#39;glo&#39;;aria-label: @KEY_LNG.Glossary" data-css="visibility: @SIDEBAR_STATE == &#39;glo&#39;?&#39;visible&#39;:&#39;hidden&#39;">
+		<div class="overlay-dialog">
+			<div class="overlay-header">
+				<div class="title" data-attr="title:@KEY_LNG.Glossary" data-html="@KEY_LNG.Glossary"></div>
+				<div class="overlay-close">
+					<a role="presentation">
+						<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+					</a>
+				</div>
+				<input class="GloFilter" data-attr="placeholder:@KEY_LNG.GlossaryFilterTerms; aria-label: @KEY_LNG.GlossaryFilterTerms" type="text" data-keyup="$gc.filterGlo(node.value)" aria-controls="glo-list"/>
+			</div>
+			<div class="overlay-body glossary" data-class="ios: KEY_SCREEN_IOS" id="glo" data-controller="GlossaryController: gc">
+				<div class="noResults" data-text="@KEY_LNG.NoTermsFound" tabindex="0" data-css="display: @KEY_SHOW_GLOSSARY_MESSAGE ? &#39;block&#39; : &#39;none&#39;"></div>
+				<ul id="glo-list" style="list-style: none;" class="glossary-holder" data-attr="aria-label:@KEY_LNG.Glossary">
+					<div data-repeat="i, glossary: PROJECT_GLOSSARY_DATA" role="listitem">
+						<li class="treeitem GloAlphabet" data-rif="!$gc.exists($glossary.name)&amp;&amp;!$gc.isFiltered($glossary.name)" role="presentation">
+							<span class="GloAlphabetText" data-itext="$gc.alphaText($glossary.name)"></span>
+						</li>
+						<li class="treeitem" data-rif="!$gc.isFiltered($glossary.name)" role="presentation">
+							<div class="GlossTerm unselectable" data-type="11">
+								<a data-i-title="$gc.getEscapedString($glossary.name)" data-term="$gc.getEscapedString($glossary.name)" data-click="@show.#{@index}(!@show.#{@index})" data-attr="aria-expanded: @show.#{@index} ? true : false" data-keydown="if((event.keyCode == 13 || event.keyCode == 32)){ @show.#{@index}(!@show.#{@index}); event.preventDefault()}" role="button" tabindex="0"><span class="GlossaryTermText" data-itext="$gc.getEscapedString($glossary.name)"></span></a>
+							</div>
+							<div class="GlossDefinition unselectable" data-type="12" data-if="@show.#{@index}">
+								<span class="GlossDefinitionText" data-itext="$gc.getEscapedString($glossary.value)"></span>
+							</div>
+						</li>
+					</div>
+				</ul>
+			</div>
+			<div class="overlay-footer">
+				<div class="overlay-close">
+					<a data-if="!@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+					<a data-if="@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;false&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="frontpage-filter overlay filter" role="dialog" data-class="layout-visible: @SIDEBAR_STATE == &#39;filter&#39;" id="filter-holder" data-attr="aria-hidden:@SIDEBAR_STATE!=&#39;filter&#39;;aria-label: @KEY_LNG.Filter" data-css="visibility: @SIDEBAR_STATE == &#39;filter&#39;?&#39;visible&#39;:&#39;hidden&#39;">
+		<div class="overlay-dialog">
+			<div class="overlay-header">
+				<div class="title" data-attr="title:@KEY_LNG.Filter" data-html="@KEY_LNG.Filter" data-class="filter-applied: @.l.tag_expression.length"></div>
+				<div class="overlay-close">
+					<a role="presentation">
+						<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+					</a>
+				</div>
+				<p class="filter-intro-text intro-text" data-text="KEY_PROJECT_FILTER_CAPTION"></p>
+			</div>
+			<div class="overlay-body filter" data-class="ios: KEY_SCREEN_IOS" id="filter">
+				<ul class="wFltOpts" data-rhwidget="List:KEY_MERGED_FILTER_KEY" data-controller="FilterController: fc" data-click="$fc.click(event)" data-keydown="if(event.keyCode == 13 || event.keyCode == 32){$fc.click(event); event.preventDefault();}" data-class="radio: @KEY_PROJECT_FILTER_TYPE == &#39;radio&#39;; checkbox: @KEY_PROJECT_FILTER_TYPE == &#39;checkbox&#39;" data-attr="aria-label:@KEY_LNG.Filter">
+					<li data-i-class="$fc.class(item)" data-itemkey="#{@path}" data-itemvalue="#{name}">
+						<input data-rif="$fc.inputType(item) == &#39;checkbox&#39;" data-i-id="&#39;filter#{@id}&#39;" type="checkbox" data-i-value="#{@index}" data-attr="aria-labelledby: label#{@id}" style="display:none"/>
+						<input data-rif="$fc.inputType(item) == &#39;radio&#39;" data-i-id="&#39;filter#{@id}&#39;" type="radio" data-i-name="&#39;filter_name#{@pid}&#39;" data-i-value="&#39;#{@index}&#39;" data-attr="aria-labelledby: label#{@id}" style="display:none"/>
+						<label data-i-for="&#39;filter#{@id}&#39;" data-i-title="item.display" data-class="tag-parent: #{@itemkey}.children; checked: KEY_PROJECT_TAG_STATES#{@path}" data-attr="id: filter#{@id}; aria-checked: Boolean(@KEY_PROJECT_TAG_STATES#{@path})" role="checkbox" tabindex="0">
+						  <span aria-hidden="true" data-itext="item.display"></span>
+						</label>
+						<ul class="wFltOptsGrp" data-child="#{@itemkey}.children" data-rif="item.children"></ul>
+					</li>
+				 </ul>
+			</div>
+			<div class="overlay-footer">
+				<div class="overlay-close">
+					<a data-if="!@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+					<a data-if="@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;false&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+				</div>
+				<div class="reset-button" id="filter-reset-button">
+					<a class="reset-button" data-attr="title: @KEY_LNG.Reset" data-class="layout-visible: $mc.isTagStatesChanged(@KEY_TAG_EXPRESSION)">
+						<button class="placeholder" data-click="$mc.setDefaultTagStates()" data-html="@KEY_LNG.Reset">
+						</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="frontpage-favorites overlay favorites" role="dialog" data-class="layout-visible: @SIDEBAR_STATE == &#39;favorites&#39;" id="favorites-holder" data-attr="aria-hidden:@SIDEBAR_STATE!=&#39;favorites&#39;;aria-label: @KEY_LNG.favoritesLabel" data-css="visibility: @SIDEBAR_STATE == &#39;favorites&#39;?&#39;visible&#39;:&#39;hidden&#39;">
+		<div class="overlay-dialog">
+			<div class="overlay-header">
+				<div class="title" data-attr="title:@KEY_LNG.favoritesLabel" data-html="@KEY_LNG.favoritesLabel"></div>
+				<div class="overlay-close">
+					<a role="presentation">
+						<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+					</a>
+				</div>
+				<p class="favorites-intro-text intro-text" data-html="@KEY_LNG.favoritesChooseLink"></p>
+			</div>
+			<div class="overlay-body favorites" data-class="ios: KEY_SCREEN_IOS" id="favorites">
+				<div data-favwidget="fav-list">
+					<span data-text="@KEY_LNG.nofavoritesFound" data-if="@KEY_FAVORITES === undefined || @KEY_FAVORITES.length ===0"></span>
+					<div class="favoritestableintro" data-text="@KEY_LNG.favoritesNameLabel"></div>
+					<table class="favoritesholder" data-if="@KEY_FAVORITES !== undefined &amp;&amp; @KEY_FAVORITES.length &gt; 0">
+						<tbody><tr data-repeat="@KEY_FAVORITES">
+							<td class="favorite"><a data-i-href="item.topic" data-itext="item.title"></a></td>
+							<td class="removelink"><a data-click="$fav.toggleFavorite(&#39;#{topic}&#39;)" data-attr="title:@KEY_LNG.unsetAsFavorite; aria-label:KEY_LNG.unsetAsFavorite"> <span style="display: none;" aria-hidden="true" data-text="@KEY_LNG.unsetAsFavorite"></span></a></td>
+						</tr>
+					</tbody></table>
+				</div>
+			</div>
+			<div class="overlay-footer">
+				<div class="overlay-close">
+					<a data-if="!@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>
+					<a data-if="@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+						<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;false&#39;)" data-html="@KEY_LNG.Back"></button>
+					</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="frontpage-search overlay search" role="search" data-controller="ModernLayoutController: mc;" id="fts-holder" data-attr="aria-hidden:@SIDEBAR_STATE!=&#39;fts&#39;" data-css="visibility: @SIDEBAR_STATE == &#39;fts&#39;?&#39;visible&#39;:&#39;hidden&#39;">
+		<div class="overlay-dialog">
+			<div class="overlay-header">
+				<div class="title" data-attr="title:@KEY_LNG.SearchTitle" data-html="@KEY_LNG.SearchTitle"></div>
+				<div class="overlay-close">
+					<a role="presentation">
+						<button class="placeholder" data-attr="title: @KEY_LNG.Back" data-click="@SIDEBAR_STATE(&#39;false&#39;)"></button>
+					</a>
+				</div>
+				<input class="wSearchField" type="text" data-class="no-filter: !@KEY_FEATURE.filter" data-attr="placeholder: @KEY_LNG.Search;aria-label: @KEY_LNG.Search" data-value="KEY_SEARCH_TERM" data-blur="$sc.handleFocusOut(&#39;focusin_frontsearchbox&#39;)|timeout:200" data-focus="@focusin_frontsearchbox(true)" data-keyup="$mc.newSearch(node.value, event.keyCode),$sc.handleKey(event)|debounce:150" aria-controls="searchresults"/>
+				<div data-if="@focusin_frontsearchbox" class="search-list">
+				  <table>
+				    <tbody><tr data-repeat="search_results" data-class="search-suggestion:true; search-selected:@selected===#{@index}" data-click="$sc.handleClick(#{@index})">
+				    	<td class="search-text-column"><div class="search-text" data-itext="item.term"></div> </td>
+					    <td><div class="search-delete" data-if="$sc.canDelete(#{@index})" data-click="$sc.handleDelete(#{@index})"></div></td>
+				  	</tr>
+				  </tbody></table>
+				</div>
+				<a class="wSearchLink" data-click="@EVT_SEARCH_TERM(true)" data-attr="href:&#39;#&#39;;aria-label: @KEY_LNG.SearchTitle"></a>
+			</div>
+		</div>
+		<div class="overlay-body search" data-class="ios: KEY_SCREEN_IOS" id="fts" data-scroll="@.l.load_more_results(true) | debounce: 50, delta: 100">
+			<div class="search-options">
+				<div class="wSearchAND" data-if="KEY_FEATURE.andsearch">
+					<label class="wSearchAndLabelResults" for="andsearch" data-class="checked: KEY_AND_SEARCH" role="checkbox" data-attr="aria-checked: Boolean(@KEY_AND_SEARCH == &#39;1&#39;)" data-keydown="if(event.keyCode == 13 || event.keyCode == 32){@KEY_AND_SEARCH(@KEY_AND_SEARCH == &#39;1&#39; ? &#39;0&#39; : &#39;1&#39;); event.preventDefault();}" tabindex="0">
+						<input id="andsearch" type="checkbox" value="1" class="wSearchAND" data-checked="KEY_AND_SEARCH" data-focus="@focusin_andoption(true)" data-blur="@focusin_andoption(false)" aria-labelledby="andsearchlabel"/>
+						<span class="checkbox-bg"></span>
+						<span data-html="@KEY_LNG.EnableAndSearch" id="andsearchlabel"></span>
+					</label>
+				</div>
+				<div class="wSearchHighlight">
+					<label class="highlight-search" for="highlightsearch" role="checkbox" aria-checked="true" data-click="onToggleHighlightSearch(event);event.preventDefault(); event.stopPropagation();" data-keydown="if(event.keyCode == 13 || event.keyCode == 32){ onToggleHighlightSearch(event); event.preventDefault(); event.stopPropagation()}" tabindex="0">
+						<input id="highlightsearch" type="checkbox" checked="" class="wSearchHighlight"/>
+						<span class="checkbox-bg"></span>
+						<span data-html="@KEY_LNG.HighlightSearchResults" id="highlightsearchlabel"></span>
+					</label>
+				</div>
+			</div>
+
+			<div class="wSearchResults" id="searchresults" role="region" data-attr="aria-label: @KEY_LNG.SearchPageTitle">
+
+				<div class="wSearchMessage" data-if="!@EVT_SEARCH_IN_PROGRESS">
+					<span id="searchMsg" class="wSearchMessage"></span>
+				</div>
+
+				<div data-class="loading: EVT_SEARCH_IN_PROGRESS" data-if="EVT_SEARCH_IN_PROGRESS"></div>
+
+				<p class="progressbar" data-if="KEY_SEARCH_PROGRESS"><span data-text="KEY_SEARCH_PROGRESS"></span>%</p>
+				<div class="wSearchResultItemsBlock" data-if="!@EVT_SEARCH_IN_PROGRESS">
+					<div class="wGlossaryResult" data-if="@KEY_GLOSSARY_RESULT_TERM">
+						<p class="search_glossary_term" data-text="KEY_GLOSSARY_RESULT_TERM"></p>
+						<p class="search_glossary_result" data-text="KEY_GLOSSARY_RESULT"></p>
+					</div>
+					<div class="wSearchResultList" data-rhwidget="List: key: @.p.searchresults, spliton: index % @MAX_RESULTS == 14" data-config="loadmore: &#39;.l.load_more_results&#39;, loaded: &#39;.l.results_loaded&#39;" data-controller="SearchResultController:src" role="list">
+						<div class="wSearchResultItem" role="listitem" data-attr="aria-setsize: (@.p.searchresults).length" data-iattr="aria-posinset: index">
+							<a class="nolink" data-attr="href: @#{strUrl}" data-if="!@KEY_SCREEN_PHONE">
+								<div class="wSearchResultTitle" data-itext="item.strTitle"></div>
+								<div class="wSearchContent">
+									<span class="wSearchContext" data-i-data-html="item.strSummary"></span>
+								</div>
+								<div class="wSearchURL">
+									<span class="wSearchURL" data-itext="item.strBreadcrumbs"></span>
+								</div>
+							</a>
+							<a class="nolink" data-attr="href: @#{strUrl}" data-click="rh.model.publish(rh.consts(&#39;SIDEBAR_STATE&#39;), &#39;false&#39;);" data-if="@KEY_SCREEN_PHONE">
+								<div class="wSearchResultTitle" data-itext="item.strTitle"></div>
+								<div class="wSearchContent">
+									<span class="wSearchContext" data-i-data-html="item.strSummary"></span>
+								</div>
+								<div class="wSearchURL">
+									<span class="wSearchURL" data-itext="item.strBreadcrumbs"></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="wSearchResultFooter">
+					<div class="wSearchResultPaginator" data-if="(@KEY_PAGINATOR_SHOW_PREV_PAGE || @KEY_PAGINATOR_SHOW_NEXT_PAGE) &amp;&amp; !(@KEY_SEARCH_PROGRESS)">
+						<button class="wSearchResultPaginatorPrevLink" href="#" data-click="@EVT_CHANGE_SEARCH_PAGE(&#39;previous&#39;)" data-css="visibility: @KEY_PAGINATOR_SHOW_PREV_PAGE ? null : &#39;hidden&#39;" data-attr="title: @KEY_LNG.PrevSearchResults">
+							<span class="wSearchResultPaginatorPrevIcon"></span>
+						</button>
+						<span class="wSearchResultPaginatorLabel" data-text="@KEY_PAGINATOR_LABEL"></span>
+						<button class="wSearchResultPaginatorNextLink" href="#" data-click="@EVT_CHANGE_SEARCH_PAGE(&#39;next&#39;)" data-css="visibility: @KEY_PAGINATOR_SHOW_NEXT_PAGE ? null : &#39;hidden&#39;" data-attr="title: @KEY_LNG.NextSearchResults">
+							<span class="wSearchResultPaginatorNextIcon"></span>
+						</button>
+					</div>
+				</div>
+				<div data-if="@.l.results_loaded &amp;&amp; @.p.searchresults.length &amp;&amp; !@EVT_SEARCH_IN_PROGRESS &amp;&amp; !@KEY_PAGINATOR_SHOW_NEXT_PAGE" class="wSearchResultsEnd">
+					<span data-text="@KEY_LNG.EndOfResults">End of search results.</span>
+				</div>
+			</div>
+		</div>
+		<div class="overlay-footer">
+			<div class="overlay-close">
+				<a data-if="!@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+					<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;menu&#39;)" data-html="@KEY_LNG.Back"></button>
+				</a>
+				<a data-if="@KEY_SCREEN_DESKTOP" data-attr="title: @KEY_LNG.Back" role="presentation">
+					<button class="placeholder" data-click="@SIDEBAR_STATE(&#39;false&#39;)" data-html="@KEY_LNG.Back"></button>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="template/Help_Skin_3/usersettings.js"></script>
+  <script type="text/javascript" src="whxdata/whtagdata.js"></script>
+
+  
+  
+
+  
+ 
+
+</body></html>

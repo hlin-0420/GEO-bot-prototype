@@ -1,0 +1,1574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  
+    <url>
+      <loc>Help_Missing.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Drilling/Cement_Volume.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Gas_Balance.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Gas_Character.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Drilling/D_Exponent.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Modifiers_and_Qualifiers/Delete_modifier.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Gas_Wetness.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/Easting.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/Northing.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Oil_Indicator.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Th_K_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Pixler_C1_C2_Gas_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Pixler_C1_C5_Gas_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Pixler_C1_C4_Gas_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Shale_Volume_from_GR.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Pixler_C1_C3_Gas_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Rw_at_Formation_Temperature.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/C1_Sum.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/TVD,_using_Minimum_Curvature_method.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/Well_Departure.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Formation_Fluid_Evaluation/Inverse_Oil_Indicator.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Drilling/Mechanical_Specific_Energy.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Delta_C1_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Delta_C2_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/TVD_Average_Tangential.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Total_Gas_in_PPM.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Drilling/Temperature_Gradient.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_ARCHIE_(Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_ARCHIE_(Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_from_Density_(Clean_Zone).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/TVD_&amp;_Well_Trajectory/Vertical_Sect.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_Effective_(Clean_Zone).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Delta_Total_Gas_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/RW_from_SP.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Total_Gas_Normalization.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_from_Sonic_(with_Shale_Correction).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/C2_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Free_Format_Text/Delete_Free_Format_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/C1_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_Effective_(with_Shale_Correction).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_INDONESIAN_(Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_from_Density_(with_Shale_Correction).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Porosity_from_Sonic_(Clean_Zone).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_INDONESIAN_(Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_SCHLUMBERGER_(Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Gas_Quality_Ratio.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_SIMANDOUX_(Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Gas/Gas_Quality/Total_Gas_Moving_Average.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_SCHLUMBERGER_(Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_INDONESIAN,_Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Edit_Lithology_Descriptions_or_Remarks_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Modifiers_and_Qualifiers/Delete_Qualifiers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Vertical_Track_Text_-_Chronological or Stratigraphic/Edit_Chronological_and_Stratigraphic_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Close_an_ODF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Insert_a_Subscript_Character.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Introduction/Application_Look.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Open_an_ODT_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Load_a_VEW_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_INDONESIAN,_Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Save_an_ODT_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Change_the_Font_Family.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Load_Lis_or_Binary_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/View_File_(VEW).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Depth_Tab_(for_Time_Plots).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Modifiers_and_Qualifiers/Add_Modifiers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Change_Curve_Attributed_using_Context_Tab.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Modifiers_and_Qualifiers/Move_Modifiers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Change_Plot_Index.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Change_the_Font_Size.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Vertical_Track_Text_-_Chronological or Stratigraphic/Adjust_Depth_Range_of_Chronological_or_Stratigraphic_text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_ARCHIE,_Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_ARCHIE,_Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Save_a_VEW_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_SIMANDOUX,_Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/ODF_Interval_Files_(OIF).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_SCHLUMBERGER,_Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Export_Percent_Lithology_to_ASCII.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Interpreted_Lithology/Add_Lithology.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_SCHLUMBERGER,_Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Sw_using_SIMANDOUX_(Rw_from_SP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Interpreted_Lithology/Delete_Lithology.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Move_Lithology_Descriptions_or_Remarks_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_Baggage_and_Library.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Modify_a_Tadpole_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Free_Format_Text/Moving_Free_Format_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Starting_a_new_GEO_session.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Free_Format_Text/Edit_Free_Format.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Computed_Curve_Templates/Petrophysical/Net_Pay_(Sw_using_SIMANDOUX,_Rw_known).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Export_Percent_Lithology_to_LAS.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Date-Time_Formats.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/View_ODF_files_in_EView.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Alter_the_Order_of_Curve_Legends.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Quick_Access_Toolbar.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Import_Lithology_Descriptions_and_Remarks_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Introduction/System_Requirements.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sidetrack/Create_Sidetrac.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Open_an_ODF_or_VEW_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Title_Bar.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Files_in_GEO.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Comma_and_Tab-delimited_ASCII_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Curve_as_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Multiple_Scales_for_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Qualitative_Data/Export_Qualitative_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Edit_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Selecting_Fonts.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Automatic_File_Load.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Apply_Curve_Display_Settings_(Defaults).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Save_the_Curve_Display_Settings_(Defaults).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Vertical_Track_Text_-_Chronological or Stratigraphic/Delete_Chronological_or_Stratigraphic_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_to_EM.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Modifiers_and_Qualifiers/Add_Qualifiers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Qualitative_Data/Import_Qualitative_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/View_and_Edit_Existing_Multiple_Curve_Groups.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>VOB_Files/Vector_Object_Language_Compiler_(VLCP).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Text_and_Annotations/Geological_Dictionary.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_to_HTM.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>GEOGraph/Add_a_Graph.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Print/Print.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Automatic_File_Load.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Introduction/GEO_License_and_Version_Number.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Delete_Lithology_Descriptions_and_Remarks.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Convert_LIS_to_LAS.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Label_the_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>First_Topic.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Interpreted_Lithology/Edit_Lithology.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Display_Data_Point_Markers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Touch_Screen_Devices/Touch_Screen_Devices.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Add_Percent_Lithology_Descriptions.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Shifting_Tracks.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Change_Curve_Pens.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Save_an_ODF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Automatic_Curve_Populate.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Display_Wrapped_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Split_Screen_GEO.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Create_Curve_Data_from_Table_Columns.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Log_On_as_GEO_User.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Shape_Percent_Lithology_with_the_Mouse.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Text_and_Annotations/Spell_Check.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Name_the_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Shading,_Splicing_and_Depth_Shifting/Shade_Wrapped_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Qualitative_Data/Add_Qualitative_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Publish_ODF_to_Web_Folder/VUF_File_Transfe.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Load_Text_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/View_Curve_Data_History.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/Output_Database_File_(ODF).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Create_Multiple_Layouts.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Free_Format_Text/Add_Free_Format_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Load_Space-delimited_ASCII_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Create_Polyline_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>GEOGraph/GEOGraph_Introduction.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Status_Bar.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_to_WMF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/ODF_Template_File_(ODT).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_Data_to_WitsML.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Print/Print_to_PDF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_Curve_Data_to_XML_Format.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Contact_us.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Create_Cutoff_Curve.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Layout_Items.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Types_of_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/GEO_Menu.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Load_Las_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_to_TIFF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Lines/Delete_Line.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_to_SVG.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Symbols/Delete_Symbol.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Curve_Types_in_GEO.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Vertical_Track_Text_-_Chronological or Stratigraphic/Manage_Stratigraphy.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Make_the_Text_Bold.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Make_the_Text_Italic.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Underline_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Symbols/Add_Symbols.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Strikethrough_the_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Curve_Comp.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Change_Indents_and_Spacing.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Apply_Highlighting.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Start_a_List.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Change_Text_Line_Spacing.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Insert_a_Superscript_Character.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Align_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Change_the_Font_Color.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Create_a_Report_Link_to_an_Object_in_the_Log/Links_Mana.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/Load_OUF_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Symbols/Move_Symbol.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Fonts_for_Vector_Objects.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Baggage_File_Mana.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Lines/Edit_Line.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>VOB_Files/Concept_of_Vector_Objects_(VOB).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Lines/Move_Line.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Export_Table.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Depth_tab_(for_Depth_Plots).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Shading,_Splicing_and_Depth_Shifting/Splice.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Format_Text_Using_the_Rich_Edit_Control.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/Create_or_Save_an_OU.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Templates_(ODT)/Create_Template_using_Wizard.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Loading_XML_Files_(WellLogML).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>TVD/Index_Convertor.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Jumping_to_a_certain_depth.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Define_New_Curve_Pens.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_as_Image.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Replacing_an_Old_Table_Template_with_a_New_One.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Login_for_Access_to_Document.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/General_Rules_of_Loadig_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Present_Curves_on_the_Log.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Create_a_Qualitative_Track.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Create_Presentation_or_Track_Format.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Rich_Format_Text/Format_Text_Using_the_Format_Text_Tab.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Presentation_and_Layout/Manage_Layouts.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Add_Table_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_to_Image_File/Export_GEO_Plot_to_CGM.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>TVD/Presenting_TVD.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Mouse_Set_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Introduction/RUS_Rental_Dongle_Guide.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Present_Curve_in_Tadpole_Format.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/OUF_Auto_merging.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Add_Percent_Lithology.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/e-View_Enable_an_ODF.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Header_and_Trailer_Display_Hierarchy.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Append_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/OUF_Resave_Feature.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Vertical_Track_Text_-_Chronological or Stratigraphic/Add_Chronological_or_Stratigraphic_Text.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Event_Log.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Protecting_your_ODF_File.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Create_Multiple_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Add_Headers_and_Trailers.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Percent_Lithology/Import_Percent_Lithology.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Horizontal_Track_Text_-_Lithology_Descriptions_or_Remarks/Add_Lithology_Descriptions_or_Remarks.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Shading,_Splicing_and_Depth_Shifting/Curve_Depth_Shifting.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Create_User-defined_Curve_or_Gradi.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/Send_OUF_as_mail_attachment.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Navigate_Table_Definitions.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Add_Header_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Create_a_Report_Link_to_an_Object_in_the_Log/Object_Links_in_GEO.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Shading,_Splicing_and_Depth_Shifting/Apply_Lithologies_as_Curve_Shading.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Shading,_Splicing_and_Depth_Shifting/Apply_Curve_Shading.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Create_Curve_Data/Generate_Integrated_Travel_Time_Pips.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Import_table_data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Load_a_Header_or_Trailer.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Lines/Add_L.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Place_Symbols_from_Table_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_All_Other_Data_(except_curve_data).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Mnemonics_for_Header_and_Trailers/System_Variables_in_Header_Mnemonics.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Load_Curve_Data/Data_Import_Wizard_Step_1.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Geotable.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/ODF_Update_File_(OUF).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/Export_Data_and_Information/Export_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Working_with_Files/File_Types_Handled_by_GEO.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Headers_and_Trailers/Mnemonics_for_Header_and_Trailers/Mnemonics_in_G.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Display/Create_Rose_Plots.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Tables/Create_or_Amend_Table_Templates.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Navigate_GEO/Ribbons_Menu.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Sharing/ODF_Update_File_(OUF))/Concept_of_ODF_Update_File_(OUF).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Introduction/GEO_Limits.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Global_Settings_for_Date-Time_Plots.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Log_Structure_and_Presentation/Global_Settings_for_Depth_Plots.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Load_Las_Curve_Data.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Comma_and_Tab-delimited_ASCII_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Convert_LIS_to_LAS.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Data_Import_Wizard_Step_1.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Loading_XML_Files_(WellLogML).htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+    <url>
+      <loc>Curve_Data/Load_Space-delimited_ASCII_Files.htm</loc>
+      <lastmod>2024-02-23</lastmod>
+      <changefreq></changefreq>
+    </url>
+  
+
+</urlset>

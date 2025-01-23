@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "8.0_5";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Curve Depth Shifting</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Curve Depth Shifting">
+        <span>Curve Depth Shifting</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Curve Depth Shifting</h1>
+  <p>The depth of curves can be shifted to shallower or deeper depths using the depth shifts feature. To access this, on the <strong>Depths </strong>tab, select <strong>Curves and Global Depth Shifts</strong>. The Depth Shift Specifications dialog box will open. From here you can perform the following actions.</p>
+  <p> </p>
+  <p><strong>Global Depth Shift All Curves</strong></p>
+  <p>Shift all curves by a particular amount.</p>
+  <ol class="Decimal">
+    <li>
+      <p>In the <strong>Depth </strong><strong>Shift </strong><strong>Specifications </strong>dialog box, enter the <strong>Shift</strong> value, that you wish to move all the curves by.</p>
+    </li>
+    <li>
+      <p>Check <strong>Apply </strong><strong>Global </strong><strong>Shift </strong><strong>t</strong><strong>o Curves</strong>, then <strong>Apply</strong>. <br/>
+        <strong>Note</strong>. It is not possible to shift a section of curve when performing a global depth shift. Only the whole curve can be shifted.
+      </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p> </p>
+  <p><strong>Depth Shift Individual Curves</strong></p>
+  <p>Shift the depths of individual curves. This is also knows as rubber banding. </p>
+  <ol class="Decimal">
+    <li>
+      <p>In <strong>Depth </strong><strong>Shift </strong><strong>Specifications</strong>, select the individual curve you wish to shift from <strong>Curve Related Depth Shift</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Create Curve Depth Shift</strong> – two depth shift rows will appear in the grid</p>
+      <ol>
+        <li>
+          <p>The <strong>Depth </strong>column, states the first (start) depth and second (end) depth of the selected curve. The values can be changed by typing in the cell. </p>
+        </li>
+        <li>
+          <p>The <strong>Shift </strong>column, states the amount the depth point has been shifted by.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>To shift the curve, enter the amount you wish to shift the first depth and second depth by, in their corresponding <strong>Shift </strong>cell.</p>
+    </li>
+    <li>
+      <p>Add more depth points to shift by selecting <strong>Insert </strong><strong>Row</strong>.</p>
+    </li>
+    <li>
+      <p>To delete inserted rows, select them and click <strong>Delete </strong><strong>Row</strong>. </p>
+    </li>
+    <li>
+      <p>Click <strong>Exit</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p> </p>
+  <p><strong>Apply Same Rubber Banding Shifts To Other Curves</strong><br/>
+    You can copy the depth shift pattern specified for an individual curve, to another curve. </p>
+  <ol class="Decimal">
+    <li>
+      <p>In <strong>Depth </strong><strong>Shift </strong><strong>Specifications</strong>,<strong> </strong>select the curve with the shift pattern you wish to copy in <strong>Curve Related Depth Shift</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Copy </strong><strong>Curve </strong><strong>Depth </strong><strong>Shift</strong>.</p>
+    </li>
+    <li>
+      <p>Select the curve you wish to apply the shift pattern to in the <strong>Curve </strong><strong>Related </strong><strong>Depth </strong><strong>Shift </strong>drop list.</p>
+    </li>
+    <li>
+      <p>Click <strong>Paste</strong><strong> from Curve x </strong>(the x will be the number of the curve), then <strong>Exit</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p> </p>
+  <p><strong>Remove the Depth Shift</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p><strong></strong>In <strong>Depth </strong><strong>Shift </strong><strong>Specifications</strong>, select the curve you wish to remove the depth shift for in the <strong>Curve Related Depth Shift </strong>drop list. </p>
+    </li>
+    <li>
+      <p>Select <strong>Remove </strong><strong>Curve </strong><strong>Depth</strong> <strong>Shift</strong>. GEO Message:816 will open.</p>
+    </li>
+    <li>
+      <p>Click <strong>Yes</strong>, then <strong>Exit</strong>.</p>
+    </li>
+  </ol>
+  <p>All Depth Shifts for the curve will be deleted and the original (unshifted) depths restored.</p>
+  <p> </p>
+  <p> </p>
+  <p><strong>View Depth Shift Details</strong><br/>
+    There is an additional dialog box accessed via the Depth Shift Specifications where you can view each shift depth point and the data value associated with it. This is called the Curve Depth Details. <br/>
+    In this dialog box you can also remove the shift and revert to the original data, or you can preserve the new shifted data with no evidence of a shift.</p>
+  <ol class="Decimal">
+    <li>
+      <p>In <strong>Depth </strong><strong>Shift </strong><strong>Specifications</strong>, select <strong>Curve</strong> <strong>Depth </strong><strong>Details</strong>. The Curve Depth Details dialog box will open. </p>
+    </li>
+    <li>
+      <p><strong>Select a Curve</strong> you wish to analyse.</p>
+    </li>
+    <li>
+      <p>The<strong> Current Depth</strong>, <strong>Computed </strong><strong>Depth </strong>and <strong>Value </strong>or each data point in the curve will be listed.</p>
+    </li>
+    <li>
+      <p>To remove the depth shift, select <strong>Revert</strong><strong> t</strong><strong>o Original Dept</strong><strong>hs</strong>, then <strong>Remove. </strong>GEO Message:816 will appear - click <strong>Yes</strong>.</p>
+    </li>
+    <li>
+      <p>To make the shifted depths the &#39;true&#39; data points of the curve (there will be no evidence this curve was depth shifted), select <strong>Preserve Current Depths</strong>, then <strong>Remove</strong>.<strong> </strong>GEO Message:826 will appear - click <strong>Yes</strong>. </p>
+    </li>
+    <li>
+      <p>Click <strong>Exit </strong>to return to the <strong>Depth </strong><strong>Shift </strong><strong>Specification</strong><strong>s</strong>. The curve selection will need to be refreshed to reflect any changes made in the the <strong>Curve Depth Details</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

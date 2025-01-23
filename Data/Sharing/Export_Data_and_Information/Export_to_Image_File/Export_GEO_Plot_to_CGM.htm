@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../../..";
+    gCommonRootRelPath = "../../..";
+    gTopicId = "17.2.1.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export GEO Plot to CGM</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export GEO Plot to CGM">
+        <span>Export GEO Plot to CGM</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export GEO Plot to CGM</h1>
+  <p>The CGM (Computer Graphic Metafile) format can be used to transfer a plot to a large plotter (e.g. HP DesignJet<font face="Symbol">Ô</font>) through CGM interpreter software (such as Zeh Graphics<font face="Symbol">Ô</font> or SDI<font face="Symbol">Ô</font> software).</p>
+  <p> </p>
+  <p>One reason for doing so is to circumvent the length limitation (109 inches) of certain printer-drivers operating under Windows<font face="Symbol">Ô</font>. This limitation does not of course arise when plotting under the UNIX platform.</p>
+  <p> </p>
+  <p>GEO can export to CGM files with either 16 or 32-bit precision.</p>
+  <p>The 16-bit CGM complies with ISO-8362 binary specifications and may not be able to cope with very long plots.</p>
+  <p>The 32-bit CGM, on the other hand, is equipped to handle any length of plot and is compatible with PIP (Petroleum Information Profile).</p>
+  <p> </p>
+  <p><strong>Export Plot to CGM</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Edit </strong>tab, select <span><strong>Headers </strong><strong>and</strong> <strong>Trailers</strong>. T</span><span>he Plot Header and Trailer Specifications</span><strong> </strong>dialog box will open. <br/>
+        <span><strong>Tip</strong>. </span>If a trailer component such as a spreadsheet was loaded with the <span>OLE object</span> check box selected, you can remove the OLE object with the following simple procedure.
+      </p>
+      <ol>
+        <li>
+          <p>Double-click that spreadsheet in the trailer in GEO to open it in the native application (perhaps MS Excel<font face="Symbol">Ô</font>).</p>
+        </li>
+        <li>
+          <p>Copy it to the clipboard and load it back at <span>the Plot Header and Trailer Specifications</span> dialog box, with the same name, but this time ensure the <span>OLE object</span> check box is <span>clear (no tick)</span>.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>On the <strong>GEO </strong>menu, select <strong><span>Print </span></strong>and select a printer that will allow you to set the paper size at a certain value, so the paper’s width is greater than the plot width. Save these settings but do not print. <br/>
+        <strong><span>Note</span></strong>. The exported plot will be cut off on width, if the paper size set at this <span>Print Setup</span> is less than the original plot’s width.<br/>
+        <span><strong>Tip</strong>.</span> Our experience dictates that the Epson Stylus Color 1520<font face="Symbol">Ô</font> printer driver is a good driver for creating reliable CGM exports. Note that although this driver may be the optimum to use for CGM production, it is not necessary to physically have such a printer available or attached to your computer; <span>only the driver</span> need be installed (from <a class="dropspot" href="http://An up-to-date driver may be downloaded from the EPSONÔ website at:">https://www.epson.co.uk/support?productID=3838&amp;os=22#drivers_and_manuals</a>) and the printer selected within GEO.
+      </p>
+    </li>
+    <li>
+      <p>On the <strong>Edit </strong>tab, select <strong>Edit </strong><strong>GEO</strong> <strong>Settings</strong>. The Registry Editor dialog box will open.</p>
+    </li>
+    <li>
+      <p>Open the <strong>CGM </strong>tab and ensure that the fonts are correctly mapped between Windows and CGM Interpreter (such as ZEH Graphics<font face="Symbol">Ô</font> or SDI<font face="Symbol">Ô</font> software); for this you may need assistance from the personnel within your IT Department or Help Desk. Select <strong>Apply</strong>. </p>
+    </li>
+    <li>
+      <p>Open the <span><strong>CGM</strong> <strong>Advanced</strong></span><strong> </strong>tab and check the settings.<br/>
+        <strong><span>Note</span></strong>. The defaults are usually good in most cases.
+      </p>
+    </li>
+    <li>
+      <p>On the <strong>Export </strong>tab, select<span> <strong>Export </strong><strong>as...</strong> then</span> <strong>CGM</strong>. The <span>Export to CGM (32 bit)</span> will open.</p>
+    </li>
+    <li>
+      <p>Enter the <strong>File </strong><strong>name</strong> and specify the path to save to.</p>
+    </li>
+    <li>
+      <p>Click <span style="color:#444444;"><strong style="color: #444444">Save</strong></span><span>.</span></p>
+    </li>
+  </ol>
+  <p> </p>
+  <p>For output to the plotter, such as the HP DesignJet<font face="Symbol">Ô</font> series transfer the corresponding CGM format and its parameter file (with par extension) to the plotter by using FTP (File Transfer Protocol) to the UNIX platform.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+
+</body></html>

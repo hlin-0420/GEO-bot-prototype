@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "8.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Apply Curve Shading</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Apply Curve Shading">
+        <span>Apply Curve Shading</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Apply Curve Shading</h1>
+  <p>Shade the region between two curves, between a track edge and a curve or between a fixed value and a curve, with a user-selected color, fill or lithology pattern.</p>
+  <p><br/>
+    This is useful in highlighting curve features such as density-neutron crossovers, invasion profiles, hole washouts or clean sand cut offs.</p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Shading</strong>. The <strong>Cur</strong><strong>ve Shading Information</strong> dialog box will open. </p>
+    </li>
+    <li>
+      <p>From <strong>Curve </strong><strong>Shading</strong>, select an unused curve number. <br/>
+        <strong>Tip</strong>. Up to 250 shadings can be applied in one ODF.
+      </p>
+    </li>
+    <li>
+      <p>Select <strong>Display Curve Shade </strong>to display the shading on the plot. </p>
+    </li>
+    <li>
+      <p>Enter a <strong>Name</strong>.</p>
+    </li>
+    <li>
+      <p>Select the <strong>Track </strong>where the curve shading will apply.</p>
+    </li>
+    <li>
+      <p>Tick <strong>Cover track Grids</strong> to shade over the plot grid. Un-tick to display grids over the shading. </p>
+    </li>
+    <li>
+      <p>In <strong>Shade </strong><strong>From</strong>, specify the starting point of the shading by selecting a curve, fixed value or corresponding track edge. </p>
+    </li>
+    <li>
+      <p>In <strong>To</strong>, specify the end shading point by selecting a curve, fixed value or corresponding track edge.<br/>
+        <strong>Note</strong>. If<strong> &lt;fixed curve value&gt; </strong>is selected either as start or end shading point, the value needs to be specified in<strong> Fixed Curve Value</strong>. 
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Append</strong> to define a shading interval and its pattern through the <strong>Zone </strong><strong>Attributes </strong>grid. This grid is used to select the shading’s fill type, color, and depth range over which the shade will occur.</p>
+    </li>
+    <li>
+      <p>Enter the shading depth interval in the <strong>From </strong><strong>Depth </strong>and <strong>To </strong><strong>Depth </strong>columns.<br/>
+        <strong>Note</strong>. To select the entire curve interval, leave<strong> From Depth</strong> as 0 and <strong>To Depth</strong> as 99999. This allows the curve shading to extend automatically, for instance, when subsequent curves are appended to those existing at the time of setting-up that curve shade.
+      </p>
+    </li>
+    <li>
+      <p>Select the shading <strong>Type</strong>.</p>
+      <ol>
+        <li>
+          <p><strong>Color</strong>: Solid single color for the entire shading.<br/>
+            Double-click the <strong>Left </strong><strong>Color </strong>column. The <strong>Color </strong>dialog box will open. Select or mix your shading color.</p>
+        </li>
+        <li>
+          <p><strong>Pattern</strong>: Lithology pattern as defined in your ODF Lithology library.<br/>
+            Select the lithology pattern from the <strong>Pattern </strong>column.<br/>
+            <strong>Note</strong>. Not all printers are capable of support the shading with lithology pattern option.<br/>
+            <strong>Warning</strong>: With this current version of GEO, the shading of lithology pattern cannot be exported to CGM yet.
+          </p>
+        </li>
+        <li>
+          <p><strong>RGB -&gt; RGB</strong>: Color degradation from left to the right.<br/>
+            Double click the <strong>Left </strong><strong>Color </strong>followed by the <strong>Right </strong><strong>Color </strong>columns, so you can select different colors between left and right edge of shading.</p>
+        </li>
+        <li>
+          <p><strong>Hue</strong><strong> </strong><strong>Fill</strong>: Change in Hue from left to right.</p>
+        </li>
+        <li>
+          <p><strong>Saturation </strong><strong>Fill</strong>: Saturation degradation/intensity increase.</p>
+        </li>
+        <li>
+          <p><strong>Luminosity </strong><strong>Fill</strong>: Luminosity coloration changes (greyscale). </p>
+        </li>
+        <li>
+          <p><strong>None</strong>: No shading</p>
+        </li>
+        <li>
+          <p><strong>RGB&gt;RGB (vertical)</strong>: Color gradation vertically based on zone attributes.<br/>
+            <strong>Note</strong>. Each row in zone attributes represents a shade from one color to the next, based on the discriminating curve. See below.
+          </p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Select <strong>Update </strong>to apply the changes.</p>
+    </li>
+  </ol>
+  <p><video src="Apply Curve Shading.mp4" width="480" height="320" controls=""></video></p>
+  <p> </p>
+  <p><strong>Curve Shade based on discriminating Curve</strong></p>
+  <p><strong></strong>The shading can be based on particular curve values, either by defining shading zones based on those curve values, or by referencing a curve composed of RGB data.</p>
+  <ol class="Decimal">
+    <li>
+      <p>From <strong>Shade based on discriminating curve</strong>, select the corresponding curve.</p>
+    </li>
+    <li>
+      <p>Tick<strong> Data the contains RGB Values</strong> if your curve consists of RGB values. </p>
+    </li>
+    <li>
+      <p>Select <strong>Data Value Ranges defined below</strong> if you with to define shading zones. <br/>
+        Note. If you select <strong>&lt;Curve from Mnemonic&gt;</strong> the radio buttons will not enable and the <strong>Data Value Ranges defined below</strong> will be selected by default. A new drop list will appear from with you can select the Mnemonic. </p>
+    </li>
+    <li>
+      <p>The shading interval in the Zone Attributes grid will change to <strong>From Value</strong> and <strong>To Value </strong>(instead of From Depth and To Depth).</p>
+    </li>
+    <li>
+      <p>To shade only the wrapped (or out-of scale) curve, select the <strong>Wrapped </strong>check box next to the curve that you want to shade. Please click here for more information on how to shade only the wrapped curves.</p>
+    </li>
+  </ol>
+  <p><strong><br/>
+      Tips</strong>. To delete shading from the plot, select the <strong>Curve </strong><strong>Shading </strong>and clear <strong>Display </strong><strong>Curve </strong><strong>Shade </strong><strong>on </strong><strong>Layout</strong>, then <strong>Update</strong>. Although all names remain on this dialog box for later re-selection, the shading is removed from the plot. To totally remove the settings click <strong>Reset</strong>.</p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

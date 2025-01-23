@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "14.0_6";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Fonts for Vector Objects</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Fonts for Vector Objects">
+        <span>Fonts for Vector Objects</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Fonts for Vector Objects</h1>
+  <p>Vector Object or <a class="dropspot" href="../VOB_Files/Concept_of_Vector_Objects_(VOB).htm">VOB</a> files may contain references to fixed text, mnemonics and tables.</p>
+  <p>Every text string that is displayed in the VOB file must have a font associated with it.</p>
+  <p>This association is defined in the VOB file in the form of a font number for each text string. When the software displays or prints text from any VOB file, it uses the font that has been specified in the VOB file.</p>
+  <p> </p>
+  <p>The way the defined VOB fonts will appear in the plot is specified in the<strong> Fonts for Vector Objects</strong>. To open this, on the <strong>Define </strong>tab, select <strong>Fonts - VOBs</strong>.</p>
+  <p> </p>
+  <p>If text in a header is created with font number 5, which is Arial 10 bold, it may look different on another PC that has Arial 6 regular as its font number 5.</p>
+  <p>You can use this dialog box to change the font type and size for this number 5 font, to get the same text fonts on both PCs.</p>
+  <p> </p>
+  <p>When you receive an <a class="dropspot" href="../Working_with_Files/Output_Database_File_(ODF).htm">ODF</a> file from another user, displaying the Fonts for Vector Objects will give information on the fonts that the other person uses. Therefore, this dialog box gives a fingerprint of how the VOB fonts were defined in the other session of the software, which has been used to create the ODF.</p>
+  <p> </p>
+  <p><img src="../assets/images/Font dialog box.bmp"/></p>
+  <p><strong>Font list</strong></p>
+  <p>Details all fonts currently defined for Vector Objects. Each line briefly describes a single font. Select a font from this box prior to changing its attributes such as its type, size and orientation.</p>
+  <p>The number on the left is the font number. It is used to reference the font in VOB files.</p>
+  <p>The number is then followed by the font type (e.g. Arial).</p>
+  <p>The following number in parenthesis specifies the size of the font. The size may appear in two different formats <span>points</span> or <span>height</span>.</p>
+  <p>When the format appears as height (e.g.12 height), it is the default definition of the font and specifies the complete height of the font including internal leading.</p>
+  <p>If this font is selected from this dialog box and updated using <span><strong>Choose </strong><strong>Font</strong></span>, the size is converted to a point size which does not include internal leading. So a font with a height of 12 would appear as 9 points.</p>
+  <p>This size is then followed by the font style, such as regular, bold or italic.</p>
+  <p> </p>
+  <p><strong>Line Orientation</strong></p>
+  <p>Shows the orientation of a line of text in the currently selected font.</p>
+  <p>Selecting a different orientation affects all text that uses the currently selected font.</p>
+  <p> </p>
+  <p>C<strong>haracter Orientation</strong></p>
+  <p>Dictates the character orientation</p>
+  <p> </p>
+  <p><strong>Selecting Fonts</strong></p>
+  <p>Click <span><strong>Choose </strong><strong>Font</strong></span><strong>  </strong>to open the <a class="dropspot" href="Selecting_Fonts.htm">Font</a> dialog box where you can change the font type, style, size and color.</p>
+  <p>Click <span><strong>Default </strong><strong>Font</strong></span><strong> </strong>to restore the default font settings as specified in the <span><strong>Text</strong><strong>-</strong><strong>Fonts</strong></span><strong> </strong>tab in the <strong><span>Reg</span></strong><span><strong>istry </strong><strong>Editor</strong></span><strong> </strong>dialog box.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

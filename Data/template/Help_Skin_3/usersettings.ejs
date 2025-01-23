@@ -1,0 +1,112 @@
+var phone_max_width = 667;
+var tablet_max_width = 1155;
+
+var useIDX = <%= html.show_index %>;
+var useGLO = <%= html.show_glossary %>;
+var useFilter = <%= html.show_filter %>;
+var useTOC = true;
+
+var numberOfTOCItemsInRow = <%= html.no_of_toc_tiles %>;
+var useCustomTOCLinks = false;
+var mobileTocDrilldown = true;
+
+var useANDsearch = <%= html.use_and_search %>;
+
+var customlink_1_text = "<%= html.custom_link_text1 %>";
+var customlink_1_href = "<%= html.custom_link_url1 %>";
+var customlink_2_text = "<%= html.custom_link_text2 %>";
+var customlink_2_href = "<%= html.custom_link_url2 %>";
+
+var titleColor = "#ffffff";
+var backgroundColor = "#3BBCE0";
+var fontFamily = "<%- html.page_font_family %>";
+
+(function() {
+
+	var rh = window.rh;
+
+	//The side of the sidebar / mobile overlay
+	rh.consts("SIDEBAR_STATE", ".e.sidebarstate");
+	rh.model.publish(rh.consts("SIDEBAR_STATE"), false);
+	model.publish(rh.consts('KEY_IS_RESPONSIVE'), <%= html.showOnlyDesktopView %>);
+	
+
+	//Set the TOC type for mobile: Regular (false: default) or Drill down (true).
+	rh.model.publish(rh.consts("KEY_MOBILE_TOC_DRILL_DOWN"), mobileTocDrilldown);
+
+	// Search highlight colors
+	model.publish(rh.consts('KEY_SHOW_SCROLL_TO_TOP'), <%= html.scroll_to_top %>);
+  model.publish(rh.consts('KEY_SEARCH_HIGHLIGHT_COLOR'), "<%= html.search_results_highlight_color %>");
+  model.publish(rh.consts('KEY_SEARCH_BG_COLOR'), "<%= html.search_results_highlight_bgcolor %>");
+	model.publish(rh.consts('KEY_CUSTOM_BUTTONS_CONFIG'), <%- JSON.stringify(html.custom_buttons || []) %>)
+	model.publish(rh.consts('KEY_DO_NOT_PRESERVE_AR'), <%= html.do_not_preserve_ar ? true : false %>);
+
+	//Number of search results to be loaded at once.
+	rh.consts('MAX_RESULTS', '.l.maxResults');
+	rh.consts('MAX_RESULTS', '.l.maxResults');
+	rh.model.publish(rh.consts('MAX_RESULTS'), 15);
+
+	/* This layout has search on every page */
+	rh.model.publish(rh.consts("KEY_CAN_HANDLE_SEARCH"), true);
+
+	//Set the media queries
+	var screens = {
+	  ios: {user_agent: /(iPad|iPhone|iPod)/g}
+	};
+
+  screens.phone =  { media_query: 'screen and (max-width: '+ phone_max_width +'px)' };
+  if(phone_max_width === 0) {
+    screens.tablet =  { media_query: 'screen and (max-width: '+ tablet_max_width +'px)' };
+  } else {
+    screens.tablet =  { media_query: 'screen and (min-width: '+ (phone_max_width + 1) +'px) and (max-width: '+ tablet_max_width +'px)' };
+  }
+  if(tablet_max_width === 0) {
+    screens.desktop =  { media_query: 'screen and (min-width: '+ (phone_max_width || 1) +'px)' };
+  } else {
+    screens.desktop =  { media_query: 'screen and (min-width: '+ (tablet_max_width + 1) +'px)' };
+  }
+
+	rh.model.publish(rh.consts('KEY_SCREEN'), screens);
+	model.publish(rh.consts('KEY_DEFAULT_SCREEN'), "<%= html.default_screen || 'desktop' %>");
+
+  features = rh.model.get(rh.consts('KEY_FEATURE')) || {};
+
+  //Publish which panes are available
+  features.toc = useTOC;
+  features.idx = useIDX;
+  features.glo = useGLO;
+  features.filter = useFilter;
+	features.andsearch = useANDsearch;
+  rh.model.publish(rh.consts('KEY_FEATURE'), features);
+
+	//Custom URLs schema
+	var Link = "custom-link-";
+	var menuSuffix = "-menu";
+	var headerSuffix = "-header";
+	var excludeDefault = "http://";
+
+	//Set the links for 1 if needed
+	var menu = document.getElementById(Link+'1'+menuSuffix);
+	var header = document.getElementById(Link+'1'+headerSuffix);
+	if(customlink_1_href.trim() != "" && customlink_1_href.trim() != excludeDefault) {
+		var link = '<a href="'+customlink_1_href+'" title="'+customlink_1_text+'" target="_blank">'+customlink_1_text+'</a>';
+		menu.innerHTML = link;
+		header.innerHTML = link;
+	} else {
+		menu.parentNode.removeChild(menu);
+		header.parentNode.removeChild(header);
+	}
+	//Set the links for 2 if needed
+	menu = document.getElementById(Link+'2'+menuSuffix);
+	header = document.getElementById(Link+'2'+headerSuffix);
+	if(customlink_2_href.trim() != "" && customlink_2_href.trim() != excludeDefault) {
+		var link = '<a href="'+customlink_2_href+'" title="'+customlink_2_text+'" target="_blank">'+customlink_2_text+'</a>';
+		menu.innerHTML = link;
+		header.innerHTML = link;
+	} else {
+		menu.parentNode.removeChild(menu);
+		header.parentNode.removeChild(header);
+	}
+	rh.initIndigo();
+
+}.call(this));

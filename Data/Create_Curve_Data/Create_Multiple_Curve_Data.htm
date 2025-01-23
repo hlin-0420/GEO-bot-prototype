@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "7.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Multiple Curve Data</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Multiple Curve Data">
+        <span>Create Multiple Curve Data</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <h1><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></h1>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create Multiple Curve Data</h1>
+  <p>Manually create more than one curve with the same depth sampling interval (such as Total Gas, C1, C2, C3).</p>
+  <p> </p>
+  <p>The depth value needs to be entered once for the entire set of curves, as opposed to the same depth information being repeated for each curve. </p>
+  <p> </p>
+  <p><strong>Tip</strong>. If you wish to create a single curve with a unique depth interval, creating data using the Curve Data dialog box is more appropriate.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Multiple Data</strong>. </p>
+    </li>
+    <li>
+      <p>If a multiple curve group exists in the ODF, the <strong>Edit Multiple Curve Data Points</strong> dialog box will open. Click <strong>New</strong>. The <strong>Curve Selection</strong> dialog box will open. <br/>
+        If a multiple curves group is not present, the <strong>Curve Selection </strong>dialog box will open. </p>
+    </li>
+    <li>
+      <p>Enter a name for the new group in <strong>Selection Name</strong>. </p>
+    </li>
+    <li>
+      <p>For the <strong>Type </strong>select <strong>User Defined Curves</strong>.</p>
+    </li>
+    <li>
+      <p>The <strong>Available Curves</strong> (top pane) will list all the user defined and unused curves. </p>
+    </li>
+    <li>
+      <p>To create a new curve, select an<strong> [Unused]</strong> curve number and click <strong>Add Curve</strong>.<br/>
+        It will move to the bottom pane. <br/>
+        Select the [Unused] curve and enter a <strong>Curve Name</strong>,<strong> Mnemonic </strong>and <strong>Units</strong>. Click <strong>Update</strong>.</p>
+    </li>
+    <li>
+      <p>To add existing curves, change the <strong>Type </strong>to<strong> Other Curves</strong>. select the curves you wish to add to the multiple curve group and click <strong>Add Curve</strong>. The curve will move to the bottom pane.</p>
+    </li>
+    <li>
+      <p>Click <strong>OK </strong>to view the multiple curve group in the <strong>Edit Multiple Curve Data Points </strong>dialog box. Here they will display the spreadsheet format.  <br/>
+        <strong>Note</strong>. To change the curve order, click <strong>Select </strong><strong>Curves </strong>to return to <strong>Curve </strong><strong>Selection </strong>and use the <strong>Move </strong><strong>Up </strong>and <strong>Move </strong><strong>Down </strong>buttons to change the order.  
+      </p>
+    </li>
+    <li>
+      <p>Enter the <strong>Depth </strong>and curve data values to the cells.</p>
+    </li>
+    <li>
+      <p>Use <strong>Append </strong><strong>Row</strong>, <strong>Insert </strong><strong>Row </strong>and <strong>Delete Row</strong> to add, insert and remove data. </p>
+    </li>
+    <li>
+      <p>Select <strong>Save &amp; Exit</strong>. </p>
+    </li>
+  </ol>
+  <p><video src="Create Multiple Curve Data.mp4" width="480" height="320" controls=""></video></p>
+  <p><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>
