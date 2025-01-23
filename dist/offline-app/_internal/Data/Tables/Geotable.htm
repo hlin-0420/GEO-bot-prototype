@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "13.0_7";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Geotable.ini</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Geotable.ini">
+        <span>Geotable.ini</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <p><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Geotable.ini</h1>
+  <p>The geotable.ini file which usually resides in the Windows directory (or under Documents and Settings) houses the table template definitions.</p>
+  <p><br/>
+    The table template definitions in this geotable.ini file can be applied through the <strong>Table Definition </strong>dialog box.</p>
+  <p><br/>
+    Editing the table template by editing this .ini file is the same as editing that same table template through the <strong>Table </strong><strong>Template </strong>tab in the <strong>Registry </strong><strong>Editor</strong> dialog box.</p>
+  <p><br/>
+    Editing via the <strong>Registry </strong><strong>Editor </strong>is more user friendly to many users due to the easier interface, although any changes made will then update the details in the geotable.ini file.</p>
+  <p><br/>
+    Please click <span style="color:#0000ff;"><a class="dropspot" href="Create_or_Amend_Table_Templates.htm">here</a> </span>to learn more on how to create a new template through <strong>Registry</strong> <strong>Editor </strong>dialog box.</p>
+  <p><br/>
+    This is an example of the structure of the geotable.ini.</p>
+  <p style="width: 50%;"> </p>
+  <p style="width: 50%;"> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_1" style="border-collapse:collapse; width:100%">
+    <colgroup>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>
+          <p><strong>TableID</strong></p>
+        </td>
+        <td>
+          <p><strong>The ID that will be applied to the table.</strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Name    </p>
+        </td>
+        <td>
+          <p>The name that will appear in the heading of a Table.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Type    </p>
+        </td>
+        <td>
+          <p>Normal, OpsDiary or Operations Remarks - these are the 3 options to determine if the table is used in reporting or normally.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Field&lt;nn&gt;</p>
+        </td>
+        <td>
+          <p>A field (column) definition. Heading for the field, size of field in characters, justification (L/R/C) for Left, Right or Center.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Symbol    </p>
+        </td>
+        <td>
+          <p>The default symbol. This must exist in the ODF file where the table is used.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Track    </p>
+        </td>
+        <td>
+          <p>A symbol will be related to this track by default.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>DepJustification</p>
+        </td>
+        <td>
+          <p>Justification for Depth values (L/R/C) for Left, Right or Center.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>UseEndDepthCol    </p>
+        </td>
+        <td>
+          <p>To allow entry of End Depth in Tables dialog box for symbols with REF2.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>Offset    </p>
+        </td>
+        <td>
+          <p>The offset of the symbol in Screen units (mm or inches) from the left edge of the track.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>DeviationDipCol    </p>
+        </td>
+        <td>
+          <p>Specifies zero relative column number to use as deviation/dip in degrees to rotate symbol.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color: rgb(0, 0, 255);"> </p>
+  <p><a class="dropspot" href="../Introduction/GEO_Limits.htm"><span style="color:#0000ff;">See the software&#39;s limits on how many tables you can put in one ODF file.</span></a></p>
+  <p><br/>
+    The following is a sample of the Table Template entry for the Casing table in the geotable.ini file.</p>
+  <p><br/>
+    [TableTemplate2]<br/>
+    Name=CASING RECORD<br/>
+    Type=Normal<br/>
+    TableID=Casing<br/>
+    Symbol=Casing Shoe<br/>
+    Track=0<br/>
+    Offset=0<br/>
+    UseEndDepthCol=FALSE<br/>
+    DepJustification=C<br/>
+    Field0=SIZE, 10, C,&quot;<br/>
+    Field1=TYPE, 28, C,<br/>
+    Field2=WEIGHT, 20, C,<br/>
+    Field3=INTERVAL, 20, C,<br/>
+    Field4=GRADE, 30, C,<br/>
+    Field5=CEMENT, 25, C,<br/>
+    Field6=CMT WEIGHT, 25, C,<br/>
+    RotationColumn=-1<br/>
+    LockSymbolDepths=FALSE<br/>
+    OffsetUnit=Inches<br/>
+    WrapCells=TRUE<br/>
+    CellVertJustification=C<br/>
+    LockSymbolTrack=FALSE<br/>
+    DispTblSymLayout=Complog,Wellsite Log,Litholog,<br/>
+    FieldDataType0=0,<br/>
+    FieldValueList0=30|20|16|13 3/8|9 5/8|7 5/8|7<br/>
+    FieldDataType1=0,<br/>
+    FieldDataType2=0,<br/>
+    FieldDataType3=0,<br/>
+    FieldDataType4=0,<br/>
+    FieldDataType5=0,<br/>
+    FieldDataType6=0,<br/>
+    SymbolList0=Casing Shoe|Conductor<br/>
+    SymbolList1=Liner Hanger|Liner<br/>
+    Category=Operations<br/>
+    SymbolList2=Casing Shoe|Surface Conductor<br/>
+    SymbolList3=Casing Shoe|Intermediate<br/>
+     <br/>
+    <strong style="color: #FF0000">Warning</strong>: Please keep a back-up or copy of the geotable.ini safely on a separate drive, so you do not lose your own-defined table template when you have the machine changed or the software is re-installed.
+  </p>
+  <h3><u><span style="color:#444444;"><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

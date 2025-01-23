@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Gas Character"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Gas Character"," ","Description"," ","Gas Character Calculation"," ","Formula"," ","GCH = (ic4+nc4+ic5+nc5)/c3"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Gas Character"]],"id":"4"})

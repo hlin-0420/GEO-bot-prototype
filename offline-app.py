@@ -8,7 +8,7 @@ import time
 from threading import Lock
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")

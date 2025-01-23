@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Interpreted Lithology","type":"book","tilePath":"assets/images/Interpreted Lithology.bmp","key":"toc14"},{"name":"Percent Lithology","type":"book","tilePath":"assets/images/Percent Lithology.jpg","key":"toc15"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

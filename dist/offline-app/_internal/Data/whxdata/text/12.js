@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Gas Wetness"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Gas Wetness"," ","Description"," ","Gas Wetness Calculation"," ","Formula"," ","GWH = ((c2+c3+ic4+nc4+ic5+nc5)/(c1+c2+c3+ic4+nc4+ic5+nc5))*100"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Gas Wetness"]],"id":"12"})

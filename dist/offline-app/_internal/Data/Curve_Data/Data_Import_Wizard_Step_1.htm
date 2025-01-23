@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Data Import Wizard</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Data Import Wizard">
+        <span>Data Import Wizard</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Data Import Wizard</h1>
+  <p>The data import wizard loads curves into an odf.</p>
+  <p><video src="Load Curve Data (long).mp4" width="480" height="320" controls=""></video><br/>
+    <br/>
+    <strong>Loading Curve Data</strong>
+  </p>
+  <ol class="Decimal">
+    <li>On the <strong>GEO </strong>tab, select <strong>Import</strong>. The Open dialog box will open. </li>
+    <li>In <strong>Look </strong><strong>In</strong>, browse to the data file location.</li>
+    <li>Ensure the correct <strong>Files of Type</strong> is selected. Curve data can be imported as LAS or Text file.</li>
+    <li>Select the file and click <strong>Open</strong>. The Data Import Wizard: Step 1 of 2 will invoke.Data Import Wizard Step 1.</li>
+  </ol>
+  <p> </p>
+  <p><strong>Data Import Wizard Step 1</strong></p>
+  <ol class="Decimal">
+    <li>Define the data file <strong>Type</strong>. 
+      <ol>
+        <li>Delimited text files that conform to the Ascii standard will automatically be recognized.  The <strong>Delimited Text</strong> button and the delimitation character (tab, comma etc.) will be selected.</li>
+        <li>Otherwise, <strong>Fixed Width Text</strong> will be selected together with the delimitation character (if any).</li>
+        <li>For LAS files, <strong>LAS</strong> will be selected. </li>
+      </ol>
+    </li>
+    <li>Select a <strong>Data Source Type</strong>. This is required to continue to step 2 of the wizard. <br/>
+      The data source type allows the curves to be grouped in the Curve Settings dialog box. </li>
+    <li>Select the <strong>Data </strong><strong>Type</strong>. 
+      <ol>
+        <li>In most circumstances <strong>Curve </strong><strong>Data </strong>should be selected. </li>
+        <li><strong>Tadpole Data </strong>should only be selected if the data you are loading is to be <span style="color:#0000ff;">plotted in Tadpole format</span>. </li>
+        <li> <strong>Imaging Data</strong> should only be selected if the data you are loading is to be used in the <span style="color:#0000ff;">creation of an LWD or Wireline imaging log</span>. </li>
+      </ol>
+    </li>
+    <li>Provide the data with a File ID. By default this field will display the name of the loaded text data. <br/>
+      This can be useful in providing an audit trail, since the File ID will appear within the<span style="color:#0000ff;"> <span style="color:#000000;">Curve Settings dialog box</span></span>, showing which curves were loaded concurrently. There is also an option to refine the curve list displayed in curve settings based on the File ID. </li>
+    <li>Enter, or select from the list, the name of the data <strong>Vendor </strong>(Schlumberger, Baker Hughes etc.).<br/>
+      This is optional but helps to provide an audit trail for the data you load into the ODF.</li>
+    <li>Visually check the data prior to loading, within the lower scrollable panel of this wizard screen. </li>
+    <li>Choose the row of data which is recognized the and ‘first row’ using the <strong>Set the current Top Line as the First </strong>section. 
+      <ol>
+        <li>If you want to load data beginning from a depth (or time) other than the first data row in the file, scroll vertically so that the data row you want to start from is the topmost visible, then click <strong>Data Line</strong>. </li>
+        <li>If your file contains non-required information ahead or the row that contains the curve mnemonics, scroll vertically so that the line containing the curve mnemonics is the topmost visible, then click <strong>Header Line</strong>.</li>
+      </ol>
+    </li>
+    <li>To load data which has TVD as the index, select<strong> Index contains TD values</strong>. <br/>
+      <strong>Note</strong>. This data will only display when the log is in TVD mode.
+    </li>
+    <li>Click <strong>Next </strong>to proceed to Step 2 of the wizard.</li>
+  </ol>
+  <p> </p>
+  <p><strong>Data Import Wizard Step 2</strong></p>
+  <ol class="Decimal">
+    <li> </li>
+  </ol>
+  <div class="droptext" data-targetname="drop-down21"> </div>
+
+</body></html>

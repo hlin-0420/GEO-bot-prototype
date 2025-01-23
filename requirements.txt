@@ -3,6 +3,7 @@ logging
 os
 langchain-ollama
 langchain-core
+pydantic
 threading
 time
 re

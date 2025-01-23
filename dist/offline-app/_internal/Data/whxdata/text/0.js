@@ -1,0 +1,1 @@
+rh._.exports({"0":[["Gas Balance"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Gas Balance"," ","Description"," ","Gas Balance Calculation"," ","Formula"," ","GBH = (c1+c2)/(c3+ic4+nc4+ic5+nc5)"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Gas Balance"]],"id":"0"})

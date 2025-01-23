@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "8.0_3";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Shade Wrapped Curves</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Shade Wrapped Curves">
+        <span>Shade Wrapped Curves</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Shade Wrapped Curves</h1>
+  <p>Shade between the wrapped (or out-of scale value) curves and the left or right track edge.  </p>
+  <p><br/>
+    For example, an ROP curve that has data range between 0 to 380 ft/min needs to be displayed with left and right edge scale at 0 to 300 ft/min. To indicate a fast drilling region, a red curve shading needs to be applied between left track edge and any ROP curve whose value is greater than 300 ft/min.</p>
+  <p><br/>
+    Ensure that the ROP curve has <span style="color:#000000;">been <a class="dropspot" href="../Curve_Display/Display_Wrapped_Curve_Data.htm">wrapped right at least once</a></span>, so the out-of-scale curve will be displayed on the track. </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Shading</strong>. The <strong>Curve </strong><strong>Shading </strong><strong>Information </strong>dialog box will open. </p>
+    </li>
+    <li>
+      <p>From <strong>Curve </strong><strong>Shading</strong>, select an unused number.</p>
+    </li>
+    <li>
+      <p>Tick <strong>Display </strong><strong>Curve </strong><strong>Shade on Layout</strong>.</p>
+    </li>
+    <li>
+      <p>Enter a curve shading <strong>Name</strong>.</p>
+    </li>
+    <li>
+      <p>Select the <strong>Track </strong>where the ROP curve displays.</p>
+    </li>
+    <li>
+      <p>In <strong>Shade </strong><strong>From</strong>, select<strong> &lt;left edge of track&gt;</strong>.</p>
+    </li>
+    <li>
+      <p>In <strong>To</strong>, select the wrapped <strong>ROP </strong>curve and tick <strong>Wrapped </strong>below. </p>
+    </li>
+    <li>
+      <p>Click <strong>Append </strong>and select the shading color as <strong>Red</strong>. </p>
+    </li>
+    <li>
+      <p>Select <strong>Update</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p>Only the wrapped ROP (i.e. its value exceeding 300 ft/min) will then be shaded red. </p>
+  <p> </p>
+  <p><a class="dropspot" href="Apply_Curve_Shading.htm">Click here for more information on curve shading</a>.<br/>
+    <video src="Shade Wrapped Curves.mp4" width="480" height="320" controls=""></video>
+  </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

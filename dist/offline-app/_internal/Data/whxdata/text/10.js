@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Oil Indicator"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Oil Indicator"," ","Description"," "," Oil indicator to be used in conjunction with the Inverse equation"," ","Formula"," ","OI = (C3+iC4+nC4+iC5+nC5)/C1"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Oil Indicator"]],"id":"10"})

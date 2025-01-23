@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.2.0_3";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export Data to WitsML</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export Data to WitsML">
+        <span>Export Data to WitsML</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export Data to WitsML</h1>
+  <p>WitsML is an information transfer standard based on XML technology that has no set platform and is language independent, making it wholly flexible for the range of data that can be attained from a well.</p>
+  <p> </p>
+  <p>GEOExport and the GEOExport wizard supports WitsML v1.4.1.1 allowing the user to export such data to a corporate data store or rig server via a user-friendly interface. You can also use this wizard to export your WitsML data to a file to create Daily reports etc.</p>
+  <p> </p>
+  <p>There are six types of data you may export from an ODF/ODT:</p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse:collapse; width:100%">
+    <colgroup>
+      <col style="width: 137px;"/>
+      <col style="width: 661px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="">
+          <p><strong>Mudlog Object</strong></p>
+        </td>
+        <td style="">
+          <p><span>encapsulates Geological information such as Gas data, descriptions, lithology, % lithology, table/curve parameter details and now qualitative information.</span></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Wellbore Geometry</strong></p>
+        </td>
+        <td style="">
+          <p><span>Exclusively deals with casing/borehole table data.</span><strong></strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Trajectory</strong></p>
+        </td>
+        <td style="">
+          <p><span>Collects survey data.</span><strong></strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Formation Marker</strong></p>
+        </td>
+        <td style="">
+          <p><span>Deals with sequence/formation top table data.</span><strong></strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Tubular</strong></p>
+        </td>
+        <td style="">
+          <p><span>Used</span> <span>to export data related to the BHA and drillstring.</span></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Log Object</strong></p>
+        </td>
+        <td style="">
+          <p><span>Deals with curve data, a single Log object can harbor multiple curves.</span></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p>If you have the export modules as part of your GEO Licence you can access the Export wizard from the <strong>Export </strong>tab, and select <strong>Create Text Output Profile</strong>.</p>
+  <p> </p>
+  <p>For more help on Exporting to WitsML please see the GEOExport Help; located within the GEOExport application.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

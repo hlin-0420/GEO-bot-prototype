@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bot Interface</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea, input[type="file"] { width: 100%; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>AI Bot Application</h1>
+
+    <!-- File Upload Section -->
+    <h3>Upload a File</h3>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" />
+        <button type="button" onclick="uploadFile()">Upload</button>
+    </form>
+    <div id="uploadResponse"></div>
+
+    <!-- Question-Answer Section -->
+    <h3>Ask a Question</h3>
+    <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+    <button onclick="submitQuestion()">Submit</button>
+    <br>
+    <div id="responseOutput"></div>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+            const questionInput = document.getElementById("questionInput");
+            
+            if (document.activeElement === questionInput && event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault(); 
+                submitQuestion(); 
+            }
+        });
+
+        async function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            const response = await fetch("/upload", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById("uploadResponse").textContent = result.message || result.error;
+        }
+
+        async function submitQuestion() {
+            const question = document.getElementById("questionInput").value.trim();
+            const responseOutput = document.getElementById("responseOutput");
+            responseOutput.innerHTML = ""; // Clear previous response
+
+            if (!question) {
+                responseOutput.textContent = "Question cannot be empty.";
+                return;
+            }
+
+            try {
+
+                // Step 1: Send question via POST
+                const postResponse = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question: question })
+                });
+
+                if (!postResponse.ok) {
+                    const error = await postResponse.json();
+                    responseOutput.textContent = error.error || "An error occurred.";
+                    return;
+                }
+
+                const { question_id } = await postResponse.json();
+
+                // Step 2: Use EventSource to poll for the response
+                const eventSource = new EventSource(`/response/${question_id}`);
+                eventSource.onmessage = function (event) {
+                    const data = event.data;
+                    console.log("Data received:", data);
+                    
+                    if (data.startsWith("Error:")) {
+                        responseOutput.textContent = data;
+                        eventSource.close();
+                    } else if (data === "Processing your question...") {
+                        responseOutput.textContent = data;
+                    } else {
+                        responseOutput.innerHTML = data; // Final response
+                        eventSource.close();
+                    }
+                };
+
+                eventSource.onerror = function () {
+                    responseOutput.textContent = "An error occurred while processing your question.";
+                    eventSource.close();
+                };
+                
+            } catch (error) {
+
+                console.error("Error during question submission:", error);
+                responseOutput.textContent = "Failure to submit question. Please try again later.";
+                
+            }
+        }
+    </script>
+</body>
+</html>

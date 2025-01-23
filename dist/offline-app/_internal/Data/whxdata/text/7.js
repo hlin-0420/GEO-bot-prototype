@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Easting"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Easting"," ","Description"," ","Calculation of well departure to East (Easting), using Minimum Curvature Method."," ","Formula"," ","EASMC = EIP+DEASMC [++]"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Easting"]],"id":"7"})

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "7.0_3";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Curve Compiler</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Curve Compiler">
+        <span>Curve Compiler</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Curve Compiler</h1>
+  <p>This dialog box allows you to append multiple curves. It can be accessed via the <span class="hcp2" style="font-weight:bold">Curves</span> tab, <span class="hcp2" style="font-weight:bold">Compiler</span>.</p>
+  <ol type="1">
+    <li>
+      <p class="Topic-Text-Numbered" style="MARGIN-LEFT:7px">Use the <span class="hcp2" style="font-weight:bold">Curve</span> drop list to select the curve you wish to compile. If an<span class="hcp2" style="font-weight:bold"> [Unused]</span> curve is selected you can enter the <span class="hcp2" style="font-weight:bold">Curve</span> <span class="hcp2" style="font-weight:bold">Mnemonic</span> and click <span class="hcp2" style="font-weight:bold">Apply</span> <span class="hcp2" style="font-weight:bold">Defaults</span> to implement the curves ‘default’ properties (defined in Curve &gt; Curve Settings). If a Curve Default is not defined, a message will invoke explaining this and giving you the option to use the mnemonic or not.</p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">Click <span class="hcp2" style="font-weight:bold">Append</span> <span class="hcp2" style="font-weight:bold">Row</span> and select the <span class="hcp2" style="font-weight:bold">Curve </span>- it&#39;s<span class="hcp2" style="font-weight:bold"> Start </span>and<span class="hcp2" style="font-weight:bold"> End Depth</span>.<span class="hcp2" style="font-weight:bold"></span></p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">Define the<span class="hcp2" style="font-weight:bold"> Appended From</span> depth of the first curve you would like to add to your compiled curve.  This depth does not have to overlap with other curves that contribute to the final compiled curve.</p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">Tick the<span class="hcp2" style="font-weight:bold"> Auto Append </span>check box to automatically update the compiled curve if the contributing curve changes. If clear, once compiled and the contributing curves change - the compiled curve will not update accordingly.<span class="hcp2" style="font-weight:bold"></span></p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">Use the<span class="hcp2" style="font-weight:bold"> Append Row </span>button to add as many contributing curves as required.</p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">Click<span class="hcp2" style="font-weight:bold"> Compile</span> to generate, then<span class="hcp2" style="font-weight:bold"> Apply</span>.<span class="hcp2" style="font-weight:bold"></span></p>
+    </li>
+    <li>
+      <p class="Topic-Text-Numbered">To exit the dialog box, click<span class="hcp2" style="font-weight:bold"> OK</span>.</p>
+    </li>
+  </ol>
+  <p class="Topic-Text-Numbered"> </p>
+  <p class="Topic-Text-Numbered">The <span class="hcp2" style="font-weight:bold">Delete</span> <span class="hcp2" style="font-weight:bold">Row</span> button can be used to remove contributing curves.</p>
+  <p class="Topic-Text-Numbered"> </p>
+  <p class="Topic-Text-Numbered">To calculate the different depth values (in MD, TVD TVDSS, TWT and VSEC) for a specific depth withoug exiting the dialog box, select the Index Convertor button.</p>
+  <p class="Topic-Text-Numbered"> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "5.0_12";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Loading XML Files (WellLogML)</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Loading XML Files (WellLogML)">
+        <span>Loading XML Files (WellLogML)</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Loading XML Files (WellLogML)</h1>
+  <p>The process of importing or loading an XML file is very similar to that of loading other types of data. However, the information within the XML file is structured differently so viewing the files contents prior to importing is slightly different. This specific structuring is called <strong>WellLogML</strong>.</p>
+  <p> </p>
+  <p>WellLogML is similar to LAS, in that it specifies how well log data is organized in terms of Well Information, Curve Information, Parameter Information, etc.</p>
+  <p> </p>
+  <p>For more information about XML as a file format, please review the section on<span style="color:#0000ff;"> <a class="dropspot" href="../Sharing/Export_Data_and_Information/Export_Curve_Data_to_XML_Format.htm">Exporting Curve Data to XML Format</a></span>, where we have links to relevant official websites on the subject.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>GEO</strong> tab, select <strong>Import</strong>. The Open dialog box will open.</p>
+    </li>
+    <li>
+      <p>Select the XML file and <strong>Open</strong>. The WellLogML Information dialog box will open. This contains 3 tabs; Global, Parameters and Curves. </p>
+    </li>
+    <li>
+      <p><strong>Global</strong><br/>
+        General information contained within the XML file is detailed. <strong>File </strong><strong>name</strong> and path, related <strong>File </strong><strong>ID </strong>and <strong>Data</strong> <strong>depth </strong>parameters are all included. You may enter information on the authors or suppliers of the XML file in the field marked <strong>Vendor </strong><strong>name</strong>. The vendor name will appear in the Curve Data History.<br/>
+        <br/>
+        <strong>Start </strong>and <strong>End </strong><strong>Depths</strong> are filled in automatically as is the <strong>Sampling </strong>mode, <strong>Depth </strong><strong>Increment</strong>, <strong>Units </strong>and the <strong>File </strong><strong>Naming </strong><strong>System</strong>.<br/>
+        <br/>
+        The table window near the bottom of the dialog box contains the XML Tags and their corresponding XML value. The XML Tag is taken from the original data set. The information displayed here can be compared to the Well Information section of a LAS file.<br/>
+        <br/>
+        The Tag is essentially the title of the data, for example Well Name would be a common tag to appear here. You then get the opportunity to supply a <span style="color:#0000ff;"><a class="dropspot" href="../Headers_and_Trailers/Mnemonics_for_Header_and_Trailers/Mnemonics_in_G.htm">mnemonic</a> </span>to this tag. The mnemonic used in the ODF can then be assigned to this tag and the XML value for that tag can therefore be applied to the specified mnemonic.
+      </p>
+    </li>
+    <li>
+      <p><strong>Parameters</strong><br/>
+        This table displays Parameter-Mnemonic information from the WellLogML file: the mnemonic, its Unit, Description and Value.</p>
+    </li>
+    <li>
+      <p><strong>Curves</strong><br/>
+        Information on the curves that you wish to load are displayed here. The<strong> Curve Mnemonic</strong>, <strong>Unit</strong>, <strong>Name </strong>and <strong>Description</strong> along with <strong>Null </strong><strong>Value </strong>are listed for each curve within the XML file. <br/>
+        The last column, <strong>Load</strong>?, gives you the opportunity to deselect any curves that you do not wish to load. By default all curves within the XML file will be loaded. To deselect a curve, click the cell in the Load column for that curve (row) and type ‘N’. Type the letter ‘Y’ for yes if you decide to again load the curve. </p>
+    </li>
+    <li>
+      <p>Select <strong>Apply </strong>to save any changes, then <strong>OK </strong>to load.</p>
+    </li>
+  </ol>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

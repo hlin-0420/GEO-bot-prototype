@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../../..";
+    gCommonRootRelPath = "../../..";
+    gTopicId = "17.2.1.0_3";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export GEO Plot to WMF</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export GEO Plot to WMF">
+        <span>Export GEO Plot to WMF</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export GEO Plot to WMF</h1>
+  <p>In Windows<font face="Symbol">Ô</font>, most major applications support a format called Windows Metafile or WMF.</p>
+  <p>WMF is useful for transferring a <span>small</span> section of the plot into another application such as MS Word<font face="Symbol">Ô</font> or MS PowerPoint<font face="Symbol">Ô</font>.</p>
+  <p> </p>
+  <p>We do specify a <span>small</span> section of the plot, primarily because of two reasons;</p>
+  <ul class="Disc">
+    <li>WMF format is not geared to cope with the length of the plot that GEO usually handles.</li>
+    <li>Many applications may run out of memory when handling very complex pictures as created by GEO.</li>
+  </ul>
+  <p> </p>
+  <p>GEO can also export the plot to a Placeable WMF.</p>
+  <p> </p>
+  <p>The only difference between the standard WMF and the placeable WMF is the presence of an additional 20-byte header in the latter.</p>
+  <p> </p>
+  <p><strong>Export a section of plot to WMF</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Depth </strong>tab, enter the Index Range you wish to export in <strong>From </strong>and <strong>To</strong>. </p>
+    </li>
+    <li>
+      <p>On the <strong>Export </strong>tab, select <span><strong>Export </strong><strong>as...</strong></span><strong> </strong>then either <strong><span>WMF-Standard Metafile</span></strong>, <strong><span>Placeable WMF</span></strong> or <strong><span>WMF-Metafile picture to clipboard</span></strong>.</p>
+    </li>
+    <li>
+      <p>An <strong>Export </strong><strong>To</strong> dialog box will open (unless you select <span>WMF-Metafile picture to clipboard</span>).  Enter a <strong>File </strong><strong>name </strong>and the directory where it is going to be stored.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>Save</span></strong><span>.</span></p>
+    </li>
+  </ol>
+  <p><video src="Explot Plot as Image (WMF Example).mp4" width="480" height="320" controls=""></video></p>
+  <p>If the plot is exported as <span>WMF-Metafile picture to clipboard</span>, bring it to the other application by pasting it.</p>
+  <p> </p>
+  <p><span><strong>Tip</strong>.</span> The best route to bring the plot to your MS PowerPoint<font face="Symbol">Ô</font> for presentation is to specify the zone of interest depth range and export the plot either as WMF-Metafile picture to clipboard or EMF-Enhanced Metafile to clipboard. Then paste it to MS PowerPoint<font face="Symbol">Ô</font> .</p>
+  <p> </p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr class="rh-cursor-row">
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

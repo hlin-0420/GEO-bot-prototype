@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","D Exponent"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","D Exponent"," ","Description","\n    D-Exponent Calculation"," ","Formula"," ","DX = log(ROP/(60*RPM))/log((12*(WOB*1000))/((10^6)*BS))"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","D Exponent"]],"id":"6"})

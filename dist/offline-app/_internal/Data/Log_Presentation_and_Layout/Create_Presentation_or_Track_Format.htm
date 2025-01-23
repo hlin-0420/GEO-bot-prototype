@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "4.1.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Presentation or Track Format</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Presentation or Track Format">
+        <span>Create Presentation or Track Format</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create Presentation or Track Format</h1>
+  <p>Use the following procedure to create a new track format. </p>
+  <p><br/>
+    This can be saved as a View file which can be imported into other ODF or ODT files. </p>
+  <ol class="Decimal">
+    <li>
+      <p>Determine the width of the plot presentation (usually based on the paper size to print it) and the width of each track (either in inches or millimeters).</p>
+    </li>
+    <li>
+      <p>Determine the track type for each track; Depth, Linear, Logarithmic, Lithology, % Lithology, Text and Qualitative. For each logarithmic type, establish the number of log cycles and what should be the start number (1 to 9) or the log cycle. </p>
+    </li>
+    <li>
+      <p>On the <strong>Edit </strong>tab, select <strong>Track </strong><strong>Settings</strong>. The Track Settings dialog box will open. </p>
+    </li>
+    <li>
+      <p>On the <strong>Main </strong>tab, click number 0 and enter a <strong>Track </strong><strong>Name</strong>.<br/>
+        An example setup for a database (allowing toggling between Lithology Log and Composite Log layouts) might be:<br/>
+        Track 0 as Depth track<br/>
+        Track 3 as Lithology (interpreted) track<br/>
+        Track 5 as Correlation (Linear) track (for ROP, GR, SP)<br/>
+        Track 7 as Chromatograph Gas (Logarithmic) track<br/>
+        Track 16 as Wireline Resistivity (Logarithmic) track (for ILM and ILD)<br/>
+        Track 23 as Lithology Descriptions (Text) track. <br/>
+        Track 32 as Shows (Qualitative) track. </p>
+    </li>
+    <li>
+      <p>Select <strong>Display </strong><strong>Track </strong>turn on its display.</p>
+    </li>
+    <li>
+      <p>Enter the track <strong>Left </strong><strong>Position </strong>and <strong>Right </strong><strong>Position</strong>.</p>
+    </li>
+    <li>
+      <p>Select the <strong>Track</strong> <strong>Type</strong>.</p>
+    </li>
+    <li>
+      <p>The following step is dependent on the track type selected.</p>
+      <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse:collapse; width:100%">
+        <tbody>
+          <tr>
+            <td>
+              <p><strong>Linear</strong></p>
+            </td>
+            <td>
+              <p>Enter the number of <strong>Vertical Grid Lines </strong>and <strong>Vert. Major Every</strong>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><strong>Lithology</strong></p>
+            </td>
+            <td>
+              <p>You have the option to define a grid value which restricts the depth of drawn lithology to multiples of that value. Select <strong>Snap to</strong> <strong>Grid </strong>and enter a <strong>Grid Value</strong>. </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><strong>Qualitative</strong></p>
+            </td>
+            <td>
+              <p><strong>Details </strong>will need to be defined. Click <span style="color:#0000ff;"><a class="dropspot" href="Create_a_Qualitative_Track.htm">here</a> </span>for further information. </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><strong>Logarithmic</strong></p>
+            </td>
+            <td>
+              <p>Enter the <strong>Log </strong><strong>Cycles </strong>and <strong>Log </strong><strong>Cycle </strong><strong>Start</strong>. </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p><strong>Text</strong></p>
+            </td>
+            <td>
+              <p>Select the <strong>Track</strong> <strong>Sub-type</strong>;<br/>
+                <strong>Remarks </strong>(for horizontal text entries) or,<br/>
+                <strong>Chronological/Stratigraphic </strong>(for vertical text).
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <p>Select <strong>Apply</strong>.</p>
+    </li>
+    <li>
+      <p>Go to the next track number and repeat the steps 4-9 until all tracks are set up as required.</p>
+    </li>
+    <li>
+      <p>On the <strong>Legends and Index</strong> tab, determine the legend display for each track. For more information, view the <strong>Adjust Track Legend</strong> video in the <strong>Useful Videos</strong> folder in Help.</p>
+    </li>
+    <li>
+      <p>Click <strong>OK </strong>or <strong>Close </strong>to exit. </p>
+    </li>
+  </ol>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

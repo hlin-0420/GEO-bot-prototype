@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Shale Volume from GR"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Shale Volume from GR"," ","Description"," ","Calculating Shale Volume from GR."," ","Formula"," ","VSH = (((GR-GRCL)/(GRSH-GRCL))#0)~1"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Shale Volume from GR"]],"id":"14"})
