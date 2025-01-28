@@ -7,12 +7,47 @@ import threading
 import time
 from threading import Lock
 import re
+from bs4 import BeautifulSoup
+import pandas as pd
 
 app = Flask(__name__)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+def split_table_by_subheadings(df, column_name):
+    sub_tables = {}
+    current_subheading = None
+    sub_table_data = []
+    
+    # skip the first row
+    df = df[1:]
+    
+    # first row has the columns
+    column_names = df.iloc[0].to_list()
+    
+    df = df[1:]
+
+    for _, row in df.iterrows():
+        
+        if row['Limit'] == '':  # Identify subheadings based on NaN in the 'Limit' column
+            if current_subheading and sub_table_data:
+                
+                sub_tables[current_subheading] = pd.DataFrame(sub_table_data, columns=column_names)
+                print(f"Subtable: \n{sub_tables[current_subheading]}")
+                sub_table_data = []
+
+            current_subheading = row[column_name]
+        else:
+            row_list = row.tolist()
+            print(f"Row data: {row_list}")
+            sub_table_data.append(row_list)
+
+    # Add the last collected sub-table
+    if current_subheading and sub_table_data:
+        sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
+
+    return sub_tables
 
 class OllamaBot:
     def __init__(self, model_name):
@@ -54,6 +89,42 @@ class OllamaBot:
             try:
                 with open(file_path, encoding="utf-8") as file:
                     content = file.read()
+                    
+                    # ignore the redundant header section from content
+                    content = content[content.find("<body>")+6:content.find("</body>")]
+                    
+                    soup = BeautifulSoup(content, "html.parser")
+                    
+                    if soup.find("table"):
+                        
+                        table_data = []
+                        
+                        for table in soup.find_all('table'):
+                            rows = table.find_all('tr')
+                            
+                            for row in rows:
+                                cols = row.find_all("td")
+                                cols = [col.get_text(strip=True) for col in cols]
+                                if all(not col for col in cols):
+                                    continue
+                                # if the column contains "back" and "forward" - skip
+                                if cols[0] == "Back" and cols[1] == "Forward":
+                                    continue                            
+                                table_data.append(cols)
+                                
+                        if len(table_data) > 1:
+                            
+                            table_headings = table_data[0]
+                            table_data = table_data[1: ]
+                                    
+                            table_data_df = pd.DataFrame(table_data)
+                            
+                            table_data_df.columns = table_headings
+                            
+                            self.contents.append(table_data_df)
+                    
+                    if file_path.endswith("GEO_Limits.htm"):
+                        print(f"Contents: \n {content}\n")
                     self.contents.append(content)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
@@ -67,6 +138,25 @@ class OllamaBot:
         """
         self.contents.append(content)
         logging.info("New content added.")
+        
+    def train_model(self):
+        """
+        Train or fine-tune the Llama model using self.contents as training data.
+        """
+        logging.info("Training model with provided content data.")
+
+        # Preprocess the contents for training
+        training_data = "\n\n".join(self.contents)  # Join all contents into a single training text
+        training_inputs = {"training_data": training_data}
+
+        # Fine-tune or update the model
+        try:
+            self.model.train(training_inputs)  # Assuming the model has a `train` method
+            logging.info("Model training completed successfully.")
+        except AttributeError:
+            logging.error("The current Llama model does not support training.")
+        except Exception as e:
+            logging.error(f"An error occurred during model training: {e}")
 
     def query(self, question):
         """
@@ -118,6 +208,7 @@ def process_file(file_path):
         with open(file_path, encoding="utf-8") as file:
             content = file.read()
             ai_bot.add(content)
+        ai_bot.train_model()
         return "File processed successfully."
     except UnicodeDecodeError:
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
