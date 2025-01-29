@@ -1,75 +1,32 @@
 from flask import Flask, request, jsonify, render_template, Response
 import logging
 import os
-from langchain_ollama import OllamaLLM
-from langchain_core.prompts import ChatPromptTemplate
 import threading
 import time
 from threading import Lock
-import re
-from bs4 import BeautifulSoup
-import pandas as pd
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments
+from peft import LoraConfig, get_peft_model
 
 app = Flask(__name__)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-def split_table_by_subheadings(df, column_name):
-    sub_tables = {}
-    current_subheading = None
-    sub_table_data = []
-    
-    # skip the first row
-    df = df[1:]
-    
-    # first row has the columns
-    column_names = df.iloc[0].to_list()
-    
-    df = df[1:]
-
-    for _, row in df.iterrows():
-        
-        if row['Limit'] == '':  # Identify subheadings based on NaN in the 'Limit' column
-            if current_subheading and sub_table_data:
-                
-                sub_tables[current_subheading] = pd.DataFrame(sub_table_data, columns=column_names)
-                print(f"Subtable: \n{sub_tables[current_subheading]}")
-                sub_table_data = []
-
-            current_subheading = row[column_name]
-        else:
-            row_list = row.tolist()
-            print(f"Row data: {row_list}")
-            sub_table_data.append(row_list)
-
-    # Add the last collected sub-table
-    if current_subheading and sub_table_data:
-        sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
-
-    return sub_tables
-
-class OllamaBot:
-    def __init__(self, model_name):
+class LlamaBot:
+    def __init__(self, model_name="/home/hlin656/.llama/checkpoints/Llama3.2-1B"):
         """
-        Initialize the OllamaBot with the specified model.
-        
-        Args:
-            model_name (str): Name of the Ollama model.
-            base_directory (str): Path to the base directory containing .htm files.
+        Initialize the LlamaBot with the specified model.
         """
-        self.model = OllamaLLM(model=model_name, host="https://geo-bot-prototype.vercel.app/")  # Instantiate the Ollama model
+        self.device = "cpu"  # Force model to use CPU
+        self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-1B")
+        self.model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B").to(self.device)
         self.base_directory = "Data"
         self.contents = []  # Store processed content
         self._load_content()
 
     def _list_htm_files(self):
-        """
-        Recursively finds all .htm files in the base directory and its subdirectories.
-        
-        Returns:
-            list: A list of file paths relative to the base directory.
-        """
+        """Recursively finds all .htm files in the base directory."""
         htm_files = []
         for root, _, files in os.walk(self.base_directory):
             for file in files:
@@ -79,9 +36,7 @@ class OllamaBot:
         return htm_files
 
     def _load_content(self):
-        """
-        Load and process all .htm files from the base directory.
-        """
+        """Load and process all .htm files from the base directory."""
         htm_files = self._list_htm_files()
         logging.info(f"Found {len(htm_files)} .htm files.")
 
@@ -89,136 +44,73 @@ class OllamaBot:
             try:
                 with open(file_path, encoding="utf-8") as file:
                     content = file.read()
-                    
-                    # ignore the redundant header section from content
-                    content = content[content.find("<body>")+6:content.find("</body>")]
-                    
-                    soup = BeautifulSoup(content, "html.parser")
-                    
-                    if soup.find("table"):
-                        
-                        table_data = []
-                        
-                        for table in soup.find_all('table'):
-                            rows = table.find_all('tr')
-                            
-                            for row in rows:
-                                cols = row.find_all("td")
-                                cols = [col.get_text(strip=True) for col in cols]
-                                if all(not col for col in cols):
-                                    continue
-                                # if the column contains "back" and "forward" - skip
-                                if cols[0] == "Back" and cols[1] == "Forward":
-                                    continue                            
-                                table_data.append(cols)
-                                
-                        if len(table_data) > 1:
-                            
-                            table_headings = table_data[0]
-                            table_data = table_data[1: ]
-                                    
-                            table_data_df = pd.DataFrame(table_data)
-                            
-                            table_data_df.columns = table_headings
-                            
-                            self.contents.append(table_data_df)
-                    
-                    if file_path.endswith("GEO_Limits.htm"):
-                        print(f"Contents: \n {content}\n")
                     self.contents.append(content)
             except UnicodeDecodeError:
-                logging.error(f"Could not read the file {file_path}. Check the file encoding.")
+                logging.error(f"Could not read the file {file_path}. Check the encoding.")
 
-    def add(self, content):
-        """
-        Add new content to the bot's memory.
+    def fine_tune(self):
+        """Fine-tune the Llama model using LoRA."""
+        logging.info("Starting fine-tuning process...")
+        dataset = [{"instruction": content, "response": content} for content in self.contents]
         
-        Args:
-            content (str): Content to add.
-        """
-        self.contents.append(content)
-        logging.info("New content added.")
+        lora_config = LoraConfig(
+            r=8,
+            lora_alpha=32,
+            lora_dropout=0.1,
+            task_type="CAUSAL_LM",
+            target_modules=["q_proj", "v_proj"]
+        )
         
-    def train_model(self):
-        """
-        Train or fine-tune the Llama model using self.contents as training data.
-        """
-        logging.info("Training model with provided content data.")
-
-        # Preprocess the contents for training
-        training_data = "\n\n".join(self.contents)  # Join all contents into a single training text
-        training_inputs = {"training_data": training_data}
-
-        # Fine-tune or update the model
-        try:
-            self.model.train(training_inputs)  # Assuming the model has a `train` method
-            logging.info("Model training completed successfully.")
-        except AttributeError:
-            logging.error("The current Llama model does not support training.")
-        except Exception as e:
-            logging.error(f"An error occurred during model training: {e}")
+        self.model = get_peft_model(self.model, lora_config).to(self.device)
+        
+        training_args = TrainingArguments(
+            output_dir="./fine_tuned_llama",
+            per_device_train_batch_size=2,
+            num_train_epochs=1,
+            save_strategy="epoch",
+            logging_steps=10,
+            learning_rate=1e-4,
+            optim="adamw_torch"
+        )
+        
+        trainer = Trainer(
+            model=self.model,
+            args=training_args,
+            train_dataset=dataset
+        )
+        
+        trainer.train()
+        self.model.save_pretrained("fine_tuned_llama")
+        logging.info("Fine-tuning complete. Model saved.")
 
     def query(self, question):
-        """
-        Query the bot and get a response.
-
-        Args:
-            question (str): The user's question.
-
-        Returns:
-            str: The response generated by the Ollama model.
-        """
+        """Query the fine-tuned model."""
         logging.info(f"Processing question: {question}")
-
-        template = """
-        Answer questions for users who wanted to look for help from the GEO help Guide.
-
-        Question: {question}
-
-        As a GEO help guide, I can help you with the following topics:
-        {topics}
-
-        Answer: 
-        """
-
-        prompt = ChatPromptTemplate.from_template(template)
-
-        model = OllamaLLM(model = "llama3")
-
-        chain = prompt | model # chain the operations together.
-
-        topics = "Curve Data, MWD, LWD"
-
-        response = chain.invoke({"question": question, "topics": topics})
-
+        inputs = self.tokenizer(question, return_tensors="pt").to(self.device)
+        outputs = self.model.generate(**inputs, max_length=512)
+        response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
         return response
 
-
-# Initialize OllamaBot
-model_name = "llama3"  
-ai_bot = OllamaBot(model_name)
+# Initialize LlamaBot
+llama_bot = LlamaBot()
 pending_responses = {}
 stored_responses = {}
 question_id = 0
 lock = Lock()
 
-# Process uploaded file
 def process_file(file_path):
     try:
         with open(file_path, encoding="utf-8") as file:
             content = file.read()
-            ai_bot.add(content)
-        ai_bot.train_model()
+            llama_bot.contents.append(content)
         return "File processed successfully."
     except UnicodeDecodeError:
-        logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
+        logging.error(f"Error: Could not read the file {file_path}. Please check the encoding.")
         return "Error: Invalid file encoding."
-
 
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -235,26 +127,13 @@ def upload():
         result = process_file(file_path)
         return jsonify({"message": result})
 
-
 def process_question(question_id, question):
-    """
-    Simulate long processing of the question and store the response.
-    """
-    time.sleep(2)  # Simulating "thinking time"
+    time.sleep(2)
     try:
-        print("Question: ", question)
-        response = ai_bot.query(question)
-
-        # check through the response string and add <br> to replace the new line character
-        response = response.replace("\n", "<br>")
-
-        # check if both end of a string has "**", the replace with bold font tags
-        response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-
-        print("Response: ", response)
-
-        stored_responses[question_id] = response
+        response = llama_bot.query(question)
+        stored_responses[question_id] = response.replace("\n", "<br>")
     except Exception as e:
+        print(f"The exception is {e}")
         stored_responses[question_id] = "Still thinking about how to answer..."
 
 @app.route("/ask", methods=["POST"])
@@ -272,39 +151,28 @@ def ask():
         with lock:
             current_id = str(question_id)
             question_id += 1
-
+        
         pending_responses[current_id] = "Processing..."
-
         threading.Thread(target=process_question, args=(current_id, question)).start()
-
+        
         return jsonify({"question_id": current_id}), 200
     
     except Exception as e:
-
         app.logger.error(f"Error in /ask endpoint: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
 
 @app.route("/response/<question_id>", methods=["GET"])
 def get_response(question_id):
-    """
-    Endpoint for EventSource to fetch the response.
-    """
     def generate_response():
         while True:
             response = stored_responses.get(question_id)
-            
-            if response == "Processing" or response is None:
-                yield "data: Processing your question...\n\n"
-            elif response:
+            if response:
                 yield f"data: {response}\n\n"
                 break
             else:
-                yield "data: Error: Invalid question ID\n\n"
-                break
-            time.sleep(1)  # Polling interval
-
+                yield "data: Processing your question...\n\n"
+                time.sleep(1)
     return Response(generate_response(), content_type="text/event-stream")
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True, use_reloader=False)

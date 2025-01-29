@@ -1,0 +1,9 @@
+First Token: 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
+
+export HF_TOKEN="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"
+
+Ubuntu Token Write: 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
+
+Ubuntu Read Token: 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
+
+export HF_TOKEN="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"
