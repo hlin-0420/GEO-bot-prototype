@@ -1,0 +1,97 @@
+[
+    {
+        "Button":"",
+        "Name":"Font Family",
+        "Function":"Change the font family"
+    },
+    {
+        "Button":"",
+        "Name":"Font Size",
+        "Function":"Change the font size"
+    },
+    {
+        "Button":"",
+        "Name":"Subscript",
+        "Function":"Draw the text smaller and lower than regular text"
+    },
+    {
+        "Button":"",
+        "Name":"Superscript",
+        "Function":"Draw the text smaller and higher than regular text"
+    },
+    {
+        "Button":"",
+        "Name":"Text highlight color",
+        "Function":"Add a highlight color which displays behind the text"
+    },
+    {
+        "Button":"",
+        "Name":"Text color",
+        "Function":"Changes the text color"
+    },
+    {
+        "Button":"",
+        "Name":"Decrease indent",
+        "Function":"Decrease the indent levelof the paragraph"
+    },
+    {
+        "Button":"",
+        "Name":"Increase indent",
+        "Function":"Increase the indent level of the paragraph"
+    },
+    {
+        "Button":"",
+        "Name":"Start a list",
+        "Function":"Click the arrow to choose different list style"
+    },
+    {
+        "Button":"",
+        "Name":"Line Spacing",
+        "Function":"Change the spacing between lines of text. Add or remove the space after paragraphs."
+    },
+    {
+        "Button":"",
+        "Name":"Align text left",
+        "Function":"Align text to the left"
+    },
+    {
+        "Button":"",
+        "Name":"Center",
+        "Function":"Center text"
+    },
+    {
+        "Button":"",
+        "Name":"Align text right",
+        "Function":"Align text to the right"
+    },
+    {
+        "Button":"",
+        "Name":"Grow font",
+        "Function":"Increase the font size"
+    },
+    {
+        "Button":"",
+        "Name":"Shrink font",
+        "Function":"Reduce the font size"
+    },
+    {
+        "Button":"",
+        "Name":"Bold",
+        "Function":"Change to a heavier font"
+    },
+    {
+        "Button":"",
+        "Name":"Italic",
+        "Function":"Change to an italic font"
+    },
+    {
+        "Button":"",
+        "Name":"Underline",
+        "Function":"Draw a line below the text"
+    },
+    {
+        "Button":"",
+        "Name":"Strikethrough",
+        "Function":"Draw a line through the text"
+    }
+]

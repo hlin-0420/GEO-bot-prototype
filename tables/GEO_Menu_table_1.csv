@@ -1,0 +1,18 @@
+,"Opens an existing ODF, VEW, ODT or a data file."
+,Imports a data file.
+,Select to list the most recent files opened or imported into GEO.
+,Closes the current ODF without exiting GEO.
+,"Saves to an ODF file, and saves changes to an open ODF."
+,Opens the Save As dialog box. Here you can define the File Name and the location it saves to.
+,Save the current document as anOIF file.
+,Add Sidetrack to an ODF.
+,Open a Template file (ODT).
+,Print the ODF.
+,Load OUF Updatesinto the ODF.
+,Save OUF Updates.
+,Resave the range of the OUF update.
+,Send OUF updates via mail.
+,Stream VUF's out and in to to file.
+,"View the saving, editing and loading events of the ODF."
+,Switch between Depth and Date Time plots.
+,View the log in horizontally (for geosteering).

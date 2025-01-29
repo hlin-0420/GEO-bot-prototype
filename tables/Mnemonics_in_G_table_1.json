@@ -1,0 +1,22 @@
+[
+    {
+        "Component":"Mnemonic Identifier (ID)",
+        "Example":"WD"
+    },
+    {
+        "Component":"Description",
+        "Example":"Well Depth"
+    },
+    {
+        "Component":"Value",
+        "Example":"115"
+    },
+    {
+        "Component":"Units",
+        "Example":"FT"
+    },
+    {
+        "Component":"View in Shell",
+        "Example":"No or Yes (Yes enables the mnemonic value to display when selecting the .odf file in windows explorer)"
+    }
+]

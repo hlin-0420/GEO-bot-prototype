@@ -1,0 +1,18 @@
+[
+    {
+        "Linear":"Lithology",
+        "Enter the number ofVertical Grid LinesandVert. Major Every.":"You have the option to define a grid value which restricts the depth of drawn lithology to multiples of that value. SelectSnap toGridand enter aGrid Value."
+    },
+    {
+        "Linear":"Qualitative",
+        "Enter the number ofVertical Grid LinesandVert. Major Every.":"Detailswill need to be defined. Clickherefor further information."
+    },
+    {
+        "Linear":"Logarithmic",
+        "Enter the number ofVertical Grid LinesandVert. Major Every.":"Enter theLogCyclesandLogCycleStart."
+    },
+    {
+        "Linear":"Text",
+        "Enter the number ofVertical Grid LinesandVert. Major Every.":"Select theTrackSub-type;Remarks(for horizontal text entries) or,Chronological\/Stratigraphic(for vertical text)."
+    }
+]

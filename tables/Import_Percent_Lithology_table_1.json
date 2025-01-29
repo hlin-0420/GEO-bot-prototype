@@ -1,0 +1,30 @@
+[
+    {
+        "Start Depth":"4000.000",
+        "End Depth":"4010.000",
+        "Limestone":"95",
+        "Marl":"5",
+        "":""
+    },
+    {
+        "Start Depth":"4010.000",
+        "End Depth":"4020.000",
+        "Limestone":"80",
+        "Marl":"20",
+        "":""
+    },
+    {
+        "Start Depth":"Start Depth",
+        "End Depth":"End Depth",
+        "Limestone":"Limestone",
+        "Marl":"Marl",
+        "":"Clay"
+    },
+    {
+        "Start Depth":"4020.000",
+        "End Depth":"4030.000",
+        "Limestone":"10",
+        "Marl":"80",
+        "":"10"
+    }
+]

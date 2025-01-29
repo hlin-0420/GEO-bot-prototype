@@ -1,0 +1,22 @@
+[
+    {
+        "Specification":"Short",
+        "Example":"1:500for the plot scale value"
+    },
+    {
+        "Specification":"Long",
+        "Example":"12 Inches = 500 Feetfor the plot scale value"
+    },
+    {
+        "Specification":"Number of decimal points",
+        "Example":"(0,1,2or3) for the depth mode plot"
+    },
+    {
+        "Specification":"Date",
+        "Example":"dd\/MM\/yyyyfor the document print date"
+    },
+    {
+        "Specification":"Time",
+        "Example":"HH:mmfor the document print time, where HH is hour and mm is for minutes"
+    }
+]

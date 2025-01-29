@@ -1,0 +1,6 @@
+Mudlog Object,"encapsulates Geological information such as Gas data, descriptions, lithology, % lithology, table/curve parameter details and now qualitative information."
+Wellbore Geometry,Exclusively deals with casing/borehole table data.
+Trajectory,Collects survey data.
+Formation Marker,Deals with sequence/formation top table data.
+Tubular,Usedto export data related to the BHA and drillstring.
+Log Object,"Deals with curve data, a single Log object can harbor multiple curves."

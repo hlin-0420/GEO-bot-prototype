@@ -1,0 +1,20 @@
+Button,Name,Function
+,Font Family,Change the font family
+,Font Size,Change the font size
+,Subscript,Draw the text smaller and lower than regular text
+,Superscript,Draw the text smaller and higher than regular text
+,Text highlight color,Add a highlight color which displays behind the text
+,Text color,Changes the text color
+,Decrease indent,Decrease the indent levelof the paragraph
+,Increase indent,Increase the indent level of the paragraph
+,Start a list,Click the arrow to choose different list style
+,Line Spacing,Change the spacing between lines of text. Add or remove the space after paragraphs.
+,Align text left,Align text to the left
+,Center,Center text
+,Align text right,Align text to the right
+,Grow font,Increase the font size
+,Shrink font,Reduce the font size
+,Bold,Change to a heavier font
+,Italic,Change to an italic font
+,Underline,Draw a line below the text
+,Strikethrough,Draw a line through the text

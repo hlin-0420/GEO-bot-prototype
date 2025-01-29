@@ -1,0 +1,26 @@
+[
+    {
+        "FORMAT":"dd\/MM\/yyyy HH:mm:ss",
+        "EXAMPLE":"31\/12\/2002 14:34:54"
+    },
+    {
+        "FORMAT":"MM\/dd\/yyyy HH:mm:ss",
+        "EXAMPLE":"12\/31\/2002 14:34:54"
+    },
+    {
+        "FORMAT":"yyyy\/MM\/dd HH:mm:ss",
+        "EXAMPLE":"2002\/12\/31 14:34:54"
+    },
+    {
+        "FORMAT":"dd\/MM\/yyyy",
+        "EXAMPLE":"31\/12\/2002"
+    },
+    {
+        "FORMAT":"MM\/dd\/yyyy",
+        "EXAMPLE":"12\/31\/2002"
+    },
+    {
+        "FORMAT":"yyyy\/MM\/dd",
+        "EXAMPLE":"2002\/12\/31"
+    }
+]

@@ -1,0 +1,10 @@
+Curve #,The curve number will be displayed here.
+*,An asterisk denotes that a curve is displayed on the plot
+Mnemonic,The mnemonic of the curve (usually an abbreviation of the curve name).
+Name,The Full name of the curve.
+Step Value,A decimal number denoting the sampling frequency of the data. ‘Variable’ denotes a mixed sampling frequency.
+Start Depth,The start depth of the curve data.
+End Depth,End depth of the curve data.
+Start Value,The lowest value of curve data.
+End Value,The highest value of curve data.
+File ID,Name of the original data set defined during loading.

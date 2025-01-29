@@ -1,0 +1,6 @@
+Component,Example
+Mnemonic Identifier (ID),WD
+Description,Well Depth
+Value,115
+Units,FT
+View in Shell,No or Yes (Yes enables the mnemonic value to display when selecting the .odf file in windows explorer)

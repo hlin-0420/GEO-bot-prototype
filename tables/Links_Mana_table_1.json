@@ -1,0 +1,18 @@
+[
+    {
+        "Item Type":"Item Nr.",
+        "The object type where the link is assigned, such as symbol, lithology, text.":"The sequential number of the linking process, i.e. which object is linked first, second etc."
+    },
+    {
+        "Item Type":"Depth",
+        "The object type where the link is assigned, such as symbol, lithology, text.":"Depth of the linked object within the plot."
+    },
+    {
+        "Item Type":"External Link",
+        "The object type where the link is assigned, such as symbol, lithology, text.":"The location and file name of the link."
+    },
+    {
+        "Item Type":"Internal Link",
+        "The object type where the link is assigned, such as symbol, lithology, text.":"The name of the header or trailer specification, which is linked to that particular object."
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "TYPE":"ASCII",
+        "DELIMITER":"Space",
+        "EXTENSION":"*.txt *.asc",
+        "COMMENTS":"Mudlog data may occasionally come in this format."
+    },
+    {
+        "TYPE":"ASCII",
+        "DELIMITER":"Comma",
+        "EXTENSION":"*.csv *.txt",
+        "COMMENTS":"Mudlog data or output from a spreadsheet"
+    },
+    {
+        "TYPE":"ASCII",
+        "DELIMITER":"Tab",
+        "EXTENSION":"*.txt",
+        "COMMENTS":"Mudlog data or output from a spreadsheet."
+    },
+    {
+        "TYPE":"LAS",
+        "DELIMITER":"-",
+        "EXTENSION":"*.LAS",
+        "COMMENTS":"Wireline data in a structured ASCII (CWLAS) format."
+    },
+    {
+        "TYPE":"XML",
+        "DELIMITER":"-",
+        "EXTENSION":"*.XML",
+        "COMMENTS":"In anticipation of the day when oilfield vendor data becomes available in eXtensible Mark-up Language [XML] format."
+    }
+]

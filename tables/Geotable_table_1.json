@@ -1,0 +1,38 @@
+[
+    {
+        "TableID":"Name",
+        "The ID that will be applied to the table.":"The name that will appear in the heading of a Table."
+    },
+    {
+        "TableID":"Type",
+        "The ID that will be applied to the table.":"Normal, OpsDiary or Operations Remarks - these are the 3 options to determine if the table is used in reporting or normally."
+    },
+    {
+        "TableID":"Field<nn>",
+        "The ID that will be applied to the table.":"A field (column) definition. Heading for the field, size of field in characters, justification (L\/R\/C) for Left, Right or Center."
+    },
+    {
+        "TableID":"Symbol",
+        "The ID that will be applied to the table.":"The default symbol. This must exist in the ODF file where the table is used."
+    },
+    {
+        "TableID":"Track",
+        "The ID that will be applied to the table.":"A symbol will be related to this track by default."
+    },
+    {
+        "TableID":"DepJustification",
+        "The ID that will be applied to the table.":"Justification for Depth values (L\/R\/C) for Left, Right or Center."
+    },
+    {
+        "TableID":"UseEndDepthCol",
+        "The ID that will be applied to the table.":"To allow entry of End Depth in Tables dialog box for symbols with REF2."
+    },
+    {
+        "TableID":"Offset",
+        "The ID that will be applied to the table.":"The offset of the symbol in Screen units (mm or inches) from the left edge of the track."
+    },
+    {
+        "TableID":"DeviationDipCol",
+        "The ID that will be applied to the table.":"Specifies zero relative column number to use as deviation\/dip in degrees to rotate symbol."
+    }
+]

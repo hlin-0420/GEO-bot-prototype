@@ -1,0 +1,6 @@
+Symbol,Select the down arrow to list all symbols linked to the table. Select as required.
+Track,The track number the symbol will display on.
+Track Name,The track name the symbol will display on.
+Offset,The offset from the left edge of track that the symbol will display on.
+Symbol In Plot,Enter Yes to display symbol on track and No to turn off the display
+Start Depth,The plot depth the symbol displays at.

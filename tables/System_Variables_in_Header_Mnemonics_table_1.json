@@ -1,0 +1,50 @@
+[
+    {
+        "System Variable":"Universal Well ID (UWI)",
+        "Information Source":"UniversalWellIDinOthertab ofGlobalSettings"
+    },
+    {
+        "System Variable":"User Name",
+        "Information Source":"UserNameentered when logging onto GEO."
+    },
+    {
+        "System Variable":"Plot Mode (MD\/TVD\/TWT)",
+        "Information Source":"PrimaryIndexdefined inDepthtab"
+    },
+    {
+        "System Variable":"Plot Description",
+        "Information Source":"PlotDescriptioninOthertab ofGlobalSettings(onEdittab, selectGlobalSettings)"
+    },
+    {
+        "System Variable":"Layout Name",
+        "Information Source":"Layout name\u00a0 from layout drop list"
+    },
+    {
+        "System Variable":"Document File Name",
+        "Information Source":"Filenamegiven to ODF."
+    },
+    {
+        "System Variable":"Plot Scale",
+        "Information Source":"PlotScaledefined onHometab"
+    },
+    {
+        "System Variable":"Plot Index Start Value",
+        "Information Source":"Fromdepth inDepthtab"
+    },
+    {
+        "System Variable":"Plot Index End Value",
+        "Information Source":"Todepth inDepthtab"
+    },
+    {
+        "System Variable":"Plot Index Units",
+        "Information Source":"Index Units(FeetorMeters)inDepthtab"
+    },
+    {
+        "System Variable":"Document Save Date\/Time",
+        "Information Source":"The date (and\/or) time when the ODF file is saved."
+    },
+    {
+        "System Variable":"Print Date\/Time",
+        "Information Source":"The date (and\/or) time when the ODF file is printed."
+    }
+]
