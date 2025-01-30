@@ -172,8 +172,8 @@ class OllamaBot:
 
         template = """
         As an experienced geologist specialised in the GEO application, a specialised help system \
-        for guiding users working as a field engineer, geologist, drill operator, or software \
-        developer, please provide an answer to the question:\n {question} \n
+        for guiding users working as a well site geologist, please provide an answer to the question:\
+        \n {question} \n
 
         Given the list of topics as:
         {topics}
