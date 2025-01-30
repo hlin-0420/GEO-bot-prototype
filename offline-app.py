@@ -208,7 +208,6 @@ def process_file(file_path):
         with open(file_path, encoding="utf-8") as file:
             content = file.read()
             ai_bot.add(content)
-        ai_bot.train_model()
         return "File processed successfully."
     except UnicodeDecodeError:
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
@@ -232,6 +231,7 @@ def upload():
     if file:
         file_path = f"./Data/{file.filename}"
         file.save(file_path)
+        print("\nFile Saved.\n")
         result = process_file(file_path)
         return jsonify({"message": result})
 
