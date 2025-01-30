@@ -171,11 +171,11 @@ class OllamaBot:
         logging.info(f"Processing question: {question}")
 
         template = """
-        Answer questions for users who wanted to look for help from the GEO help Guide.
+        As an experienced geologist specialised in the GEO application, a specialised help system \
+        for guiding users working as a field engineer, geologist, drill operator, or software \
+        developer, please provide an answer to the question:\n {question} \n
 
-        Question: {question}
-
-        As a GEO help guide, I can help you with the following topics:
+        Given the list of topics as:
         {topics}
 
         Answer: 
@@ -187,7 +187,12 @@ class OllamaBot:
 
         chain = prompt | model # chain the operations together.
 
-        topics = "Curve Data, MWD, LWD"
+        topics = "Touch Screen Devices, GEO Navigation, File Processing, \
+            Log structure and Presentation, Loading Curve Data, Displaying Curve Data, \
+            Create Curve Data, Curve Shading, TVD, Interpreting Information, \
+            Text and Annotations, Lines, Tables, Headers and Trailers, \
+            Printing, Sidetrack, Sharing, Additional Applications, \
+            Compute Curve Templates"
 
         response = chain.invoke({"question": question, "topics": topics})
 
