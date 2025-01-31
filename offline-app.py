@@ -123,8 +123,8 @@ class OllamaBot:
                             
                             self.contents.append(table_data_df)
                     
-                    if file_path.endswith("GEO_Limits.htm"):
-                        print(f"Contents: \n {content}\n")
+                    # if file_path.endswith("GEO_Limits.htm"):
+                    #     print(f"Contents: \n {content}\n")
                     self.contents.append(content)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
@@ -200,8 +200,8 @@ class OllamaBot:
 
 
 # Initialize OllamaBot
-model_name = "llama3"  
-ai_bot = OllamaBot(model_name)
+selected_model = "llama3"  
+ai_bot = OllamaBot(selected_model)
 pending_responses = {}
 stored_responses = {}
 question_id = 0
@@ -241,22 +241,15 @@ def upload():
         return jsonify({"message": result})
 
 
-def process_question(question_id, question):
+def process_question(question_id, question, ai_bot):
     """
     Simulate long processing of the question and store the response.
     """
     time.sleep(2)  # Simulating "thinking time"
     try:
-        print("Question: ", question)
         response = ai_bot.query(question)
-
-        # check through the response string and add <br> to replace the new line character
         response = response.replace("\n", "<br>")
-
-        # check if both end of a string has "**", the replace with bold font tags
         response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-
-        print("Response: ", response)
 
         stored_responses[question_id] = response
     except Exception as e:
@@ -271,6 +264,8 @@ def ask():
             return jsonify({"error": "No JSON payload received"}), 400
         
         question = data.get("question", "").strip()
+        selected_model = data.get("model", "llama3").strip()  # Get selected model
+        
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
         
@@ -280,12 +275,14 @@ def ask():
 
         pending_responses[current_id] = "Processing..."
 
-        threading.Thread(target=process_question, args=(current_id, question)).start()
+        # Initialize the AI bot with the selected model
+        ai_bot = OllamaBot(selected_model)
+
+        threading.Thread(target=process_question, args=(current_id, question, ai_bot)).start()
 
         return jsonify({"question_id": current_id}), 200
     
     except Exception as e:
-
         app.logger.error(f"Error in /ask endpoint: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
 
