@@ -11,7 +11,9 @@ import re
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# Initialize OllamaBot
+global_ollama = ollama
+
+# Initialize the selected bot. 
 selected_model = "llama3.2:latest"  
 app = Flask(__name__)
 
@@ -53,7 +55,7 @@ def split_table_by_subheadings(df, column_name):
     return sub_tables
 
 class OllamaBot:
-    def __init__(self, model_name):
+    def __init__(self):
         """
         Initialize the OllamaBot with the specified model.
         
@@ -64,6 +66,9 @@ class OllamaBot:
         self.base_directory = "Data"
         self.contents = []  # Store processed content
         self._load_content()
+        
+    def add_contents(self, details):
+        self.contents.append(details)
 
     def _list_htm_files(self):
         """
@@ -123,10 +128,8 @@ class OllamaBot:
                             
                             table_data_df.columns = table_headings
                             
-                            self.contents.append(table_data_df)
-                    
-                    # if file_path.endswith("GEO_Limits.htm"):
-                    #     print(f"Contents: \n {content}\n")
+                            self.contents.append(table_data_df.to_string())
+
                     self.contents.append(content)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
@@ -146,14 +149,14 @@ class OllamaBot:
         Train or fine-tune the Llama model using self.contents as training data.
         """
         logging.info("Training model with provided content data.")
+        global global_ollama
 
         # Preprocess the contents for training
         training_data = "\n\n".join(self.contents)  # Join all contents into a single training text
-        training_inputs = {"training_data": training_data}
 
         # Fine-tune or update the model
         try:
-            self.model.train(training_inputs)  # Assuming the model has a `train` method
+            global_ollama.train(training_data = training_data)
             logging.info("Model training completed successfully.")
         except AttributeError:
             logging.error("The current Llama model does not support training.")
@@ -205,7 +208,7 @@ class OllamaBot:
         
         print(f"Selected model: {selected_model}")
 
-        response = ollama.chat(
+        response = global_ollama.chat(
             model = selected_model,
             messages = [
                 {
@@ -224,7 +227,7 @@ class OllamaBot:
         return response
 
 
-ai_bot = OllamaBot(selected_model)
+ai_bot = OllamaBot()
 pending_responses = {}
 stored_responses = {}
 question_id = 0
@@ -241,6 +244,25 @@ def process_file(file_path):
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
         return "Error: Invalid file encoding."
 
+@app.route("/detailed-feedback", methods=["POST"])
+def detailed_feedback():
+    
+    try:    
+        data = request.json
+        details = data.get("details")
+        if not details:
+            return jsonify({"error": "Feedback details are required"}), 400
+
+        # Log or process the detailed feedback
+        print(f"Detailed feedback received: {details}")
+        
+        ai_bot.add_contents(details)
+        ai_bot.train_model()
+        
+        return jsonify({"message": "Thank you for your detailed feedback!"}), 200
+    except Exception as e:
+        app.logger.error(f"Error in /detailed-feedback endpoint: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
 
 @app.route("/")
 def index():
@@ -269,18 +291,19 @@ def process_question(question_id, question, ai_bot):
     Simulate long processing of the question and store the response.
     """
     time.sleep(2)  # Simulating "thinking time"
-    try:
-        response = ai_bot.query(question)
+    # try:
+    ai_bot.train_model()
+    response = ai_bot.query(question)
         
-        print(f"Response before formatting: \n {response['message']['content']}")
+    print(f"Response before formatting: \n {response['message']['content']}")
         
-        response = response['message']['content']
-        response = response.replace("\n", "<br>")
-        response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-        stored_responses[question_id] = response
-    except Exception as e:
-        print(f"Exception: {e}")
-        stored_responses[question_id] = "Still thinking about how to answer..."
+    response = response['message']['content']
+    response = response.replace("\n", "<br>")
+    response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
+    stored_responses[question_id] = response
+    # except Exception as e:
+    #     print(f"Exception: {e}. \n Happened during question processing.\n")
+    #     stored_responses[question_id] = "Still thinking about how to answer..."
 
 @app.route("/ask", methods=["POST"])
 def ask():
@@ -301,9 +324,6 @@ def ask():
             question_id += 1
 
         pending_responses[current_id] = "Processing..."
-
-        # Initialize the AI bot with the selected model
-        ai_bot = OllamaBot(selected_model)
 
         threading.Thread(target=process_question, args=(current_id, question, ai_bot)).start()
 

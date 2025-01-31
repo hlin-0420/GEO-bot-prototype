@@ -38,14 +38,24 @@
     <div id="feedbackPanel" style="text-align: center;">
         <button onclick="submitQuestion()">Submit</button>
         <p>Was this response helpful?</p>
-        <button id="goodButton" style="background: none; border: none; cursor: pointer;">
+        <button id="goodButton" onclick="submitFeedback('good')" style="background: none; border: none; cursor: pointer;">
             👍
         </button>
-        <button id="notGoodButton" style="background: none; border: none; cursor: pointer;">
+        <button id="notGoodButton" onclick="submitFeedback('not_good')" style="background: none; border: none; cursor: pointer;">
             👎
         </button>
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
+        <div id="detailedFeedback" style="display: none; margin-top: 20px; text-align: left;">
+            <p>Please provide more details about the issue:</p>
+            <textarea id="feedbackDetails" rows="4" placeholder="Enter your feedback here..." style="width: 100%;"></textarea>
+            <button onclick="submitDetailedFeedback()" style="margin-top: 10px; padding: 10px 20px; background-color: #FF5733; color: white; border: none; cursor: pointer;">
+                Submit Feedback
+            </button>
+        </div>
     </div>
+
+    <br>
+    <h3>Responses:</h3>
     <div id="responseOutput"></div>
 
     <script>
@@ -140,6 +150,72 @@
                 responseOutput.textContent = "Failure to submit question. Please try again later.";
             }
         }
+
+        async function submitFeedback(feedbackType) {
+            const feedbackMessage = document.getElementById("feedbackMessage");
+            const detailedFeedback = document.getElementById("detailedFeedback");
+
+            feedbackMessage.textContent = ""; // Clear any previous message
+            detailedFeedback.style.display = "none"; // Hide detailed feedback form by default
+
+            if (feedbackType === "not_good") {
+                // Show detailed feedback form if the user presses "thumbs down"
+                detailedFeedback.style.display = "block";
+                return;
+            }
+
+            try {
+                const response = await fetch("/feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ feedback: feedbackType })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting feedback.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your feedback!";
+            } catch (error) {
+                console.error("Error submitting feedback:", error);
+                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
+        async function submitDetailedFeedback() {
+            const feedbackDetails = document.getElementById("feedbackDetails").value.trim();
+            const feedbackMessage = document.getElementById("feedbackMessage");
+
+            if (!feedbackDetails) {
+                feedbackMessage.textContent = "Please provide detailed feedback before submitting.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/detailed-feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ details: feedbackDetails })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting detailed feedback.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your detailed feedback!";
+                document.getElementById("feedbackDetails").value = ""; // Clear the textarea
+            } catch (error) {
+                console.error("Error submitting detailed feedback:", error);
+                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
     </script>
 </body>
 </html>
