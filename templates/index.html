@@ -17,9 +17,9 @@
     <!-- Model Selection -->
     <h3>Select AI Model</h3>
     <select id="modelSelect" onchange="updateModel()">
-        <option value="llama3">Llama 3</option>
-        <option value="gpt-4">GPT-4</option>
-        <option value="mistral">Mistral</option>
+        <option value="llama3.2">llama3.2:latest</option>
+        <option value="llama3.3">llama3.3:latest</option>
+        <option value="deepseek">deepseek-r1:latest </option>
     </select>
 
     <!-- File Upload Section -->
@@ -33,8 +33,19 @@
     <!-- Question-Answer Section -->
     <h3>Ask a Question</h3>
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
-    <button onclick="submitQuestion()">Submit</button>
+    
     <br>
+    <div id="feedbackPanel" style="text-align: center;">
+        <button onclick="submitQuestion()">Submit</button>
+        <p>Was this response helpful?</p>
+        <button id="goodButton" style="background: none; border: none; cursor: pointer;">
+            👍
+        </button>
+        <button id="notGoodButton" style="background: none; border: none; cursor: pointer;">
+            👎
+        </button>
+        <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
     <div id="responseOutput"></div>
 
     <script>

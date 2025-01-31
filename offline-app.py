@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, Response
 import logging
 import os
 from langchain_ollama import OllamaLLM
+import ollama
 from langchain_core.prompts import ChatPromptTemplate
 import threading
 import time
@@ -10,6 +11,8 @@ import re
 from bs4 import BeautifulSoup
 import pandas as pd
 
+# Initialize OllamaBot
+selected_model = "llama3.2:latest"  
 app = Flask(__name__)
 
 # Setup logging
@@ -58,7 +61,6 @@ class OllamaBot:
             model_name (str): Name of the Ollama model.
             base_directory (str): Path to the base directory containing .htm files.
         """
-        self.model = OllamaLLM(model=model_name, host="https://geo-bot-prototype.vercel.app/")  # Instantiate the Ollama model
         self.base_directory = "Data"
         self.contents = []  # Store processed content
         self._load_content()
@@ -170,37 +172,58 @@ class OllamaBot:
         """
         logging.info(f"Processing question: {question}")
 
-        template = """
-        As an experienced geologist specialised in the GEO application, a specialised help system \
-        for guiding users working as a well site geologist, please provide an answer to the question:\
-        \n {question} \n
-
-        Given the list of topics as:
-        {topics}
-
-        Answer: 
+        functionalities = """Touch Screen Devices
+        GEO Navigation
+        File Processing
+        Log Structure and Presentation
+        Loading Curve Data
+        Displaying Curve Data
+        Create Curve Data
+        Curve Shading
+        TVD
+        Interpreting Information
+        Text and Annotations
+        Lines
+        Tables
+        Headers and Trailers
+        Printing
+        Sidetrack
+        Sharing
+        Additional Applications
+        Compute Curve Templates"""
+        
+        system_prompt = f"""
+        As an experienced geologist specialised in the GEO application, a specialised help system 
+        for guiding users working as a well site geologist given the functionalities: {functionalities}
         """
+        
+        user_prompt = f"""
+        please provide an answer to the question:\
+        \n {question} \n
+        """
+        print(f"User prompt: {user_prompt}")
+        
+        print(f"Selected model: {selected_model}")
 
-        prompt = ChatPromptTemplate.from_template(template)
-
-        model = OllamaLLM(model = "llama3")
-
-        chain = prompt | model # chain the operations together.
-
-        topics = "Touch Screen Devices, GEO Navigation, File Processing, \
-            Log structure and Presentation, Loading Curve Data, Displaying Curve Data, \
-            Create Curve Data, Curve Shading, TVD, Interpreting Information, \
-            Text and Annotations, Lines, Tables, Headers and Trailers, \
-            Printing, Sidetrack, Sharing, Additional Applications, \
-            Compute Curve Templates"
-
-        response = chain.invoke({"question": question, "topics": topics})
+        response = ollama.chat(
+            model = selected_model,
+            messages = [
+                {
+                    'role': 'system',
+                    'content': system_prompt
+                },
+                {
+                    'role': 'user',
+                    'content': user_prompt
+                }
+            ]
+        )
+        
+        print(f"Response: {response}")
 
         return response
 
 
-# Initialize OllamaBot
-selected_model = "llama3"  
 ai_bot = OllamaBot(selected_model)
 pending_responses = {}
 stored_responses = {}
@@ -248,11 +271,15 @@ def process_question(question_id, question, ai_bot):
     time.sleep(2)  # Simulating "thinking time"
     try:
         response = ai_bot.query(question)
+        
+        print(f"Response before formatting: \n {response['message']['content']}")
+        
+        response = response['message']['content']
         response = response.replace("\n", "<br>")
         response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-
         stored_responses[question_id] = response
     except Exception as e:
+        print(f"Exception: {e}")
         stored_responses[question_id] = "Still thinking about how to answer..."
 
 @app.route("/ask", methods=["POST"])
