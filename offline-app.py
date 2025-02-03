@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify, render_template, Response
 import logging
 import os
-from langchain_ollama import OllamaLLM
 import ollama
-from langchain_core.prompts import ChatPromptTemplate
 import threading
 import time
 from threading import Lock
