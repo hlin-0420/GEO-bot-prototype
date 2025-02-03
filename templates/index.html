@@ -14,6 +14,14 @@
 <body>
     <h1>AI Bot Application</h1>
 
+    <!-- Model Selection -->
+    <h3>Select AI Model</h3>
+    <select id="modelSelect" onchange="updateModel()">
+        <option value="llama3.2">llama3.2:latest</option>
+        <option value="llama3.3">llama3.3:latest</option>
+        <option value="deepseek">deepseek-r1:latest </option>
+    </select>
+
     <!-- File Upload Section -->
     <h3>Upload a File</h3>
     <form id="uploadForm">
@@ -25,19 +33,58 @@
     <!-- Question-Answer Section -->
     <h3>Ask a Question</h3>
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
-    <button onclick="submitQuestion()">Submit</button>
+    
     <br>
+    <div id="feedbackPanel" style="text-align: center;">
+        <button onclick="submitQuestion()">Submit</button>
+        <p>Was this response helpful?</p>
+        <button id="goodButton" onclick="submitFeedback('good')" style="background: none; border: none; cursor: pointer;">
+            👍
+        </button>
+        <button id="notGoodButton" onclick="submitFeedback('not_good')" style="background: none; border: none; cursor: pointer;">
+            👎
+        </button>
+        <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
+        <div id="detailedFeedback" style="display: none; margin-top: 20px; text-align: left;">
+            <p>Please provide more details about the issue:</p>
+            <textarea id="feedbackDetails" rows="4" placeholder="Enter your feedback here..." style="width: 100%;"></textarea>
+            <button onclick="submitDetailedFeedback()" style="margin-top: 10px; padding: 10px 20px; background-color: #FF5733; color: white; border: none; cursor: pointer;">
+                Submit Feedback
+            </button>
+        </div>
+    </div>
+
+    <br>
+    <h3>Responses:</h3>
     <div id="responseOutput"></div>
 
     <script>
-        document.addEventListener("keydown", function(event) {
+        document.addEventListener("DOMContentLoaded", function() {
             const questionInput = document.getElementById("questionInput");
-            
-            if (document.activeElement === questionInput && event.key === "Enter" && !event.shiftKey) {
-                event.preventDefault(); 
-                submitQuestion(); 
-            }
+
+            // Detect Enter key press
+            questionInput.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault(); 
+                    submitQuestion(); 
+                }
+            });
         });
+
+        async function updateModel() {
+            const model = document.getElementById("modelSelect").value;
+            try {
+                const response = await fetch("/selection", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ model: model })
+                });
+                const result = await response.json();
+                console.log(result.message);
+            } catch (error) {
+                console.error("Error updating model:", error);
+            }
+        }
 
         async function uploadFile() {
             const fileInput = document.getElementById("fileInput");
@@ -55,20 +102,20 @@
         async function submitQuestion() {
             const question = document.getElementById("questionInput").value.trim();
             const responseOutput = document.getElementById("responseOutput");
-            responseOutput.innerHTML = ""; // Clear previous response
+            responseOutput.innerHTML = ""; 
 
             if (!question) {
                 responseOutput.textContent = "Question cannot be empty.";
                 return;
             }
 
-            try {
+            const selectedModel = document.getElementById("modelSelect").value; // Get selected model
 
-                // Step 1: Send question via POST
+            try {
                 const postResponse = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question: question })
+                    body: JSON.stringify({ question: question, model: selectedModel })
                 });
 
                 if (!postResponse.ok) {
@@ -79,19 +126,16 @@
 
                 const { question_id } = await postResponse.json();
 
-                // Step 2: Use EventSource to poll for the response
                 const eventSource = new EventSource(`/response/${question_id}`);
                 eventSource.onmessage = function (event) {
                     const data = event.data;
-                    console.log("Data received:", data);
-                    
                     if (data.startsWith("Error:")) {
                         responseOutput.textContent = data;
                         eventSource.close();
                     } else if (data === "Processing your question...") {
                         responseOutput.textContent = data;
                     } else {
-                        responseOutput.innerHTML = data; // Final response
+                        responseOutput.innerHTML = data;
                         eventSource.close();
                     }
                 };
@@ -102,12 +146,76 @@
                 };
                 
             } catch (error) {
-
                 console.error("Error during question submission:", error);
                 responseOutput.textContent = "Failure to submit question. Please try again later.";
-                
             }
         }
+
+        async function submitFeedback(feedbackType) {
+            const feedbackMessage = document.getElementById("feedbackMessage");
+            const detailedFeedback = document.getElementById("detailedFeedback");
+
+            feedbackMessage.textContent = ""; // Clear any previous message
+            detailedFeedback.style.display = "none"; // Hide detailed feedback form by default
+
+            if (feedbackType === "not_good") {
+                // Show detailed feedback form if the user presses "thumbs down"
+                detailedFeedback.style.display = "block";
+                return;
+            }
+
+            try {
+                const response = await fetch("/feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ feedback: feedbackType })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting feedback.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your feedback!";
+            } catch (error) {
+                console.error("Error submitting feedback:", error);
+                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
+        async function submitDetailedFeedback() {
+            const feedbackDetails = document.getElementById("feedbackDetails").value.trim();
+            const feedbackMessage = document.getElementById("feedbackMessage");
+
+            if (!feedbackDetails) {
+                feedbackMessage.textContent = "Please provide detailed feedback before submitting.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/detailed-feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ details: feedbackDetails })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting detailed feedback.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your detailed feedback!";
+                document.getElementById("feedbackDetails").value = ""; // Clear the textarea
+            } catch (error) {
+                console.error("Error submitting detailed feedback:", error);
+                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
     </script>
 </body>
 </html>
