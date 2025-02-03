@@ -8,11 +8,15 @@ from threading import Lock
 import re
 from bs4 import BeautifulSoup
 import pandas as pd
+from langchain_community.utilities import SQLDatabase
+from sqlalchemy import create_engine
+from langchain_community.agent_toolkits import create_sql_agent
+from langchain_openai import ChatOpenAI
 
 global_ollama = ollama
 
 # Initialize the selected bot. 
-selected_model = "llama3.2:latest"  
+selected_model = "openai"  
 app = Flask(__name__)
 
 # Setup logging
@@ -51,6 +55,19 @@ def split_table_by_subheadings(df, column_name):
         sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
 
     return sub_tables
+
+def load_csv_to_sql(csv_directory, db_name="multicsv.db"):
+    engine = create_engine(f"sqlite:///{db_name}")
+    csv_files = [f for f in os.listdir(csv_directory) if f.endswith(".csv")]
+    
+    for file in csv_files:
+        file_path = os.path.join(csv_directory, file)
+        table_name = os.path.splitext(file)[0]  # Use filename (without extension) as table name
+        df = pd.read_csv(file_path)
+        df.to_sql(table_name, engine, index=False, if_exists="replace")
+        print(f"Loaded {file} into table {table_name}")
+    
+    return engine
 
 class OllamaBot:
     def __init__(self):
@@ -206,21 +223,40 @@ class OllamaBot:
         
         print(f"Selected model: {selected_model}")
 
-        response = global_ollama.chat(
-            model = selected_model,
-            messages = [
-                {
-                    'role': 'system',
-                    'content': system_prompt
-                },
-                {
-                    'role': 'user',
-                    'content': user_prompt
-                }
-            ]
-        )
-        
-        print(f"Response: {response}")
+        if selected_model == "openai":
+
+            os.environ["OPENAI_API_KEY"] = "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"
+
+            csv_dir = "tables"
+
+            engine = load_csv_to_sql(csv_dir)
+
+            processed_db = SQLDatabase(engine=engine)
+
+            llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+            agent_executor = create_sql_agent(llm, db=processed_db, agent_type="openai-tools", verbose=True)
+
+            overall_prompt = system_prompt + "\n" + user_prompt
+
+            response = agent_executor.invoke({"input": overall_prompt})['output']
+
+        else:
+
+            response = global_ollama.chat(
+                model = selected_model,
+                messages = [
+                    {
+                        'role': 'system',
+                        'content': system_prompt
+                    },
+                    {
+                        'role': 'user',
+                        'content': user_prompt
+                    }
+                ]
+            )
+            
+            print(f"Response: {response}")
 
         return response
 
@@ -292,13 +328,19 @@ def process_question(question_id, question, ai_bot):
     # try:
     ai_bot.train_model()
     response = ai_bot.query(question)
+
+    if selected_model == "openai":
+
+        stored_responses[question_id] = response
+
+    else:
         
-    print(f"Response before formatting: \n {response['message']['content']}")
-        
-    response = response['message']['content']
-    response = response.replace("\n", "<br>")
-    response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-    stored_responses[question_id] = response
+        print(f"Response before formatting: \n {response['message']['content']}")
+            
+        response = response['message']['content']
+        response = response.replace("\n", "<br>")
+        response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
+        stored_responses[question_id] = response
     # except Exception as e:
     #     print(f"Exception: {e}. \n Happened during question processing.\n")
     #     stored_responses[question_id] = "Still thinking about how to answer..."
