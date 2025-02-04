@@ -21,8 +21,6 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 
-global_ollama = ollama
-
 # Initialize the selected bot. 
 app = Flask(__name__)
 
@@ -181,25 +179,6 @@ class OllamaBot:
         """
         self.contents.append(content)
         logging.info("New content added.")
-        
-    def train_model(self):
-        """
-        Train or fine-tune the Llama model using self.contents as training data.
-        """
-        logging.info("Training model with provided content data.")
-        global global_ollama
-
-        # Preprocess the contents for training
-        training_data = "\n\n".join(self.contents)  # Join all contents into a single training text
-
-        # Fine-tune or update the model
-        try:
-            global_ollama.train(training_data = training_data)
-            logging.info("Model training completed successfully.")
-        except AttributeError:
-            logging.error("The current Llama model does not support training.")
-        except Exception as e:
-            logging.error(f"An error occurred during model training: {e}")
             
     def get_model_type(self, model):
         return model.model_name
@@ -250,8 +229,6 @@ class OllamaBot:
         rag_application = RAGApplication(retriever, rag_chain)
             
         response = rag_application.run(question)
-        
-        print(f"Response: {response}")
 
         return response
 
@@ -286,7 +263,6 @@ def detailed_feedback():
         print(f"Detailed feedback received: {details}")
         
         ai_bot.add_contents(details)
-        ai_bot.train_model()
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:
@@ -321,8 +297,9 @@ def process_question(question_id, question, ai_bot):
     """
     time.sleep(2)  # Simulating "thinking time"
     # try:
-    ai_bot.train_model()
     response = ai_bot.query(question)
+
+    print(f"Response: {response}")
 
     stored_responses[question_id] = response
 
@@ -365,7 +342,8 @@ def get_response(question_id):
             if response == "Processing" or response is None:
                 yield "data: Processing your question...\n\n"
             elif response:
-                yield f"data: {response}\n\n"
+                formatted_response = response.replace("\n", "<br>")
+                yield f"data: {formatted_response}\n\n"
                 break
             else:
                 yield "data: Error: Invalid question ID\n\n"
