@@ -5,7 +5,6 @@ import ollama
 import threading
 import time
 from threading import Lock
-import re
 from bs4 import BeautifulSoup
 import langroid as lr
 import langroid.language_models as lm
@@ -13,16 +12,18 @@ from langroid.utils.configuration import set_global, Settings
 import pandas as pd
 from langroid.agent.special import TableChatAgent, TableChatAgentConfig
 import glob
-from langchain_community.utilities import SQLDatabase
-from sqlalchemy import create_engine
-from langchain_community.agent_toolkits import create_sql_agent
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatOpenAI
+from langchain.schema import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import SKLearnVectorStore
+from langchain_openai import OpenAIEmbeddings
+from langchain_ollama import ChatOllama
+from langchain_core.output_parsers import StrOutputParser
 
 global_ollama = ollama
 
 # Initialize the selected bot. 
-selected_model = "openai"  
 app = Flask(__name__)
 
 # Setup logging
@@ -47,13 +48,11 @@ def split_table_by_subheadings(df, column_name):
             if current_subheading and sub_table_data:
                 
                 sub_tables[current_subheading] = pd.DataFrame(sub_table_data, columns=column_names)
-                print(f"Subtable: \n{sub_tables[current_subheading]}")
                 sub_table_data = []
 
             current_subheading = row[column_name]
         else:
             row_list = row.tolist()
-            print(f"Row data: {row_list}")
             sub_table_data.append(row_list)
 
     # Add the last collected sub-table
@@ -61,6 +60,19 @@ def split_table_by_subheadings(df, column_name):
         sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
 
     return sub_tables
+
+class RAGApplication:
+    def __init__(self, retriever, rag_chain):
+        self.retriever = retriever
+        self.rag_chain = rag_chain
+    def run(self, question):
+        # Retrieve relevant documents
+        documents = self.retriever.invoke(question)
+        # Extract content from retrieved documents
+        doc_texts = "\\n".join([doc.page_content for doc in documents])
+        # Get the answer from the language model
+        answer = self.rag_chain.invoke({"question": question, "documents": doc_texts})
+        return answer
 
 class OllamaBot:
     def __init__(self):
@@ -73,6 +85,7 @@ class OllamaBot:
         """
         self.base_directory = "Data"
         self.contents = []  # Store processed content
+        self.web_documents = [] # stores the web documents
         self._load_content()
         
     def add_contents(self, details):
@@ -109,6 +122,23 @@ class OllamaBot:
                     content = content[content.find("<body>")+6:content.find("</body>")]
                     
                     soup = BeautifulSoup(content, "html.parser")
+                    
+                    page_text = soup.get_text()
+                    page_links = [a['href'] for a in soup.find_all('a', href=True)]
+                    
+                    page_data = {
+                        'text': page_text,
+                        'link': page_links
+                    }
+                    
+                    document = Document(
+                        page_content=page_data['text'],
+                        metadata={
+                            'links': page_data['link'],
+                        }
+                    )
+                    
+                    self.web_documents.append(document)
                     
                     if soup.find("table"):
                         
@@ -186,118 +216,42 @@ class OllamaBot:
         """
         logging.info(f"Processing question: {question}")
 
-        functionalities = """Touch Screen Devices
-        GEO Navigation
-        File Processing
-        Log Structure and Presentation
-        Loading Curve Data
-        Displaying Curve Data
-        Create Curve Data
-        Curve Shading
-        TVD
-        Interpreting Information
-        Text and Annotations
-        Lines
-        Tables
-        Headers and Trailers
-        Printing
-        Sidetrack
-        Sharing
-        Additional Applications
-        Compute Curve Templates"""
+        llm_model = ChatOllama(
+            model="llama3.2:latest",
+            temperature=0,
+        )
+            
+        # Initialize a text splitter with specified chunk size and overlap
+        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+            chunk_size=250, chunk_overlap=0
+        )
+        # Split the documents into chunks
+        doc_splits = text_splitter.split_documents(self.web_documents)
+            
+        vectorstore = SKLearnVectorStore.from_documents(
+            documents=doc_splits,
+            embedding=OpenAIEmbeddings(openai_api_key="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"),
+        )
+        retriever = vectorstore.as_retriever(k=4)
+            
+        prompt = PromptTemplate(
+            template="""You are an assistant for question-answering tasks.
+            Use the following documents to answer the question.
+            If you don't know the answer, just say that you don't know.
+            Question: {question}
+            Documents: {documents}
+            Answer:
+            """,
+            input_variables=["question", "documents"],
+        )
+            
+        rag_chain = prompt | llm_model | StrOutputParser()
+            
+        rag_application = RAGApplication(retriever, rag_chain)
+            
+        response = rag_application.run(question)
         
-        system_prompt = f"""
-        As an experienced geologist specialised in the GEO application, a specialised help system 
-        for guiding users working as a well site geologist given the functionalities: {functionalities}
-        """
-        
-        user_prompt = f"""
-        please provide an answer to the question:\
-        \n {question} \n
-        """
-        print(f"User prompt: {user_prompt}")
-        
-        print(f"Selected model: {selected_model}")
-
-        if selected_model == "openai":
-
-            os.environ["OPENAI_API_KEY"] = "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"
-
-            csv_dir = "tables"
-            
-            csv_files = [f for f in os.listdir(csv_dir) if f.endswith(".csv")]
-            
-            df_strings = ""
-            
-            model_name = "gpt-3.5-turbo-1106"
-            
-            llm_model = ChatOpenAI(model=model_name, temperature=0.5)
-            
-            print(f"Model name: {self.get_model_type(llm_model)}")
-            
-            for file in csv_files:
-                file_path = os.path.join(csv_dir, file)
-                df = pd.read_csv(file_path)
-                df_string = df.to_string()
-                df_strings += (df_string + "\n")
-
-            overall_prompt = "Based on the following data, use the information, {data}\n"
-            overall_prompt += system_prompt + "\n" + user_prompt
-            
-            prompt_template = PromptTemplate(input_variables=["data"], template=overall_prompt)
-
-            query = prompt_template.format(data = df_strings)
-
-            response = llm_model.invoke(query)
-            
-            # Extract content safely
-            try:
-                formatted_message = response.content.strip()  # Ensure we get only the content
-                print("\nExtracted Content:\n")
-                print(formatted_message)
-                response = formatted_message
-            except AttributeError:
-                print("Unexpected response format:", response)
-        else:    
-            system_prompt = f"{system_prompt}\n\nHere is some reference data as supporting information for GEO:\n{self.contents}"
-            set_global(Settings(cache_type="fakeredis"))
-            os.environ["OLLAMA_API_BASE"] = "http://localhost:11434"
-            os.environ["OPENAI_API_KEY"] = "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"
-            # os.environ["OPENAI_API_KEY"] = "LA-c259414d5cd94efe8a983de517f36170c35f97d6fba54a69be9fa54d01536d2b"
-            llm_cfg = lm.OpenAIGPTConfig(
-                chat_model="gpt-4o",
-                chat_context_length=4096,
-            )
-            llm = lm.OpenAIGPT(llm_cfg)
-            
-            print(f"User Prompt: {user_prompt}")
-            
-            data_folder = "tables"
-
-            csv_files = glob.glob(os.path.join(data_folder, "*.csv"))
-
-            # Read and merge all CSVs
-            dfs = []
-            for file in csv_files:
-                df_temp = pd.read_csv(file)
-                df_temp["source_file"] = os.path.basename(file)  # Add a column to track the source
-                dfs.append(df_temp)
-                
-            df = pd.concat(dfs, ignore_index=True)
-            
-            agent = TableChatAgent(
-                config=TableChatAgentConfig(data=df, llm=llm_cfg)
-            )
-
-            task = lr.Task(agent, name="DataAssistant", default_human_response="")
-            
-            result = task.run(user_prompt, turns=2)
-            
-            print(f"Result: {result}\n")
-
-            response = llm.chat(user_prompt)
-            
-            print(f"Response: {response}")
+        print(f"Response: {response}")
 
         return response
 
@@ -361,7 +315,7 @@ def upload():
         return jsonify({"message": result})
 
 
-def process_question(question_id, question, ai_bot, selected_model):
+def process_question(question_id, question, ai_bot):
     """
     Simulate long processing of the question and store the response.
     """
@@ -370,21 +324,7 @@ def process_question(question_id, question, ai_bot, selected_model):
     ai_bot.train_model()
     response = ai_bot.query(question)
 
-    if selected_model == "openai":
-
-        stored_responses[question_id] = response
-
-    else:
-        
-        # print(f"Response before formatting: \n {response['message']['content']}")
-            
-        # response = response['message']['content']
-        # response = response.replace("\n", "<br>")
-        # response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
-        stored_responses[question_id] = response
-    # except Exception as e:
-    #     print(f"Exception: {e}. \n Happened during question processing.\n")
-    #     stored_responses[question_id] = "Still thinking about how to answer..."
+    stored_responses[question_id] = response
 
 @app.route("/ask", methods=["POST"])
 def ask():
@@ -395,9 +335,6 @@ def ask():
             return jsonify({"error": "No JSON payload received"}), 400
         
         question = data.get("question", "").strip()
-        selected_model = data.get("model", "llama3").strip()  # Get selected model
-        
-        print(f"The updated selected model: {selected_model}")
         
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
@@ -408,7 +345,7 @@ def ask():
 
         pending_responses[current_id] = "Processing..."
 
-        threading.Thread(target=process_question, args=(current_id, question, ai_bot, selected_model)).start()
+        threading.Thread(target=process_question, args=(current_id, question, ai_bot)).start()
 
         return jsonify({"question_id": current_id}), 200
     
