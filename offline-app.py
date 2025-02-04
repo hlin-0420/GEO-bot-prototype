@@ -249,9 +249,16 @@ class OllamaBot:
             query = prompt_template.format(data = df_strings)
 
             response = llm_model.invoke(query)
-
-        else:
             
+            # Extract content safely
+            try:
+                formatted_message = response.content.strip()  # Ensure we get only the content
+                print("\nExtracted Content:\n")
+                print(formatted_message)
+                response = formatted_message
+            except AttributeError:
+                print("Unexpected response format:", response)
+        else:    
             system_prompt = f"{system_prompt}\n\nHere is some reference data as supporting information for GEO:\n{self.contents}"
             set_global(Settings(cache_type="fakeredis"))
             os.environ["OLLAMA_API_BASE"] = "http://localhost:11434"
