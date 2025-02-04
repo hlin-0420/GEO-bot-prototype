@@ -11,7 +11,8 @@ import pandas as pd
 from langchain_community.utilities import SQLDatabase
 from sqlalchemy import create_engine
 from langchain_community.agent_toolkits import create_sql_agent
-from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate
+from langchain_community.chat_models import ChatOpenAI
 
 global_ollama = ollama
 
@@ -55,19 +56,6 @@ def split_table_by_subheadings(df, column_name):
         sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
 
     return sub_tables
-
-def load_csv_to_sql(csv_directory, db_name="multicsv.db"):
-    engine = create_engine(f"sqlite:///{db_name}")
-    csv_files = [f for f in os.listdir(csv_directory) if f.endswith(".csv")]
-    
-    for file in csv_files:
-        file_path = os.path.join(csv_directory, file)
-        table_name = os.path.splitext(file)[0]  # Use filename (without extension) as table name
-        df = pd.read_csv(file_path)
-        df.to_sql(table_name, engine, index=False, if_exists="replace")
-        print(f"Loaded {file} into table {table_name}")
-    
-    return engine
 
 class OllamaBot:
     def __init__(self):
@@ -177,6 +165,9 @@ class OllamaBot:
             logging.error("The current Llama model does not support training.")
         except Exception as e:
             logging.error(f"An error occurred during model training: {e}")
+            
+    def get_model_type(self, model):
+        return model.model_name
 
     def query(self, question):
         """
@@ -228,17 +219,31 @@ class OllamaBot:
             os.environ["OPENAI_API_KEY"] = "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"
 
             csv_dir = "tables"
+            
+            csv_files = [f for f in os.listdir(csv_dir) if f.endswith(".csv")]
+            
+            df_strings = ""
+            
+            model_name = "gpt-3.5-turbo-1106"
+            
+            llm_model = ChatOpenAI(model=model_name, temperature=0.5)
+            
+            print(f"Model name: {self.get_model_type(llm_model)}")
+            
+            for file in csv_files:
+                file_path = os.path.join(csv_dir, file)
+                df = pd.read_csv(file_path)
+                df_string = df.to_string()
+                df_strings += (df_string + "\n")
 
-            engine = load_csv_to_sql(csv_dir)
+            overall_prompt = "Based on the following data, use the information, {data}\n"
+            overall_prompt += system_prompt + "\n" + user_prompt
+            
+            prompt_template = PromptTemplate(input_variables=["data"], template=overall_prompt)
 
-            processed_db = SQLDatabase(engine=engine)
+            query = prompt_template.format(data = df_strings)
 
-            llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
-            agent_executor = create_sql_agent(llm, db=processed_db, agent_type="openai-tools", verbose=True)
-
-            overall_prompt = system_prompt + "\n" + user_prompt
-
-            response = agent_executor.invoke({"input": overall_prompt})['output']
+            response = llm_model.invoke(query)
 
         else:
 
