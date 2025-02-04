@@ -7,7 +7,12 @@ import time
 from threading import Lock
 import re
 from bs4 import BeautifulSoup
+import langroid as lr
+import langroid.language_models as lm
+from langroid.utils.configuration import set_global, Settings
 import pandas as pd
+from langroid.agent.special import TableChatAgent, TableChatAgentConfig
+import glob
 from langchain_community.utilities import SQLDatabase
 from sqlalchemy import create_engine
 from langchain_community.agent_toolkits import create_sql_agent
@@ -246,20 +251,44 @@ class OllamaBot:
             response = llm_model.invoke(query)
 
         else:
-
-            response = global_ollama.chat(
-                model = selected_model,
-                messages = [
-                    {
-                        'role': 'system',
-                        'content': system_prompt
-                    },
-                    {
-                        'role': 'user',
-                        'content': user_prompt
-                    }
-                ]
+            
+            system_prompt = f"{system_prompt}\n\nHere is some reference data as supporting information for GEO:\n{self.contents}"
+            set_global(Settings(cache_type="fakeredis"))
+            os.environ["OLLAMA_API_BASE"] = "http://localhost:11434"
+            os.environ["OPENAI_API_KEY"] = "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"
+            # os.environ["OPENAI_API_KEY"] = "LA-c259414d5cd94efe8a983de517f36170c35f97d6fba54a69be9fa54d01536d2b"
+            llm_cfg = lm.OpenAIGPTConfig(
+                chat_model="gpt-4o",
+                chat_context_length=4096,
             )
+            llm = lm.OpenAIGPT(llm_cfg)
+            
+            print(f"User Prompt: {user_prompt}")
+            
+            data_folder = "tables"
+
+            csv_files = glob.glob(os.path.join(data_folder, "*.csv"))
+
+            # Read and merge all CSVs
+            dfs = []
+            for file in csv_files:
+                df_temp = pd.read_csv(file)
+                df_temp["source_file"] = os.path.basename(file)  # Add a column to track the source
+                dfs.append(df_temp)
+                
+            df = pd.concat(dfs, ignore_index=True)
+            
+            agent = TableChatAgent(
+                config=TableChatAgentConfig(data=df, llm=llm_cfg)
+            )
+
+            task = lr.Task(agent, name="DataAssistant", default_human_response="")
+            
+            result = task.run(user_prompt, turns=2)
+            
+            print(f"Result: {result}\n")
+
+            response = llm.chat(user_prompt)
             
             print(f"Response: {response}")
 
@@ -325,7 +354,7 @@ def upload():
         return jsonify({"message": result})
 
 
-def process_question(question_id, question, ai_bot):
+def process_question(question_id, question, ai_bot, selected_model):
     """
     Simulate long processing of the question and store the response.
     """
@@ -340,11 +369,11 @@ def process_question(question_id, question, ai_bot):
 
     else:
         
-        print(f"Response before formatting: \n {response['message']['content']}")
+        # print(f"Response before formatting: \n {response['message']['content']}")
             
-        response = response['message']['content']
-        response = response.replace("\n", "<br>")
-        response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
+        # response = response['message']['content']
+        # response = response.replace("\n", "<br>")
+        # response = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', response)
         stored_responses[question_id] = response
     # except Exception as e:
     #     print(f"Exception: {e}. \n Happened during question processing.\n")
@@ -361,6 +390,8 @@ def ask():
         question = data.get("question", "").strip()
         selected_model = data.get("model", "llama3").strip()  # Get selected model
         
+        print(f"The updated selected model: {selected_model}")
+        
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
         
@@ -370,7 +401,7 @@ def ask():
 
         pending_responses[current_id] = "Processing..."
 
-        threading.Thread(target=process_question, args=(current_id, question, ai_bot)).start()
+        threading.Thread(target=process_question, args=(current_id, question, ai_bot, selected_model)).start()
 
         return jsonify({"question_id": current_id}), 200
     
