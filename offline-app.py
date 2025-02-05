@@ -87,7 +87,16 @@ class OllamaBot:
         self._load_content()
         
     def add_contents(self, details):
-        self.contents.append(details)
+        
+        page_data = {
+            'text': details,
+        }
+                    
+        document = Document(
+            page_content=page_data['text'],                
+        )
+        
+        self.web_documents.append(document)
 
     def _list_htm_files(self):
         """
