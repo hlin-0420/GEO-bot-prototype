@@ -194,6 +194,9 @@
         async function submitDetailedFeedback() {
             const feedbackDetails = document.getElementById("feedbackDetails").value.trim();
             const feedbackMessage = document.getElementById("feedbackMessage");
+            const responseOutput = document.getElementById("responseOutput").textContent;
+            console.log(responseOutput);
+            const question = document.getElementById("questionInput").value.trim();
 
             if (!feedbackDetails) {
                 feedbackMessage.textContent = "Please provide detailed feedback before submitting.";
@@ -204,7 +207,7 @@
                 const response = await fetch("/detailed-feedback", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ details: feedbackDetails })
+                    body: JSON.stringify({ details: feedbackDetails, response: responseOutput, question: question})
                 });
 
                 if (!response.ok) {

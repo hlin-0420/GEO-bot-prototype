@@ -13,6 +13,7 @@ from langchain_community.vectorstores import SKLearnVectorStore
 from langchain_openai import OpenAIEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
+import json
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -263,8 +264,21 @@ def detailed_feedback():
     try:    
         data = request.json
         details = data.get("details")
-        if not details:
-            return jsonify({"error": "Feedback details are required"}), 400
+        response = data.get("response")
+        question = data.get("question")
+
+        if not details and not question:
+            return jsonify({"error": "Both feedback details and question details are required"}), 400
+
+        feedback_entry = {
+            "question": question,
+            "response": response,
+            "feedback": details
+        }
+
+        # Append to RL training dataset
+        with open("feedback_dataset.json", "a") as f:
+            f.write(json.dumps(feedback_entry) + "\n")
 
         # Log or process the detailed feedback
         print(f"Detailed feedback received: {details}")
