@@ -1,1 +1,17 @@
-{"question": "What is 2 + 1?", "response": "I don't know. The provided documents seem to be related to a financial concept called \"C2 Moving Average\" and its formula, but they don't contain any information about basic arithmetic calculations like 2 + 1. I would need more context or information about the specific calculation you're asking about.", "feedback": "Please use your initiatives to perform the arithmetic calculation."}
+[
+  {
+    "question": "What is 2 + 1?",
+    "response": "I don't know. The provided documents seem to be related to a financial concept called \"C2 Moving Average\" and its formula, but they don't contain any information about basic arithmetic calculations like 2 + 1. I would need more context or information about the specific calculation you're asking about.",
+    "feedback": "Please use your initiatives to perform the arithmetic calculation."
+  },
+  {
+    "question": "What is 1 + 1?",
+    "response": "I don't know the answer based on the provided documents. The GEO Help document does not contain information about basic arithmetic operations like 1 + 1. If you're looking for a simple math question, I'd be happy to try and help with that or find another resource for you!",
+    "feedback": "You should know how to calculate arithmetic."
+  },
+  {
+    "question": "What is 1 + 1?",
+    "response": "I don't know the answer based on the provided documents. The GEO Help document does not contain information about basic arithmetic operations like 1 + 1. If you're looking for a simple math question, I'd be happy to try and help with that or find another resource for you!",
+    "feedback": "You could perform arithmetic yourself."
+  }
+]
