@@ -1,19 +1,12 @@
 from flask import Flask, request, jsonify, render_template, Response
 import logging
 import os
-import ollama
 import threading
 import time
 from threading import Lock
 from bs4 import BeautifulSoup
-import langroid as lr
-import langroid.language_models as lm
-from langroid.utils.configuration import set_global, Settings
 import pandas as pd
-from langroid.agent.special import TableChatAgent, TableChatAgentConfig
-import glob
 from langchain.prompts import PromptTemplate
-from langchain_community.chat_models import ChatOpenAI
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SKLearnVectorStore
@@ -232,7 +225,12 @@ class OllamaBot:
             """,
             input_variables=["question", "documents"],
         )
-            
+        
+        # save the prompt template to a txt file
+        prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
+        with open("prompt_visualisation.txt", "w", encoding="utf-8") as file:
+            file.write(prompt_text)
+               
         rag_chain = prompt | llm_model | StrOutputParser()
             
         rag_application = RAGApplication(retriever, rag_chain)

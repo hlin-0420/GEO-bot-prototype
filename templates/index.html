@@ -163,6 +163,11 @@
                 // Show detailed feedback form if the user presses "thumbs down"
                 detailedFeedback.style.display = "block";
                 return;
+            } 
+            
+            if (feedbackType === "good"){
+                detailedFeedback.style.display = "block";
+                return;
             }
 
             try {
