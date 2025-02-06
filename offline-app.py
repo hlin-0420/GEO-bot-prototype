@@ -14,6 +14,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 import json
+from sentence_transformers import SentenceTransformer, util
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -69,6 +70,24 @@ class RAGApplication:
 def load_feedback_dataset():
     with open("feedback_dataset.json", "r") as f:
         return json.load(f)
+    
+def calculate_reward(feedback_data):
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    
+    similarity_scores = []
+    
+    for entry in feedback_data:
+        response = entry.get("response", "")
+        feedback = entry.get("feedback", "")
+        
+        response_embedding = model.encode(response)
+        feedback_embedding = model.encode(feedback)
+        similarity_score = util.pytorch_cos_sim(response_embedding, feedback_embedding).item()
+
+        similarity_scores.append(similarity_score)
+
+    # Reward is proportional to the similarity score
+    return similarity_scores
 
 class OllamaBot:
     def __init__(self):
@@ -193,6 +212,16 @@ class OllamaBot:
             
     def get_model_type(self, model):
         return model.model_name
+    
+    def update_training(self, data_string):
+        
+        print(f"Data string: {data_string}")
+        
+        data_document = Document(
+            page_content=data_string
+        )
+        
+        self.web_documents.append(data_document)
 
     def query(self, question):
         """
@@ -237,10 +266,6 @@ class OllamaBot:
             file.write(prompt_text)
 
         llm_model = self.llm_model
-
-        feedback_data = load_feedback_dataset()
-
-        print(f"Feedback information: {feedback_data}")
                
         rag_chain = prompt | llm_model | StrOutputParser()
             
@@ -316,6 +341,17 @@ def detailed_feedback():
 
         # Log or process the detailed feedback
         print(f"Detailed feedback received: {details}")
+        
+        feedback_data = load_feedback_dataset()
+
+        print(f"Feedback information: {feedback_data}")
+        
+        reward_scores = calculate_reward(feedback_data)
+        
+        print(f"Reward Score: {reward_scores}")
+        
+        for feedback_entry in feedback_data:
+            ai_bot.update_training(json.dumps(feedback_entry, indent=4))
         
         ai_bot.add_contents(details)
         
