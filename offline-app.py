@@ -14,6 +14,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 import json
+from sentence_transformers import SentenceTransformer, util
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -66,6 +67,28 @@ class RAGApplication:
         answer = self.rag_chain.invoke({"question": question, "documents": doc_texts})
         return answer
 
+def load_feedback_dataset():
+    with open("feedback_dataset.json", "r") as f:
+        return json.load(f)
+    
+def calculate_reward(feedback_data):
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    
+    similarity_scores = []
+    
+    for entry in feedback_data:
+        response = entry.get("response", "")
+        feedback = entry.get("feedback", "")
+        
+        response_embedding = model.encode(response)
+        feedback_embedding = model.encode(feedback)
+        similarity_score = util.pytorch_cos_sim(response_embedding, feedback_embedding).item()
+
+        similarity_scores.append(similarity_score)
+
+    # Reward is proportional to the similarity score
+    return similarity_scores
+
 class OllamaBot:
     def __init__(self):
         """
@@ -79,6 +102,10 @@ class OllamaBot:
         self.contents = []  # Store processed content
         self.web_documents = [] # stores the web documents
         self._load_content()
+        self.llm_model = ChatOllama(
+            model="llama3.2:latest",
+            temperature=0,
+        )
         
     def add_contents(self, details):
         
@@ -185,6 +212,16 @@ class OllamaBot:
             
     def get_model_type(self, model):
         return model.model_name
+    
+    def update_training(self, data_string):
+        
+        print(f"Data string: {data_string}")
+        
+        data_document = Document(
+            page_content=data_string
+        )
+        
+        self.web_documents.append(data_document)
 
     def query(self, question):
         """
@@ -198,11 +235,7 @@ class OllamaBot:
         """
         logging.info(f"Processing question: {question}")
 
-        llm_model = ChatOllama(
-            model="llama3.2:latest",
-            temperature=0,
-        )
-            
+
         # Initialize a text splitter with specified chunk size and overlap
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=250, chunk_overlap=0
@@ -231,6 +264,8 @@ class OllamaBot:
         prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
         with open("prompt_visualisation.txt", "w", encoding="utf-8") as file:
             file.write(prompt_text)
+
+        llm_model = self.llm_model
                
         rag_chain = prompt | llm_model | StrOutputParser()
             
@@ -258,6 +293,32 @@ def process_file(file_path):
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
         return "Error: Invalid file encoding."
 
+def append_feedback(feedback_entry, filename="feedback_dataset.json"):
+    try:
+        # Check if the file exists and is non-empty
+        if os.path.exists(filename) and os.path.getsize(filename) > 0:
+            with open(filename, "r", encoding="utf-8") as f:
+                try:
+                    data = json.load(f)  # Load existing data
+                    if not isinstance(data, list):  # Ensure it's a list
+                        data = []
+                except json.JSONDecodeError:
+                    data = []  # If there's a parsing error, start fresh
+        else:
+            data = []  # Initialize an empty list if file doesn't exist or is empty
+
+        # Append new entry
+        data.append(feedback_entry)
+
+        # Write back as a proper JSON list
+        with open(filename, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)  # Pretty formatting for readability
+
+        print("Feedback appended successfully!")
+
+    except Exception as e:
+        print(f"Error while appending feedback: {e}")
+        
 @app.route("/detailed-feedback", methods=["POST"])
 def detailed_feedback():
     
@@ -276,12 +337,21 @@ def detailed_feedback():
             "feedback": details
         }
 
-        # Append to RL training dataset
-        with open("feedback_dataset.json", "a") as f:
-            f.write(json.dumps(feedback_entry) + "\n")
+        append_feedback(feedback_entry)
 
         # Log or process the detailed feedback
         print(f"Detailed feedback received: {details}")
+        
+        feedback_data = load_feedback_dataset()
+
+        print(f"Feedback information: {feedback_data}")
+        
+        reward_scores = calculate_reward(feedback_data)
+        
+        print(f"Reward Score: {reward_scores}")
+        
+        for feedback_entry in feedback_data:
+            ai_bot.update_training(json.dumps(feedback_entry, indent=4))
         
         ai_bot.add_contents(details)
         
