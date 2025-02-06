@@ -328,6 +328,7 @@ def index():
 @app.route("/submit-feedback", methods=["POST"])
 def submitFeedback():
     try:    
+        global selected_model_name
         data = request.json
         details = data.get("details")
         rating = data.get("rating")
@@ -338,6 +339,7 @@ def submitFeedback():
             return jsonify({"error": "Both feedback details and question details are required"}), 400
 
         feedback_entry = {
+            "model-name": selected_model_name,
             "question": question,
             "response": response,
             "feedback": details,
