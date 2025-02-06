@@ -9,12 +9,41 @@
         textarea, input[type="file"] { width: 100%; margin-bottom: 10px; }
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
         button:hover { background-color: #0056b3; }
+
+        /* Navigation Panel Styles */
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .content {
+            margin-top: 60px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/feedback">Feedback Form</a>
+        <a href="#modelSelection">Select Model</a>
+    </div>
     <h1>AI Bot Application</h1>
 
     <!-- Model Selection -->
+    <h3 id="modelSelection">Select AI Model</h3>
     <h3>Select AI Model</h3>
     <select id="modelSelect" onchange="updateModel()">
         <option value="llama3.2">llama3.2:latest</option>

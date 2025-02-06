@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Response
+from flask import Flask, request, jsonify, render_template, Response, send_from_directory
 import logging
 import os
 import threading
@@ -469,6 +469,14 @@ def update_model_name():
     selected_model_name = model_name
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
+
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
+
+@app.route('/feedback_dataset.json')
+def feedback_data():
+    return send_from_directory('.', 'feedback_dataset.json')
 
 if __name__ == "__main__":
     app.run(debug=True)

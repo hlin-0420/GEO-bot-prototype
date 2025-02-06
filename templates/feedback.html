@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script>
+        async function loadFeedbackData() {
+            try {
+                const response = await fetch('feedback_dataset.json'); // Fetch the JSON data
+                const feedbackData = await response.json();
+
+                const tableBody = document.getElementById('feedback-table-body');
+
+                feedbackData.forEach((entry, index) => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${entry.question}</td>
+                        <td>${entry.response}</td>
+                        <td>${entry.feedback}</td>
+                        <td>${entry["rating-score"]}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading feedback data:', error);
+            }
+        }
+
+        window.onload = loadFeedbackData; // Load data on page load
+    </script>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home Page</a>
+    </div>
+
+    <div class="content">
+        <h1>Feedback Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Question</th>
+                    <th>Response</th>
+                    <th>Feedback</th>
+                    <th>Rating Score</th>
+                </tr>
+            </thead>
+            <tbody id="feedback-table-body">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
