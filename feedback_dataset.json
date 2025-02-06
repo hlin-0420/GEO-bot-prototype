@@ -16,5 +16,17 @@
     "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
     "feedback": "Not all the formats were included, other formats of an image file exportable include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard",
     "rating-score": 2
+  },
+  {
+    "question": "What is 2 + 2?",
+    "response": "I don't know the answer to the question \"What is 2 + 2?\" as it's a simple arithmetic operation that can be easily calculated. The provided documents seem to be related to a different topic, specifically the C2 Moving Average formula. If you'd like to calculate the C2 Moving Average, I can help with that!",
+    "feedback": "You could use arithmetic knowledge to perform the calculation",
+    "rating-score": 1
+  },
+  {
+    "question": "What is 2 + 2?",
+    "response": "I can answer that question!The answer to \"What is 2 + 2?\" is 4.",
+    "feedback": "",
+    "rating-score": 10
   }
 ]

@@ -66,31 +66,23 @@
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
     
     <br>
+    <button onclick="submitQuestion()">Submit</button>
     <div id="feedbackPanel" style="text-align: center;">
-        <button onclick="submitQuestion()">Submit</button>
-        <p>Was this response helpful?</p>
-        <button id="goodButton" onclick="submitFeedback('good')" style="background: none; border: none; cursor: pointer;">
-            👍
-        </button>
-        <button id="notGoodButton" onclick="submitFeedback('not_good')" style="background: none; border: none; cursor: pointer;">
-            👎
-        </button>
-
-        <div id="ratingSection" style="margin-top: 10px;">
-            <p>Rate the response (1 to 10):</p>
-            <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 50px; text-align: center;">
-            <button onclick="submitRating()" style="margin-left: 10px; padding: 5px 10px;">Submit Rating</button>
+        <h3>Feedback Panel</h3>
+        <div id="ratingSection" style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 10px;">
+            <p style="margin: 0; font-weight: bold;">Rate the response (1 to 10):</p>
+            <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 60px; text-align: center; font-size: 16px; padding: 5px;">
         </div>
-
+    
+        <p>Please provide more details about the issue:</p>
+        <textarea id="feedbackDetails" rows="4" placeholder="Enter your feedback here..." style="width: 100%;"></textarea>
+    
+        <button onclick="submitFeedback()" style="margin-top: 10px; padding: 10px 20px; background-color: #FF5733; color: white; border: none; cursor: pointer;">
+            Submit Feedback & Rating
+        </button>
+    
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
-        <div id="detailedFeedback" style="display: none; margin-top: 20px; text-align: left;">
-            <p>Please provide more details about the issue:</p>
-            <textarea id="feedbackDetails" rows="4" placeholder="Enter your feedback here..." style="width: 100%;"></textarea>
-            <button onclick="submitDetailedFeedback()" style="margin-top: 10px; padding: 10px 20px; background-color: #FF5733; color: white; border: none; cursor: pointer;">
-                Submit Feedback
-            </button>
-        </div>
-    </div>
+    </div>    
 
     <br>
     <h3>Responses:</h3>
@@ -194,29 +186,29 @@
             }
         }
 
-        async function submitFeedback(feedbackType) {
+        async function submitFeedback() {
+            const rating = parseInt(document.getElementById("ratingInput").value, 10);
+            const feedbackDetails = document.getElementById("feedbackDetails").value.trim();
             const feedbackMessage = document.getElementById("feedbackMessage");
-            const detailedFeedback = document.getElementById("detailedFeedback");
+            const responseOutput = document.getElementById("responseOutput").textContent;
+            const question = document.getElementById("questionInput").value.trim();
 
-            feedbackMessage.textContent = ""; // Clear any previous message
-            detailedFeedback.style.display = "none"; // Hide detailed feedback form by default
-
-            if (feedbackType === "not_good") {
-                // Show detailed feedback form if the user presses "thumbs down"
-                detailedFeedback.style.display = "block";
-                return;
-            } 
-            
-            if (feedbackType === "good"){
-                detailedFeedback.style.display = "block";
+            // Validate rating input
+            if (isNaN(rating) || rating < 1 || rating > 10) {
+                feedbackMessage.textContent = "Please enter a valid rating between 1 and 10.";
                 return;
             }
 
             try {
-                const response = await fetch("/feedback", {
+                const response = await fetch("/submit-feedback", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ feedback: feedbackType })
+                    body: JSON.stringify({
+                        rating: rating,
+                        details: feedbackDetails,
+                        response: responseOutput,
+                        question: question
+                    })
                 });
 
                 if (!response.ok) {
@@ -227,73 +219,13 @@
 
                 const result = await response.json();
                 feedbackMessage.textContent = result.message || "Thank you for your feedback!";
+                
+                // Clear feedback input field after submission
+                document.getElementById("feedbackDetails").value = ""; 
+
             } catch (error) {
                 console.error("Error submitting feedback:", error);
-                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
-            }
-        }
-
-        async function submitRating() {
-            const rating = parseInt(document.getElementById("ratingInput").value, 10);
-            const feedbackMessage = document.getElementById("feedbackMessage");
-
-            if (isNaN(rating) || rating < 1 || rating > 10) {
-                feedbackMessage.textContent = "Please enter a valid rating between 1 and 10.";
-                return;
-            }
-
-            try {
-                const response = await fetch("/submit-rating", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ rating: rating })
-                });
-
-                if (!response.ok) {
-                    const error = await response.json();
-                    feedbackMessage.textContent = error.error || "An error occurred while submitting the rating.";
-                    return;
-                }
-
-                const result = await response.json();
-                feedbackMessage.textContent = result.message || "Thank you for your rating!";
-            } catch (error) {
-                console.error("Error submitting rating:", error);
-                feedbackMessage.textContent = "Failure to submit rating. Please try again later.";
-            }
-        }
-
-        async function submitDetailedFeedback() {
-            const feedbackDetails = document.getElementById("feedbackDetails").value.trim();
-            const feedbackMessage = document.getElementById("feedbackMessage");
-            const responseOutput = document.getElementById("responseOutput").textContent;
-            console.log(responseOutput);
-            const question = document.getElementById("questionInput").value.trim();
-
-            if (!feedbackDetails) {
-                feedbackMessage.textContent = "Please provide detailed feedback before submitting.";
-                return;
-            }
-
-            try {
-                const response = await fetch("/detailed-feedback", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ details: feedbackDetails, response: responseOutput, question: question})
-                });
-
-                if (!response.ok) {
-                    const error = await response.json();
-                    feedbackMessage.textContent = error.error || "An error occurred while submitting detailed feedback.";
-                    return;
-                }
-
-                const result = await response.json();
-                feedbackMessage.textContent = result.message || "Thank you for your detailed feedback!";
-                document.getElementById("feedbackDetails").value = ""; // Clear the textarea
-            } catch (error) {
-                console.error("Error submitting detailed feedback:", error);
-                feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+                feedbackMessage.textContent = "Failed to submit feedback. Please try again later.";
             }
         }
 
