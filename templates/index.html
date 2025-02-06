@@ -46,6 +46,13 @@
         <button id="notGoodButton" onclick="submitFeedback('not_good')" style="background: none; border: none; cursor: pointer;">
             👎
         </button>
+
+        <div id="ratingSection" style="margin-top: 10px;">
+            <p>Rate the response (1 to 10):</p>
+            <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 50px; text-align: center;">
+            <button onclick="submitRating()" style="margin-left: 10px; padding: 5px 10px;">Submit Rating</button>
+        </div>
+
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
         <div id="detailedFeedback" style="display: none; margin-top: 20px; text-align: left;">
             <p>Please provide more details about the issue:</p>
@@ -194,6 +201,36 @@
             } catch (error) {
                 console.error("Error submitting feedback:", error);
                 feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
+        async function submitRating() {
+            const rating = parseInt(document.getElementById("ratingInput").value, 10);
+            const feedbackMessage = document.getElementById("feedbackMessage");
+
+            if (isNaN(rating) || rating < 1 || rating > 10) {
+                feedbackMessage.textContent = "Please enter a valid rating between 1 and 10.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/submit-rating", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ rating: rating })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting the rating.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your rating!";
+            } catch (error) {
+                console.error("Error submitting rating:", error);
+                feedbackMessage.textContent = "Failure to submit rating. Please try again later.";
             }
         }
 

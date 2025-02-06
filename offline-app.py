@@ -91,6 +91,7 @@ def calculate_reward(feedback_data):
 
 # initialise a default name for the models. 
 selected_model_name = "llama3.2:latest"
+rating_score = 5 # set a default rating score. 
 
 class OllamaBot:
     def __init__(self):
@@ -323,6 +324,7 @@ def append_feedback(feedback_entry, filename="feedback_dataset.json"):
         
 @app.route("/detailed-feedback", methods=["POST"])
 def detailed_feedback():
+    global rating_score
     
     try:    
         data = request.json
@@ -336,7 +338,8 @@ def detailed_feedback():
         feedback_entry = {
             "question": question,
             "response": response,
-            "feedback": details
+            "feedback": details,
+            "rating-score": rating_score
         }
 
         append_feedback(feedback_entry)
@@ -344,6 +347,9 @@ def detailed_feedback():
         feedback_data = load_feedback_dataset()
         
         reward_scores = calculate_reward(feedback_data)
+        
+        for i, entry in enumerate(feedback_data):
+            entry["reward_score"] = reward_scores[i]  # Assign reward score to each entry
         
         for feedback_entry in feedback_data:
             ai_bot.update_training(json.dumps(feedback_entry, indent=4))
@@ -354,6 +360,22 @@ def detailed_feedback():
     except Exception as e:
         app.logger.error(f"Error in /detailed-feedback endpoint: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
+    
+@app.route("/submit-rating", methods=["POST"])
+def submit_rating():
+    global rating_score
+    
+    data = request.get_json()
+    rating = data.get("rating")
+
+    if rating is None or not (1 <= int(rating) <= 10):
+        return jsonify({"error": "Invalid rating. Please provide a value between 1 and 10."}), 400
+
+    print(f"Received rating: {rating}")
+    
+    rating_score = rating # initialises a rating score. 
+
+    return jsonify({"message": f"Rating {rating} submitted successfully."}), 200
 
 @app.route("/")
 def index():
