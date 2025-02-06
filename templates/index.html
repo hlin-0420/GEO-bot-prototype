@@ -136,9 +136,11 @@
 
         async function submitQuestion() {
             const question = document.getElementById("questionInput").value.trim();
+            const feedbackMessage = document.getElementById("feedbackMessage");
             const responseOutput = document.getElementById("responseOutput");
             responseOutput.innerHTML = ""; 
 
+            feedbackMessage.textContent = "";
             if (!question) {
                 responseOutput.textContent = "Question cannot be empty.";
                 return;

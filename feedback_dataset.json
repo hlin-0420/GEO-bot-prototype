@@ -28,5 +28,17 @@
     "response": "I can answer that question!The answer to \"What is 2 + 2?\" is 4.",
     "feedback": "",
     "rating-score": 10
+  },
+  {
+    "question": "What is an ODT?",
+    "response": "An ODT (OpenDocument Template) is a file format that can be used to create templates for documents. It contains library information, view file contents, ini file settings, and other data that can be used to customize the appearance and behavior of a document. An ODT file can be created from an existing ODF (OpenDocument Format) file using a wizard or by manually editing the file. Once created, an ODT file can be distributed to other users and used as a starting point for creating new documents.",
+    "feedback": "In GEO, an ODT is an output data file.",
+    "rating-score": 1
+  },
+  {
+    "question": "What is an ODT?",
+    "response": "Based on the provided context, I can answer that an ODT (OpenDocument Template) is a file format used to create templates for documents. It contains library information, view file contents, ini file settings, and other data to customize the appearance and behavior of a document.However, it seems there's some discrepancy in the feedback regarding whether an ODT is an output data file or an open document template. The feedback suggests that in GEO, an ODT is actually an output data file, not an open document template.",
+    "feedback": "Needs to describe ODT as an output datafile following GEO descriptions.",
+    "rating-score": 5
   }
 ]
