@@ -1,27 +1,20 @@
 [
   {
-    "question": "What is 2 + 2?",
-    "response": "I don't know the answer to the question \"What is 2 + 2?\" based on the provided documents, as they appear to be related to a financial or technical concept (C2 Moving Average) rather than basic arithmetic.",
-    "feedback": "Please use your arithmetic calculation skills."
-  },
-  {
-    "question": "What is an ODT?",
-    "response": "An ODT (OpenDocument Template) is a file format that can be created from an existing ODF (OpenDocument Format) file using a wizard. It saves all the ODF constituents, including library files, symbols, modifiers, and plot objects, in a template format. This allows users to incorporate preferred components into the template and distribute it to other users.",
-    "feedback": "The name of the file was incorrect: it should be an output database file."
-  },
-  {
-    "question": "Where can you view the mouse pointer depth?",
-    "response": "You can view the mouse pointer depth in the Status Bar.",
-    "feedback": "Yes, the response was correct."
-  },
-  {
-    "question": "Can I load a text file?",
-    "response": "Yes, you can load a text file in ASCII format. Specifically:* Text (ASCII) files: Yes* Comma Separated Values (CSV): Yes* Tab Delimited (ASCII) files: Yes* Comma and Tab-delimited ASCII Files: Yes",
-    "feedback": "Yes. The format loaded are correct."
+    "question": "What is an ODT",
+    "response": "An ODT (OpenDocument Template) is a file format that can be used to create templates for documents. It contains library information, view file contents, ini file settings, and other data that can be used to customize the appearance and behavior of a document. An ODT file can be created from an existing ODF (OpenDocument Format) file using a wizard or by manually editing the file. Once created, an ODT file can be distributed to other users and used as a starting point for creating new documents.",
+    "feedback": "It is an output data file not an open document template.",
+    "rating-score": 2
   },
   {
     "question": "Can I export an image file?",
     "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
-    "feedback": "The correct file formats also include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard"
+    "feedback": "Other formats of image files that can be exported include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard",
+    "rating-score": 5
+  },
+  {
+    "question": "Can I export an image file?",
+    "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
+    "feedback": "Not all the formats were included, other formats of an image file exportable include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard",
+    "rating-score": 2
   }
 ]

@@ -23,6 +23,7 @@
         <option value="openai">openai</option>
     </select>
 
+    <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
     <!-- File Upload Section -->
     <h3>Upload a File</h3>
     <form id="uploadForm">
@@ -45,6 +46,13 @@
         <button id="notGoodButton" onclick="submitFeedback('not_good')" style="background: none; border: none; cursor: pointer;">
             👎
         </button>
+
+        <div id="ratingSection" style="margin-top: 10px;">
+            <p>Rate the response (1 to 10):</p>
+            <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 50px; text-align: center;">
+            <button onclick="submitRating()" style="margin-left: 10px; padding: 5px 10px;">Submit Rating</button>
+        </div>
+
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
         <div id="detailedFeedback" style="display: none; margin-top: 20px; text-align: left;">
             <p>Please provide more details about the issue:</p>
@@ -73,13 +81,18 @@
         });
 
         async function updateModel() {
-            const model = document.getElementById("modelSelect").value;
+            const modelSelect = document.getElementById("modelSelect"); // Get the select element
+            const selectedModel = modelSelect.options[modelSelect.selectedIndex].text; // Get selected text
+            document.getElementById("selectedModel").textContent = selectedModel; // Update UI
+
             try {
-                const response = await fetch("/selection", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ model: model })
+                const response = await fetch(`/selection?model=${encodeURIComponent(modelSelect.value)}`, { // Send via URL
+                    method: "GET", // Keep as GET
+                    headers: { "Content-Type": "application/json" }
                 });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+
                 const result = await response.json();
                 console.log(result.message);
             } catch (error) {
@@ -188,6 +201,36 @@
             } catch (error) {
                 console.error("Error submitting feedback:", error);
                 feedbackMessage.textContent = "Failure to submit feedback. Please try again later.";
+            }
+        }
+
+        async function submitRating() {
+            const rating = parseInt(document.getElementById("ratingInput").value, 10);
+            const feedbackMessage = document.getElementById("feedbackMessage");
+
+            if (isNaN(rating) || rating < 1 || rating > 10) {
+                feedbackMessage.textContent = "Please enter a valid rating between 1 and 10.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/submit-rating", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ rating: rating })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    feedbackMessage.textContent = error.error || "An error occurred while submitting the rating.";
+                    return;
+                }
+
+                const result = await response.json();
+                feedbackMessage.textContent = result.message || "Thank you for your rating!";
+            } catch (error) {
+                console.error("Error submitting rating:", error);
+                feedbackMessage.textContent = "Failure to submit rating. Please try again later.";
             }
         }
 
