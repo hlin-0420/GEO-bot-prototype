@@ -254,7 +254,7 @@ class OllamaBot:
             
         prompt = PromptTemplate(
             template="""You are an assistant for question-answering tasks.
-            Use the following documents to answer the question.
+            Use the following documents as context to help with answering the question.
             If you don't know the answer, just say that you don't know.
             Question: {question}
             Documents: {documents}

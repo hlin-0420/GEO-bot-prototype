@@ -4,5 +4,17 @@
     "response": "An ODT (OpenDocument Template) is a file format that can be used to create templates for documents. It contains library information, view file contents, ini file settings, and other data that can be used to customize the appearance and behavior of a document. An ODT file can be created from an existing ODF (OpenDocument Format) file using a wizard or by manually editing the file. Once created, an ODT file can be distributed to other users and used as a starting point for creating new documents.",
     "feedback": "It is an output data file not an open document template.",
     "rating-score": 2
+  },
+  {
+    "question": "Can I export an image file?",
+    "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
+    "feedback": "Other formats of image files that can be exported include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard",
+    "rating-score": 5
+  },
+  {
+    "question": "Can I export an image file?",
+    "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
+    "feedback": "Not all the formats were included, other formats of an image file exportable include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard",
+    "rating-score": 2
   }
 ]
