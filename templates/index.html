@@ -23,6 +23,7 @@
         <option value="openai">openai</option>
     </select>
 
+    <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
     <!-- File Upload Section -->
     <h3>Upload a File</h3>
     <form id="uploadForm">
@@ -73,13 +74,18 @@
         });
 
         async function updateModel() {
-            const model = document.getElementById("modelSelect").value;
+            const modelSelect = document.getElementById("modelSelect"); // Get the select element
+            const selectedModel = modelSelect.options[modelSelect.selectedIndex].text; // Get selected text
+            document.getElementById("selectedModel").textContent = selectedModel; // Update UI
+
             try {
-                const response = await fetch("/selection", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ model: model })
+                const response = await fetch(`/selection?model=${encodeURIComponent(modelSelect.value)}`, { // Send via URL
+                    method: "GET", // Keep as GET
+                    headers: { "Content-Type": "application/json" }
                 });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+
                 const result = await response.json();
                 console.log(result.message);
             } catch (error) {
