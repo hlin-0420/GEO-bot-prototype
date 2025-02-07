@@ -58,6 +58,7 @@
 
                     row.innerHTML = `
                         <td>${index + 1}</td>
+                        <td>${entry["model-name"]}</td>
                         <td>${entry.question}</td>
                         <td>${entry.response}</td>
                         <td>${entry.feedback}</td>
@@ -86,6 +87,7 @@
             <thead>
                 <tr>
                     <th>Question Number</th>
+                    <th>Model Type</th>
                     <th>Question</th>
                     <th>Response</th>
                     <th>Feedback</th>

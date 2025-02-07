@@ -218,6 +218,7 @@ class OllamaBot:
     
     def update_training(self, data_string):
         
+        print(f"Received Feedback: \n\"{data_string}\"\n")
         data_document = Document(
             page_content=data_string
         )
