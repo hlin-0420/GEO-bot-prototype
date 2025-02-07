@@ -1,27 +1,30 @@
 [
   {
-    "question": "What is 2 + 2?",
-    "response": "I don't know the answer to the question \"What is 2 + 2?\" based on the provided documents, as they appear to be related to a financial or technical concept (C2 Moving Average) rather than basic arithmetic.",
-    "feedback": "Please use your arithmetic calculation skills."
+    "model-name": "deepseek",
+    "question": "What is an ODT (output database type) file?",
+    "response": "An ODT (Output Database Type) file is a compact database file created by GEO that contains all information needed for rapid recall of data relating to a particular well. It includes various components such as loaded curve data, layout-related information, geological interpretation data, user-inputted information, libraries and fonts, embedded objects, and links to external documents.",
+    "feedback": "",
+    "rating-score": 5
   },
   {
+    "model-name": "llama3.2:latest",
     "question": "What is an ODT?",
-    "response": "An ODT (OpenDocument Template) is a file format that can be created from an existing ODF (OpenDocument Format) file using a wizard. It saves all the ODF constituents, including library files, symbols, modifiers, and plot objects, in a template format. This allows users to incorporate preferred components into the template and distribute it to other users.",
-    "feedback": "The name of the file was incorrect: it should be an output database file."
+    "response": "Based on the retrieved documents, I can tell you that an ODT (OpenDocument Template File) is a type of file format used for creating templates in OpenDocument Format. It allows users to save their preferred format as a template, which can be reused thereafter.An ODT file contains all the constituents of an ODF (OpenDocument Format) file, including library files, plot objects, and ini file settings. This makes it a powerful tool when a final log format has been approved.In other words, an ODT is a customizable template that incorporates various components of an ODF file, making it easier to create and reuse templates in the future.",
+    "feedback": "An ODT is an Output Database Type in GEO.",
+    "rating-score": 2
   },
   {
-    "question": "Where can you view the mouse pointer depth?",
-    "response": "You can view the mouse pointer depth in the Status Bar.",
-    "feedback": "Yes, the response was correct."
+    "model-name": "deepseek1.5",
+    "question": "How many curves can I plot in GEO?",
+    "response": "According to the document \"GEO Limits\", the maximum number of curves that can be plotted in GEO is 450.",
+    "feedback": "An accurate and precise answer provided.",
+    "rating-score": 10
   },
   {
-    "question": "Can I load a text file?",
-    "response": "Yes, you can load a text file in ASCII format. Specifically:* Text (ASCII) files: Yes* Comma Separated Values (CSV): Yes* Tab Delimited (ASCII) files: Yes* Comma and Tab-delimited ASCII Files: Yes",
-    "feedback": "Yes. The format loaded are correct."
-  },
-  {
-    "question": "Can I export an image file?",
-    "response": "Yes, you can export an image file. The available formats are:- TIFF (Tagged Image Format)- SVG (Scaleable Vector Graphics)",
-    "feedback": "The correct file formats also include:\nCGM - Computer Graphics Metafiles (Binary format)\nWMF - Standard Windows Metafile\nPlaceable WMF\nWMF - Metafile Picture to Clipboard\nEMF - Enhanced Metafile\nEMF - Enhanced Metafile using Screen Settings\nEMF - Enhanced Metafile to clipboard"
+    "model-name": "llama3.2",
+    "question": "How many curves can I plot in GEO?",
+    "response": "According to the document \"GEO Limits\", the maximum number of curves that can be plotted in GEO is 450.",
+    "feedback": "A correct and precise answer to this question.",
+    "rating-score": 10
   }
 ]
