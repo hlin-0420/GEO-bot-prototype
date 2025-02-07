@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Response
+from flask import Flask, request, jsonify, render_template, Response, send_from_directory
 import logging
 import os
 import threading
@@ -91,7 +91,6 @@ def calculate_reward(feedback_data):
 
 # initialise a default name for the models. 
 selected_model_name = "llama3.2:latest"
-rating_score = 5 # set a default rating score. 
 
 class OllamaBot:
     def __init__(self):
@@ -219,6 +218,7 @@ class OllamaBot:
     
     def update_training(self, data_string):
         
+        print(f"Received Feedback: \n\"{data_string}\"\n")
         data_document = Document(
             page_content=data_string
         )
@@ -321,14 +321,18 @@ def append_feedback(feedback_entry, filename="feedback_dataset.json"):
 
     except Exception as e:
         print(f"Error while appending feedback: {e}")
-        
-@app.route("/detailed-feedback", methods=["POST"])
-def detailed_feedback():
-    global rating_score
-    
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/submit-feedback", methods=["POST"])
+def submitFeedback():
     try:    
+        global selected_model_name
         data = request.json
         details = data.get("details")
+        rating = data.get("rating")
         response = data.get("response")
         question = data.get("question")
 
@@ -336,10 +340,11 @@ def detailed_feedback():
             return jsonify({"error": "Both feedback details and question details are required"}), 400
 
         feedback_entry = {
+            "model-name": selected_model_name,
             "question": question,
             "response": response,
             "feedback": details,
-            "rating-score": rating_score
+            "rating-score": rating
         }
 
         append_feedback(feedback_entry)
@@ -358,29 +363,8 @@ def detailed_feedback():
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:
-        app.logger.error(f"Error in /detailed-feedback endpoint: {str(e)}")
+        app.logger.error(f"Error in /submit-feedback endpoint: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
-    
-@app.route("/submit-rating", methods=["POST"])
-def submit_rating():
-    global rating_score
-    
-    data = request.get_json()
-    rating = data.get("rating")
-
-    if rating is None or not (1 <= int(rating) <= 10):
-        return jsonify({"error": "Invalid rating. Please provide a value between 1 and 10."}), 400
-
-    print(f"Received rating: {rating}")
-    
-    rating_score = rating # initialises a rating score. 
-
-    return jsonify({"message": f"Rating {rating} submitted successfully."}), 200
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -469,6 +453,14 @@ def update_model_name():
     selected_model_name = model_name
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
+
+@app.route('/feedback')
+def feedback():
+    return render_template('feedback.html')
+
+@app.route('/feedback_dataset.json')
+def feedback_data():
+    return send_from_directory('.', 'feedback_dataset.json')
 
 if __name__ == "__main__":
     app.run(debug=True)
