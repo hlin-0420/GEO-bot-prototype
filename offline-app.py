@@ -248,18 +248,23 @@ class OllamaBot:
             
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
-            embedding=OpenAIEmbeddings(openai_api_key="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"),
+            embedding=OpenAIEmbeddings(
+                model="text-embedding-ada-002",
+                openai_api_key="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"
+            ),
         )
         retriever = vectorstore.as_retriever(k=4)
             
         prompt = PromptTemplate(
-            template="""You are an assistant for question-answering tasks.
-            Use the following documents as context to help with answering the question.
-            If you don't know the answer, just say that you don't know.
+            template="""You are an assistant that provides accurate answers based on retrieved documents. 
+            Use only the information provided below:
+            ----------------------------------------------------------------------------------------
+            {documents}
+            ----------------------------------------------------------------------------------------
+            If the information is insufficient, say "I don't know" rather than making up an answer.
+            
             Question: {question}
-            Documents: {documents}
-            Answer:
-            """,
+            Answer: """,
             input_variables=["question", "documents"],
         )
         

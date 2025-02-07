@@ -26,5 +26,12 @@
     "response": "According to the document \"GEO Limits\", the maximum number of curves that can be plotted in GEO is 450.",
     "feedback": "A correct and precise answer to this question.",
     "rating-score": 10
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "How many curves can I plot in GEO?",
+    "response": "According to the provided documentation, the number of curves that can be plotted in GEO is 450. This limit applies within each session of GEO or instance of ODF file.",
+    "feedback": "An accurate and precise response",
+    "rating-score": 10
   }
 ]
