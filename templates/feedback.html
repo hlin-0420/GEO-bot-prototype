@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,6 +40,7 @@
         }
         th {
             background-color: #f4f4f4;
+            cursor: pointer;
         }
         tr:hover {
             background-color: #f9f9f9;
@@ -50,29 +51,44 @@
             try {
                 const response = await fetch('feedback_dataset.json'); // Fetch the JSON data
                 const feedbackData = await response.json();
-
-                const tableBody = document.getElementById('feedback-table-body');
-
-                feedbackData.forEach((entry, index) => {
-                    const row = document.createElement('tr');
-
-                    row.innerHTML = `
-                        <td>${index + 1}</td>
-                        <td>${entry["model-name"]}</td>
-                        <td>${entry.question}</td>
-                        <td>${entry.response}</td>
-                        <td>${entry.feedback}</td>
-                        <td>${entry["rating-score"]}</td>
-                    `;
-
-                    tableBody.appendChild(row);
-                });
+                renderTable(feedbackData);
             } catch (error) {
                 console.error('Error loading feedback data:', error);
             }
         }
 
-        window.onload = loadFeedbackData; // Load data on page load
+        function renderTable(data) {
+            const tableBody = document.getElementById('feedback-table-body');
+            tableBody.innerHTML = '';
+            
+            data.forEach((entry, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${entry["model-name"]}</td>
+                    <td>${entry.question}</td>
+                    <td>${entry.response}</td>
+                    <td>${entry.feedback}</td>
+                    <td>${entry["rating-score"]}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById('feedback-table');
+            let rows = Array.from(table.rows).slice(1);
+            
+            let sortedRows = rows.sort((a, b) => {
+                let valA = a.cells[columnIndex].innerText.toLowerCase();
+                let valB = b.cells[columnIndex].innerText.toLowerCase();
+                return valA.localeCompare(valB);
+            });
+            
+            sortedRows.forEach(row => table.appendChild(row));
+        }
+
+        window.onload = loadFeedbackData;
     </script>
 </head>
 <body>
@@ -83,15 +99,15 @@
 
     <div class="content">
         <h1>Feedback Data</h1>
-        <table>
+        <table id="feedback-table">
             <thead>
                 <tr>
-                    <th>Question Number</th>
-                    <th>Model Type</th>
-                    <th>Question</th>
-                    <th>Response</th>
-                    <th>Feedback</th>
-                    <th>Rating Score</th>
+                    <th onclick="sortTable(0)">Question Number</th>
+                    <th onclick="sortTable(1)">Model Type</th>
+                    <th onclick="sortTable(2)">Question</th>
+                    <th onclick="sortTable(3)">Response</th>
+                    <th onclick="sortTable(4)">Feedback</th>
+                    <th onclick="sortTable(5)">Rating Score</th>
                 </tr>
             </thead>
             <tbody id="feedback-table-body">
