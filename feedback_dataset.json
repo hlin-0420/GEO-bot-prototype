@@ -1,37 +1,23 @@
 [
   {
-    "model-name": "deepseek",
-    "question": "What is an ODT (output database type) file?",
-    "response": "An ODT (Output Database Type) file is a compact database file created by GEO that contains all information needed for rapid recall of data relating to a particular well. It includes various components such as loaded curve data, layout-related information, geological interpretation data, user-inputted information, libraries and fonts, embedded objects, and links to external documents.",
-    "feedback": "",
-    "rating-score": 5
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "What is an ODT?",
-    "response": "Based on the retrieved documents, I can tell you that an ODT (OpenDocument Template File) is a type of file format used for creating templates in OpenDocument Format. It allows users to save their preferred format as a template, which can be reused thereafter.An ODT file contains all the constituents of an ODF (OpenDocument Format) file, including library files, plot objects, and ini file settings. This makes it a powerful tool when a final log format has been approved.In other words, an ODT is a customizable template that incorporates various components of an ODF file, making it easier to create and reuse templates in the future.",
-    "feedback": "An ODT is an Output Database Type in GEO.",
-    "rating-score": 2
-  },
-  {
     "model-name": "deepseek1.5",
-    "question": "How many curves can I plot in GEO?",
-    "response": "According to the document \"GEO Limits\", the maximum number of curves that can be plotted in GEO is 450.",
-    "feedback": "An accurate and precise answer provided.",
+    "question": "What is an ODT (Output Database Type) file in GEO?",
+    "response": "An ODT (Output Database Type) file in GEO is a powerful tool that contains all required components such as headers, tables, and lithology, and is used to create a final log format after it has been approved. It will always contain library information, view file contents, and ini file settings.",
+    "feedback": "This provides an accurate description of an ODT file.",
     "rating-score": 10
   },
   {
     "model-name": "llama3.2",
-    "question": "How many curves can I plot in GEO?",
-    "response": "According to the document \"GEO Limits\", the maximum number of curves that can be plotted in GEO is 450.",
-    "feedback": "A correct and precise answer to this question.",
-    "rating-score": 10
+    "question": "What is an ODT (Output Database Type) file in GEO?",
+    "response": "I don't know. The provided documents do not mention an ODT (Output Database Type) file in GEO. However, they do mention an Output Database File (ODF), which seems to be the correct term.",
+    "feedback": "You should be able to infer what I am referring to since sometimes a user might not provide the entire term accurately.",
+    "rating-score": 4
   },
   {
-    "model-name": "deepseek1.5",
-    "question": "How many curves can I plot in GEO?",
-    "response": "According to the provided documentation, the number of curves that can be plotted in GEO is 450. This limit applies within each session of GEO or instance of ODF file.",
-    "feedback": "An accurate and precise response",
+    "model-name": "openai",
+    "question": "What is an ODT (Output Database Type) file in GEO?",
+    "response": "An ODT (Output Database Type) file in GEO is a powerful tool that contains all required components such as headers, tables, and lithology, and is used to create a final log format after it has been approved. It will always contain library information, view file contents, and ini file settings.",
+    "feedback": "This provides an accurate description of an ODT file.",
     "rating-score": 10
   }
 ]
