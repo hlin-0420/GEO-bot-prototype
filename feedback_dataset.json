@@ -19,5 +19,68 @@
     "response": "An ODT (Output Database Type) file in GEO is a powerful tool that contains all required components such as headers, tables, and lithology, and is used to create a final log format after it has been approved. It will always contain library information, view file contents, and ini file settings.",
     "feedback": "This provides an accurate description of an ODT file.",
     "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is the limit on the number of curves?",
+    "response": "I don't know. The provided information only mentions the limit for a single curve, stating that it can wrap a maximum of 50 times. It does not provide information about the limit for the total number of curves.",
+    "feedback": "The limit on the number of curves in GEO is 450",
+    "rating-score": 1
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "What is the limit on the number of curves?",
+    "response": "The limit on the number of curves in GEO is 450.",
+    "feedback": "Thank you for providing an accurate response on the limit to the number of curves in GEO.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "openai",
+    "question": "What is the limit on the number of curves?",
+    "response": "The limit on the number of curves in GEO is 450.",
+    "feedback": "This is a correct answer for the limits on the number of curves in GEO.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "Where can you view the mouse pointer depth?",
+    "response": "I don't know.",
+    "feedback": "The help guide contains the information for viewing the mouse pointer depth.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "Where can you view the mouse pointer depth?",
+    "response": "You can view the mouse pointer depth in the Status Bar.",
+    "feedback": "The response was correct.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "openai",
+    "question": "Where can you view the mouse pointer depth?",
+    "response": "You can view the mouse pointer depth in the Status Bar.",
+    "feedback": "Accurate description of the response.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "Can I load a text file in GEO?",
+    "response": "Yes, GEO can load several different types of ASCII files, including tab-delimited and space-delimited files. However, it does not explicitly mention loading a plain text file.",
+    "feedback": "In addition to these files, also csv (comma-separated value) files can be loaded.",
+    "rating-score": 6
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "Can I load a text file in GEO?",
+    "response": "Yes, GEO can load several different types of ASCII files, including tab-delimited and space-delimited files. However, it does not explicitly mention loading a plain text file (i.e., comma-delimited).",
+    "feedback": "Got some of the responses correct about the types of text files loaded.",
+    "rating-score": 6
+  },
+  {
+    "model-name": "openai",
+    "question": "Can I load a text file in GEO?",
+    "response": "Yes, GEO can load several different types of ASCII files, including tab-delimited and space-delimited files. However, it does not explicitly mention loading a plain text file (i.e., comma-delimited).",
+    "feedback": "Comma-, tab-, and space- separated files can be loaded in GEO.",
+    "rating-score": 4
   }
 ]
