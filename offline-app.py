@@ -10,11 +10,29 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SKLearnVectorStore
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 import json
+import openai
+from llama_index.readers.file.flat import FlatReader
+from llama_index.core.node_parser.relational import UnstructuredElementNodeParser 
 from sentence_transformers import SentenceTransformer, util
+import nest_asyncio
+from pathlib import Path
+import pickle
+import uuid
+from llama_index.core.retrievers import RecursiveRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core import VectorStoreIndex
+
+nest_asyncio.apply()
+
+reader = FlatReader()
+node_parser = UnstructuredElementNodeParser()
+
+os.environ["OPENAI_API_KEY"] = "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"
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -122,7 +140,7 @@ class OllamaBot:
         
         self.web_documents.append(document)
 
-    def _list_htm_files(self):
+    def _list_htm_files(self, file_format):
         """
         Recursively finds all .htm files in the base directory and its subdirectories.
         
@@ -132,7 +150,7 @@ class OllamaBot:
         htm_files = []
         for root, _, files in os.walk(self.base_directory):
             for file in files:
-                if file.endswith(".htm"):
+                if file.endswith(file_format):
                     relative_path = os.path.relpath(os.path.join(root, file), start=self.base_directory)
                     htm_files.append(self.base_directory + "/" + relative_path)
         return htm_files
@@ -141,67 +159,43 @@ class OllamaBot:
         """
         Load and process all .htm files from the base directory.
         """
-        htm_files = self._list_htm_files()
-        logging.info(f"Found {len(htm_files)} .htm files.")
+        htm_files = self._list_htm_files(".htm")
+        print(f"Found {len(htm_files)} .htm files.")
 
         for file_path in htm_files:
             try:
-                with open(file_path, encoding="utf-8") as file:
-                    content = file.read()
-                    
-                    # ignore the redundant header section from content
-                    content = content[content.find("<body>")+6:content.find("</body>")]
-                    
-                    soup = BeautifulSoup(content, "html.parser")
-                    
-                    page_text = soup.get_text()
-                    page_links = [a['href'] for a in soup.find_all('a', href=True)]
-                    
-                    page_data = {
-                        'text': page_text,
-                        'link': page_links
-                    }
-                    
-                    document = Document(
-                        page_content=page_data['text'],
-                        metadata={
-                            'links': page_data['link'],
-                        }
-                    )
-                    
-                    self.web_documents.append(document)
-                    
-                    if soup.find("table"):
-                        
-                        table_data = []
-                        
-                        for table in soup.find_all('table'):
-                            rows = table.find_all('tr')
-                            
-                            for row in rows:
-                                cols = row.find_all("td")
-                                cols = [col.get_text(strip=True) for col in cols]
-                                if all(not col for col in cols):
-                                    continue
-                                # if the column contains "back" and "forward" - skip
-                                if cols[0] == "Back" and cols[1] == "Forward":
-                                    continue                            
-                                table_data.append(cols)
-                                
-                        if len(table_data) > 1:
-                            
-                            table_headings = table_data[0]
-                            table_data = table_data[1: ]
-                                    
-                            table_data_df = pd.DataFrame(table_data)
-                            
-                            table_data_df.columns = table_headings
-                            
-                            self.contents.append(table_data_df.to_string())
+                with open(file_path, "r", encoding="utf-8") as f:
+                    soup = BeautifulSoup(f, "html.parser")
 
-                    self.contents.append(content)
+                text = soup.get_text(separator="\n").strip()  # Extract text content from HTML
+
+                if not text:
+                    logging.warning(f"Skipping {file_path} as it contains no readable text.")
+                    continue  # Skip empty files
+
+                directory = os.path.dirname(file_path)
+                file_name = os.path.splitext(os.path.basename(file_path))[0]
+
+                if file_path.endswith("GEO_Limits.htm"):
+                    print(f"File name: \"{file_name}.\"")
+
+                document = Document(page_content=text)  # Wrap extracted text in a Document
+                
+                if not os.path.exists(directory + "/" + file_name + ".pkl"):
+                    raw_nodes = node_parser.get_nodes_from_documents([document])  # Ensure input is a list
+                    pickle.dump(raw_nodes, open(directory + "/" + file_name + ".pkl", "wb"))
+                else:
+                    raw_nodes = pickle.load(open(directory + "/" + file_name + ".pkl", "rb"))
+                
+                base_nodes, node_mappings = node_parser.get_base_nodes_and_mappings(
+                    raw_nodes
+                )
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
+            except Exception as e:
+                continue
+
+        print("Node initialization is successful.")
 
     def add(self, content):
         """
@@ -227,7 +221,7 @@ class OllamaBot:
 
     def query(self, question):
         """
-        Query the bot and get a response.
+        Query the bot and get a response using multiple pickle files.
 
         Args:
             question (str): The user's question.
@@ -236,48 +230,46 @@ class OllamaBot:
             str: The response generated by the Ollama model.
         """
         global selected_model_name
-        logging.info(f"Processing question: {question}")
-
-        print(f"The selected Model Name for this training is {selected_model_name}")
-        # Initialize a text splitter with specified chunk size and overlap
-        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=250, chunk_overlap=0
-        )
-        # Split the documents into chunks
-        doc_splits = text_splitter.split_documents(self.web_documents)
-            
-        vectorstore = SKLearnVectorStore.from_documents(
-            documents=doc_splits,
-            embedding=OpenAIEmbeddings(openai_api_key="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"),
-        )
-        retriever = vectorstore.as_retriever(k=4)
-            
-        prompt = PromptTemplate(
-            template="""You are an assistant for question-answering tasks.
-            Use the following documents as context to help with answering the question.
-            If you don't know the answer, just say that you don't know.
-            Question: {question}
-            Documents: {documents}
-            Answer:
-            """,
-            input_variables=["question", "documents"],
-        )
         
-        # save the prompt template to a txt file
-        prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
-        with open("prompt_visualisation.txt", "w", encoding="utf-8") as file:
-            file.write(prompt_text)
+        pkl_filepaths = self._list_htm_files(".pkl")
+        
+        all_base_nodes = []
+        all_node_mappings = {}
 
-        llm_model = self.llm_model
-               
-        rag_chain = prompt | llm_model | StrOutputParser()
-            
-        rag_application = RAGApplication(retriever, rag_chain)
-            
-        response = rag_application.run(question)
+        # Process multiple pickle files
+        for pkl_filepath in pkl_filepaths:
+            try:
+                raw_node = pickle.load(open(pkl_filepath, "rb"))
+                base_nodes, node_mappings = node_parser.get_base_nodes_and_mappings(raw_node)
+                
+                all_base_nodes.extend(base_nodes)
+                all_node_mappings.update(node_mappings)
+            except Exception as e:
+                print(f"Error loading {pkl_filepath}: {e}")
 
-        return response
-
+        if not all_base_nodes:
+            return "No relevant data found in pickle files."
+        
+        # Construct top-level vector index + query engine using all gathered nodes
+        vector_index = VectorStoreIndex(all_base_nodes)
+        vector_retriever = vector_index.as_retriever(similarity_top_k=4)
+        vector_query_engine = vector_index.as_query_engine(similarity_top_k=4)
+        
+        recursive_retriever = RecursiveRetriever(
+            "vector",
+            retriever_dict={"vector": vector_retriever},
+            node_dict=all_node_mappings,
+            verbose=True,
+        )
+        query_engine = RetrieverQueryEngine.from_args(recursive_retriever)
+        
+        response = query_engine.query(question)
+        
+        print("*" * 100)
+        print(f"This response is {response}")
+        print("*" * 100)
+        
+        return str(response)
 
 ai_bot = OllamaBot()
 pending_responses = {}

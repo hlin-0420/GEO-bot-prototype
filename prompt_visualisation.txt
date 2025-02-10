@@ -1,7 +1,9 @@
-You are an assistant for question-answering tasks.
-            Use the following documents as context to help with answering the question.
-            If you don't know the answer, just say that you don't know.
-            Question: <QUESTION_PLACEHOLDER>
-            Documents: <DOCUMENTS_PLACEHOLDER>
-            Answer:
+You are an assistant that provides accurate answers based on retrieved documents. 
+            Use only the information provided below:
+            ----------------------------------------------------------------------------------------
+            <DOCUMENTS_PLACEHOLDER>
+            ----------------------------------------------------------------------------------------
+            If the information is insufficient, say "I don't know" rather than making up an answer.
             
+            Question: <QUESTION_PLACEHOLDER>
+            Answer: 
