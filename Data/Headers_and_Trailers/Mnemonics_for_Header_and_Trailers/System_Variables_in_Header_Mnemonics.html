@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "14.1.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>System Variables in Header Mnemonics</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="System Variables in Header Mnemonics">
+        <span>System Variables in Header Mnemonics</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 65px;"/>
+      <col style="width: 37px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>System Variables in Header Mnemonics</h1>
+  <p><a class="dropspot" href="Mnemonics_in_G.htm">Header mnemonics</a> can be defined as <strong>System </strong><strong>Variables</strong>. </p>
+  <p> </p>
+  <p>System Variables allow you to present a <strong>Mnemonic Identifier</strong> (ID) with different <strong>Values</strong>, in each layout.</p>
+  <p> </p>
+  <p>This is useful for mnemonics such as Scale data, which may be 1:200 in the litholog and 1:500 in the Complog.</p>
+  <p> </p>
+  <p>The mnemonic Value takes it&#39;s data from the current layout, and is not manually typed.</p>
+  <p> </p>
+  <p> </p>
+  <p><strong>Types of System Variable</strong></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse: collapse; width: 738px;">
+    <colgroup>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="">
+          <p><u><strong>System Variable</strong></u></p>
+        </td>
+        <td>
+          <p><u><b>Information Source</b></u></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Universal Well ID (UWI)</p>
+        </td>
+        <td>
+          <p><strong>Universal </strong><strong>Well </strong><strong>ID </strong>in <strong>Other </strong>tab of <strong>Global </strong><strong>Settings</strong></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>User Name</p>
+        </td>
+        <td>
+          <p><strong>User </strong><strong>Name </strong>entered when logging onto GEO.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Mode (MD/TVD/TWT)</p>
+        </td>
+        <td>
+          <p><strong>Primary </strong><strong>Index </strong>defined in <strong>Depth </strong>tab</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Description</p>
+        </td>
+        <td>
+          <p><strong>Plot </strong><strong>Description </strong>in <strong>Other </strong>tab of <strong>Global </strong><strong>Settings </strong>(on <strong>Edit </strong>tab, select <strong>Global </strong><strong>Settings</strong>)</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Layout Name</p>
+        </td>
+        <td>
+          <p>Layout name  from layout drop list</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Document File Name</p>
+        </td>
+        <td>
+          <p><strong>File </strong><strong>name</strong> given to ODF.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Scale</p>
+        </td>
+        <td>
+          <p><strong>Plot </strong><strong>Scale </strong>defined on <strong>Home </strong>tab</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Index Start Value</p>
+        </td>
+        <td>
+          <p><strong>From </strong>depth in <strong>Depth </strong>tab</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Index End Value</p>
+        </td>
+        <td>
+          <p><strong>To </strong>depth in <strong>Depth </strong>tab</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Plot Index Units</p>
+        </td>
+        <td>
+          <p><strong>Index Units </strong>(<strong>Feet </strong>or <strong>Meters</strong>)<strong> </strong>in <strong>Depth </strong>tab</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Document Save Date/Time</p>
+        </td>
+        <td>
+          <p>The date (and/or) time when the ODF file is saved.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p>Print Date/Time</p>
+        </td>
+        <td>
+          <p>The date (and/or) time when the ODF file is printed.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p><strong>Note</strong>. A mnemonic can only be assigned as a System Variable in GEOVectdraw. </p>
+  <p> </p>
+  <p> </p>
+  <p><strong>Optional Formatting Specifications</strong></p>
+  <p>Some System Variables have <span class="hcp4" style="font-weight:bold">optional</span> <span class="hcp4" style="font-weight:bold">formatting</span> <span class="hcp4" style="font-weight:bold">specifica</span><span class="hcp4" style="font-weight:bold">tions</span> such as <span class="hcp4" style="font-weight:bold">Short</span> and <span class="hcp4" style="font-weight:bold">Long</span> value.</p>
+  <p>For example, the <strong>Plot </strong><strong>Scale </strong><strong>value </strong>can be viewed as short (1:500) or long (12 Inches = 500ft). Or, the <strong>Document </strong><strong>File Name</strong> can be viewed as short (Well AABB.ODF) or long (C:\My documents\My Wells\Well AABB.ODF).</p>
+  <p>The optional formatting specifications are listed below.</p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse:collapse; width:100%">
+    <colgroup>
+      <col style="width: 175px;"/>
+      <col style="width: 1115px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><strong>Specification</strong></u></td>
+        <td style=""><u><strong>Example</strong></u></td>
+      </tr>
+      <tr>
+        <td style="">Short</td>
+        <td style=""><span>1:500</span> for the plot scale value</td>
+      </tr>
+      <tr>
+        <td style="">Long</td>
+        <td style=""><span>12 Inches = 500 Feet</span> for the plot scale value</td>
+      </tr>
+      <tr>
+        <td style="">Number of decimal points</td>
+        <td style="">(<span>0</span>,<span>1</span>,<span>2</span> or <span>3</span>) for the depth mode plot</td>
+      </tr>
+      <tr>
+        <td style="">Date </td>
+        <td style=""><span>dd/MM/yyyy</span> for the document print date</td>
+      </tr>
+      <tr>
+        <td style="">Time </td>
+        <td style=""><span>HH:mm</span> for the document print time, where HH is hour and mm is for minutes</td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p> </p>
+  <p><strong>Add System Variable in GEOVectdraw</strong></p>
+  <ol class="Decimal">
+    <li>Open the Header in GEOVectdraw.</li>
+    <li>Use the <strong><span>Mnem Desc/Val/Unit</span></strong> tool to place the mnemonic.  The <strong><span>Mnemonic (Group) Properties</span></strong> opens.</li>
+    <li>Enter the following details
+      <ol>
+        <li><strong>Mnemonic</strong></li>
+        <li><strong>Mnemonic Description </strong></li>
+        <li><strong>Mnemonic Value </strong></li>
+        <li>Select <strong>System </strong><strong>Variable </strong>in the <strong>Mnemonic </strong><strong>Value </strong>sections. The System Variables will open.
+          <ol>
+            <li>Select the required system variable from the list.</li>
+            <li>Define the <strong>Optional </strong><strong>Formatting </strong>if required.</li>
+            <li>Click <strong>OK</strong></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li>Click <strong>OK</strong></li>
+    <li>Save the changes and return to GEO.</li>
+  </ol>
+  <p> </p>
+  <p><strong>Tip</strong>. You can change the type of system variable assigned to a mnemonic in GEO.</p>
+  <ol class="Decimal">
+    <li>Right click on the mnemonic Value and select <strong>Choose </strong><strong>S</strong><span class="hcp4" style="font-weight:bold"><strong>ystemVariable </strong>for Mnemonic</span>. The System Variable dialog box will open.</li>
+    <li>Select the new system variable, then <strong>OK</strong>.</li>
+  </ol>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 65px;"/>
+      <col style="width: 37px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

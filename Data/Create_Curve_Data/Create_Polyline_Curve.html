@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "7.0_10";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Polyline Curve</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Polyline Curve">
+        <span>Create Polyline Curve</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create Polyline Curve</h1>
+  <p>Create Polyline Curves - user defined curves manually shaped with the Polyline Curve tool. </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Pore Pressure</strong> tab, select <strong>Polyline Curve</strong>, then <strong>Create New Polyline Curve</strong>. The Create Polyline Curve dialog box will open. </p>
+    </li>
+    <li>
+      <p>Enter the Polyline <strong>Curve Mnemonic</strong> and <strong>Curve Name</strong>.</p>
+    </li>
+    <li>
+      <p>If the curve mnemonic has defined <a class="dropspot" href="../Curve_Display/Apply_Curve_Display_Settings_(Defaults).htm">curve defaults</a>, the <strong>Apply Defaults </strong>button will be enabled. Click this to apply the curve defaults. </p>
+    </li>
+    <li>
+      <p>In<strong> Display on Track </strong>select the track you wish the Polyline Curve to display on. </p>
+    </li>
+    <li>
+      <p>Check/uncheck the <strong>Display Curve on Layout </strong>tick box to display/hide the curve on the current layout.</p>
+    </li>
+    <li>
+      <p>Enter the <strong>Data Value at Left Track Edge </strong>and <strong>Data Value at Right Track Edge</strong>.</p>
+    </li>
+    <li>
+      <p>To generate the Polyline Curve, click <strong>OK </strong>- the new curve will occupy the next [Unused] curve number and be listed from the Polyline Curve tool. Or click <strong>Cancel </strong>to exit the dialog box without generating a Polyline Curve. </p>
+    </li>
+    <li>
+      <p>Select<strong> Polyline Curve</strong> – the track that the new polyline curve was assigned to (step 4) will be listed. select this, then the new polyline curve.<br/>
+        The cursor will become a plus symbol and a jagged line <img src="../assets/images/image57.png"/></p>
+    </li>
+    <li>
+      <p>Place the cursor where you want the polyline to start and left click. Move the cursor to the next anchor point and left click again. </p>
+    </li>
+    <li>
+      <p>Adjust the data points by dragging them into the new position. </p>
+    </li>
+    <li>
+      <p>To turn off Polyline mode, hit the <strong>Esc </strong>key or click on the ribbon.</p>
+    </li>
+  </ol>
+  <p><strong>Note</strong>. The Polyline Curve display can be edited in the Curve Settings sidebar.</p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

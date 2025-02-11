@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "4.0_5";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Global Settings for Depth Plots</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Global Settings for Depth Plots">
+        <span>Global Settings for Depth Plots</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Global Settings for Depth Plots</h1>
+  <p>The Global Settings - which control the scale and log appearance attributes - can be accessed by selecting <strong>Global </strong><strong>Settings </strong>on the <strong>Edit </strong>tab.</p>
+  <p> </p>
+  <p>The Global Settings content will change depending on if your log is plotted against depth or time.</p>
+  <p>The following information is for logs plotted against Depth.</p>
+  <p>To learn about the Global Settings of logs plotted against Time, click <a class="dropspot" href="Global_Settings_for_Date-Time_Plots.htm">here</a>. </p>
+  <p> </p>
+  <p> </p>
+  <p><strong>Depth Range and Zooms Tab</strong></p>
+  <p>The first tab in global settings is the <strong>Depth Range &amp; Zooms </strong>tab. </p>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>Plot Depths from</strong> and <strong>to </strong>- Define the depth range of the log displayed on screen and also in print. <br/>
+        <strong>Note</strong>. Setting these values to the bounds of the depth range you want to display or print does NOT of course remove from the ODF database, any stored data for the range outside of the bounds you have set. The active view settings are merely altered (until reset) to limit the scrollable or printable section of log to that depth range specified.<br/>
+        <strong>Note</strong>. If you specify the <strong>Plot Depths From</strong> as 0, when a data set starting from 1000 ft is loaded, the plot will start from 1000 ft, instead of 0 ft. However, if the <strong>Plot Depths From</strong> is greater than 0 ft (but less than 1000 ft), the plot will start from this specified depth, when the same data set (also started from 1000 ft) is loaded.<br/>
+        <br/>
+        <strong></strong>
+      </p>
+    </li>
+    <li>
+      <p><strong>Primary </strong>and<strong> Alternate Depth Display Attributes</strong> - You can display up to two depth systems on the plot; a <strong>Primary </strong>and <strong>Alternate </strong>depth system.<span style="font-size: 14px;"><strong></strong></span></p>
+    </li>
+    <li>
+      <p><span style="font-size: 14px;"><strong>Orientation </strong>- Choose the orientation of both primary and alternate depth values from the drop list - it  can be set to </span><strong style="font-size: 14px;">Left to Right</strong><span style="font-size: 14px;">, </span><strong style="font-size: 14px;">Top to Bottom</strong><span style="font-size: 14px;"> or </span><strong style="font-size: 14px;">Bottom to Top.</strong><br/>
+        <strong></strong>
+      </p>
+    </li>
+    <li>
+      <p><strong>Font </strong>- Specify the depth value font.</p>
+    </li>
+  </ul>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>Primary </strong>and <strong>Alternate Depth System</strong> - Assign the depth system - <strong>MD</strong>, <strong>TVD</strong>, <strong>T</strong><strong>WT </strong>or <strong>VSEC </strong>- of the Primary and Alternate Depth System.<strong></strong></p>
+    </li>
+    <li>
+      <p><strong>TVD </strong>- If a TVD curve has been assigned to be used for TVD conversion, you can control how and when it displays.</p>
+      <ul>
+        <li>
+          <p><strong>TVDSS </strong><strong>Correction </strong>- Enter a sub sea correction to display the TVD depth system as TVDSS.</p>
+        </li>
+        <li>
+          <p><strong>Display TVDSS as Negative (-)</strong> - Check to display the TVDSS values with a minus sign before the depth value.</p>
+        </li>
+        <li>
+          <p><strong>Use the TVDSS Correction </strong>- Check to display the TVDSS values on the plot. This will replace the TVD value displayed on the plot.</p>
+        </li>
+        <li>
+          <p><strong>Display TVD values every MD for Highly Deviated Sections </strong>- Check to display TVD/TVDSS values for every MD values available in highly deviated sections of the well.</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>Track Edge</strong> - Choose to display the track edge thickness as <strong>Normal</strong>, <strong>Medium </strong>or <strong>Wide</strong>.<br/>
+        <strong><span>Note</span></strong><span>.</span> The actual appearance of <span>Normal</span>, <span>Medium</span> and <span>Wide</span> widths are defined by the settings in <span><strong>Display </strong><strong>Pen </strong><strong>Widths</strong></span><strong> </strong>in the <strong><span>Options</span> </strong>dialog box on the <strong>Edit </strong>tab.
+      </p>
+    </li>
+    <li>
+      <p><strong>Center Line or Log Decade</strong> - Choose to display the track Centre Line (if displaying - controlled in the <strong>Track Settings</strong> dialog box) or Log Decade thickness as <strong>Normal </strong>or <strong>Medium.</strong></p>
+    </li>
+    <li>
+      <p><strong></strong><strong>Vertical Grid </strong>- Control the <strong>Color</strong> of the vertical grid lines.<br/>
+        <br/>
+        <strong></strong>
+      </p>
+    </li>
+    <li>
+      <p><strong>Vertical Micro Grid (Log) </strong><strong></strong></p>
+      <ul>
+        <li>
+          <p><strong>Color </strong>- Choose the color of the mirco grid of logarithmic tracks.<strong></strong></p>
+        </li>
+        <li>
+          <p><strong>Solid </strong>or <strong>Dashed </strong><strong>Line </strong>radio buttons -  Choose the micro grids to be solid or dashed. <br/>
+            <strong></strong>
+          </p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Zooms </strong><strong></strong></p>
+      <ul>
+        <li>
+          <p><strong>Displa</strong><strong>y X</strong> and <strong>Y</strong> - Set the Display (screen) zoom. <strong></strong></p>
+        </li>
+        <li>
+          <p><strong>Print</strong> <strong>X</strong> and <strong>Y</strong> - Set the Print zoom. <br/>
+            <strong>Note</strong>. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1. <br/>
+            <strong>Note</strong>. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.<br/>
+            <strong>Tip</strong>. If you increase the <strong>Print </strong><strong>Zoom </strong>factor (for both X and Y) to 1.5, to maintain the log scale as 1:500 at the hard copy, you need to change the plot vertical scale to 1 : (500 / 1.5) or 1 : 333.
+          </p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Horizontal Tracktext Font Scaling</strong> - When the plot scale changes, it can cause horizontal text entries (normally descriptions) to overlap and become cut off, preventing the whole text entry from being viewed. To prevent this, use the following controls to resize the text when the scale changes.<strong></strong></p>
+      <ul>
+        <li>
+          <p><strong>Current Scale Factor</strong> - Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale. <strong></strong></p>
+        </li>
+        <li>
+          <p><strong>Compute whenever Plot Scale changes </strong>- Check to automatically change the text font size when the scale changes. <br/>
+            <br/>
+            <strong></strong>
+          </p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Vertical Track Text Font Scale</strong> - When the plot scale changes, it can cause vertical track text entries (normally the chrono and litho stratigraphy) to overlap. To prevent this, enter the factor by which the vertical track text has to be reduced to compensate for the changed scale. </p>
+    </li>
+  </ul>
+  <p> </p>
+  <p> </p>
+  <p><strong>Scale and Grid Tab</strong></p>
+  <p>The second tab in global settings is the <strong>Scale &amp; Grid</strong> tab.</p>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>S</strong><strong>elect a Scale Settings - </strong><span style="font-size: 14px;">From the drop list, select a predefined scale or use the boxes below to define a new scale.<br/>
+          <strong>Note</strong>. Any screen unit value used by GEO, will be altered to this chosen unit. This includes the mouse co-ordinate values on the status bar and the track edge position values.</span></p>
+    </li>
+    <li>
+      <p><strong>Screen Units </strong>- Set the screen units to <strong>Inches </strong>(imperial) or <strong>Millimeters </strong>(metric).</p>
+    </li>
+    <li>
+      <p><strong>Index Units</strong> - Set to <strong>Feet </strong>or <strong>Meters</strong>.</p>
+    </li>
+    <li>
+      <p><strong>Display Cutoffs for Scale </strong>- If the scale of the plot is changed considerably, for example a 1:500 plot is converted to 1:10000, many small lithology units and vertical track text elements become compressed and the screen view and prints can appear unclear. To eradicate this, you can specify a minimum depth range display for Lithology and vertical Track Text elements for a selected compressed scale. Any lithology block or vertical track text, whose depth range is less than the cutoff range, will not be displayed at the selected plot scale.</p>
+      <ul>
+        <li>
+          <p><strong>Cutoff Height for Lithology </strong>and <strong>Vertical Track Text</strong> - Enter the minimum depth range for lithology / vertical track text to be displayed.</p>
+        </li>
+        <li>
+          <p><strong>Display </strong><strong>Modifiers </strong>- Check to display modifiers at the compressed scale.</p>
+        </li>
+        <li>
+          <p><strong>Cutoff Weight for Track Text</strong>, <strong>F</strong><strong>ree Format</strong>, <strong>Symbols</strong> - Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>Depth Values</strong> - By default the depth values, which display in the depth track, display every 100ft or 100m. To change this, type the new value here.<br/>
+        <strong>Note</strong>. The value must be a multiple of the <strong>Minor </strong><strong>Grid </strong>interval.
+      </p>
+    </li>
+    <li>
+      <p><b>Minor, Major </b>and <b>Double Major Grid</b> - On the plot, there are <strong>Minor</strong>, <strong>Major </strong>and <strong>Double </strong><strong>Major </strong>horizontal grid lines. The depth interval at which these display can be customized, but their values must be multiples of each other and the <strong>Depth Values.</strong></p>
+      <ul>
+        <li>
+          <p><strong>Minor Grid</strong> -  Enter the minor grid interval here.</p>
+        </li>
+        <li>
+          <p><strong></strong><strong>Major Grid</strong> - Enter the major grid interval here.</p>
+        </li>
+        <li>
+          <p><strong>Double Major Grid</strong> - Enter the double major grid interval here.</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Minor </strong><strong>Grid </strong>attributes</p>
+      <ul>
+        <li>
+          <p><strong>Color</strong> - Choose the color of the minor grid lines.</p>
+        </li>
+        <li>
+          <p><strong>Solid</strong> or <strong>Dashed </strong>radio buttons - Choose for the minor grid line to be solid or dashed.</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Major Grid</strong> attributes</p>
+      <ul>
+        <li>
+          <p><strong>Color </strong>- Choose the color of the major grid lines.</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Double Major Grid</strong> attributes</p>
+      <ul>
+        <li>
+          <p><strong>Color </strong>- Choose the color of the double major grid.</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Cutoff Horizontal Segment Length</strong> - Control the length of the horizontal segments of the <a class="dropspot" href="../Create_Curve_Data/Create_Cutoff_Curve.htm">Cutoff Curves</a>.<br/>
+        A default of -1 takes the horizontal segment from the vertical line to the edge of the track (left image) values greater than 0 will then determine the line length (right image - length define as 0.5inches).<br/>
+        <br/>
+        <img src="../assets/images/Cutoff Horizontal Segment Length.png" style="cursor: nwse-resize;"/>
+      </p>
+    </li>
+  </ul>
+  <p> </p>
+  <p> </p>
+  <p><strong>Other Tab</strong></p>
+  <p>The third tab in global settings is the <strong>Other </strong>tab. </p>
+  <p> </p>
+  <ul class="Disc">
+    <li>
+      <p><strong>Plot Description</strong> - Here you can enter a descriptive text string that is specific to the ODF file. </p>
+    </li>
+    <li>
+      <p><strong>Universal Well ID</strong> - Enter Universal Well ID information.</p>
+    </li>
+    <li>
+      <p><strong>Save Auto Recovery File</strong> - Enter a timing frequency for the autosave feature. By default, this is set to 20 minutes.<br/>
+        At each set time interval, GEO will save a copy of your work-to-date to back-up file in the default or specified Back-up Directory.<br/>
+        Should GEO or your system abnormally terminate (due to power failure or program crash), you will only lose data that has changed since the last auto-save.<br/>
+        You will be presented with the option of re-loading your work from the back-up file on re-launching a session of GEO. On normal termination of the application, the Back-up directory is flushed (deleted), ready for the next session. <br/>
+        <strong>Note</strong>. If the value entered in this box is too small, it may cause inconvenience by frequent interruptions while the software creates a backup, especially when the file is large. On the other hand, if the set time is too large, you may encounter a higher risk of losing more of your work, if the system terminates abnormally. <br/>
+        <strong style="color: #FF0000">Warning</strong>. Do not use this AutoSave feature as the only means of backup for you file. Always manually backup your ODF file to a different media or place of storage.
+      </p>
+    </li>
+    <li>
+      <p><strong>Auto Merge OUFs every</strong> - Enter the frequency (in minutes) at which you want GEO to check for new OUF files and automerge them into the child ODF. Please click <a class="dropspot" href="../Sharing/ODF_Update_File_(OUF))/OUF_Auto_merging.htm">here</a> for further information on this feature.<br/>
+        <strong>Note</strong>. By default, this feature is disabled as the frequency is set at 0 (zero) minutes.
+      </p>
+    </li>
+    <li>
+      <p><b>Setting of Wrap Curves</b> - When a curve that is plotted on a track has a value, which falls outside the scale range assigned for that curve, you may wish to wrap the curve around (i.e. to present the back-up curves). Set the following attributes for wrapped curves.</p>
+      <ul>
+        <li>
+          <p><strong>Maximum number of times to Wrap a Curve </strong>- Set the maximum number of times a curve may wrap around. <br/>
+            <strong>Note</strong>. A curve can wrap a maximum of 50 times. 
+          </p>
+        </li>
+        <li>
+          <p><strong>Automatic Selection of Wrap Pen Type for Curves </strong>- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (in <strong>Display </strong>&gt; <strong>Pens </strong>tab of the <strong>Curve</strong> <strong>Settings </strong>side bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.</p>
+        </li>
+        <li>
+          <p><strong>Automatic Selection of Wrap Pens Color for Curves</strong> - Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, both <span>Automatic selection of Wrap Pen Type and Color for Curves</span> check boxes are cleared or <span>unchecked.</span></p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Allow this ODF to be opened by GEOe-View - </strong>Select to allow data sharing and collaboration with other people using GEOe-View, the free-of-charge file viewer which is downloadable from our website.</p>
+    </li>
+    <li>
+      <p><strong>Ro</strong><strong>tate Zone Report Output display in Horizontal View</strong> - Select to allow zone reports to rotate when the plot is viewed horizontally so that they can be read in the left-right text orientation.</p>
+    </li>
+    <li>
+      <p><strong>Timezone-offset of the well (hours from UTC)</strong> - Enter the time zone offset for the well. When loading data from a WITSML server this offset will be applied. </p>
+    </li>
+    <li>
+      <p><strong>Restrict Index Range for Autoloads to </strong>- Allows you to define the amount of data (in depth terms) that is loaded at any one time into your log, upon autoload.</p>
+    </li>
+    <li>
+      <p><strong>Depth Shift Label Font</strong> - Define the font for the <a class="dropspot" href="../Curve_Shading,_Splicing_and_Depth_Shifting/Curve_Depth_Shifting.htm">Depth Shift</a> labels.</p>
+    </li>
+    <li>
+      <p><strong>Zone Label Font</strong> - Define the font for the Zone labels.</p>
+    </li>
+    <li>
+      <p><strong>Depth Tick Lengths</strong> - Specify the length of depth ticks on the plot.</p>
+      <p>Tick lengths are divided into the same categories as for the Grid lines (see grid line information above in the Scale &amp; Grid tab of Global Settings).</p>
+      <ul>
+        <li>
+          <p><strong>Minor Grid</strong> - Specify the length of the depth tick that corresponds to the minor grid.</p>
+        </li>
+        <li>
+          <p><strong>Major Grid</strong> - Specify the length of the depth tick that corresponds to the major grid.</p>
+        </li>
+        <li>
+          <p><strong>Double Major Grid </strong>- Specify the length of the depth tick that corresponds to the double major grid.</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Legends </strong>- Adjust the Curve and Track legends height.<strong><strong> </strong></strong></p>
+      <ul>
+        <li>
+          <p><strong></strong><strong><strong>Track Legend Height</strong></strong> - Define the height of the track legend. </p>
+        </li>
+        <li>
+          <p><strong>Gap Between Curve Legends</strong> - Define the distance between curve legends.<br/>
+            <strong>Note. </strong>The height and gap unit - mm or inch - depends on the specified screen unit (in Scale &amp; Grid tab).
+          </p>
+        </li>
+        <li>
+          <p><strong>Curve Font</strong> and <strong>Track Font </strong>- Select the preferred font size and style for both the curves and track legends. </p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

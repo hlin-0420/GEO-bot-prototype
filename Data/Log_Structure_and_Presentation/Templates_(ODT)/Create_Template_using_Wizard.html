@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "4.2.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Template using Wizard</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Template using Wizard">
+        <span>Create Template using Wizard</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create Template using Wizard</h1>
+  <p>A template file (.ODT file) can be generated from an <a class="dropspot" href="../../Working_with_Files/Output_Database_File_(ODF).htm">ODF</a> file using the template building wizard.</p>
+  <p> </p>
+  <p>Creating a template from an approved final log ODF, preserves a standard format that can be used for future wells. It will contain the library information (headers, lithology, modifiers, structures and symbols) and view file contents (track layout information, depth and screen units, scale and pen information (optional)). The wizard allows users to include or omit further plot elements from an existing ODF.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>Run a blank session of GEO and from the <strong>GEO </strong>menu select <strong>Template</strong>, then <strong>Create</strong>. The Open dialog box will open.</p>
+    </li>
+    <li>
+      <p>Select the ODF you would like to generate a template from and click <strong>Open</strong>. The wizard will open. <br/>
+        The wizard lists all the information stored in the ODF. <span style="font-size: 14px;"></span><br/>
+        <span style="font-size: 14px;">The </span><span style="font-size: 14px;"><strong>Item </strong><strong>Types</strong></span><span style="font-size: 14px;"><strong> </strong>lists the log elements that may be excluded from the ODT.</span><span style="font-size: 14px;"></span><span style="font-size: 14px;"><br/>
+          The </span><span style="font-size: 14px;"><strong>Item </strong><strong>Deta</strong></span><strong><span style="font-size: 14px;">ils</span></strong><span style="font-size: 14px;"><strong> </strong>field lists the information in the ODF relating to each of the </span><span style="font-size: 14px;">Item Types</span><span style="font-size: 14px;">. If the </span><span style="font-size: 14px;">Item Details</span><span style="font-size: 14px;"> field is empty, there is no information in the ODF relating to that </span><span style="font-size: 14px;">Item Type</span><span style="font-size: 14px;">.</span>
+      </p>
+    </li>
+    <li>
+      <p>By default, all items within the ODF are automatically included when building an template. However, you can choose which <strong>Item </strong><strong>Details </strong>to exclude. Use <strong>Exclude </strong>and <strong>Include </strong>to control the selected items presence in the template. The wizard will then move on to the next <span><strong>Item</strong> <strong>Type</strong></span>.<br/>
+        <br/>
+        <strong>Note</strong>. If you plan to include every Item, on entering the wizard click <strong>Save </strong><strong>As </strong><strong>Template </strong>- all items will automatically be included and you will skip straight to saving the template.<br/>
+        <br/>
+        <strong>Note</strong>. From the <span><strong>Item </strong><strong>Details</strong></span><strong> </strong>field, rather than excluding or including all details, individual or multiple rows can be selected and included or excluded.<br/>
+        <strong></strong><br/>
+        <strong>Note</strong>. Each time <strong><span>Exclude</span> </strong>is clicked, GEO assumes all remaining <span>Item Details</span> should be included for that <span>Item Type</span> (and vice versa).
+      </p>
+    </li>
+    <li>
+      <p>Once the exclusion/inclusion of all item types has been specified, the template will generate and and the template ID box will open.</p>
+    </li>
+    <li>
+      <p>Enter a template ID and click <strong>OK</strong>.</p>
+    </li>
+    <li>
+      <p>The <strong>Save </strong><strong>As </strong><strong>Template </strong>will open. Browse to the relevant directory, specify a <strong>file </strong><strong>name </strong>and <strong>Save</strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p>Each time the ODT is used, and an ODF is generated from the template, the ODT remains unchanged ready for the next well.</p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+
+</body></html>

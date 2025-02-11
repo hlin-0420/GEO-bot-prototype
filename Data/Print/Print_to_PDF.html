@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "15.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Print to PDF</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Print to PDF">
+        <span>Print to PDF</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Print to PDF</h1>
+  <p>The following guidelines are for printing the log to CutePDF writer or Adobe pdf. </p>
+  <p><strong>Note</strong>. Other PDF writers can be used, but the instructions may not be accurate to these applications. </p>
+  <p> </p>
+  <p><strong>Record the dimension of your ODF</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p> In GEO, scroll to the bottom of your document and hover your mouse to the bottom right of the plot.</p>
+    </li>
+    <li>
+      <p>Note the dimensions of the plot in the bottom toolbar. These are the coordinates of your cursor, and therefore the height and width of your print. You will need these to make a custom sized print later.<br/>
+        <img height="219" src="../assets/images/Plot Dimensions1.bmp" width="341"/>
+      </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Select to print from Adobe/CutePDF Writer and create a custom print size</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>GEO </strong>tab, select <strong>Print</strong>.</p>
+    </li>
+    <li>
+      <p>Select <strong>Adobe Print PDF/CutePDF Writer</strong> from the Printer <strong>Name </strong>menu. </p>
+    </li>
+    <li>
+      <p>Select <strong>Properties</strong>. This will open the Adobe PDF/CutePDF Writer Document Properties.</p>
+    </li>
+    <li>
+      <p>On the <strong>Layout </strong>tab, click <strong>Advanced</strong>. This will open the Adobe PDF Converter/Cute PDF Writer Advanced Options.</p>
+    </li>
+    <li>
+      <p>In the <strong>Paper </strong><strong>Size </strong>node, select <strong>PostScript </strong><strong>Custom </strong><strong>Page </strong><strong>Size</strong>. This will open a new window where you can enter the width and height of your plot. </p>
+    </li>
+    <li>
+      <p>Ensure the correct unit is selected, then enter the recorded values noted in step 2 of Record the dimension of your ODF (see above)</p>
+    </li>
+    <li>
+      <p>Click <strong>OK</strong>, then <strong>OK</strong>, then <strong>OK, </strong>to return to the print window.</p>
+    </li>
+    <li>
+      <p>Define an appropriate <strong>Left </strong>and <strong>Right </strong><strong>Margin</strong>. <br/>
+        <span style="font-size: 14px;">You can use</span><span style="font-size: 14px;"> your custom width and height to work out what to put in these boxes by using the total track width at the bottom of the window.<br/>
+          <strong>Note</strong>. Only a small height change of 5mm is required.</span>
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>OK </strong>to print.</p>
+    </li>
+    <li>
+      <p>File Explorer will open. Enter a PDF <strong>Name </strong>and choose a location, then <strong>Save.</strong></p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong></strong></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+
+</body></html>

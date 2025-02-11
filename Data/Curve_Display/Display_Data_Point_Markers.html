@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_9";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Display Data Point Markers</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Display Data Point Markers">
+        <span>Display Data Point Markers</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Display Data Point Markers</h1>
+  <p>Data points in a curve can be marked on the plot. </p>
+  <p><br/>
+    However, since these appear at actual data points, using such markers on a curve with a sample frequency of 0.5 ft (6 inch) on a 1:500 scale would cause the markers to overlap each other.</p>
+  <p><br/>
+    Data point markers are therefore normally used on those data, which may not have a fixed sample frequency, such as shale density, or core porosity or permeability analyses.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Settings</strong>. The Curve Settings sidebar will open.</p>
+    </li>
+    <li>
+      <p>Select the <strong>Curve</strong>, then <strong>Close </strong>the list. </p>
+    </li>
+    <li>
+      <p>On the <strong>Data </strong>tab, open the <strong>Point </strong><strong>Marker </strong>node. </p>
+    </li>
+    <li>
+      <p>Select the marker <strong>Style</strong>.</p>
+    </li>
+    <li>
+      <p>Select the marker <strong>Color</strong>.</p>
+    </li>
+    <li>
+      <p>Use the <strong>Size </strong>up and down arrows to increase or decrease the marker size. Or type the size. </p>
+    </li>
+    <li>
+      <p>Select the <strong>Highlight </strong><strong>Color</strong>. This is the color the data points will appear when they are selected on the plot. </p>
+    </li>
+    <li>
+      <p>Specify the number of <strong>Display Markers in Curve Legend</strong> (i.e. if 2 was entered, 2 markers would display in the curve legend). </p>
+    </li>
+    <li>
+      <p>Select <strong>Apply </strong>to implement the changes. </p>
+    </li>
+  </ol>
+  <p><video src="Display Data Point Markers.mp4" width="480" height="320" controls=""></video></p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

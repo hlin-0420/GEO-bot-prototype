@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_8";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Define New Curve Pens</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Define New Curve Pens">
+        <span>Define New Curve Pens</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Define New Curve Pens</h1>
+  <p>Customize the way pens appear on the screen and on the printer using in Pen Definitions. </p>
+  <p><br/>
+    Up to twenty (20) customized pens can be defined (pen 0 through 19).</p>
+  <p><br/>
+    By default, pens 0 through 9 are predefined to represent normal thickness pens, and pens 10 through 19 are predefined to represent thicker pens.</p>
+  <p><br/>
+    When you save your plot-information in an ODF file, this definition of the pen is also stored in the same file.<br/>
+     </p>
+  <p><strong>Theory</strong></p>
+  <p><strong></strong>A pen definition consists of (up to) five segments of dot-combinations. In each such segment, up to ten pixels can be turned on and up to another ten pixels can be turned off.</p>
+  <p> </p>
+  <p>For example, a solid line could be defined either as:</p>
+  <ul class="Disc">
+    <li>
+      <p>a single segment, 1 dot on, zero dots off</p>
+    </li>
+    <li>
+      <p>a single segment, 2 dots on, zero dots off</p>
+    </li>
+    <li>
+      <p>five segments, each with 10 dots on, zero dots off</p>
+    </li>
+  </ul>
+  <p><strong><br/>
+      Note</strong>. Pens consisting of longer definitions (all five segments defined, for example) draw more efficiently than those with shorter definitions (only one segment defined).</p>
+  <p><br/>
+    Since there is a large difference in the resolutions (pixels/dots per inch) between display-devices and printer-devices, the software has two different definitions for the same pen: one for the display-device and the other for the printer-device.</p>
+  <p><br/>
+    For example, the display-definition of a dash pen might consist of four pixels on, four pixels off, four pixels on, and so on while the printer-definition of the same dash pen might consist of ten pixels on, ten pixels off, ten pixels on, and so on. The number difference is due to the generally higher resolution on the printer than the monitor (display).</p>
+  <p><br/>
+    Another important attribute of a pen is its type. This attribute determines the thickness (and the shape) of a pen. The software currently supports the following pen-types:</p>
+  <ul class="Disc">
+    <li>
+      <p>Single pixel</p>
+    </li>
+    <li>
+      <p>Two, three, four or five pixels side-by-side.</p>
+    </li>
+    <li>
+      <p>A square two, three, four or five pixels on each side.</p>
+    </li>
+  </ul>
+  <p> </p>
+  <p><strong>Define a New Curve Pen</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves</strong> tab, select <strong>Curve</strong> <strong>Settings</strong>. The Curve Settings sidebar will open.</p>
+    </li>
+    <li>
+      <p>On the <strong>Display</strong> tab, open the <strong>Pens </strong>node.</p>
+    </li>
+    <li>
+      <p>Select the <strong>Use Customized Pens</strong> double arrow. The Pen Definition dialog box will open.</p>
+    </li>
+    <li>
+      <p>Select an unused number in the <strong>Select Pen </strong>box. </p>
+    </li>
+    <li>
+      <p>Enter a<strong> Pen Name</strong> (e.g. DotDashDash)</p>
+    </li>
+    <li>
+      <p>Select the <strong>Pen Type </strong>for both the display and printing pens. </p>
+    </li>
+    <li>
+      <p>Enter the number of <strong>Pixels On </strong>and<strong> Pixels Off</strong> for both then display and printing pens. <br/>
+        <strong>Note</strong>. It is recommended that you enter the values for all 5 rows, to create a five-segment of dot combination pen (see <strong>Theory</strong> above). 
+      </p>
+    </li>
+    <li>
+      <p>Select <strong>Draw Sample to </strong>preview the new pen in the <strong>Sample </strong>box. </p>
+    </li>
+    <li>
+      <p>Select <strong>Update</strong> to implement the changes.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Tip</strong>. The new pen definition can be <a class="dropspot" href="../Working_with_Files/Save_a_VEW_File.htm"><span style="color:#0000ff;">saved in a View (Vew) file</span></a>.  <br/>
+    <video src="Define a New Curve Pen.mp4" width="480" height="270" controls=""></video>
+  </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

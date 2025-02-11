@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.4.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>VUF File Transfer</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="VUF File Transfer">
+        <span>VUF File Transfer</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 67px;"/>
+      <col style="width: 35px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>VUF File Transfer</h1>
+  <p>With the VUF feature it is possible to transfer <a class="dropspot" href="../../Working_with_Files/Output_Database_File_(ODF).htm">ODF</a> files quickly, efficiently and in real time between remote locations via an Internet connection. This feature is also used to publish the ODF into a web folder.</p>
+  <p> </p>
+  <p>The ODF is divided into multiple VUF files based on chunk size (in pixels), which are compressed during the saving process and then published to a web folder. The VUF files can then be streamed in, in a sequential manner, decompressing as they do.</p>
+  <p> </p>
+  <p><strong>Stream Out</strong></p>
+  <p>Click File from the GEO menu bar and select Stream Out VUFs; a dialog box will appear.</p>
+  <p>Enter the FULL URL for the Web folder directory or path for the File directory that you want to store the VUF files in.</p>
+  <p>Enter a Chunk Size in pixels (i.e. the amount of pixels you wish to be in each separate VUF file).</p>
+  <p>Selecting one of the Chunks Ordered option buttons allows you to select the sequence that the files are saved in, e.g. descending (bottom of log to top) or ascending (top of log to bottom).</p>
+  <p>Define what chunk you want to save the headers and trailers in (e.g. chunk one, two or at the end) by selecting the appropriate option button.</p>
+  <p>Select Save to publish the file, or <strong>Cancel </strong>to abort.</p>
+  <p> </p>
+  <p><strong>Stream In</strong></p>
+  <p>Open GEO (or GEO<span>View</span> or GEO<span>e-View</span>) and click File from the menu bar and select Stream In VUFs.</p>
+  <p>Enter the FULL URL for the Web folder directory or path for the File directory, followed by the file name of the VUF files</p>
+  <p>Note. Name of first VUF file will be the ODF file name succeeded by ‘-001.vuf’</p>
+  <p>Select OK to begin streaming in, or Cancel to abort.</p>
+  <p> </p>
+  <p><strong>Tip</strong>. Large graphics in the headers and trailers will significantly decrease streaming speeds.</p>
+  <p>The bigger the chunk size in pixels, the longer it will take the first file to stream in, however a bigger chunk size will generate less chunks, thus total time may be slightly decreased.</p>
+  <p>As a guide we recommend a chunk size of approx 800 pixels.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 67px;"/>
+      <col style="width: 35px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

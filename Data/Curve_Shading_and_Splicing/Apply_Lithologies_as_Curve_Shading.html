@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "8.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Apply Lithologies as Curve Shading</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header" onclick="rh._.goToFullLayout()">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Apply Lithologies as Curve Shading">
+        <span>Apply Lithologies as Curve Shading</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <span>Click here to see this page in full context</span>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <table cellpadding="1" class="Table_Style_Back_Forward" style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:outset;border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr style="">
+        <td style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:inset;width: 64px;"><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:inset;width: 38px;"><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Apply Lithologies as Curve Shading</h1>
+  <p>Lithologies can be applied as curve shading in two ways.</p>
+  <ul class="Disc">
+    <li>
+      <p>Lithology shading through a cut off or fixed value.</p>
+    </li>
+    <li>
+      <p>Lithology shading based on the value of curve.</p>
+    </li>
+  </ul>
+  <p> </p>
+  <p><strong>Apply Lithology Shading Through a Cut Off or Fixed Value</strong></p>
+  <p><strong></strong>Example:</p>
+  <p>Shade GR curve with sandstone pattern if its value is less than 40 API.</p>
+  <p><br/>
+    <img src="../assets/images/Sandstone curve shading.png"/> 
+  </p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Shading</strong>. The <strong>Curve </strong><strong>Shading </strong><strong>Information </strong>dialog box will open. </p>
+    </li>
+    <li>
+      <p>From <strong>Curve </strong><strong>Shading</strong>, select an unused curve number. </p>
+    </li>
+    <li>
+      <p>Select <strong>Display </strong><strong>Curve </strong><strong>Shade </strong>to display the shading on the plot. </p>
+    </li>
+    <li>
+      <p>Enter a curve shading <strong>Name</strong>. </p>
+    </li>
+    <li>
+      <p>Select the <strong>Track </strong>where the GR curve displays.</p>
+    </li>
+    <li>
+      <p>In <strong>Shade </strong><strong>from </strong>select <strong>GR</strong>.</p>
+    </li>
+    <li>
+      <p>In <strong>To </strong>select<strong> &lt;fixed curve value&gt;</strong>.</p>
+    </li>
+    <li>
+      <p>In <strong>Fixed</strong> <strong>Curve </strong>enter 40.</p>
+    </li>
+    <li>
+      <p>Click <strong>Append.</strong></p>
+    </li>
+    <li>
+      <p><strong></strong>In the <strong>Zone </strong><strong>Attributes </strong>grid <strong>Type </strong>column, select <strong>Pattern.</strong></p>
+    </li>
+    <li>
+      <p><strong></strong>In the <strong>Pattern </strong>column, select <strong>Sandstone</strong>.<br/>
+        <strong>Note</strong>. Sandstone.vob must be present in your <span style="color:#0000ff;"><a class="dropspot" href="../Working_with_Files/Output_Database_File_(ODF).htm">ODF</a> </span>file as a lithology.
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>.</p>
+    </li>
+  </ol>
+  <p><video src="Apply Lithology Shading Through a Cut Off or Fixed Value.mp4" width="480" height="320" controls=""></video> </p>
+  <p><strong>Tip</strong>. Select the shading depth interval by entering appropriate depth interval in <strong>From </strong><strong>Depth </strong>and <strong>To </strong><strong>Depth </strong>column at <strong>Zone </strong><strong>Attributes</strong>.</p>
+  <p> </p>
+  <p><strong>Apply lithology shading based on the curve values</strong></p>
+  <p><strong></strong>Example:</p>
+  <p>Shade GR curve with <strong>sandstone </strong>if GR value is less than 40 API, with <strong>claystone </strong>if GR value between 40 and 80 API and with <strong>shale </strong>if GR value is greater than 80 API.</p>
+  <p> </p>
+  <p><img src="../assets/images/Sandstone shale clay curve shading.png"/></p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Shading</strong>. The <strong>Curve </strong><strong>Shading </strong><strong>Information </strong>dialog box will open. </p>
+    </li>
+    <li>
+      <p>From <strong>Curve </strong><strong>Shading</strong>, select an unused curve number. </p>
+    </li>
+    <li>
+      <p>Select <strong>Display </strong><strong>Curve </strong><strong>Shade </strong>to display the shading on the plot. </p>
+    </li>
+    <li>
+      <p>Enter a curve shading <strong>Name</strong>.<strong> </strong></p>
+    </li>
+    <li>
+      <p>Select the <strong>Track </strong>where the GR curve displays.</p>
+    </li>
+    <li>
+      <p>In <strong>Shade</strong> <strong>from </strong>select <strong>GR.</strong></p>
+    </li>
+    <li>
+      <p>In <strong>To </strong>select <strong>&lt;right edge of track&gt;</strong>.</p>
+    </li>
+    <li>
+      <p>In <strong>Shade based on value of discriminating curve</strong> select <strong>GR </strong>(instead of None).</p>
+    </li>
+    <li>
+      <p>Click <strong>Append</strong>.</p>
+    </li>
+    <li>
+      <p>In <strong>Zone </strong><strong>Attributes </strong>grid, leave the <strong>From </strong><strong>Value </strong>as it is (which by default is the minimum value of the GR curve) and enter <strong>40 </strong>in <strong>To </strong><strong>Value</strong>.</p>
+    </li>
+    <li>
+      <p>In the <strong>Type </strong>column, select <strong>Pattern</strong>. </p>
+    </li>
+    <li>
+      <p>In the <strong>Pattern </strong>column, select <strong>Sandstone</strong>. </p>
+    </li>
+    <li>
+      <p>Click <strong>Append</strong>.</p>
+    </li>
+    <li>
+      <p>In the second row of <strong>Zone </strong><strong>Attributes </strong>grid, enter <strong>40 </strong>in the <strong>From </strong><strong>Value </strong>and enter <strong>80 </strong>in <strong>To </strong><strong>Value </strong>column.</p>
+    </li>
+    <li>
+      <p>Define the <strong>Type</strong> column as <strong>Pattern</strong>. In the <strong>Pattern </strong>column, select <strong>Claystone</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Append</strong>.</p>
+    </li>
+    <li>
+      <p>In the third row of <strong>Zone </strong><strong>Attributes </strong>grid, enter <strong>80 </strong>in the <strong>From </strong><strong>Value </strong>and leave the maximum GR value in <strong>To </strong><strong>Value </strong>column.</p>
+    </li>
+    <li>
+      <p>Define the <strong>Type </strong>column as <strong>Pattern</strong>. In the <strong>Pattern </strong>column, select <strong>Shale</strong>. <br/>
+        <strong>Note</strong>. All lithologies defined as curve shadings must be present in the ODF file. Click here if they are not present in the ODF file.
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>.</p>
+    </li>
+  </ol>
+  <p><video src="Apply Lithology Shading Based on the Curve Values.mp4" width="480" height="320" controls=""></video></p>
+  <p><strong>Tip</strong>. The curve shading information entered in <strong>Zone Attributes </strong>can be copied, by clicking <strong>Copy</strong>. You can then <strong>Paste </strong>it into a different ODF. </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table cellpadding="1" class="Table_Style_Back_Forward" style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:outset;border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr style="">
+        <td style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:inset;width: 64px;"><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style="border-spacing:1px;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-style:inset;width: 38px;"><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

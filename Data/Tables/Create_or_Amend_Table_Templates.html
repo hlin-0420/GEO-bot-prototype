@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "13.0_6";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create or Amend Table Templates</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create or Amend Table Templates">
+        <span>Create or Amend Table Templates</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <p><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create or Amend Table Templates</h1>
+  <p>At some point, you may want to edit an existing table template with more columns, different column labels or even different default symbols. You may want to create a completely new table template for ease of entering data specific to your odf. </p>
+  <p> </p>
+  <p><a class="dropspot" href="../Introduction/GEO_Limits.htm">See the software&#39;s limits on how many tables you can put in one ODF file.</a></p>
+  <p><br/>
+    <strong>Important</strong>. The master resource for table templates is the <a class="dropspot" href="Geotable.htm">GeoTable.ini</a> file which houses all the information needed to create a table. GEO will use this set of templates for every new ODF made on a particular machine. However, once an ODF or ODT is created the table templates are automatically saved in the document so that the template list is also saved if the file is to be shared and perhaps modified on another machine. It is now far easier for template information to stay integral and thus safer. Similarly, if a colleague sends you an ODF the templates would be inherent in the document, there would not be as before the possibility of the document reading your own master GeoTable.ini file.
+  </p>
+  <p> </p>
+  <p>You can load and export<font color="#0000ff"><b> </b></font>a GeoTable.ini file, if for example changes are made remotely and an easy update for a colleague or partner to accept an updated INI file, rather than a whole ODF. It also helps in support scenarios where it would be very easy for us to amend or update the INI for you and a simple <strong>Load </strong>of the new file would fix any template difficulties. </p>
+  <p> </p>
+  <p><strong>Table Template Editing/Creating</strong></p>
+  <p><strong></strong>The table templates can be created or amended in the <strong>Registry Editor</strong>. On the <strong>Edit </strong>tab, select<strong> Edit GEO Settings</strong>. The<strong> Registry Editor</strong> will open. Select the <strong>Table Template</strong> tab. </p>
+  <ol class="Decimal">
+    <li>
+      <p>Select the template you wish to edit from <strong>Choose a Table Template</strong>. Or to create a new template, select an <strong>&lt;undefined&gt;</strong> number.</p>
+    </li>
+    <li>
+      <p>Define or adjust the <strong>Table Template ID</strong> and <strong>Name </strong>if necessary. </p>
+    </li>
+    <li>
+      <p>If you intend the symbol to have a start and end depth, like a core symbol, tick <strong>REF1 </strong>and <strong>REF2</strong>.</p>
+    </li>
+    <li>
+      <p>Choose the Layouts that you want the symbols to display in by selecting from the <strong>Select Layouts where Symbols should Display</strong>.</p>
+    </li>
+    <li>
+      <p>Select a <strong>Category</strong> type that your table will belong to. Type in the blank space to add a new category.</p>
+    </li>
+    <li>
+      <p>If you wish the table data to wrap when displaying in a header or trailer table, tick <strong>Wrap Cells</strong>. If you wish your header or trailer table to expand as data is added, please see help within the Vectdraw application.</p>
+    </li>
+    <li>
+      <p>Choose the default symbol that is selected when you apply the table in <strong>Defaults for Symbol in Table Rows</strong>. Enter the <strong>Track </strong><strong>Number </strong>and the <strong>X Offset </strong>to define where the symbol will be placed, in relation to <strong>REF1</strong>.<br/>
+        <strong>Note</strong>. Select <strong>No Symbol </strong>to disable all the symbol options.
+      </p>
+    </li>
+    <li>
+      <p>Choose other symbols to be selectable in your table in the<strong> Select List of Symbols for this Table with associated Column</strong>. You can also make the symbol choice depending on certain Column Text (see below section).</p>
+    </li>
+    <li>
+      <p>Define the table <strong>Columns </strong>and their related <strong>Parameters</strong>. </p>
+      <ol>
+        <li>
+          <p><strong>Field Name</strong> – Enter the title that will represent your column.</p>
+        </li>
+        <li>
+          <p><strong>Data Type </strong>– Choose from many data types to restrict the information that is added to a cell. </p>
+        </li>
+        <li>
+          <p><strong>&gt;&gt;</strong> - Allows computation between table columns within the table template. Select the grey button to the right of the cell to invoke the <strong>Computed Field </strong>dialog box. Define the calculation by selecting a column from <strong>Parameter 1</strong>, the <strong>Operator</strong> required and another column from <strong>Parameter 2</strong>, then click <strong>OK</strong>. </p>
+        </li>
+        <li>
+          <p><strong>Format </strong>– Enter the format of the data type. For example, set decimal place number, or format for date entry or time entry.</p>
+        </li>
+        <li>
+          <p><strong>Width </strong>– Enter the maximum number of characters you will be able to enter.</p>
+        </li>
+        <li>
+          <p><strong>Justification </strong>– Define the justification for the column data. This is especially relevant if the table is to appear in the header or trailer.</p>
+        </li>
+        <li>
+          <p><strong>Postfix </strong>– Enter text that will automatically follow the cell value. System variables can be used here; enter the relevant code to enable (%%InxUnits&quot;S or L).</p>
+        </li>
+        <li>
+          <p><strong>Tooltip </strong>– Selecting Yes will make this columns data appear when you hover over the symbol with the mouse when displayed in the plot.</p>
+        </li>
+        <li>
+          <p><strong>Value List</strong> – See <strong>Column/Symbol Text</strong> section below.</p>
+        </li>
+      </ol>
+    </li>
+  </ol>
+  <p><strong>Note</strong>. For computation in tables, the <strong>Data </strong><strong>Type </strong>must be defined as <strong>Computed </strong>to assess this section. All table columns defined as integer/decimal/date/time/date &amp; time/start and end depths/start or end TWTs will be listed in the <strong>Parameter </strong>fields. </p>
+  <p> </p>
+  <p><strong>Note</strong>. For <strong>operational diary </strong>and <strong>remarks </strong>tables please ensure that the <strong>Table Type</strong> is defined as <strong>Operational Diary </strong>or <strong>Operational Remarks</strong> as appropriate. </p>
+  <p> </p>
+  <p><strong>Column/Symbol Text</strong></p>
+  <p><strong></strong>It is possible to make the symbol selection dependent on the text entered in a particular column. </p>
+  <ol class="Decimal">
+    <li>
+      <p>Setup your<strong> list of symbols </strong>and enter the text that will invoke the used of this symbol. <br/>
+        <br/>
+        <img src="../assets/images/Table list of symbols.png"/>
+      </p>
+    </li>
+    <li>
+      <p><strong>Define the column </strong>you wish the symbol choice to be based on and set as <strong>SymColTxt </strong>type.<br/>
+        <br/>
+        <img src="../assets/images/Tables Define the Column.png"/>
+      </p>
+    </li>
+    <li>
+      <p>The text you enter in this column in the actual table can be freehand, or preset in the<strong> Value List</strong>. In the example above you see the <strong>Value List</strong> populated by related information. Choosing the value <strong>V High</strong> would automatically choose the <strong>Hazard Very High </strong>symbol. Build your Value list by entering the text, followed by a ‘|’ character. <br/>
+        <br/>
+        <img src="../assets/images/Tables Value List.png"/>
+      </p>
+    </li>
+  </ol>
+  <p> <br/>
+    <strong>Note</strong>. If the old table template has been opened, you cannot apply the new edited template unless you <span style="color:#0000ff;"><a class="dropspot" href="Replacing_an_Old_Table_Template_with_a_New_One.htm">delete the old format from the table.</a> </span>
+  </p>
+  <p> </p>
+  <p><strong><span style="color:#0000ff;"></span>WitsML table Object</strong></p>
+  <p><strong></strong>If a table requires data to be uploaded/imported from a WitsML server you need to assign a relevant Object to the table by selecting from the drop down menu. You also will need to define which element is to be used for the depth, again using the drop down menu. <br/>
+     <br/>
+    Another method to edit or create a table template is by editing the <a class="dropspot" href="Geotable.htm"><span style="color:#0000ff;">geotable.ini</span></a> file itself, which actually houses the table template definitions.</p>
+  <h3><u><span style="color:#444444;"><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>
