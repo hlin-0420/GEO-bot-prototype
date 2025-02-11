@@ -279,6 +279,7 @@ class OllamaBot:
             template="""
             You are an assistant for helping customers with inferring or accessing information from
             the help guide while ensuring that their questions are answered. 
+            Ensure that the answer is concise and answers the question to the point. 
             ----------------------------------------------------------------------------------------
             {documents}
             ----------------------------------------------------------------------------------------
