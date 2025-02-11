@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "3.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>File Types Handled by GEO</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="File Types Handled by GEO">
+        <span>File Types Handled by GEO</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>File Types Handled by GEO</h1>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_1" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 149px;"/>
+      <col style="width: 119px;"/>
+      <col style="width: 280px;"/>
+      <col style="width: 57px;"/>
+      <col style="width: 56px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><strong>FILE TYPE</strong></td>
+        <td style=""><strong>EXTENSION</strong></td>
+        <td style=""><strong>DESCRIPTION</strong></td>
+        <td><strong>LOAD</strong></td>
+        <td><strong>EXPORT</strong></td>
+      </tr>
+      <tr>
+        <td>LIS-79</td>
+        <td style="">LIS, TAP, NTI, TIF</td>
+        <td style="">LIS data (usually wireline data) is converted to an ASCII format called LAS before loading into GEO. There are different kinds of LIS, which are supported by the <a class="dropspot" href="../Load_Curve_Data/Convert_LIS_to_LAS.htm">LIS-LAS Converter</a> routine</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>Canadian<br/>
+          Well Log ASCII (CWLAS)<br/>
+           </td>
+        <td style="">LASData_load</td>
+        <td style="">This is a special ASCII implementation of wireline data that allows for specific categories of information to coexist with data. GEO can load LAS data directly.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Text (ASCII)</td>
+        <td style="">ASC, TXTData_load</td>
+        <td style="">Mudlog, MWD and well test data are usually in the Text File format. Sometimes, the data is presented in columns which are delimited by SPACES. Such Text files MUST be prepared (externally or within GEO before they can be loaded to the ODF database.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Comma Separated Values (ASCII)</td>
+        <td style="">CSVData_load</td>
+        <td style="">Some service companies present mudlog data as comma separated values. Spreadsheets such as Excel and Lotus 123 can also create output in comma separated values format. This data can be directly read by GEO.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Tab Delimited (ASCII)</td>
+        <td style="">TXTData_load</td>
+        <td style="">One form of ASCII formats. Tab delimited files are also created when data is saved as a ‘Text file’ in spreadsheet applications. This kind of data can be directly read by GEO.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Metafile</td>
+        <td style="">CGMExport_CGM</td>
+        <td style="">The ISO-8632 implementation of Computer Graphics Metafile. This popular format can be used to plot to plotters such as Versatec or HP Design Jets. It is limited by the size of the plot.</td>
+        <td>No</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Windows Metafile</td>
+        <td style="">WMFExport_WMF</td>
+        <td style="">Both placeable and standard Windows Metafiles are supported. This is an easy way of getting graphical information to (and from) other applications such as Word and Excel.</td>
+        <td>No</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Enhanced Metafile</td>
+        <td style="">EMFExport_EMF</td>
+        <td style="">Enhanced Metafiles are supported. This is another way of getting graphical information to (and from) other applications such as Word and Excel.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Scalable Vector Graphics</td>
+        <td style="">SVGExport_SVG</td>
+        <td style="">SVG is a language for describing two-dimensional graphics in XML (XML-10). SVG allows for three types of graphic objects: vector graphic shapes (e.g., paths consisting of straight lines and curves), images and text.</td>
+        <td> </td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Extensible Mark-up Language</td>
+        <td style="">XMLExport_XML</td>
+        <td style="">The Extensible Markup Language (XML) is the universal format for structured documents and data on the Web. Geologix, as a full member of the Petrotechnical Open Software Corporation [POSC] has been instrumental in defining the WellPlotML and WellLogML definitions.</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>VIEW</td>
+        <td style=""><a class="dropspot" href="View_File_(VEW).htm">VEW</a></td>
+        <td style="">The View file contains the layout-related settings needed to create a log. These settings are normally entered by the user and may be stored for ease of recall when the same layout is required for subsequent well logs i.e. the standard composite log presentation.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>Output Database File</td>
+        <td style=""><a class="dropspot" href="Output_Database_File_(ODF).htm">ODF</a></td>
+        <td style="">The Output Database File is a database where the wireline, mudlog or any other imported data, together with the layout-related View information and the Interpretation-related data is stored. The ODF enables the rapid recall of all data relating to a particular well, either for further editing/update or for the production of further logs.</td>
+        <td>No</td>
+        <td>
+          <p>No</p>
+        </td>
+      </tr>
+      <tr>
+        <td>ODF Database Template</td>
+        <td style=""><a class="dropspot" href="ODF_Template_File_(ODT).htm">ODT</a></td>
+        <td style="">File that is created from an ODF with all required components, such as headers, tables, &amp; lithology and then saved as a template in GEO.</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>ODF Interval File</td>
+        <td style=""><a class="dropspot" href="ODF_Interval_Files_(OIF).htm">OIF</a></td>
+        <td style="">These files are concerned with only a specific user defined depth interval from an ODF file.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>ODF Update File</td>
+        <td style="">OUFFiles_OUFConcept</td>
+        <td style="">Small and sequential update files, which only contain updated information since the last file save. Ordinarily sent as daily updates from the well site to the operation offices.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>GEODraft Output Database File</td>
+        <td style="">GDF</td>
+        <td style="">This is a file format equivalent to the ODF, but created by the GEODraft application. These files may be opened by applications of the GEO Software Suite, to allow full data sharing with users of the GEODraft application.</td>
+        <td>No</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>GEODraft View File</td>
+        <td style="">GDV</td>
+        <td style="">This is a file format equivalent to the VEW, but created by the GEODraft application. These files may be opened by applications of the GEO Software Suite, to allow full data sharing with users of the GEODraft application.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>GEOGraph Database file</td>
+        <td style="">GGD</td>
+        <td style="">This is the file type created by the GEOGraph application. This file can be opened and edited using GEOGraph but the files can be added to ODF or ODT files for display purposes.</td>
+        <td>Yes</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td>GEOGraph Template file</td>
+        <td style="">GGT</td>
+        <td style="">This is the template version of the GGD file. This file can be opened and edited using GEOGraph and be used like an GGD, but saves no data or data related features.</td>
+        <td>Yes</td>
+        <td>No</td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p> </p>
+  <p><br/>
+    <strong>Note</strong>. CGM is standard feature in GEO, while OUF is a standard feature only in GEO and GEOLite.
+  </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

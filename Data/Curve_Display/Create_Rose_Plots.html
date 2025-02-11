@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_18";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Rose Plots</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Rose Plots">
+        <span>Create Rose Plots</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr class="rh-cursor-column">
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Create Rose Plots</h1>
+  <p>Plot Azimuthal distribution data as rose plot diagrams on the log plot.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p><a class="dropspot" href="../Load_Curve_Data/Load_Las_Curve_Data.htm">Load Azimuthal curve data</a> into GEO</p>
+    </li>
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Rose Plot Definition</strong>. The Rose Plot Definition will open. </p>
+    </li>
+    <li>
+      <p>On the <strong><span>Definition</span> </strong>tab, select an unused <strong><span>Rose</span> </strong><strong><span>Plot</span></strong><span>.</span></p>
+    </li>
+    <li>
+      <p>Enter a <strong>Name</strong>.</p>
+    </li>
+    <li>
+      <p>Select a <strong><span>Track</span> </strong>to display the rose plot on.</p>
+    </li>
+    <li>
+      <p>Select the <strong><span>Curve </span></strong><span>containing the azimuthal data.</span></p>
+    </li>
+    <li>
+      <p>Define the <strong><span>Rose</span> </strong><strong><span>Plot</span> </strong><span><strong>Type </strong>-</span><span> the frequency of azimuthal data </span>occurrences<span> - </span><span>as a </span><strong><span>Count </span></strong><span>or </span><strong><span>Percentage</span></strong><span>.</span></p>
+    </li>
+    <li>
+      <p><span><span>Enter the data range of azimuthal curve to be considered in the rose plots in the <strong><span>Depth</span> </strong><strong><span>From</span> </strong>and <strong><span>To</span></strong>. The maximum and minimum depths of the azimuthal curve selected will display on the right.</span></span></p>
+    </li>
+    <li>
+      <p><span><span><span>Define the </span><strong><span>Sample</span><span> </span><span>Data</span><span> </span><span>Range</span></strong><span><strong> </strong>to be considered per rose plot.</span></span></span></p>
+    </li>
+    <li>
+      <p><span><span>Define the <span><strong>Rose </strong><strong>Plot </strong><strong>Diameter</strong></span><span>.</span></span></span></p>
+    </li>
+    <li>
+      <p><span><span><span>Align the rose plot to the </span><strong><span>Left</span></strong><span>, </span><strong><span>Center</span></strong><span><strong> </strong>or </span><strong><span>Right</span></strong><span><strong> </strong>of the track.</span></span></span></p>
+    </li>
+    <li>
+      <p><span><span>Define the distance that the left edge of the rose plot displays from the left, center or right alignment (defined in the previous step) in the <strong>X Offset withing the Track</strong>.</span></span></p>
+    </li>
+    <li>
+      <p><span>Define the<strong> </strong></span><strong><span>Data Bar Color,</span></strong></p>
+      <ol>
+        <li>
+          <p><strong><span></span></strong><span><strong>B</strong></span><span><strong>ased on a Tadpole Definition -  </strong>select a tadpole definition from the drop box and click the </span><strong><span>Dip</span><span> </span></strong><strong><span>Type </span></strong><span>to define which are used in the Rose Plot by entering <strong>Yes</strong>/<strong>No </strong>in the</span><span> <strong>Use for Rose Plot</strong></span><span><strong> column</strong>. This option is only available if a tadpole definition it available in the log.<br/>
+              or,</span><br/>
+            <span>Choose to display data as a </span><strong><span>Single</span></strong><span><strong> </strong>colour (select the </span><strong><span>Color</span></strong><span> button to define).</span>
+          </p>
+        </li>
+        <li>
+          <p><span><span>Check/clear <strong><span>Fill</span> </strong>to fill/un-fill the data bar.<span></span></span></span></p>
+        </li>
+        <li>
+          <p><span><span>Define the <strong><span>Pen</span> </strong><strong><span>Width</span> </strong>of the data bars outline.<span></span></span></span></p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p><span><span>The<span> <strong>In-Use</strong></span><strong> </strong>box will be checked if the current rose plot definition is being used. To delete the selected rose plot definition clear this check box and click <strong><span>Apply</span></strong>.<span></span></span></span></p>
+    </li>
+    <li>
+      <p><span><span><span>To display the rose plot in the current layout check </span><strong><span>Display on Layout </span></strong><span>and c</span></span></span><span><span><span>lick  &gt;&gt; to control the display on other layouts (hold CTRL to select/deselect more than one layout).<span></span></span></span></span></p>
+    </li>
+    <li>
+      <p><span><span>To duplicate this information in another rose plot definition, select <strong><span>Create</span> <span>Copy</span></strong> and enter a different name (if required).<span></span></span></span></p>
+    </li>
+    <li>
+      <p><span><span>To save the definition properties, click <strong><span>Apply</span></strong>.</span></span></p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong><span><span>Define the rose plot scale and display</span></span></strong></p>
+  <ol class="Decimal" type="1">
+    <li>
+      <p><span><span>On the <strong>Curves </strong>tab, select <strong>Rose Plot Definition</strong>. The Rose Plot will open.</span></span></p>
+    </li>
+    <li>
+      <p>Open the<strong> Scale &amp; Display </strong>tab.</p>
+    </li>
+    <li>
+      <p><span>The azimuthal data values are plotted around the periphery of the rose plot on the </span><strong><span>Angular Grid</span></strong><span>;</span></p>
+      <ol>
+        <li>
+          <p><span></span><span style="font-size: 14px;">Define the </span><strong style="font-size: 14px;">Start Value</strong><span style="font-size: 14px;"> (displays at due north) and </span><strong style="font-size: 14px;">End Value</strong><span style="font-size: 14px;">.</span><span></span><span style="font-size: 14px;"></span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;">Define the </span><strong><span style="font-size: 14px;">Interval</span></strong><span style="font-size: 14px;"><strong> </strong>that the azimuthal data will be grouped into.</span><span style="font-size: 14px;"></span><span style="font-size: 14px;"></span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;">Check/clear </span><strong><span style="font-size: 14px;">Display</span><span style="font-size: 14px;"> </span><span style="font-size: 14px;">Grid</span></strong><span style="font-size: 14px;"><strong> </strong>to display/hide the angular grid.</span><span style="font-size: 14px;"></span><span style="font-size: 14px;"></span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;">Define the </span><strong><span style="font-size: 14px;">Pen</span><span style="font-size: 14px;"> </span><span style="font-size: 14px;">Width</span></strong><span style="font-size: 14px;"> of the angular grid.</span><span style="font-size: 14px;"></span><span style="font-size: 14px;"></span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;">Define the </span><strong><span style="font-size: 14px;">Color</span></strong><span style="font-size: 14px;"><strong> </strong>of the angular grid.</span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;"></span><span style="font-size: 14px;">Check/clear </span><strong style="font-size: 14px;">Display Scale Values</strong><span style="font-size: 14px;"> to display/hide each angular grid value.</span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;"></span><span style="font-size: 14px;">Define the </span><strong style="font-size: 14px;">Font</strong><span style="font-size: 14px;"><strong> </strong>of the scale values.</span></p>
+        </li>
+        <li>
+          <p><span style="font-size: 14px;"></span><span style="font-size: 14px;">Check/clear </span><span style="font-size: 14px;"><strong>Display Outer Angular Grid</strong></span><span style="font-size: 14px;"> to display/hide the outer angular grid (the circumference outline) of the rose plot.</span></p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>The azimuthal data frequency is plotted on the<span> <strong>Radial Grid</strong></span><strong>;</strong></p>
+      <ol>
+        <li>
+          <p><strong></strong><span style="font-size: 14px;">Define the</span><strong style="font-size: 14px;"> Min Values</strong><span style="font-size: 14px;">, </span><strong style="font-size: 14px;">Max Values</strong><span style="font-size: 14px;"> and </span><strong style="font-size: 14px;">Interval</strong><span style="font-size: 14px;">.</span></p>
+        </li>
+        <li>
+          <p><span><span>Check/clear <strong><span>Display</span> </strong><strong>Radial </strong><strong><span>Grid</span> </strong>to display/hide the radial grid. </span></span></p>
+        </li>
+        <li>
+          <p><span><span>Define the <strong><span>Pen</span> <span>Width</span></strong> of the radial grid.</span></span></p>
+        </li>
+        <li>
+          <p><span><span>Define the <strong><span>Color</span> </strong>of the radial grid.</span></span></p>
+        </li>
+        <li>
+          <p><span><span>Check/clear <strong><span>Display Scale Values</span></strong> to display/hide each radial grid value.</span></span></p>
+        </li>
+        <li>
+          <p><span><span>Define the <strong><span>Font</span> </strong>of the scale values.</span></span><span><span>.</span></span></p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Choose the<strong> Plot Background Color</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Apply </strong>and <strong>Close</strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

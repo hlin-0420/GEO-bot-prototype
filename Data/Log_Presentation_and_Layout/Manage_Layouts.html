@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "4.1.0_5";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Manage Layouts</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Manage Layouts">
+        <span>Manage Layouts</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Manage Layouts</h1>
+  <p>The layout manager dialog box can be accessed by selecting <strong>Layout </strong>on the <strong>Tools </strong>tab.</p>
+  <p><br/>
+    It allows you to administer and define individual properties for individual layouts. </p>
+  <p><br/>
+    The layout manager details information for all layouts in the current odf or odt file. </p>
+  <p> </p>
+  <p><strong>Change Layout Name</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p><strong></strong>Select the layout in the <strong>Select </strong><strong>Layout </strong>list.</p>
+    </li>
+    <li>
+      <p>Edit the <strong>Name</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Define Layout Order</strong><br/>
+    The order that the layouts appear in the <strong>Layout </strong>list on the <strong>Home</strong> tab, can be changed.</p>
+  <ol class="Decimal">
+    <li>
+      <p>Select the layout in the <strong>Select </strong><strong>Layout </strong>list. </p>
+    </li>
+    <li>
+      <p>Use the <strong>Layout </strong><strong>Order </strong>down or up arrows to adjust it’s position.</p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Viewer Enable</strong></p>
+  <p><strong></strong>A permission can be set so only certain layout(s) within a ODF can be view by either GEOView or GEOeView. </p>
+  <p>To enable/disable a layout to be viewed.</p>
+  <ol class="Decimal">
+    <li>
+      <p>Select the layout in the <strong>Select </strong><strong>Layout</strong> list.</p>
+    </li>
+    <li>
+      <p>Check <strong>Viewer</strong><strong>-enabled </strong>to allow the layout to be viewed in GEOView and GEOeView. To disable its ability to be viewed, clear <strong>Viewer-enabled</strong>.  </p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>. </p>
+    </li>
+  </ol>
+  <p>On the <strong>Select </strong><strong>Layout </strong>list, an asterix will display beside layouts which are viewer enabled. </p>
+  <p><br/>
+    When another user opens the ODF using GEOView or GEOeView, only the layouts which are viewer enabled will be visible in the <strong>Layouts </strong>list on the <strong>Home</strong> menu. </p>
+  <p> </p>
+  <p><strong>Lock Index-Range</strong></p>
+  <p><strong></strong>Lock the depth/time range of the selected layout. </p>
+  <p><br/>
+    This is useful when sharing files with users that are viewing the log with GEOeView or GEOView. This feature is used to highlight specific areas, or to shield or protect sensitive information above or below certain depth ranges. </p>
+  <ol class="Decimal">
+    <li>
+      <p>Select the layout in the <strong>Select Layout</strong> list. </p>
+    </li>
+    <li>
+      <p>Select <strong>Lock Index-Range</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>. </p>
+    </li>
+  </ol>
+  <p>On the <strong>Select </strong><strong>Layout </strong>list, an L will display beside layouts where the index range is locked. </p>
+  <p> </p>
+  <p><strong>View Layout Items</strong><br/>
+    <a class="dropspot" href="Layout_Items.htm">Click here for further information.</a> 
+  </p>
+  <p> </p>
+  <p><strong>Assign GEO Report to Layout</strong></p>
+  <p><strong></strong>A layout can be assigned as a ‘report layout’.  </p>
+  <ol class="Decimal">
+    <li>
+      <p>Select the layout in the <strong>Select </strong><strong>Layout </strong>list. </p>
+    </li>
+    <li>
+      <p>From the Report list select <strong>DGR </strong>or <strong>End of Well Report</strong>.</p>
+    </li>
+    <li>
+      <p>Define the <strong>Run </strong><strong>Date </strong><strong>Time </strong>of the report you wish to view on the layout</p>
+    </li>
+    <li>
+      <p>Click <strong>Update</strong>.</p>
+    </li>
+  </ol>
+  <p>The <strong>Date </strong><strong>Range </strong>and <strong>Depth </strong><strong>Range </strong>of the <strong>Run </strong><strong>Date</strong> <strong>Time </strong>selected are detailed below the drop lists</p>
+  <p> </p>
+  <p><strong>Delete a Layout</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p><strong></strong>Select the layout in the <strong>Select </strong><strong>Layout </strong>list. </p>
+    </li>
+    <li>
+      <p>Click <strong>Delete</strong>.</p>
+    </li>
+    <li>
+      <p>Click <strong>Yes </strong>to the confirmation message.</p>
+    </li>
+  </ol>
+  <p><video src="Manage Layouts.mp4" width="480" height="320" controls=""></video></p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

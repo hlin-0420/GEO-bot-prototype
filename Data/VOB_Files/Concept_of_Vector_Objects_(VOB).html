@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "18.1.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Concept of Vector Objects (VOB)</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Concept of Vector Objects (VOB)">
+        <span>Concept of Vector Objects (VOB)</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Concept of Vector Objects (VOB)</h1>
+  <p>The following information is based around creating plot objects using the VLCP - Vector Language Compiler Program, a feature which comes as a standard with the GEO for Window application.<br/>
+    In conjunction with the VLCP package, GEO is packaged with a simpler drawing application called VectDraw, which allows you to create or modify log objects using a more user-friendly graphics interface.</p>
+  <p> </p>
+  <p>Log objects such as symbols, modifiers, lithology patterns, headers, trailers and tables that appear on the plot, can all be customized by you.</p>
+  <p><br/>
+    But before we examine how we do that, it is important to understand some of the basic concepts.</p>
+  <p> </p>
+  <p>Objects such as a Casing Shoe or a Core symbol are symbol definitions. Similarly, a Lithology log header is a header definition.</p>
+  <p><br/>
+    Each definition has a unique filename and is organized in a directory structure with other allied definitions. This directory is known as the Library, and is comprised of sub folders for Lithology, Structures, Symbols, Modifiers, and Headers.</p>
+  <p><br/>
+    In general, all header definitions will appear in the headers folder, the default file path for which is \GEO for Windows\Library\Headers. Likewise, all modifier definitions appear in the modifiers folder (default being \GEO for Windows\Library\Modifiers).<br/>
+    <strong>Note.</strong> The directory for those objects may be different from that above, depending on path specifications allocated or chosen during software installation.
+  </p>
+  <p> </p>
+  <p>All GEO software uses a custom format for defining such objects, which are referred to as Vector Objects .</p>
+  <p><br/>
+    They are stored on disk in two distinct forms:</p>
+  <ol class="Decimal">
+    <li>
+      <p> The text file that may be created or modified by the user. The file has a .VOT extension, so it is usually called a VOT file.</p>
+    </li>
+    <li>
+      <p> The binary file created by compiling the corresponding VOT file, or alternatively by direct creation using the Vectdraw package. This file has a .VOB extension and hence it is commonly called a VOB file.</p>
+    </li>
+  </ol>
+  <p><br/>
+    When you first start a session of GEO, it polls the relevant directories and organizes the definitions (VOB files) found in them in an appropriate fashion. For instance, the symbol definitions appear as menu items under the Symbols menu. Similarly, the lithology definitions appear in the Lithology Information dialog box.</p>
+  <p> </p>
+  <p>Vector objects are made up of lines, shapes, texts, table-related text or mnemonics. Symbols are created by using these elements and specifying their dimensions.<br/>
+    The dimension of a vector object may be specified to 1/10th of a millimeter. As a result, the symbols can be very precise. Vector objects have the distinct advantage over bitmapped objects in that they do not distort when sized.</p>
+  <p> </p>
+  <p>Certain objects within GEO (Symbols, Modifiers, Headers) may also be bitmaps. Typically they are stored on disk in files with a .BMP extension.</p>
+  <p><br/>
+    The program only accepts two color bitmaps. Typically, they are black and white. Bitmaps may be created by any graphics application.</p>
+  <p><br/>
+    Depending on the complexity of the bitmaps, they may distort when scaled (aliasing).</p>
+  <p> </p>
+  <p>Scaling factors, to cope with resolution differences between screen and printer need to be specified in the Zoom factor Bitmaps on Screen on the General tab of the Registry Editor dialog box.<br/>
+    <strong>Note.</strong> Some high-end plotters cannot plot bitmaps.
+  </p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "7.0_8";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Create Curve Data from Table Columns</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Create Curve Data from Table Columns">
+        <span>Create Curve Data from Table Columns</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><strong><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></strong></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1 style="color: rgb(68, 68, 68);">Create Curve Data from Table Columns</h1>
+  <p style="color: rgb(68, 68, 68);">Data typically stored in tabular format can be converted into a GEO Curve.</p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Home </strong>tab, on the <strong>Table </strong>group, open the <strong>Select </strong><strong>Definition </strong>list and select the table containing the data that you wish to display as a curve. The Table Definition dialog box will open.</p>
+    </li>
+    <li>
+      <p>Click <strong>Select </strong><strong>Curves… </strong>The Create Curves For Table dialog box will open. </p>
+    </li>
+    <li>
+      <p>Enter a <strong>Curve </strong><strong>Mnemonic </strong>for each <strong>Table </strong><strong>Column </strong>you wish to generate a curve from.</p>
+    </li>
+    <li>
+      <p>Click <strong>OK </strong>to generate the curve and return to <strong>Table</strong> <strong>Definition</strong>.  </p>
+    </li>
+    <li>
+      <p>Click <strong>Exit</strong>. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p>The curve will now be listed in the <a class="dropspot" href="../Curve_Display/Present_Curves_on_the_Log.htm">curve settings sidebar</a>.</p>
+  <p> </p>
+  <p>To remove the link between a table column and curve, return to<strong> Create Curves For Table</strong>, remove the <strong>Curve </strong><strong>Mnemonic </strong>and click <strong>OK</strong>. Any data now added to this table column will not be reflected in the curve.</p>
+  <p> </p>
+  <p><strong>Note</strong>. To create a curve from a table column, there must be two or more rows of data present.</p>
+  <p> </p>
+  <p><strong>Note</strong>. Only the following tab column data types can be converted into curve format: String, Integer, Decimal, SymColTxt, Start TVD, Start TVDSS, Start TWT, End TVD, End TVDSS and End TWT.</p>
+  <p><video src="Create Curve Data from Table Columns.mp4" width="480" height="320" controls=""></video></p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>
