@@ -82,5 +82,19 @@
     "response": "Yes, GEO can load several different types of ASCII files, including tab-delimited and space-delimited files. However, it does not explicitly mention loading a plain text file (i.e., comma-delimited).",
     "feedback": "Comma-, tab-, and space- separated files can be loaded in GEO.",
     "rating-score": 4
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "Where can you view the mouse pointer depth? Please describe the steps for viewing.",
+    "response": "To view the mouse pointer depth, follow these steps:1. Go to the Depth tab and select Index Converter or press + on your keyboard.2. In the Convert Index dialog box, enter the desired depth or time of the section of log you wish to view.3. Click \"Go\" to instantly display the relevant depth section.Alternatively, you can also access this dialog box by going to Tools and selecting Index Converter or using the Mouse & Keyboard Modestoolbar.",
+    "feedback": "An accurate description of how I could view the mouse pointer depth. Thank you for answering the question.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What are the formats for exporting an image file?",
+    "response": "The formats available for exporting an image file from your plot are:1. WMF (Windows Metafile)2. TIFF3. EMF (Enhanced Metafile)Additionally, you can also export a section of the plot to these formats:* WMF-Standard Metafile* Placeable WMF* WMF-Metafile picture to clipboardThese formats allow for various levels of image quality and compatibility with different applications.",
+    "feedback": "This is a good list, but does not include all the available formats. Other formats include CGM (computer graphics metafile), TIFF, and SVG (Scalable Vector Graphics).",
+    "rating-score": 3
   }
 ]

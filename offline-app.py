@@ -16,6 +16,7 @@ from langchain_core.output_parsers import StrOutputParser
 import json
 from sentence_transformers import SentenceTransformer, util
 from tabulate import tabulate
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -372,6 +373,12 @@ def submitFeedback():
             "feedback": details,
             "rating-score": rating
         }
+        
+        analyzer = SentimentIntensityAnalyzer() # initialise an analyzer to determine the sentiment of reviewed text "details"
+        
+        sentiments = analyzer.polarity_scores(details)
+        
+        print("{:-<65} {}".format(details, str(sentiments)))
 
         append_feedback(feedback_entry)
         
