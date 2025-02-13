@@ -128,6 +128,14 @@ class OllamaBot:
         )
         
         doc_splits = text_splitter.split_documents(self.web_documents)
+
+        # Retrieve all stored documents
+        all_docs = [doc.page_content for doc in doc_splits]
+
+        # Save all documents to a text file
+        all_doc_text = "\n\n".join(all_docs)
+        with open("all_documents.txt", "w", encoding="utf-8") as doc_file:
+            doc_file.write(all_doc_text)
         
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
@@ -150,6 +158,9 @@ class OllamaBot:
             developers for the GEO application. 
             
             Ensure that the answer is concise and answers the question to the point. 
+            Use the information from the section under the title "---Feedback---" as feedback for 
+            making improvements to your answers. Use the feedback as guidelines to determine which 
+            area you need to improve your answer after assessing their validity and feasibility. 
             Documents
             ----------------------------------------------------------------------------------------
             {documents}
@@ -297,12 +308,20 @@ class OllamaBot:
     
     def update_training(self, data_string):
         
-        print(f"Received Feedback: \n\"{data_string}\"\n")
-        data_document = Document(
-            page_content=data_string
-        )
-        
-        self.web_documents.append(data_document)
+        feedback_heading = "---Feedback---"
+
+        if self.web_documents:
+            print(f"Received Feedback: \n\"{data_string}\"\n")
+            last_document = self.web_documents[-1]
+
+            if last_document.page_content.startswith(feedback_heading):
+                last_document.page_content += f"{data_string}\n"
+            else:
+                new_document = Document(page_content=f"{feedback_heading}\n{data_string}\n")
+                self.web_documents.append(new_document)
+
+        # retrains the application whenever new training data is updated.
+        self._initialize_rag_application()
 
     def query(self, question):
         """
@@ -395,26 +414,13 @@ def submitFeedback():
             "feedback": details,
             "rating-score": rating
         }
-        
-        analyzer = SentimentIntensityAnalyzer() # initialise an analyzer to determine the sentiment of reviewed text "details"
-        
-        sentiments = analyzer.polarity_scores(details)
-        
-        print("{:-<65} {}".format(details, str(sentiments)))
 
         append_feedback(feedback_entry)
         
         feedback_data = load_feedback_dataset()
         
-        reward_scores = calculate_reward(feedback_data)
-        
-        for i, entry in enumerate(feedback_data):
-            entry["reward_score"] = reward_scores[i]  # Assign reward score to each entry
-        
         for feedback_entry in feedback_data:
             ai_bot.update_training(json.dumps(feedback_entry, indent=4))
-        
-        ai_bot.add_contents(details)
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:
