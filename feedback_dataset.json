@@ -96,5 +96,47 @@
     "response": "The formats available for exporting an image file from your plot are:1. WMF (Windows Metafile)2. TIFF3. EMF (Enhanced Metafile)Additionally, you can also export a section of the plot to these formats:* WMF-Standard Metafile* Placeable WMF* WMF-Metafile picture to clipboardThese formats allow for various levels of image quality and compatibility with different applications.",
     "feedback": "This is a good list, but does not include all the available formats. Other formats include CGM (computer graphics metafile), TIFF, and SVG (Scalable Vector Graphics).",
     "rating-score": 3
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the question \"What is 1 + 1?\" in the Documents section. The GEO application seems to be focused on well log authoring, analysis, and reporting for petroleum geologists and engineers. If you have a question related to GEO, I'll do my best to help.",
+    "feedback": "You could use your arithmetic skills to perform the calculation.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the GEO application that would allow me to answer this question. The provided Document section appears to be incomplete and doesn't contain any relevant information for mathematical calculations like \"What is 1 + 1?\". If you could provide more context or clarify what you're trying to accomplish with the GEO application, I'd be happy to try and assist you further.",
+    "feedback": "You can use your arithmetic skills.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the question \"What is 1 + 1?\" in the Documents section. The GEO application seems to be focused on well log authoring, analysis, and reporting for petroleum geologists and engineers. If you have a question related to GEO, I'll do my best to help.",
+    "feedback": "Use your arithmetic skills to make this calculation.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the question \"What is 1 + 1?\" in the Documents section. The GEO application seems to be focused on well log authoring, analysis, and reporting for petroleum geologists and engineers. If you have a question related to GEO, I'll do my best to help.",
+    "feedback": "Please use your arithmetic skills to make the calculation.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the GEO application that would allow me to answer this question. The provided Document section appears to be incomplete and doesn't contain any relevant information for mathematical calculations like \"What is 1 + 1?\". If you could provide more context or clarify what you're trying to accomplish with the GEO application, I'd be happy to try and assist you further.",
+    "feedback": "Please use your arithmetic skills to perform this calculation.",
+    "rating-score": 5
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is 1 + 1?",
+    "response": "I don't have any information about the GEO application that would allow me to answer this question. The provided Document section appears to be incomplete and doesn't contain any relevant information for mathematical calculations like \"What is 1 + 1?\". If you could provide more context or clarify what you're trying to accomplish with the GEO application, I'd be happy to try and assist you further.",
+    "feedback": "Please use your arithmetic skills to perform this calculation.",
+    "rating-score": 1
   }
 ]
