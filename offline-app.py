@@ -17,6 +17,7 @@ import json
 from sentence_transformers import SentenceTransformer, util
 from tabulate import tabulate
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import re
 
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -436,8 +437,10 @@ def process_question(question_id, question, ai_bot):
     time.sleep(2)  # Simulating "thinking time"
     # try:
     response = ai_bot.query(question)
+    
+    formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
-    stored_responses[question_id] = response
+    stored_responses[question_id] = formatted_response
 
 @app.route("/ask", methods=["POST"])
 def ask():
