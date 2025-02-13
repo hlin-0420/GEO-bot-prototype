@@ -158,6 +158,9 @@ class OllamaBot:
             developers for the GEO application. 
             
             Ensure that the answer is concise and answers the question to the point. 
+            Use the information from the section under the title "---Feedback---" as feedback for 
+            making improvements to your answers. Use the feedback as guidelines to determine which 
+            area you need to improve your answer after assessing their validity and feasibility. 
             Documents
             ----------------------------------------------------------------------------------------
             {documents}
@@ -305,7 +308,7 @@ class OllamaBot:
     
     def update_training(self, data_string):
         
-        feedback_heading = "Feedback"
+        feedback_heading = "---Feedback---"
 
         if self.web_documents:
             print(f"Received Feedback: \n\"{data_string}\"\n")
