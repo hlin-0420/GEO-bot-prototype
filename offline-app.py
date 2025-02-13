@@ -141,9 +141,16 @@ class OllamaBot:
         
         prompt = PromptTemplate(
             template="""
-            You are an assistant for helping customers with inferring or accessing information from
-            the help guide while ensuring that their questions are answered. 
+            You are an assistant for helping the users with the GEO application. 
+            GEO is an integrated a PC-based integrated well log authoring, analysis and reporting 
+            system which has been developed for petroleum geologists, geoscientists and engineers.
+            
+            Answer the user's questions accurately using retrieved information from the Documents 
+            section precisely. The Document section contains the help content written by software 
+            developers for the GEO application. 
+            
             Ensure that the answer is concise and answers the question to the point. 
+            Documents
             ----------------------------------------------------------------------------------------
             {documents}
             ----------------------------------------------------------------------------------------
