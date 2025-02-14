@@ -203,7 +203,7 @@
                 const postResponse = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question: question, model: selectedModel })
+                    body: JSON.stringify({ question: question, model: selectedModel, selectedOptions: selectedOptions })
                 });
 
                 if (!postResponse.ok) {

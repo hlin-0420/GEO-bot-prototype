@@ -97,6 +97,44 @@ selected_model_name = "llama3.2:latest"
 # Declare global variable
 rag_application = None 
 
+def extract_table(soup):
+    tables = soup.find_all("table")
+    
+    formatted_tables = []
+                    
+    # Process and format each table
+    for i, table in enumerate(tables, start=1):
+        rows = []
+        for row in table.find_all("tr"):
+            cols = [col.get_text(strip=True) for col in row.find_all(["td", "th"])]
+            rows.append(cols)
+
+        # Convert to DataFrame for better readability
+        df = pd.DataFrame(rows)
+                        
+        formatted_table = tabulate(df, headers="firstrow", tablefmt="grid")
+        
+        formatted_tables.append(formatted_table)
+        
+    formatted_tables = "\n\n".join(formatted_tables)
+    
+    return formatted_tables
+
+def extract_text(soup):
+    # Extract only meaningful paragraph text
+    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]  # Exclude very short text
+    clean_text = "\n\n".join(paragraphs)
+    
+    return clean_text
+
+def extract_list(soup):
+    # Extract lists properly
+    lists = []
+    for ul in soup.find_all("ul"):
+        items = [li.get_text(strip=True) for li in ul.find_all("li")]
+        lists.append(items)
+    return lists
+
 class OllamaBot:
     def __init__(self):
         """
@@ -127,20 +165,8 @@ class OllamaBot:
             chunk_size=250, chunk_overlap=0
         )
         
-        feedback_data = load_feedback_dataset()
-        
-        for feedback_entry in feedback_data:
-            self.update_training(json.dumps(feedback_entry, indent=4), False)
         
         doc_splits = text_splitter.split_documents(self.web_documents)
-
-        # Retrieve all stored documents
-        all_docs = [doc.page_content for doc in doc_splits]
-
-        # Save all documents to a text file
-        all_doc_text = "\n\n".join(all_docs)
-        with open("all_documents.txt", "w", encoding="utf-8") as doc_file:
-            doc_file.write(all_doc_text)
         
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
@@ -213,12 +239,20 @@ class OllamaBot:
                     htm_files.append(self.base_directory + "/" + relative_path)
         return htm_files
 
-    def _load_content(self):
+    def _load_content(self, selectedOptions=None):
         """
         Load and process all .htm files from the base directory.
         """
         htm_files = self._list_htm_files()
         logging.info(f"Found {len(htm_files)} .htm files.")
+        
+        if selectedOptions is None:
+            selectedOptions = ["text", "table", "list"]
+        
+        # initialise empty training web documents.
+        self.web_documents = []
+        
+        page_texts = []
 
         for file_path in htm_files:
             try:
@@ -230,36 +264,22 @@ class OllamaBot:
                     
                     soup = BeautifulSoup(content, "html.parser")
                     
-                    # Define unwanted sections to remove
-                    for tag in soup(["script", "style", "header", "footer", "nav", "aside"]):
-                        tag.extract()
-                    
-                    page_text = soup.get_text()
                     page_links = [a['href'] for a in soup.find_all('a', href=True)]
+                                                
+                    if "text" in selectedOptions:
+                        clean_text = extract_text(soup)
+                    else:
+                        clean_text = "" # when the text, table, or list is empty. 
                     
-                    tables = soup.find_all("table")
+                    if "table" in selectedOptions:
+                        formatted_table = extract_table(soup)
+                    else:
+                        formatted_table = ""    
                     
-                    # Process and format each table
-                    for i, table in enumerate(tables, start=1):
-                        rows = []
-                        for row in table.find_all("tr"):
-                            cols = [col.get_text(strip=True) for col in row.find_all(["td", "th"])]
-                            rows.append(cols)
-
-                        # Convert to DataFrame for better readability
-                        df = pd.DataFrame(rows)
-                        
-                        formatted_table = tabulate(df, headers="firstrow", tablefmt="grid")
-                            
-                    # Extract only meaningful paragraph text
-                    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]  # Exclude very short text
-                    clean_text = "\n\n".join(paragraphs)
-                        
-                    # Extract lists properly
-                    lists = []
-                    for ul in soup.find_all("ul"):
-                        items = [li.get_text(strip=True) for li in ul.find_all("li")]
-                        lists.append(items)
+                    if list in selectedOptions:    
+                        lists = extract_list(soup)
+                    else:
+                        lists = ""
                         
                     page_text = f"""
                     
@@ -279,9 +299,8 @@ class OllamaBot:
                     ---
                     """
                     
-                    if file_path.endswith("GEO_Limits.htm"):
-                        print(f"{page_text}")
-
+                    page_texts.append(page_text)
+                    
                     page_data = {
                         'text': page_text,
                         'link': page_links
@@ -297,6 +316,22 @@ class OllamaBot:
                     self.web_documents.append(document)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
+                
+        # Define the file path where the output will be saved
+        output_file = "processed_content.txt"
+        
+        temp_page_texts = "\n\n".join(page_texts)
+        
+        with open(output_file, "w", encoding="utf-8") as file:
+            file.write(temp_page_texts)
+
+        logging.info(f"Processed content saved to {output_file}")
+        
+        # updates feedback data into the file.
+        feedback_data = load_feedback_dataset()
+        
+        for feedback_entry in feedback_data:
+            self.update_training(json.dumps(feedback_entry, indent=4), False)
 
     def add(self, content):
         """
@@ -316,7 +351,6 @@ class OllamaBot:
         feedback_heading = "---Feedback---"
 
         if self.web_documents:
-            print(f"Received Feedback: \n\"{data_string}\"\n")
             last_document = self.web_documents[-1]
 
             if last_document.page_content.startswith(feedback_heading):
@@ -449,13 +483,23 @@ def upload():
         return jsonify({"message": result})
 
 
-def process_question(question_id, question, ai_bot):
+def check_selected_options(selectedOptions):
+    expected_options = ["text", "table", "list"]
+    return set(selectedOptions) == set(expected_options)
+
+def process_question(question_id, question, ai_bot, selectedOptions):
     """
     Simulate long processing of the question and store the response.
     """
     time.sleep(2)  # Simulating "thinking time"
     # try:
     response = ai_bot.query(question)
+    
+    print(f"Check selected Options: {check_selected_options(selectedOptions)}")
+    
+    if check_selected_options(selectedOptions) == False:
+        # if not all the options are selected, customise the training function. 
+        ai_bot._load_content(selectedOptions) # resets the web documents information with the feedback.
     
     formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
@@ -471,6 +515,10 @@ def ask():
         
         question = data.get("question", "").strip()
         
+        selectedOptions = data.get("selectedOptions", "")
+        
+        print(selectedOptions)
+        
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
         
@@ -480,7 +528,7 @@ def ask():
 
         pending_responses[current_id] = "Processing..."
 
-        threading.Thread(target=process_question, args=(current_id, question, ai_bot)).start()
+        threading.Thread(target=process_question, args=(current_id, question, ai_bot, selectedOptions)).start()
 
         return jsonify({"question_id": current_id}), 200
     
