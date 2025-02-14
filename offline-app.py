@@ -127,6 +127,11 @@ class OllamaBot:
             chunk_size=250, chunk_overlap=0
         )
         
+        feedback_data = load_feedback_dataset()
+        
+        for feedback_entry in feedback_data:
+            self.update_training(json.dumps(feedback_entry, indent=4), False)
+        
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Retrieve all stored documents
@@ -306,7 +311,7 @@ class OllamaBot:
     def get_model_type(self, model):
         return model.model_name
     
-    def update_training(self, data_string):
+    def update_training(self, data_string, reinitialise):
         
         feedback_heading = "---Feedback---"
 
@@ -320,8 +325,9 @@ class OllamaBot:
                 new_document = Document(page_content=f"{feedback_heading}\n{data_string}\n")
                 self.web_documents.append(new_document)
 
-        # retrains the application whenever new training data is updated.
-        self._initialize_rag_application()
+        if reinitialise:
+            # retrains the application whenever new training data is updated.
+            self._initialize_rag_application()
 
     def query(self, question):
         """
@@ -420,7 +426,7 @@ def submitFeedback():
         feedback_data = load_feedback_dataset()
         
         for feedback_entry in feedback_data:
-            ai_bot.update_training(json.dumps(feedback_entry, indent=4))
+            ai_bot.update_training(json.dumps(feedback_entry, indent=4), True) # will retrain model after the feedback is updated to the training data. 
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:

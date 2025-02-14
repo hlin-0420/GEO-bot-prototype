@@ -33,6 +33,34 @@
         .content {
             margin-top: 60px;
         }
+
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Adds spacing between checkboxes */
+            padding: 10px;
+        }
+
+        .option {
+            flex: 1;
+            text-align: center;
+            background-color: #f8f9fa; /* Light grey background */
+            padding: 10px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: 0.3s ease-in-out;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .option:hover {
+            background-color: #e9ecef; /* Slightly darker on hover */
+            cursor: pointer;
+        }
+
+        .option input {
+            margin-right: 8px; /* Space between checkbox and text */
+        }
     </style>
 </head>
 <body>
@@ -40,18 +68,22 @@
         <a href="/feedback">Feedback Form</a>
         <a href="#modelSelection">Select Model</a>
     </div>
-    <h1>AI Bot Application</h1>
 
+    <div class="content">
+    <h1>AI Bot Application</h1>
+    
+    <div class="modelSelection">
     <!-- Model Selection -->
     <h3 id="modelSelection">Select AI Model</h3>
-    <h3>Select AI Model</h3>
     <select id="modelSelect" onchange="updateModel()">
         <option value="llama3.2">llama3.2:latest</option>
         <option value="deepseek1.5">deepseek-r1:1.5b</option>
         <option value="openai">openai</option>
     </select>
-
     <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
+    </div>
+    
+    <div class="dataInput">
     <!-- File Upload Section -->
     <h3>Upload a File</h3>
     <form id="uploadForm">
@@ -59,13 +91,25 @@
         <button type="button" onclick="uploadFile()">Upload</button>
     </form>
     <div id="uploadResponse"></div>
-
     <!-- Question-Answer Section -->
     <h3>Ask a Question</h3>
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
-    
-    <br>
+    <form id="dataOptionsForm">
+        <div class="options-container">
+            <label class="option">
+                <input type="checkbox" name="dataOption" value="text"> Text
+            </label>
+            <label class="option">
+                <input type="checkbox" name="dataOption" value="table"> Table
+            </label>
+            <label class="option">
+                <input type="checkbox" name="dataOption" value="list"> List
+            </label>
+        </div>
+    </form>
     <button onclick="submitQuestion()">Submit</button>
+    </div>
+
     <div id="feedbackPanel" style="text-align: center;">
         <h3>Feedback Panel</h3>
         <div id="ratingSection" style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 10px;">
@@ -83,9 +127,12 @@
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
     </div>    
 
-    <br>
+    <div class="outputPanel">
     <h3>Responses:</h3>
     <div id="responseOutput"></div>
+    </div>
+
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -146,6 +193,11 @@
             }
 
             const selectedModel = document.getElementById("modelSelect").value; // Get selected model
+
+            // Get checked values from dataOptionsForm
+            const selectedOptions = Array.from(document.querySelectorAll('input[name="dataOption"]:checked')).map(input => input.value);
+            // Log selected options to the console
+            console.log("Selected Options:", selectedOptions);
 
             try {
                 const postResponse = await fetch("/ask", {
