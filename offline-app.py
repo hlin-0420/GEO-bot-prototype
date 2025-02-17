@@ -212,6 +212,11 @@ class OllamaBot:
         prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
         with open("prompt_visualisation.txt", "w", encoding="utf-8") as file:
             file.write(prompt_text)
+        # Save the second-to-last document for verification
+        if len(self.web_documents) > 1:
+            second_to_last_document = self.web_documents[-2].page_content
+            with open("uploaded_document.txt", "w", encoding="utf-8") as file:
+                file.write(second_to_last_document)
 
         rag_chain = prompt | self.llm_model | StrOutputParser()
 
@@ -346,8 +351,36 @@ class OllamaBot:
         Args:
             content (str): Content to add.
         """
-        self.contents.append(content)
-        logging.info("New content added.")
+        feedback_heading = "---Feedback---"
+        
+        new_document = Document(page_content=content)
+        
+        if self.web_documents:
+            last_document = self.web_documents[-1]
+            
+            if last_document.page_content.startswith(feedback_heading):
+                print("Inserting new uploaded document.")
+                print(f"Length of the web documents: {len(self.web_documents)}")
+                # Ensure there is at least one more document before inserting
+                if len(self.web_documents) > 1:
+                    self.web_documents.insert(len(self.web_documents) - 1, new_document)
+                else:
+                    self.web_documents.insert(0, new_document)
+            else:
+                self.web_documents.append(new_document)
+            logging.info("New content added.")
+            
+            # Confirm the position of the new document
+            inserted_index = self.web_documents.index(new_document)
+            print(f"New document inserted at position: {inserted_index}")
+            
+            # Check if the index is in the second to last position
+            if inserted_index == len(self.web_documents) - 2:
+                print("New document correctly inserted in the second to last position.")
+            else:
+                print("New document is NOT in the expected position.")
+            
+        self._initialize_rag_application() # resets the initialisation to retrain model on updated information. 
             
     def get_model_type(self, model):
         return model.model_name
@@ -401,6 +434,7 @@ lock = Lock()
 
 # Process uploaded file
 def process_file(file_path):
+    print("***PROCESSING FILE***")
     try:
         with open(file_path, encoding="utf-8") as file:
             content = file.read()
