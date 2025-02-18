@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .content {
+            margin-top: 60px;
+            padding: 20px;
+            text-align: center; /* Center-align the content */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center; /* Ensures the button is centered */
+        }
+        .save-button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .save-button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        async function loadFeedbackData() {
+            try {
+                const response = await fetch('feedback_dataset.json'); // Fetch the JSON data
+                const feedbackData = await response.json();
+                renderTable(feedbackData);
+            } catch (error) {
+                console.error('Error loading feedback data:', error);
+            }
+        }
+
+        function renderTable(data) {
+            const tableBody = document.getElementById('feedback-table-body');
+            tableBody.innerHTML = '';
+            
+            data.forEach((entry, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${entry["model-name"]}</td>
+                    <td>${entry.question}</td>
+                    <td>${entry.response}</td>
+                    <td>${entry.feedback}</td>
+                    <td>${entry["rating-score"]}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById('feedback-table');
+            let rows = Array.from(table.rows).slice(1);
+            
+            let sortedRows = rows.sort((a, b) => {
+                let valA = a.cells[columnIndex].innerText.toLowerCase();
+                let valB = b.cells[columnIndex].innerText.toLowerCase();
+                return valA.localeCompare(valB);
+            });
+            
+            sortedRows.forEach(row => table.appendChild(row));
+        }
+
+        function saveTableAsJSON() {
+            const table = document.getElementById("feedback-table");
+            let rows = table.getElementsByTagName("tr");
+            let jsonData = [];
+
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                if (cells.length > 0) {
+                    let rowData = {
+                        "question-number": cells[0].innerText,
+                        "model-name": cells[1].innerText,
+                        "question": cells[2].innerText,
+                        "response": cells[3].innerText,
+                        "feedback": cells[4].innerText,
+                        "rating-score": cells[5].innerText
+                    };
+                    jsonData.push(rowData);
+                }
+            }
+
+            let blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "feedback_results.json";
+            link.click();
+        }
+
+        window.onload = loadFeedbackData;
+    </script>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home Page</a>
+    </div>
+
+    <div class="content">
+        <h1>Feedback Data</h1>
+        <table id="feedback-table">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Question Number</th>
+                    <th onclick="sortTable(1)">Model Type</th>
+                    <th onclick="sortTable(2)">Question</th>
+                    <th onclick="sortTable(3)">Response</th>
+                    <th onclick="sortTable(4)">Feedback</th>
+                    <th onclick="sortTable(5)">Rating Score</th>
+                </tr>
+            </thead>
+            <tbody id="feedback-table-body">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button class="save-button" onclick="saveTableAsJSON()">Save as JSON</button>
+        </div>
+    </div>
+
+</body>
+</html>
