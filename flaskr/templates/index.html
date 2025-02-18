@@ -182,60 +182,61 @@
 
         async function submitQuestion() {
             const question = document.getElementById("questionInput").value.trim();
-            const feedbackMessage = document.getElementById("feedbackMessage");
             const responseOutput = document.getElementById("responseOutput");
             responseOutput.innerHTML = ""; 
 
-            feedbackMessage.textContent = "";
+            console.log("Submitting question...");
+
             if (!question) {
                 responseOutput.textContent = "Question cannot be empty.";
                 return;
             }
 
-            const selectedModel = document.getElementById("modelSelect").value; // Get selected model
-
-            // Get checked values from dataOptionsForm
-            const selectedOptions = Array.from(document.querySelectorAll('input[name="dataOption"]:checked')).map(input => input.value);
-            // Log selected options to the console
-            console.log("Selected Options:", selectedOptions);
+            console.log(`Selected model: ${document.getElementById("modelSelect").value}`);
 
             try {
                 const postResponse = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question: question, model: selectedModel, selectedOptions: selectedOptions })
+                    body: JSON.stringify({ question: question })
                 });
+
+                console.log("Request sent to backend...", postResponse);
 
                 if (!postResponse.ok) {
                     const error = await postResponse.json();
-                    responseOutput.textContent = error.error || "An error occurred.";
+                    console.error("Backend Error:", error);
+                    responseOutput.textContent = `Error: ${error.error || "An error occurred."}`;
                     return;
                 }
 
                 const { question_id } = await postResponse.json();
+                console.log(`Received question ID: ${question_id}`);
 
+                // Check event stream for response
                 const eventSource = new EventSource(`/response/${question_id}`);
                 eventSource.onmessage = function (event) {
-                    const data = event.data;
-                    if (data.startsWith("Error:")) {
-                        responseOutput.textContent = data;
+                    console.log("Received stream data:", event.data);
+                    if (event.data.startsWith("Error:")) {
+                        responseOutput.textContent = event.data;
                         eventSource.close();
-                    } else if (data === "Processing your question...") {
-                        responseOutput.textContent = data;
+                    } else if (event.data === "Processing your question...") {
+                        responseOutput.textContent = event.data;
                     } else {
-                        responseOutput.innerHTML = data;
+                        responseOutput.innerHTML = event.data;
                         eventSource.close();
                     }
                 };
 
                 eventSource.onerror = function () {
-                    responseOutput.textContent = "An error occurred while processing your question.";
+                    console.error("EventSource error.");
+                    responseOutput.textContent = "Error fetching response.";
                     eventSource.close();
                 };
-                
+
             } catch (error) {
-                console.error("Error during question submission:", error);
-                responseOutput.textContent = "Failure to submit question. Please try again later.";
+                console.error("Fetch Error:", error);
+                responseOutput.textContent = `Error: ${error.message || "An unknown error occurred."}`;
             }
         }
 

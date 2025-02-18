@@ -32,9 +32,9 @@ def create_app(test_config=None):
         pass
 
     # Register Blueprints
-    app.register_blueprint(main_bp)
-    app.register_blueprint(feedback_bp)
-    app.register_blueprint(upload_bp)
-    app.register_blueprint(ask_bp)
+    app.register_blueprint(ask_bp, url_prefix="/")  # ✅ Ensure /ask is registered
+    app.register_blueprint(upload_bp, url_prefix="/")
+    app.register_blueprint(feedback_bp, url_prefix="/")
+    app.register_blueprint(main_bp, url_prefix="/")
     
     return app

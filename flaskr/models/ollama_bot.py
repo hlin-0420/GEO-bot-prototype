@@ -10,13 +10,13 @@ from bs4 import BeautifulSoup
 # Machine Learning and NLP Libraries
 
 # OpenAI and Language Model-Related Libraries
-from langchain_openai import OpenAIEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain_community.vectorstores import SKLearnVectorStore
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # import RAGApplication from custom defined rag_model.py
 from .rag_model import RAGApplication
@@ -28,7 +28,7 @@ from ..data_processing.file_processing import extract_text, extract_table, extra
 from ..data_processing.data_loading import load_feedback_dataset
 
 from ..data_processing.excel_formatting import auto_adjust_column_width
-from flask import Flask, current_app # imports global variable "stored_responses" from __init__.py
+from flask import Flask # imports global variable "stored_responses" from __init__.py
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -72,12 +72,11 @@ class OllamaBot:
         
         doc_splits = text_splitter.split_documents(self.web_documents)
         
+        embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
-            embedding=OpenAIEmbeddings(
-                model="text-embedding-ada-002",
-                openai_api_key="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"
-            ),
+            embedding=embedding_model,
         )
         
         retriever = vectorstore.as_retriever(k=4)

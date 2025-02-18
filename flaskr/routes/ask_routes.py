@@ -16,7 +16,7 @@ question_id = 0
 def ask():
     global question_id
     
-    print("Asking a question...")
+    print("Asking a question...", flush=True)
 
     try:
         data = request.json
