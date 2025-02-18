@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"VOB Files","type":"book","tilePath":"assets/images/VOB Files.bmp","key":"toc37"},{"name":"GEOGraph","type":"book","tilePath":"assets/images/GEOGraph.bmp","key":"toc38"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

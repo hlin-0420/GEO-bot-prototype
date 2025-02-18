@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Present Curves on the Log</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Present Curves on the Log">
+        <span>Present Curves on the Log</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Present Curves on the Log</h1>
+  <p>The Curve Settings sidebar provides an overview of curve information present in the<a class="dropspot" href="../Working_with_Files/Output_Database_File_(ODF).htm"> <span style="color:Curve Data;">ODF</span></a> file of the current session. The mechanisms for tailoring the presentation of a curve are also detailed here. </p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Curves </strong>tab, select <strong>Curve </strong><strong>Settings</strong>. The sidebar will open. </p>
+    </li>
+    <li>
+      <p>Select the curve you wish to display from the <strong>Curve</strong> list, then click <strong>Close</strong>.  <br/>
+        <strong>Note</strong>. To view the changes made to your curve at any point, click <strong>Apply</strong>.
+      </p>
+    </li>
+    <li>
+      <p>On the <strong>Display </strong>tab, open the <strong>Display </strong>node and select the <strong>Track </strong>the curve should display on and select <strong>Display Curve on Layout</strong>. <br/>
+        <strong>Note</strong>. An alert will pop up if the <a class="dropspot" href="../Log_Presentation_and_Layout/Create_Presentation_or_Track_Format.htm"><span style="color:#0000ff;">track type</span></a> does not correspond to that for the curve scale data values (see next step).
+      </p>
+    </li>
+    <li>
+      <p>Open the <strong>Scales </strong>node and select the<strong> Scale Data Values</strong>, as <strong>Linear </strong>or <strong>Logarithmic</strong>.</p>
+    </li>
+    <li>
+      <p>Enter the curves left scale value in the<strong> Left Track Edge Value</strong> and the right scale value in the <strong>Right Track Edge Value</strong> (note the Min. and Max. values of the curve display adjacent).</p>
+    </li>
+    <li>
+      <p>Open the <strong>Legend </strong>node and choose where the curve legend should <strong>Display</strong>.<br/>
+        You will notice there are some contrals for wrapped curves here - to learn how to use these click <a class="dropspot" href="Display_Wrapped_Curve_Data.htm">here</a>.</p>
+    </li>
+    <li>
+      <p>Open the <strong>Data Value Legend </strong><strong>Format </strong>node. <br/>
+        The <strong>Auto </strong>option will be suitable for most entries. This will present the data values in the format in which they appear in the <strong>Data Value at Left track </strong><strong>Edge </strong>and <strong>Data value at Right track edge</strong> boxes. However, if the data value exceeds hundreds of thousands the <strong>K(ilo)/M(ega)... </strong>option can be used to abbreviate the value with a label.</p>
+    </li>
+    <li>
+      <p>Open the <strong>Pens </strong>node and select the pens<strong> Normal Style</strong> and <strong>Normal Color</strong>.</p>
+    </li>
+    <li>
+      <p>Open the <strong>Type </strong>node and select the <strong>Curve Type</strong>. <br/>
+        Most continuous data curves are usually presented in <strong>Point-to-Point</strong>, while ROP is normally presented in the <strong>Step</strong>. <span style="color:#0000ff;"><a class="dropspot" href="Curve_Types_in_GEO.htm">For more details on curve type, click here</a>. </span><br/>
+        <strong>Note</strong>. For step-type curves, the stepping interval is the same as data frequency. The software does no data averaging. Try selecting the <strong>Alternate </strong>Step option if data appears out of phase with other curves that should normally correspond (e.g. ROP and Total Gas peaks appearing out-of-phase with each other).
+      </p>
+    </li>
+    <li>
+      <p>Select <strong>Apply </strong>at the bottom of the sidebar to implement the changes. </p>
+    </li>
+  </ol>
+  <p><video src="Present Curves on the Log.mp4" width="480" height="320" controls="" style="cursor: nwse-resize;"></video><br/>
+    <span style="color:#0000ff;"><a class="dropspot" href="Present_Curves_on_the_Log.htm">How to change the curve type and color.</a><br/>
+      <br/>
+      <a class="dropspot" href="Display_Wrapped_Curve_Data.htm">How to display the out-of-scale (wrapped curve).</a><br/>
+      <br/>
+      <a class="dropspot" href="Save_the_Curve_Display_Settings_(Defaults).htm">Learn how to save the curve display settings as defaults for future usage.</a> </span>
+  </p>
+  <h3><span style="color:#0000ff;"><u><span style="color:#444444;"></span></u></span></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><span style="color:#0000ff;"><u><span style="color:#444444;"></span></u></span></h3>
+
+</body></html>

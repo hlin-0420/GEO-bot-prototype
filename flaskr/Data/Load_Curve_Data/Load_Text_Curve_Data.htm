@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "5.0_8";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Load Text Curve Data</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Load Text Curve Data">
+        <span>Load Text Curve Data</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Load Text Curve Data</h1>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>GEO </strong>tab, select <strong>Import</strong>.</p>
+    </li>
+    <li>
+      <p>In the <strong>Open</strong> dialog box, the <strong>Files of Type </strong>box lists the curve data types accepted. Select the type required. </p>
+    </li>
+    <li>
+      <p>Locate and select the curve data file, then click <strong>Open</strong>.  Step 1 of the Data Import Wizard will invoke. </p>
+    </li>
+    <li>
+      <p>The curve data <strong>Type </strong>will be automatically detected. </p>
+    </li>
+    <li>
+      <p>Select the <strong>Data Source Type</strong>. This allows the curves to be grouped. </p>
+    </li>
+    <li>
+      <p>Enter the data range to be loaded in the <strong>From </strong>and <strong>To </strong>boxes. </p>
+    </li>
+    <li>
+      <p>Specify the Null (or pen-up) data values in the<strong> Use as Null data Value</strong>.  The default used by GEO is -999.25. If the data vendor has used a different value e.g. -999.99 define it here. </p>
+    </li>
+    <li>
+      <p>By default, <strong>Treat Null data value as “empty”</strong> will be cleared. In which case, GEO will ‘pen-up’ when it encounters null values within a curve. The curve will be discontinuous over any null intervals.  Select <strong>Treat Null data value as “empty” </strong>to draw a continuous curve. When a null value is encountered the curve will connect the previous valid value with the next valid value. </p>
+    </li>
+    <li>
+      <p>Select or deselect <strong>Append Overlapping Curves</strong> as required. </p>
+    </li>
+    <li>
+      <p>Edit the curve <strong>Name</strong>, <strong>Mnemonic</strong>, <strong>Synonym</strong>, <strong>Units </strong>and <strong>Type </strong>as required. </p>
+    </li>
+    <li>
+      <p>Elect to not load certain data by clicking on the column header. Or use the <strong>Select All</strong> or <strong>Deselect All </strong>buttons. Selected data will be black and deselected data will be red. If a mnemonic is not formatted in the curve default ini file, it will be blue. </p>
+    </li>
+    <li>
+      <p>Click <strong>Finish </strong>to complete the wizard.</p>
+    </li>
+  </ol>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

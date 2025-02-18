@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Create Template using Wizard","type":"item","tilePath":"assets/images/Create Template using Wizard.bmp","description":"","url":"Log_Structure_and_Presentation/Templates_(ODT)/Create_Template_using_Wizard.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

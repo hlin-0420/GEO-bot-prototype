@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.2.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export Curve Data to XML Format</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export Curve Data to XML Format">
+        <span>Export Curve Data to XML Format</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><span style="font-size: 24pt; font-weight: bold;">Export Curve Data to XML Format</span></h3>
+  <p><strong><span>XML</span> </strong>(eXtensible Markup Language) is a platform-independent meta-markup language that provides a format for describing structured data.</p>
+  <p> </p>
+  <p>XML provides a structural representation of data that has proved broadly implementable and easy to deploy across all platforms.</p>
+  <p> </p>
+  <p>The specifications of XML have been laid down by the World Wide Web Consortium (W3C, see <a class="dropspot" href="https://www.w3.org/">www.w3c.org</a> for details), an international consortium founded in 1994 to develop standards for the Web.<span></span></p>
+  <p> </p>
+  <p><strong>WellLogML </strong>is an XML standard adopted by the Petrotechnical Open Software Corporation (POSC) to exchange well log data (see <a class="dropspot" href="http://www.posc.org/ebiz/WellLogML">www.posc.org/ebiz/WellLogML</a>). SDC Geologix is a full member of POSC and collaborates in the development of these standards.</p>
+  <p> </p>
+  <p>WellLogML is a system for encoding well information for the Web that is flexible and extensible, suitable for interaction with external software on any platform.</p>
+  <p> </p>
+  <p>WellLogML is similar to LAS, in that it specifies how well log data is organized in terms of Well Information, Curve Information, Parameter Information, etc.</p>
+  <p> </p>
+  <p><strong>Export Curve Data as XML</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Export </strong>tab, select <strong>Export </strong><strong>Curves</strong>. The Export Curve Data dialog box will open. </p>
+    </li>
+    <li>
+      <p>In <strong>Export </strong><strong>Format</strong>, select <strong>XML</strong>.</p>
+    </li>
+    <li>
+      <p>Select one or more curves to export<br/>
+        <strong><span>Note</span></strong>. These curves MUST have the same depth interval.
+      </p>
+    </li>
+    <li>
+      <p>Change the <span><strong>Start </strong>Depth</span>, <b>End </b><span>Depth</span> and <span><strong>Null </strong><strong>Value</strong></span><strong> </strong>if necessary.</p>
+    </li>
+    <li>
+      <p>Choose the appropriate value for the <strong><span>Parameter Information from</span></strong> and the <span><strong>W</strong><strong><strong>e</strong>ll Information from</strong></span>.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>Export</span></strong>, choose a folder and file-name to export to and click <strong><span>Save</span></strong>.</p>
+    </li>
+  </ol>
+  <p><video src="Export Curve Data to XML Format.mp4" width="480" height="320" controls=""></video></p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

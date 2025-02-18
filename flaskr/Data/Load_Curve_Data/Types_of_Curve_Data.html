@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "5.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Types of Curve Data</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Types of Curve Data">
+        <span>Types of Curve Data</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><span style="font-size: 24pt;">Types of Curve Data</span></h3>
+  <p>The following curve data formats can be loaded.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_1" style="border-collapse: collapse; width: 522px;">
+    <colgroup>
+      <col style="width: 39px;"/>
+      <col style="width: 72px;"/>
+      <col style="width: 76px;"/>
+      <col style="width: 674px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="margin-left: 24px;"><strong>TYPE</strong></td>
+        <td style=""><strong>DELIMITER</strong></td>
+        <td style=""><strong>EXTENSION</strong></td>
+        <td style=""><strong>COMMENTS</strong></td>
+      </tr>
+      <tr>
+        <td style="border-width: 1px;border-style: none;border-color: rgb(0, 0, 0);float: none;margin-left: 72px">ASCII</td>
+        <td style="">Space</td>
+        <td style="">*.txt *.asc</td>
+        <td style="">Mudlog data may occasionally come in this format.</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 24px;">ASCII</td>
+        <td style="">Comma</td>
+        <td style="">*.csv *.txt</td>
+        <td style="">Mudlog data or output from a spreadsheet</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 24px;">ASCII</td>
+        <td style="">Tab</td>
+        <td style="">*.txt</td>
+        <td style="">Mudlog data or output from a spreadsheet.</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 24px;">LAS</td>
+        <td style="">-</td>
+        <td style="">*.LAS</td>
+        <td style="">Wireline data in a structured ASCII (CWLAS) format.</td>
+      </tr>
+      <tr>
+        <td style="margin-left: 24px;">XML</td>
+        <td style="">-</td>
+        <td style="">*.XML</td>
+        <td>In anticipation of the day when oilfield vendor data becomes available in eXtensible Mark-up Language [XML] format.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    Although, the above table is not an all-encompassing list, it does cover most of the common formats in use today. Loading data in any of the above formats is straightforward.<br/>
+    <br/>
+    Curve data in a binary format such as DLIS or LIS, however needs to be converted to LAS format, prior to loading into GEO. LAS output of this type of data is generally available upon request from the vendor.<br/>
+    <br/>
+    <a class="dropspot" href="Convert_LIS_to_LAS.htm">Please click for guidance on converting a LIS format file to a LAS file within GEO.</a>
+  </p>
+  <p><br/>
+    <strong>Note</strong>. LIS to LAS converter is a standard module in GEO only.
+  </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 62px;"/>
+      <col style="width: 40px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

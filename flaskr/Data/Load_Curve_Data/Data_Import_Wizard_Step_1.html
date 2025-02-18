@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "5.0_7";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Data Import Wizard</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Data Import Wizard">
+        <span>Data Import Wizard</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Data Import Wizard</h1>
+  <p>The data import wizard loads curves into an odf.</p>
+  <p><video src="Load Curve Data (long).mp4" width="480" height="320" controls=""></video><br/>
+    <br/>
+    <strong>Loading Curve Data</strong>
+  </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>GEO </strong>tab, select <strong>Import</strong>. The Open dialog box will open. </p>
+    </li>
+    <li>
+      <p>In <strong>Look </strong><strong>In</strong>, browse to the data file location.</p>
+    </li>
+    <li>
+      <p>Ensure the correct <strong>Files of Type</strong> is selected. Curve data can be imported as LAS or Text file.</p>
+    </li>
+    <li>
+      <p>Select the file and click <strong>Open</strong>. The Data Import Wizard: Step 1 of 2 will invoke.Data Import Wizard Step 1.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Data Import Wizard Step 1</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>Define the data file <strong>Type</strong>. </p>
+      <ol>
+        <li>
+          <p>Delimited text files that conform to the Ascii standard will automatically be recognized.  The <strong>Delimited Text</strong> button and the delimitation character (tab, comma etc.) will be selected.</p>
+        </li>
+        <li>
+          <p>Otherwise, <strong>Fixed Width Text</strong> will be selected together with the delimitation character (if any).</p>
+        </li>
+        <li>
+          <p>For LAS files, <strong>LAS</strong> will be selected. </p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Select a <strong>Data Source Type</strong>. This is required to continue to step 2 of the wizard. <br/>
+        The data source type allows the curves to be grouped in the Curve Settings dialog box. </p>
+    </li>
+    <li>
+      <p>Select the <strong>Data </strong><strong>Type</strong>. </p>
+      <ol>
+        <li>
+          <p>In most circumstances <strong>Curve </strong><strong>Data </strong>should be selected. </p>
+        </li>
+        <li>
+          <p><strong>Tadpole Data </strong>should only be selected if the data you are loading is to be <a class="dropspot" href="../Curve_Display/Present_Curve_in_Tadpole_Format.htm"><span style="color:#0000ff;">plotted in Tadpole format</span></a>. </p>
+        </li>
+        <li>
+          <p> <strong>Imaging Data</strong> should only be selected if the data you are loading is to be used in the creation of an LWD or Wireline imaging log.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Provide the data with a File ID. By default this field will display the name of the loaded text data. <br/>
+        This can be useful in providing an audit trail, since the File ID will appear within the<span style="color:#0000ff;"> <span style="color:#000000;">Curve Settings dialog box</span></span>, showing which curves were loaded concurrently. There is also an option to refine the curve list displayed in curve settings based on the File ID. </p>
+    </li>
+    <li>
+      <p>Enter, or select from the list, the name of the data <strong>Vendor </strong>(Schlumberger, Baker Hughes etc.).<br/>
+        This is optional but helps to provide an audit trail for the data you load into the ODF.</p>
+    </li>
+    <li>
+      <p>Visually check the data prior to loading, within the lower scrollable panel of this wizard screen. </p>
+    </li>
+    <li>
+      <p>Choose the row of data which is recognized the and ‘first row’ using the <strong>Set the current Top Line as the First </strong>section. </p>
+      <ol>
+        <li>
+          <p>If you want to load data beginning from a depth (or time) other than the first data row in the file, scroll vertically so that the data row you want to start from is the topmost visible, then click <strong>Data Line</strong>. </p>
+        </li>
+        <li>
+          <p>If your file contains non-required information ahead or the row that contains the curve mnemonics, scroll vertically so that the line containing the curve mnemonics is the topmost visible, then click <strong>Header Line</strong>.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>To load data which has TVD as the index, select<strong> Index contains TD values</strong>. <br/>
+        <strong>Note</strong>. This data will only display when the log is in TVD mode.
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Next </strong>to proceed to Step 2 of the wizard.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Data Import Wizard Step 2</strong></p>
+  <ol class="Decimal" style="margin-left: 40px;">
+    <li>
+      <p>Define the curve data range you wish to load in the <strong>Depth From</strong> and <strong>To</strong>.<br/>
+        By default GEO will list the depth range in the curve data file.</p>
+    </li>
+    <li>
+      <p>Specify the <strong>Use as Null data value</strong>. This is also know as the pen-up value. By default GEO uses -999.25 but this can be changed as required by your dataset.</p>
+    </li>
+    <li>
+      <p>Choose how to display the null data values using the <strong>Treat Null data values as &quot;empty&quot;</strong> check box.</p>
+      <ol>
+        <li>
+          <p>Leave unchecked to &#39;pen-up&#39; when null data values are encountered. The curve will stop drawing when null values are encountered, resulting discontinuous curve.</p>
+        </li>
+        <li>
+          <p>Check to draw a continuous curve joining the last good value with the next.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p><strong>Load Data into a Contiguous set of Curves</strong></p>
+      <ol>
+        <li>
+          <p>By defaults, this will be checked. The data will be loaded as a &#39;block&#39; of curves with consecutive curve numbers.</p>
+        </li>
+        <li>
+          <p>Uncheck to load curves into any empty curve number rows before filling previously un allocated rows in sequence.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p><strong>Append Overlapping Curves</strong>. Check to <a class="dropspot" href="Append_Curve_Data.htm">append overlapping curves,</a> or uncheck to not append.  The default status is determined by the Data Source Type selection made in step 1 of the wizard. </p>
+      <ol>
+        <li>
+          <p>For Wireline or Other types the check box will be unselected. </p>
+        </li>
+        <li>
+          <p>For MWD/LWD, Mudlog and Mineralogy, the check box will be selected.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p><strong>Append Non-overlapping Curves</strong>. Check to append non-overlapping curves or uncheck to not append. The status of this checkbox is determined by the Data Source Type selected made in step 1 of the wizard.</p>
+      <ol>
+        <li>
+          <p>For Mineralogy, the check box will be selected.</p>
+        </li>
+        <li>
+          <p>For all other types, the checkbox will be unselected.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>At the bottom of the dialog box, there is a grid listing the curves being loaded. </p>
+      <ol>
+        <li>
+          <p>Elect NOT to load certain curves by clicking on the column header. The values will turn red to indicate their deselected status.</p>
+        </li>
+        <li>
+          <p>Multiple columns (other than the Depth or Time index column #1) may be deselected as required. Or <strong>Select </strong><strong>All </strong>to load all curve or <strong>Deselected All</strong> to stop all curves loading. </p>
+        </li>
+        <li>
+          <p>The curve <strong>Name</strong>. <strong>Mnemonic</strong>, <strong>Synonym</strong>, <strong>Units </strong>and <strong>Type</strong> can be changed by typing in the cells.</p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Click <strong>Finish</strong> to complete the import wizard and load the data.</p>
+    </li>
+  </ol>
+  <h3 data-targetname="drop-down21"><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 data-targetname="drop-down21"><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

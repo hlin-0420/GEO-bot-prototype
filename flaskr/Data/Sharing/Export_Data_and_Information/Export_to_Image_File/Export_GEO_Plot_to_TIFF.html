@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../../..";
+    gCommonRootRelPath = "../../..";
+    gTopicId = "17.2.1.0_5";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export GEO Plot to TIFF</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export GEO Plot to TIFF">
+        <span>Export GEO Plot to TIFF</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export GEO Plot to TIFF</h1>
+  <p>
+    <font color="#000000">The TIFF export option can be used to replicate the GEO plot in to a commonly used graphics format. This file can then be viewed within many third party graphics applications.</font>
+  </p>
+  <p> </p>
+  <p>
+    <font color="#000000">The TIFF feature can be used to export the plot as a whole, however for large plots, in both width and length there are some associated limits to be aware of.</font>
+  </p>
+  <p> </p>
+  <p>
+    <font color="#000000">There are two controls for exporting to TIFF format -</font> <strong><span>
+        <font color="#000000">DPI</font>
+      </span> </strong>
+    <font color="#000000">and</font> <span>
+      <font color="#000000"><strong>Page </strong><strong>Height</strong>.</font>
+    </span>
+    <font color="#000000">Both of these options can be edited on the <strong>Edit </strong>tab in </font>
+    <font color="#000000" style=""><b>Edit GEO Settings </b>(</font><strong><span>
+        <font color="#000000">General </font>
+      </span></strong><span>
+      <font color="#000000">tab).</font>
+    </span>
+  </p>
+  <p> </p>
+  <p><img src="../../../assets/images/DPI and Page Height Settings.png"/></p>
+  <p> </p>
+  <ul class="Disc">
+    <li><strong>DPI</strong><br/>
+      DPI or Dots per Inch, relates to the resolution and quality of the output. The higher the DPI the better quality the image will be. When an ODF is viewed on screen at 100% please bear in mind that this will be approximately 96dpi, thus increasing the DPI for TIFF export will also serve to increase the respective size of the image by that factor.</li>
+    <li><strong>Page Height</strong><br/>
+      The page height relates to the maximum length in pixels of your TIFF page.<br/>
+      If your log exceeds 2048 pixels wide then your max page height will be 32000 pixels<br/>
+      If your log is less than 2048 pixels wide then your max page height will be 64000 pixels<br/>
+      Therefore if your log is longer than 64/32k pixels then you will output a multi-page TIFF file.</li>
+  </ul>
+  <p> </p>
+  <p><strong>Export to TIFF</strong></p>
+  <ol class="Decimal">
+    <li><strong></strong>On the <strong>Depth </strong>tab, enter the Index Range you wish to export in <strong>From </strong>and <strong>To</strong>. </li>
+    <li>On the <strong>Export </strong>tab, select <strong>Export As... </strong>then <strong><span>TIFF Tagged Image Format</span></strong><span>. The Export To Tiff File As dialog box will open. </span></li>
+    <li>Browse to save location and enter a <strong>file </strong><strong>name</strong>.</li>
+    <li>Click <strong>Save</strong>.</li>
+  </ol>
+  <p>The following video selects WMF as the export format. Simply replace this selection with TIFF.</p>
+  <p><video src="Explot Plot as Image (WMF Example).mp4" width="480" height="320" controls=""></video></p>
+  <p> </p>
+  <p><strong>Tip</strong>. If you experience memory issues during this process, try reducing the DPI.</p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

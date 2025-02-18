@@ -16,7 +16,6 @@ from langchain_core.output_parsers import StrOutputParser
 import json
 from sentence_transformers import SentenceTransformer, util
 from tabulate import tabulate
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import re
 
 # Initialize the selected bot. 
@@ -24,38 +23,6 @@ app = Flask(__name__)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-def split_table_by_subheadings(df, column_name):
-    sub_tables = {}
-    current_subheading = None
-    sub_table_data = []
-    
-    # skip the first row
-    df = df[1:]
-    
-    # first row has the columns
-    column_names = df.iloc[0].to_list()
-    
-    df = df[1:]
-
-    for _, row in df.iterrows():
-        
-        if row['Limit'] == '':  # Identify subheadings based on NaN in the 'Limit' column
-            if current_subheading and sub_table_data:
-                
-                sub_tables[current_subheading] = pd.DataFrame(sub_table_data, columns=column_names)
-                sub_table_data = []
-
-            current_subheading = row[column_name]
-        else:
-            row_list = row.tolist()
-            sub_table_data.append(row_list)
-
-    # Add the last collected sub-table
-    if current_subheading and sub_table_data:
-        sub_tables[current_subheading] = pd.DataFrame(sub_table_data)
-
-    return sub_tables
 
 class RAGApplication:
     def __init__(self, retriever, rag_chain):
@@ -73,24 +40,6 @@ class RAGApplication:
 def load_feedback_dataset():
     with open("feedback_dataset.json", "r") as f:
         return json.load(f)
-    
-def calculate_reward(feedback_data):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    
-    similarity_scores = []
-    
-    for entry in feedback_data:
-        response = entry.get("response", "")
-        feedback = entry.get("feedback", "")
-        
-        response_embedding = model.encode(response)
-        feedback_embedding = model.encode(feedback)
-        similarity_score = util.pytorch_cos_sim(response_embedding, feedback_embedding).item()
-
-        similarity_scores.append(similarity_score)
-
-    # Reward is proportional to the similarity score
-    return similarity_scores
 
 # initialise a default name for the models. 
 selected_model_name = "llama3.2:latest"

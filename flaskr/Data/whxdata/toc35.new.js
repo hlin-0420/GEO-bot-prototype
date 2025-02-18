@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"VUF File Transfer","type":"item","tilePath":"assets/images/VUF File Transfer.bmp","description":"","url":"Sharing/Publish_ODF_to_Web_Folder/VUF_File_Transfe.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "9.0_2";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Presenting TVD</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Presenting TVD">
+        <span>Presenting TVD</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Presenting TVD</h1>
+  <p>You can present the True Vertical Depth (TVD) in your log, just by itself, or together with the Measured Depth (MD).</p>
+  <p> </p>
+  <p>In GEO, we call those two depth references as primary and alternate depth system.</p>
+  <p> </p>
+  <p>Since we do not build any algorithm to convert the MD into TVD in the software, the user needs to have the MD versus TVD data loaded as a curve. Such data can often be obtained from the vendor of survey data (nowadays, often the MWD company). Then the software needs to be told which data is going to be used for MD-TVD calculation and determine which depth system is going to be displayed.</p>
+  <p> </p>
+  <p><strong>Inform the software which data is going to be used for MD-TVD calculation</strong></p>
+  <p>First, load the MD (Measured Depth) versus TVD (True Vertical Depth) curve data. Click <a class="dropspot" href="../Load_Curve_Data/Load_Las_Curve_Data.htm">here</a> for instructions on loading curve data.</p>
+  <p> </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Depth </strong>tab in the <strong>Conversion </strong>group, select TVD from the <strong>Curve </strong>drop list.</p>
+    </li>
+    <li>
+      <p>Check the <strong>Use Data for TVD Conversion </strong>box.</p>
+    </li>
+    <li>
+      <p>If a subsea correction needs to be applied, check <strong>TVDSS</strong> <strong>Correction </strong>and enter the value in the <strong>TVDSS </strong><strong>Correction </strong>text box. To present it as a negative value, tick <strong>TVDSS as Negative</strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Which depth system will display on the Plot?</strong></p>
+  <ol class="Decimal">
+    <li>On the <strong>Edit </strong>tab, click <span><strong>Track </strong><strong>Settings</strong></span><strong> </strong>to open the Track Settings dialog box.</li>
+    <li>Open the <strong>Legend and Index </strong>tab.</li>
+    <li>Select the Depth track.</li>
+    <li>In the <strong>Primary and Alternative Index System Settings</strong>, open the <strong>Display </strong>list and choose the depth system you wish to present. <br/>
+      Note. Please remember that the Primary and alternative depth system refer to the MD and TVD. Either MD or TVD can be the Primary or the alternative - it is defined in global settings and expanded on below.</li>
+    <li>The position of the <span>primary</span> depth system can be justified by selecting <strong>Centre</strong>, <strong><span>Left</span> </strong>or <strong><span>Right</span> </strong>justify from the <span><strong>Primary </strong><strong>Justification</strong></span><strong> </strong>box</li>
+    <li>Depth ticks can be placed for primary and/or alternate, by selecting the corresponding depths in the <strong>Ticks </strong>drop list. </li>
+    <li>The font type, style, size and color of the depth value of each depth system legend, can be selected by clicking <strong><span>Font </span></strong><span>in the </span><strong><span>Primary and Alternate Index Settings. </span></strong></li>
+    <li>Click <strong><span>OK</span> </strong>to close the <span><strong>Track </strong><strong>Settings</strong></span><strong> </strong>dialog box.</li>
+  </ol>
+  <p> </p>
+  <p>To specify which depths are primary or alternative, click <span><strong>Global </strong><strong>Settings</strong></span><strong> </strong>on the <strong>Edit </strong>tab. The <strong>Global </strong><strong>Settings </strong>dialog box will open. </p>
+  <ul class="Disc">
+    <li>
+      <p>To define MD as the primary depth, select the <strong><span>MD</span> </strong>button in the  <span><strong>Primary </strong><strong>Depth </strong><strong>System </strong>section. <strong>TVD</strong></span><strong> </strong>will be automatically selected as the <strong><span>Alternate</span> </strong><span><strong>Depth </strong><strong>System</strong></span>. In this case, if <strong><span>Primary &amp; Alternate</span></strong> is selected at the <strong><span>Display</span> </strong>box of the <span><strong>Track </strong><strong>Setting</strong></span><strong><span>s</span> </strong>dialog box, both <strong>MD </strong>and <strong>TVD </strong>will be displayed.</p>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <p>To compress the whole log into TVD select <strong>TVD </strong>as your <strong>Primary </strong><strong>Depth System </strong>in <strong>Global</strong> <strong>Settings</strong>. Then, in the <strong>Track </strong><strong>Settings </strong>open the <strong>Legends </strong><strong>and </strong><strong>Depths </strong>tab anbd select <strong>Primary </strong><strong>Only</strong> in the <strong>Display </strong>list. </p>
+    </li>
+  </ul>
+  <p> </p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

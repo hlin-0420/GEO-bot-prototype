@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "10.1.2.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Add Percent Lithology</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Add Percent Lithology">
+        <span>Add Percent Lithology</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Add Percent Lithology</h1>
+  <ol class="Decimal">
+    <li>
+      <p>Double click on the % Lithology track, or on the <strong>Lithology </strong>tab select the <strong>% Lithology </strong>track. The Percentage Lithology Information dialog box will open.</p>
+    </li>
+    <li>
+      <p>Click <strong>Select Lithologies for Row </strong>to select the lithology type of each column.<br/>
+        Up to 10 lithology columns can be displayed for each depth interval.<br/>
+        The lithology defined in Column 1 will display on the left edge of the percent lithology track, column 2 will be the next lithology and so on moving to the right track edge.</p>
+    </li>
+    <li>
+      <p>Click <strong>OK</strong> to save your lithology column selections.</p>
+    </li>
+    <li>
+      <p>On the first row, enter the <strong>Start </strong><strong>Depth </strong>and <strong>End </strong><strong>Depth</strong>.</p>
+    </li>
+    <li>
+      <p>Enter the percentage lithology for each lithology column.<br/>
+        <strong>Note</strong>. All percentage values must add up to 100% for each row. Each time you enter a percentage for that row the <span>Total %</span> entered will be updated and displayed at the bottom of the dialog box.
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Append Row </strong>to add the next row and enter the new percentages.<br/>
+        Control the depth increment of the new rows by entering a value in the <strong>Default Depth Increment</strong> box.<br/>
+        If you would like to copy the previous rows percentage and/or description, select the <strong>Percentage </strong>and/or <strong>Description </strong>in the <strong>Copy Previous Values for a New Row</strong> section.<br/>
+        <strong>Tip</strong>. Alternatively, use the down arrows on your keyboard to add more rows.
+      </p>
+    </li>
+    <li>
+      <p>Click <strong>Save &amp; Exit</strong> to display the entered data or click <strong>Cancel </strong>to ignore any changes.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Note</strong>. To append percent lithology data without invoking the <span>Percentage Lithology Information</span> dialog box, right click the percent lithology track and select <span><strong>Append </strong><strong>rows</strong> to % Lithology</span>, enter the depth value you wish to add and click <strong><span>OK</span></strong>.<br/>
+    The new rows will have the same lithology columns and the same percentages of the last entered row and the row interval will be whatever is defined in the <span>Percentage Lithology Information</span> dialog box.</p>
+  <p>If the depth increase does not fit within the depth interval then the depth will only increase by the minimum amount. i.e with an interval of 10ft and a depth increase of 55ft, only 50ft will be created.</p>
+  <p> </p>
+  <p>If desired, the percent lithology data can be shaped using the mouse. It is also possible to <a class="dropspot" href="Add_Percent_Lithology_Descriptions.htm">add percent lithology descriptions</a>.</p>
+  <p> </p>
+  <p><video src="Add Percent Lithology.mp4" width="480" height="320" controls=""></video></p>
+  <p> </p>
+  <p><strong>Saving % Litho column selections in an ODT (Template)</strong></p>
+  <p>Set up default percent lithology types in an <a class="dropspot" href="../Working_with_Files/ODF_Template_File_(ODT).htm">ODT</a> prior to add data.</p>
+  <ol class="Decimal">
+    <li>
+      <p>Ensure that a percent lithology track has been created in your template. Click <a class="dropspot" href="../Log_Presentation_and_Layout/Create_Presentation_or_Track_Format.htm">here</a> for further information.</p>
+    </li>
+    <li>
+      <p>Open the layout containing the percent lithology track you wish to apply default lithology types to.</p>
+    </li>
+    <li>
+      <p>On the <strong>Edit </strong>tab, select <span><strong>Track </strong><strong>Setting</strong></span>s. The Track Settings will open. </p>
+    </li>
+    <li>
+      <p>On the <strong>Main </strong>tab, select the percent lithology track and click <strong><span>Details</span></strong>. The<span> Select %Lithologies for Track Default</span> dialog box will invoke.</p>
+    </li>
+    <li>
+      <p>Define the <strong><span>% Lithology Type</span></strong> for each <strong><span>Column</span></strong><span>. </span>Up to 10 lithology columns can be displayed for each depth interval.</p>
+    </li>
+    <li>
+      <p>If you wish to apply the default % Lithology types in every layout that the %Lithology track appears, tick the <span><strong>Copy </strong><strong>to </strong><strong>All </strong><strong>Layouts</strong></span><strong> </strong>check box.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>OK</span></strong></p>
+    </li>
+    <li>
+      <p>Click <strong><span>Apply</span> </strong>and then <strong><span>Close</span></strong>.</p>
+    </li>
+    <li>
+      <p>On the <strong>GEO </strong>tab, select <strong>Template </strong>then <strong>Save </strong><strong>As</strong>. Enter a template ID and click <strong>OK</strong>. Enter a <strong>File </strong><strong>Name </strong>and <strong>Save</strong>.</p>
+    </li>
+  </ol>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

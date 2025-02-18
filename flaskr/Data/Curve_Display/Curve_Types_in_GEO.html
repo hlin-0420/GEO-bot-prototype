@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Curve Types in GEO</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Curve Types in GEO">
+        <span>Curve Types in GEO</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Curve Types in GEO</h1>
+  <p>Curves are named according to their origin or subsequent manipulation, and to aid their identification and source within the ODF database. </p>
+  <p><br/>
+    The curve type is detailed in open and closed brackets following the curve name.</p>
+  <p> </p>
+  <p><img src="../assets/images/Curves sidebar curve list.png"/></p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 1px;"/>
+      <col style="width: 1px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="">
+          <p><strong>Normal</strong></p>
+        </td>
+        <td style="">
+          <p>Curves that are loaded into GEO through <strong>Import </strong>from the <strong>GEO </strong>menu. In curve lists, the file ID will follow the curve name. </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>User-defined</strong></p>
+        </td>
+        <td style="">
+          <p>Curves that are created by the user in <strong>Curve </strong><strong>Data </strong>on the <strong>Curve </strong>tab by entering the depth and corresponding data values. </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Computed</strong>    </p>
+        </td>
+        <td style="">
+          <p>Curve that are generated within GEO, derived from loaded curves, constants, parameters, and expressions within the <strong>Computed </strong><strong>Curves<strong style="color: #0000FF"> </strong></strong>section on the <strong>Curves</strong> tab. </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Spliced    </strong></p>
+        </td>
+        <td style="">
+          <p>Curves that are generated by the user, using the <strong>Splice</strong> feature on the <strong>Curves </strong>tab. They are created from a section of one or multiple curves. </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Table    </strong></p>
+        </td>
+        <td style="">
+          <p>Curves that are generated from the table data. </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>Edited    </strong></p>
+        </td>
+        <td style="">
+          <p>Non-user defined curves that have been edited in <a class="dropspot" href="../Create_Curve_Data/Edit_Curve_Data.htm">Curve Data</a><strong> </strong>on the <strong>Curve </strong>tab. </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p><strong>Note</strong>. Computed Curves<strong style="color: #0000FF"> </strong>are a standard feature only for GEO and GEOLite.</p>
+  <p><br/>
+    Only user-defined curves allow the editing of depth values and creation of new depth values.</p>
+  <p><br/>
+    You can edit only the data values for all other curve types.</p>
+  <p><br/>
+    GEO always retains a copy of the original loaded or computed curve data, and you can choose to toggle display between edited and original curves. <br/>
+    Once a non user-defined curve’s data has been modified or edited, the curve is then marked as edited.</p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

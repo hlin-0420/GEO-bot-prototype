@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "6.0_13";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Present Curve in Tadpole Format</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Present Curve in Tadpole Format">
+        <span>Present Curve in Tadpole Format</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Present Curve in Tadpole Format</h1>
+  <p>A tadpole plot is used to present four data sets in graphical format.</p>
+  <p> </p>
+  <p>The four data sets are:</p>
+  <ul>
+    <li>
+      <p><span><strong>Dip/Deviation</strong>:</span><span> these</span><span> </span>values must fall between 0 and 90 degrees</p>
+    </li>
+    <li>
+      <p><span><strong>Azimuth</strong>:</span><span> these values must fall</span><span> </span>between 0 and 360 degrees</p>
+    </li>
+    <li>
+      <p><span><strong>Quality</strong>:</span><span> this data is optional and n</span>ormally represented by a % figure</p>
+    </li>
+    <li>
+      <p><span><strong>Dip Type</strong>:</span><span> this data is optional. It consists of integers which represent specific dip types</span></p>
+    </li>
+  </ul>
+  <p> </p>
+  <p>The <strong><span>Dip/Deviation</span></strong> is represented by the position of the tadpole body on the track where the track edges reflect the two extremes of dip; 0 and 90 degrees.</p>
+  <p> </p>
+  <p>The <strong><span>Azimuth</span> </strong>is depicted by the orientation of the  tadpole  ‘tail’.</p>
+  <p> </p>
+  <p>The <strong><span>Quality</span> </strong>is reflected by the ‘fill’ of the tadpole body. Four quality thresholds can be defined.</p>
+  <p> </p>
+  <p>The<span> <strong>Dip </strong><strong>Type</strong></span><strong> </strong>can be reflected either by the tadpole color or the &#39;Dip Name&#39; which displays in the track legend.</p>
+  <p> </p>
+  <p> </p>
+  <p><strong>Present tadpoles on the plot</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>Please ensure that appropriate tadpole curve data has been <a class="dropspot" href="../Load_Curve_Data/Load_Las_Curve_Data.htm">loaded into the ODF</a>.</p>
+    </li>
+    <li>
+      <p>Ensure that the curve data has been configured as &#39;Tadpole Data&#39; - on the <strong>Curve </strong>tab, select<strong> Curve </strong><strong>Settings,</strong> the <span>Curve Settings</span> sidebar will open. Select the tadpole data from the <strong>Curve </strong>list, then <strong>Close </strong>the list. O<span>pen the <strong>Data </strong>tab and expand the <strong>Display </strong>node. T</span>he<span> <strong>Use Data for Tadpole Presentation</strong></span> should be ticked.</p>
+    </li>
+    <li>
+      <p>On the <strong>Workflows </strong>tab, select <strong>Tadpole </strong><strong>Definitions</strong>. The <span>Tadpole Definitions</span> will open.</p>
+    </li>
+    <li>
+      <p>For a new tadpole definition, select an unused number from the <span><strong>Select </strong><strong>a </strong><strong>Definition</strong></span>.</p>
+    </li>
+    <li>
+      <p>Enter a name for this tadpole definition in the <span><strong>Definition </strong><strong>Name</strong></span><strong> </strong>box.</p>
+    </li>
+    <li>
+      <p>Tick both the <span><strong>In </strong><strong>Use</strong></span><strong> </strong>and <span><strong>Display </strong><strong>on </strong><strong>Plot</strong></span><strong> </strong>check boxes in order to display this tadpole definition on your log.</p>
+    </li>
+    <li>
+      <p>Select appropriate curves for the<strong> <span>Dip/Deviation</span></strong>, <strong><span>Azimuth</span></strong><span>,</span><span> <strong>Quality</strong></span><strong> </strong>and <span><strong>Dip </strong><strong>Type</strong></span><strong> </strong>by clicking on the down arrow to the right of their corresponding boxes and choosing from the tadpole data available.</p>
+    </li>
+    <li>
+      <p>If referencing a <span><strong>Dip </strong><strong>Type</strong></span><strong> </strong>curve, please define each dip type by filling in the appropriate fields in the panel to the right of the <span><strong>Dip </strong><strong>Type</strong></span><strong> </strong>box. To add more rows to the panel, use the keyboard down arrow. If you wish to display tadpoles with undefined dip types, please ensure that you tick the<strong> <span>Display Tadpoles on Plot with Undefined Dip Types</span></strong> check box.</p>
+    </li>
+    <li>
+      <p>Select the track that you wish to display the tadpoles on in the <strong><span>Track for plotting Tadpole Data</span></strong> box and the dip/deviation data scale at the <span><strong>Left </strong><strong>edge</strong></span><strong> </strong>and <span><strong>Right </strong><strong>edge</strong></span><strong> </strong>boxes.</p>
+    </li>
+    <li>
+      <p>Define the<span> <strong>Quality </strong><strong>threshold</strong></span><strong> </strong>by entering an appropriate value for each fill type in the corresponding boxes.</p>
+    </li>
+    <li>
+      <p>Adjust the tadpole<span> <strong>Circle </strong><strong>Diameter</strong></span><strong> </strong>and its <span><strong>Tail </strong><strong>length</strong></span><strong> </strong>in the <span><strong>Tadpole </strong><strong>Symbol </strong><strong>Parameters</strong></span><span><strong> </strong>section.</span></p>
+    </li>
+    <li>
+      <p>Click <strong><span>Update</span></strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>

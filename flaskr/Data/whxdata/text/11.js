@@ -1,0 +1,1 @@
+rh._.exports({"0":[[" ","Th/K Ratio"]],"1":[[" ","*Maximize screen to view table of contents*"," ","Back"," ","Forward"],[" ","Name"," ","Th/K Ratio"," ","Descriptions"," ","Thorium to Potassium Ratio, for Mineral Identification"," ","Formula"," ","THKR = HTHO/HFK"," ","Details"," ","Back"," ","Forward"]],"2":[[" ","Th/K Ratio"]],"id":"11"})

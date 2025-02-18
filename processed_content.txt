@@ -44,7 +44,7 @@ Check out the support section of ourwebsite, or contact yourlocal Geologix offic
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -62,7 +62,7 @@ Check out the support section of ourwebsite, or contact yourlocal Geologix offic
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -110,7 +110,7 @@ Lithology patterns, modifiers, symbols, headers and trailers can all be designed
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -132,7 +132,7 @@ On making contact, please provide the support staff with yourlicense numberandcu
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -163,7 +163,7 @@ On making contact, please provide the support staff with yourlicense numberandcu
                     
                     List:
                     ---
-                    
+                    [['', '', ''], [''], [], ['', ''], [''], []]
                     ---
                     
 
@@ -199,7 +199,7 @@ On making contact, please provide the support staff with yourlicense numberandcu
                     
                     List:
                     ---
-                    
+                    [['', '', ''], [], ['', '', ''], [''], [], ['', ''], [''], []]
                     ---
                     
 
@@ -227,7 +227,7 @@ Cement volume calculation
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -257,7 +257,7 @@ DX = log(ROP/(60*RPM))/log((12*(WOB*1000))/((10^6)*BS))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -289,7 +289,7 @@ MSE = EM*(((4*WOB)/(3.14159265*BS^2))+((480*RPM*TRQ)/(BS^2*ROP*1000)))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -319,7 +319,7 @@ TEMP = TS+((BHT-TS)*Depth/MDTD), if TVDF = 0 otherwise TEMP = TS+((BHT-TS)*TVDV/
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -349,7 +349,7 @@ C1SUM = C1/(C1+C2+C3+iC4+iC5+nC4+nC5)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -379,7 +379,7 @@ GBH = (c1+c2)/(c3+ic4+nc4+ic5+nc5)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -409,7 +409,7 @@ GCH = (ic4+nc4+ic5+nc5)/c3
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -439,7 +439,7 @@ GWH = ((c2+c3+ic4+nc4+ic5+nc5)/(c1+c2+c3+ic4+nc4+ic5+nc5))*100
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -471,7 +471,7 @@ IOI = C1/(C3+iC4+nC4+iC5+nC5)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -501,7 +501,7 @@ OI = (C3+iC4+nC4+iC5+nC5)/C1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -531,7 +531,7 @@ C1/C2 gas ratio calculated for the Pixler gas analysis method
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -561,7 +561,7 @@ C1/C3 gas ratio calculated for the Pixler gas analysis method
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -591,7 +591,7 @@ C1/C4 gas ratio calculated for the Pixler gas analysis method
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -621,7 +621,7 @@ C1/C5 gas ratio calculated for the Pixler gas analysis method
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -651,7 +651,7 @@ C1MA = (C1[-5]+C1[-4]+C1[-3]+C1[-2]+C1[-1]+C1+C1[+1]+C1[+2]+C1[+3]+C1[+4]+C1[+5]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -681,7 +681,7 @@ C2MA = (C2[-5]+C2[-4]+C2[-3]+C2[-2]+C2[-1]+C2+C2[+1]+C2[+2]+C2[+3]+C2[+4]+C2[+5]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -711,7 +711,7 @@ Used to calculate the gradient between two adjacent C1 points after a moving ave
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -741,7 +741,7 @@ Used to calculate the gradient between two adjacent C2 points after a moving ave
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -773,7 +773,7 @@ DTGMA = TGMA[-1]/TGMA
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -803,7 +803,7 @@ GQR = TGPPM/(C1+(2*C2)+(3*C3)+(4*(iC4+nC4))+(5*(iC5+nC5)))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -831,7 +831,7 @@ Used to convert the Total Gas values from a percentage to part per million so th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -863,7 +863,7 @@ TGMA = (TG[-5]+TG[-4]+TG[-3]+TG[-2]+TG[-1]+TG+TG[+1]+TG[+2]+TG[+3]+TG[+4]+TG[+5]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -895,7 +895,7 @@ TGNORM = TG*(((FLOW*ROP)/3.141592654))*((BS/2000)^2))*(100*3.141592654))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -927,7 +927,7 @@ NPAR = 1 if PHIA > PHIC and SWAR < SWCO, otherwise NPAR = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -959,7 +959,7 @@ NPA = 1 if PHIA > PHIC and SWA < SWCO, otherwise NPA = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -991,7 +991,7 @@ NPINR = 1 if PHIE > PHIC and SWINR < SWCO and VSH < VSHC, otherwise NPINR = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1021,7 +1021,7 @@ Calculation for identifying Net Pay, based on Sw from Indonesian Equation, Effec
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1053,7 +1053,7 @@ NPSCR = 1 if PHIE > PHIC and SWSCR < SWCO and VSH < VSHC, otherwise NPSCR = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1085,7 +1085,7 @@ NPSC = 1 if PHIE > PHIC and SWSC < SWCO and VSH < VSHC, otherwise NPSC = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1117,7 +1117,7 @@ NPSR = 1 if PHIE > PHIC and SWSR < SWCO and VSH < VSHC, otherwise NPSR = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1149,7 +1149,7 @@ NPS = 1 if PHIE > PHIC and SWS < SWCO and VSH < VSHC, otherwise NPS = 0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1181,7 +1181,7 @@ PHIA = sqrt((NPHI^2+DPHI^2)/2)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1213,7 +1213,7 @@ PHIE = sqrt(((NPHI-PSH*VSH)^2+DPHIS^2)/2)~1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1245,7 +1245,7 @@ DPHI = (((RHOMA-RHOB)/(RHOMA-RHOFL))#0)~1Details
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1277,7 +1277,7 @@ DPHIS = ((((RHOMA-RHOB)/(RHOMA-RHOFL))-(VSH*((RHOMA-RHOSH)/(RHOMA-RHOFL))))#0)~1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1309,7 +1309,7 @@ FormulaPHIS = (((DT-DTM)/(DTF-DTM))*(1/CP))~1, otherwise PHIS = ((DT-DTM)/(DTF-D
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1341,7 +1341,7 @@ PHISS = ((DT-DTM)/(DTF-DTM)*(1/CP))-(VSH*(DTSH-DTM)/(DTF-DTM))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1373,7 +1373,7 @@ RWAT = RW*(RWT+6.77)/(TEMP+6.77)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1403,7 +1403,7 @@ RWSP = ((10^(0.69*RWE75-0.24))-0.58)*(81.77/(TEMP+6.77)), if RWE 75 > 0.12 other
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1433,7 +1433,7 @@ VSH = (((GR-GRCL)/(GRSH-GRCL))#0)~1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1465,7 +1465,7 @@ SWAR = (((A/(PHIA^M))*(RWSP/RT))^(1/N))~1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1497,7 +1497,7 @@ SWA = (((A/(PHIA^M))*(RWAT/RT))^(1/N))~1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1529,7 +1529,7 @@ SWINR = ((1/(RT*((((VSH^(1-VSH/2))/SQRT(RSH))+((PHIE^(M/2))/SQRT(A*RWSP)))^2))^(
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1561,7 +1561,7 @@ SWIN = ((1/(RT*((((VSH^(1-VSH/2))/SQRT(RSH))+((PHIE^(M/2))/SQRT(A*RWAT)))^2))^(1
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1593,7 +1593,7 @@ SWSCR = ((((-VSH/RSH+((VSH/RSH)^2+(PHIE^2/(RT*RWSP*0.2*(1-VSH))))^0.5)/(PHIE^2/(
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1625,7 +1625,7 @@ SWSC = ((((-VSH/RSH+((VSH/RSH)^2+(PHIE^2/(RT*RWAT*0.2*(1-VSH))))^0.5)/(PHIE^2/(0
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1657,7 +1657,7 @@ SWSR = (((0.4*RWSP/PHIE^2)*(-VSH/RSH + ((VSH/RSH)^2+((5*PHIE^2)/(RT*RWSP)))^0.5)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1689,7 +1689,7 @@ SWS = (((0.4*RWAT/PHIE^2)*(-VSH/RSH + ((VSH/RSH)^2+((5*PHIE^2)/(RT*RWAT)))^0.5))
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1717,7 +1717,7 @@ Thorium to Potassium Ratio, for Mineral Identification
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1747,7 +1747,7 @@ EASMC = EIP+DEASMC [++]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1777,7 +1777,7 @@ NORMC = NIP + DNORMC [++]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1809,7 +1809,7 @@ TVDMC = Offset+DTVDMC[++]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1841,7 +1841,7 @@ TVDAT = Offset + DTVDAT [++]
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1871,7 +1871,7 @@ FormulaVSEC = (NORMC*Cos(PROJ*2*3.141592654/360))+(EASMC*Sin(PROJ*2*3.141592654/
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1901,7 +1901,7 @@ DEPT = sqrt(NORMC^2+EASMC^2)
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1945,7 +1945,7 @@ Note. Only the following tab column data types can be converted into curve forma
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -1995,7 +1995,7 @@ Note. Use the Undo/Redo controls in the quick access toolbar to edit the cutoff 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2047,7 +2047,7 @@ UseAppendRow,InsertRowandDelete Rowto add, insert and remove data.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2099,7 +2099,7 @@ Note. The Polyline Curve display can be edited in the Curve Settings sidebar.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2139,7 +2139,7 @@ Tip. Over a wide depth range (more than 500ft) you should always define the curv
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2185,7 +2185,7 @@ To calculate the different depth values (in MD, TVD TVDSS, TWT and VSEC) for a s
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2223,7 +2223,7 @@ Tips. After editing the data, the original values are also stored in the Curve D
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2275,7 +2275,7 @@ The pips can now be displayed on the plot.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2331,7 +2331,7 @@ If there are multiple curves on the same track but they occur at different depth
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2367,7 +2367,7 @@ UseSelect Curvesto edit the curves included in the current group.Note. Any group
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2401,7 +2401,7 @@ This curve history will be detailed below.ColumnThe number of columns of data as
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2439,7 +2439,7 @@ At the time frequency specified, GEO will revert to the specified file and if ne
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2465,7 +2465,7 @@ At the time frequency specified, GEO will revert to the specified file and if ne
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2491,7 +2491,7 @@ At the time frequency specified, GEO will revert to the specified file and if ne
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2516,7 +2516,7 @@ Data Import Wizard Step 2
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2558,7 +2558,7 @@ SelectApplyto save any changes, thenOKto load.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2576,7 +2576,7 @@ SelectApplyto save any changes, thenOKto load.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2618,7 +2618,7 @@ It is highly recommended that you scroll through the entire file to ensure the c
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2656,7 +2656,7 @@ Note. The Curve ID (number) remains the same, even though the order changes. If 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2694,7 +2694,7 @@ Note. The defaults are stored within the geocurve.ini file. The correct geocurve
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2740,7 +2740,7 @@ The geocurve.ini file that these curve defaults have been saved to can be extrac
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2772,7 +2772,7 @@ Hit Enter to implement changes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2818,7 +2818,7 @@ Tip. Clear the Use Customized Pens check box to display the curve as a single pi
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2924,7 +2924,7 @@ Choose thePlot Background Color.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -2964,7 +2964,7 @@ To change its format (font, interval, justification), remain in theCurveSettings
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3028,7 +3028,7 @@ GEO always retains a copy of the original loaded or computed curve data, and you
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3106,7 +3106,7 @@ Tip. The new pen definition can besaved in a View (Vew) file.
                     
                     List:
                     ---
-                    
+                    [['a single segment, 1 dot on, zero dots off', 'a single segment, 2 dots on, zero dots off', 'five segments, each with 10 dots on, zero dots off'], ['Single pixel', 'Two, three, four or five pixels side-by-side.', 'A square two, three, four or five pixels on each side.']]
                     ---
                     
 
@@ -3156,7 +3156,7 @@ SelectApplyto implement the changes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3206,7 +3206,7 @@ Note. The infinite wrapping is limited by theMaximum number of times to Wrap a C
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3254,7 +3254,7 @@ SelectApplyto implement the changes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3292,7 +3292,7 @@ Tip. Quickly toggle to theTadpoleDefinitionsby clickingDefinitionsat the bottom 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3332,7 +3332,7 @@ SelectApplyto implement the changes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3378,7 +3378,7 @@ Learn how to apply default curve names, mnemonics and units.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3428,7 +3428,7 @@ How to change the curve type and color.How to display the out-of-scale (wrapped 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3498,7 +3498,7 @@ Adjust the tadpoleCircleDiameterand itsTaillengthin theTadpoleSymbolParametersse
                     
                     List:
                     ---
-                    
+                    [['Dip/Deviation:thesevalues must fall between 0 and 90 degrees', 'Azimuth:these values must fallbetween 0 and 360 degrees', 'Quality:this data is optional and normally represented by a % figure', 'Dip Type:this data is optional. It consists of integers which represent specific dip types']]
                     ---
                     
 
@@ -3536,7 +3536,7 @@ The defaults will then be stored within the geocurve.inifile, which usually resi
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3618,7 +3618,7 @@ Tips. To delete shading from the plot, select theCurveShadingand clearDisplayCur
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3708,7 +3708,7 @@ Tip. The curve shading information entered inZone Attributescan be copied, by cl
                     
                     List:
                     ---
-                    
+                    [['Lithology shading through a cut off or fixed value.', 'Lithology shading based on the value of curve.']]
                     ---
                     
 
@@ -3794,7 +3794,7 @@ ClickExitto return to theDepthShiftSpecifications. The curve selection will need
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3846,7 +3846,7 @@ Click here for more information on curve shading.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3910,7 +3910,7 @@ Tip. SelectIndexConverterto calculate the different depth values (in MD, TVD, TV
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -3990,7 +3990,7 @@ Tips. To delete shading from the plot, select theCurveShadingand clearDisplayCur
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4078,7 +4078,7 @@ Tip. The curve shading information entered inZone Attributescan be copied, by cl
                     
                     List:
                     ---
-                    
+                    [['Lithology shading through a cut off or fixed value.', 'Lithology shading based on the value of curve.']]
                     ---
                     
 
@@ -4128,7 +4128,7 @@ Click here for more information on curve shading.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4190,7 +4190,7 @@ Tip. SelectIndexConverterto calculate the different depth values (in MD, TVD, TV
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4234,7 +4234,7 @@ Free format text entries can only be created over a linear or logarithmic track.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4266,7 +4266,7 @@ A confirmation dialog box will open. ClickYes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4304,7 +4304,7 @@ Right click on the text and selectTextProperties.The Free Format Text Entry side
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4342,7 +4342,7 @@ Note. Free format text can only be created on curve data tracks. But it can be 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4390,7 +4390,7 @@ Tip.To make instant changes to a graph, double click the graph.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4434,7 +4434,7 @@ As part of the installation routine you will probably have installed a suite of 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4484,7 +4484,7 @@ Learn how to place a picture such as a location map in your log header.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4552,7 +4552,7 @@ Using the mouse, select the image in the header or trailer and drag to its new p
                     
                     List:
                     ---
-                    
+                    [['.ggd graph files. These can be edited in the GEOGraph application', 'Images']]
                     ---
                     
 
@@ -4618,7 +4618,7 @@ ClickDefaultFontto restore the default font settings as specified in theText-Fon
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4676,7 +4676,7 @@ Enter a value in screen units for the gap you wish to have between the last head
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4740,7 +4740,7 @@ The newly loaded file will be listed in Existing Specifications.From here it can
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4780,7 +4780,7 @@ ClickOKto save any changes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -4880,7 +4880,7 @@ The possible length of a mnemonic is 32 characters. The API standards have not c
                     
                     List:
                     ---
-                    
+                    [['Edit directly in the ODF by left clicking the mnemonic description or value in\xa0the plot header or trailer.', 'From theDefineMnemonicsdialog box - on theDefinetab, selectMnemonics. Here, you can also define pre-set values that can be selected from a drop list in the header.']]
                     ---
                     
 
@@ -5000,7 +5000,7 @@ Tip. You can change the type of system variable assigned to a mnemonic in GEO.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5064,7 +5064,7 @@ For further information on managing Links, clickhere.
                     
                     List:
                     ---
-                    
+                    [['Display Text in Plot Mode-\xa0Choose to display the entry in specific plot modes by checking theTVD,TWTandVSECboxes in theDisplay Text in Plot Mode.Clearing the check box will prevent the track text from appearing on the plot whenever that specific mode is enabled. It does not remove\xa0them from the ODF, simply from the display.', 'Text Weightage-\xa0Choose to display the text entry when the plot scale is compressed (for example a change from 1:500 to 1:2000).Enter a weight of 100 to ensure the text carries the maximum weight and will always display, irrespective of\xa0plot scale.If the weight is less than 100, the text will display only if theCutoff Weight for Track Text(defined inEdit>Global Settings>Scale & Gridtab), is less than this specified weight.', 'Links- Add an external and/or internal link to the text.The link can provide additional or more detailed information.An example of an external link is a URL or Network location.An internal link could be using to associate the text with other GEO objects, such as a specification in the header or trailer.']]
                     ---
                     
 
@@ -5112,7 +5112,7 @@ ClickUpdate.If multiple entries are selected a message will appear  - confirmYe
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5142,7 +5142,7 @@ Right click on the text and selectTrackTextProperties. Edit the text and selectA
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5182,7 +5182,7 @@ Note.The imported text will adopt the current settings (such as fonts, text marg
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5218,7 +5218,7 @@ Enter the depth in theDisplayDepthsStartbox.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5250,7 +5250,7 @@ To return to the classic GEO interface (i.e. non ribbons), on theToolstab, check
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5298,7 +5298,7 @@ You can therefore upgrade the level of your installation easily at any time (e.g
                     
                     List:
                     ---
-                    
+                    [['Additional modules, if any', 'ODF(Database) version', 'Licence name and licence number', 'Type of dongle (CodeMeter/Flexnet)']]
                     ---
                     
 
@@ -5603,7 +5603,7 @@ The Statistics dialog box displays the number of modifiers, lithologies, symbols
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5675,7 +5675,7 @@ Important. Usage Information is stored in the RUS dongle using your computers cl
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5715,7 +5715,7 @@ Dongle Port USB-A Compatible
                     
                     List:
                     ---
-                    
+                    [['Windows 10', 'Windows 11'], ['1Ghz or higher. x86 or x64'], ['4GB of RAM (Windows 10, Windows 11)'], ['700 MB (excluding Microsoft .Net Framework 4.8 installation)', '4.6 GB (including Microsoft .Net Framework 4.8 installation on x86/x64 processor)'], ['1280 × 800 display'], ['A two-button mouse.', 'Recommended printers are those that can handle continuous media to enable printing of long logs supported by a Windows printer driver.', 'Dongle Port USB-A Compatible']]
                     ---
                     
 
@@ -5771,7 +5771,7 @@ To terminate the line definition mode, prior to defining the end point, press th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5803,7 +5803,7 @@ A confirmation dialog box will open. ClickYes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5833,7 +5833,7 @@ AddorEditthe lines text
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5871,7 +5871,7 @@ Select the line and use the grab handles to change the line size and position.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -5945,7 +5945,7 @@ ClickFinishto complete the wizard.
                     
                     List:
                     ---
-                    
+                    [['Curve mnemonics for the new curve(s) to be loaded, must be the same as for the existing curve(s).', 'The data sets must be sequential.'], ['MWD/LWD', 'Mudlog', 'Mineralogy']]
                     ---
                     
 
@@ -5985,7 +5985,7 @@ At the time frequency specified, GEO will revert to the specified file and if ne
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6013,7 +6013,7 @@ You can load data files or either comma-separated (CSV) or tab-delimited text ty
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6051,7 +6051,7 @@ Tip. You may want to use your own LIS-LAS converter software. On theEdittab, sel
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6161,7 +6161,7 @@ ClickFinishto complete the import wizard and load the data.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6205,7 +6205,7 @@ Deviation from the above may cause errors during loading data from files. When s
                     
                     List:
                     ---
-                    
+                    [['The curve data must be laid out in rows and columns.', 'The first row of the file must contain the curve names or curve mnemonics (such as ROP, GR), and must not be blank.', 'The first column must always be depth.', 'Each curve mnemonic or unit must not contain any spaces and must not exceed thirty-two characters.', 'The last row of the file must be the last row of the data set.', 'The delimiter used at the first column must be same for rest for data. Thus, you cannot have a data file that is delimited by comma and tab.', 'As an option, the second row of the file may be the curve unit (such as ft/hr, %, or GAPI).']]
                     ---
                     
 
@@ -6249,7 +6249,7 @@ SelectApplyto save any changes, thenOKto load.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6305,7 +6305,7 @@ ClickFinishto complete the wizard.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6335,7 +6335,7 @@ Once the files are converted to LAS format, they can beloaded the same way as an
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6379,7 +6379,7 @@ It is highly recommended that you scroll through the entire file to ensure the c
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6429,7 +6429,7 @@ ClickFinishto complete the wizard.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6475,7 +6475,7 @@ Note. LIS to LAS converter is a standard module in GEO only.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6551,7 +6551,7 @@ SelectOKto return to the Track Settings dialog box. Exit the Track Settings dial
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6599,7 +6599,7 @@ Toggle between layouts using the drop box on the Home menu or in the quick acces
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6671,7 +6671,7 @@ ClickOKorCloseto exit.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6713,7 +6713,7 @@ ClickOKto exit Track Settings.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6777,7 +6777,7 @@ The layout items report can be sent to other applications (such as MS Word TM). 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6857,7 +6857,7 @@ ClickYesto the confirmation message.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6897,7 +6897,7 @@ Tip. Before exiting theShiftTracksdialog box, you can clickTracksto display theT
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6931,7 +6931,7 @@ Note. Some advanced features in GEO may be disabled in date-time mode, such as e
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -6975,7 +6975,7 @@ The following Date-Time formats are accepted by GEO;
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7045,7 +7045,7 @@ Note. If the depth unit for a symbol or in a table does not change, some adjustm
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7081,7 +7081,7 @@ On theDepthtab, selectHours,Minutesor Seconds as theIndexUnit.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7233,7 +7233,7 @@ Curve FontandTrack Font- Select the preferred font size and style for both the c
                     
                     List:
                     ---
-                    
+                    [['Plot Date and TimefromandTo- Enter the from and to values that determine the date time range of the log displayed on screen and also in print.Setting these values to the bounds of the date time range you want to display or print does NOT of course remove from the ODF database any stored data for the range outside of the bounds you have set. The active View settings are merely altered (until reset) to limit the scrollable or printable section of log to that date time range specified.'], ['Date Time Track Display AttributesDisplay Date Every- Check to display the date everyMidnight,MonthorNoneby checking appropriate radio\xa0button.The corresponding midnight/month time entry can be made to display on the line below the Date by checking theDisplay Time On a New Linecheck box.Orientation- Orientate the date and time values asLeft to Right,Top to BottomorBottom to Top.Font- Select the font of the date time values.DateFormatandTimeFormat- Define the date and time format. A preview of the format will display on the far right.Use Date Time format for Table- Check to use the Date and Time Format defined above for Date and Time table columns.', 'Display Date Every- Check to display the date everyMidnight,MonthorNoneby checking appropriate radio\xa0button.The corresponding midnight/month time entry can be made to display on the line below the Date by checking theDisplay Time On a New Linecheck box.', 'Orientation- Orientate the date and time values asLeft to Right,Top to BottomorBottom to Top.', 'Font- Select the font of the date time values.', 'DateFormatandTimeFormat- Define the date and time format. A preview of the format will display on the far right.', 'Use Date Time format for Table- Check to use the Date and Time Format defined above for Date and Time table columns.'], ['Display Date Every- Check to display the date everyMidnight,MonthorNoneby checking appropriate radio\xa0button.The corresponding midnight/month time entry can be made to display on the line below the Date by checking theDisplay Time On a New Linecheck box.', 'Orientation- Orientate the date and time values asLeft to Right,Top to BottomorBottom to Top.', 'Font- Select the font of the date time values.', 'DateFormatandTimeFormat- Define the date and time format. A preview of the format will display on the far right.', 'Use Date Time format for Table- Check to use the Date and Time Format defined above for Date and Time table columns.'], ['Track Edge- Define the thickness of the logs track edges.Normalis the same width as minor grids,Mediumis slightly thicker andWideare the thickest.Note.The actual appearance ofNormal,MediumandWidewidths are defined by the settings inDisplayPenWidthsin theOptionsdialog box (on theEdittab).'], ['Center Line or Log Decade- Define the thickness of the center line of the linear tracks or log decade lines on the logarithmic tracks. SelectNormalto make them the same thickness as the minor grids andMediummake them\xa0thicker than the minor grids.Note.The actual appearance ofNormal andMediumwidths are defined by the settings inDisplayPenWidthsin theOptionsdialog box (on theEdittab).'], ['Vertical Grid- customize the color of vertical grid lines.Color- Choose the color of the vertical grid lines.', 'Color- Choose the color of the vertical grid lines.'], ['Color- Choose the color of the vertical grid lines.'], ['Vertical Micro Grid (Log)Color- Choose the color of the mirco grid of logarithmic tracks.SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.', 'Color- Choose the color of the mirco grid of logarithmic tracks.', 'SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.'], ['Color- Choose the color of the mirco grid of logarithmic tracks.', 'SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.'], ['ZoomsDisplayXandY- Set the Display (screen) zoom.PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase or decrease thePrintZoomfactor (for both X and Y), the plot scale needs to be increased or decreased by the same factor in order to maintain the correct scale in the print. For example, if applying a 1.5 Print X and Y to a 1 : 60 minute log, the scale should be adjusted to 1 : 90.', 'DisplayXandY- Set the Display (screen) zoom.', 'PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase or decrease thePrintZoomfactor (for both X and Y), the plot scale needs to be increased or decreased by the same factor in order to maintain the correct scale in the print. For example, if applying a 1.5 Print X and Y to a 1 : 60 minute log, the scale should be adjusted to 1 : 90.', 'Horizontal Tracktext Font Scaling- When the plot scale changes, it can cause horizontal text entries (normally descriptions) to overlap and become cut off, preventing the whole text entry from being viewed. To prevent this, use the following controls to resize the text when the scale changes.Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.', 'Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.', 'Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.', 'Vertical Track Text Font Scale- When the plot scale changes, it can cause vertical track text entries (normally the chrono and litho stratigraphy) to overlap. To prevent this, enter the factor by which the vertical track text has to be reduced to compensate for the changed scale.'], ['DisplayXandY- Set the Display (screen) zoom.', 'PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase or decrease thePrintZoomfactor (for both X and Y), the plot scale needs to be increased or decreased by the same factor in order to maintain the correct scale in the print. For example, if applying a 1.5 Print X and Y to a 1 : 60 minute log, the scale should be adjusted to 1 : 90.'], ['Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.', 'Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.'], ['Select a Scale Setting-From the drop list, select a predefined scale or use the boxes below to define a new scale.', 'Screen Units- Set the screen units toInches(imperial) orMillimeters(metric).Note. Since all physical measurement in the log is done in either of those two units, any screen unit value used by GEO for log configuration, will be altered to this chosen unit. This includes the mouse co-ordinate values on the status bar, the track edge positions, as well as headers positions.', 'IndexUnits- Set toHours,MinutesorSeconds. Each option has a list of pre-set scale settings in the Select a Scale Setting list.', 'Date Values- Enter the frequency at which the date values display on the Date Time track.', 'Time Values- Enter the frequency at which the time values display on the Date Time track.', 'Minor Grid-\xa0 Enter the time frequency at which the minor grids will display - this must be a multiple of theMajorGrid.Use the check box to control its display.', 'Major Grid- Enter the time frequency at which the major grids will display - this must be a multiple of theMinorGrid.Use the check box to control its display.', 'Double Major Grid- Enter the time frequency at which the Double Major Grid will display - this must be equal to or greater than theMajorGrid, and a multiple of theMinorGrid.Use the check box to control its display.', 'Display Cutoffs for Scale- If the scale of the plot is changed considerably, many small lithology units and vertical track text elements are compressed, and the screen view and print will appear unclear. To eradicate this, you can specify a minimum time range display for Lithology and vertical Track Text elements for a selected compressed scale. Any lithology block or vertical track text, whose time range is less than the cutoff range, will not be displayed at the selected plot scale.Cutoff Height for LithologyandVertical Track Text- Enter the minimum time range for lithology / vertical track text to be displayed.DisplayModifiers- Check to display modifiers at the compressed scale.Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.', 'Cutoff Height for LithologyandVertical Track Text- Enter the minimum time range for lithology / vertical track text to be displayed.', 'DisplayModifiers- Check to display modifiers at the compressed scale.', 'Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.', 'MinorGridattributesColor- Choose the color of the minor grid lines.SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.', 'Color- Choose the color of the minor grid lines.', 'SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.', 'Major GridattributesColor- Choose the color of the major grid lines.', 'Color- Choose the color of the major grid lines.', 'Double Major GridattributesColor- Choose the color of the double major grid.', 'Color- Choose the color of the double major grid.', 'Cutoff Horizontal Segment Length- Control the length of the horizontal segments of theCutoff Curves.A default of -1 takes the horizontal segment from the vertical line to the edge of the track (left image) values greater than 0 will then determine the line length (right image - length define as 0.5inches).'], ['Cutoff Height for LithologyandVertical Track Text- Enter the minimum time range for lithology / vertical track text to be displayed.', 'DisplayModifiers- Check to display modifiers at the compressed scale.', 'Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.'], ['Color- Choose the color of the minor grid lines.', 'SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.'], ['Color- Choose the color of the major grid lines.'], ['Color- Choose the color of the double major grid.'], ['Plot Description- Here you can enter a descriptive text string that is specific to theODFfile.', 'Universal Well ID- Enter Universal Well ID information.', 'Save Auto Recovery File- Enter a timing frequency for the autosave feature. By default, this is set to 20 minutes.At each set time interval, GEO will save a copy\xa0of your work-to-date to back-up file in the default or specified Back-up Directory.Should GEO or your system abnormally terminate (due to power failure or program crash), you will only lose data that changed since the last auto-save.You will be presented with the option of re-loading your work from the back-up file on re-launching a session of GEO. On normal termination of the application, the Back-up directory is flushed (deleted), ready for the next session.Note. If the value entered in this box is too small, it may cause inconvenience by frequent interruptions while the software creates a backup, especially when the file is large. On the other hand, if the set time is too large, you may encounter a higher risk of losing more of your work, if the system terminates abnormally.Warning. Do not use this AutoSave feature as the only means of backup for you file. Always manually backup your ODF file to a different media or place or storage.', 'Setting of Wrap Curves- When a curve that is plotted on a track has a value, which falls outside the scale range assigned for that curve, you may wish to wrap the curve around (i.e. to present the back-up curves). Set the following attributes for wrapped curves.Maxium number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.', 'Maxium number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.', 'Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.', 'Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.', 'Rotate Zone Report Output display in Horizontal View-\xa0Select to allow zone reports to rotate when the plot is viewed horizontally so that they can be read in the new left-right text orientation.', 'Timezone-offset of the well (hours from UTC)-\xa0Enter the time zone offset for the well. When loading data from a WITSML server this offset will be applied.', 'Depth Tick Lengths-\xa0Specify the length of depth ticks on the plot.Tick lengths are divided into the same categories as for the Grid lines (see grid line information in the Scale & Grid tab of Global Settings).Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.Major Grid- Specify the length of the depth tick that corresponds to the major grid.Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.', 'Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.', 'Major Grid- Specify the length of the depth tick that corresponds to the major grid.', 'Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.', 'Legends- Adjust the\xa0Curve and Track legends height.Track Legend Height- Define the height of the track legend.Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.', 'Track Legend Height- Define the height of the track legend.', 'Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).', 'Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.'], ['Maxium number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.', 'Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.', 'Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.'], ['Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.', 'Major Grid- Specify the length of the depth tick that corresponds to the major grid.', 'Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.'], ['Track Legend Height- Define the height of the track legend.', 'Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).', 'Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.']]
                     ---
                     
 
@@ -7401,7 +7401,7 @@ Curve FontandTrack Font- Select the preferred font size and style for both the c
                     
                     List:
                     ---
-                    
+                    [['Plot Depths fromandto- Define the depth range of\xa0the log displayed on screen and also in print.Note. Setting these values to the bounds of the depth range you want to display or print does NOT of course remove from the ODF database, any stored data for the range outside of the bounds you have set. The active view settings are merely altered (until reset) to limit the scrollable or printable section of log to that depth range specified.Note. If you specify thePlot Depths Fromas 0, when a data set starting from 1000 ft is loaded, the plot will start from 1000 ft, instead of 0 ft. However, if thePlot Depths Fromis greater than 0 ft (but less than 1000 ft), the plot will start from this specified depth, when the same data set (also started from 1000 ft) is loaded.', 'PrimaryandAlternate Depth Display Attributes- You can display up to two depth systems on the plot; aPrimaryandAlternatedepth system.', 'Orientation- Choose the orientation of both primary and alternate depth values from the drop list - it\xa0 can be set toLeft to Right,Top to BottomorBottom to Top.', 'Font- Specify the depth value font.'], ['PrimaryandAlternate Depth System- Assign the depth system -MD,TVD,TWTorVSEC- of the Primary and Alternate Depth System.', 'TVD- If a TVD curve has been assigned to be used for TVD conversion, you can control how and when it displays.TVDSSCorrection- Enter a sub sea correction to display the TVD depth system as TVDSS.Display TVDSS as Negative (-)- Check to display the TVDSS values with a minus sign before the depth value.Use the TVDSS Correction- Check to display the TVDSS values on the plot. This will replace the TVD value displayed on the plot.Display TVD values every MD for Highly Deviated Sections- Check to display TVD/TVDSS values for every MD values available in highly deviated sections of the well.', 'TVDSSCorrection- Enter a sub sea correction to display the TVD depth system as TVDSS.', 'Display TVDSS as Negative (-)- Check to display the TVDSS values with a minus sign before the depth value.', 'Use the TVDSS Correction- Check to display the TVDSS values on the plot. This will replace the TVD value displayed on the plot.', 'Display TVD values every MD for Highly Deviated Sections- Check to display TVD/TVDSS values for every MD values available in highly deviated sections of the well.'], ['TVDSSCorrection- Enter a sub sea correction to display the TVD depth system as TVDSS.', 'Display TVDSS as Negative (-)- Check to display the TVDSS values with a minus sign before the depth value.', 'Use the TVDSS Correction- Check to display the TVDSS values on the plot. This will replace the TVD value displayed on the plot.', 'Display TVD values every MD for Highly Deviated Sections- Check to display TVD/TVDSS values for every MD values available in highly deviated sections of the well.'], ['Track Edge- Choose to display the track edge thickness asNormal,MediumorWide.Note.The actual appearance ofNormal,MediumandWidewidths are defined by the settings inDisplayPenWidthsin theOptionsdialog box on theEdittab.', 'Center Line or Log Decade- Choose to display the track Centre\xa0Line (if displaying - controlled in theTrack Settingsdialog box) or Log Decade thickness asNormalorMedium.', 'Vertical Grid- Control theColorof the vertical grid lines.', 'Vertical Micro Grid (Log)Color- Choose the color of the mirco grid of logarithmic tracks.SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.', 'Color- Choose the color of the mirco grid of logarithmic tracks.', 'SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.', 'ZoomsDisplay XandY- Set the Display (screen) zoom.PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase thePrintZoomfactor (for both X and Y) to 1.5, to maintain the log scale as 1:500 at the hard copy, you need to change the plot vertical scale to 1 : (500 / 1.5) or 1 : 333.', 'Display XandY- Set the Display (screen) zoom.', 'PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase thePrintZoomfactor (for both X and Y) to 1.5, to maintain the log scale as 1:500 at the hard copy, you need to change the plot vertical scale to 1 : (500 / 1.5) or 1 : 333.', 'Horizontal Tracktext Font Scaling- When the plot scale changes, it can cause horizontal text entries (normally descriptions) to overlap and become cut off, preventing the whole text entry from being viewed. To prevent this, use the following controls to resize the text when the scale changes.Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.', 'Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.', 'Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.', 'Vertical Track Text Font Scale- When the plot scale changes, it can cause vertical track text entries (normally the chrono and litho stratigraphy) to overlap. To prevent this, enter the factor by which the vertical track text has to be reduced to compensate for the changed scale.'], ['Color- Choose the color of the mirco grid of logarithmic tracks.', 'SolidorDashedLineradio buttons -\xa0 Choose the micro grids to be solid or dashed.'], ['Display XandY- Set the Display (screen) zoom.', 'PrintXandY- Set the Print zoom.Note. The default value of 1 is 100% zoom. To increase the zoom enter a value greater than 1. To reduce the zoom, enter a value less than 1.Note. The X (width of the plot) and Y (length of the plot) zooms can be altered independently. To maintain an aspect ratio, keep them the same.Tip.\xa0If you increase thePrintZoomfactor (for both X and Y) to 1.5, to maintain the log scale as 1:500 at the hard copy, you need to change the plot vertical scale to 1 : (500 / 1.5) or 1 : 333.'], ['Current Scale Factor- Displays the factor by which the horizontal track text has been reduced to compensate for the changed scale.', 'Compute whenever Plot Scale changes- Check to automatically change the text font size when the scale changes.'], ['Select a Scale Settings -From the drop list, select a predefined scale or use the boxes below to define a new scale.Note.\xa0Any screen unit value used by GEO, will be altered to this chosen unit. This includes the mouse co-ordinate values on the status bar and the track edge position values.', 'Screen Units- Set the screen units toInches(imperial) orMillimeters(metric).', 'Index Units- Set toFeetorMeters.', 'Display Cutoffs for Scale- If the scale of the plot is changed considerably, for example a 1:500 plot is converted to 1:10000, many small lithology units and vertical track text elements become compressed and the screen view and prints can appear unclear. To eradicate this, you can specify a minimum depth range display for Lithology and vertical Track Text elements for a selected compressed scale. Any lithology block or vertical track text, whose depth range is less than the cutoff range, will not be displayed at the selected plot scale.Cutoff Height for LithologyandVertical Track Text- Enter the minimum depth range for lithology / vertical track text to be displayed.DisplayModifiers- Check to display modifiers at the compressed scale.Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.', 'Cutoff Height for LithologyandVertical Track Text- Enter the minimum depth range for lithology / vertical track text to be displayed.', 'DisplayModifiers- Check to display modifiers at the compressed scale.', 'Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.'], ['Cutoff Height for LithologyandVertical Track Text- Enter the minimum depth range for lithology / vertical track text to be displayed.', 'DisplayModifiers- Check to display modifiers at the compressed scale.', 'Cutoff Weight for Track Text,Free Format,Symbols- Enter the cutoff weight for the track text, free format text and symbols. If any of these has a weight value less than the value defined, they will not be display when the plot scale is compressed.'], ['Depth Values- By default the depth values, which display in the depth track, display every 100ft or 100m. To change this, type the new value here.Note. The value must be a multiple of theMinorGridinterval.', 'Minor, MajorandDouble Major Grid- On the plot, there areMinor,MajorandDoubleMajorhorizontal grid lines. The depth interval at which these display can be customized, but their values must be multiples of each other and theDepth Values.Minor Grid-\xa0 Enter the minor grid interval here.Major Grid- Enter the major grid interval here.Double Major Grid- Enter the double major grid interval here.', 'Minor Grid-\xa0 Enter the minor grid interval here.', 'Major Grid- Enter the major grid interval here.', 'Double Major Grid- Enter the double major grid interval here.', 'MinorGridattributesColor- Choose the color of the minor grid lines.SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.', 'Color- Choose the color of the minor grid lines.', 'SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.', 'Major GridattributesColor- Choose the color of the major grid lines.', 'Color- Choose the color of the major grid lines.', 'Double Major GridattributesColor- Choose the color of the double major grid.', 'Color- Choose the color of the double major grid.', 'Cutoff Horizontal Segment Length- Control the length of the horizontal segments of theCutoff Curves.A default of -1 takes the horizontal segment from the vertical line to the edge of the track (left image) values greater than 0 will then determine the line length (right image - length define as 0.5inches).'], ['Minor Grid-\xa0 Enter the minor grid interval here.', 'Major Grid- Enter the major grid interval here.', 'Double Major Grid- Enter the double major grid interval here.'], ['Color- Choose the color of the minor grid lines.', 'SolidorDashedradio buttons - Choose for the minor grid line to be solid or dashed.'], ['Color- Choose the color of the major grid lines.'], ['Color- Choose the color of the double major grid.'], ['Plot Description- Here you can enter a descriptive text string that is specific to the ODF file.', 'Universal Well ID- Enter Universal Well ID information.', 'Save Auto Recovery File- Enter a timing frequency for the autosave feature. By default, this is set to 20 minutes.At each set time interval, GEO will save a copy\xa0of your work-to-date to back-up file in the default or specified Back-up Directory.Should GEO or your system abnormally terminate (due to power failure or program crash), you will only lose data that has changed since the last auto-save.You will be presented with the option of re-loading your work from the back-up file on re-launching a session of GEO. On normal termination of the application, the Back-up directory is flushed (deleted), ready for the next session.Note. If the value entered in this box is too small, it may cause inconvenience by frequent interruptions while the software creates a backup, especially when the file is large. On the other hand, if the set time is too large, you may encounter a higher risk of losing more of your work, if the system terminates abnormally.Warning. Do not use this AutoSave feature as the only means of backup for you file. Always manually backup your ODF file to a different media or place of storage.', 'Auto Merge OUFs every- Enter the frequency (in minutes) at which you want GEO to check for new OUF files and automerge them into the child ODF.\xa0Please clickherefor further information on this feature.Note. By default, this feature is disabled as the frequency is set at 0 (zero) minutes.', 'Setting of Wrap Curves- When a curve that is plotted on a track has a value, which falls outside the scale range assigned for that curve, you may wish to wrap the curve around (i.e. to present the back-up curves). Set the following attributes for wrapped curves.Maximum number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.', 'Maximum number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.', 'Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.', 'Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.', 'Allow this ODF to be opened by GEOe-View -Select to allow data sharing and collaboration with other people using GEOe-View, the free-of-charge file viewer which is downloadable from our website.', 'Rotate Zone Report Output display in Horizontal View-\xa0Select to allow zone reports to rotate when the plot is viewed horizontally so that they can be read in the left-right text orientation.', 'Timezone-offset of the well (hours from UTC)-\xa0Enter the time zone offset for the well. When loading data from a WITSML server this offset will be applied.', 'Restrict Index Range for Autoloads to-\xa0Allows you to define the amount of data (in depth terms) that is loaded at any one time into your log, upon autoload.', 'Depth Shift Label Font- Define the font for theDepth Shiftlabels.', 'Zone Label Font- Define the font for the Zone labels.', 'Depth Tick Lengths-\xa0Specify the length of depth ticks on the plot.Tick lengths are divided into the same categories as for the Grid lines (see grid line information above in the Scale & Grid tab of Global Settings).Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.Major Grid- Specify the length of the depth tick that corresponds to the major grid.Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.', 'Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.', 'Major Grid- Specify the length of the depth tick that corresponds to the major grid.', 'Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.', 'Legends- Adjust the\xa0Curve and Track legends height.Track Legend Height- Define the height of the track legend.Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.', 'Track Legend Height- Define the height of the track legend.', 'Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).', 'Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.'], ['Maximum number of times to Wrap a Curve- Set the maximum number of times a curve may wrap around.Note. A curve can wrap a maximum of 50 times.', 'Automatic Selection of Wrap Pen Type for Curves- Dictates whether or not GEO selects the corresponding ‘thick’ pen style, following the user’s selection of the normal pen type (inDisplay>Penstab of theCurveSettingsside bar). Should this checkbox be selected, when you select a dashed pen (No. 1) for the Normal Pen, GEO would automatically select the thick dashed pen (No. 11) for the Wrap Pen.', 'Automatic Selection\xa0of Wrap Pens Color for Curves-\xa0Dictates whether or not GEO selects the matching color for the wrap pen, following the color selection for the normal pen. By default, bothAutomatic selection of Wrap Pen Type and Color for Curvescheck boxes are cleared orunchecked.'], ['Minor Grid- Specify the length of the depth tick that corresponds to the minor grid.', 'Major Grid- Specify the length of the depth tick that corresponds to the major grid.', 'Double Major Grid- Specify the length of the depth tick that corresponds to the double major grid.'], ['Track Legend Height- Define the height of the track legend.', 'Gap Between Curve Legends- Define the distance\xa0between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).', 'Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.']]
                     ---
                     
 
@@ -7433,7 +7433,7 @@ Left click and hold, drag to the lithology end depth and then release.Lithology 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7475,7 +7475,7 @@ Select theDeletebutton.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7529,7 +7529,7 @@ On theDefinitiontool, select the new lithology type.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7573,7 +7573,7 @@ Each time the ODT is used, and an ODF is generated from the template, the ODT re
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7607,7 +7607,7 @@ HitEscor click on the ribbon to exit modifier mode.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7651,7 +7651,7 @@ Define the abundance via theAbundance %orAbundance Code.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7683,7 +7683,7 @@ A confirmation dialog box will open. ClickYes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7715,7 +7715,7 @@ GEO Message: 1789will invoke, clickYes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7751,7 +7751,7 @@ Enter the depth in theAtbox.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7812,7 +7812,7 @@ View the log in horizontally (for geosteering).
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7860,7 +7860,7 @@ Tip. For a single user, clear theShow this dialog box every time GEO startschec
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -7900,7 +7900,7 @@ Choose toMinimize the Ribbon. The tab titles remain, but the buttons are removed
                     
                     List:
                     ---
-                    
+                    [['Choose the display of theUndo,Import,Save,Layoutcommands.', 'AddMoreCommandsto toolbar.', 'Choose the position of the toolbar -Show Below the RibbonorShow Above the Ribbon.', "Choose toMinimize the Ribbon. The tab titles remain, but the buttons are removed. Once a tab is selected, it's buttons will appear."]]
                     ---
                     
 
@@ -8092,7 +8092,7 @@ License: switch to another Geo license.
                     
                     List:
                     ---
-                    
+                    [['Scale Layout: Switch layouts and define the plot scale.', 'Zoom: Control the page zoom.', 'Tables: Add table data and place symbols on the plot.', 'Interpreted Lithology: Add interpreted lithology.', 'Qualifiers: Add qualifier information.', 'Modifiers: Add modifier information.', 'Tools: Add lines, curves and polyline curves.', 'Mouse Keyboard: move objects using the arrow nudge keys, cursor guidelines and control the behavior of objects when you move them.'], ['Tracks: Change the global settings, headers and trailers, track settings and shift tracks.', 'Clipboard: Copy and Paste objects.', 'Settings: Edit GEO settings and options.', 'Objects: Insert image into plot, paste image into plot and insert new objects.'], ['Display: Choose to view headers, view trailers, view zones, view reports and create/close split.', 'ScaleLayout: Change layouts,\xa0scale and plot index.'], ['IndexRange: Change the from and to depths of the plot.', 'Index: Change the plot index.', 'Depth Shifts: curve and global depth shifts.', 'Tools: Index converter.', 'Conversion: Define Index conversion for TVD.', 'IndexUnits: Change index units.'], ['Symbol: Choose a symbol to place on the plot.', 'Modify: Stretch, rotate, load new and edit symbols.'], ['InterpretedLithology: Choose the lithology to insert in the interpreted lithology track', "LithoExtra: Create lithology from curves, edit qualifier abundance codes and\xa0manage poisson's ratios.", 'Qualifier: Add qualifiers.', 'Modifiers: Add modifiers.', '%Lithology: Add percent lithology to a chosen track, shape\xa0percent lithology with the mouse, import and append percent lithology.', 'Track: Copy and paste track information to the clipboard.'], ['Data: Define curve settings, shape curve data, snap to grid while shaping curve data, edit curve data with the mouse, set curve values over a depth range with the mouse, splice curves, compile multiple curves, view of modifier curve data points, view or modifier multiple curve data points, report on curve data.', 'Computed Curves: Modify computed curve parameters, define computed curve expressions, use the advanced display to change parameters in the computed curve expression, regenerate and auto generate\xa0all computed curves which have changed.', 'Analysis: Draw trend lines and shade curves.', 'Charts: Add scatter, bar, line, pie, ternary, rose/radar charts.', 'DepthShift: depth shifts curves.', 'Information: View and edit curve synonyms, view curve data history.', 'WellProfile'], ['BaggageLibrary: Manage baggage (curves, computed curves and tables ini files) and library (symbols, lithology definitions, modifiers and qualifiers). Export baggage library.', 'Managers: Manage accessories, core log qualifiers, symbols,\xa0symbol categories, lithology, stratigraphy, free format text, free format text tags, track text, links, lines, images, objects, export profiles, layout\xa0information in the\xa0document.', 'Tools: check the spelling, convert lis files to las files, use the VLCP compiler to view or maintain VOB files.', 'Style: Select an application look, revert to classic mode.'], ['Data: Export curves, all info and WitsML\xa0data.', 'Text: Create registry or generic profiles for export to text file.', 'Image: Export as a range of image formats, export the document the\xa0html file using different image formats.'], ['Correlation: Export plot image as an EMF file, modify attributes of correlation wells, manage correlation items and lines, correlate depth points, correlation curves.', 'Imaging: Configure image tools, define imaging index range, auto-regenerate (normalize the imaging data\xa0range as it increases).', 'Tadpole: configure tadpole definitions, and view and modifier tadpole data.', 'GEOSteering: view the plot in horizontal view, define surfaces.'], ['PorePressure: Compile multiple curves, create trend lines, create polyline curves, create cutoff curves.', 'ComputedCurves:\xa0Modify computed curve parameters, define computed curve expressions, use the advanced display to change parameters in the computed curve expression, regenerate and auto regenerated all computed curves which have changed.'], ['CoreLog: Use the corelog setup wizard to create a corelog, generate core logs, manage corelog qualifiers.', 'DepthShifts: Shift cores, depth shift curves, specify curve specific or global depth shifts, apply depth shifts to lithologies.', 'Shaping: Shape curve data, snap to grid while shaping curve data, move curve cutoffs, mouse set curve values, shape secondary corelog curve, shape parent lithology with mouse.', 'Symbol: Add symbols to the corelog.', 'Qualifiers: Add qualifiers to the corelog.', 'Modifiers: Add modifiers to the corelog.'], ['Reporting: Create/edit report zones or definitions, view and update operations diary items, manage activities, view report history.', 'ZoneReporting: Create zone with mouse, edit zone types, mange query and report definitions, choose to display zones and reports, regenerate all zone reports, auto regenerate zone reports.'], ['WITSMLRealtime: Load from WITSML, define autoLoad definitions,\xa0 define the global auto load timer. define the timezone offset of the well.', 'Restrict Auto Load Index Range: Set the auto load index range restriction.', 'Upload:\xa0Create registry or generic profiles for export to text file.', 'SingleClick: Export profile via a single click.'], ['Define: Define passwords to secure the document.', 'System: Define system variables, fonts and mnemonics.', 'Tools: Define autoload parameters, create pip curves.', 'DepthShift: Depth shift lithologies.'], ['Help: Access help resources,\xa0use template coach, enable mouse help, compose support email, locate details about the active license, logon a GEO user.', 'Other: View display resource statistics, object definitions details, document information, ouf information and changed ouf information.', 'Updates: Choose how to update the software -\xa0via the internet, search for critical update on startup, search for updates every 30 days or search for updates now.', 'License: switch to another Geo license.']]
                     ---
                     
 
@@ -8140,7 +8140,7 @@ Tip. To split the screen so that the track legend automatically freezes on the t
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8178,7 +8178,7 @@ Most interactions with the program are done through the menu and its commands. T
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8229,7 +8229,7 @@ Enlarges any part of the log confined within a user defined rectangle around th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8271,7 +8271,7 @@ Close. This exits the application. If work has been done you will be offered the
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8337,7 +8337,7 @@ On theGEOtab, selectTemplatethenSaveAs. Enter a template ID and clickOK. Enter a
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8381,7 +8381,7 @@ The cell will be highlighted green to indicate that a description has been added
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8417,7 +8417,7 @@ Open notepad or a similar application and paste the exported data.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8457,7 +8457,7 @@ ClickExport, choose a folder and file-name to export to and clickSave.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8545,7 +8545,7 @@ Now, you can import the percent lithology file by clickingImport %Lithologyon th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8587,7 +8587,7 @@ To exit this mode, hitEscon the keyboard.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8631,7 +8631,7 @@ Define theLeftandTopMargin.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8687,7 +8687,7 @@ File Explorer will open. Enter a PDFNameand choose a location, thenSave.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8729,7 +8729,7 @@ To change the histogram details, on theEditmenu, selectTrackSettings. Select the
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8767,7 +8767,7 @@ or,Export to Clipboard; SelectExporttoClipboard, open an external application (i
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8811,7 +8811,7 @@ ClickOKto exit Track Settings.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -8845,7 +8845,7 @@ Right click to open the Rich Edit control. Choose from theAlign Text Left,Center
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, choose from theAlign Text Left,CenterorAlign Text Rightbutton.or,', 'Right click to open the Rich Edit control. Choose from theAlign Text Left,CenterorAlign Text Rightbutton.']]
                     ---
                     
 
@@ -8879,7 +8879,7 @@ Right click to open theRichEditcontrol. Select theHighlightbutton and select a c
                     
                     List:
                     ---
-                    
+                    [['On theFormatTextcontext tab, select theHighlightbutton and select a color.or,', 'Right click to open theRichEditcontrol. Select theHighlightbutton and select a color.']]
                     ---
                     
 
@@ -8913,7 +8913,7 @@ Right click to open theRichEditcontrol. Select theDecrease/Increase Indentbutton
                     
                     List:
                     ---
-                    
+                    [['On theFormatTextcontext tab, select theDecrease/Increase Indentbutton.or,', 'Right click to open theRichEditcontrol. Select theDecrease/Increase Indentbutton.']]
                     ---
                     
 
@@ -8947,7 +8947,7 @@ Right click to open theRich Editcontrol. select theLine Spacingbutton and choose
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theLine Spacingbutton and choose from the line spacing values.or,', 'Right click to open theRich Editcontrol. select theLine Spacingbutton and choose from the line spacing values.']]
                     ---
                     
 
@@ -8981,7 +8981,7 @@ Right click to open theRichEditcontrol. Select theTextColorbutton and select a c
                     
                     List:
                     ---
-                    
+                    [['On theFormatTextcontext tab, select theTextColorbutton and select a color.or,', 'Right click to open theRichEditcontrol. Select theTextColorbutton and select a color.']]
                     ---
                     
 
@@ -9015,7 +9015,7 @@ Right click to open theRichEditcontrol. SelectFontFamilyand select from the list
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, selectFontFamilyand select from the list.or,', 'Right click to open theRichEditcontrol. SelectFontFamilyand select from the list.']]
                     ---
                     
 
@@ -9051,7 +9051,7 @@ Tip. You can also click theGrowFontorShrinkFontuntil the size you want is displa
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, selectFont Sizeand select from the list.or,', 'Right click to open theRich Editcontrol. SelectFont Sizeand select from the list.']]
                     ---
                     
 
@@ -9127,7 +9127,7 @@ Draw the text smaller and lower than regular text
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9200,7 +9200,7 @@ Draw a line through the text
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9234,7 +9234,7 @@ Right click to open theRich Editcontrol. Select theSubscriptbutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theSubscriptbutton.or,', 'Right click to open theRich Editcontrol. Select theSubscriptbutton.']]
                     ---
                     
 
@@ -9268,7 +9268,7 @@ Right click to open theRichEditcontrol. Select theSuperscriptbutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormatTextcontext tab, select theSuperscriptbutton.or,', 'Right click to open theRichEditcontrol. Select theSuperscriptbutton.']]
                     ---
                     
 
@@ -9302,7 +9302,7 @@ Right click to open theRich Editcontrol. Select theBoldbutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theBoldbutton.or,', 'Right click to open theRich Editcontrol. Select theBoldbutton.']]
                     ---
                     
 
@@ -9336,7 +9336,7 @@ Right click to open theRich Editcontrol. Select theItalicbutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theItalicbutton.or,', 'Right click to open theRich Editcontrol. Select theItalicbutton.']]
                     ---
                     
 
@@ -9370,7 +9370,7 @@ Right click to open theRichEditcontrol. Select theStartaListbutton and choose th
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theStart a Listbutton and choose the list style.or,', 'Right click to open theRichEditcontrol. Select theStartaListbutton and choose the list style.']]
                     ---
                     
 
@@ -9404,7 +9404,7 @@ Right click to open theRichEditcontrol. Select theStrikethroughbutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormatTextcontext tab, select theStrikethroughbutton.or,', 'Right click to open theRichEditcontrol. Select theStrikethroughbutton.']]
                     ---
                     
 
@@ -9438,7 +9438,7 @@ Right click to open theRichEditcontrol. Select theUnderlinebutton.
                     
                     List:
                     ---
-                    
+                    [['On theFormat Textcontext tab, select theUnderlinebutton.or,', 'Right click to open theRichEditcontrol. Select theUnderlinebutton.']]
                     ---
                     
 
@@ -9490,7 +9490,7 @@ Of course you can disable and enable individual documents as you please using th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9544,7 +9544,7 @@ Note. The user can resize this dialog box, as well as the widths of the data-tab
                     
                     List:
                     ---
-                    
+                    [['ODF file load', 'Save', 'OUF creation', 'Log on as a new user name', 'Depth shift the curves'], ['Startandenddata depth (relating to the data load event).', 'The name of theUserwho logged on to the software at the time of the ‘event’.', 'Dateandtimeof the ‘event’.', 'TheErrorcolumn that details any GEO error ‘message number’ should an error occur during a file load or save episode. If no error occurs this value will show zero.', 'Description. This information depends on the ‘event’. If it were a file load episode for example, the description would detail the ‘Number of data columns that were loaded’, ‘File path’, ‘File name’, ‘GEO license number’ and whether the curves were appended. Relating to a file save, the description will detail the directory saved to and the file name.']]
                     ---
                     
 
@@ -9582,7 +9582,7 @@ Release the left-mouse button at the required depth, and the on-screen log will 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9626,7 +9626,7 @@ Note.Passwords arenotcase sensitive.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9678,7 +9678,7 @@ Tip. If a password forUpdateaccess has been applied to an ODF, you basically sen
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9744,7 +9744,7 @@ Note. The user can resize this dialog box, as well as the widths of the data-tab
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9834,7 +9834,7 @@ Learn how to export the plot to SVG format.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9874,7 +9874,7 @@ You can give your files a custom name, however theGeoTable,GeoCurveandGeoCCini f
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -9978,7 +9978,7 @@ BEGIN Table <table-name> <table-id>
                     
                     List:
                     ---
-                    
+                    [['A semicolon (";") as the first token in a line denotes a comment-line, which has been inserted only for the purpose of readability.', 'Each block begins with a BEGIN\xa0keyword, followed by the type of the block; a block always ends with an END\xa0keyword.', 'The Global\xa0block is always the first block in the file.', 'The depth values will always be represented in the fixed-point notation.', 'The mnemonic-name will always be four characters long.', 'The symbol-type, modifier-type and litho-type will be the (up to) eight-character names as they appear in GEO.', 'The free-format text and track text field will consist of a text-length field followed by a ":" character and then the text-value. A single <CR> character\xa0denotes a new-line.']]
                     ---
                     
 
@@ -10014,7 +10014,7 @@ Tip. To input library files into another ODF/ODT, use the multi-file load featur
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10122,7 +10122,7 @@ The summary includes information on curve Number, Mnemonic, Name, the Interval (
                     
                     List:
                     ---
-                    
+                    [['LAS file', 'Text Tab-delimited ASCII file', 'Text Comma-delimited ASCII file'], ['XML (extensible Markup Language)\xa0format.']]
                     ---
                     
 
@@ -10174,7 +10174,7 @@ ClickExport, choose a folder and file-name to export to and clickSave.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10236,7 +10236,7 @@ For more help on Exporting to WitsML please see the GEOExport Help; located with
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10285,7 +10285,7 @@ An up-to-date driver may be downloaded from the EPSONÔwebsite athttps://www.eps
                     
                     List:
                     ---
-                    
+                    [['CGM-Computer Graphics Metafiles (Binary format)', 'WMF-Standard Windows Metafile', 'PlaceableWMF', 'WMF- Metafile Picture to Clipboard', 'EMF- Enhanced Metafile', 'EMF- Enhanced Metafile using Screen Settings', 'EMF- Enhanced Metafile to clipboard', 'TIFF- Tagged Image Format', 'SVG- Scaleable Vector Graphics']]
                     ---
                     
 
@@ -10341,7 +10341,7 @@ For output to the plotter, such as the HP DesignJetÔseries transfer the corresp
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10381,7 +10381,7 @@ The following video selects WMF as the format to export. Simply replace this sel
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10437,7 +10437,7 @@ The height and width should correspond to the size of the graphic image in the S
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10473,7 +10473,7 @@ Tip. If you experience memory issues during this process, try reducing the DPI.
                     
                     List:
                     ---
-                    
+                    [['DPIDPI or Dots per Inch, relates to the resolution and quality of the output. The higher the DPI the better quality the image will be. When an ODF is viewed on screen at 100% please bear in mind that this will be approximately 96dpi, thus increasing the DPI for TIFF export will also serve to increase the respective size of the image by that factor.', 'Page HeightThe page height relates to the maximum length in pixels of your TIFF page.If your log exceeds 2048 pixels wide then your max page height will be 32000 pixelsIf your log is less than 2048 pixels wide then your max page height will be 64000 pixelsTherefore if your log is longer than 64/32k pixels then you will output a multi-page TIFF file.']]
                     ---
                     
 
@@ -10521,7 +10521,7 @@ Tip.The best route to bring the plot to your MS PowerPointÔfor presentation is 
                     
                     List:
                     ---
-                    
+                    [['WMF format is not geared to cope with the length of the plot that GEO usually handles.', 'Many applications may run out of memory when handling very complex pictures as created by GEO.']]
                     ---
                     
 
@@ -10557,7 +10557,7 @@ AnExportTodialog box will open.  Enter aFilenameand the directory where it is g
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10663,7 +10663,7 @@ If however, in a later OUF, modifier 20 is shifted from 3000ft to 3005ft, upon l
                     
                     List:
                     ---
-                    
+                    [['Adding security when e-mailing files: This is because the OUF files must be loaded sequentially.', 'Reducing the size, and therefore cost, of e-mailing daily updates over expensive satellite links.', 'The OUF file only carries ‘Update’ information; as a result the size of the files is reduced substantially.'], ['Double-clicking on the OUF e-mail attachment. This would launch GEO and load the OUF file automatically.', 'Detaching the e-mail attachment and selecting Load OUF Updates from the GEO menu']]
                     ---
                     
 
@@ -10699,7 +10699,7 @@ Tip.Do not rename OUF files. GEO gives the OUF the same filename as its PARENT O
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10733,7 +10733,7 @@ Repeat these steps to load the sequential incoming OUF files and save them into 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10781,7 +10781,7 @@ Note. If the frequency of transmission of OUF files from the wellsite is increas
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10827,7 +10827,7 @@ The next OUF saved by the wellsite user will be 1002.ouf. The operations base us
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10877,7 +10877,7 @@ If you clickSendRange ofOUF Updates via Mail, aRe-Save range of updatesdialog bo
                     
                     List:
                     ---
-                    
+                    [['By attaching the OUF files manually within your e-mail software itself.', 'UsingSend OUF Updates via Mail(from the GEO menu) feature in GEO.']]
                     ---
                     
 
@@ -10933,7 +10933,7 @@ As a guide we recommend a chunk size of approx 800 pixels.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -10975,7 +10975,7 @@ The ‘sidetrack’ ODF will open on returning to GEO.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11009,7 +11009,7 @@ HitEscor click on the ribbon to exit modifier mode.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11041,7 +11041,7 @@ A confirmation dialog box will open. ClickYes.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11077,7 +11077,7 @@ Change theX-PositionandAtdepth to place the symbol.Note.the symbol will have a r
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11127,7 +11127,7 @@ Use theAppendRow,Insert RowandDeleteRowto edit rows.
                     
                     List:
                     ---
-                    
+                    [['If there are tables in the header, double click on it to launch theTable Definitiondialog box.Or,', 'If there are no header tables, on theHometab, selectCreate Table from Template.', 'Select a CategoryandSelect a Table Template.', 'ClickApply. The Table Definition dialog box will open.']]
                     ---
                     
 
@@ -11217,7 +11217,7 @@ If a table requires data to be uploaded/imported from a WitsML server you need t
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11251,7 +11251,7 @@ Open another application, such as MS ExcelTM, MS WordTMor Notepad, andPastefrom 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11337,7 +11337,7 @@ The following is a sample of the Table Template entry for the Casing table in th
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11395,7 +11395,7 @@ Cancelto abort the import
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11455,7 +11455,7 @@ Calculate the different depth values (in MD, TVD, TVDSS, TWT and VSEC) for a spe
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11521,7 +11521,7 @@ InDisplay Table Symbols in Layoutselect the layout(s) to display the symbol on.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11563,7 +11563,7 @@ Note. If the data column number changed on the new template, you may not get you
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11609,7 +11609,7 @@ In theDictionary LithoStratigraphicsection, clickLoadand browse to the LithoStra
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11655,7 +11655,7 @@ To add the suggestion to the spell check library, selectAdd.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11699,7 +11699,7 @@ To zoom out, touch two points on the item, and then move your fingers toward eac
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11735,7 +11735,7 @@ Cancelcloses the dialog box.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11785,7 +11785,7 @@ To compress the whole log into TVD selectTVDas yourPrimaryDepth SysteminGlobalSe
                     
                     List:
                     ---
-                    
+                    [['To define MD as the primary depth, select theMDbutton in thePrimaryDepthSystemsection.TVDwill be automatically selected as theAlternateDepthSystem. In this case, ifPrimary & Alternateis selected at theDisplaybox of theTrackSettingsdialog box, bothMDandTVDwill be displayed.'], ['To compress the whole log into TVD selectTVDas yourPrimaryDepth SysteminGlobalSettings. Then,\xa0in theTrackSettingsopen theLegendsandDepthstab anbd selectPrimaryOnlyin theDisplaylist.']]
                     ---
                     
 
@@ -11851,7 +11851,7 @@ ClickOk.For further information on managingLinks, clickhere.
                     
                     List:
                     ---
-                    
+                    [['Display Text in Plot Mode -Choose to display the entry in specific plot modes by checking theTVD,TWTandVSECboxes in theDisplay Text in Plot Mode.Clearing the check box will prevent the track text from appearing on the plot whenever that specific mode is enabled. It does not remove\xa0them from the ODF, simply from the display.', 'Text Weightage -Choose to display the text entry when the plot scale is compressed (for example a change from 1:500 to 1:2000).Enter a weight of 100 to ensure the text carries the maximum weight and will always display, irrespective of\xa0plot scale.If the weight is less than 100, the text will display only if theCutoff Weight for Track Text(defined inEdit>GlobalSettings>Scale & Gridtab), is less than this specified weight.', 'Links- Add an external and/or internal link to the text.The link can provide additional or more detailed information.An example of an external link is a URL or Network location.An internal link could be using to associate the text with other GEO objects, such as a specification in the header or trailer.To create or\xa0edit a link,']]
                     ---
                     
 
@@ -11885,7 +11885,7 @@ Edit theDepthStartandEndvalues as required.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11929,7 +11929,7 @@ ClickUpdate.If multiple entries are selected a message will appear  - confirmYe
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -11961,7 +11961,7 @@ Note. Double clicking on an existing text entry will not invoke the Track Text P
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12019,7 +12019,7 @@ To export all the information from theStratigraphy managerclickExport to Clipboa
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12077,7 +12077,7 @@ Scaling factors, to cope with resolution differences between screen and printer 
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12119,7 +12119,7 @@ Click Save VOB to save VOB into your selected folder.Note. It is strongly recomm
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12151,7 +12151,7 @@ The GEO application will remain open, ready to open another ODF. To close the ap
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12191,7 +12191,7 @@ The File menu is used to control file related activities such as opening, closin
                     
                     List:
                     ---
-                    
+                    [['ExampleODF filesC:\\Users\\*username*\\Documents\\MyWells', 'ExampleTemplatesC:\\Users\\*username*\\AppData\\Roaming\\SDC Software\\Geo Suite 8\\Geo\\Templates']]
                     ---
                     
 
@@ -12261,7 +12261,7 @@ Note. CGM is standard feature in GEO, while OUF is a standard feature only in GE
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12295,7 +12295,7 @@ The track format for the current layout will be replaced by that of the Vew file
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12329,7 +12329,7 @@ Enter aFilenameand selectSave.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12381,7 +12381,7 @@ When creating a template you can consult the document information tree to see wh
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12471,7 +12471,7 @@ If however, in a later OUF, modifier 20 is shifted from 3000ft to 3005ft, upon l
                     
                     List:
                     ---
-                    
+                    [['Double-clicking on the OUF e-mail attachment. This would launch GEO and load the OUF file automatically.', 'Detaching the e-mail attachment and selecting Load OUF Updates from the GEO menu']]
                     ---
                     
 
@@ -12505,7 +12505,7 @@ ClickBrowseto locate the file on your computer.In theOpendialog box select the l
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12539,7 +12539,7 @@ A suite of example templates are available from C:\Users\*yourname*\AppData\Roam
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12583,7 +12583,7 @@ ODF files may be shared with other members of the team (or with well partners) 
                     
                     List:
                     ---
-                    
+                    [['Any loaded curve data and information about their source.', 'Layout related information, such as tracks, and the log scale', 'Information about geological interpretation data, such as lithology, symbol and modifiers.', 'Information that you input, such as remarks, texts, tables and headers / trailers.', 'All libraries and fonts of the system in which the ODF was first created.', 'Embedded objects, such as documents, spreadsheets, maps, diagrams, photographs, etc.', 'Links to related external documents, such as reports, spreadsheets, photographs, other ODFs, etc.']]
                     ---
                     
 
@@ -12625,7 +12625,7 @@ Note. Each time an ODF is modified, an Asterix (*) will appear against the ODF n
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12659,7 +12659,7 @@ Enter aFile nameand selectSave.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12693,7 +12693,7 @@ CheckViewOnly, orselectGEO View files (*.VEW)from the the file types drop list.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12727,7 +12727,7 @@ To learn how to load a VEW file, clickhere.
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     
 
@@ -12761,6 +12761,6 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
                     
                     List:
                     ---
-                    
+                    []
                     ---
                     

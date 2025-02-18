@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.2.0_1";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export Curve Data</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export Curve Data">
+        <span>Export Curve Data</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <p><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export Curve Data</h1>
+  <p>This feature allows curve data to be exported from GEO in three different ASCII formats:</p>
+  <ul class="Disc">
+    <li>
+      <p>LAS file</p>
+    </li>
+    <li>
+      <p>Text Tab-delimited ASCII file</p>
+    </li>
+    <li>
+      <p>Text Comma-delimited ASCII file</p>
+    </li>
+  </ul>
+  <p>For full flexibility a fourth format is also available</p>
+  <ul class="Disc">
+    <li>
+      <p>XML (extensible Markup Language) format.</p>
+    </li>
+  </ul>
+  <p> </p>
+  <p>You can also export % lithology <span style="color:#444444;">data to</span> LAS. Click <a class="dropspot" href="../../Percent_Lithology/Export_Percent_Lithology_to_LAS.htm">here</a> to find out more.</p>
+  <p> </p>
+  <p>The curves present within the ODF will be listed in the <strong><span>Select Curves to Export</span> </strong>section (on the <strong>Export </strong>tab, select <strong>Export </strong><strong>Curve(s)</strong>).</p>
+  <p> </p>
+  <p>The list details the following.</p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_2" style="border-collapse:collapse; width:100%">
+    <colgroup>
+      <col style="width: 94px;"/>
+      <col style="width: 682px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style="">
+          <p><strong><span>Curve #</span></strong></p>
+        </td>
+        <td style="">
+          <p>The curve number will be displayed here.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong>*</strong></p>
+        </td>
+        <td style="">
+          <p>An asterisk denotes that a curve is displayed on the plot</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>Mnemonic</span></strong></p>
+        </td>
+        <td style="">
+          <p>The mnemonic of the curve (usually an abbreviation of the curve name).</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>Name</span></strong></p>
+        </td>
+        <td style="">
+          <p><strong> </strong>The Full name of the curve.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>Step Value</span></strong></p>
+        </td>
+        <td style="">
+          <p>A decimal number denoting the sampling frequency of the data. ‘Variable’ denotes a mixed sampling frequency.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>Start Depth</span></strong></p>
+        </td>
+        <td style="">
+          <p>The start depth of the curve data.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>End Depth</span></strong></p>
+        </td>
+        <td style="">
+          <p>End depth of the curve data.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>Start Value</span></strong></p>
+        </td>
+        <td style="">
+          <p>The lowest value of curve data.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>End Value</span> </strong></p>
+        </td>
+        <td style="">
+          <p>The highest value of curve data.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="">
+          <p><strong><span>File ID</span></strong></p>
+        </td>
+        <td style="">
+          <p>Name of the original data set defined during loading.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p> </p>
+  <p><strong>To export curve data from GEO</strong></p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Export </strong>tab, select <span><strong>Export Curve(s)</strong>. The <a class="dropspot" href="Export_Curve_Data.htm"><span style="color:#0000ff;">Export Curve Data</span></a> dialog box will open. </span></p>
+    </li>
+    <li>
+      <p>Select the format that you want the curve data to be exported in <strong><span>Export Format</span></strong><span>.</span></p>
+    </li>
+    <li>
+      <p>Select the curves that you want to export. Any asterisk (*) after the number indicates that the curves are displayed on the plot.</p>
+    </li>
+    <li>
+      <p>Type the depth range of the curve to be exported in the <strong><span>Start</span> </strong>and <b>End </b>boxes.</p>
+    </li>
+    <li>
+      <p>Define the <strong>Null </strong><strong>values </strong>of exported data. The default (API Standard) is –999.25.</p>
+    </li>
+    <li>
+      <p>The source of parameter and well mnemonics that will appear in the <strong>Parameter </strong><strong>Information </strong>and <strong>Well </strong><strong>Information </strong>section (at LAS format) can be specified in the <span><strong>Parameter </strong><strong>Information </strong>from</span> and <span><strong>Well </strong><strong>Information </strong><strong>from</strong>.<br/>
+          <strong>Note</strong>. You can only export curve data into LAS format, if all the curve data has the same sampling interval and data depth range. Otherwise, it will only export data for depths that occur in all selected curves. </span></p>
+    </li>
+    <li>
+      <p>Click <strong><span>Export</span></strong>. An<strong> </strong><span>Export To Text As</span> <strong></strong>dialog box will open.</p>
+    </li>
+    <li>
+      <p>Type the exported <strong>File </strong><strong>name</strong>, and select the folder it will save to.</p>
+    </li>
+    <li>
+      <p>Click <span><strong>Save</strong>.</span></p>
+    </li>
+  </ol>
+  <p><video src="Export Curve Data.mp4" width="480" height="320" controls="" style="cursor: nesw-resize;"></video></p>
+  <p><strong><span>Note</span></strong>. Use any text editor (such as Notepad<font face="Symbol">Ô</font> to see the exported data).</p>
+  <p> </p>
+  <p><span><strong>Note</strong>. The <strong>Copy </strong><strong>list </strong><strong>to Clipboard button </strong></span>allows you to copy the list of curve data in the dialog box onto the clipboard. This allows you to acquire a summary of the curve diagnostics with the benefit of being able to export them into other applications.</p>
+  <p>The summary includes information on curve Number, Mnemonic, Name, the Interval (Feet), Start Depth, End Depth, Minimum and Maximum values, Units and the file Origin.</p>
+  <h3><u><span style="color:#444444;"><span><span contenteditable="false" style="height: 0px; padding: 0px; margin: 0px; display: block; z-index: 9999; color: rgb(255, 255, 255); font-size: 0px; line-height: 0px; position: absolute; border-top: 1px dashed rgb(0, 116, 217); user-select: none; left: 0px; right: 0px; top: 0px;"><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;right:0px;border-right-color:#0074D9;border-width:0 8px 8px 0;top:0px"> </span><span style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;border-color:transparent;display:block;border-style:solid;left:0px;border-left-color:#0074D9;border-width:0 0 8px 8px;top:0px"> </span><span contenteditable="false" style="width:0px;height:0px;padding:0px;margin:0px;display:block;z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;height:17px;width:17px;right:17px;background:url(file:///C:/Program%20Files/Adobe/Adobe%20RoboHelp%202020/resources/app.asar/staging/offline_app/ckeditor/plugins/magicline/images/icon.png) center no-repeat #0074D9;cursor:pointer;top:-1px; border-radius: 0px 0px 2px 2px;" title="Insert paragraph here">↵</span></span></span></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

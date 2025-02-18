@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "../..";
+    gCommonRootRelPath = "../..";
+    gTopicId = "17.2.0_4";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Export All Other Data (except curve data)</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Export All Other Data (except curve data)">
+        <span>Export All Other Data (except curve data)</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Export All Other Data (except curve data)</h1>
+  <p>Some of the information used to create a composite log may need to be cataloged in other systems such as the corporate geological database.</p>
+  <p> </p>
+  <p>Therefore, there should be a means to export data captured by GEO (and encapsulated in the ODF) to the other system.</p>
+  <p> </p>
+  <p>There are a couple of ways to do this.</p>
+  <ol class="Decimal">
+    <li>
+      <p>Through a mapping procedure in GEO<span>Export</span>, another package that comes bundled with the full GEO version. (Please refer to the help within that application for further details).</p>
+    </li>
+    <li>
+      <p>To export all other data, except for the curve data, using the <strong>Export All Information</strong> feature. This is explained below. </p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><span><strong>Note</strong>.</span> To export the curve data to LAS, Text-tab delimited or Comma-tab delimited format, please use the <a class="dropspot" href="Export_Curve_Data.htm">Export Curve Data</a> feature</p>
+  <p> </p>
+  <p><strong>Export All Information</strong></p>
+  <p>This feature allows you to select specific ODF components (or objects) to be exported from GEO, since not all objects in an ODF may need to be exported.</p>
+  <p> </p>
+  <p>For example, although a box around text is a symbol, it has no relevance to geology. Similarly, in a long sequence the age-dating column may have the word JURASSIC repeated several times. Only one of the text blocks signifies the correct interval. This dialog box shows total number of the items in an ODF file and allows you to choose what to be exported from GEO.</p>
+  <p> </p>
+  <p>Use the following procedure to export the data from GEO through an intermediary text-form file:</p>
+  <ol class="Decimal">
+    <li>
+      <p>Open the ODF containing the data to be exported.</p>
+    </li>
+    <li>
+      <p>On the <strong>Export </strong>tab select <strong>All </strong><strong>Info</strong>. The Select Items to Export will open. </p>
+    </li>
+    <li>
+      <p>Objects with the check box selected will be exported. If you <span>do not</span> want to export an object, clear the check box.</p>
+    </li>
+    <li>
+      <p>At each object, you will see the total number of that item in the ODF and the number of selected elements to be exported. By default, all total numbers will be exported.</p>
+    </li>
+    <li>
+      <p>Clicking <strong><span>Select</span> </strong>at each item brings up the items’ list, allowing you to select a particular item of that object to be exported. The total number of the selected items of each object will be written under the <strong><span>Selected</span> </strong>column.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>Export</span></strong><span>. The </span><span><strong>Export </strong><strong>As</strong></span> dialog box will open.</p>
+    </li>
+    <li>
+      <p>Enter a <strong>File name </strong>and select a folder to save to.</p>
+    </li>
+    <li>
+      <p>Click <strong><span>Save</span> </strong>to start exporting the selected objects from GEO.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p>The ‘logical block’ of the text (TXT) file as the <span>Export All Info</span> result is shown below.</p>
+  <ul class="Disc">
+    <li>
+      <p><span style="font-size: 11pt;">A semicolon (&quot;;&quot;) as the first token in a line denotes a comment-line, which has been inserted only for the purpose of readability.</span></p>
+    </li>
+    <li>
+      <p>Each block begins with a BEGIN keyword, followed by the type of the block; a block always ends with an END keyword.</p>
+    </li>
+    <li>
+      <p>The Global block is always the first block in the file.</p>
+    </li>
+    <li>
+      <p>The depth values will always be represented in the fixed-point notation.</p>
+    </li>
+    <li>
+      <p>The mnemonic-name will always be four characters long.</p>
+    </li>
+    <li>
+      <p>The symbol-type, modifier-type and litho-type will be the (up to) eight-character names as they appear in GEO.</p>
+    </li>
+    <li>
+      <p>The free-format text and track text field will consist of a text-length field followed by a &quot;:&quot; character and then the text-value. A single &lt;CR&gt; character denotes a new-line.</p>
+    </li>
+  </ul>
+  <p> </p>
+  <p>Here is an example of the ‘logical block’ format of a TXT file, as am <span>Export All Info</span> result.</p>
+  <p> </p>
+  <p> <font color="#0000ff">BEGIN Global</font>
+  </p>
+  <p>
+    <font color="#0000ff"> depth.units Feet | Meters</font>
+  </p>
+  <p>
+    <font color="#0000ff"> depth.range &lt;start-depth&gt; &lt;end-depth&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END Global</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ; NOTE: Several &#39;Table&#39; blocks are possible!!</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN Table &lt;table-name&gt; &lt;table-id&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;depth&gt;  &lt;symbol-type&gt; &lt;*field-name&gt; &lt;*field-value&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END Table</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN Mnemonics</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;mnemonic-name&gt;  &lt;*description&gt; &lt;*value&gt; [&lt;units&gt;]</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END Mnemonics</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN FreeFormatText</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;depth&gt;   length:&lt;*text&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END FreeFormatText</font>
+  </p>
+  <p> </p>
+  <p>
+    <font color="#0000ff"> BEGIN Symbols</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;symbol-type&gt;  &lt;depth&gt; [&lt;end-depth&gt;]</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END Symbols</font>
+  </p>
+  <p>
+    <font color="#0000ff"> Begin Lithos</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;litho-type&gt; &lt;start-depth&gt; &lt;end-depth&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> End Lithos</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN Modifiers</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;modifier-type&gt; &lt;depth&gt; [&lt;litho-type&gt;]</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END Modifiers</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN CommentText</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;depth&gt;   &lt;length&gt;:&lt;*text&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END CommentText</font>
+  </p>
+  <p>
+    <font color="#0000ff"> BEGIN AgeingColumns</font>
+  </p>
+  <p>
+    <font color="#0000ff"> &lt;start-depth&gt; &lt;end-depth&gt;  &lt;*text&gt;</font>
+  </p>
+  <p>
+    <font color="#0000ff"> ...</font>
+  </p>
+  <p>
+    <font color="#0000ff"> END AgeingColumns</font>
+  </p>
+  <p> </p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 61px;"/>
+      <col style="width: 41px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td style=""><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <script language="JavaScript1.2" type="text">
+      //<![CDATA[
+        if( typeof( FilePopupInit ) != 'function' ) FilePopupInit = new Function();
+        FilePopupInit('A1');
+//]]></script>
+  </p>
+
+</body></html>

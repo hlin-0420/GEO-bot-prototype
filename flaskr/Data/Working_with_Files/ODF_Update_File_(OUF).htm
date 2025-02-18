@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "3.0_6";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>ODF Update File (OUF)</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="ODF Update File (OUF)">
+        <span>ODF Update File (OUF)</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>ODF Update File (OUF)</h1>
+  <p>The ODF Update File or OUF, enables you to send daily updates with a high level of security, very cost effectively.</p>
+  <p><br/>
+    The prime purposes are adding security when e-mailing files (the OUF files must be loaded sequentially) and reducing the size, and therefore cost, of e-mailing daily updates over expensive satellite links.</p>
+  <p><br/>
+    The OUF file only carries ‘Update’ information; as a result the size of the files is reduced substantially.</p>
+  <p><br/>
+    While an ODF is being created at the wellsite, the size and complexity of the file increases throughout the duration of the well, as progressively more data is added to it. The security of mailing the file becomes increasingly important, as do the actual costs involved. In the scenario where a wellsite user e-mails files to an operations base, the sending of the entire ODF on a daily basis can become inefficient. This is especially true when the recipient of the ODF is only concerned with the updates.</p>
+  <p><br/>
+    In the OUF model, the Wellsite user creates and maintains a Parent ODF. From this is saved sequential OUF files. These files are then mailed to the operations base and loaded to build an identical Child ODF. The OUF files must be loaded in the correct sequence to successfully build the Child ODF.<br/>
+     The scenario below attempts to show the best practice on how this OUF model may be conducted.</p>
+  <p><br/>
+    <br/>
+    <strong>At the Wellsite</strong>
+  </p>
+  <p><strong></strong>The first time the ODF is saved, you simply select <strong>Save </strong><strong>As </strong>from the <strong>GEO </strong>menu and supply a file name as normal. For instance, WellX.odf.</p>
+  <p><br/>
+    When the first transfer of data from the wellsite to operations base is required, you would simply select <strong>Save OUF Updates</strong> from the <strong>GEO </strong>menu (or <strong>Send </strong><strong>OUF Update Via Mail</strong> if you are going to send the file directly through an e-mail facility already present and set up in your PC – requires internet connection).</p>
+  <p><br/>
+    GEO takes the file name supplied and creates the first OUF file. For instance, WellX-001.ouf. You would then e-mail, disk-fax or modem transfer the ‘WellX-001.ouf’ to the operations base, instead of the WellX.odf.</p>
+  <p><br/>
+    Because of its in-built compressibility, the resultant OUF file will always be smaller than the Parent ODF, although for the very first transmission, there probably will not be such a marked difference in file sizes as is noticeable with the subsequent OUFs.</p>
+  <p><br/>
+    Between transfers, the wellsite user can of course keep the Parent ODF up-to-date and saved on the local drive by using the normal Save procedure from the GEO menu.</p>
+  <p><br/>
+    For the next transfer, you would again select Save OUF Updates or Send OUF Update Via Mail.</p>
+  <p>GEO will then save this update as an OUF, called WellX-002.ouf.</p>
+  <p><strong>Note</strong>. Saving the WellX-002.ouf will simultaneously save the WellX.odf to the same point.</p>
+  <p>If you select Save As instead of Save OUF Updates it would result in a GEO warning message (840) advising you that saving the ODF to another name would break the connection between this ODF and all subsequent OUFs’.</p>
+  <p>Hence, say if the ODF was saved under a different name e.g. WellZ.odf. The next time you go to Save OUF Updates the OUF would revert to WellZ-001.ouf because of the name change. All the information loaded would then be encapsulated in this new OUF under the newly named ODF.<br/>
+     <br/>
+    <strong>At the Operations Base</strong>
+  </p>
+  <p><strong></strong>You have two options for loading the OUF file.</p>
+  <ul class="Disc">
+    <li>
+      <p>Double-clicking on the OUF e-mail attachment. This would launch GEO and load the OUF file automatically.</p>
+    </li>
+    <li>
+      <p>Detaching the e-mail attachment and selecting Load OUF Updates from the GEO menu</p>
+    </li>
+  </ul>
+  <p><br/>
+    After loading the 001.ouf, the file must be saved as an ODF. You can give a file name as appropriate. The ODF created is often called the ‘Child’ ODF. Each time an OUF is received and loaded, the ODF is saved prior to loading subsequent OUFs. This ensures the child ODF is at the correct stage to load the next OUF in sequence.</p>
+  <p><br/>
+    The OUFs must be loaded in sequence. If the wellsite user accidentally sends 004.ouf without previously sending 003.ouf the operations base user cannot load the file. This is an important security element of the OUF file.</p>
+  <p><br/>
+    Please note, that OUF files may be opened and viewed within the full viewer application, GEOView.</p>
+  <p><br/>
+    OUF files cannot be opened directly using the free viewer, GEOe-View.</p>
+  <p><br/>
+    Files must first be consolidated within an ODF file (using GEO or GEOView).</p>
+  <p><br/>
+    After the ODF has been <span style="color:#0000ff;"><a class="dropspot" href="../Sharing/e-View_Enable_an_ODF.htm">e-View enabled</a> </span>(using GEO), it may only then be freely shared with users of the GEOe-View application.</p>
+  <p> </p>
+  <p><strong>What happens if the OUF connection is broken?</strong></p>
+  <p><strong></strong>Please <a class="dropspot" href="../Sharing/ODF_Update_File_(OUF))/OUF_Resave_Feature.htm"><span style="color:#0000ff;">click</span></a> to learn more on the <strong>Resave </strong>feature for OUF files.<br/>
+     <br/>
+    <strong>Replication conflict with the OUF</strong>
+  </p>
+  <p><strong></strong>Any amendments made in the PARENT ODF, and the OUF subsequently created, will over-ride changes made in the Child ODF. The Replication Information dialog box serves to advise the operations base user, if an amendment made in the Child ODF, has also been changed in the OUF they are loading. This is the only scenario where a <strong>Replication </strong><strong>Information</strong> dialog box is invoked detailing a Replication Conflict.</p>
+  <p><br/>
+    Example:</p>
+  <p>The operations base user loads an OUF. They then move a casing shoe symbol from 4000ft to 4500ft, and save the child ODF. The next OUF received includes the same casing shoe having been moved in the PARENT ODF from 4000ft to 4250ft. When the operations base user loads this OUF they will first see a <strong>Replication </strong><strong>Information </strong>dialog box. This advises the operations base user that a change made to the child ODF has also been changed in the parent ODF. Exiting the dialog box will over-write the change made by the operations user in the child ODF. After loading this OUF the casing shoe will be moved to 4250ft.</p>
+  <p><br/>
+    GEO takes the OUF to be loaded and checks the contents of this OUF against the contents of the child ODF.</p>
+  <p><br/>
+    In the above example, the Replication Information dialog box would not have been produced if the symbol had not been moved in the PARENT ODF. The child ODF can be altered any number of times without invoking the ‘Replication Conflict’, as long as an alteration using the same log object has not been implemented in the parent ODF.</p>
+  <p><br/>
+    Further Example:</p>
+  <p>A sandstone block has two pyritic modifiers at 3000ft. GEO assigns these modifiers their own unique id numbers (e.g. 20 &amp; 21). The child ODF is altered, by shifting modifier 20 to 2995ft and then saved. The PARENT ODF is altered, by shifting modifier 21 to 3005ft. The next sequential OUF is then saved. When this OUF is loaded into the child ODF, a <strong>Replication </strong><strong>Information </strong>dialog box will not open.</p>
+  <p><br/>
+    If however, in a later OUF, modifier 20 is shifted from 3000ft to 3005ft, upon loading this OUF a <strong>Replication </strong><strong>Information </strong>dialog box is opened. This is because the OUF records the shift from 3000ft to 3005ft in the parent ODF. When scanning the child ODF, GEO by default, assumes the modifier to be positioned at 3000ft but upon loading the OUF scans and records the same modifier (20), positioned at 2995ft. This ‘deviation’ invokes the <strong>Replication </strong><strong>Information </strong>dialog box.</p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

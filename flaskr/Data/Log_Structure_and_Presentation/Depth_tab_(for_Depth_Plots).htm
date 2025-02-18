@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "4.0_3";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Depth tab (for Depth Plots)</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Depth tab (for Depth Plots)">
+        <span>Depth tab (for Depth Plots)</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Depth tab (for Depth Plots)</h1>
+  <p><strong>Change Plot Index Range</strong></p>
+  <p><strong></strong>On the <strong>Depth </strong>tab, enter the range you wish to display on the plot in the <strong>From </strong>and <strong>To </strong>boxes. <strong></strong></p>
+  <p><video src="Change Plot Index Range.mp4" width="480" height="320" controls=""></video></p>
+  <p> </p>
+  <p><strong>Depth Shift Curves</strong></p>
+  <p>The depth of curves can be shifted to shallower or deeper depths using the depth shifts feature. To access this, select <strong>Curves and Global Depth Shifts</strong>. Click <a class="dropspot" href="../Curve_Shading,_Splicing_and_Depth_Shifting/Curve_Depth_Shifting.htm">here</a> to learn more about the actions you can perform via this dialog box. </p>
+  <p> </p>
+  <p><strong>Change Index</strong></p>
+  <p><strong></strong>The log index can be in MD, TWT or VSEC.</p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Depth </strong>tab in the <strong>Conversion</strong> group, select the <strong>Curve</strong> you wish to use as the index. </p>
+    </li>
+    <li>
+      <p>Choose to <strong>Use Data for TVD Conversion</strong>, <strong>Use Data for TWT (Time) Conversion</strong> or <strong>Use Data for VSEC (vertical Section)</strong> <strong>Conversion </strong>as required.  </p>
+    </li>
+    <li>
+      <p>From the <strong>Index </strong>group, select the primary index required. </p>
+    </li>
+  </ol>
+  <p><strong>Note</strong>. In the <strong>Curves </strong>list a letter adjacent to the curve name will denote how the data is being used;</p>
+  <p><strong>T     </strong>Curve is being used for TVD conversion</p>
+  <p><strong>t      </strong>Curve is being used for TWT conversion        </p>
+  <p><strong>V     </strong>Curve is being used for VSEC conversion</p>
+  <p><strong>Note</strong>. The mouse cursor position is detailed in the status bar and will reflect the index selected as the first value (the second value is the alternate index).</p>
+  <p>The status bar index text will change colour depending on the index selected.</p>
+  <p>MD is black</p>
+  <p><span style="color:#ff0000;">TVD is red</span></p>
+  <p><span style="color:#00ff00;">TWT is green</span></p>
+  <p><span style="color:#0000ff;">VSEC is Blue</span></p>
+  <p><br/>
+    <strong>Apply a TVDSS Correction</strong>
+  </p>
+  <p><strong></strong>Define the sub sea correction (offset) for the TVD. </p>
+  <ol class="Decimal">
+    <li>
+      <p>On the <strong>Depth </strong>tab, enter the <strong>TVDSS </strong><strong>Correction</strong>.</p>
+    </li>
+    <li>
+      <p>Tick <strong>Use TVDSS Correction</strong> to reference TVDSS instead of TVD as the index. </p>
+    </li>
+    <li>
+      <p>Tick <strong>Display TVDSS as Negative</strong> to display a negative TVDSS on the log.</p>
+    </li>
+    <li>
+      <p>The TVD/TVDSS is formatted to display every fixed increase in depth and will therefore not display over highly deviated sections where it does not increase. In this case, the TVD/TVDSS can be forced to display every time an MD value displays by selecting <strong>Display TVD Values every MD</strong>.</p>
+    </li>
+  </ol>
+  <p> </p>
+  <p><strong>Change Depth Unit</strong></p>
+  <p>The log can be converted from feet to meters or vice versa. </p>
+  <p>On the <strong>Depth </strong>tab in the <strong>Index </strong>Units group, select <strong>Feet </strong>or <strong>Meters </strong>as required.</p>
+  <p><strong>Note</strong>. If the depth unit for a symbol or in a table does not change, some adjustments may be required in the individual symbol or table .vob file. Contact Geologix for further information. </p>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>

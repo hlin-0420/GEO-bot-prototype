@@ -1,10 +1,20 @@
 import os
-
 from flask import Flask
+from threading import Lock
 
+from .models.ollama_bot import OllamaBot
+
+from .routes.main_routes import main_bp
+from .routes.feedback_routes import feedback_bp
+from .routes.upload_routes import upload_bp
+from .routes.ask_routes import ask_bp
+
+ai_bot = OllamaBot()
+lock = Lock()
+pending_responses = {}
+question_id = 0
 
 def create_app(test_config=None):
-    # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -12,21 +22,19 @@ def create_app(test_config=None):
     )
 
     if test_config is None:
-        # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
     else:
-        # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/')
-    def hello():
-        return 'Hello, World!'
-
+    # Register Blueprints
+    app.register_blueprint(main_bp)
+    app.register_blueprint(feedback_bp)
+    app.register_blueprint(upload_bp)
+    app.register_blueprint(ask_bp)
+    
     return app

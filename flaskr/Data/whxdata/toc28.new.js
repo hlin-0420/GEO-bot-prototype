@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Print a Log","type":"item","tilePath":"assets/images/Print a Log.bmp","description":"","url":"Print/Print.htm"},{"name":"Print to PDF","type":"item","tilePath":"assets/images/Print to PDF.bmp","description":"","url":"Print/Print_to_PDF.htm"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <script type="text/javascript" language="JavaScript">
+    //<![CDATA[
+    function reDo() {
+      if (innerWidth != origWidth || innerHeight != origHeight)
+        location.reload();
+    }
+    if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+      origWidth = innerWidth;
+      origHeight = innerHeight;
+      onresize = reDo;
+    }
+    onerror = null;
+  //]]>
+  </script>
+  <style type="text/css">/*<![CDATA[*/
+
+    < !-- div.WebHelpPopupMenu {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: 4;
+      visibility: hidden;
+    }
+
+    p.WebHelpNavBar {
+      text-align: right;
+    }
+
+    -->
+  
+/*]]>*/</style>
+
+  <script type="text/javascript">//<![CDATA[
+
+    gRootRelPath = "..";
+    gCommonRootRelPath = "..";
+    gTopicId = "5.0_6";
+  
+//]]></script>
+
+  <script type="text/javascript" src="../template/scripts/rh.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/common.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topic.min.js"></script>
+  <script type="text/javascript" src="../template/scripts/topicwidgets.min.js"></script>
+<script type="text/javascript" src="../whxdata/projectsettings.js"></script>
+  <link rel="stylesheet" type="text/css" href="../template/styles/topic.min.css"/>
+  <link rel="stylesheet" type="text/css" href="../template/Help_Skin_3/topicheader.css"/>
+  <meta name="topic-status" content="Draft"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="generator" content="Adobe RoboHelp 2020"/>
+  <title>Append Curve Data</title>
+  <meta name="topic-status" content="Draft"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/default.css"/>
+</head>
+
+<body>
+  <div class="topic-header rh-hide" id="rh-topic-header">
+    <div class="logo">
+    </div>
+    <div class="nav">
+      <div class="title" title="Append Curve Data">
+        <span>Append Curve Data</span>
+      </div>
+      <div class="gotohome" title="Click here to see this page in full context">
+        <a href="#" onclick="rh._.goToFullLayout()">Click here to see this page in full context</a>
+      </div>
+    </div>
+  </div>
+  <div class="topic-header-shadow rh-hide" id="rh-topic-header-shadow"></div>
+
+
+
+  <p><span style="color:#ff0000;"><span style="font-size:1px;"><strong style="font-size: 17px">*Maximize screen to view table of contents*</strong></span></span></p>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h1>Append Curve Data</h1>
+  <p><span>Append curves from successive mud log, MWD or LWD data files to existing curves within the ODF to create a continuous set of curves.</span></p>
+  <p><span>To append, the following conditions must be applied.</span></p>
+  <ul class="Disc">
+    <li>
+      <p>Curve mnemonics for the new curve(s) to be loaded, must be the same as for the existing curve(s).</p>
+    </li>
+    <li>
+      <p><span>The data sets must be sequential.</span></p>
+    </li>
+  </ul>
+  <p><video src="Append Curve Data.mp4" width="480" height="320" controls=""></video></p>
+  <p> </p>
+  <p><span>Refer to the Load Curve Data instructions below.  When selecting the Data Source Type, the following selections will automatically append the curve data; </span></p>
+  <ul class="Disc">
+    <li>
+      <p><span>MWD/LWD</span></p>
+    </li>
+    <li>
+      <p>Mudlog</p>
+    </li>
+    <li>
+      <p><span>Mineralogy</span></p>
+    </li>
+  </ul>
+  <p><span style="font-family:Calibri;">In step 2 of the data import wizard, select Append Overlapping Curves and Append Non-overlapping Curves as required.</span></p>
+  <ol class="Decimal">
+    <li>
+      <p><span style="font-family:Calibri;">On the <strong>GEO</strong> tab, select <strong>Import</strong>.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">In the <strong>Open </strong>dialog box, the <strong>Files of Type</strong> box lists the curve data types accepted. Select the type required.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Locate and select the curve data file, then click <strong>Open</strong>. Step 1 of the Data Import Wizard will invoke.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">The curve data <strong>Type </strong>will be automatically detected.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Select the <strong>Data Source Type</strong>. The selection will determine the default settings.</span><span style="font-family:Calibri;"></span><span style="font-family:Calibri;"></span><span style="font-family:Calibri;"></span></p>
+      <ol>
+        <li>
+          <p><span style="font-family:Calibri;"><strong>Wireline    </strong>Identical mnemonics will <strong>NOT </strong>append automatically to preserve individual runs.</span></p>
+        </li>
+        <li>
+          <p><span style="font-family:Calibri;"><strong>MWD/LWD</strong>    MWD or LWD data curves may however be treated <em><strong>either </strong></em>as discrete run for each curve, or as continuous curves.</span></p>
+        </li>
+        <li>
+          <p><span style="font-family:Calibri;"><strong>Mudlog    </strong>Continuous data <strong>WILL </strong>automatically append.</span></p>
+        </li>
+        <li>
+          <p><span style="font-family:Calibri;"></span><span style="font-family:Calibri;"><strong>Mineralogy    </strong>Data <strong>WILL </strong>append regardless if the data continues or appears after a large interval.</span></p>
+        </li>
+        <li>
+          <p><span style="font-family:Calibri;"><strong>Other    </strong>Undefined source type. Manual append required.</span></p>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Select <strong>Next</strong>. Step 2 of the Data Import Wizard will open.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Enter the data range to be loaded in the <strong>From </strong>and <strong>To </strong>boxes.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Specify the Null (or pen-up) data values in the <strong>Use as Null data Value</strong>. The default is -999.25. If the data vendor has used a different value e.g. -999.99 define it here.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">By default, <strong>Treat Null data value as “empty”</strong> will be cleared. In which case, GEO will ‘pen-up’ when it encounters null values within a curve. The curve will be discontinuous over any null intervals. Select <strong>Treat Null data value as “empty” </strong>to draw a continuous curve. When a null value is encountered the curve will connect the previous valid value with the next valid value.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Select or deselect <strong>Append Overlapping Curves</strong> and <strong>Append Non-overlapping Curves</strong> as required.<a class="dropspot" href="Append_Curve_Data.htm"> </a><span style="color:#0000FF"><a class="dropspot" href="Append_Curve_Data.htm">Click for more information on appending curve data</a>.</span></span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Edit the curve <strong>Name</strong>, <strong>Mnemonic</strong>, <strong>Synonym</strong>, <strong>Units </strong>and <strong>Type </strong>as required.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Elect to not load certain data by clicking on the column header. Or use the <strong>Select </strong><strong>All </strong>or <strong>Deselect </strong><strong>All </strong>buttons. Selected data will be black and deselected data will be red. If a mnemonic is not formatted in the curve default ini file, it will be blue.</span></p>
+    </li>
+    <li>
+      <p><span style="font-family:Calibri;">Click <strong>Finish </strong>to complete the wizard.</span></p>
+    </li>
+  </ol>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+  <table border="1" cellpadding="1" cellspacing="1" class="Table_Style_Back_Forward" style="border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 64px;"/>
+      <col style="width: 38px;"/>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><u><span style="color:#444444;"><a href="javascript:history.back();" style="color: #444444">Back</a></span></u></td>
+        <td><u><span style="color:#444444;"><a href="javascript:history.forward();" style="color: #444444">Forward</a></span></u></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3><u><span style="color:#444444;"></span></u></h3>
+
+</body></html>
