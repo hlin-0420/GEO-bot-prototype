@@ -24,6 +24,15 @@ app = Flask(__name__)
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+# initialise a default name for the models. 
+selected_model_name = "llama3.2:latest"
+# Declare global variable
+rag_application = None 
+EXCEL_FILE = "query_responses.xlsx"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "Data")
+FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
+
 class RAGApplication:
     def __init__(self, retriever, rag_chain):
         self.retriever = retriever
@@ -38,14 +47,11 @@ class RAGApplication:
         return answer
 
 def load_feedback_dataset():
-    with open("feedback_dataset.json", "r") as f:
+    if not os.path.exists(FEEDBACK_FILE):
+        with open(FEEDBACK_FILE, "w", encoding="utf-8") as f:
+            json.dump([], f)  # Initialize an empty list
+    with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
-
-# initialise a default name for the models. 
-selected_model_name = "llama3.2:latest"
-# Declare global variable
-rag_application = None 
-EXCEL_FILE = "query_responses.xlsx"
 
 def auto_adjust_column_width(writer, df):
     """ Auto-adjusts column width based on the max length of cell content in each column """
@@ -421,11 +427,11 @@ def process_file(file_path):
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
         return "Error: Invalid file encoding."
 
-def append_feedback(feedback_entry, filename="feedback_dataset.json"):
+def append_feedback(feedback_entry):
     try:
         # Check if the file exists and is non-empty
-        if os.path.exists(filename) and os.path.getsize(filename) > 0:
-            with open(filename, "r", encoding="utf-8") as f:
+        if os.path.exists(FEEDBACK_FILE) and os.path.getsize(FEEDBACK_FILE) > 0:
+            with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
                 try:
                     data = json.load(f)  # Load existing data
                     if not isinstance(data, list):  # Ensure it's a list
@@ -439,7 +445,7 @@ def append_feedback(feedback_entry, filename="feedback_dataset.json"):
         data.append(feedback_entry)
 
         # Write back as a proper JSON list
-        with open(filename, "w", encoding="utf-8") as f:
+        with open(FEEDBACK_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)  # Pretty formatting for readability
 
         print("Feedback appended successfully!")
@@ -594,7 +600,7 @@ def feedback():
 
 @app.route('/feedback_dataset.json')
 def feedback_data():
-    return send_from_directory('.', 'feedback_dataset.json')
+    return send_from_directory(DATA_DIR, "feedback_dataset.json")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

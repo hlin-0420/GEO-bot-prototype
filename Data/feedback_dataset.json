@@ -1,0 +1,16 @@
+[
+  {
+    "model-name": "llama3.2:latest",
+    "question": "How many different lithology types can be recorded in a log at most?",
+    "response": "10.",
+    "feedback": "This value is incorrect - the number of lithology types that can be recorded is 450.",
+    "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What is the upper limit on lithology types in a log?",
+    "response": "The upper limit on lithology types in a log is 450.",
+    "feedback": "This generate response is correct.",
+    "rating-score": 10
+  }
+]

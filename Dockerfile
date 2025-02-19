@@ -13,6 +13,9 @@ COPY templates /app/templates
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Ensure the data directory exists and set permissions
+RUN mkdir -p /app/Data && chmod 777 /app/Data
+
 # Expose the Flask port
 EXPOSE 5000
 
