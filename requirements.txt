@@ -9,3 +9,6 @@ langchain-core
 sentence-transformers
 tabulate
 json5
+scikit-learn
+elasticsearch
+tiktoken
