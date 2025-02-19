@@ -12,3 +12,4 @@ json5
 scikit-learn
 elasticsearch
 tiktoken
+openpyxl
