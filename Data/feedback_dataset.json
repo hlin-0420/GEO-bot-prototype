@@ -12,5 +12,40 @@
     "response": "The upper limit on lithology types in a log is 450.",
     "feedback": "This generate response is correct.",
     "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "What's the highest number of lithology types that can be represented in a log?",
+    "response": "The highest number of lithology types that can be represented in a log is 450.",
+    "feedback": "This value is correct.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "What's the highest number of lithology types that can be represented in a log?",
+    "response": "The highest number of lithology types that can be represented in a log is 450.",
+    "feedback": "This value is correct.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "deepseek1.5",
+    "question": "How many lithology types can a single log accomodate at maximum?",
+    "response": "The maximum number of lithology types that can be recorded in a log is 450.",
+    "feedback": "",
+    "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2",
+    "question": "How many tracks can you define in one ODF?",
+    "response": "You can define up to 200 tracks in one ODF file.",
+    "feedback": "This response is correct - the number of tracks that can be defined in one ODF is 200.",
+    "rating-score": 10
+  },
+  {
+    "model-name": "llama3.2",
+    "question": "What is the maximum number of characters in a single text entry?",
+    "response": "32000.",
+    "feedback": "This is partially correct since an answer should contain the values of 250 and 32000 since the maximum number of character in a single text entry varies.",
+    "rating-score": 5
   }
 ]
