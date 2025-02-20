@@ -28,9 +28,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 selected_model_name = "llama3.2:latest"
 # Declare global variable
 rag_application = None 
-EXCEL_FILE = "query_responses.xlsx"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
+EXCEL_FILE = os.path.join(DATA_DIR, "query_responses.xlsx")
 FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
 
 class RAGApplication:
