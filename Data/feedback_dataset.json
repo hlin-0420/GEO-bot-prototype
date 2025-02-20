@@ -61,5 +61,12 @@
     "response": "According to the document, there is no specific information on how many scales you can define. However, it does mention that each option has a list of pre-set scale settings in the Select a Scale Setting list.",
     "feedback": "The correct answer is that you can define 23 scales.",
     "rating-score": 1
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "How many tables can I have in my log?",
+    "response": "You can have up to 5 tables in your log.",
+    "feedback": "You can have up to 100 tables in a log.",
+    "rating-score": 1
   }
 ]
