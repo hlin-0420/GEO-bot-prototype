@@ -32,6 +32,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
 EXCEL_FILE = os.path.join(DATA_DIR, "query_responses.xlsx")
 FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
+PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
+PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
+UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 
 class RAGApplication:
     def __init__(self, retriever, rag_chain):
@@ -175,12 +178,12 @@ class OllamaBot:
 
         # Save the prompt template to a file
         prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
-        with open("prompt_visualisation.txt", "w", encoding="utf-8") as file:
+        with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
             file.write(prompt_text)
         # Save the second-to-last document for verification
         if len(self.web_documents) > 1:
             second_to_last_document = self.web_documents[-2].page_content
-            with open("uploaded_document.txt", "w", encoding="utf-8") as file:
+            with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
                 file.write(second_to_last_document)
 
         rag_chain = prompt | self.llm_model | StrOutputParser()
@@ -292,16 +295,13 @@ class OllamaBot:
                     self.web_documents.append(document)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
-                
-        # Define the file path where the output will be saved
-        output_file = "processed_content.txt"
-        
+
         temp_page_texts = "\n\n".join(page_texts)
         
-        with open(output_file, "w", encoding="utf-8") as file:
+        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
             file.write(temp_page_texts)
 
-        logging.info(f"Processed content saved to {output_file}")
+        logging.info(f"Processed content saved to {PROCESSED_CONTENT_FILE}")
         
         # updates feedback data into the file.
         feedback_data = load_feedback_dataset()

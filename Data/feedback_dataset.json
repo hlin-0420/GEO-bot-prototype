@@ -47,5 +47,19 @@
     "response": "32000.",
     "feedback": "This is partially correct since an answer should contain the values of 250 and 32000 since the maximum number of character in a single text entry varies.",
     "rating-score": 5
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "Where can you view the mouse pointer depth?",
+    "response": "You can view the mouse pointer depth by releasing the left-mouse button at the required depth, and the on-screen log will re-draw with the selected depth at the top of the screen.",
+    "feedback": "This is partially correct, but you can see the depth and the width of the cursor from the bottom screen in GEO when hoovering the mouse over the required depth.",
+    "rating-score": 4
+  },
+  {
+    "model-name": "llama3.2:latest",
+    "question": "How many scales can I define?",
+    "response": "According to the document, there is no specific information on how many scales you can define. However, it does mention that each option has a list of pre-set scale settings in the Select a Scale Setting list.",
+    "feedback": "The correct answer is that you can define 23 scales.",
+    "rating-score": 1
   }
 ]
