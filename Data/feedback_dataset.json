@@ -1,72 +1,79 @@
 [
-  {
-    "model-name": "llama3.2:latest",
-    "question": "How many different lithology types can be recorded in a log at most?",
-    "response": "10.",
-    "feedback": "This value is incorrect - the number of lithology types that can be recorded is 450.",
-    "rating-score": 1
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "What is the upper limit on lithology types in a log?",
-    "response": "The upper limit on lithology types in a log is 450.",
-    "feedback": "This generate response is correct.",
-    "rating-score": 10
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "What's the highest number of lithology types that can be represented in a log?",
-    "response": "The highest number of lithology types that can be represented in a log is 450.",
-    "feedback": "This value is correct.",
-    "rating-score": 10
-  },
-  {
-    "model-name": "deepseek1.5",
-    "question": "What's the highest number of lithology types that can be represented in a log?",
-    "response": "The highest number of lithology types that can be represented in a log is 450.",
-    "feedback": "This value is correct.",
-    "rating-score": 10
-  },
-  {
-    "model-name": "deepseek1.5",
-    "question": "How many lithology types can a single log accomodate at maximum?",
-    "response": "The maximum number of lithology types that can be recorded in a log is 450.",
-    "feedback": "",
-    "rating-score": 10
-  },
-  {
-    "model-name": "llama3.2",
-    "question": "How many tracks can you define in one ODF?",
-    "response": "You can define up to 200 tracks in one ODF file.",
-    "feedback": "This response is correct - the number of tracks that can be defined in one ODF is 200.",
-    "rating-score": 10
-  },
-  {
-    "model-name": "llama3.2",
-    "question": "What is the maximum number of characters in a single text entry?",
-    "response": "32000.",
-    "feedback": "This is partially correct since an answer should contain the values of 250 and 32000 since the maximum number of character in a single text entry varies.",
-    "rating-score": 5
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "Where can you view the mouse pointer depth?",
-    "response": "You can view the mouse pointer depth by releasing the left-mouse button at the required depth, and the on-screen log will re-draw with the selected depth at the top of the screen.",
-    "feedback": "This is partially correct, but you can see the depth and the width of the cursor from the bottom screen in GEO when hoovering the mouse over the required depth.",
-    "rating-score": 4
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "How many scales can I define?",
-    "response": "According to the document, there is no specific information on how many scales you can define. However, it does mention that each option has a list of pre-set scale settings in the Select a Scale Setting list.",
-    "feedback": "The correct answer is that you can define 23 scales.",
-    "rating-score": 1
-  },
-  {
-    "model-name": "llama3.2:latest",
-    "question": "How many tables can I have in my log?",
-    "response": "You can have up to 5 tables in your log.",
-    "feedback": "You can have up to 100 tables in a log.",
-    "rating-score": 1
-  }
+    {
+        "model-name": "llama3.2:latest",
+        "question": "How many different lithology types can be recorded in a log at most?",
+        "response": "10.",
+        "feedback": "This value is incorrect - the number of lithology types that can be recorded is 450.",
+        "rating-score": 1
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What is the upper limit on lithology types in a log?",
+        "response": "The upper limit on lithology types in a log is 450.",
+        "feedback": "This generate response is correct.",
+        "rating-score": 10
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What's the highest number of lithology types that can be represented in a log?",
+        "response": "The highest number of lithology types that can be represented in a log is 450.",
+        "feedback": "This value is correct.",
+        "rating-score": 10
+    },
+    {
+        "model-name": "deepseek1.5",
+        "question": "What's the highest number of lithology types that can be represented in a log?",
+        "response": "The highest number of lithology types that can be represented in a log is 450.",
+        "feedback": "This value is correct.",
+        "rating-score": 10
+    },
+    {
+        "model-name": "deepseek1.5",
+        "question": "How many lithology types can a single log accomodate at maximum?",
+        "response": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "feedback": "",
+        "rating-score": 10
+    },
+    {
+        "model-name": "llama3.2",
+        "question": "How many tracks can you define in one ODF?",
+        "response": "You can define up to 200 tracks in one ODF file.",
+        "feedback": "This response is correct - the number of tracks that can be defined in one ODF is 200.",
+        "rating-score": 10
+    },
+    {
+        "model-name": "llama3.2",
+        "question": "What is the maximum number of characters in a single text entry?",
+        "response": "32000.",
+        "feedback": "This is partially correct since an answer should contain the values of 250 and 32000 since the maximum number of character in a single text entry varies.",
+        "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "Where can you view the mouse pointer depth?",
+        "response": "You can view the mouse pointer depth by releasing the left-mouse button at the required depth, and the on-screen log will re-draw with the selected depth at the top of the screen.",
+        "feedback": "This is partially correct, but you can see the depth and the width of the cursor from the bottom screen in GEO when hoovering the mouse over the required depth.",
+        "rating-score": 4
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "How many scales can I define?",
+        "response": "According to the document, there is no specific information on how many scales you can define. However, it does mention that each option has a list of pre-set scale settings in the Select a Scale Setting list.",
+        "feedback": "The correct answer is that you can define 23 scales.",
+        "rating-score": 1
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "How many tables can I have in my log?",
+        "response": "You can have up to 5 tables in your log.",
+        "feedback": "You can have up to 100 tables in a log.",
+        "rating-score": 1
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What the maximum number of headers I can display in my log?",
+        "response": "The maximum number of headers you can display in your log is not explicitly stated in the provided documentation. However, it does mention that on the Edit tab, selecting \"Headers and Trailers\" opens the Plot Header and Trailer Specifications dialog box, which lists various options for customization. It does not provide a specific limit for the number of headers.",
+        "feedback": "No, this is incorrect. I can selected up to 50 headers for display in a log.",
+        "rating-score": 1
+    }
 ]

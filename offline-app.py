@@ -296,18 +296,34 @@ class OllamaBot:
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
 
+        # updates feedback data into the file.
+        feedback_data = load_feedback_dataset()
+        
+        for feedback_entry in feedback_data:
+            json_feedback = json.dumps(feedback_entry, indent=4)
+
+            feedback_heading = "---Feedback---"
+
+            if self.web_documents:
+                last_document = self.web_documents[-1]
+                
+                print(f"The last document starts with the feedback heading: {last_document.page_content.startswith(feedback_heading)}")
+
+                if last_document.page_content.startswith(feedback_heading):
+                    last_document.page_content += f"{json_feedback}\n"
+                else:
+                    json_feedback = f"{feedback_heading}\n{json_feedback}\n" # updates json feedback by adding a heading in front.
+                    new_document = Document(page_content=json_feedback)
+                    self.web_documents.append(new_document)
+            page_texts.append(json_feedback)
+
+        # saves help guide and feedback data into a text file for visualization.
         temp_page_texts = "\n\n".join(page_texts)
         
         with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
             file.write(temp_page_texts)
 
         logging.info(f"Processed content saved to {PROCESSED_CONTENT_FILE}")
-        
-        # updates feedback data into the file.
-        feedback_data = load_feedback_dataset()
-        
-        for feedback_entry in feedback_data:
-            self.update_training(json.dumps(feedback_entry, indent=4), False)
 
     def add(self, content):
         """
@@ -349,23 +365,6 @@ class OllamaBot:
             
     def get_model_type(self, model):
         return model.model_name
-    
-    def update_training(self, data_string, reinitialise):
-        
-        feedback_heading = "---Feedback---"
-
-        if self.web_documents:
-            last_document = self.web_documents[-1]
-
-            if last_document.page_content.startswith(feedback_heading):
-                last_document.page_content += f"{data_string}\n"
-            else:
-                new_document = Document(page_content=f"{feedback_heading}\n{data_string}\n")
-                self.web_documents.append(new_document)
-
-        if reinitialise:
-            # retrains the application whenever new training data is updated.
-            self._initialize_rag_application()
 
     def query(self, question):
         """
@@ -477,13 +476,25 @@ def submitFeedback():
             "feedback": details,
             "rating-score": rating
         }
-
-        append_feedback(feedback_entry)
         
-        feedback_data = load_feedback_dataset()
+        # Write data_string to feedback file without overwriting existing contents
+        feedback_data = []
+        if os.path.exists(FEEDBACK_FILE):
+            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
+                try:
+                    feedback_data = json.load(file)
+                except json.JSONDecodeError:
+                    feedback_data = []  # Initialize as empty list if file is corrupted
         
-        for feedback_entry in feedback_data:
-            ai_bot.update_training(json.dumps(feedback_entry, indent=4), True) # will retrain model after the feedback is updated to the training data. 
+        feedback_data.append(feedback_entry)
+        
+        with open(FEEDBACK_FILE, "w", encoding="utf-8") as file:
+            json.dump(feedback_data, file, indent=4)
+            
+        # reload the contents
+        ai_bot._load_content()
+        # retrains the application whenever new training data is updated.
+        ai_bot._initialize_rag_application()
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:
