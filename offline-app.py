@@ -18,6 +18,7 @@ from sentence_transformers import SentenceTransformer, util
 from tabulate import tabulate
 import re
 
+valid_model_names = {"deepseek1.5", "llama3.2", "openai"}
 # Initialize the selected bot. 
 app = Flask(__name__)
 
@@ -117,10 +118,17 @@ class OllamaBot:
         self.contents = []  # Store processed content
         self.web_documents = [] # stores the web documents
         self._load_content()
-        self.llm_model = ChatOllama(
-            model=selected_model_name,
-            temperature=0,
-        )
+        if selected_model_name in valid_model_names:
+            self.llm_model = ChatOllama(
+                model=selected_model_name,
+                temperature=0,
+            )
+        else:
+            print("Haystack model is selected for this operation.")
+            self.llm_model = ChatOllama(
+                model="llama3.2:latest",
+                temperature=0,
+            ) # placeholder model until a haystack pipeline is implemented.
         # Initialize RAG application globally
         self._initialize_rag_application()
         
@@ -602,6 +610,8 @@ def update_model_name():
         return jsonify({"error": "No model selected"}), 400
     
     selected_model_name = model_name
+
+    print(f"Selected model name: \"{selected_model_name}\".")
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
 

@@ -6,7 +6,9 @@ langchain-community
 langchain-huggingface
 langchain-ollama
 langchain-core
-sentence-transformers
+haystack-ai
+datasets>=2.6.1
+sentence-transformers>=3.0.0
 tabulate
 json5
 scikit-learn
