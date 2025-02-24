@@ -10,6 +10,21 @@
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
         button:hover { background-color: #0056b3; }
 
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .h3 {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
         /* Navigation Panel Styles */
         .navbar {
             overflow: hidden;
@@ -70,11 +85,12 @@
     </div>
 
     <div class="content">
-    <h1>AI Bot Application</h1>
+    <h1 style="text-align: center;">AI Bot Application</h1>
     
-    <div class="modelSelection">
+    <div class="section">
     <!-- Model Selection -->
-    <h3 id="modelSelection">Select AI Model</h3>
+    <h3 id="modelSelection" onclick="toggleSection(this)">Select AI Model</h3>
+    <div class="section-content">
     <select id="modelSelect" onchange="updateModel()">
         <option value="llama3.2">llama3.2:latest</option>
         <option value="deepseek1.5">deepseek-r1:1.5b</option>
@@ -83,10 +99,12 @@
     </select>
     <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
     </div>
+    </div>
     
-    <div class="dataInput">
+    <div class="section">
     <!-- File Upload Section -->
-    <h3>Upload a File</h3>
+    <h3 onclick="toggleSection(this)">Upload a File</h3>
+    <div class="section-content">
     <form id="uploadForm">
         <input type="file" id="fileInput" />
         <button type="button" onclick="uploadFile()">Upload</button>
@@ -110,9 +128,11 @@
     </form>
     <button onclick="submitQuestion()">Submit</button>
     </div>
+    </div>
 
-    <div id="feedbackPanel" style="text-align: center;">
-        <h3>Feedback Panel</h3>
+    <div class="section" id="feedbackPanel" style="text-align: center;">
+        <h3 style="text-align:left;" onclick="toggleSection(this)">Feedback Panel</h3>
+        <div class="section-content">
         <div id="ratingSection" style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 10px;">
             <p style="margin: 0; font-weight: bold;">Rate the response (1 to 10):</p>
             <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 60px; text-align: center; font-size: 16px; padding: 5px;">
@@ -126,16 +146,22 @@
         </button>
     
         <div id="feedbackMessage" style="margin-top: 10px; font-weight: bold;"></div>
+        </div>
     </div>    
 
-    <div class="outputPanel">
-    <h3>Responses:</h3>
+    <div class="section">
+    <h3 onclick="toggleSection(this)">Responses:</h3>
     <div id="responseOutput"></div>
     </div>
 
     </div>
 
     <script>
+        function toggleSection(event) {
+            let content = event.nextElementSibling;
+            content.style.display = content.style.display === "none" ? "block" : "none";
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             const questionInput = document.getElementById("questionInput");
 
