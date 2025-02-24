@@ -198,7 +198,14 @@
                 }
 
                 const data = await response.json();
-                fileOutput.innerHTML = `Displaying content for: <strong>${fileName}</strong>`;
+
+                // Clean up the content by trimming and replacing excessive white spaces
+                let cleanedContent = data.content.trim().replace(/\s+/g, ' ');
+
+                // Remove empty <p> tags (including non-breaking spaces represented as &nbsp;)
+                cleanedContent = cleanedContent.replace(/<p>\s*(?:&nbsp;|\s)*<\/p>/gi, '');
+
+                fileOutput.innerHTML = `<h3>Displaying content for: <strong>${fileName}</strong></h3><br><pre style="background-color: #f4f4f4; padding: 10px; white-space: pre-wrap; border: 1px solid #ddd;">${cleanedContent}</pre>`;
             } catch (error) {
                 fileOutput.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
             }
