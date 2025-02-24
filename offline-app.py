@@ -696,5 +696,33 @@ def feedback():
 def feedback_data():
     return send_from_directory(DATA_DIR, "feedback_dataset.json")
 
+@app.route("/view-file", methods=["GET"])
+def view_file():
+    filename = request.args.get("filename")
+
+    if not filename:
+        return jsonify({"error": "Filename is required"}), 400
+    
+    htm_filepaths = ai_bot._list_htm_files()
+    
+    current_directory = os.getcwd()
+    
+    # for each file, join path with the path of the htm file
+    temp_directories = [os.path.join(current_directory, htm_filepath) for htm_filepath in htm_filepaths]
+    
+    # Find the matching file path
+    file_path = next((directory for directory in temp_directories if directory.endswith(filename)), None)
+
+    if not os.path.exists(file_path):
+        return jsonify({"error": "File not found"}), 404
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            content = file.read()
+        return jsonify({"content": content})
+    except Exception as e:
+        return jsonify({"error": f"Could not read file: {str(e)}"}), 500
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -100,16 +100,32 @@
     <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
     </div>
     </div>
+
+    <div class="section">
+    <h3 onclick="toggleSection(this)">Training Section</h3>
+    <div class="section-content">
+        <div class="upload-section">
+        <h4>Upload Form</h4>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" />
+            <button type="button" onclick="uploadFile()">Upload</button>
+        </form>
+        <div id="uploadResponse"></div>
+        </div>
+        <div class="view-training-files">
+            <h4>View Training File</h4>
+            <input type="text" id="fileViewInput" placeholder="Enter filename to view">
+            <button onclick="viewTrainingFile()">View File</button>
+            <div id="fileViewOutput"></div>
+        </div>
+    </div>
+    </div>
     
     <div class="section">
     <!-- File Upload Section -->
     <h3 onclick="toggleSection(this)">Upload a File</h3>
     <div class="section-content">
-    <form id="uploadForm">
-        <input type="file" id="fileInput" />
-        <button type="button" onclick="uploadFile()">Upload</button>
-    </form>
-    <div id="uploadResponse"></div>
+    
     <!-- Question-Answer Section -->
     <h3>Ask a Question</h3>
     <textarea id="questionInput" placeholder="Type your question here..."></textarea>
@@ -157,6 +173,37 @@
     </div>
 
     <script>
+        async function viewTrainingFile() {
+            let filePath = decodeURIComponent(window.location.href);
+            let parentFolder = filePath.substring(0, filePath.lastIndexOf("/"));
+
+            const fileName = document.getElementById("fileViewInput").value.trim();
+            const fileOutput = document.getElementById("fileViewOutput");
+
+            if (!fileName) {
+                fileOutput.innerHTML = "Please enter a filename to view.";
+                return;
+            }
+
+            try {
+                const response = await fetch(`/view-file?filename=${encodeURIComponent(fileName)}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("File not found or could not be retrieved.");
+                }
+
+                const data = await response.json();
+                fileOutput.innerHTML = `Displaying content for: <strong>${fileName}</strong>`;
+            } catch (error) {
+                fileOutput.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
+            }
+        }
+
         function toggleSection(event) {
             let content = event.nextElementSibling;
             content.style.display = content.style.display === "none" ? "block" : "none";
