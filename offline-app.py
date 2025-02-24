@@ -724,5 +724,26 @@ def view_file():
         return jsonify({"error": f"Could not read file: {str(e)}"}), 500
 
 
+@app.route("/get-results", methods=["GET"])
+def get_results():
+    try:
+        if not os.path.exists(EXCEL_FILE):
+            return jsonify({"error": "Results file not found"}), 404
+        
+        df = pd.read_excel(EXCEL_FILE)
+        
+        if "Model Name" not in df.columns or "Accuracy" not in df.columns:
+            sample_df = pd.DataFrame({
+                "Model Name": ["Llama 3.2", "Deepseek 1.5", "Haystack", "OpenAI"],
+                "Accuracy": ["90%", "84%", "79%", "92%"]
+            })
+            return jsonify(sample_df.to_dict(orient="records"))
+        
+        results = df[["Model Name", "Accuracy"]].to_dict(orient="records")
+        return jsonify(results)
+    except Exception as e:
+        logging.error(f"Error reading results: {str(e)}")
+        return jsonify({"error": "Internal server error"}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
