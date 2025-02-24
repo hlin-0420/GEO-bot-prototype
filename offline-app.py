@@ -7,18 +7,26 @@ from threading import Lock
 from bs4 import BeautifulSoup
 import pandas as pd
 from langchain.prompts import PromptTemplate
-from langchain.schema import Document
+from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SKLearnVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 import json
-from sentence_transformers import SentenceTransformer, util
 from tabulate import tabulate
 import re
+from haystack.document_stores.in_memory import InMemoryDocumentStore
+from haystack.components.writers import DocumentWriter
+from haystack.components.embedders import SentenceTransformersDocumentEmbedder
+from haystack import Pipeline
+from haystack import Document as HaystackDocument
+from haystack.components.embedders import SentenceTransformersTextEmbedder
+from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
+from haystack.components.builders import ChatPromptBuilder
+from haystack.components.generators.chat import OpenAIChatGenerator
 
-valid_model_names = {"deepseek1.5", "llama3.2", "openai"}
+valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
 app = Flask(__name__)
 
@@ -78,6 +86,13 @@ def extract_table(soup):
         for row in table.find_all("tr"):
             cols = [col.get_text(strip=True) for col in row.find_all(["td", "th"])]
             rows.append(cols)
+            
+        # Flatten row values for filtering irrelevant tables
+        flat_rows = [item.lower().strip() for sublist in rows for item in sublist]
+        
+        # Skip navigation tables containing only "Back" and "Forward"
+        if set(flat_rows).issubset({"back", "forward", "", "-", "next", "previous"}):
+            continue  # Skip this table
 
         # Convert to DataFrame for better readability
         df = pd.DataFrame(rows)
@@ -114,23 +129,42 @@ class OllamaBot:
             model_name (str): Name of the Ollama model.
             base_directory (str): Path to the base directory containing .htm files.
         """
+        global valid_model_names
+        # API Key initialisation##################
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        ##########################################
+        # Storage Processing
+        # Data Directory initialisation
         self.base_directory = "Data"
-        self.contents = []  # Store processed content
-        self.web_documents = [] # stores the web documents
-        self._load_content()
-        if selected_model_name in valid_model_names:
+        self.document_store = InMemoryDocumentStore()
+        self.web_documents = [] # stores the web documents for free tier models.
+        self.web_documents_haystack = [] # intialise the web documents for the premium tier models.
+        self._load_content() 
+        ####################
+        # Pipeline initialisation.
+        print(f"Selected model name: {selected_model_name}")
+        print(f"List of valid model names: {valid_model_names}")
+        if selected_model_name in valid_model_names: # free tier models. 
+            print("This is a valid model.")
             self.llm_model = ChatOllama(
                 model=selected_model_name,
                 temperature=0,
-            )
-        else:
-            print("Haystack model is selected for this operation.")
-            self.llm_model = ChatOllama(
-                model="llama3.2:latest",
-                temperature=0,
-            ) # placeholder model until a haystack pipeline is implemented.
-        # Initialize RAG application globally
-        self._initialize_rag_application()
+            ) # initialises a free-tier model.
+            # Initialize RAG application globally
+            self._initialize_rag_application() # Generalised rag pipeline initialisation.
+        else: # initialising a premium tier model. 
+            self.rag_pipe = Pipeline()
+        
+    def _load_content_haystack(self):
+        indexing_pipeline = Pipeline()
+        indexing_pipeline.add_component(
+            instance=SentenceTransformersDocumentEmbedder(model="sentence-transformers/all-MiniLM-L6-v2"), name="doc_embedder"
+        )
+        indexing_pipeline.add_component(instance=DocumentWriter(document_store=self.document_store), name="doc_writer")
+
+        indexing_pipeline.connect("doc_embedder.documents", "doc_writer.documents")
+
+        indexing_pipeline.run({"doc_embedder": {"documents": self.web_documents_haystack}})
         
     def _initialize_rag_application(self):
         """
@@ -142,8 +176,7 @@ class OllamaBot:
             chunk_size=250, chunk_overlap=0
         )
         
-        
-        doc_splits = text_splitter.split_documents(self.web_documents)
+        doc_splits = text_splitter.split_documents(self.web_documents) # uses documents loaded for the free-tier models. 
 
         embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         
@@ -154,62 +187,89 @@ class OllamaBot:
         
         retriever = vectorstore.as_retriever(k=4)
         
-        prompt = PromptTemplate(
-            template="""
-            You are an assistant for helping the users becoming more familiar with using the GEO   \ 
-            application. 
+        if selected_model_name in valid_model_names:
+            prompt = PromptTemplate(
+                template="""
+                You are an assistant for helping the users becoming more familiar with using the GEO   \ 
+                application. 
+                
+                GEO is an integrated a PC-based integrated well log authoring, analysis and reporting  \
+                system which has been developed for petroleum geologists, geoscientists and engineers.
+                
+                Answer the user's questions accurately using retrieved information from the Documents  \
+                section precisely. The Document section contains the help content written by software  \ 
+                developers for the GEO application. 
+                
+                Ensure that the answer is concise and answers the question to the point without the    \
+                inclusion of any irrelevant information. Only the answer to the question should be     \
+                outputted as the generated response. 
+                
+                Use the information from the section under the title "---Feedback---" as feedback for  \
+                making improvements to your answers. Use the feedback as guidelines to determine which \
+                area you need to improve your answer after assessing their validity and feasibility. 
+                
+                Documents
+                ----------------------------------------------------------------------------------------
+                {documents}
+                ----------------------------------------------------------------------------------------
+                            
+                Question: {question}
+                Answer: """,
+                input_variables=["question", "documents"],
+            )
             
-            GEO is an integrated a PC-based integrated well log authoring, analysis and reporting  \
-            system which has been developed for petroleum geologists, geoscientists and engineers.
-            
-            Answer the user's questions accurately using retrieved information from the Documents  \
-            section precisely. The Document section contains the help content written by software  \ 
-            developers for the GEO application. 
-            
-            Ensure that the answer is concise and answers the question to the point without the    \
-            inclusion of any irrelevant information. Only the answer to the question should be     \
-            outputted as the generated response. 
-            
-            Use the information from the section under the title "---Feedback---" as feedback for  \
-            making improvements to your answers. Use the feedback as guidelines to determine which \
-            area you need to improve your answer after assessing their validity and feasibility. 
-            
-            Documents
-            ----------------------------------------------------------------------------------------
-            {documents}
-            ----------------------------------------------------------------------------------------
-                        
-            Question: {question}
-            Answer: """,
-            input_variables=["question", "documents"],
-        )
+            # Save the prompt template to a file
+            prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
+            with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
+                file.write(prompt_text)
+            # Save the second-to-last document for verification
+            if len(self.web_documents) > 1:
+                second_to_last_document = self.web_documents[-2].page_content
+                with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
+                    file.write(second_to_last_document)
 
-        # Save the prompt template to a file
-        prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
-        with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
-            file.write(prompt_text)
-        # Save the second-to-last document for verification
-        if len(self.web_documents) > 1:
-            second_to_last_document = self.web_documents[-2].page_content
-            with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
-                file.write(second_to_last_document)
+            rag_chain = prompt | self.llm_model | StrOutputParser()
 
-        rag_chain = prompt | self.llm_model | StrOutputParser()
+            # Set the global variable
+            rag_application = RAGApplication(retriever, rag_chain)
+        else:
+            # if the prompt structure is designed for a haystack model.
+            prompt = PromptTemplate(
+                template="""
+                You are an assistant designed to help users become more familiar with the GEO application.
+        
+                GEO is a PC-based well log authoring, analysis, and reporting system developed for 
+                petroleum geologists, geoscientists, and engineers.
+                
+                Answer the user's questions accurately using retrieved information from the "Context" 
+                section. This section contains help content written by software developers specifically 
+                for the GEO application.
+                
+                Ensure that your response is concise and directly addresses the question, avoiding any 
+                irrelevant information. The generated response should contain only the answer to the 
+                user's question.
+                
+                Use the information from the section titled "---Feedback---" as guidelines for improving 
+                your answers. Assess the validity and feasibility of the feedback before applying it to 
+                refine future responses.
 
-        # Set the global variable
-        rag_application = RAGApplication(retriever, rag_chain)
-        
-    def add_contents(self, details):
-        
-        page_data = {
-            'text': details,
-        }
-                    
-        document = Document(
-            page_content=page_data['text'],                
-        )
-        
-        self.web_documents.append(document)
+                Context:
+                {% for document in documents %}
+                    {{ document.content }}
+                {% endfor %}
+
+                Question: {{ question }}
+                Answer:""",
+                input_variables=["question", "documents"],
+            )
+            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="sentence-transformers/all-MiniLM-L6-v2"))
+            self.rag_pipe.add_component("retriever", InMemoryEmbeddingRetriever(document_store=self.document_store))
+            self.rag_pipe.add_component("prompt_builder", ChatPromptBuilder(template=prompt))
+            self.rag_pipe.add_component("llm", OpenAIChatGenerator(model="gpt-4o-mini"))
+            
+            self.rag_pipe.connect("embedder.embedding", "retriever.query_embedding")
+            self.rag_pipe.connect("retriever", "prompt_builder.documents")
+            self.rag_pipe.connect("prompt_builder.prompt", "llm.messages")
 
     def _list_htm_files(self):
         """
@@ -293,14 +353,20 @@ class OllamaBot:
                         'link': page_links
                     }
                     
-                    document = Document(
-                        page_content=page_data['text'],
-                        metadata={
-                            'links': page_data['link'],
-                        }
-                    )
+                    if selected_model_name in valid_model_names:
+                        document = LangchainDocument(
+                            page_content=page_data['text'],
+                            metadata={
+                                'links': page_data['link'],
+                            }
+                        )
+                        self.web_documents.append(document)
+                    else:
+                        document = HaystackDocument(
+                            content=page_data['text']
+                        )
+                        self.web_documents_haystack.append(document)
                     
-                    self.web_documents.append(document)
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
 
@@ -321,8 +387,13 @@ class OllamaBot:
                     last_document.page_content += f"{json_feedback}\n"
                 else:
                     json_feedback = f"{feedback_heading}\n{json_feedback}\n" # updates json feedback by adding a heading in front.
-                    new_document = Document(page_content=json_feedback)
-                    self.web_documents.append(new_document)
+                    if selected_model_name in valid_model_names:
+                        new_document = LangchainDocument(page_content=json_feedback)
+                        self.web_documents.append(new_document)
+                    else:
+                        new_document = HaystackDocument(content=json_feedback)
+                        self.web_documents_haystack.append(new_document)
+                    
             page_texts.append(json_feedback)
 
         # saves help guide and feedback data into a text file for visualization.
@@ -342,32 +413,30 @@ class OllamaBot:
         """
         feedback_heading = "---Feedback---"
         
-        new_document = Document(page_content=content)
+        if selected_model_name in valid_model_names:
+            new_document = LangchainDocument(page_content=content)
+            temp_documents = self.web_documents
+        else:
+            new_document = HaystackDocument(content=content)
+            temp_documents = self.web_documents_haystack # initialise a temp document variable to store the document information
         
-        if self.web_documents:
-            last_document = self.web_documents[-1]
+        if temp_documents:
+            last_document = temp_documents[-1]
             
             if last_document.page_content.startswith(feedback_heading):
-                print("Inserting new uploaded document.")
-                print(f"Length of the web documents: {len(self.web_documents)}")
                 # Ensure there is at least one more document before inserting
-                if len(self.web_documents) > 1:
-                    self.web_documents.insert(len(self.web_documents) - 1, new_document)
+                if len(temp_documents) > 1:
+                    temp_documents.insert(len(temp_documents) - 1, new_document)
                 else:
-                    self.web_documents.insert(0, new_document)
+                    temp_documents.insert(0, new_document)
             else:
-                self.web_documents.append(new_document)
+                temp_documents.append(new_document)
             logging.info("New content added.")
             
-            # Confirm the position of the new document
-            inserted_index = self.web_documents.index(new_document)
-            print(f"New document inserted at position: {inserted_index}")
-            
-            # Check if the index is in the second to last position
-            if inserted_index == len(self.web_documents) - 2:
-                print("New document correctly inserted in the second to last position.")
+            if selected_model_name in valid_model_names:
+                self.web_documents = temp_documents
             else:
-                print("New document is NOT in the expected position.")
+                self.web_documents_haystack = temp_documents
             
         self._initialize_rag_application() # resets the initialisation to retrain model on updated information. 
             
@@ -393,8 +462,12 @@ class OllamaBot:
         logging.info(f"Processing question: {question}")
         print(f"The selected Model Name for this training is {selected_model_name}")
 
-        response = rag_application.run(question)
-        
+        if selected_model_name in valid_model_names:
+            response = rag_application.run(question)
+        else:
+            response_object = self.rag_pipe.run({"embedder": {"text": question}, "prompt_builder": {"question": question}})
+            response = response_object['llm']['replies'][0]._content[0].text
+            
         # Create a new DataFrame with the question and response
         new_entry = pd.DataFrame([[question, response]], columns=["Question", "Response"])
 
