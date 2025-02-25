@@ -501,6 +501,7 @@ lock = Lock()
 def process_file(file_path):
     print("***PROCESSING FILE***")
     try:
+        print(f"Processing file: {file_path}")
         with open(file_path, encoding="utf-8") as file:
             content = file.read()
             ai_bot.add(content)
@@ -597,6 +598,7 @@ def upload():
         file_path = f"./Data/{file.filename}"
         file.save(file_path)
         result = process_file(file_path)
+        print(f"Processed result: {result}")
         return jsonify({"message": result})
 
 

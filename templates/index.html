@@ -537,9 +537,11 @@
                 }
 
                 console.log("✅ File successfully uploaded!");
+                console.log("📂 File selected:", fileInput.files[0]);
 
                 // Read file content and send each question to the model
                 const reader = new FileReader();
+                console.log("🚀 Setting up FileReader...");
                 reader.onload = async function(event) {
                     console.log("📖 Reading file contents...");
 
@@ -568,7 +570,7 @@
                         console.log(`📨 Response for Q${index + 1}:`, result);
 
                         if (result.message) {
-                            responseContainer.innerHTML += `<br><b>Q:</b> ${question}<br><b>A:</b> ${result.message}`;
+                            responseContainer.innerHTML += `<br><b>Q ${index + 1}:</b> ${question}<br><b>A ${index + 1}:</b> ${result.message}`;
                         }
                     }
                 };
