@@ -1,5 +1,0 @@
-1. What is an ODT?
-2. What is the limit on the number of curves?
-3. Where can you view the mouse pointer depth?
-4. Can I load a text file?
-5. Can I export an image file?
