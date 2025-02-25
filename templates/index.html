@@ -10,6 +10,34 @@
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
         button:hover { background-color: #0056b3; }
 
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .custom-button {
+            flex: 1;
+            background-color: #007bff; /* Matching the blue button in the image */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            min-width: 160px;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .custom-button:active {
+            background-color: #004494;
+        }
+
         .table-header {
             background-color: #f2f2f2;
             padding: 10px;
@@ -132,28 +160,35 @@
     </div>
     
     <div class="section">
-    <!-- File Upload Section -->
-    <h3 onclick="toggleSection(this)">Upload a File</h3>
-    <div class="section-content">
-    
-    <!-- Question-Answer Section -->
-    <h3>Ask a Question</h3>
-    <textarea id="questionInput" placeholder="Type your question here..."></textarea>
-    <form id="dataOptionsForm">
-        <div class="options-container">
-            <label class="option">
-                <input type="checkbox" name="dataOption" value="text"> Text
-            </label>
-            <label class="option">
-                <input type="checkbox" name="dataOption" value="table"> Table
-            </label>
-            <label class="option">
-                <input type="checkbox" name="dataOption" value="list"> List
-            </label>
-        </div>
-    </form>
-    <button onclick="submitQuestion()">Submit</button>
-    </div>
+        <!-- File Upload Section -->
+        <h3 onclick="toggleSection(this)">Q&A</h3>
+            <div class="section-content">
+                <!-- Question-Answer Section -->
+                <h3>Ask a Question</h3>
+                <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+                <form id="dataOptionsForm">
+                    <div class="options-container">
+                        <label class="option">
+                            <input type="checkbox" name="dataOption" value="text"> Text
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="dataOption" value="table"> Table
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="dataOption" value="list"> List
+                        </label>
+                    </div>
+                </form>
+                <input type="file" id="questionFileInput" class="file-input" accept=".txt" onchange="document.getElementById('questionFileInput').click()">
+                <div style="display: flex; gap: 10px;">
+                    <div class="button-container">
+                        <button class="custom-button" onclick="submitQuestion()">Submit Question</button>
+                        <button class="custom-button" onclick="uploadQuestionFile()">Upload Questions</button>
+                    </div>
+                </div>
+                <br>
+                <div id="response-container">Responses will appear here...</div>
+            </div>
     </div>
 
     <div class="section" id="feedbackPanel" style="text-align: center;">
@@ -467,6 +502,81 @@
                 tableContent.style.display = "none"; // Collapse
                 header.classList.remove("expanded");
                 icon.textContent = "🔽"; // Change icon to down arrow
+            }
+        }
+
+        async function uploadQuestionFile() {
+            console.log("📂 Upload process started...");
+            const fileInput = document.getElementById("questionFileInput");
+
+            if (fileInput.files.length === 0) {
+                console.warn("⚠️ No file selected.");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            console.log(`✅ File selected: ${file.name}, Size: ${file.size} bytes`);
+
+            const formData = new FormData();
+            formData.append("file", file);
+            try {
+                console.log("📡 Sending file to backend...");
+                // Upload file to backend
+                const uploadResponse = await fetch("/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const uploadResult = await uploadResponse.json();
+                console.log("📨 Server response:", uploadResult);
+
+                if (uploadResult.error) {
+                    console.error("❌ File upload failed:", uploadResult.error);
+                    alert("File upload failed: " + uploadResult.error);
+                    return;
+                }
+
+                console.log("✅ File successfully uploaded!");
+
+                // Read file content and send each question to the model
+                const reader = new FileReader();
+                reader.onload = async function(event) {
+                    console.log("📖 Reading file contents...");
+
+                    const questions = event.target.result.split("\n").filter(q => q.trim() !== "");
+                    console.log(`📝 Extracted ${questions.length} questions from the file.`);
+
+                    if (questions.length === 0) {
+                        console.warn("⚠️ No valid questions found in the file.");
+                        return;
+                    }
+
+                    const responseContainer = document.getElementById("response-container");
+                    responseContainer.innerHTML = "Processing uploaded questions...";
+
+                    // Step 5: Process each question
+                    for (const [index, question] of questions.entries()) {
+                        console.log(`🤖 Sending question ${index + 1}: "${question}" to the model...`);
+
+                        const response = await fetch("/ask-file", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ question: question })
+                        });
+
+                        const result = await response.json();
+                        console.log(`📨 Response for Q${index + 1}:`, result);
+
+                        if (result.message) {
+                            responseContainer.innerHTML += `<br><b>Q:</b> ${question}<br><b>A:</b> ${result.message}`;
+                        }
+                    }
+                };
+                reader.readAsText(file);
+
+            } catch (error) {
+                console.error("🚨 An error occurred during file upload:", error);
+                alert("An error occurred. Check the console for details.");
             }
         }
 

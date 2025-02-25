@@ -1,0 +1,10 @@
+What's the maximum number of lithology types in a log?
+How many tracks can you define in one ODF?
+How many curve shades can I create?
+How many curves can I load in one go?
+What is the maximum number of headers I can display in my log?
+How many tables can I have in my log?
+What's the maximum number of characters in a single text entry?
+How many symbols can I have in the plot at any one time?
+How many scales can I define?
+What is the maximum number of data files I can load?

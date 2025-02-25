@@ -791,6 +791,36 @@ def get_results():
     except Exception as e:
         logging.error(f"Error reading results: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
+    
+def append_to_excel(question, response):
+    """ Append question and response to the Excel file. """
+    new_entry = pd.DataFrame([[question, response]], columns=["Question", "Response"])
+
+    # Check if the file exists
+    if not os.path.exists(EXCEL_FILE):
+        with pd.ExcelWriter(EXCEL_FILE, engine="openpyxl") as writer:
+            new_entry.to_excel(writer, index=False)
+    else:
+        existing_data = pd.read_excel(EXCEL_FILE)
+        updated_data = pd.concat([existing_data, new_entry], ignore_index=True)
+        updated_data.to_excel(EXCEL_FILE, index=False)
+        
+@app.route("/ask-file", methods=["POST"])
+def ask_file():
+    """ Process a question from the uploaded file and store the answer. """
+    data = request.json
+    question = data.get("question", "").strip()
+
+    if not question:
+        return jsonify({"error": "Question cannot be empty"}), 400
+
+    # Get AI model response
+    response = ai_bot.query(question)
+
+    # Append question and response to Excel
+    append_to_excel(question, response)
+
+    return jsonify({"message": response}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
