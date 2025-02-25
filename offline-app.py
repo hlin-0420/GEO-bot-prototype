@@ -25,6 +25,7 @@ from haystack.components.embedders import SentenceTransformersTextEmbedder
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
 from haystack.components.builders import ChatPromptBuilder
 from haystack.components.generators.chat import OpenAIChatGenerator
+from sentence_transformers import SentenceTransformer, util
 
 valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
@@ -40,6 +41,7 @@ rag_application = None
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
 EXCEL_FILE = os.path.join(DATA_DIR, "query_responses.xlsx")
+EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "expected_query_responses.xlsx")
 FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
@@ -723,6 +725,27 @@ def view_file():
     except Exception as e:
         return jsonify({"error": f"Could not read file: {str(e)}"}), 500
 
+def calculate_semantic_similarity(text1, text2, model_name='all-MiniLM-L6-v2'):
+    """
+    Computes the semantic similarity between two text extracts using Sentence-BERT.
+
+    Parameters:
+    text1 (str): The first text (expected response).
+    text2 (str): The second text (chatbot response).
+    model_name (str): Name of the pre-trained SentenceTransformer model.
+
+    Returns:
+    float: Cosine similarity score (range: 0 to 1, where 1 means identical meaning).
+    """
+    model = SentenceTransformer(model_name)
+
+    # Generate embeddings
+    embeddings = model.encode([text1, text2], convert_to_tensor=True)
+
+    # Compute cosine similarity
+    similarity_score = util.pytorch_cos_sim(embeddings[0], embeddings[1]).item()
+    
+    return similarity_score
 
 @app.route("/get-results", methods=["GET"])
 def get_results():
@@ -731,6 +754,30 @@ def get_results():
             return jsonify({"error": "Results file not found"}), 404
         
         df = pd.read_excel(EXCEL_FILE)
+        
+        if os.path.exists(EXPECTED_RESULTS_FILE):
+            expected_results_df = pd.read_excel(EXPECTED_RESULTS_FILE)
+            
+        question_column = "Question"
+        response_column = "Response"
+        expected_answer_column = "Expected Answer"
+        
+        # Create a dictionary mapping expected questions to their answers
+        expected_answers_dict = dict(zip(expected_results_df[question_column], expected_results_df[response_column]))
+        
+        df['is_question_in_expected'] = df[question_column].isin(expected_answers_dict)  # Check if question exists
+        
+        # Filter df to include only rows where the question exists in expected_results_df
+        filtered_df = df[df['is_question_in_expected'] == True]
+        
+        filtered_df.loc[:, expected_answer_column] = filtered_df.loc[:, question_column].map(expected_answers_dict)
+        
+        filtered_df.loc[:, 'similarity_score'] = filtered_df.apply(
+            lambda row: calculate_semantic_similarity(str(row[expected_answer_column]), str(row[response_column])),
+            axis=1
+        )
+        
+        filtered_df.to_excel("Data/temp_filtered_data.xlsx")
         
         if "Model Name" not in df.columns or "Accuracy" not in df.columns:
             sample_df = pd.DataFrame({
