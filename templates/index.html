@@ -10,6 +10,16 @@
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
         button:hover { background-color: #0056b3; }
 
+        .table-header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .section {
             margin-bottom: 30px;
             padding: 20px;
@@ -167,27 +177,52 @@
 
     <div class="section">
     <h3 onclick="toggleSection(this)">Results</h3>
-    <div class="section-content">
-    <h4>Responses:</h4>
-    <div id="responseOutput"></div>
-    <h4>Model Accuracy Scores:</h4>
-    <button onclick="fetchResults()" style="margin-bottom: 10px;">Refresh Results</button>
-    <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-            <thead>
-                <tr style="background-color: #f2f2f2;">
-                    <th style="padding: 10px; border: 1px solid #ddd;">Model Name</th>
-                    <th style="padding: 10px; border: 1px solid #ddd;">Accuracy</th>
-                </tr>
-            </thead>
-            <tbody id="resultsTableBody">
-                <!-- Rows will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
-    </div>
-    </div>
-
+        <div class="section-content">
+            <h4>Responses:</h4>
+            <div id="responseOutput"></div>
+            <h4>Model Accuracy Scores:</h4>
+            <button onclick="fetchResults()" style="margin-bottom: 10px;">Refresh Results</button>
+                <div style="overflow-x: auto;">
+                    <div class="table-header" onclick="toggleTable('resultsTable')">
+                        Model Accuracy Results <span class="expand-icon">🔽</span>
+                    </div>
+                    <div id="resultsTable" class="table-content">
+                        <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Model Name</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Accuracy</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Rows will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <div style="overflow-x: auto;">
+                    <div class="table-header" onclick="toggleTable('filteredResultsTable')">
+                        Filtered Questions & Responses <span class="expand-icon">🔽</span>
+                    </div>
+                    <div id="filteredResultsTable" class="table-content">
+                        <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Question</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Response</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Expected Answer</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Similarity Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filteredResultsTableBody">
+                                <!-- Filtered results will be inserted here -->
+                            </tbody>
+                        </table>  
+                    </div>      
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -388,19 +423,50 @@
                 
                 if (response.ok) {
                     const tableBody = document.getElementById("resultsTableBody");
-                    tableBody.innerHTML = ""; // Clear existing content
+                    const filteredTableBody = document.getElementById("filteredResultsTableBody");
                     
-                    data.forEach(row => {
+                    tableBody.innerHTML = ""; // Clear existing content
+                    filteredTableBody.innerHTML = ""; // Clear filtered results content
+
+                    // Populate model results table
+                    data.models.forEach(row => {
                         let tr = document.createElement("tr");
                         tr.innerHTML = `<td style="padding: 10px; border: 1px solid #ddd;">${row["Model Name"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Accuracy"]}</td>`;
                         tableBody.appendChild(tr);
                     });
+
+                    // Populate filtered results table
+                    data.filtered_results.forEach(row => {
+                        let tr = document.createElement("tr");
+                        tr.innerHTML = `<td style="padding: 10px; border: 1px solid #ddd;">${row["Question"]}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["Response"]}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["Expected Answer"]}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["similarity_score"].toFixed(2)}</td>`;
+                        filteredTableBody.appendChild(tr);
+                    });
+
                 } else {
                     console.error("Error fetching results:", data.error);
                 }
             } catch (error) {
                 console.error("Error fetching results:", error);
+            }
+        }
+
+        function toggleTable(tableId) {
+            const tableContent = document.getElementById(tableId);
+            const header = tableContent.previousElementSibling; // The header div
+            const icon = header.querySelector(".expand-icon");
+
+            if (tableContent.style.display === "none" || tableContent.style.display === "") {
+                tableContent.style.display = "block"; // Expand
+                header.classList.add("expanded");
+                icon.textContent = "🔼"; // Change icon to up arrow
+            } else {
+                tableContent.style.display = "none"; // Collapse
+                header.classList.remove("expanded");
+                icon.textContent = "🔽"; // Change icon to down arrow
             }
         }
 

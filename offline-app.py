@@ -780,14 +780,14 @@ def get_results():
         filtered_df.to_excel("Data/temp_filtered_data.xlsx")
         
         if "Model Name" not in df.columns or "Accuracy" not in df.columns:
-            sample_df = pd.DataFrame({
+            results = pd.DataFrame({
                 "Model Name": ["Llama 3.2", "Deepseek 1.5", "Haystack", "OpenAI"],
                 "Accuracy": ["90%", "84%", "79%", "92%"]
             })
-            return jsonify(sample_df.to_dict(orient="records"))
+        else:
+            results = df[["Model Name", "Accuracy"]].to_dict(orient="records")
         
-        results = df[["Model Name", "Accuracy"]].to_dict(orient="records")
-        return jsonify(results)
+        return jsonify({"models": results.to_dict(orient="records"), "filtered_results": filtered_df.to_dict(orient="records")})
     except Exception as e:
         logging.error(f"Error reading results: {str(e)}")
         return jsonify({"error": "Internal server error"}), 500
