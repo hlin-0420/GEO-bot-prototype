@@ -120,6 +120,8 @@
             margin-right: 8px; /* Space between checkbox and text */
         }
     </style>
+    <link href="static/css/output.css" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body>
     <div class="navbar">
@@ -150,10 +152,30 @@
     <div class="section-content">
         <div class="upload-section">
         <h4>⬆️ Upload Form</h4>
-        <form id="uploadForm">
-            <input type="file" id="fileInput" />
-            <button type="button" onclick="uploadFile()">Upload</button>
-        </form>
+        <div class="relative inline-block text-left">
+            <button id="uploadTrainDataBtn" class="bg-white border border-gray-300 shadow-sm px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-gray-200">
+                <span>Upload</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+            
+            <div id="uploadMenu" class="hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Google_Drive_logo.png" class="w-5 h-5 mr-2"> Connect to Google Drive
+                </button>
+                <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/OneDrive_icon.png" class="w-5 h-5 mr-2"> Connect to Microsoft OneDrive
+                </button>
+                <label for="fileInput" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center cursor-pointer">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4M16 10l-4-4m0 0l-4 4m4-4v12"></path>
+                    </svg>
+                    Upload from computer
+                </label>
+                <input type="file" id="fileInput" class="hidden" onchange="uploadFile()" />
+            </div>
+        </div>
         <div id="uploadResponse"></div>
         </div>
         <div class="view-training-files">
@@ -592,6 +614,18 @@
                 alert("An error occurred. Check the console for details.");
             }
         }
+
+        document.getElementById('uploadTrainDataBtn').addEventListener('click', function() {
+            document.getElementById('uploadMenu').classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('uploadMenu');
+            const button = document.getElementById('uploadTrainDataBtn');
+            if (!button.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
 
     </script>
 </body>
