@@ -36,6 +36,7 @@ def add_csp_headers(response):
     response.headers['Content-Security-Policy'] = (
         "default-src 'self' https://apis.google.com https://content.googleapis.com https://www.gstatic.com;"
         "script-src 'self' https://apis.google.com https://www.gstatic.com https://accounts.google.com/gsi/client 'unsafe-inline' 'unsafe-eval' blob:;"
+        "connect-src 'self' https://www.googleapis.com https://content.googleapis.com;"
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
         "img-src 'self' https://upload.wikimedia.org https://www.gstatic.com data:;"
         "frame-src 'self' https://accounts.google.com https://content.googleapis.com;"

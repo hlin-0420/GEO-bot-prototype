@@ -69,6 +69,13 @@
         </div>
         <div id="uploadResponse"></div>
         </div>
+        <br>
+        <div class="view-google-drive-files">
+            <div id="fileList">
+                <p>No files loaded. Connect to Google Drive.</p>
+            </div>
+        </div>
+        <br>
         <div class="view-training-files">
             <h4>📄 View Training File</h4>
             <input type="text" id="fileViewInput" placeholder="Enter filename to view">
@@ -559,7 +566,7 @@
             .then(data => {
                 if (data.files) {
                     let fileList = data.files.map(file => `<li><a href="#" onclick="loadGoogleDriveFile('${file.id}', '${accessToken}')">${file.name}</a></li>`).join('');
-                    document.getElementById('fileList').innerHTML = `<ul>${fileList}</ul>`;
+                    document.getElementById('fileList').innerHTML = `📂 List of Files: <ul>${fileList}</ul>`;
                 } else {
                     document.getElementById('fileList').innerHTML = "No files found.";
                 }
