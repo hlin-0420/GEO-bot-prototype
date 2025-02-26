@@ -72,7 +72,7 @@
         <br>
         <div class="view-google-drive-files">
             <div id="fileList">
-                <p>No files loaded. Connect to Google Drive.</p>
+                <p>🚫 No files loaded. Connect to Google Drive.</p>
             </div>
         </div>
         <br>
@@ -565,10 +565,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.files) {
-                    let fileList = data.files.map(file => `<li><a href="#" onclick="loadGoogleDriveFile('${file.id}', '${accessToken}')">${file.name}</a></li>`).join('');
+                    let fileList = data.files.map(file => `<li>📄 <a href="#" onclick="loadGoogleDriveFile('${file.id}', '${accessToken}')">${file.name}</a></li>`).join('');
                     document.getElementById('fileList').innerHTML = `📂 List of Files: <ul>${fileList}</ul>`;
                 } else {
-                    document.getElementById('fileList').innerHTML = "No files found.";
+                    document.getElementById('fileList').innerHTML = "🚫 No files found.";
                 }
             })
             .catch(error => console.error("Error fetching Google Drive files:", error));
