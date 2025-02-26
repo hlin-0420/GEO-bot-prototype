@@ -97,7 +97,11 @@
                         </label>
                     </div>
                 </form>
-                <input type="file" id="questionFileInput" class="file-input" accept=".txt">
+                <div class="custom-file-upload">
+                    <label for="questionFileInput" class="file-label">Choose File</label>
+                    <span id="file-name">No file chosen</span>
+                    <input type="file" id="questionFileInput" class="file-input" accept=".txt" onchange="updateFileName()">
+                </div>
                 <div style="display: flex; gap: 10px;">
                     <div class="button-container">
                         <button class="custom-button" onclick="submitQuestion()">Submit Question</button>
@@ -420,6 +424,17 @@
                 tableContent.style.display = "none"; // Collapse
                 header.classList.remove("expanded");
                 icon.textContent = "🔽"; // Change icon to down arrow
+            }
+        }
+
+        function updateFileName() {
+            const fileInput = document.getElementById("questionFileInput");
+            const fileNameDisplay = document.getElementById("file-name");
+
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "No file chosen";
             }
         }
 

@@ -521,6 +521,43 @@
 
 /* Custom integrated styles */
 @layer components {
+  /* Hide default file input */
+  .file-input {
+    display: none;
+}
+
+/* Custom file upload container */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between button and file name */
+    font-size: 16px;
+}
+
+/* Styled file upload button */
+.file-label {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: inline-block;
+  }
+
+  .file-label:hover {
+      background-color: #0056b3;
+  }
+
+  /* File name display */
+  #file-name {
+      font-size: 16px;
+      color: #444;
+  }
+  
   h1 {
     font-size: 2rem;
     font-weight: bold;
@@ -534,7 +571,7 @@
     margin: 20px;
   }
   /* Improved styling for textarea and input fields */
-  textarea, input[type="file"] {
+  textarea {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -551,6 +588,29 @@
   textarea:focus, input[type="file"]:focus {
     border-color: #007bff; /* Highlight when focused */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  /* Styling for file input */
+  input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #bbb; /* Softer border for file input */
+    border-radius: 4px;
+    background-color: #f8f8f8; /* Light grey background */
+    color: #444;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    margin-bottom: 15px;
+  }
+
+  input[type="file"]:hover {
+      border-color: #007bff;
+      background-color: #eef5ff; /* Light blue tint */
+  }
+
+  input[type="file"]:focus {
+      border-color: #0056b3;
+      box-shadow: 0 0 4px rgba(0, 86, 179, 0.5);
   }
   button {
     padding: 10px 20px;
