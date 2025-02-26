@@ -533,9 +533,24 @@
     font-family: Arial, sans-serif;
     margin: 20px;
   }
+  /* Improved styling for textarea and input fields */
   textarea, input[type="file"] {
     width: 100%;
-    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ccc; /* Visible border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* Ensure it's visible */
+    color: #333;
+    resize: vertical; /* Allow resizing for textarea */
+    outline: none; /* Remove default outline */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 10px; /* Maintain consistent spacing */
+  }
+  /* Enhance focus effect for better UI feedback */
+  textarea:focus, input[type="file"]:focus {
+    border-color: #007bff; /* Highlight when focused */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
   button {
     padding: 10px 20px;
