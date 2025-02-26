@@ -133,7 +133,7 @@
     
     <div class="section">
     <!-- Model Selection -->
-    <h3 id="modelSelection" onclick="toggleSection(this)">Select AI Model</h3>
+    <h3 id="modelSelection" onclick="toggleSection(this)">🤖 Select AI Model</h3>
     <div class="section-content">
     <select id="modelSelect" onchange="updateModel()">
         <option value="llama3.2">llama3.2:latest</option>
@@ -146,10 +146,10 @@
     </div>
 
     <div class="section">
-    <h3 onclick="toggleSection(this)">Training Section</h3>
+    <h3 onclick="toggleSection(this)">📂 Training Section</h3>
     <div class="section-content">
         <div class="upload-section">
-        <h4>Upload Form</h4>
+        <h4>⬆️ Upload Form</h4>
         <form id="uploadForm">
             <input type="file" id="fileInput" />
             <button type="button" onclick="uploadFile()">Upload</button>
@@ -157,7 +157,7 @@
         <div id="uploadResponse"></div>
         </div>
         <div class="view-training-files">
-            <h4>View Training File</h4>
+            <h4>📄 View Training File</h4>
             <input type="text" id="fileViewInput" placeholder="Enter filename to view">
             <button onclick="viewTrainingFile()">View File</button>
             <div id="fileViewOutput"></div>
@@ -167,10 +167,10 @@
     
     <div class="section">
         <!-- File Upload Section -->
-        <h3 onclick="toggleSection(this)">Q&A</h3>
+        <h3 onclick="toggleSection(this)">❓Q&A</h3>
             <div class="section-content">
                 <!-- Question-Answer Section -->
-                <h3>Ask a Question</h3>
+                <h3>📝 Ask a Question</h3>
                 <textarea id="questionInput" placeholder="Type your question here..."></textarea>
                 <form id="dataOptionsForm">
                     <div class="options-container">
@@ -198,10 +198,10 @@
     </div>
 
     <div class="section" id="feedbackPanel" style="text-align: center;">
-        <h3 style="text-align:left;" onclick="toggleSection(this)">Feedback Panel</h3>
+        <h3 style="text-align:left;" onclick="toggleSection(this)">💬 Feedback Panel</h3>
         <div class="section-content">
         <div id="ratingSection" style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 10px;">
-            <p style="margin: 0; font-weight: bold;">Rate the response (1 to 10):</p>
+            <p style="margin: 0; font-weight: bold;">⭐ Rate the response (1 to 10):</p>
             <input type="number" id="ratingInput" min="1" max="10" value="5" style="width: 60px; text-align: center; font-size: 16px; padding: 5px;">
         </div>
     
@@ -217,15 +217,15 @@
     </div>    
 
     <div class="section">
-    <h3 onclick="toggleSection(this)">Results</h3>
+    <h3 onclick="toggleSection(this)">📊 Results</h3>
         <div class="section-content">
             <h4>Responses:</h4>
             <div id="responseOutput"></div>
-            <h4>Model Accuracy Scores:</h4>
+            <h4>🎯 Model Accuracy Scores:</h4>
             <button onclick="fetchResults()" style="margin-bottom: 10px;">Refresh Results</button>
                 <div style="overflow-x: auto;">
                     <div class="table-header" onclick="toggleTable('resultsTable')">
-                        Model Accuracy Results <span class="expand-icon">🔽</span>
+                        📈 Model Accuracy Results <span class="expand-icon">🔽</span>
                     </div>
                     <div id="resultsTable" class="table-content">
                         <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
@@ -244,7 +244,7 @@
                 <br>
                 <div style="overflow-x: auto;">
                     <div class="table-header" onclick="toggleTable('filteredResultsTable')">
-                        Filtered Questions & Responses <span class="expand-icon">🔽</span>
+                        🗂 Filtered Questions & Responses <span class="expand-icon">🔽</span>
                     </div>
                     <div id="filteredResultsTable" class="table-content">
                         <table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
