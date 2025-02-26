@@ -110,7 +110,6 @@
   }
   img, svg, video, canvas, audio, iframe, embed, object {
     display: block;
-    vertical-align: middle;
   }
   img, video {
     max-width: 100%;
@@ -518,4 +517,161 @@
 @property --tw-ease {
   syntax: "*";
   inherits: false;
+}
+
+/* Custom integrated styles */
+@layer components {
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    line-height: 2.0;
+    margin-top: 20px; /* Ensure it is not hidden behind navbar */
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  textarea, input[type="file"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  #dataOptionsForm {
+    margin-bottom: 20px;
+  }
+  .button-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .custom-button {
+    flex: 1;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 160px;
+  }
+  .custom-button:hover {
+    background-color: #0056b3;
+  }
+  .custom-button:active {
+    background-color: #004494;
+  }
+  .table-header {
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  .h3 {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  .navbar {
+    background-color: #333;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between; /* Ensures left and right alignment */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .navbar-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+  }
+
+  .navbar-logo-container {
+      display: flex;
+      align-items: center;
+  }
+
+  .navbar-logo {
+      height: 45px;
+      margin-right: 10px; /* Adjust spacing between logo and nav links */
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end; /* Ensures links are pushed to the right */
+    flex-grow: 1; /* Pushes links as far right as possible */
+  }
+
+  .navbar-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease-in-out;
+  }
+
+  .navbar-links a:hover {
+      color: #f8c33c;
+  }
+
+  /* Ensures spacing for page content under fixed navbar */
+  .content {
+      margin-top: 80px;
+  }
+  .options-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  .option {
+    flex: 1;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .option:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+  }
+  .option input {
+    margin-right: 8px;
+  }
 }

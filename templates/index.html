@@ -4,130 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Bot Interface</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        textarea, input[type="file"] { width: 100%; margin-bottom: 10px; }
-        button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
-        button:hover { background-color: #0056b3; }
-
-        #dataOptionsForm {
-            margin-bottom: 20px; 
-        }
-
-        .button-container {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        .custom-button {
-            flex: 1;
-            background-color: #007bff; /* Matching the blue button in the image */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            min-width: 160px;
-        }
-
-        .custom-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        .custom-button:active {
-            background-color: #004494;
-        }
-
-        .table-header {
-            background-color: #f2f2f2;
-            padding: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-        }
-
-        .h3 {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        /* Navigation Panel Styles */
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: inline-block;
-        }
-        .navbar a:hover {
-            background-color: #575757;
-        }
-        .content {
-            margin-top: 60px;
-        }
-
-        .options-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px; /* Adds spacing between checkboxes */
-            padding: 10px;
-        }
-
-        .option {
-            flex: 1;
-            text-align: center;
-            background-color: #f8f9fa; /* Light grey background */
-            padding: 10px;
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            transition: 0.3s ease-in-out;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .option:hover {
-            background-color: #e9ecef; /* Slightly darker on hover */
-            cursor: pointer;
-        }
-
-        .option input {
-            margin-right: 8px; /* Space between checkbox and text */
-        }
-    </style>
     <link href="static/css/output.css" rel="stylesheet">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body>
     <div class="navbar">
-        <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
-        <a href="/feedback">Feedback Form</a>
-        <a href="#modelSelection">Select Model</a>
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo-container">
+                <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="navbar-logo">
+            </a>
+            <nav class="navbar-links">
+                <a href="/feedback">Feedback Form</a>
+                <a href="#modelSelection">Select Model</a>
+            </nav>
+        </div>
     </div>
 
     <div class="content">
