@@ -576,7 +576,12 @@
                         console.log(`📨 Response for Q${index + 1}:`, result);
 
                         if (result.message) {
-                            responseContainer.innerHTML += `<br><b>Q ${index + 1}:</b> ${question}<br><b>A ${index + 1}:</b> ${result.message}`;
+                            responseContainer.innerHTML += `
+                            <div style="margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                <p><b>Q${index + 1}:</b> ${question}</p>
+                                <pre style="background: #eee; padding: 10px; border-radius: 5px; white-space: pre-wrap;">${result.message}</pre>
+                            </div>
+                            `;
                         }
                     }
                 };
