@@ -10,6 +10,10 @@
         button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; }
         button:hover { background-color: #0056b3; }
 
+        #dataOptionsForm {
+            margin-bottom: 20px; 
+        }
+
         .button-container {
             display: flex;
             gap: 15px;
@@ -61,6 +65,7 @@
             color: white;
             padding: 10px;
             border-radius: 4px;
+            margin-bottom: 15px;
         }
 
         /* Navigation Panel Styles */
@@ -124,7 +129,7 @@
     </div>
 
     <div class="content">
-    <h1 style="text-align: center;">AI Bot Application</h1>
+    <h1 style="text-align: center; line-height: 2.0;">AI Bot Application</h1>
     
     <div class="section">
     <!-- Model Selection -->
@@ -169,18 +174,18 @@
                 <textarea id="questionInput" placeholder="Type your question here..."></textarea>
                 <form id="dataOptionsForm">
                     <div class="options-container">
-                        <label class="option">
+                        <label class="option" style="font-family: 'Dreaming Outloud Script Pro Regular'; font-size:16px; font-weight:bold;">
                             <input type="checkbox" name="dataOption" value="text"> Text
                         </label>
-                        <label class="option">
+                        <label class="option" style="font-family: 'Dreaming Outloud Script Pro Regular'; font-size:16px; font-weight:bold;">
                             <input type="checkbox" name="dataOption" value="table"> Table
                         </label>
-                        <label class="option">
+                        <label class="option" style="font-family: 'Dreaming Outloud Script Pro Regular'; font-size:16px; font-weight:bold;">
                             <input type="checkbox" name="dataOption" value="list"> List
                         </label>
                     </div>
                 </form>
-                <input type="file" id="questionFileInput" class="file-input" accept=".txt" onchange="document.getElementById('questionFileInput').click()">
+                <input type="file" id="questionFileInput" class="file-input" accept=".txt">
                 <div style="display: flex; gap: 10px;">
                     <div class="button-container">
                         <button class="custom-button" onclick="submitQuestion()">Submit Question</button>
