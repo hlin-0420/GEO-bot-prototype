@@ -1,10 +1,25 @@
-What's the maximum number of lithology types in an log?
-How many tracks can you define in one ODF?
-How many curve shades can I create?
-How many curves can I load in one go?
-What the maximum number of headers I can display in my log?
-How many tables can I have in my log?
-Whats the maximum number of characters in a single text entry?
-How many symbols can I have in the plot at any one time?
-How many scales can I define?
-What the maximum number of data files I can load?
+
+                    
+                    Tables: 
+                    ---
+                    
+                    ---
+                    
+                    Text:
+                    ---
+                    *Maximize screen to view table of contents*
+
+ODF files may be shared with other members of the team (or with well partners) who require read-only access to the log and embedded curve data, using GEOView, or the free viewer, GEOe-View.
+
+For added security, an ODF must first be madee-View enabledbefore it can be opened by GEOe-View. The bottom status bar will state if the open ODF is e-View enabled or disabled. If disabled, right click on it and select e-View enabled.
+
+Both GEOView and GEOe-View can operate as ‘plug-in’ controls to the Internet Explorer web browser, so effectively allowing ODF files to be opened (normally by clicking a hyperlink to the ODF on an intranet web-page) within this standard browser.
+
+If you are interested in setting-up a corporate intranet for securely-sharing your well data, please contact your local office ofGeologix. We shall be pleased to discuss your requirements and to offer our expertise within a range of service solutions.
+                    ---
+                    
+                    List:
+                    ---
+                    
+                    ---
+                    
