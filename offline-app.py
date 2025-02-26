@@ -31,6 +31,18 @@ valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
 app = Flask(__name__)
 
+@app.after_request
+def add_csp_headers(response):
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self' https://apis.google.com https://content.googleapis.com https://www.gstatic.com;"
+        "script-src 'self' https://apis.google.com https://www.gstatic.com https://accounts.google.com/gsi/client 'unsafe-inline' 'unsafe-eval' blob:;"
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+        "img-src 'self' https://upload.wikimedia.org https://www.gstatic.com data:;"
+        "frame-src 'self' https://accounts.google.com https://content.googleapis.com;"
+        "object-src 'none';"
+    )
+    return response
+
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Bot Interface</title>
     <link href="static/css/output.css" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body>
@@ -51,7 +52,7 @@
             </button>
             
             <div id="uploadMenu" class="hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg">
-                <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center">
+                <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center" onclick="connectGoogleDrive()">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Google_Drive_logo.png" class="w-5 h-5 mr-2"> Connect to Google Drive
                 </button>
                 <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center">
@@ -532,6 +533,52 @@
             }
         });
 
+        function connectGoogleDrive() {
+            google.accounts.oauth2.initTokenClient({
+                client_id: "1093826694011-j8422lmlh8urgh5q0iulhbk8c4ma5m5q.apps.googleusercontent.com",
+                scope: "https://www.googleapis.com/auth/drive.readonly",
+                callback: (response) => {
+                    if (response.access_token) {
+                        console.log("Google Drive Authentication Successful!");
+                        listGoogleDriveFiles(response.access_token);
+                    } else {
+                        console.error("Google Drive Authentication Failed!");
+                    }
+                }
+            }).requestAccessToken();
+        }
+
+        function listGoogleDriveFiles(accessToken) {
+            fetch("https://www.googleapis.com/drive/v3/files?pageSize=10&fields=files(id,name)", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.files) {
+                    let fileList = data.files.map(file => `<li><a href="#" onclick="loadGoogleDriveFile('${file.id}', '${accessToken}')">${file.name}</a></li>`).join('');
+                    document.getElementById('fileList').innerHTML = `<ul>${fileList}</ul>`;
+                } else {
+                    document.getElementById('fileList').innerHTML = "No files found.";
+                }
+            })
+            .catch(error => console.error("Error fetching Google Drive files:", error));
+        }
+
+        function loadGoogleDriveFile(fileId, accessToken) {
+            fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("File content:", data);
+            })
+            .catch(error => console.error("Error loading file:", error));
+        }
     </script>
 </body>
 </html>
