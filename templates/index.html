@@ -175,6 +175,7 @@
                             <thead>
                                 <tr>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Question</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Model Name</th>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Response</th>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Expected Answer</th>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Similarity Score</th>
@@ -385,6 +386,8 @@
             try {
                 const response = await fetch('/get-results');
                 const data = await response.json();
+
+                console.log(data);
                 
                 if (response.ok) {
                     const tableBody = document.getElementById("resultsTableBody");
@@ -405,6 +408,7 @@
                     data.filtered_results.forEach(row => {
                         let tr = document.createElement("tr");
                         tr.innerHTML = `<td style="padding: 10px; border: 1px solid #ddd;">${row["Question"]}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["Model Name"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Response"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Expected Answer"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["similarity_score"].toFixed(2)}</td>`;
