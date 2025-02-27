@@ -546,6 +546,58 @@
       font-size: 16px;
   }
 
+  .custom-dropdown {
+    position: relative;
+    width: 200px;
+  }
+
+  .dropdown-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #fff;
+      cursor: pointer;
+  }
+
+  .dropdown-btn img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+  }
+
+  .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-top: none;
+      background: #fff;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+  }
+
+  .dropdown-menu div {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+  }
+
+  .dropdown-menu div:hover {
+      background: #f0f0f0;
+  }
+
+  .dropdown-menu img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+  }
+
   /* Styled file upload button */
   .file-label {
     padding: 10px 15px;

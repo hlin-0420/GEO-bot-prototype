@@ -28,12 +28,32 @@
     <!-- Model Selection -->
     <h3 id="modelSelection" onclick="toggleSection(this)">🤖 Select AI Model</h3>
     <div class="section-content">
-    <select id="modelSelect" onchange="updateModel()">
+        <div class="custom-dropdown">
+            <div class="dropdown-btn" onclick="toggleDropdown()">
+                <img id="selected-logo" src="/static/images/logo/llama3.2.png" alt="Llama 3.2">
+                <span id="selected-text">Llama 3.2</span>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div onclick="selectModel('llama3.2:latest', 'Llama 3.2', '/static/images/logo/llama3.2.png')">
+                    <img src="/static/images/logo/llama3.2.png" alt="Llama 3.2"> Llama 3.2
+                </div>
+                <div onclick="selectModel('deepseek1.5', 'Deepseek 1.5', '/static/images/logo/deepseek1.5.png')">
+                    <img src="/static/images/logo/deepseek1.5.png" alt="Deepseek 1.5"> Deepseek 1.5
+                </div>
+                <div onclick="selectModel('openai', 'OpenAI', '/static/images/logo/openai.png')">
+                    <img src="/static/images/logo/openai.png" alt="OpenAI"> OpenAI
+                </div>
+                <div onclick="selectModel('haystack-qa', 'Haystack', '/static/images/logo/haystack.png')">
+                    <img src="/static/images/logo/haystack.png" alt="Haystack"> Haystack
+                </div>
+            </div>
+        </div>
+    <!-- <select id="modelSelect" onchange="updateModel()">
         <option value="llama3.2:latest">Llama 3.2</option>
         <option value="deepseek1.5">Deepseek 1.5</option>
         <option value="openai">OpenAI</option>
         <option value="haystack-qa">Haystack</option>
-    </select>
+    </select> -->
     <p>Selected Model: <span id="selectedModel">llama3.2:latest</span></p>
     </div>
     </div>
@@ -247,14 +267,20 @@
             });
         });
 
-        async function updateModel() {
-            const modelSelect = document.getElementById("modelSelect"); // Get the select element
-            const selectedModel = modelSelect.options[modelSelect.selectedIndex].text; // Get selected text
-            document.getElementById("selectedModel").textContent = selectedModel; // Update UI
+        function toggleDropdown() {
+            const menu = document.getElementById("dropdownMenu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+        async function updateModel(modelValue, modelText, logoSrc) {
+            document.getElementById("selected-text").textContent = modelText;
+            document.getElementById("selected-logo").src = logoSrc;
+            document.getElementById("selected-logo").alt = modelText;
+            document.getElementById("selectedModel").textContent = modelText;
 
             try {
-                const response = await fetch(`/selection?model=${encodeURIComponent(modelSelect.value)}`, { // Send via URL
-                    method: "GET", // Keep as GET
+                const response = await fetch(`/selection?model=${encodeURIComponent(modelValue)}`, { // Send via URL
+                    method: "GET",
                     headers: { "Content-Type": "application/json" }
                 });
 
@@ -266,6 +292,30 @@
                 console.error("Error updating model:", error);
             }
         }
+
+        function selectModel(value, text, logoSrc) {
+            updateModel(value, text, logoSrc);
+        }
+
+        // async function updateModel() {
+        //     const modelSelect = document.getElementById("modelSelect"); // Get the select element
+        //     const selectedModel = modelSelect.options[modelSelect.selectedIndex].text; // Get selected text
+        //     document.getElementById("selectedModel").textContent = selectedModel; // Update UI
+
+        //     try {
+        //         const response = await fetch(`/selection?model=${encodeURIComponent(modelSelect.value)}`, { // Send via URL
+        //             method: "GET", // Keep as GET
+        //             headers: { "Content-Type": "application/json" }
+        //         });
+
+        //         if (!response.ok) throw new Error("Network response was not ok");
+
+        //         const result = await response.json();
+        //         console.log(result.message);
+        //     } catch (error) {
+        //         console.error("Error updating model:", error);
+        //     }
+        // }
 
         async function uploadFile() {
             const fileInput = document.getElementById("fileInput");
