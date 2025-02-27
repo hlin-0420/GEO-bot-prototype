@@ -30,6 +30,8 @@
                 <div id="chatDisplay">
                     <p>Select a chat from history.</p>
                 </div>
+                <div class="chat-messages" id="chatMessages">
+                </div>
                 <div class="chat-input-bar">
                     <div class="chat-input-row">
                         <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
@@ -59,6 +61,41 @@
     </div>
     
     <script>
+        function searchQuery() {
+            const query = document.getElementById("chatInput").value;
+            if (query) {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
+            }
+        }
+
+        function deepResearch() {
+            alert("Deep research feature is coming soon!");
+        }
+
+        function moreOptions() {
+            alert("More options coming soon!");
+        }
+
+        function startVoiceInput() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "en-US";
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                document.getElementById("chatInput").value = event.results[0][0].transcript;
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Voice recognition error:", event.error);
+            };
+        }
+
+        document.getElementById("chatInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
         async function loadChatHistory() {
             try {
                 const response = await fetch("/chat-history");
@@ -86,8 +123,9 @@
         }
 
         function displayChat(entry) {
-            const chatDisplay = document.getElementById("chatDisplay");
-            chatDisplay.innerHTML = `
+            selectedChat = entry;
+            const chatMessages = document.getElementById("chatMessages");
+            chatMessages.innerHTML = `
                 <div class="chat-message">
                     <div class="user-message">${entry.Question}</div>
                 </div>
@@ -95,6 +133,65 @@
                     <div class="ai-message"><strong>${entry["Model Name"]}:</strong> ${entry.Response}</div>
                 </div>
             `;
+        }
+
+        async function sendMessage() {
+            const inputField = document.getElementById("chatInput");
+            const userMessage = inputField.value.trim();
+
+            console.log("User message:", userMessage);
+            debugger;
+
+            if (!userMessage) {
+                console.warn("No message entered. Exiting function.");
+                return;
+            }
+
+            const chatMessages = document.getElementById("chatMessages");
+            console.log("Chat messages container:", chatMessages);
+            debugger;
+
+            chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${userMessage}</div></div>`;
+            console.log("User message added to chat display.");
+
+            inputField.value = "";
+            console.log("Input field cleared.");
+            debugger;
+
+            try {
+                let selectedModel = "llama3.2:latest";
+                let selectedOptions = ["text", "table", "list"];
+                const postResponse = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question: userMessage, model: selectedModel, selectedOptions: selectedOptions })
+                });
+
+                if (!postResponse.ok) {
+                    const error = await postResponse.json();
+                    responseOutput.textContent = error.error || "An error occurred.";
+                    return;
+                }
+
+                const { question_id } = await postResponse.json();
+
+                const eventSource = new EventSource(`/response/${question_id}`);
+                eventSource.onmessage = function (event) {
+                    const data = event.data;
+                    if (data.startsWith("Error:")) {
+                        chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
+                        eventSource.close();
+                    } else if (data === "Processing your question...") {
+                        // chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
+                        console.log("***");
+                    } else {
+                        chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
+                        eventSource.close();
+                    }
+                };
+            } catch (error) {
+                console.error("Error occurred during fetch or processing:", error);
+            }
         }
 
         // Load chat history on page load
