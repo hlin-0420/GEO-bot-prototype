@@ -163,6 +163,12 @@
         <div class="section-content">
             <h4>Responses:</h4>
 
+            <!-- Loading Bar (Hidden by Default) -->
+            <div id="progress-bar-container" style="display: none; width: 100%; background-color: #e0e0e0; height: 20px; border-radius: 5px; margin-bottom: 15px; overflow: hidden;">
+                <div id="progress-bar" style="width: 0%; height: 100%; background-color: #4CAF50; text-align: center; line-height: 20px; color: white;">
+                    Loading...
+                </div>
+            </div>
             <h5>📩Individual Response: </h5>
             <div id="responseOutput" style="margin-bottom: 10px; font-style: italic; border: 1px solid black; padding: 5px; line-height: 1.5cm; height: 1.5cm"></div>
 
@@ -329,7 +335,9 @@
             const question = document.getElementById("questionInput").value.trim();
             const feedbackMessage = document.getElementById("feedbackMessage");
             const responseOutput = document.getElementById("responseOutput");
-            responseOutput.innerHTML = ""; 
+            responseOutput.innerHTML = "";
+            const progressBarContainer = document.getElementById("progress-bar-container");
+            const progressBar = document.getElementById("progress-bar");
 
             feedbackMessage.textContent = "";
             if (!question) {
@@ -343,6 +351,19 @@
             const selectedOptions = Array.from(document.querySelectorAll('input[name="dataOption"]:checked')).map(input => input.value);
             // Log selected options to the console
             console.log("Selected Options:", selectedOptions);
+
+            // Show loading bar
+            progressBarContainer.style.display = "block";
+            progressBar.style.width = "0%";
+            
+            let progress = 0;
+            const loadingInterval = setInterval(() => {
+                progress += 5;
+                if (progress <= 100) {
+                    progressBar.style.width = progress + "%";
+                    progressBar.innerText = `${progress}%`;
+                }
+            }, 200);
 
             try {
                 const postResponse = await fetch("/ask", {
