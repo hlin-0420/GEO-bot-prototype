@@ -178,7 +178,12 @@
             </div>
 
             <h4>🎯 Model Accuracy Scores:</h4>
-            <button onclick="fetchResults()" style="margin-bottom: 10px;">Refresh Results</button>
+                <div style="display: flex; gap: 10px;">
+                    <div class="button-container">
+                        <button class="custom-button" onclick="fetchResults()" style="margin-bottom: 10px;">Refresh Results</button>
+                        <button class="custom-button" id="speakResponse" style="margin-bottom: 10px;">🔊 Read Response</button>
+                    </div>
+                </div>
                 <div style="overflow-x: auto;">
                     <div class="table-header" onclick="toggleTable('resultsTable')">
                         📈 Model Accuracy Results <span class="expand-icon">🔽</span>
@@ -226,6 +231,14 @@
     </div>
 
     <script>
+        // Text-to-Speech Feature
+        document.getElementById("speakResponse").addEventListener("click", function() {
+            const responseText = document.getElementById("responseOutput").textContent;
+            const speech = new SpeechSynthesisUtterance(responseText);
+            speech.lang = 'en-US';
+            window.speechSynthesis.speak(speech);
+        });
+        
         // Function to load prompt content from the file
         fetch("/static/Data/prompt_visualisation.txt")
             .then(response => response.text())
