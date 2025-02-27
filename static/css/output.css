@@ -521,6 +521,73 @@
 
 /* Custom integrated styles */
 @layer components {
+  /* Chat Layout */
+  .chat-container {
+    display: flex;
+    height: calc(100vh - 60px); /* Adjust for navbar height */
+  }
+
+  /* Sidebar: Chat History */
+  .chat-sidebar {
+      width: 300px;
+      background: #f8f9fa;
+      border-right: 1px solid #ddd;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .chat-sidebar h3 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+
+  .chat-entry {
+      cursor: pointer;
+      padding: 10px;
+      margin-bottom: 5px;
+      background: #eee;
+      border-radius: 5px;
+      transition: background 0.2s;
+  }
+
+  .chat-entry:hover {
+      background: #ddd;
+  }
+
+  /* Main Chat Display */
+  .chat-main {
+      flex-grow: 1;
+      padding: 20px;
+      background: #fff;
+      overflow-y: auto;
+  }
+
+  /* Chat Messages */
+  .chat-message {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+  }
+
+  .user-message {
+      background: #d1ecf1;
+      padding: 12px;
+      border-radius: 10px;
+      max-width: 70%;
+      align-self: flex-end;
+  }
+
+  .ai-message {
+      background: #f8d7da;
+      padding: 12px;
+      border-radius: 10px;
+      max-width: 70%;
+      align-self: flex-start;
+  }
+
   #fileViewOutput {
     width: 100%; /* Ensures it stretches across the container */
     height: 250px; /* Fixed height for better readability */

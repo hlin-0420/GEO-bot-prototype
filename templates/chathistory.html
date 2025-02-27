@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="static/css/output.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo-container">
+                <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="navbar-logo">
+            </a>
+            <nav class="navbar-links">
+                <a href="/">Home Page</a>
+                <a href="/feedback">Feedback Form</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="chat-container">
+            <div class="chat-sidebar">
+                <h3>📜 Chat History</h3>
+                <div id="chatHistoryList">
+                    <p>Loading history...</p>
+                </div>
+            </div>
+            <div class="chat-main">
+                <div id="chatDisplay">
+                    <p>Select a chat from history.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function loadChatHistory() {
+            try {
+                const response = await fetch("/chat-history");
+                const data = await response.json();
+                const chatHistoryList = document.getElementById("chatHistoryList");
+
+                chatHistoryList.innerHTML = ""; // Clear previous content
+
+                if (data.error) {
+                    chatHistoryList.innerHTML = `<p style="color: red;">Error loading chat history: ${data.error}</p>`;
+                    return;
+                }
+
+                data.forEach((entry, index) => {
+                    const chatItem = document.createElement("div");
+                    chatItem.classList.add("chat-entry");
+                    chatItem.textContent = `💬 ${entry.Question.substring(0, 30)}...`; // Show part of the question
+                    chatItem.onclick = () => displayChat(entry);
+                    chatHistoryList.appendChild(chatItem);
+                });
+            } catch (error) {
+                console.error("Error loading chat history:", error);
+                document.getElementById("chatHistoryList").innerHTML = `<p style="color: red;">Failed to load chat history.</p>`;
+            }
+        }
+
+        function displayChat(entry) {
+            const chatDisplay = document.getElementById("chatDisplay");
+            chatDisplay.innerHTML = `
+                <div class="chat-message">
+                    <div class="user-message">${entry.Question}</div>
+                </div>
+                <div class="chat-message">
+                    <div class="ai-message"><strong>${entry["Model Name"]}:</strong> ${entry.Response}</div>
+                </div>
+            `;
+        }
+
+        // Load chat history on page load
+        document.addEventListener("DOMContentLoaded", loadChatHistory);
+
+    </script>
+</body>
+
+</html>

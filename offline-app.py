@@ -66,6 +66,23 @@ PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 
+def load_chat_history():
+    try:
+        df = pd.read_excel(EXCEL_FILE)
+        df = df.fillna("")  # Handle missing values
+        chat_history = df.to_dict(orient="records")
+        return chat_history
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.route("/chat-history", methods=["GET"])
+def get_chat_history():
+    return jsonify(load_chat_history())
+
+@app.route("/chathistory")
+def chathistory():
+    return render_template("chathistory.html")
+
 class RAGApplication:
     def __init__(self, retriever, rag_chain):
         self.retriever = retriever
