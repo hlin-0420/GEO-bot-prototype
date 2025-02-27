@@ -105,7 +105,19 @@
             <div class="section-content">
                 <!-- Question-Answer Section -->
                 <h3 style="margin-bottom: 10px;">📝 Ask a Question</h3>
-                <textarea id="questionInput" placeholder="Type your question here..." style="margin-bottom: 15px;"></textarea>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <textarea id="questionInput" placeholder="Type your question here..." style="width: 100%; padding-right: 40px; margin-bottom: 15px;"></textarea>
+                    <button id="startSpeechRecognition" style="
+                        position: absolute;
+                        left: 10px;
+                        bottom: 10px;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 18px;">
+                        🎤
+                    </button>
+                </div>
                 <!-- Prompt Display Panel -->
                 <div id="promptPanel" style="border: 2px solid #333; padding: 10px; margin-bottom: 15px; background-color: #f9f9f9; font-family: Arial, sans-serif; font-size: 14px;">
                     <strong>📝 Prompt Loaded:</strong>
@@ -238,7 +250,22 @@
             speech.lang = 'en-US';
             window.speechSynthesis.speak(speech);
         });
-        
+
+        // Speech-to-Text Integration
+        document.getElementById("startSpeechRecognition").addEventListener("click", function() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                document.getElementById("questionInput").value = event.results[0][0].transcript;
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Speech recognition error:", event.error);
+            };
+        });
+
         // Function to load prompt content from the file
         fetch("/static/Data/prompt_visualisation.txt")
             .then(response => response.text())
