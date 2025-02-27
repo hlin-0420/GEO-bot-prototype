@@ -27,6 +27,7 @@ from haystack.components.builders import ChatPromptBuilder
 from haystack.components.generators.chat import OpenAIChatGenerator
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
+from rapidfuzz import process
 
 valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
@@ -775,6 +776,23 @@ def calculate_semantic_similarity(text1, text2, model_name='all-MiniLM-L6-v2'):
     
     return similarity_score
 
+# Function to check if a question has a similar wording in expected_answers_dict
+def is_similar_question(question, expected_answers, threshold=0.80):
+    print(f"question: {question}")
+    print(f"expected answer: {expected_answers}")
+    match, score, _ = process.extractOne(question, expected_answers, score_cutoff=threshold)
+    if match is None:
+        return False
+    print(f"score: {score}")
+    return score >= threshold  # Returns True if similarity score is above threshold
+
+# Function to replace invalid values with an empty string
+def clean_dataframe(df):
+    """
+    Replace NaN, None, or other invalid values with an empty string in the given DataFrame.
+    """
+    return df.fillna("").replace({None: ""})  # Replace NaN and None with empty string
+
 @app.route("/get-results", methods=["GET"])
 def get_results():
     try:
@@ -897,10 +915,10 @@ def get_results():
         else:
             logging.warning("Expected results file does not contain required columns. Skipping filtering.")
             expected_answers_dict = {}
-
+        print(expected_answers_dict)
         # Step 5: Check if questions exist in expected results
-        df["is_question_in_expected"] = df[question_column].isin(expected_answers_dict)
-        logging.debug(f"Questions found in expected results: {df['is_question_in_expected'].sum()}")
+        df["is_question_in_expected"] = df[question_column].apply(lambda q: is_similar_question(q, expected_answers_dict.keys()))
+        print(f"Questions found in expected results: {df['is_question_in_expected'].sum()}")
 
         # Step 6: Filter data and compute similarity scores
         filtered_df = df[df["is_question_in_expected"] == True].copy()
@@ -921,6 +939,7 @@ def get_results():
 
         # Save filtered results for debugging
         temp_filtered_file = "Data/temp_filtered_data.xlsx"
+        filtered_df.drop(columns=["is_question_in_expected"], inplace=True)
         filtered_df.to_excel(temp_filtered_file)
         logging.info(f"Filtered results saved to {temp_filtered_file}")
 
@@ -936,9 +955,20 @@ def get_results():
 
         # Step 8: Convert results to JSON and return response
         logging.info("Returning JSON response with models and filtered results.")
+        print(results.columns)
+        print(filtered_df.columns)
+        # Apply the function to clean both DataFrames
+        results = clean_dataframe(results)
+        filtered_df = clean_dataframe(filtered_df)
+        
+        json_results = results.to_dict(orient="records")
+        json_filtered_results = filtered_df.to_dict(orient="records")
+        
+        json_results = json.loads(json.dumps(json_results))  # Converts NaN to valid JSON
+        json_filtered_results = json.loads(json.dumps(json_filtered_results))
         return jsonify({
-            "models": results.to_dict(orient="records"),
-            "filtered_results": filtered_df.to_dict(orient="records")
+            "models": json_results,
+            "filtered_results": json_filtered_results
         })
 
     except Exception as e:
