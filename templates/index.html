@@ -105,7 +105,12 @@
             <div class="section-content">
                 <!-- Question-Answer Section -->
                 <h3 style="margin-bottom: 10px;">📝 Ask a Question</h3>
-                <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+                <textarea id="questionInput" placeholder="Type your question here..." style="margin-bottom: 15px;"></textarea>
+                <!-- Prompt Display Panel -->
+                <div id="promptPanel" style="border: 2px solid #333; padding: 10px; margin-bottom: 15px; background-color: #f9f9f9; font-family: Arial, sans-serif; font-size: 14px;">
+                    <strong>📝 Prompt Loaded:</strong>
+                    <div id="promptContent" style="margin-top: 5px; font-style: italic;">Loading prompt...</div>
+                </div>
                 <form id="dataOptionsForm">
                     <div class="options-container">
                         <label class="option" style="font-family: 'Dreaming Outloud Script Pro Regular'; font-size:16px; font-weight:bold;">
@@ -215,6 +220,17 @@
     </div>
 
     <script>
+        // Function to load prompt content from the file
+        fetch("/static/Data/prompt_visualisation.txt")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("promptContent").innerText = data;
+            })
+            .catch(error => {
+                document.getElementById("promptContent").innerText = "⚠️ Error loading prompt.";
+                console.error("Error loading prompt:", error);
+            });
+
         async function viewTrainingFile() {
             let filePath = decodeURIComponent(window.location.href);
             let parentFolder = filePath.substring(0, filePath.lastIndexOf("/"));
