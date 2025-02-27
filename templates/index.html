@@ -192,7 +192,9 @@
                                     <th style="padding: 10px; border: 1px solid #ddd;">Model Name</th>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Response</th>
                                     <th style="padding: 10px; border: 1px solid #ddd;">Expected Answer</th>
-                                    <th style="padding: 10px; border: 1px solid #ddd;">Similarity Score</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Cosine Similarity Score</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">BLEU Score</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">ROUGE Score</th>
                                 </tr>
                             </thead>
                             <tbody id="filteredResultsTableBody">
@@ -431,7 +433,9 @@
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Model Name"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Response"]}</td>
                                         <td style="padding: 10px; border: 1px solid #ddd;">${row["Expected Answer"]}</td>
-                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["similarity_score"].toFixed(2)}</td>`;
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["similarity_score"].toFixed(2)}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["BLEU_score"].toFixed(2)}</td>
+                                        <td style="padding: 10px; border: 1px solid #ddd;">${row["ROUGE_score"].toFixed(2)}</td>`;
                         filteredTableBody.appendChild(tr);
                     });
 

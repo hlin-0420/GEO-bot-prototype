@@ -28,6 +28,8 @@ from haystack.components.generators.chat import OpenAIChatGenerator
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
 from rapidfuzz import process
+from nltk.translate.bleu_score import sentence_bleu
+from rouge_score import rouge_scorer
 
 valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
@@ -821,6 +823,23 @@ def find_best_match(question, expected_answers_dict):
 
     return expected_answers_dict[expected_questions[best_match_idx]]
 
+# Function to compute BLEU and ROUGE scores
+def calculate_bleu_rouge(reference, candidate):
+    """
+    Compute BLEU and ROUGE similarity scores between the reference answer and the response.
+    """
+    if not reference or not candidate:
+        return {"BLEU": 0.0, "ROUGE": 0.0}
+
+    # Compute BLEU score
+    bleu_score = sentence_bleu([reference.split()], candidate.split())
+
+    # Compute ROUGE-L score (longest common subsequence)
+    scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
+    rouge_score = scorer.score(reference, candidate)["rougeL"].fmeasure  # F1 score of ROUGE-L
+
+    return {"BLEU": bleu_score, "ROUGE": rouge_score}
+
 @app.route("/get-results", methods=["GET"])
 def get_results():
     try:
@@ -953,6 +972,15 @@ def get_results():
         if not filtered_df.empty:
             filtered_df.loc[:, expected_answer_column] = filtered_df.loc[:, question_column].apply(lambda q: find_best_match(q, expected_answers_dict))
 
+            similarity_scores = filtered_df.apply(
+                lambda row: calculate_bleu_rouge(str(row[expected_answer_column]), str(row[response_column])),
+                axis=1
+            )
+            
+            # Store BLEU and ROUGE scores in separate columns
+            filtered_df["BLEU_score"] = similarity_scores.apply(lambda x: x["BLEU"])
+            filtered_df["ROUGE_score"] = similarity_scores.apply(lambda x: x["ROUGE"])
+            
             # Compute similarity score
             filtered_df.loc[:, "similarity_score"] = filtered_df.apply(
                 lambda row: calculate_semantic_similarity(str(row[expected_answer_column]), str(row[response_column])),
