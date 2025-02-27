@@ -182,7 +182,7 @@
                 </div>
             </div>
             <h5>📩Individual Response: </h5>
-            <div id="responseOutput" style="margin-bottom: 10px; font-style: italic; border: 1px solid black; padding: 5px; line-height: 1.5cm; height: 1.5cm"></div>
+            <div id="responseOutput" style="margin-bottom: 10px; font-style: italic; border: 1px solid black; padding: 5px; line-height: 1.5cm; min-height: 1.5cm"></div>
 
             <h5>📂Responses to Text Files: </h5>
             <div id="response-container" style="margin-bottom: 10px; font-style: italic; border: 1px solid black; padding: 5px;">
@@ -243,6 +243,17 @@
     </div>
 
     <script>
+        function updateResponseOutput(text) {
+            let responseDiv = document.getElementById("responseOutput");
+            responseDiv.textContent = text;
+            
+            // Reset height before recalculating
+            responseDiv.style.height = "auto";
+
+            // Adjust height based on scrollHeight
+            responseDiv.style.height = responseDiv.scrollHeight + "px";
+        }
+        
         // Text-to-Speech Feature
         document.getElementById("speakResponse").addEventListener("click", function() {
             const responseText = document.getElementById("responseOutput").textContent;
