@@ -793,6 +793,34 @@ def clean_dataframe(df):
     """
     return df.fillna("").replace({None: ""})  # Replace NaN and None with empty string
 
+# Function to find the most semantically similar expected answer
+def find_best_match(question, expected_answers_dict):
+    if not question or not expected_answers_dict:
+        return ""  # Return empty string if no valid input
+
+    expected_questions = list(expected_answers_dict.keys())
+    
+    # Load a pre-trained sentence transformer model
+    model = SentenceTransformer("all-MiniLM-L6-v2")  # Lightweight and efficient
+
+    # Compute embeddings
+    question_embedding = model.encode(question, convert_to_tensor=True)
+    expected_embeddings = model.encode(expected_questions, convert_to_tensor=True)
+
+    # Compute cosine similarity
+    similarities = util.pytorch_cos_sim(question_embedding, expected_embeddings)[0]
+
+    # Find the best match
+    best_match_idx = similarities.argmax().item()
+    best_match_score = similarities[best_match_idx].item()
+
+    # Set a similarity threshold (adjust if needed)
+    threshold = 0.75  
+    if best_match_score < threshold:
+        return ""  # No match found above the threshold
+
+    return expected_answers_dict[expected_questions[best_match_idx]]
+
 @app.route("/get-results", methods=["GET"])
 def get_results():
     try:
@@ -923,7 +951,7 @@ def get_results():
         # Step 6: Filter data and compute similarity scores
         filtered_df = df[df["is_question_in_expected"] == True].copy()
         if not filtered_df.empty:
-            filtered_df.loc[:, expected_answer_column] = filtered_df.loc[:, question_column].map(expected_answers_dict)
+            filtered_df.loc[:, expected_answer_column] = filtered_df.loc[:, question_column].apply(lambda q: find_best_match(q, expected_answers_dict))
 
             # Compute similarity score
             filtered_df.loc[:, "similarity_score"] = filtered_df.apply(
