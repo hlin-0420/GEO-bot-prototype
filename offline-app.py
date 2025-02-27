@@ -50,6 +50,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 # initialise a default name for the models. 
 selected_model_name = "llama3.2:latest"
+# initialise a variable to store the length of time taken to answer a question.
+answer_time = 0 # default time taken to answer a question.
 # Declare global variable
 rag_application = None 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -624,6 +626,8 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     """
     Simulate long processing of the question and store the response.
     """
+    global answer_time
+    
     if check_selected_options(selectedOptions) == False:
         # if not all the options are selected, customise the training function. 
         ai_bot._load_content(selectedOptions) # resets the web documents information with the feedback.
@@ -637,8 +641,8 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     end_time = time.time()
     
     # Calculate and print the elapsed time
-    elapsed_time = end_time - start_time
-    print(f"Function execution took {elapsed_time:.2f} seconds")
+    answer_time = end_time - start_time
+    print(f"Function execution took {answer_time:.2f} seconds")
     
     print(f"Check selected Options: {check_selected_options(selectedOptions)}")
     
