@@ -624,15 +624,23 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     """
     Simulate long processing of the question and store the response.
     """
-    time.sleep(2)  # Simulating "thinking time"
-    # try:
-    response = ai_bot.query(question)
-    
-    print(f"Check selected Options: {check_selected_options(selectedOptions)}")
-    
     if check_selected_options(selectedOptions) == False:
         # if not all the options are selected, customise the training function. 
         ai_bot._load_content(selectedOptions) # resets the web documents information with the feedback.
+        
+    time.sleep(2)  # Simulating "thinking time"
+    
+    start_time = time.time() # Begins to record how long it takes the model for querying
+    
+    response = ai_bot.query(question)
+    
+    end_time = time.time()
+    
+    # Calculate and print the elapsed time
+    elapsed_time = end_time - start_time
+    print(f"Function execution took {elapsed_time:.2f} seconds")
+    
+    print(f"Check selected Options: {check_selected_options(selectedOptions)}")
     
     formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
