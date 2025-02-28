@@ -1,0 +1,10 @@
+[
+    {
+        "role": "user",
+        "content": "How many curve shades can I create?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can create 250 curve shades."
+    }
+]

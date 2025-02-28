@@ -31,6 +31,10 @@ from rapidfuzz import process
 from nltk.translate.bleu_score import sentence_bleu
 from rouge_score import rouge_scorer
 
+# tracks the current sessions in memory
+current_session_id = None
+current_session_messages = []
+
 valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
 app = Flask(__name__)
@@ -65,12 +69,25 @@ FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
+CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 
 def load_chat_history():
     try:
-        df = pd.read_excel(EXCEL_FILE)
-        df = df.fillna("")  # Handle missing values
-        chat_history = df.to_dict(orient="records")
+        if not os.path.exists(CHAT_SESSIONS_DIR):
+            os.makedirs(CHAT_SESSIONS_DIR)
+
+        chat_history = []
+
+        for filename in os.listdir(CHAT_SESSIONS_DIR):
+            if filename.endswith(".json"):
+                file_path = os.path.join(CHAT_SESSIONS_DIR, filename)
+                with open(file_path, "r", encoding="utf-8") as f:
+                    session_data = json.load(f)
+                    chat_history.append({
+                        "session_id": filename.replace(".json", ""),
+                        "messages": session_data
+                    })
+
         return chat_history
     except Exception as e:
         return {"error": str(e)}
@@ -81,6 +98,9 @@ def get_chat_history():
 
 @app.route("/chathistory")
 def chathistory():
+    global current_session_id, current_session_messages
+    current_session_id = None
+    current_session_messages = []
     return render_template("chathistory.html")
 
 class RAGApplication:
@@ -642,11 +662,20 @@ def check_selected_options(selectedOptions):
     expected_options = ["text", "table", "list"]
     return set(selectedOptions) == set(expected_options)
 
+def save_chat_session(session_id, messages):
+    if not os.path.exists(CHAT_SESSIONS_DIR):
+        os.makedirs(CHAT_SESSIONS_DIR)
+
+    session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
+
+    with open(session_file, "w", encoding="utf-8") as f:
+        json.dump(messages, f, indent=4)
+
 def process_question(question_id, question, ai_bot, selectedOptions):
     """
     Simulate long processing of the question and store the response.
     """
-    global answer_time
+    global answer_time, current_session_id, current_session_messages
     
     if check_selected_options(selectedOptions) == False:
         # if not all the options are selected, customise the training function. 
@@ -657,6 +686,8 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     start_time = time.time() # Begins to record how long it takes the model for querying
     
     response = ai_bot.query(question)
+    
+    print("Response from advanced model:", response)
     
     end_time = time.time()
     
@@ -669,10 +700,16 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
     stored_responses[question_id] = formatted_response
+    
+    # Append assistant's response to current session
+    current_session_messages.append({"role": "assistant", "content": response})
+
+    # Save current session to file
+    save_chat_session(current_session_id, current_session_messages)
 
 @app.route("/ask", methods=["POST"])
 def ask():
-    global question_id
+    global question_id, current_session_id, current_session_messages
     try:
         data = request.json
         if not data:
@@ -686,6 +723,14 @@ def ask():
         
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
+        
+        # Start a new session if it's the first message or after page reload
+        if current_session_id is None:
+            current_session_id = f"chat_session_{time.strftime('%Y%m%d_%H%M%S')}"
+            current_session_messages = []  # Start fresh message log
+            
+        # Append user message to current session
+        current_session_messages.append({"role": "user", "content": question})
         
         with lock:
             current_id = str(question_id)

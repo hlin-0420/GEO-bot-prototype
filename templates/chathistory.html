@@ -109,11 +109,11 @@
                     return;
                 }
 
-                data.forEach((entry, index) => {
+                data.forEach((session) => {
                     const chatItem = document.createElement("div");
                     chatItem.classList.add("chat-entry");
-                    chatItem.textContent = `💬 ${entry.Question.substring(0, 30)}...`; // Show part of the question
-                    chatItem.onclick = () => displayChat(entry);
+                    chatItem.textContent = `💬 Session: ${session.session_id}`;
+                    chatItem.onclick = () => displayChat(session);
                     chatHistoryList.appendChild(chatItem);
                 });
             } catch (error) {
@@ -122,17 +122,22 @@
             }
         }
 
-        function displayChat(entry) {
-            selectedChat = entry;
+        function displayChat(session) {
             const chatMessages = document.getElementById("chatMessages");
-            chatMessages.innerHTML = `
-                <div class="chat-message">
-                    <div class="user-message">${entry.Question}</div>
-                </div>
-                <div class="chat-message">
-                    <div class="ai-message"><strong>${entry["Model Name"]}:</strong> ${entry.Response}</div>
-                </div>
-            `;
+            chatMessages.innerHTML = "";
+
+            session.messages.forEach(msg => {
+                const messageDiv = document.createElement("div");
+                messageDiv.classList.add("chat-message");
+
+                if (msg.role === "user") {
+                    messageDiv.innerHTML = `<div class="user-message">${msg.content}</div>`;
+                } else {
+                    messageDiv.innerHTML = `<div class="ai-message">${msg.content}</div>`;
+                }
+
+                chatMessages.appendChild(messageDiv);
+            });
         }
 
         async function sendMessage() {
