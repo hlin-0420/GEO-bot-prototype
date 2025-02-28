@@ -85,9 +85,37 @@
             reader.readAsText(file);
         }
 
+        let questionCounter = 0;  // Global counter to number questions
+
         async function sendQuestionToModelSequentially(question) {
+            questionCounter++;
+
             const chatMessages = document.getElementById("chatMessages");
-            chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${question}</div></div>`;
+
+            // Create container for the question-answer pair
+            const questionContainer = document.createElement("div");
+            questionContainer.classList.add("question-container");
+
+            // Show numbered question with emoji
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("chat-message");
+            userMessageDiv.innerHTML = `<div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">❓ Question ${questionCounter}: ${question}</div>`;
+            questionContainer.appendChild(userMessageDiv);
+
+            // Create answer placeholder
+            const aiMessageDiv = document.createElement("div");
+            aiMessageDiv.classList.add("chat-message");
+            const aiMessage = document.createElement("div");
+            aiMessage.classList.add("ai-message");
+            aiMessage.style.backgroundColor = "#f8d7da";
+            aiMessage.style.padding = "10px";
+            aiMessage.style.borderRadius = "5px";
+            aiMessage.innerHTML = `💡 Answer ${questionCounter}: <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">Processing your question...</span>`;
+            aiMessageDiv.appendChild(aiMessage);
+            questionContainer.appendChild(aiMessageDiv);
+
+            // Append to chatMessages
+            chatMessages.appendChild(questionContainer);
             scrollToBottom();
 
             try {
@@ -98,53 +126,59 @@
                 });
 
                 if (!response.ok) {
-                    console.error("Failed to send question:", question);
-                    chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message" style="color: red;">Failed to send question: ${question}</div></div>`;
-                    return;
+                    throw new Error(`Failed to send question ${questionCounter}`);
                 }
 
                 const { question_id } = await response.json();
 
-                // Wait for the response to fully arrive before proceeding to the next question.
-                await waitForModelResponse(question_id, chatMessages);
+                // Wait for the model response to complete before moving to next question
+                await waitForModelResponseWithNumbering(question_id, questionCounter);
             } catch (error) {
-                console.error("Error sending question to model:", error);
-                chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message" style="color: red;">Error sending question: ${question}</div></div>`;
+                console.error(`Error sending question ${questionCounter}:`, error);
+                document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ Error sending Question ${questionCounter}</span>`;
             }
         }
 
-        function waitForModelResponse(question_id, chatMessages) {
+        function waitForModelResponseWithNumbering(question_id, questionNumber) {
             return new Promise((resolve) => {
                 const eventSource = new EventSource(`/response/${question_id}`);
+                const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
 
-                const aiMessageContainer = document.createElement("div");
-                aiMessageContainer.classList.add("chat-message");
-                const aiMessage = document.createElement("div");
-                aiMessage.classList.add("ai-message");
-                aiMessageContainer.appendChild(aiMessage);
-                chatMessages.appendChild(aiMessageContainer);
+                let fullAnswer = "";  // Accumulate full response here
 
                 eventSource.onmessage = function(event) {
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
-                        aiMessage.innerHTML = `<span style="color: red;">${data}</span>`;
+                        // Handle actual error message from server
+                        placeholder.innerHTML = `<span style="color: red;">⚠️ ${data}</span>`;
                         eventSource.close();
-                        resolve();  // Move to the next question even if there's an error
+                        resolve();  // Continue to next question
+                    } else if (data === "Processing your question...") {
+                        // Optional: You could keep or skip this, but it shouldn't overwrite the whole placeholder
+                        // (we already have "Processing your question..." in place so this may not be necessary)
+                        console.log(`Status update received for Question ${questionNumber}: ${data}`);
                     } else {
-                        aiMessage.innerHTML = data;
-                        eventSource.close();
-                        resolve();  // Move to the next question only after the response is received
+                        // Append the received chunk to the full answer
+                        fullAnswer += data;
+                        placeholder.innerHTML = fullAnswer;  // Display the accumulated answer
                     }
 
                     scrollToBottom();
                 };
 
                 eventSource.onerror = function() {
-                    console.error("Error receiving model response for question ID:", question_id);
-                    aiMessage.innerHTML = `<span style="color: red;">Error receiving response for question.</span>`;
+                    console.error(`Error receiving response for Question ${questionNumber}`);
+                    if (fullAnswer.trim() === "") {
+                        // Only show error if no content was received
+                        placeholder.innerHTML = `<span style="color: red;">⚠️ Error receiving response for Question ${questionNumber}</span>`;
+                    }
                     eventSource.close();
-                    resolve();  // Continue to next question if there's an EventSource error
+                    resolve();  // Continue to the next question even if there was a connection error
+                };
+
+                eventSource.onopen = function() {
+                    console.log(`Connection opened for Question ${questionNumber}`);
                 };
             });
         }
@@ -243,6 +277,7 @@
 
         // Example function to start a new conversation
         function startNewConversation() {
+            questionCounter = 0; // resets question counter for a new conversation. 
             closeOptionsMenu();
             const chatMessages = document.getElementById("chatMessages");
             if (chatMessages) {
