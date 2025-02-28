@@ -1,0 +1,34 @@
+[
+    {
+        "role": "user",
+        "content": "How many curve shades can I create?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can create 250 curve shades."
+    },
+    {
+        "role": "user",
+        "content": "How many curves can I load in one go?"
+    },
+    {
+        "role": "assistant",
+        "content": "You can load up to 450 curves at a time."
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of headers I can display in my log?"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of headers you can display in your log is up to 50."
+    },
+    {
+        "role": "user",
+        "content": "How many tables can I have in my log?"
+    },
+    {
+        "role": "assistant",
+        "content": "You can have up to 100 tables in a log."
+    }
+]

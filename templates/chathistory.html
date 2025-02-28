@@ -63,6 +63,11 @@
     <script>
         let currentSessionId = null;
 
+        function scrollToBottom() {
+            const chatMessages = document.getElementById("chatMessages");
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
         function showContextMenu(event, sessionId) {
             event.preventDefault();  // Stop right-click menu
             currentSessionId = sessionId;  // Set current session for rename/delete
@@ -298,6 +303,8 @@
 
                 chatMessages.appendChild(messageDiv);
             });
+
+            scrollToBottom();  // Add this line
         }
 
         async function sendMessage() {
@@ -317,6 +324,7 @@
             debugger;
 
             chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${userMessage}</div></div>`;
+            scrollToBottom();  // Add this line
             console.log("User message added to chat display.");
 
             inputField.value = "";
