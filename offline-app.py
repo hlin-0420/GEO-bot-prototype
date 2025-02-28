@@ -70,6 +70,32 @@ PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
+SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
+
+def load_session_metadata():
+    if os.path.exists(SESSION_METADATA_FILE):
+        with open(SESSION_METADATA_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_session_metadata(metadata):
+    with open(SESSION_METADATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=4)
+        
+@app.route("/rename-session", methods=["POST"])
+def rename_session():
+    data = request.json
+    session_id = data.get("session_id")
+    new_name = data.get("new_name")
+
+    if not session_id or not new_name:
+        return jsonify({"error": "Session ID and new name are required"}), 400
+
+    metadata = load_session_metadata()
+    metadata[session_id] = new_name
+    save_session_metadata(metadata)
+
+    return jsonify({"message": "Session renamed successfully"})
 
 def load_chat_history():
     try:
@@ -77,14 +103,19 @@ def load_chat_history():
             os.makedirs(CHAT_SESSIONS_DIR)
 
         chat_history = []
+        
+        metadata = load_session_metadata()
 
         for filename in os.listdir(CHAT_SESSIONS_DIR):
             if filename.endswith(".json"):
                 file_path = os.path.join(CHAT_SESSIONS_DIR, filename)
                 with open(file_path, "r", encoding="utf-8") as f:
                     session_data = json.load(f)
+                    session_id = filename.replace(".json", "")
+                    print(f"Session id: {session_id}")
                     chat_history.append({
-                        "session_id": filename.replace(".json", ""),
+                        "session_id": session_id,
+                        "session_name": metadata.get(session_id, session_id),
                         "messages": session_data
                     })
 

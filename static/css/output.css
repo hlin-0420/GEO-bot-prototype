@@ -521,6 +521,76 @@
 
 /* Custom integrated styles */
 @layer components {
+  .chat-entry-with-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+  }
+
+  .inline-context-menu {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    padding: 4px;
+    border-radius: 4px;
+    display: none;
+    flex-direction: column;
+  }
+
+  .inline-context-menu button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    color: black;
+  }
+
+  .inline-context-menu button:hover {
+      background: #f0f0f0;
+  }
+
+  .chat-entry-options {
+      position: relative;  /* Ensures inline menu positions correctly */
+  }
+
+  .chat-options {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+  }
+  .context-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+    z-index: 100;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .context-menu button {
+      background: none;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+  }
+
+  .context-menu button:hover {
+      background: #f0f0f0;
+  }
+
   /* Chat Input Bar */
   .chat-input-bar {
     display: flex;
