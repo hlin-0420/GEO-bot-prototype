@@ -98,6 +98,22 @@ def rename_session():
 
     return jsonify({"message": "Session renamed successfully"})
 
+@app.route("/clear-chat-sessions", methods=["POST"])
+def clear_chat_sessions():
+    try:
+        if os.path.exists(CHAT_SESSIONS_DIR):
+            for filename in os.listdir(CHAT_SESSIONS_DIR):
+                file_path = os.path.join(CHAT_SESSIONS_DIR, filename)
+                os.remove(file_path)
+
+        # Optional: Clear session metadata (if you want to reset names too)
+        save_session_metadata({})
+
+        return jsonify({"success": True, "message": "All chat sessions cleared."}), 200
+    except Exception as e:
+        app.logger.error(f"Error clearing chat sessions: {str(e)}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
 def load_chat_history():
     try:
         if not os.path.exists(CHAT_SESSIONS_DIR):

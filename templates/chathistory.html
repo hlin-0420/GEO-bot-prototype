@@ -241,15 +241,32 @@
             }
         }
 
-        // Example function to clear chat history
         function clearChatHistory() {
             closeOptionsMenu();
-            const chatMessages = document.getElementById("chatMessages");
-            if (chatMessages) {
-                chatMessages.innerHTML = "<p>Chat history cleared.</p>";
-            } else {
-                alert("No chat container found.");
-            }
+
+            fetch('/clear-chat-sessions', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const chatMessages = document.getElementById("chatMessages");
+                        if (chatMessages) {
+                            chatMessages.innerHTML = "<p>All chat sessions cleared from the server.</p>";
+                        } else {
+                            alert("Chat container not found, but server chat history was cleared.");
+                        }
+
+                        // Optionally clear the sidebar list too
+                        const chatHistoryList = document.getElementById("chatHistoryList");
+                        if (chatHistoryList) {
+                            chatHistoryList.innerHTML = "<p>No chat history available.</p>";
+                        }
+                    } else {
+                        alert("Failed to clear chat history: " + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert("Error clearing chat history: " + error.message);
+                });
         }
 
         async function renameSession(sessionId) {
