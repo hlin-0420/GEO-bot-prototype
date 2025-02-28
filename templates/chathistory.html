@@ -63,6 +63,69 @@
     <script>
         let currentSessionId = null;
 
+        function handleQuestionsFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                alert("No file selected.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const fileContent = e.target.result;
+                const questions = fileContent.split('\n').filter(line => line.trim() !== '');
+
+                console.log("Uploaded questions:", questions);
+
+                // Example: Automatically send each question to the model
+                for (const question of questions) {
+                    await sendQuestionToModel(question);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        async function sendQuestionToModel(question) {
+            const chatMessages = document.getElementById("chatMessages");
+            chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${question}</div></div>`;
+            scrollToBottom();
+
+            try {
+                const response = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question: question, model: "llama3.2:latest", selectedOptions: ["text", "table", "list"] })
+                });
+
+                if (!response.ok) {
+                    console.error("Failed to send question:", question);
+                    return;
+                }
+
+                const { question_id } = await response.json();
+
+                const eventSource = new EventSource(`/response/${question_id}`);
+                eventSource.onmessage = function(event) {
+                    const data = event.data;
+                    const aiMessage = document.createElement("div");
+                    aiMessage.classList.add("chat-message");
+
+                    if (data.startsWith("Error:")) {
+                        aiMessage.innerHTML = `<div class="ai-message" style="color: red;">${data}</div>`;
+                        chatMessages.appendChild(aiMessage);
+                        eventSource.close();
+                    } else {
+                        aiMessage.innerHTML = `<div class="ai-message">${data}</div>`;
+                        chatMessages.appendChild(aiMessage);
+                        eventSource.close();
+                    }
+                    scrollToBottom();
+                };
+            } catch (error) {
+                console.error("Error sending question to model:", error);
+            }
+        }
+
         function sortChatHistoryByTime(chats) {
             // console.log("Before sorting:", JSON.stringify(chats, null, 2));
 
@@ -120,6 +183,10 @@
             optionsMenu.innerHTML = `
                 <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="startNewConversation()">🆕 New Conversation</button>
                 <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="clearChatHistory()">🗑️ Clear Chat History</button>
+                <label style="display: block; width: 100%; padding: 5px 10px; cursor: pointer; background: none; color: black; text-align: left;">
+                    📂 Upload Questions File
+                    <input type="file" id="questionsFileInput" style="display: none;" accept=".txt" onchange="handleQuestionsFileUpload(event)">
+                </label>
                 <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="closeOptionsMenu()">❌ Close Menu</button>
             `;
 
