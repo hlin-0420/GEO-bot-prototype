@@ -79,13 +79,13 @@
 
                 // Example: Automatically send each question to the model
                 for (const question of questions) {
-                    await sendQuestionToModel(question);
+                    await sendQuestionToModelSequentially(question);
                 }
             };
             reader.readAsText(file);
         }
 
-        async function sendQuestionToModel(question) {
+        async function sendQuestionToModelSequentially(question) {
             const chatMessages = document.getElementById("chatMessages");
             chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${question}</div></div>`;
             scrollToBottom();
@@ -99,31 +99,54 @@
 
                 if (!response.ok) {
                     console.error("Failed to send question:", question);
+                    chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message" style="color: red;">Failed to send question: ${question}</div></div>`;
                     return;
                 }
 
                 const { question_id } = await response.json();
 
-                const eventSource = new EventSource(`/response/${question_id}`);
-                eventSource.onmessage = function(event) {
-                    const data = event.data;
-                    const aiMessage = document.createElement("div");
-                    aiMessage.classList.add("chat-message");
-
-                    if (data.startsWith("Error:")) {
-                        aiMessage.innerHTML = `<div class="ai-message" style="color: red;">${data}</div>`;
-                        chatMessages.appendChild(aiMessage);
-                        eventSource.close();
-                    } else {
-                        aiMessage.innerHTML = `<div class="ai-message">${data}</div>`;
-                        chatMessages.appendChild(aiMessage);
-                        eventSource.close();
-                    }
-                    scrollToBottom();
-                };
+                // Wait for the response to fully arrive before proceeding to the next question.
+                await waitForModelResponse(question_id, chatMessages);
             } catch (error) {
                 console.error("Error sending question to model:", error);
+                chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message" style="color: red;">Error sending question: ${question}</div></div>`;
             }
+        }
+
+        function waitForModelResponse(question_id, chatMessages) {
+            return new Promise((resolve) => {
+                const eventSource = new EventSource(`/response/${question_id}`);
+
+                const aiMessageContainer = document.createElement("div");
+                aiMessageContainer.classList.add("chat-message");
+                const aiMessage = document.createElement("div");
+                aiMessage.classList.add("ai-message");
+                aiMessageContainer.appendChild(aiMessage);
+                chatMessages.appendChild(aiMessageContainer);
+
+                eventSource.onmessage = function(event) {
+                    const data = event.data;
+
+                    if (data.startsWith("Error:")) {
+                        aiMessage.innerHTML = `<span style="color: red;">${data}</span>`;
+                        eventSource.close();
+                        resolve();  // Move to the next question even if there's an error
+                    } else {
+                        aiMessage.innerHTML = data;
+                        eventSource.close();
+                        resolve();  // Move to the next question only after the response is received
+                    }
+
+                    scrollToBottom();
+                };
+
+                eventSource.onerror = function() {
+                    console.error("Error receiving model response for question ID:", question_id);
+                    aiMessage.innerHTML = `<span style="color: red;">Error receiving response for question.</span>`;
+                    eventSource.close();
+                    resolve();  // Continue to next question if there's an EventSource error
+                };
+            });
         }
 
         function sortChatHistoryByTime(chats) {
