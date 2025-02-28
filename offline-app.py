@@ -738,6 +738,28 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     # Save current session to file
     save_chat_session(current_session_id, current_session_messages)
 
+@app.route("/delete-session/<session_id>", methods=["DELETE"])
+def delete_session(session_id):
+    try:
+        session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
+        
+        if not os.path.exists(session_file):
+            return jsonify({"error": "Session not found"}), 404
+        
+        # Delete the file
+        os.remove(session_file)
+
+        # Update the metadata (optional - if you want to remove the name as well)
+        metadata = load_session_metadata()
+        if session_id in metadata:
+            del metadata[session_id]
+            save_session_metadata(metadata)
+
+        return jsonify({"message": "Session deleted successfully"}), 200
+    except Exception as e:
+        app.logger.error(f"Error deleting session: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
+
 @app.route("/ask", methods=["POST"])
 def ask():
     global question_id, current_session_id, current_session_messages
