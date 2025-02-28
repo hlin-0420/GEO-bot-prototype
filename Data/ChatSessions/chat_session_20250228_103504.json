@@ -1,10 +1,12 @@
 [
     {
         "role": "user",
-        "content": "How many curve shades can I create?"
+        "content": "How many curve shades can I create?",
+        "timestamp": "2025-02-28T10:35:04Z"
     },
     {
         "role": "assistant",
-        "content": "According to the document, you can create 250 curve shades."
+        "content": "According to the document, you can create 250 curve shades.",
+        "timestamp": "2025-02-28T10:35:04Z"
     }
 ]

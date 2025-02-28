@@ -1,10 +1,12 @@
 [
     {
         "role": "user",
-        "content": "How many tracks can you define in one ODF?"
+        "content": "How many tracks can you define in one ODF?",
+        "timestamp": "2025-02-28T15:15:36Z"
     },
     {
         "role": "assistant",
-        "content": "According to the Track Settings dialog box, the number of tracks that can be defined is 200."
+        "content": "According to the Track Settings dialog box, the number of tracks that can be defined is 200.",
+        "timestamp": "2025-02-28T15:15:36Z"
     }
 ]

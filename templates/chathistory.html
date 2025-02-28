@@ -63,6 +63,10 @@
     <script>
         let currentSessionId = null;
 
+        function sortChatHistoryByTime(chats) {
+            return chats.sort((a, b) => new Date(a.Timestamp) - new Date(b.Timestamp));
+        }
+
         function scrollToBottom() {
             const chatMessages = document.getElementById("chatMessages");
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -231,7 +235,7 @@
             
             try {
                 const response = await fetch("/chat-history");
-                const data = await response.json();
+                let data = await response.json();
                 const chatHistoryList = document.getElementById("chatHistoryList");
 
                 console.log(chatHistoryList);
@@ -242,6 +246,9 @@
                     chatHistoryList.innerHTML = `<p style="color: red;">Error loading chat history: ${data.error}</p>`;
                     return;
                 }
+
+                // Sort by Timestamp
+                data = sortChatHistoryByTime(data);
 
                 data.forEach((session) => {
                     const chatItem = document.createElement("div");
