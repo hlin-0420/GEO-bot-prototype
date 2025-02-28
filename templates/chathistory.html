@@ -79,6 +79,76 @@
             if (menu) menu.style.display = "none";
         });
 
+        function openOptions() {
+            const optionsMenu = document.createElement('div');
+            optionsMenu.style.position = 'absolute';
+            optionsMenu.style.background = '#fff';
+            optionsMenu.style.border = '1px solid #ddd';
+            optionsMenu.style.borderRadius = '8px';
+            optionsMenu.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+            optionsMenu.style.padding = '5px';
+            optionsMenu.style.zIndex = '1000';
+            optionsMenu.style.whiteSpace = 'nowrap';
+            optionsMenu.style.display = 'inline-block';
+            optionsMenu.style.width = 'auto';  // Make sure it only fits content
+
+            // Add options
+            optionsMenu.innerHTML = `
+                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="startNewConversation()">🆕 New Conversation</button>
+                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="clearChatHistory()">🗑️ Clear Chat History</button>
+                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="closeOptionsMenu()">❌ Close Menu</button>
+            `;
+
+            // Remove any existing menu
+            const existingMenu = document.getElementById('optionsMenu');
+            if (existingMenu) {
+                existingMenu.remove();
+            }
+
+            optionsMenu.id = 'optionsMenu';
+            document.body.appendChild(optionsMenu);
+
+            // Position the menu above the plus button
+            const plusButton = document.querySelector('.chat-icon-button');
+            if (plusButton) {
+                const rect = plusButton.getBoundingClientRect();
+
+                // Apply positioning directly above the plus button and horizontally centered
+                optionsMenu.style.left = `${rect.left + rect.width / 2 - optionsMenu.offsetWidth / 2}px`;
+                optionsMenu.style.bottom = `${window.innerHeight - rect.top + 5}px`;  // Slight gap above the button
+            }
+        }
+
+        // Helper function to close menu
+        function closeOptionsMenu() {
+            const menu = document.getElementById('optionsMenu');
+            if (menu) {
+                menu.remove();
+            }
+        }
+
+        // Example function to start a new conversation
+        function startNewConversation() {
+            closeOptionsMenu();
+            const chatMessages = document.getElementById("chatMessages");
+            if (chatMessages) {
+                chatMessages.innerHTML = "<p>New conversation started.</p>";
+            } else {
+                alert("No chat container found.");
+            }
+        }
+
+        // Example function to clear chat history
+        function clearChatHistory() {
+            closeOptionsMenu();
+            const chatMessages = document.getElementById("chatMessages");
+            if (chatMessages) {
+                chatMessages.innerHTML = "<p>Chat history cleared.</p>";
+            } else {
+                alert("No chat container found.");
+            }
+        }
+
         async function renameSession(sessionId) {
             const newName = prompt("Enter new chat name:");
             if (!newName) return;
