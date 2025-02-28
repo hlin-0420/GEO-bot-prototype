@@ -455,14 +455,16 @@
             const chatMessages = document.getElementById("chatMessages");
             chatMessages.innerHTML = "";
 
+            let temp_question_number = 0;
             session.messages.forEach(msg => {
                 const messageDiv = document.createElement("div");
                 messageDiv.classList.add("chat-message");
 
                 if (msg.role === "user") {
-                    messageDiv.innerHTML = `<div class="user-message">${msg.content}</div>`;
+                    temp_question_number = temp_question_number + 1;
+                    messageDiv.innerHTML = `<div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">❓ Question ${temp_question_number}: ${msg.content}</div>`;
                 } else {
-                    messageDiv.innerHTML = `<div class="ai-message">${msg.content}</div>`;
+                    messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
                 }
 
                 chatMessages.appendChild(messageDiv);
