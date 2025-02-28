@@ -136,6 +136,18 @@
             } else {
                 alert("No chat container found.");
             }
+
+            // Add new entry to chat history
+            const chatHistoryList = document.getElementById("chatHistoryList");
+            if (chatHistoryList) {
+                const newEntry = document.createElement("div");
+                newEntry.classList.add("chat-entry");
+                newEntry.textContent = "🆕 New Conversation";
+                newEntry.onclick = () => loadNewConversation();  // Optional, you could define this
+                chatHistoryList.prepend(newEntry);  // Add to the top
+            } else {
+                console.error("chatHistoryList not found");
+            }
         }
 
         // Example function to clear chat history
