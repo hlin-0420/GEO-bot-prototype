@@ -64,7 +64,22 @@
         let currentSessionId = null;
 
         function sortChatHistoryByTime(chats) {
-            return chats.sort((a, b) => new Date(a.Timestamp) - new Date(b.Timestamp));
+            // console.log("Before sorting:", JSON.stringify(chats, null, 2));
+
+            const sortedChats = chats.sort((a, b) => {
+                const getLastTimestamp = (chat) => {
+                    const lastMessage = chat.messages[chat.messages.length - 1];  // Last message in the array
+                    return new Date(lastMessage.timestamp);
+                };
+
+                const dateA = getLastTimestamp(a);
+                const dateB = getLastTimestamp(b);
+
+                return dateB - dateA;
+            });
+
+            // console.log("After sorting:", JSON.stringify(sortedChats, null, 2));
+            return sortedChats;
         }
 
         function scrollToBottom() {
