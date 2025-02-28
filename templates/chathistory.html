@@ -158,9 +158,10 @@
 
                 data.forEach((session) => {
                     const chatItem = document.createElement("div");
-                    chatItem.classList.add("chat-entry");
+                    chatItem.classList.add("chat-entry-with-options");
+
                     chatItem.innerHTML = `
-                        <div class="chat-entry-content" onclick="displayChat(session)">
+                        <div class="chat-entry-content" data-session-id="${session.session_id}">
                             💬 ${session.session_name}
                         </div>
                         <div class="chat-entry-options">
@@ -171,7 +172,12 @@
                             </div>
                         </div>
                     `;
-                    chatItem.classList.add("chat-entry-with-options");
+
+                    // Attach event listener directly to the entry content
+                    chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
+                        displayChat(session);
+                    });
+
                     chatHistoryList.appendChild(chatItem);
                 });
             } catch (error) {
