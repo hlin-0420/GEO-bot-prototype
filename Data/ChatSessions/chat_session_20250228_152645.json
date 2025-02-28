@@ -1,0 +1,18 @@
+[
+    {
+        "role": "user",
+        "content": "How many scales can I define?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can define 23 scales."
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of data files I can load?"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of data files you can load is unlimited."
+    }
+]
