@@ -30,6 +30,7 @@ import numpy as np
 from rapidfuzz import process
 from nltk.translate.bleu_score import sentence_bleu
 from rouge_score import rouge_scorer
+from datetime import datetime
 
 # tracks the current sessions in memory
 current_session_id = None
@@ -698,6 +699,11 @@ def save_chat_session(session_id, messages):
         os.makedirs(CHAT_SESSIONS_DIR)
 
     session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
+    
+    # Add timestamps if they don't already exist in messages
+    for message in messages:
+        if "timestamp" not in message:
+            message["timestamp"] = datetime.now().isoformat() + "Z"  # ISO 8601 format with Z for UTC
 
     with open(session_file, "w", encoding="utf-8") as f:
         json.dump(messages, f, indent=4)

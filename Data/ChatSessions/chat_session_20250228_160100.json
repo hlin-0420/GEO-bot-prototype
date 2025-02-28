@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What's the maximum number of lithology types in an log?",
+        "timestamp": "2025-02-28T16:01:48.193094Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "timestamp": "2025-02-28T16:01:48.193094Z"
+    }
+]
