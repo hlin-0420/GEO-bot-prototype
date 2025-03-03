@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How many tables can I have in my log?",
+        "timestamp": "2025-03-03T15:14:44.340092Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can have up to 100 tables in a log.",
+        "timestamp": "2025-03-03T15:14:44.340092Z"
+    }
+]

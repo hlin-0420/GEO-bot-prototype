@@ -11,6 +11,13 @@
             <a href="/" class="navbar-logo-container">
                 <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="navbar-logo">
             </a>
+            <!-- Dropdown for selecting model -->
+            <select id="modelSelector" class="navbar-dropdown" onchange="updateModel()" style="color: white">
+                <option value="deepseek1.5" style="color:black">DeepSeek 1.5</option>
+                <option value="llama3.2:latest" style="color:black" selected>Llama 3.2</option>
+                <option value="openai" style="color:black">OpenAI</option>
+                <option value="haystack" style="color:black">Haystack</option>
+            </select>
             <nav class="navbar-links">
                 <a href="/">Home Page</a>
                 <a href="/feedback">Feedback Form</a>
@@ -677,6 +684,14 @@
                 `;
                 console.error("Error during message sending:", error);
             }
+        }
+
+        function updateModel() {
+            const selectedModel = document.getElementById("modelSelector").value;
+            fetch(`/selection?model=${selectedModel}`)
+                .then(response => response.json())
+                .then(data => console.log("Model updated:", data))
+                .catch(error => console.error("Error updating model:", error));
         }
 
         // Load chat history on page load

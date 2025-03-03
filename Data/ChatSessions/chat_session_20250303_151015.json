@@ -1,0 +1,32 @@
+[
+    {
+        "role": "user",
+        "content": "What's the maximum number of lithology types in an log?",
+        "timestamp": "2025-03-03T15:10:59.598492Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "timestamp": "2025-03-03T15:10:59.598492Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tracks can you define in one ODF?",
+        "timestamp": "2025-03-03T15:11:22.740782Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the Track Settings dialog box, the number of tracks that can be defined is 200.",
+        "timestamp": "2025-03-03T15:11:22.740782Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curve shades can I create?",
+        "timestamp": "2025-03-03T15:11:35.291195Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can create 250 curve shades.",
+        "timestamp": "2025-03-03T15:11:35.291195Z"
+    }
+]
