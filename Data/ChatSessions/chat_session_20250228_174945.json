@@ -58,5 +58,15 @@
         "role": "assistant",
         "content": "According to the document, you can create 250 curve shades per plot.",
         "timestamp": "2025-02-28T17:50:50.559052Z"
+    },
+    {
+        "role": "user",
+        "content": "Can I delete a curve from GEO?",
+        "timestamp": "2025-03-03T11:26:26.925273Z"
+    },
+    {
+        "role": "assistant",
+        "content": "No, you can only edit the data values for all other curve types. You cannot delete a curve from GEO.",
+        "timestamp": "2025-03-03T11:26:26.925273Z"
     }
 ]

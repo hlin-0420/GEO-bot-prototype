@@ -804,28 +804,41 @@ def delete_session(session_id):
 @app.route("/ask", methods=["POST"])
 def ask():
     global question_id, current_session_id, current_session_messages
+
     try:
         data = request.json
         if not data:
             return jsonify({"error": "No JSON payload received"}), 400
-        
+
         question = data.get("question", "").strip()
-        
         selectedOptions = data.get("selectedOptions", "")
-        
-        print(selectedOptions)
-        
+        incoming_session_id = data.get("session_id")
+
         if not question:
             return jsonify({"error": "Question cannot be empty"}), 400
-        
-        # Start a new session if it's the first message or after page reload
-        if current_session_id is None:
+
+        # Check if we are continuing a historical session
+        if incoming_session_id:
+            if current_session_id != incoming_session_id:
+                # New session is being reloaded
+                current_session_id = incoming_session_id
+                session_file = os.path.join(CHAT_SESSIONS_DIR, f"{current_session_id}.json")
+
+                if os.path.exists(session_file):
+                    with open(session_file, "r", encoding="utf-8") as f:
+                        current_session_messages = json.load(f)
+                else:
+                    # Fall back in case of missing file
+                    current_session_messages = []
+
+        elif current_session_id is None:
+            # If no historical session is loaded, start fresh
             current_session_id = f"chat_session_{time.strftime('%Y%m%d_%H%M%S')}"
-            current_session_messages = []  # Start fresh message log
-            
-        # Append user message to current session
+            current_session_messages = []
+
+        # Append new user message
         current_session_messages.append({"role": "user", "content": question})
-        
+
         with lock:
             current_id = str(question_id)
             question_id += 1
@@ -834,8 +847,8 @@ def ask():
 
         threading.Thread(target=process_question, args=(current_id, question, ai_bot, selectedOptions)).start()
 
-        return jsonify({"question_id": current_id}), 200
-    
+        return jsonify({"question_id": current_id, "session_id": current_session_id}), 200
+
     except Exception as e:
         app.logger.error(f"Error in /ask endpoint: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
