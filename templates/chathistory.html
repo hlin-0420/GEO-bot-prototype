@@ -157,6 +157,32 @@
             }
         }
 
+        function deleteMessage(questionText) {
+            const confirmDelete = confirm("Are you sure you want to delete this question and its corresponding answer?");
+            if (!confirmDelete) return;
+
+            fetch('/delete-pair', {  // New endpoint to delete both question and answer
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: currentSessionId,  // Ensure current session ID is passed
+                    question: questionText         // The question that triggers deletion of both
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Failed to delete the question-answer pair: " + data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error deleting question-answer pair:", error);
+                alert("An error occurred while deleting the question-answer pair.");
+            });
+        }
+
         function toggleOptionsMenu(button) {
             const dropdown = button.nextElementSibling;
             dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";

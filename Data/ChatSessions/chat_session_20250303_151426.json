@@ -21,16 +21,6 @@
     },
     {
         "role": "user",
-        "content": "How many curves can I load in one go?",
-        "timestamp": "2025-03-03T15:42:03.508446Z"
-    },
-    {
-        "role": "assistant",
-        "content": "You can load up to 450 curves at a time.",
-        "timestamp": "2025-03-03T15:42:03.508446Z"
-    },
-    {
-        "role": "user",
         "content": "How many symbols can I have in the plot at any one time?",
         "timestamp": "2025-03-03T15:43:11.428345Z"
     },

@@ -875,6 +875,46 @@ def get_response(question_id):
 
     return Response(generate_response(), content_type="text/event-stream")
 
+@app.route('/delete-pair', methods=['POST'])
+def delete_question_answer_pair():
+    try:
+        data = request.json
+        session_id = data.get("session_id")
+        question = data.get("question")
+
+        if not session_id or not question:
+            return jsonify({"success": False, "error": "Missing session_id or question"}), 400
+
+        session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
+
+        if not os.path.exists(session_file):
+            return jsonify({"success": False, "error": "Session not found"}), 404
+
+        with open(session_file, "r", encoding="utf-8") as file:
+            messages = json.load(file)
+
+        # Find the index of the user question and remove it along with the next assistant message
+        new_messages = []
+        skip_next = False
+
+        for i, msg in enumerate(messages):
+            if skip_next:
+                skip_next = False
+                continue  # Skip the assistant response after the user question
+
+            if msg["role"] == "user" and msg["content"] == question:
+                skip_next = True  # Skip this user question and the following assistant message
+                continue
+
+            new_messages.append(msg)
+
+        with open(session_file, "w", encoding="utf-8") as file:
+            json.dump(new_messages, file, indent=4)
+
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 @app.route("/selection", methods=["GET"])
 def update_model_name():
     global selected_model_name
