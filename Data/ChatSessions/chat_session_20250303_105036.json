@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How to open GEO?",
+        "timestamp": "2025-03-03T10:51:11.375999Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To open GEO, follow these steps:\n\n1. Click on the Windows button and select \"Geologix GEO Suite 8\" from the list.\n2. Then, click on \"GEO\".\n3. In Windows Explorer, locate the installation location of GEO and double-click the \"Geo.exe\" file.\n\nAlternatively, you can also open GEO by clicking on its icon in the Windows menu (if it appears) or by searching for it in the Start menu (if it's not visible).",
+        "timestamp": "2025-03-03T10:51:11.375999Z"
+    }
+]

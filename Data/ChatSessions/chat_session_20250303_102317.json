@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How to plot a curve in GEO?",
+        "timestamp": "2025-03-03T10:23:58.373309Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To plot a curve in GEO, you can use the Curve tool. This tool allows you to create and edit curves, which can be used to represent various types of data such as pressure, temperature, or other parameters.\n\nYou can also import existing curve data from other sources, such as CSV files or other GEO documents.\n\nAdditionally, you can use the Curve Editor to modify the properties of your curve, such as its color, line style, and marker type.\n\nPlease refer to the help section accessed through GEOGraph for more information on how to create and annotate a graph.",
+        "timestamp": "2025-03-03T10:23:58.373309Z"
+    }
+]

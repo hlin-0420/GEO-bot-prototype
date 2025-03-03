@@ -90,6 +90,54 @@
             console.log(`✅ Dynamic spacer added with height: ${spacer.style.height}`);
         }
 
+        function loadLatestSessionIfAvailable() {
+            const savedSessionId = sessionStorage.getItem("currentSessionId");
+            if (savedSessionId) {
+                currentSessionId = savedSessionId;
+                console.log(`✅ Restored session: ${currentSessionId}`);
+                loadSessionMessages(currentSessionId);
+            }
+        }
+
+        function countPreviousQuestions(session) {
+            let userQuestionCount = session.messages.filter(msg => msg.role === 'user').length;
+            questionCounter = userQuestionCount;  // Start numbering from the last known question count
+            console.log(`✅ Restored question counter to: ${questionCounter}`);
+        }
+
+        async function loadSessionMessages(sessionId) {
+            console.log(`🔎 Attempting to load session messages for sessionId: ${sessionId}`);
+
+            try {
+                const response = await fetch(`/chat-history/${sessionId}`);
+                const session = await response.json();
+                const chatMessages = document.getElementById("chatMessages");
+                chatMessages.innerHTML = "";
+
+                let temp_question_number = 0;
+
+                session.messages.forEach((msg, index) => {
+                    const messageDiv = document.createElement("div");
+                    messageDiv.classList.add("chat-message");
+
+                    if (msg.role === "user") {
+                        temp_question_number = temp_question_number + 1;
+                        messageDiv.innerHTML = `<div class="user-message">❓ Question ${temp_question_number}: ${msg.content}</div>`;
+                    } else {
+                        messageDiv.innerHTML = `<div class="ai-message">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
+                    }
+
+                    chatMessages.appendChild(messageDiv);
+                });
+
+                // 🧮 Track how many questions were already asked
+                countPreviousQuestions(session);
+
+                addDynamicSpacer();
+            } catch (error) {
+                console.error("Failed to load session messages:", error);
+            }
+        }
 
 
         function handleQuestionsFileUpload(event) {
@@ -305,6 +353,11 @@
         function startNewConversation() {
             questionCounter = 0; // resets question counter for a new conversation. 
             closeOptionsMenu();
+            removeDynamicSpacer();
+
+            currentSessionId = null;
+            sessionStorage.removeItem("currentSessionId");
+
             const chatMessages = document.getElementById("chatMessages");
             if (chatMessages) {
                 chatMessages.innerHTML = "<p>New conversation started.</p>";
@@ -447,7 +500,9 @@
 
                     // Attach event listener directly to the entry content
                     chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
-                        displayChat(session);
+                        currentSessionId = session.session_id;
+                        sessionStorage.setItem("currentSessionId", currentSessionId);
+                        loadSessionMessages(currentSessionId);  // ✅ Fetch and display latest chat
                     });
 
                     chatHistoryList.appendChild(chatItem);
@@ -484,12 +539,14 @@
                 if (msg.role === "user") {
                     temp_question_number = temp_question_number + 1;
                     messageDiv.innerHTML = `<div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">❓ Question ${temp_question_number}: ${msg.content}</div>`;
-                } else {
+                } else if (msg.role === "assistant") {
                     messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
                 }
 
                 chatMessages.appendChild(messageDiv);
             });
+            questionCounter = temp_question_number;
+            console.log(`✅ Updated global questionCounter to ${questionCounter} after loading chat.`);
 
             console.log("✅ Chat messages loaded. Scrolling to bottom...");
             addDynamicSpacer();
@@ -500,66 +557,121 @@
             const inputField = document.getElementById("chatInput");
             const userMessage = inputField.value.trim();
 
-            console.log("User message:", userMessage);
-            debugger;
-
             if (!userMessage) {
                 console.warn("No message entered. Exiting function.");
                 return;
             }
 
             const chatMessages = document.getElementById("chatMessages");
-            console.log("Chat messages container:", chatMessages);
-            debugger;
 
-            chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${userMessage}</div></div>`;
-            console.log("User message added to chat display.");
+            // Increment question number for this session
+            questionCounter++;
 
+            // Create a container for this question-answer pair
+            const questionContainer = document.createElement("div");
+            questionContainer.classList.add("question-container");
+
+            // Add formatted question
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("chat-message");
+            userMessageDiv.innerHTML = `
+                <div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">
+                    ❓ Question ${questionCounter}: ${userMessage}
+                </div>
+            `;
+            questionContainer.appendChild(userMessageDiv);
+
+            // Add placeholder for the AI's response
+            const aiMessageDiv = document.createElement("div");
+            aiMessageDiv.classList.add("chat-message");
+            const aiMessage = document.createElement("div");
+            aiMessage.classList.add("ai-message");
+            aiMessage.style.backgroundColor = "#f8d7da";
+            aiMessage.style.padding = "10px";
+            aiMessage.style.borderRadius = "5px";
+            aiMessage.innerHTML = `
+                💡 Answer ${questionCounter}: 
+                <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">
+                    Processing your question...
+                </span>
+            `;
+            aiMessageDiv.appendChild(aiMessage);
+            questionContainer.appendChild(aiMessageDiv);
+
+            chatMessages.appendChild(questionContainer);
             inputField.value = "";
-            console.log("Input field cleared.");
-            debugger;
 
             try {
-                let selectedModel = "llama3.2:latest";
-                let selectedOptions = ["text", "table", "list"];
+                let body = {
+                    question: userMessage,
+                    model: "llama3.2:latest",
+                    selectedOptions: ["text", "table", "list"]
+                };
+
+                if (currentSessionId) {
+                    body.session_id = currentSessionId;  // Ensure correct session handling
+                }
+
                 const postResponse = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question: userMessage, model: selectedModel, selectedOptions: selectedOptions })
+                    body: JSON.stringify(body)
                 });
 
                 if (!postResponse.ok) {
                     const error = await postResponse.json();
-                    responseOutput.textContent = error.error || "An error occurred.";
+                    document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `
+                        <span style="color: red;">⚠️ ${error.error || "An error occurred."}</span>
+                    `;
                     return;
                 }
 
-                const { question_id } = await postResponse.json();
+                const { session_id, question_id } = await postResponse.json();
+
+                if (!currentSessionId) {
+                    currentSessionId = session_id;
+                    sessionStorage.setItem("currentSessionId", session_id);
+                }
 
                 const eventSource = new EventSource(`/response/${question_id}`);
+                const placeholder = document.getElementById(`answerPlaceholder-${questionCounter}`);
+                let fullResponse = "";
+
                 eventSource.onmessage = function (event) {
                     const data = event.data;
+
                     if (data.startsWith("Error:")) {
-                        chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
+                        placeholder.innerHTML = `<span style="color: red;">${data}</span>`;
                         eventSource.close();
-                        addDynamicSpacer();  // Add spacer after error message
+                        addDynamicSpacer();
                     } else if (data === "Processing your question...") {
-                        // chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
-                        console.log("***");
+                        console.log("*** Processing message received ***");
                     } else {
-                        chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
-                        eventSource.close();
-                        addDynamicSpacer();  // Add spacer after error message
+                        fullResponse += data;
+                        placeholder.innerHTML = fullResponse;  // Update placeholder with growing response
                     }
                 };
+
+                eventSource.onerror = function () {
+                    if (!fullResponse) {
+                        placeholder.innerHTML = `<span style="color: red;">⚠️ No response received.</span>`;
+                    }
+                    eventSource.close();
+                    addDynamicSpacer();
+                };
+
             } catch (error) {
-                console.error("Error occurred during fetch or processing:", error);
+                document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `
+                    <span style="color: red;">⚠️ Failed to send message.</span>
+                `;
+                console.error("Error during message sending:", error);
             }
         }
 
         // Load chat history on page load
         document.addEventListener("DOMContentLoaded", () => {
             loadChatHistory();
+            loadLatestSessionIfAvailable();
             addDynamicSpacer();
         });
 

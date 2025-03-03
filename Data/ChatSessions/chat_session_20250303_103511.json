@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How to add title to the files -> setting up custom text?",
+        "timestamp": "2025-03-03T10:35:47.735670Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To add a title to a file in GEO, you can use the Format Text context tab. Highlight the text you wish to edit and select the format you want to implement from the available options. You can then draw the text smaller and lower than regular text by selecting the \"Draw text smaller\" option.\n\nAdditionally, if you need to insert superscript or subscript characters in your track text entry or free format text entry, highlight the text you wish to change and use either the Format Text context tab or the Rich Edit control.",
+        "timestamp": "2025-03-03T10:35:47.735670Z"
+    }
+]

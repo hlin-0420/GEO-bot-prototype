@@ -73,6 +73,25 @@ UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
 
+@app.route("/chat-history/<session_id>", methods=["GET"])
+def get_single_chat_session(session_id):
+    session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
+
+    if not os.path.exists(session_file):
+        return jsonify({"error": "Session not found"}), 404
+
+    try:
+        with open(session_file, "r", encoding="utf-8") as f:
+            messages = json.load(f)
+
+        return jsonify({
+            "session_id": session_id,
+            "messages": messages
+        }), 200
+    except Exception as e:
+        app.logger.error(f"Error loading session {session_id}: {str(e)}")
+        return jsonify({"error": "Internal Server Error"}), 500
+
 def load_session_metadata():
     if os.path.exists(SESSION_METADATA_FILE):
         with open(SESSION_METADATA_FILE, "r", encoding="utf-8") as f:
