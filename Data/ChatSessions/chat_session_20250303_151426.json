@@ -8,5 +8,35 @@
         "role": "assistant",
         "content": "You can have up to 100 tables in a log.",
         "timestamp": "2025-03-03T15:14:44.340092Z"
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of data files I can load?",
+        "timestamp": "2025-03-03T15:15:43.536966Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of data files you can load is unlimited.",
+        "timestamp": "2025-03-03T15:15:43.536966Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curves can I load in one go?",
+        "timestamp": "2025-03-03T15:42:03.508446Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can load up to 450 curves at a time.",
+        "timestamp": "2025-03-03T15:42:03.508446Z"
+    },
+    {
+        "role": "user",
+        "content": "How many symbols can I have in the plot at any one time?",
+        "timestamp": "2025-03-03T15:43:11.428345Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can have up to 10,000 symbols in a plot at any given time.",
+        "timestamp": "2025-03-03T15:43:11.428345Z"
     }
 ]

@@ -129,7 +129,18 @@
 
                     if (msg.role === "user") {
                         temp_question_number = temp_question_number + 1;
-                        messageDiv.innerHTML = `<div class="user-message">❓ Question ${temp_question_number}: ${msg.content}</div>`;
+                        messageDiv.innerHTML = `
+                        <div class="user-message">❓
+                            Question ${temp_question_number}: ${msg.content}
+                            <div class="chat-options-container">
+                                <button class="chat-options-button" onclick="toggleOptionsMenu(this)">✏️</button>
+                                    <div class="chat-options-dropdown">
+                                        <button onclick="editMessage('${msg.content}')">✏️ Edit</button>
+                                        <button onclick="deleteMessage('${msg.content}')">🗑️ Delete</button>
+                                    </div>
+                                </div>
+                        </div>
+                        `;
                     } else {
                         messageDiv.innerHTML = `<div class="ai-message">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
                     }
@@ -146,6 +157,41 @@
             }
         }
 
+        function toggleOptionsMenu(button) {
+            const dropdown = button.nextElementSibling;
+            dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+        }
+
+        function editMessage(questionText) {
+            const newText = prompt("Edit your message:", questionText);
+            if (newText && newText !== questionText) {
+                const requestBody = {
+                    question: newText,
+                    model: "llama3.2:latest",  // Ensure this is correct
+                    selectedOptions: ["text", "table", "list"]
+                };
+
+                if (currentSessionId) {
+                    requestBody.session_id = currentSessionId;
+                }
+
+                fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                })
+                .then(response => response.json())
+                .then(async data => {
+                    if (data.session_id && data.question_id) {
+                        await waitForModelResponseWithNumbering(data.question_id, questionCounter + 1);
+                        location.reload();
+                    } else {
+                        alert("Failed to submit the edited question.");
+                    }
+                })
+                .catch(error => console.error("Error submitting edited question:", error));
+            }
+        }
 
         function handleQuestionsFileUpload(event) {
             const file = event.target.files[0];
