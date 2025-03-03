@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "Can you export image files?",
+        "timestamp": "2025-03-03T09:31:05.889010Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Yes, you can export image files from GEO. To do this:\n\n1. Go to the Exporttab.\n2. Select HTML Using... and choose your preferred image format (e.g., EMF).\n3. An ExportTodialog box will open where you can enter a Filename and select the directory where it will be stored.\n\nNote that exporting to HTML outputs an image of your log using spliced web-supported images, which are outputted to a location specified by the user at the point of saving, keeping them together.",
+        "timestamp": "2025-03-03T09:31:05.889010Z"
+    }
+]

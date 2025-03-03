@@ -63,6 +63,35 @@
     <script>
         let currentSessionId = null;
 
+        function removeDynamicSpacer() {
+            const existingSpacer = document.getElementById("dynamic-scroll-spacer");
+            if (existingSpacer) {
+                existingSpacer.remove();
+                console.log("🧹 Removed existing spacer.");
+            }
+        }
+
+        function addDynamicSpacer() {
+            const chatMessages = document.getElementById("chatMessages");
+            const inputBar = document.querySelector(".chat-input-bar");
+
+            if (!chatMessages || !inputBar) return;
+
+            removeDynamicSpacer();
+
+            // Create and add new spacer
+            const spacer = document.createElement("div");
+            spacer.id = "dynamic-scroll-spacer";
+            spacer.style.height = (inputBar.offsetHeight + 10) + "px";  // Add slight buffer
+            spacer.style.background = "transparent";  // Optional, for debugging you could make it visible
+
+            chatMessages.appendChild(spacer);
+
+            console.log(`✅ Dynamic spacer added with height: ${spacer.style.height}`);
+        }
+
+
+
         function handleQuestionsFileUpload(event) {
             const file = event.target.files[0];
             if (!file) {
@@ -90,6 +119,8 @@
         async function sendQuestionToModelSequentially(question) {
             questionCounter++;
 
+            removeDynamicSpacer();
+
             const chatMessages = document.getElementById("chatMessages");
 
             // Create container for the question-answer pair
@@ -116,7 +147,6 @@
 
             // Append to chatMessages
             chatMessages.appendChild(questionContainer);
-            scrollToBottom();
 
             try {
                 const response = await fetch("/ask", {
@@ -133,6 +163,7 @@
 
                 // Wait for the model response to complete before moving to next question
                 await waitForModelResponseWithNumbering(question_id, questionCounter);
+                addDynamicSpacer();
             } catch (error) {
                 console.error(`Error sending question ${questionCounter}:`, error);
                 document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ Error sending Question ${questionCounter}</span>`;
@@ -164,7 +195,6 @@
                         placeholder.innerHTML = fullAnswer;  // Display the accumulated answer
                     }
 
-                    scrollToBottom();
                 };
 
                 eventSource.onerror = function() {
@@ -202,10 +232,6 @@
             return sortedChats;
         }
 
-        function scrollToBottom() {
-            const chatMessages = document.getElementById("chatMessages");
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
 
         function showContextMenu(event, sessionId) {
             event.preventDefault();  // Stop right-click menu
@@ -379,17 +405,12 @@
 
         document.getElementById("chatInput").addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
+                removeDynamicSpacer();
                 sendMessage();
             }
         });
 
         async function loadChatHistory() {
-            const response = await fetch("/chat-history");
-            const data = await response.json();
-            const chatHistoryList = document.getElementById("chatHistoryList");
-
-            console.log(chatHistoryList);
-            
             try {
                 const response = await fetch("/chat-history");
                 let data = await response.json();
@@ -470,7 +491,9 @@
                 chatMessages.appendChild(messageDiv);
             });
 
-            scrollToBottom();  // Add this line
+            console.log("✅ Chat messages loaded. Scrolling to bottom...");
+            addDynamicSpacer();
+            // ensureLastMessageVisible();
         }
 
         async function sendMessage() {
@@ -490,7 +513,6 @@
             debugger;
 
             chatMessages.innerHTML += `<div class="chat-message"><div class="user-message">${userMessage}</div></div>`;
-            scrollToBottom();  // Add this line
             console.log("User message added to chat display.");
 
             inputField.value = "";
@@ -520,12 +542,14 @@
                     if (data.startsWith("Error:")) {
                         chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
                         eventSource.close();
+                        addDynamicSpacer();  // Add spacer after error message
                     } else if (data === "Processing your question...") {
                         // chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
                         console.log("***");
                     } else {
                         chatMessages.innerHTML += `<div class="chat-message"><div class="ai-message">${data}</div></div>`;
                         eventSource.close();
+                        addDynamicSpacer();  // Add spacer after error message
                     }
                 };
             } catch (error) {
@@ -534,7 +558,10 @@
         }
 
         // Load chat history on page load
-        document.addEventListener("DOMContentLoaded", loadChatHistory);
+        document.addEventListener("DOMContentLoaded", () => {
+            loadChatHistory();
+            addDynamicSpacer();
+        });
 
     </script>
 </body>

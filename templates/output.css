@@ -31,6 +31,11 @@
   }
 }
 @layer base {
+  #chatMessages {
+      padding-bottom: 150px; /* Adjust based on actual input bar height */
+      overflow-y: scroll; /* change from auto to scroll */
+      box-sizing: border-box;
+  }
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;
     margin: 0;
@@ -110,7 +115,6 @@
   }
   img, svg, video, canvas, audio, iframe, embed, object {
     display: block;
-    vertical-align: middle;
   }
   img, video {
     max-width: 100%;

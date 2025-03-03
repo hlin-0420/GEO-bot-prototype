@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What is an Output Database Type file?",
+        "timestamp": "2025-03-03T09:26:58.895929Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The Output Database File, also known as ODF (Output Database File), is a compact database file created by GEO that contains all the information needed for rapid recall of data related to a particular well. It includes loaded curve data, layout-related information, geological interpretation data, user-inputted information, libraries and fonts, embedded objects, and links to external documents.",
+        "timestamp": "2025-03-03T09:26:58.895929Z"
+    }
+]
