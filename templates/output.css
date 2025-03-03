@@ -31,6 +31,22 @@
   }
 }
 @layer base {
+  .processing-style {
+    font-style: italic;
+    color: grey;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .final-response-style {
+      font-style: normal;
+      color: black;
+      background-color: #f8d7da;
+      padding: 10px;
+      border-radius: 5px;
+  }
+  
   #chatMessages {
       padding-bottom: 150px; /* Adjust based on actual input bar height */
       overflow-y: scroll; /* change from auto to scroll */

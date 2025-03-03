@@ -563,15 +563,11 @@
             }
 
             const chatMessages = document.getElementById("chatMessages");
-
-            // Increment question number for this session
             questionCounter++;
 
-            // Create a container for this question-answer pair
             const questionContainer = document.createElement("div");
             questionContainer.classList.add("question-container");
 
-            // Add formatted question
             const userMessageDiv = document.createElement("div");
             userMessageDiv.classList.add("chat-message");
             userMessageDiv.innerHTML = `
@@ -581,24 +577,25 @@
             `;
             questionContainer.appendChild(userMessageDiv);
 
-            // Add placeholder for the AI's response
             const aiMessageDiv = document.createElement("div");
             aiMessageDiv.classList.add("chat-message");
+
             const aiMessage = document.createElement("div");
-            aiMessage.classList.add("ai-message");
-            aiMessage.style.backgroundColor = "#f8d7da";
-            aiMessage.style.padding = "10px";
-            aiMessage.style.borderRadius = "5px";
+            aiMessage.id = `aiMessage-${questionCounter}`;
+            aiMessage.classList.add("ai-message", "processing-style");
+
             aiMessage.innerHTML = `
                 💡 Answer ${questionCounter}: 
                 <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">
                     Processing your question...
                 </span>
             `;
+
             aiMessageDiv.appendChild(aiMessage);
             questionContainer.appendChild(aiMessageDiv);
-
             chatMessages.appendChild(questionContainer);
+            addDynamicSpacer();
+
             inputField.value = "";
 
             try {
@@ -609,7 +606,7 @@
                 };
 
                 if (currentSessionId) {
-                    body.session_id = currentSessionId;  // Ensure correct session handling
+                    body.session_id = currentSessionId;
                 }
 
                 const postResponse = await fetch("/ask", {
@@ -635,7 +632,10 @@
 
                 const eventSource = new EventSource(`/response/${question_id}`);
                 const placeholder = document.getElementById(`answerPlaceholder-${questionCounter}`);
+                const aiMessage = placeholder.parentElement.parentElement;
+
                 let fullResponse = "";
+                let firstChunkReceived = false;
 
                 eventSource.onmessage = function (event) {
                     const data = event.data;
@@ -648,7 +648,18 @@
                         console.log("*** Processing message received ***");
                     } else {
                         fullResponse += data;
-                        placeholder.innerHTML = fullResponse;  // Update placeholder with growing response
+                        placeholder.innerHTML = fullResponse;
+
+                        if (!firstChunkReceived) {
+                            removeDynamicSpacer();
+                            // Only do this once when real response starts
+                            aiMessage.classList.remove("processing-style");
+                            aiMessage.classList.add("final-response-style");
+
+                            placeholder.style.fontStyle = "normal";  // Reset to non-italic
+                            placeholder.style.color = "black";       // Reset to black text
+                            firstChunkReceived = true;
+                        }
                     }
                 };
 
