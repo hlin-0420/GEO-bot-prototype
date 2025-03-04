@@ -1,0 +1,102 @@
+[
+    {
+        "role": "user",
+        "content": "What's the maximum number of lithology types in an log?",
+        "timestamp": "2025-03-04T15:49:21.808178Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "timestamp": "2025-03-04T15:49:21.808178Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tracks can you define in one ODF?",
+        "timestamp": "2025-03-04T15:49:42.528555Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the Track Settings dialog box, the number of tracks that can be defined is 200.",
+        "timestamp": "2025-03-04T15:49:42.528555Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curve shades can I create?",
+        "timestamp": "2025-03-04T15:49:54.575132Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can create 250 curve shades.",
+        "timestamp": "2025-03-04T15:49:54.575132Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curves can I load in one go?",
+        "timestamp": "2025-03-04T15:50:09.546249Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can load up to 450 curves at a time.",
+        "timestamp": "2025-03-04T15:50:09.546249Z"
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of headers I can display in my log?",
+        "timestamp": "2025-03-04T15:50:30.292982Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of headers you can display in your log is up to 50.",
+        "timestamp": "2025-03-04T15:50:30.292982Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tables can I have in my log?",
+        "timestamp": "2025-03-04T15:50:39.984765Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can have up to 100 tables in a log.",
+        "timestamp": "2025-03-04T15:50:39.984765Z"
+    },
+    {
+        "role": "user",
+        "content": "Whats the maximum number of characters in a single text entry?",
+        "timestamp": "2025-03-04T15:51:04.476354Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of characters in a single text entry is 32000.",
+        "timestamp": "2025-03-04T15:51:04.476354Z"
+    },
+    {
+        "role": "user",
+        "content": "How many symbols can I have in the plot at any one time?",
+        "timestamp": "2025-03-04T15:51:23.699761Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can have up to 10,000 symbols in a plot at any given time.",
+        "timestamp": "2025-03-04T15:51:23.699761Z"
+    },
+    {
+        "role": "user",
+        "content": "How many scales can I define?",
+        "timestamp": "2025-03-04T15:51:46.705772Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you can define 23 scales.",
+        "timestamp": "2025-03-04T15:51:46.705772Z"
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of data files I can load?",
+        "timestamp": "2025-03-04T15:52:06.584791Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of data files you can load is unlimited.",
+        "timestamp": "2025-03-04T15:52:06.584791Z"
+    }
+]
