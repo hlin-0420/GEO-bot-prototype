@@ -31,6 +31,28 @@
   }
 }
 @layer base {
+  .feedback-section {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .feedback-stars {
+      cursor: pointer;
+  }
+  .feedback-comment {
+      width: 100%;
+      margin-top: 5px;
+      padding: 5px;
+      font-size: 12px;
+  }
+  .star {
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.2s;
+  }
+  .star:hover {
+      transform: scale(1.2);
+  }
+
   .processing-style {
     font-style: italic;
     color: grey;

@@ -113,7 +113,7 @@
         }
 
         async function loadSessionMessages(sessionId) {
-            console.log(`🔎 Attempting to load session messages for sessionId: ${sessionId}`);
+            console.log(`🔎 Loading session messages for sessionId: ${sessionId}`);
 
             try {
                 const response = await fetch(`/chat-history/${sessionId}`);
@@ -121,37 +121,37 @@
                 const chatMessages = document.getElementById("chatMessages");
                 chatMessages.innerHTML = "";
 
-                let temp_question_number = 0;
+                let tempQuestionNumber = 0;
 
-                session.messages.forEach((msg, index) => {
-                    const messageDiv = document.createElement("div");
-                    messageDiv.classList.add("chat-message");
-
+                session.messages.forEach((msg) => {
                     if (msg.role === "user") {
-                        temp_question_number = temp_question_number + 1;
-                        messageDiv.innerHTML = `
-                        <div class="user-message">❓
-                            Question ${temp_question_number}: ${msg.content}
-                            <div class="chat-options-container">
-                                <button class="chat-options-button" onclick="toggleOptionsMenu(this)">✏️</button>
-                                    <div class="chat-options-dropdown">
-                                        <button onclick="editMessage('${msg.content}')">✏️ Edit</button>
-                                        <button onclick="deleteMessage('${msg.content}')">🗑️ Delete</button>
-                                    </div>
-                                </div>
-                        </div>
-                        `;
-                    } else {
-                        messageDiv.innerHTML = `<div class="ai-message">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
-                    }
+                        tempQuestionNumber++;
+                        const userMessageDiv = document.createElement("div");
+                        userMessageDiv.classList.add("chat-message", "user-message");
+                        userMessageDiv.style.backgroundColor = "#d1ecf1";
+                        userMessageDiv.style.padding = "10px";
+                        userMessageDiv.style.borderRadius = "5px";
+                        userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${msg.content}`;
+                        chatMessages.appendChild(userMessageDiv);
+                    } else if (msg.role === "assistant") {
+                        const answerFeedbackWrapper = document.createElement("div");
+                        answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
-                    chatMessages.appendChild(messageDiv);
+                        const aiMessageDiv = document.createElement("div");
+                        aiMessageDiv.classList.add("chat-message", "ai-message");
+                        aiMessageDiv.style.backgroundColor = "#f8d7da";
+                        aiMessageDiv.style.padding = "10px";
+                        aiMessageDiv.style.borderRadius = "5px";
+                        aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${msg.content}`;
+                        
+                        answerFeedbackWrapper.appendChild(aiMessageDiv);
+                        chatMessages.appendChild(answerFeedbackWrapper);
+
+                        addFeedbackSection(aiMessageDiv, tempQuestionNumber);
+                    }
                 });
 
-                // 🧮 Track how many questions were already asked
-                countPreviousQuestions(session);
-
-                addDynamicSpacer();
+                questionCounter = tempQuestionNumber;
             } catch (error) {
                 console.error("Failed to load session messages:", error);
             }
@@ -647,38 +647,38 @@
             const questionContainer = document.createElement("div");
             questionContainer.classList.add("question-container");
 
+            // User question block
             const userMessageDiv = document.createElement("div");
-            userMessageDiv.classList.add("chat-message");
-            userMessageDiv.innerHTML = `
-                <div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">
-                    ❓ Question ${questionCounter}: ${userMessage}
-                </div>
-            `;
+            userMessageDiv.classList.add("chat-message", "user-message");
+            userMessageDiv.style.backgroundColor = "#d1ecf1";
+            userMessageDiv.style.padding = "10px";
+            userMessageDiv.style.borderRadius = "5px";
+            userMessageDiv.innerHTML = `❓ Question ${questionCounter}: ${userMessage}`;
             questionContainer.appendChild(userMessageDiv);
 
+            // AI answer block with attached feedback placeholder (answer-feedback-pair)
+            const answerFeedbackWrapper = document.createElement("div");
+            answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
+
             const aiMessageDiv = document.createElement("div");
-            aiMessageDiv.classList.add("chat-message");
-
-            const aiMessage = document.createElement("div");
-            aiMessage.id = `aiMessage-${questionCounter}`;
-            aiMessage.classList.add("ai-message", "processing-style");
-
-            aiMessage.innerHTML = `
+            aiMessageDiv.classList.add("chat-message", "ai-message");
+            aiMessageDiv.style.backgroundColor = "#f8d7da";
+            aiMessageDiv.style.padding = "10px";
+            aiMessageDiv.style.borderRadius = "5px";
+            aiMessageDiv.innerHTML = `
                 💡 Answer ${questionCounter}: 
-                <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">
-                    Processing your question...
-                </span>
+                <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">Processing your question...</span>
             `;
+            answerFeedbackWrapper.appendChild(aiMessageDiv);
 
-            aiMessageDiv.appendChild(aiMessage);
-            questionContainer.appendChild(aiMessageDiv);
+            // Append the whole answer-feedback pair to the question container
+            questionContainer.appendChild(answerFeedbackWrapper);
             chatMessages.appendChild(questionContainer);
-            addDynamicSpacer();
 
             inputField.value = "";
 
             try {
-                let body = {
+                const body = {
                     question: userMessage,
                     model: "llama3.2:latest",
                     selectedOptions: ["text", "table", "list"]
@@ -688,73 +688,107 @@
                     body.session_id = currentSessionId;
                 }
 
-                const postResponse = await fetch("/ask", {
+                const response = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
                 });
 
-                if (!postResponse.ok) {
-                    const error = await postResponse.json();
-                    document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `
-                        <span style="color: red;">⚠️ ${error.error || "An error occurred."}</span>
-                    `;
+                if (!response.ok) {
+                    const error = await response.json();
+                    document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ ${error.error || "An error occurred."}</span>`;
                     return;
                 }
 
-                const { session_id, question_id } = await postResponse.json();
+                const { session_id, question_id } = await response.json();
 
                 if (!currentSessionId) {
                     currentSessionId = session_id;
                     sessionStorage.setItem("currentSessionId", session_id);
                 }
 
+                await streamModelResponse(question_id, questionCounter, aiMessageDiv);
+                addFeedbackSection(aiMessageDiv, questionCounter);  // Attach feedback directly below AI message
+            } catch (error) {
+                document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ Failed to send message.</span>`;
+                console.error("Error during message sending:", error);
+            }
+        }
+
+        function streamModelResponse(question_id, questionNumber, aiMessageDiv) {
+            return new Promise((resolve) => {
                 const eventSource = new EventSource(`/response/${question_id}`);
-                const placeholder = document.getElementById(`answerPlaceholder-${questionCounter}`);
-                const aiMessage = placeholder.parentElement.parentElement;
+                const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
 
                 let fullResponse = "";
-                let firstChunkReceived = false;
 
-                eventSource.onmessage = function (event) {
+                eventSource.onmessage = function(event) {
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
                         placeholder.innerHTML = `<span style="color: red;">${data}</span>`;
                         eventSource.close();
-                        addDynamicSpacer();
-                    } else if (data === "Processing your question...") {
-                        console.log("*** Processing message received ***");
+                        resolve();
                     } else {
                         fullResponse += data;
                         placeholder.innerHTML = fullResponse;
-
-                        if (!firstChunkReceived) {
-                            removeDynamicSpacer();
-                            // Only do this once when real response starts
-                            aiMessage.classList.remove("processing-style");
-                            aiMessage.classList.add("final-response-style");
-
-                            placeholder.style.fontStyle = "normal";  // Reset to non-italic
-                            placeholder.style.color = "black";       // Reset to black text
-                            firstChunkReceived = true;
-                        }
                     }
                 };
 
-                eventSource.onerror = function () {
-                    if (!fullResponse) {
+                eventSource.onerror = function() {
+                    if (!fullResponse.trim()) {
                         placeholder.innerHTML = `<span style="color: red;">⚠️ No response received.</span>`;
                     }
                     eventSource.close();
-                    addDynamicSpacer();
+                    resolve();
                 };
+            });
+        }
 
-            } catch (error) {
-                document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `
-                    <span style="color: red;">⚠️ Failed to send message.</span>
-                `;
-                console.error("Error during message sending:", error);
+        function addFeedbackSection(aiMessageDiv, questionNumber) {
+            const feedbackContainer = document.createElement("div");
+            feedbackContainer.id = `feedbackContainer-${questionNumber}`;
+            feedbackContainer.style.marginTop = "8px";
+            feedbackContainer.style.marginBottom = "20px";
+            feedbackContainer.style.padding = "5px";
+            feedbackContainer.style.border = "1px solid #ddd";
+            feedbackContainer.style.borderRadius = "5px";
+            feedbackContainer.style.backgroundColor = "#f9f9f9";
+            feedbackContainer.style.width = "100%";
+
+            feedbackContainer.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" 
+                    onclick="toggleFeedbackComment(${questionNumber})">
+                    <span style="font-weight: bold;">✅ How accurate is this response compared to the expected answer?</span>
+                    <span id="toggleIcon-${questionNumber}" style="font-size: 18px;">🔽</span>
+                </div>
+                <span class="feedback-stars">
+                    ${[1, 2, 3, 4, 5].map(star => `
+                        <span class="star" data-rating="${star}" 
+                            onclick="submitFeedback('${currentSessionId}', ${questionNumber}, ${star})">⭐</span>
+                    `).join('')}
+                </span>
+                <div id="feedbackCommentContainer-${questionNumber}" style="display: none; margin-top: 5px;">
+                    <textarea id="feedbackComment-${questionNumber}" 
+                        placeholder="Optional feedback..." 
+                        style="width: 100%;"></textarea>
+                </div>
+            `;
+
+            // Attach feedback directly under the AI message
+            aiMessageDiv.parentElement.appendChild(feedbackContainer);
+        }
+
+        function toggleFeedbackComment(questionNumber) {
+            const commentContainer = document.getElementById(`feedbackCommentContainer-${questionNumber}`);
+            const toggleIcon = document.getElementById(`toggleIcon-${questionNumber}`);
+
+            if (commentContainer.style.display === "none" || commentContainer.style.display === "") {
+                commentContainer.style.display = "block";
+                toggleIcon.innerText = "🔼";  // Up arrow when expanded
+            } else {
+                commentContainer.style.display = "none";
+                toggleIcon.innerText = "🔽";  // Down arrow when collapsed
             }
         }
 
