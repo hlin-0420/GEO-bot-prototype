@@ -673,8 +673,8 @@ def submitFeedback():
         response = data.get("response")
         question = data.get("question")
 
-        if not details and not question:
-            return jsonify({"error": "Both feedback details and question details are required"}), 400
+        # if not details and not question:
+        #     return jsonify({"error": "Both feedback details and question details are required"}), 400
 
         feedback_entry = {
             "model-name": selected_model_name,

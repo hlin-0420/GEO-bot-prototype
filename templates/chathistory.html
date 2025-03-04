@@ -764,8 +764,14 @@
                 </div>
                 <span class="feedback-stars">
                     ${[1, 2, 3, 4, 5].map(star => `
-                        <span class="star" data-rating="${star}" 
-                            onclick="submitFeedback('${currentSessionId}', ${questionNumber}, ${star})">⭐</span>
+                        <span 
+                            class="star" 
+                            data-question-number="${questionNumber}" 
+                            data-rating="${star}" 
+                            onclick="submitFeedback(${questionNumber}, ${star})"
+                            onmouseover="highlightStars(${questionNumber}, ${star})"
+                            onmouseleave="resetStars(${questionNumber})"
+                        >⭐</span>
                     `).join('')}
                 </span>
                 <div id="feedbackCommentContainer-${questionNumber}" style="display: none; margin-top: 5px;">
@@ -778,6 +784,63 @@
             // Attach feedback directly under the AI message
             aiMessageDiv.parentElement.appendChild(feedbackContainer);
         }
+
+        const selectedRatings = {};  // To store the selected rating for each question
+
+        function highlightStars(questionNumber, starRating) {
+            const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-rating'), 10);
+                if (starValue <= starRating) {
+                    star.style.color = '#f39c12';  // Highlight color (gold)
+                } else {
+                    star.style.color = '';  // Reset
+                }
+            });
+        }
+
+        function resetStars(questionNumber) {
+            const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
+            const selectedRating = selectedRatings[questionNumber] || 0;
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-rating'), 10);
+                if (starValue <= selectedRating) {
+                    star.style.color = '#f39c12';  // Keep selected stars highlighted
+                } else {
+                    star.style.color = '';  // Reset others
+                }
+            });
+        }
+
+        function submitFeedback(questionNumber, rating) {
+            const comment = document.getElementById(`feedbackComment-${questionNumber}`).value.trim();
+
+            const feedbackData = {
+                session_id: currentSessionId,
+                question_number: questionNumber,
+                rating: rating,
+                comment: comment
+            };
+
+            fetch('/submit-feedback', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(feedbackData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Feedback submitted for Question ${questionNumber}`);
+                } else {
+                    alert(`Failed to submit feedback: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                console.error("Error submitting feedback:", error);
+                alert("An error occurred while submitting feedback.");
+            });
+        }
+
 
         function toggleFeedbackComment(questionNumber) {
             const commentContainer = document.getElementById(`feedbackCommentContainer-${questionNumber}`);

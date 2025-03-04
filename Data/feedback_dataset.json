@@ -75,5 +75,33 @@
         "response": "The maximum number of headers you can display in your log is not explicitly stated in the provided documentation. However, it does mention that on the Edit tab, selecting \"Headers and Trailers\" opens the Plot Header and Trailer Specifications dialog box, which lists various options for customization. It does not provide a specific limit for the number of headers.",
         "feedback": "No, this is incorrect. I can selected up to 50 headers for display in a log.",
         "rating-score": 1
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": null,
+        "response": null,
+        "feedback": null,
+        "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": null,
+        "response": null,
+        "feedback": null,
+        "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": null,
+        "response": null,
+        "feedback": null,
+        "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": null,
+        "response": null,
+        "feedback": null,
+        "rating-score": 5
     }
 ]
