@@ -128,6 +128,7 @@
                         tempQuestionNumber++;
                         const userMessageDiv = document.createElement("div");
                         userMessageDiv.classList.add("chat-message", "user-message");
+                        userMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
                         userMessageDiv.style.backgroundColor = "#d1ecf1";
                         userMessageDiv.style.padding = "10px";
                         userMessageDiv.style.borderRadius = "5px";
@@ -139,6 +140,7 @@
 
                         const aiMessageDiv = document.createElement("div");
                         aiMessageDiv.classList.add("chat-message", "ai-message");
+                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
                         aiMessageDiv.style.backgroundColor = "#f8d7da";
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
@@ -815,21 +817,30 @@
         function submitFeedback(questionNumber, rating) {
             const comment = document.getElementById(`feedbackComment-${questionNumber}`).value.trim();
 
+            // Extract question and response from displayed content
+            const questionElement = document.querySelector(`.user-message[data-question-number="${questionNumber}"]`);
+            const responseElement = document.querySelector(`.ai-message[data-question-number="${questionNumber}"]`);
+
+            const questionText = questionElement ? questionElement.textContent.replace(`❓ Question ${questionNumber}: `, '').trim() : null;
+            const responseText = responseElement ? responseElement.textContent.replace(`💡 Answer ${questionNumber}: `, '').trim() : null;
+
             const feedbackData = {
                 session_id: currentSessionId,
                 question_number: questionNumber,
                 rating: rating,
-                comment: comment
+                comment: comment,
+                question: questionText,
+                response: responseText
             };
 
             fetch('/submit-feedback', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(feedbackData)
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
+                if (data.message) {
                     alert(`Feedback submitted for Question ${questionNumber}`);
                 } else {
                     alert(`Failed to submit feedback: ${data.error}`);
