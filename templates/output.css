@@ -45,9 +45,10 @@
       font-size: 12px;
   }
   .star {
-      font-size: 18px;
-      cursor: pointer;
-      transition: transform 0.2s;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: gray;  /* Explicitly set default color to grey */
   }
   .star:hover {
       transform: scale(1.2);

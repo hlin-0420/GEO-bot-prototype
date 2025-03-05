@@ -150,10 +150,15 @@
                         chatMessages.appendChild(answerFeedbackWrapper);
 
                         addFeedbackSection(aiMessageDiv, tempQuestionNumber);
+
+                        selectedRatings[tempQuestionNumber] = 0;  // Explicitly set no rating on initial load
+                        resetStars(tempQuestionNumber);           // Ensure stars match the default 0 rating
+                        console.log(`Resetting stars for Question ${tempQuestionNumber}, selectedRating = ${selectedRatings[tempQuestionNumber]}`);
                     }
                 });
 
                 questionCounter = tempQuestionNumber;
+                addDynamicSpacer(); // ✅ Add dynamic spacer at the very end to improve spacing after all content is rendered
             } catch (error) {
                 console.error("Failed to load session messages:", error);
             }
@@ -773,7 +778,8 @@
                             onclick="submitFeedback(${questionNumber}, ${star})"
                             onmouseover="highlightStars(${questionNumber}, ${star})"
                             onmouseleave="resetStars(${questionNumber})"
-                        >⭐</span>
+                            style="cursor: pointer;"
+                        >★</span>
                     `).join('')}
                 </span>
                 <div id="feedbackCommentContainer-${questionNumber}" style="display: none; margin-top: 5px;">
@@ -785,6 +791,16 @@
 
             // Attach feedback directly under the AI message
             aiMessageDiv.parentElement.appendChild(feedbackContainer);
+
+            // Force initial grey (this is extra safety before resetStars runs)
+            const stars = feedbackContainer.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
+            stars.forEach(star => {
+                star.style.color = '#ccc';
+                console.log(`🔧 Initial forced grey for star ${star.getAttribute('data-rating')} in Q${questionNumber}`);
+            });
+
+            // Ensure stars are reset to grey on first render
+            resetStars(questionNumber);  // <-- This is the critical missing line
         }
 
         const selectedRatings = {};  // To store the selected rating for each question
@@ -793,28 +809,38 @@
             const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
             stars.forEach(star => {
                 const starValue = parseInt(star.getAttribute('data-rating'), 10);
-                if (starValue <= starRating) {
-                    star.style.color = '#f39c12';  // Highlight color (gold)
-                } else {
-                    star.style.color = '';  // Reset
-                }
+                star.style.color = (starValue <= starRating) ? '#f39c12' : '#ccc';
             });
         }
 
         function resetStars(questionNumber) {
             const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
             const selectedRating = selectedRatings[questionNumber] || 0;
+
             stars.forEach(star => {
                 const starValue = parseInt(star.getAttribute('data-rating'), 10);
+
                 if (starValue <= selectedRating) {
-                    star.style.color = '#f39c12';  // Keep selected stars highlighted
+                    star.style.color = '#f39c12'; // Gold for selected stars
                 } else {
-                    star.style.color = '';  // Reset others
+                    star.style.color = '#ccc'; // Grey for unselected stars
                 }
+
+                // ✅ Force removal of any stray browser-applied styles
+                star.removeAttribute('style');
+                star.style.color = (starValue <= selectedRating) ? '#f39c12' : '#ccc';
+
+                // Debugging log to check final star colour
+                console.log(`⭐ Star ${starValue} for Question ${questionNumber} set to ${star.style.color}`);
             });
+
+            console.log(`Resetting stars for Question ${questionNumber}, selectedRating = ${selectedRating}`);
         }
 
         function submitFeedback(questionNumber, rating) {
+            selectedRatings[questionNumber] = rating;  // Store the selected rating
+            resetStars(questionNumber);  // Reapply correct highlighting
+
             const commentElement = document.getElementById(`feedbackComment-${questionNumber}`);
             const comment = commentElement ? commentElement.value.trim() : "";
             console.log(`comment: ${comment}`);
