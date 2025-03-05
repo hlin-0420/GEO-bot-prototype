@@ -629,6 +629,12 @@
     transform: translateX(-50%);
   }
 
+  /* Dark mode input bar */
+  .dark-mode .chat-input-bar {
+    background-color: #2c2c2c;
+    border-top: 1px solid #555;
+  }
+
   /* First Row: Input Field */
   .chat-input-row {
     width: 100%;
@@ -658,6 +664,13 @@
     background: none;
   }
 
+  /* Dark mode input field */
+  .dark-mode .chat-input {
+    background-color: #444;
+    color: #fff;
+    border-color: #666;
+  }
+
   /* Chat Action Buttons */
   .chat-action-buttons {
     display: flex;
@@ -673,6 +686,12 @@
     border-radius: 20px;
     cursor: pointer;
     transition: 0.2s;
+  }
+
+  /* Dark mode action buttons */
+  .dark-mode .chat-action-button {
+    background-color: #555;
+    color: #ddd;
   }
 
   .chat-action-button:hover {
@@ -695,6 +714,16 @@
     background: #333;
   }
 
+  /* Default text style for light mode */
+  #chatDisplay p {
+    color: #444; /* dark grey for better contrast */
+  }
+
+  /* Dark mode adjustment */
+  .dark-mode #chatDisplay p {
+    color: #444; /* light grey for dark mode */
+  }
+
   /* Chat Icon Button (Plus Button) */
   .chat-icon-button {
     background: none;
@@ -702,6 +731,11 @@
     font-size: 20px;
     cursor: pointer;
     margin-right: 10px;
+  }
+
+  /* Dark mode adjustments for icon buttons */
+  .dark-mode .chat-icon-button {
+    color: #ddd;
   }
 
   /* Chat Layout */
@@ -753,20 +787,39 @@
       margin-bottom: 15px;
   }
 
+  /* User message - Light mode */
   .user-message {
-      background: #d1ecf1;
-      padding: 12px;
-      border-radius: 10px;
-      max-width: 70%;
-      align-self: flex-end;
+    background-color: #d1ecf1;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
   }
 
+  /* AI message - Light mode */
   .ai-message {
-      background: #f8d7da;
-      padding: 12px;
-      border-radius: 10px;
-      max-width: 70%;
-      align-self: flex-start;
+    background-color: #f8d7da;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  /* User message - Dark mode */
+  .dark-mode .user-message {
+    background-color: #1e3a5f;  /* Dark blue for contrast */
+    color: #f5f5f5;
+  }
+
+  /* AI message - Dark mode */
+  .dark-mode .ai-message {
+    background-color: #5a2a2a;  /* Dark red */
+    color: #f5f5f5;
+  }
+
+  /* Feedback section - Dark mode */
+  .dark-mode .feedback-section {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+    border-color: #555;
   }
 
   #fileViewOutput {
@@ -1103,5 +1156,160 @@
   }
   .option input {
     margin-right: 8px;
+  }
+
+  /* General dark mode body */
+  body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+  }
+
+  /* Sidebar (chat history area) */
+  .dark-mode .chat-sidebar {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+  }
+
+  /* Chat entries */
+  .dark-mode .chat-entry-with-options {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+  }
+
+  .dark-mode .chat-entry-with-options:hover {
+    background-color: #505050;
+  }
+
+  /* Chat messages area */
+  .dark-mode .chat-message {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+  }
+
+  /* Context menu (rename/delete) */
+  .dark-mode .context-menu {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+    border-color: #555;
+  }
+
+  .dark-mode .context-menu button {
+    color: #f5f5f5;
+  }
+
+  .dark-mode .context-menu button:hover {
+    background-color: #505050;
+  }
+
+  /* Inputs and textareas */
+  .dark-mode input,
+  .dark-mode textarea {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+    border-color: #555;
+  }
+
+  /* Buttons (like Search, Deep Research, etc.) */
+  .dark-mode button {
+    color: #f5f5f5;
+  }
+
+  /* Feedback section (if applicable) */
+  .dark-mode .feedback-section {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+  }
+
+  /* Stars in rating */
+  .dark-mode .star {
+    color: #f5f5f5;
+  }
+
+  .dark-mode .star:hover {
+    color: gold;
+  }
+
+  /* Processing and final response messages */
+  .dark-mode .processing-style {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+  }
+
+  .dark-mode .final-response-style {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+  }
+
+  /* Chat input panel */
+  .dark-mode .chat-actions-row {
+    background-color: #2c2c2c;
+    border-top: 1px solid #555;
+  }
+
+  /* Default (light mode) feedback styling */
+  .feedback-container {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    color: black;
+  }
+
+  /* Dark mode adjustments */
+  .dark-mode .feedback-container {
+    background-color: #2c2c2c;
+    border-color: #555;
+    color: #f5f5f5;
+  }
+
+  /* Feedback Stars */
+  .dark-mode .feedback-stars .star {
+    color: #aaa;
+  }
+
+  .dark-mode .feedback-stars .star:hover {
+    color: gold;
+  }
+
+  /* Feedback Comment Box */
+  .dark-mode .feedback-comment-container {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #f5f5f5;
+  }
+
+  .dark-mode .feedback-textarea {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+    border: 1px solid #555;
+  }
+
+  /* Expand/Collapse Toggle */
+  .dark-mode .feedback-toggle-icon {
+    color: #f5f5f5;
+  }
+
+  /* Feedback comment input (dark mode) */
+  .dark-mode #feedbackCommentContainer-1 {
+    background-color: #3a3a3a;
+    border-color: #555;
+  }
+
+  .dark-mode #feedbackComment-1 {
+    background-color: #3a3a3a;
+    color: #f5f5f5;
+    border: none;
+  }
+
+  /* Optional: ensure the expand/collapse toggle is visible */
+  .dark-mode #toggleIcon-1 {
+    color: #f5f5f5;
+  }
+
+  .dark-mode button {
+    color: #f5f5f5;
   }
 }

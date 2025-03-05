@@ -48,13 +48,16 @@
                             ➕
                         </button>
                         <div class="chat-action-buttons">
-                            <button class="chat-action-button" onclick="searchQuery()" style="color: black;">
+                            <button class="chat-action-button" onclick="searchQuery()">
                                 🌍 Search
                             </button>
-                            <button class="chat-action-button" onclick="deepResearch()" style="color: black;">
+                            <button class="chat-action-button" onclick="deepResearch()">
                                 🚀 Deep research
                             </button>
-                            <button class="chat-action-button" onclick="moreOptions()" style="color: black;">
+                            <button class="chat-icon-button" onclick="toggleDarkMode()">
+                                🌙
+                            </button>
+                            <button class="chat-action-button" onclick="moreOptions()">
                                 ⋯
                             </button>
                         </div>
@@ -69,6 +72,19 @@
     
     <script>
         let currentSessionId = null;
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        }
+
+        // Ensure dark mode preference is remembered
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
 
         function removeDynamicSpacer() {
             const existingSpacer = document.getElementById("dynamic-scroll-spacer");
@@ -129,7 +145,6 @@
                         const userMessageDiv = document.createElement("div");
                         userMessageDiv.classList.add("chat-message", "user-message");
                         userMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
-                        userMessageDiv.style.backgroundColor = "#d1ecf1";
                         userMessageDiv.style.padding = "10px";
                         userMessageDiv.style.borderRadius = "5px";
                         userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${msg.content}`;
@@ -139,9 +154,7 @@
                         answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
                         const aiMessageDiv = document.createElement("div");
-                        aiMessageDiv.classList.add("chat-message", "ai-message");
-                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
-                        aiMessageDiv.style.backgroundColor = "#f8d7da";
+                        aiMessageDiv.classList.add("chat-message", "ai-message");                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${msg.content}`;
@@ -695,7 +708,6 @@
             // User question block
             const userMessageDiv = document.createElement("div");
             userMessageDiv.classList.add("chat-message", "user-message");
-            userMessageDiv.style.backgroundColor = "#d1ecf1";
             userMessageDiv.style.padding = "10px";
             userMessageDiv.style.borderRadius = "5px";
             userMessageDiv.innerHTML = `❓ Question ${questionCounter}: ${userMessage}`;
@@ -793,13 +805,7 @@
         function addFeedbackSection(aiMessageDiv, questionNumber) {
             const feedbackContainer = document.createElement("div");
             feedbackContainer.id = `feedbackContainer-${questionNumber}`;
-            feedbackContainer.style.marginTop = "8px";
-            feedbackContainer.style.marginBottom = "20px";
-            feedbackContainer.style.padding = "5px";
-            feedbackContainer.style.border = "1px solid #ddd";
-            feedbackContainer.style.borderRadius = "5px";
-            feedbackContainer.style.backgroundColor = "#f9f9f9";
-            feedbackContainer.style.width = "100%";
+            feedbackContainer.classList.add("feedback-container"); // ✅ Now uses CSS instead of inline styles
 
             feedbackContainer.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" 
