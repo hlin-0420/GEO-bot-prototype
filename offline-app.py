@@ -410,7 +410,62 @@ class OllamaBot:
                     relative_path = os.path.relpath(os.path.join(root, file), start=self.base_directory)
                     htm_files.append(self.base_directory + "/" + relative_path)
         return htm_files
+    
+    def _load_feedback_into_documents_and_file(self, page_texts):
+        """
+        Loads feedback from feedback_dataset.json, formats it, and appends it to documents and processed_content.txt.
+        This ensures feedback is properly separated with '---Feedback---' for easy retrieval during RAG training.
+        """
 
+        feedback_data = load_feedback_dataset()
+        feedback_heading = "---Feedback---"
+
+        # Collect formatted feedback for processed_content.txt
+        formatted_feedback_blocks = []
+
+        for feedback_entry in feedback_data:
+            # Convert feedback entry to pretty JSON
+            json_feedback = json.dumps(feedback_entry, indent=4)
+
+            # Create full feedback block with header
+            formatted_feedback = f"{feedback_heading}\n{json_feedback}\n"
+            formatted_feedback_blocks.append(formatted_feedback)
+
+            # Insert into document store (Langchain or Haystack) depending on model
+            if self.web_documents:
+                last_document = self.web_documents[-1]
+
+                if last_document.page_content.startswith(feedback_heading):
+                    # Append to the existing feedback document
+                    last_document.page_content += f"\n{json_feedback}\n"
+                else:
+                    # Create new feedback document if none exists
+                    if selected_model_name in valid_model_names:
+                        new_document = LangchainDocument(page_content=formatted_feedback)
+                        self.web_documents.append(new_document)
+                    else:
+                        new_document = HaystackDocument(content=formatted_feedback)
+                        self.web_documents_haystack.append(new_document)
+            else:
+                # Handle case where no documents exist (first-time load)
+                if selected_model_name in valid_model_names:
+                    new_document = LangchainDocument(page_content=formatted_feedback)
+                    self.web_documents.append(new_document)
+                else:
+                    new_document = HaystackDocument(content=formatted_feedback)
+                    self.web_documents_haystack.append(new_document)
+
+            # For processed_content.txt, add just the JSON feedback (without header)
+            page_texts.append(formatted_feedback)
+
+        # Combine all page texts into final output and write to processed_content.txt
+        temp_page_texts = "\n\n".join(page_texts)
+
+        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
+            file.write(temp_page_texts)
+
+        logging.info(f"Processed content (including feedback) saved to {PROCESSED_CONTENT_FILE}")
+        
     def _load_content(self, selectedOptions=None):
         """
         Load and process all .htm files from the base directory.
@@ -495,37 +550,7 @@ class OllamaBot:
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
 
-        # updates feedback data into the file.
-        feedback_data = load_feedback_dataset()
-        
-        for feedback_entry in feedback_data:
-            json_feedback = json.dumps(feedback_entry, indent=4)
-
-            feedback_heading = "---Feedback---"
-
-            if self.web_documents:
-                last_document = self.web_documents[-1]
-                
-                print(f"The last document starts with the feedback heading: {last_document.page_content.startswith(feedback_heading)}")
-
-                if last_document.page_content.startswith(feedback_heading):
-                    last_document.page_content += f"{json_feedback}\n"
-                else:
-                    json_feedback = f"{feedback_heading}\n{json_feedback}\n" # updates json feedback by adding a heading in front.
-                    if selected_model_name in valid_model_names:
-                        new_document = LangchainDocument(page_content=json_feedback)
-                        self.web_documents.append(new_document)
-                    else:
-                        new_document = HaystackDocument(content=json_feedback)
-                        self.web_documents_haystack.append(new_document)
-                    
-            page_texts.append(json_feedback)
-
-        # saves help guide and feedback data into a text file for visualization.
-        temp_page_texts = "\n\n".join(page_texts)
-        
-        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
-            file.write(temp_page_texts)
+        self._load_feedback_into_documents_and_file(page_texts)
 
         logging.info(f"Processed content saved to {PROCESSED_CONTENT_FILE}")
 

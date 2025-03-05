@@ -10624,6 +10624,7 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
 }
 
 
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "What is the upper limit on lithology types in a log?",
@@ -10632,6 +10633,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 10
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "What's the highest number of lithology types that can be represented in a log?",
@@ -10640,6 +10643,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 10
 }
 
+
+---Feedback---
 {
     "model-name": "deepseek1.5",
     "question": "What's the highest number of lithology types that can be represented in a log?",
@@ -10648,6 +10653,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 10
 }
 
+
+---Feedback---
 {
     "model-name": "deepseek1.5",
     "question": "How many lithology types can a single log accomodate at maximum?",
@@ -10656,6 +10663,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 10
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2",
     "question": "How many tracks can you define in one ODF?",
@@ -10664,6 +10673,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 10
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2",
     "question": "What is the maximum number of characters in a single text entry?",
@@ -10672,6 +10683,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 5
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "Where can you view the mouse pointer depth?",
@@ -10680,6 +10693,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 4
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "How many scales can I define?",
@@ -10688,6 +10703,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 1
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "How many tables can I have in my log?",
@@ -10696,6 +10713,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 1
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "What the maximum number of headers I can display in my log?",
@@ -10704,6 +10723,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 1
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "What's the maximum number of lithology types in an log?",
@@ -10712,6 +10733,8 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "rating-score": 5
 }
 
+
+---Feedback---
 {
     "model-name": "llama3.2:latest",
     "question": "How many curve shades can I create?",
