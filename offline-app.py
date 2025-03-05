@@ -680,7 +680,7 @@ def submitFeedback():
             "model-name": selected_model_name,
             "question": question,
             "response": response,
-            "feedback": details,
+            "feedback": details if details is not None else "",
             "rating-score": rating
         }
         

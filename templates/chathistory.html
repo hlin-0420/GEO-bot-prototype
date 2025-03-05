@@ -815,7 +815,9 @@
         }
 
         function submitFeedback(questionNumber, rating) {
-            const comment = document.getElementById(`feedbackComment-${questionNumber}`).value.trim();
+            const commentElement = document.getElementById(`feedbackComment-${questionNumber}`);
+            const comment = commentElement ? commentElement.value.trim() : "";
+            console.log(`comment: ${comment}`);
 
             // Extract question and response from displayed content
             const questionElement = document.querySelector(`.user-message[data-question-number="${questionNumber}"]`);
