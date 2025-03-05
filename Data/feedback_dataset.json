@@ -82,5 +82,19 @@
         "response": "The maximum number of lithology types that can be recorded in a log is 450.",
         "feedback": "",
         "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What's the maximum number of lithology types in an log?",
+        "response": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "feedback": "",
+        "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What's the maximum number of lithology types in an log?",
+        "response": "The maximum number of lithology types that can be recorded in a log is 450.",
+        "feedback": "This response accurately represents the number of lithology types.",
+        "rating-score": 5
     }
 ]

@@ -668,7 +668,7 @@ def submitFeedback():
     try:    
         global selected_model_name
         data = request.json
-        details = data.get("details")
+        comment = data.get("comment")
         rating = data.get("rating")
         response = data.get("response")
         question = data.get("question")
@@ -680,7 +680,7 @@ def submitFeedback():
             "model-name": selected_model_name,
             "question": question,
             "response": response,
-            "feedback": details if details is not None else "",
+            "feedback": comment if comment is not None else "",
             "rating-score": rating
         }
         

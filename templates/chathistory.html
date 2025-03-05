@@ -778,29 +778,42 @@
                             onclick="submitFeedback(${questionNumber}, ${star})"
                             onmouseover="highlightStars(${questionNumber}, ${star})"
                             onmouseleave="resetStars(${questionNumber})"
-                            style="cursor: pointer;"
-                        >★</span>
+                            style="cursor: pointer; color: #ccc;">
+                            ★
+                        </span>
                     `).join('')}
                 </span>
-                <div id="feedbackCommentContainer-${questionNumber}" style="display: none; margin-top: 5px;">
+                <div id="feedbackCommentContainer-${questionNumber}" 
+                    style="margin-top: 5px; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 5px; background-color: #f9f9f9; display: none;">
+
                     <textarea id="feedbackComment-${questionNumber}" 
                         placeholder="Optional feedback..." 
-                        style="width: 100%;"></textarea>
+                        style="flex-grow: 1; border: none; outline: none; resize: none; padding: 5px; font-size: 14px;"></textarea>
+
+                    <button onclick="submitCompleteFeedback(${questionNumber})"
+                        style="border: none; 
+                            background: none; 
+                            cursor: pointer; 
+                            font-size: 20px; 
+                            margin-left: 5px; 
+                            padding: 5px; 
+                            color: #007bff; 
+                            font-weight: bold;">
+                        ➢
+                    </button>
                 </div>
             `;
 
-            // Attach feedback directly under the AI message
             aiMessageDiv.parentElement.appendChild(feedbackContainer);
 
-            // Force initial grey (this is extra safety before resetStars runs)
+            // Force initial grey stars (safety on initial load)
             const stars = feedbackContainer.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
             stars.forEach(star => {
                 star.style.color = '#ccc';
-                console.log(`🔧 Initial forced grey for star ${star.getAttribute('data-rating')} in Q${questionNumber}`);
             });
 
-            // Ensure stars are reset to grey on first render
-            resetStars(questionNumber);  // <-- This is the critical missing line
+            // Reset stars (handles cases where history is preloaded)
+            resetStars(questionNumber);
         }
 
         const selectedRatings = {};  // To store the selected rating for each question
@@ -819,33 +832,22 @@
 
             stars.forEach(star => {
                 const starValue = parseInt(star.getAttribute('data-rating'), 10);
-
-                if (starValue <= selectedRating) {
-                    star.style.color = '#f39c12'; // Gold for selected stars
-                } else {
-                    star.style.color = '#ccc'; // Grey for unselected stars
-                }
-
-                // ✅ Force removal of any stray browser-applied styles
-                star.removeAttribute('style');
                 star.style.color = (starValue <= selectedRating) ? '#f39c12' : '#ccc';
-
-                // Debugging log to check final star colour
-                console.log(`⭐ Star ${starValue} for Question ${questionNumber} set to ${star.style.color}`);
             });
-
-            console.log(`Resetting stars for Question ${questionNumber}, selectedRating = ${selectedRating}`);
         }
 
-        function submitFeedback(questionNumber, rating) {
-            selectedRatings[questionNumber] = rating;  // Store the selected rating
-            resetStars(questionNumber);  // Reapply correct highlighting
-
+        function submitCompleteFeedback(questionNumber) {
             const commentElement = document.getElementById(`feedbackComment-${questionNumber}`);
             const comment = commentElement ? commentElement.value.trim() : "";
-            console.log(`comment: ${comment}`);
+            console.log(`Comment data: "${comment}".`);
 
-            // Extract question and response from displayed content
+            const rating = selectedRatings[questionNumber] || 0;  // Rating defaults to 0 if no stars selected.
+
+            if (rating === 0 && !comment) {
+                alert("Please provide either a rating or a comment before submitting.");
+                return;
+            }
+
             const questionElement = document.querySelector(`.user-message[data-question-number="${questionNumber}"]`);
             const responseElement = document.querySelector(`.ai-message[data-question-number="${questionNumber}"]`);
 
@@ -879,7 +881,12 @@
                 alert("An error occurred while submitting feedback.");
             });
         }
-
+        
+        function submitFeedback(questionNumber, rating) {
+            selectedRatings[questionNumber] = rating;  // Store rating selection
+            resetStars(questionNumber);  // Update star visuals
+            submitCompleteFeedback(questionNumber);  // Directly submit complete feedback including current comment (if any)
+        }
 
         function toggleFeedbackComment(questionNumber) {
             const commentContainer = document.getElementById(`feedbackCommentContainer-${questionNumber}`);
