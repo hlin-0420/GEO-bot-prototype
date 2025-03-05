@@ -613,20 +613,12 @@
 
   /* Chat Input Bar */
   .chat-input-bar {
-    display: flex;
-    flex-direction: column;  /* Ensures two-row layout */
-    align-items: center;
-    background: #fff;
-    border-radius: 30px;
+    position: relative;
+    z-index: 10;
+    background-color: white;
+    border-top: 1px solid #ddd;
     padding: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px;
-    margin: auto;
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   /* Dark mode input bar */
@@ -686,6 +678,7 @@
     border-radius: 20px;
     cursor: pointer;
     transition: 0.2s;
+    color: #333;
   }
 
   /* Dark mode action buttons */
@@ -773,23 +766,21 @@
   /* Chat Layout */
   .chat-container {
     display: flex;
-    height: calc(100vh - 60px); /* Adjust for navbar height */
+    flex-direction: column;
+    height: 100vh;  /* Full height to fill the page */
   }
 
   /* Container to hold sidebar + resizer */
   .resizable-container {
     display: flex;
-    align-items: stretch;
-    height: 100%;
+    flex: 1;  /* Take all available vertical space, pushing input bar to the bottom */
+    overflow: hidden;  /* Prevent sidebar overflow */
   }
 
   /* Sidebar: Chat History */
   .chat-sidebar {
-      width: 500px;
-      background: #f8f9fa;
-      border-right: 1px solid #ddd;
-      padding: 15px;
-      overflow-y: auto;
+    overflow-y: auto;
+    flex-shrink: 0;  /* Sidebar can resize but won't collapse completely */
   }
 
   .chat-sidebar h3 {
@@ -813,10 +804,9 @@
 
   /* Main Chat Display */
   .chat-main {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
+    flex: 1;  /* Takes remaining space */
+    overflow-y: auto;
+    position: relative;  /* Ensure children like messages don't overflow */
   }
 
   /* Chat Messages */
