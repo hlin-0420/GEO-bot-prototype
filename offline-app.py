@@ -668,7 +668,10 @@ def submitFeedback():
     try:    
         global selected_model_name
         data = request.json
-        comment = data.get("comment")
+        
+        # Dynamic mapping to support both "comment" and "details"
+        comment = data.get("comment") or data.get("details") or ""  # Prefer "comment", fallback to "details"
+        
         rating = data.get("rating")
         response = data.get("response")
         question = data.get("question")
@@ -680,7 +683,7 @@ def submitFeedback():
             "model-name": selected_model_name,
             "question": question,
             "response": response,
-            "feedback": comment if comment is not None else "",
+            "feedback": comment,
             "rating-score": rating
         }
         

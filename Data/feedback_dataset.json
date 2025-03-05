@@ -82,5 +82,12 @@
         "response": "The maximum number of lithology types that can be recorded in a log is 450.",
         "feedback": "This response is correct and accurate - the value of 450 is the maximum number of lithology types that can be recorded in a log.",
         "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "How many curve shades can I create?",
+        "response": "According to the document, you can create 250 curve shades.",
+        "feedback": "This answer is correct.",
+        "rating-score": 5
     }
 ]
