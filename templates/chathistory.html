@@ -775,7 +775,7 @@
                             class="star" 
                             data-question-number="${questionNumber}" 
                             data-rating="${star}" 
-                            onclick="submitFeedback(${questionNumber}, ${star})"
+                            onclick="setRating(${questionNumber}, ${star})"
                             onmouseover="highlightStars(${questionNumber}, ${star})"
                             onmouseleave="resetStars(${questionNumber})"
                             style="cursor: pointer; color: #ccc;">
@@ -806,17 +806,23 @@
 
             aiMessageDiv.parentElement.appendChild(feedbackContainer);
 
-            // Force initial grey stars (safety on initial load)
+            // Force initial grey stars (for safety on initial load)
             const stars = feedbackContainer.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
             stars.forEach(star => {
                 star.style.color = '#ccc';
             });
 
-            // Reset stars (handles cases where history is preloaded)
+            // Ensure stars are in the correct state based on preloaded ratings (if any)
             resetStars(questionNumber);
         }
 
         const selectedRatings = {};  // To store the selected rating for each question
+
+        function setRating(questionNumber, rating) {
+            selectedRatings[questionNumber] = rating;
+            console.log(`⭐ Set rating for Q${questionNumber} to ${rating}`);
+            resetStars(questionNumber);  // Just update UI, don't submit yet.
+        }
 
         function highlightStars(questionNumber, starRating) {
             const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
