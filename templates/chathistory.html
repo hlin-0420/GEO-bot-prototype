@@ -154,7 +154,8 @@
                         answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
                         const aiMessageDiv = document.createElement("div");
-                        aiMessageDiv.classList.add("chat-message", "ai-message");                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
+                        aiMessageDiv.classList.add("chat-message", "ai-message");                        
+                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${msg.content}`;
