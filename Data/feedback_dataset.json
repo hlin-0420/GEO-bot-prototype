@@ -89,5 +89,12 @@
         "response": "According to the document, you can create 250 curve shades.",
         "feedback": "This answer is correct.",
         "rating-score": 5
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What is the maximum number of tracks that can be specified within a single ODF file?",
+        "response": "Unfortunately, I couldn't find any information on the maximum number of tracks that can be specified within a single ODF file in the provided documentation.",
+        "feedback": "The correct number of tracks that can be specified in a single ODF file is 200 tracks at most.",
+        "rating-score": 1
     }
 ]

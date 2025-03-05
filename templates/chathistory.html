@@ -736,7 +736,7 @@
                         placeholder.innerHTML = `<span style="color: red;">${data}</span>`;
                         eventSource.close();
                         resolve();
-                    } else {
+                    } else if (data !== "Processing your question...") {
                         fullResponse += data;
                         placeholder.innerHTML = fullResponse;
                     }
