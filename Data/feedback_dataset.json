@@ -96,5 +96,12 @@
         "response": "Unfortunately, I couldn't find any information on the maximum number of tracks that can be specified within a single ODF file in the provided documentation.",
         "feedback": "The correct number of tracks that can be specified in a single ODF file is 200 tracks at most.",
         "rating-score": 1
+    },
+    {
+        "model-name": "llama3.2:latest",
+        "question": "What\u2019s the track limit for an ODF?",
+        "response": "The maximum number of tracks that can be specified within a single ODF file is not explicitly stated in the provided documentation. However, it is mentioned that there is a limit of 200 tracks at most.\n\nIt's recommended to use OIF files instead of sending unnecessary data by saving only the specific depth range of interest. To do this:\n\n1. Enter the From and To index range on the Depth tab (e.g., 7000-8000).\n2. Select \"Save Displayed Depth or Time interval As (OIF)\" from the GEO menu.\n3. Check the Statistics dialog box to ensure that no limits have been exceeded.\n\nNote: The exact track limit for an ODF is not specified in the provided documentation, and it's recommended to use OIF files for more efficient data management.",
+        "feedback": "The generated information was redundant and could be more concise -> focus on the correct answer being a limit of 200 tracks in ODF files.",
+        "rating-score": 3
     }
 ]

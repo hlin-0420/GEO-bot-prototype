@@ -554,64 +554,102 @@
                 const response = await fetch("/chat-history");
                 let data = await response.json();
                 const chatHistoryList = document.getElementById("chatHistoryList");
-
-                console.log(chatHistoryList);
-
-                chatHistoryList.innerHTML = ""; // Clear previous content
+                chatHistoryList.innerHTML = "";
 
                 if (data.error) {
                     chatHistoryList.innerHTML = `<p style="color: red;">Error loading chat history: ${data.error}</p>`;
                     return;
                 }
 
-                // Sort by Timestamp
+                if (data.length === 0) {
+                    chatHistoryList.innerHTML = `<p style="text-align:center; color:#888;">No chats yet.</p>`;
+                    return;
+                }
+
                 data = sortChatHistoryByTime(data);
+                const groupedChats = groupByDate(data);
 
-                data.forEach((session) => {
-                    const chatItem = document.createElement("div");
-                    chatItem.classList.add("chat-entry-with-options");
+                for (const [date, chats] of Object.entries(groupedChats)) {
+                    const dateHeader = document.createElement("div");
+                    dateHeader.textContent = date === new Date().toLocaleDateString() ? "Today" : date;
+                    dateHeader.classList.add("date-header");
+                    chatHistoryList.appendChild(dateHeader);
 
-                    chatItem.innerHTML = `
-                        <div class="chat-entry-content" data-session-id="${session.session_id}">
-                            💬 ${session.session_name}
-                        </div>
-                        <div class="chat-entry-options">
-                            <button class="chat-options" onclick="toggleContextMenu(event, '${session.session_id}')">⋯</button>
-                            <div class="inline-context-menu" id="contextMenu-${session.session_id}" style="display: none;">
-                                <button onclick="renameSession('${session.session_id}')">✏️ Rename</button>
-                                <button onclick="deleteSession('${session.session_id}')">🗑️ Delete</button>
+                    chats.forEach(session => {
+                        const chatItem = document.createElement("div");
+                        chatItem.classList.add("chat-entry-with-options");
+
+                        chatItem.innerHTML = `
+                            <div class="chat-entry-content" data-session-id="${session.session_id}">
+                                💬 ${session.session_name}
                             </div>
-                        </div>
-                    `;
+                            <div class="chat-entry-options">
+                                <button class="chat-options" onclick="toggleContextMenu(event, '${session.session_id}')">⋯</button>
+                            </div>
+                        `;
 
-                    // Attach event listener directly to the entry content
-                    chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
-                        currentSessionId = session.session_id;
-                        sessionStorage.setItem("currentSessionId", currentSessionId);
-                        loadSessionMessages(currentSessionId);  // ✅ Fetch and display latest chat
+                        chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
+                            currentSessionId = session.session_id;
+                            sessionStorage.setItem("currentSessionId", currentSessionId);
+                            loadSessionMessages(currentSessionId);
+                        });
+
+                        chatHistoryList.appendChild(chatItem);
                     });
-
-                    chatHistoryList.appendChild(chatItem);
-                });
+                }
             } catch (error) {
                 console.error("Error loading chat history:", error);
                 document.getElementById("chatHistoryList").innerHTML = `<p style="color: red;">Failed to load chat history.</p>`;
             }
         }
 
-        function toggleContextMenu(event, sessionId) {
-            event.stopPropagation();  // Don't trigger row click
-            document.querySelectorAll('.inline-context-menu').forEach(menu => menu.style.display = 'none');  // Hide all others
-            const menu = document.getElementById(`contextMenu-${sessionId}`);
-            if (menu) {
-                menu.style.display = 'block';  // Show only this one
-            }
+        function groupByDate(chats) {
+            const grouped = {};
+            chats.forEach(chat => {
+                const date = new Date(chat.messages[0]?.timestamp).toLocaleDateString();
+                if (!grouped[date]) {
+                    grouped[date] = [];
+                }
+                grouped[date].push(chat);
+            });
+            return grouped;
         }
 
-        // Optional: Hide all menus when clicking outside
-        document.addEventListener("click", () => {
-            document.querySelectorAll('.inline-context-menu').forEach(menu => menu.style.display = 'none');
-        });
+        function toggleContextMenu(event, sessionId) {
+            event.stopPropagation();  // Prevent parent div click
+            closeGlobalContextMenu();  // Close any existing open menu
+
+            const menu = document.createElement("div");
+            menu.id = "globalContextMenu";
+            menu.classList.add("context-menu");
+            menu.innerHTML = `
+                <button onclick="renameSession('${sessionId}')" style="color:black">✏️ Rename</button>
+                <button onclick="deleteSession('${sessionId}')" style="color:black">🗑️ Delete</button>
+            `;
+
+            menu.style.position = 'absolute';
+            menu.style.left = `${event.pageX}px`;
+            menu.style.top = `${event.pageY}px`;
+            menu.style.zIndex = '1000';
+            menu.style.background = '#fff';
+            menu.style.border = '1px solid #ddd';
+            menu.style.borderRadius = '6px';
+            menu.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+            menu.style.padding = '6px 0';
+            menu.style.whiteSpace = 'nowrap';
+
+            document.body.appendChild(menu);
+
+            // Close menu when clicking elsewhere
+            document.addEventListener('click', closeGlobalContextMenu, { once: true });
+        }
+
+        function closeGlobalContextMenu() {
+            const existingMenu = document.getElementById("globalContextMenu");
+            if (existingMenu) {
+                existingMenu.remove();
+            }
+        }
 
         function displayChat(session) {
             const chatMessages = document.getElementById("chatMessages");
@@ -805,6 +843,7 @@
             `;
 
             aiMessageDiv.parentElement.appendChild(feedbackContainer);
+            addDynamicSpacer();
 
             // Force initial grey stars (for safety on initial load)
             const stars = feedbackContainer.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);

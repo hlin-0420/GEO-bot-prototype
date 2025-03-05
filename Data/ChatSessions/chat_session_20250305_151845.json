@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What\u2019s the track limit for an ODF?",
+        "timestamp": "2025-03-05T15:19:09.476734Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most. It's recommended to use OIF files instead, which allows you to save only the specific depth range of interest, making data management more efficient.",
+        "timestamp": "2025-03-05T15:19:09.476734Z"
+    }
+]
