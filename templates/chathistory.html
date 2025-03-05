@@ -27,18 +27,20 @@
 
     <div class="content">
         <div class="chat-container">
-            <div class="chat-sidebar">
-                <h3>📜 Chat History</h3>
-                <div id="chatHistoryList">
-                    <p>Loading history...</p>
+            <div class="resizable-container">
+                <div class="chat-sidebar" id="chatSidebar">
+                    <h3>📜 Chat History</h3>
+                    <div id="chatHistoryList">
+                        <p>Loading history...</p>
+                    </div>
+                </div>
+                <div class="resizer" id="sidebarResizer"></div>
+            
+                <!-- The rest of your chat-main and chat messages content would be here -->
+                <div class="chat-main">
+                    <div class="chat-messages" id="chatMessages"></div>
                 </div>
             </div>
-            <div class="chat-main">
-                <div id="chatDisplay">
-                    <p>Select a chat from history.</p>
-                </div>
-                <div class="chat-messages" id="chatMessages">
-                </div>
                 <div class="chat-input-bar">
                     <div class="chat-input-row">
                         <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
@@ -72,6 +74,35 @@
     
     <script>
         let currentSessionId = null;
+
+        const sidebar = document.getElementById('chatSidebar');
+        const resizer = document.getElementById('sidebarResizer');
+        let isResizing = false;
+
+        // Start resizing when mouse is down on resizer
+        resizer.addEventListener('mousedown', (e) => {
+            isResizing = true;
+            document.addEventListener('mousemove', handleResize);
+            document.addEventListener('mouseup', stopResize);
+        });
+
+        function handleResize(e) {
+            if (!isResizing) return;
+
+            // Calculate new width
+            let newWidth = e.clientX - sidebar.getBoundingClientRect().left;
+
+            // Optional: enforce min/max width
+            newWidth = Math.max(150, Math.min(newWidth, window.innerWidth * 0.5));
+
+            sidebar.style.width = `${newWidth}px`;
+        }
+
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener('mousemove', handleResize);
+            document.removeEventListener('mouseup', stopResize);
+        }
 
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
@@ -130,6 +161,11 @@
 
         async function loadSessionMessages(sessionId) {
             console.log(`🔎 Loading session messages for sessionId: ${sessionId}`);
+
+            const chatMessages = document.getElementById("chatMessages");
+            
+            // Clear existing messages and the placeholder message
+            chatMessages.innerHTML = "";
 
             try {
                 const response = await fetch(`/chat-history/${sessionId}`);
@@ -961,10 +997,19 @@
                 .catch(error => console.error("Error updating model:", error));
         }
 
+        function showInitialPlaceholder() {
+            const chatMessages = document.getElementById("chatMessages");
+            
+            if (!chatMessages.innerHTML.trim()) {
+                chatMessages.innerHTML = "<p style='text-align:center; color:gray;'>Select a chat from history.</p>";
+            }
+        }
+
         // Load chat history on page load
         document.addEventListener("DOMContentLoaded", () => {
             loadChatHistory();
             loadLatestSessionIfAvailable();
+            showInitialPlaceholder();  // Add this line
             addDynamicSpacer();
         });
 
