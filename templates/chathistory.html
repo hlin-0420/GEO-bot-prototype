@@ -645,9 +645,64 @@
                 });
         }
 
-        async function renameSession(sessionId) {
-            const newName = prompt("Enter new chat name:");
-            if (!newName) return;
+        function startRenameSession(sessionId) {
+            const sessionItem = document.querySelector(`[data-session-id="${sessionId}"]`);
+            if (!sessionItem) {
+                alert("Session item not found.");
+                return;
+            }
+
+            // Create container div (preserve flex layout)
+            const renameContainer = document.createElement("div");
+            renameContainer.style.display = "flex";
+            renameContainer.style.alignItems = "center";
+            renameContainer.style.gap = "5px";
+            renameContainer.style.width = "100%"; // Ensure it uses available space
+
+            // Get current name
+            const currentName = sessionItem.innerText.trim().replace("💬 ", "");
+
+            // Input field for renaming
+            const inputField = document.createElement("input");
+            inputField.type = "text";
+            inputField.id = `rename-input-${sessionId}`;
+            inputField.value = currentName;
+            inputField.style.flexGrow = "1"; // Take remaining space
+            inputField.style.padding = "3px";
+            inputField.style.minWidth = "0";  // Prevent overflow issues
+
+            // Save button
+            const saveButton = document.createElement("button");
+            saveButton.innerText = "💾";
+            saveButton.style.cursor = "pointer";
+            saveButton.onclick = () => saveRenameSession(sessionId);
+
+            // Cancel button
+            const cancelButton = document.createElement("button");
+            cancelButton.innerText = "❌";
+            cancelButton.style.cursor = "pointer";
+            cancelButton.onclick = () => cancelRenameSession(sessionId, currentName);
+
+            // Append input and buttons to container
+            renameContainer.appendChild(inputField);
+            renameContainer.appendChild(saveButton);
+            renameContainer.appendChild(cancelButton);
+
+            // Replace the inner content of the session item with the new rename container
+            sessionItem.innerHTML = "";  // Clear existing content
+            sessionItem.appendChild(renameContainer);
+
+            // Focus input
+            inputField.focus();
+            inputField.select();
+        }
+
+        async function saveRenameSession(sessionId) {
+            const newName = document.getElementById(`rename-input-${sessionId}`).value.trim();
+            if (!newName) {
+                alert("Chat name cannot be empty.");
+                return;
+            }
 
             await fetch("/rename-session", {
                 method: "POST",
@@ -655,7 +710,20 @@
                 body: JSON.stringify({ session_id: sessionId, new_name: newName })
             });
 
-            loadChatHistory();  // Refresh after renaming
+            // Refresh chat history after successful rename
+            loadChatHistory();
+        }
+
+        function cancelRenameSession(sessionId, originalName) {
+            const sessionItem = document.querySelector(`[data-session-id="${sessionId}"]`);
+            if (sessionItem) {
+                sessionItem.innerHTML = `💬 ${originalName}`;
+                sessionItem.onclick = () => {
+                    currentSessionId = sessionId;
+                    sessionStorage.setItem("currentSessionId", sessionId);
+                    loadSessionMessages(sessionId);
+                };
+            }
         }
 
         async function deleteSession(sessionId) {
@@ -779,7 +847,7 @@
             menu.id = "globalContextMenu";
             menu.classList.add("context-menu");
             menu.innerHTML = `
-                <button onclick="renameSession('${sessionId}')" style="color:black">✏️ Rename</button>
+                <button onclick="startRenameSession('${sessionId}')" style="color:black">✏️ Rename</button>
                 <button onclick="deleteSession('${sessionId}')" style="color:black">🗑️ Delete</button>
             `;
 

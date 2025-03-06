@@ -634,12 +634,24 @@
   }
 
   .chat-entry-content {
-    flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-right: 8px; /* Ensures space before ⋯ button */
-    max-width: calc(100% - 36px); /* Ensure space for the button */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    overflow: visible;  /* Important to ensure buttons and input are visible */
+    flex-wrap: nowrap;  /* Ensure inline layout works */
+    width: 100%;  /* Allow full space usage */
+  }
+
+  .chat-entry-content input {
+    flex-grow: 1; /* Let the input take most space */
+    min-width: 100px;
+  }
+
+  .chat-entry-content button {
+    padding: 3px 6px;
+    cursor: pointer;
+    font-size: 12px;
   }
 
   .chat-message-wrapper {
