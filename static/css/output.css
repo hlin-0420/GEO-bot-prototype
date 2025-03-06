@@ -595,34 +595,55 @@
 
   .chat-entry-with-options {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 8px 12px;
     border-radius: 8px;
     background-color: white;
     margin-bottom: 8px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s ease;
-    overflow: hidden;
+    overflow: hidden; 
     white-space: nowrap;
+    min-width: 240px;
   }
 
   .chat-entry-content {
-      flex-grow: 1;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-right: 8px; /* Ensures space before ⋯ button */
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 8px; /* Ensures space before ⋯ button */
+    max-width: calc(100% - 36px); /* Ensure space for the button */
+  }
+
+  .chat-message-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #e8f5ff; /* Match the question background */
+    border-radius: 5px;
+    margin-bottom: 5px;
   }
 
   .chat-options {
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 2px 6px;
-      color: #555;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    visibility: visible;
+    padding: 4px;
+  }
+
+  #chatSidebar {
+    min-width: 240px;
+  }
+
+  #chatHistoryList {
+    min-width: 240px; /* Adjust to your layout */
+    overflow-x: auto;
   }
 
   .inline-context-menu {
@@ -649,12 +670,15 @@
   }
 
   .context-menu button:hover {
-      background-color: #f0f0f0;
+    background-color: #f0f0f0;
   }
 
   .chat-entry-options {
-    display: flex;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Force width for ⋯ button */
   }
 
   .context-menu {
@@ -851,7 +875,8 @@
 
   /* Sidebar: Chat History */
   .chat-sidebar {
-    overflow-y: auto;
+    min-width: 260px;
+    overflow: auto;
     flex-shrink: 0;  /* Sidebar can resize but won't collapse completely */
   }
 
@@ -894,6 +919,14 @@
     color: black;
     padding: 10px;
     border-radius: 5px;
+  }
+
+  .question-options {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
   }
 
   /* AI message - Light mode */

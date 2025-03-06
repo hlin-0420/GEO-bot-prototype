@@ -1,0 +1,52 @@
+[
+    {
+        "role": "user",
+        "content": "What is the maximum number of tracks that can be specified within a single ODF file?",
+        "timestamp": "2025-03-06T10:03:16.683166Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most.",
+        "timestamp": "2025-03-06T10:03:16.683166Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tracks can you set up in one ODF?",
+        "timestamp": "2025-03-06T10:03:37.859965Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most.",
+        "timestamp": "2025-03-06T10:03:37.859965Z"
+    },
+    {
+        "role": "user",
+        "content": "What\u2019s the track limit for an ODF?",
+        "timestamp": "2025-03-06T10:04:05.724456Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most. It's recommended to use OIF files instead, which allows you to save only the specific depth range of interest, making data management more efficient.",
+        "timestamp": "2025-03-06T10:04:05.724456Z"
+    },
+    {
+        "role": "user",
+        "content": "In one ODF configuration, how many tracks can be defined?",
+        "timestamp": "2025-03-06T10:04:30.331958Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most.",
+        "timestamp": "2025-03-06T10:04:30.331958Z"
+    },
+    {
+        "role": "user",
+        "content": "Is there a maximum number of tracks you can create in one ODF?",
+        "timestamp": "2025-03-06T10:04:36.631007Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most.",
+        "timestamp": "2025-03-06T10:04:36.631007Z"
+    }
+]

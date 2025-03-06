@@ -194,13 +194,29 @@
                 session.messages.forEach((msg) => {
                     if (msg.role === "user") {
                         tempQuestionNumber++;
+
+                        const questionWrapper = document.createElement("div");
+                        questionWrapper.classList.add("chat-message-wrapper");
+
                         const userMessageDiv = document.createElement("div");
                         userMessageDiv.classList.add("chat-message", "user-message");
                         userMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
                         userMessageDiv.style.padding = "10px";
                         userMessageDiv.style.borderRadius = "5px";
                         userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${msg.content}`;
-                        chatMessages.appendChild(userMessageDiv);
+
+                        // Create the 3-dot options button
+                        const optionsButton = document.createElement("button");
+                        optionsButton.classList.add("chat-options");
+                        optionsButton.innerHTML = "⋯";
+                        optionsButton.onclick = (event) => toggleQuestionMenu(event, tempQuestionNumber);
+
+                        // Append the message and button into the wrapper
+                        questionWrapper.appendChild(userMessageDiv);
+                        questionWrapper.appendChild(optionsButton);
+
+                        // Finally, append the wrapper to `chatMessages`
+                        chatMessages.appendChild(questionWrapper);
                     } else if (msg.role === "assistant") {
                         const answerFeedbackWrapper = document.createElement("div");
                         answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
@@ -654,6 +670,7 @@
                             </div>
                         `;
 
+                        // console.log(chatItem.outerHTML);
                         chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
                             currentSessionId = session.session_id;
                             sessionStorage.setItem("currentSessionId", currentSessionId);
@@ -663,6 +680,8 @@
                         chatHistoryList.appendChild(chatItem);
                     });
                 }
+
+                console.log(chatHistoryList);
             } catch (error) {
                 console.error("Error loading chat history:", error);
                 document.getElementById("chatHistoryList").innerHTML = `<p style="color: red;">Failed to load chat history.</p>`;
@@ -710,11 +729,62 @@
             document.addEventListener('click', closeGlobalContextMenu, { once: true });
         }
 
+        function toggleQuestionMenu(event, questionNumber) {
+            event.stopPropagation(); // Prevent background click events
+
+            // Remove any existing menus
+            closeGlobalContextMenu();
+
+            const menu = document.createElement("div");
+            menu.id = "questionContextMenu";
+            menu.classList.add("context-menu");
+
+            menu.innerHTML = `
+                <button onclick="renameQuestion(${questionNumber})" style="color:black">✏️ Rename</button>
+                <button onclick="resubmitQuestion(${questionNumber})" style="color:black">🔄 Resubmit</button>
+                <button onclick="deleteQuestion(${questionNumber})" style="color:black">🗑️ Delete</button>
+            `;
+
+            menu.style.position = 'absolute';
+            menu.style.left = `${event.pageX}px`;
+            menu.style.top = `${event.pageY}px`;
+            menu.style.zIndex = '1000';
+            menu.style.background = '#fff';
+            menu.style.border = '1px solid #ddd';
+            menu.style.borderRadius = '6px';
+            menu.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+            menu.style.padding = '6px 0';
+            menu.style.whiteSpace = 'nowrap';
+
+            document.body.appendChild(menu);
+
+            // Auto-close if clicking outside
+            document.addEventListener('click', closeGlobalContextMenu, { once: true });
+        }
+
         function closeGlobalContextMenu() {
             const existingMenu = document.getElementById("globalContextMenu");
             if (existingMenu) {
                 existingMenu.remove();
             }
+        }
+
+        function renameQuestion(questionNumber) {
+            alert(`Rename question ${questionNumber}`);
+            closeGlobalContextMenu();
+        }
+
+        function resubmitQuestion(questionNumber) {
+            alert(`Resubmit question ${questionNumber}`);
+            closeGlobalContextMenu();
+        }
+
+        function deleteQuestion(questionNumber) {
+            if (confirm(`Are you sure you want to delete question ${questionNumber}?`)) {
+                // Actual deletion logic here
+                alert(`Question ${questionNumber} deleted`);
+            }
+            closeGlobalContextMenu();
         }
 
         function displayChat(session) {
