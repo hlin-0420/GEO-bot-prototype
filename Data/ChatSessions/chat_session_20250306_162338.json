@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "How do you add a new vectdraw font",
+        "timestamp": "2025-03-06T16:24:23.152842Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To add a new vector draw font, click on \"Choose Font\" in the Font dialog box. This will open the Font dialog box where you can change the font type, style, size, and color. You can then select a new vector draw font from the available options.",
+        "timestamp": "2025-03-06T16:24:23.152842Z"
+    },
+    {
+        "role": "user",
+        "content": "How do you define new curve pens?",
+        "timestamp": "2025-03-06T16:27:33.799880Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To define a new curve pen, follow these steps:\n\n1. On the Curve Settings tab, select Curve Settings.\n2. The Curve Settings sidebar will open.\n3. On the Display tab, open the Pens node.\n4. Select the \"Use Customized Pens\" double arrow.\n5. The Pen Definition dialog box will open.\n6. Select an unused number in the \"Select Pen\" box.\n7. Enter a Pen Name (e.g., DotDashDash).\n8. Select the Pen Type for both the display and printing pens.\n\nNote: A pen definition consists of up to five segments of dot-combinations, with up to ten pixels on and up to ten pixels off per segment.",
+        "timestamp": "2025-03-06T16:27:33.799880Z"
+    }
+]

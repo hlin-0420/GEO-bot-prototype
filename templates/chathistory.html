@@ -908,7 +908,7 @@
         function renameQuestionFromElement(buttonElement) {
             closeQuestionContextMenu();
 
-            const questionWrapper = buttonElement.closest('.chat-message-wrapper');  // The button is in this wrapper.
+            const questionWrapper = buttonElement.closest('.chat-message-wrapper');
             const questionElement = questionWrapper?.querySelector('.chat-message.user-message');
 
             if (!questionElement) {
@@ -917,33 +917,60 @@
             }
 
             const oldQuestionText = questionElement.textContent.replace(/❓ Question \d+: /, '').trim();
+            const questionNumber = questionElement.dataset.questionNumber;
 
-            const inputField = document.createElement('input');
-            inputField.type = 'text';
+            questionElement.innerHTML = '';
+
+            const editorContainer = document.createElement('div');
+            editorContainer.classList.add('inline-edit-container');
+
+            const labelSpan = document.createElement('span');
+            labelSpan.classList.add('inline-edit-label');
+            labelSpan.innerText = `❓ Question ${questionNumber}:`;
+
+            const inputField = document.createElement('textarea');
             inputField.value = oldQuestionText;
-            inputField.classList.add('inline-edit-input');
+            inputField.classList.add('inline-edit-textarea');
+            inputField.rows = 1;
 
-            // Replace the question text with the input field.
-            questionElement.innerHTML = `❓ Question ${questionElement.dataset.questionNumber}: `;
-            questionElement.appendChild(inputField);
+            function autoResize() {
+                inputField.style.height = 'auto';
+                inputField.style.height = inputField.scrollHeight + 'px';
+            }
+            inputField.addEventListener('input', autoResize);
+            autoResize();
 
+            const buttonGroup = document.createElement('div');
+            buttonGroup.classList.add('inline-edit-buttons');
+
+            const saveButton = document.createElement('button');
+            saveButton.innerText = '💾 Save';
+            saveButton.classList.add('edit-save-button');
+            saveButton.onclick = () => finishEditing(true);
+
+            const cancelButton = document.createElement('button');
+            cancelButton.innerText = '❌ Cancel';
+            cancelButton.classList.add('edit-cancel-button');
+            cancelButton.onclick = () => finishEditing(false);
+
+            buttonGroup.appendChild(saveButton);
+            buttonGroup.appendChild(cancelButton);
+
+            editorContainer.appendChild(labelSpan);
+            editorContainer.appendChild(inputField);
+            editorContainer.appendChild(buttonGroup);
+
+            questionElement.appendChild(editorContainer);
             inputField.focus();
 
-            inputField.addEventListener('blur', () => {
+            function finishEditing(save) {
                 const newQuestionText = inputField.value.trim();
-                if (newQuestionText && newQuestionText !== oldQuestionText) {
-                    resubmitEditedQuestion(questionElement.dataset.questionNumber, newQuestionText);
+                if (save && newQuestionText && newQuestionText !== oldQuestionText) {
+                    resubmitEditedQuestion(questionNumber, newQuestionText);
                 } else {
-                    // If no change, restore original text
-                    questionElement.innerHTML = `❓ Question ${questionElement.dataset.questionNumber}: ${oldQuestionText}`;
+                    questionElement.innerHTML = `❓ Question ${questionNumber}: ${oldQuestionText}`;
                 }
-            });
-
-            inputField.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    inputField.blur();
-                }
-            });
+            }
         }
 
         function resubmitEditedQuestion(questionNumber, newText) {

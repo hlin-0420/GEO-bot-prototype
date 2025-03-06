@@ -48,5 +48,25 @@
         "role": "assistant",
         "content": "Yes, according to the document, there is a limit on the number of tables that can be put in one ODF file. The exact number is not specified, but it mentions that the software has limits on how many tables can be included in an ODF file.",
         "timestamp": "2025-03-05T12:33:51.558437Z"
+    },
+    {
+        "role": "user",
+        "content": "What track types are there",
+        "timestamp": "2025-03-06T16:34:26.691747Z"
+    },
+    {
+        "role": "assistant",
+        "content": "There are six track types in GEO:\n\n1. Depth\n2. Linear\n3. Logarithmic\n4. Lithology\n5. % Lithology\n6. Text\n7. Qualitative",
+        "timestamp": "2025-03-06T16:34:26.691747Z"
+    },
+    {
+        "role": "user",
+        "content": "What track types are there",
+        "timestamp": "2025-03-06T16:43:14.039539Z"
+    },
+    {
+        "role": "assistant",
+        "content": "There are six track types in GEO:\n\n1. Depth\n2. Linear\n3. Logarithmic\n4. Lithology\n5. % Lithology\n6. Text\n7. Qualitative",
+        "timestamp": "2025-03-06T16:43:14.039539Z"
     }
 ]

@@ -521,6 +521,61 @@
 
 /* Custom integrated styles */
 @layer components {
+  .inline-edit-textarea {
+    flex-grow: 1; /* Take as much space as possible */
+    min-width: 0; /* Allow shrinking if necessary */
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: none;
+    min-height: 28px;
+    overflow-y: hidden;
+  }
+
+  .inline-edit-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%; /* Ensure full width within the wrapper */
+    background-color: #f9f9f9;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    justify-content: space-between; /* Spread items */
+  }
+
+  .inline-edit-label {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .inline-edit-buttons {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .edit-save-button,
+  .edit-cancel-button {
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .edit-save-button:hover,
+  .edit-cancel-button:hover {
+    background-color: #ddd;
+  }
+
   .chat-sidebar-header {
     display: flex;
     justify-content: space-between;
@@ -658,10 +713,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
-    background-color: #e8f5ff; /* Match the question background */
-    border-radius: 5px;
-    margin-bottom: 5px;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .chat-message-wrapper .chat-message {
+    flex-grow: 1; /* Allow question text or input to expand */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0; /* Important for flex layouts */
   }
 
   .chat-options {
