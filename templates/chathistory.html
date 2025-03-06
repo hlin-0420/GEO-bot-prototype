@@ -740,9 +740,9 @@
             menu.classList.add("context-menu");
 
             menu.innerHTML = `
-                <button onclick="renameQuestion(${questionNumber})" style="color:black">✏️ Rename</button>
-                <button onclick="resubmitQuestion(${questionNumber})" style="color:black">🔄 Resubmit</button>
-                <button onclick="deleteQuestion(${questionNumber})" style="color:black">🗑️ Delete</button>
+                <button class="rename-button" style="color:black">✏️ Rename</button>
+                <button class="resubmit-button" style="color:black">🔄 Resubmit</button>
+                <button class="delete-button" style="color:black">🗑️ Delete</button>
             `;
 
             menu.style.position = 'absolute';
@@ -756,10 +756,34 @@
             menu.style.padding = '6px 0';
             menu.style.whiteSpace = 'nowrap';
 
+            menu.querySelector(".rename-button").addEventListener("click", () => renameQuestionFromElement(event.target));
+            menu.querySelector(".resubmit-button").addEventListener("click", () => resubmitQuestionFromElement(event.target));
+            menu.querySelector(".delete-button").addEventListener("click", () => deleteQuestionFromElement(event.target));
+
             document.body.appendChild(menu);
 
             // Auto-close if clicking outside
             document.addEventListener('click', closeQuestionContextMenu, { once: true });
+        }
+
+        function renameQuestionFromElement(buttonElement) {
+            closeQuestionContextMenu();
+
+            const questionWrapper = buttonElement.closest('.chat-message-wrapper');
+            const questionElement = questionWrapper?.querySelector('.chat-message.user-message');
+
+            if (!questionElement) {
+                console.error('❌ Could not find user message inside chat-message-wrapper');
+                return;
+            }
+
+            const oldQuestionText = questionElement.textContent.replace(/❓ Question \d+: /, '').trim();
+            const newQuestionText = prompt('Edit your question:', oldQuestionText);
+
+            if (newQuestionText && newQuestionText !== oldQuestionText) {
+                const questionNumber = questionElement.dataset.questionNumber;
+                resubmitEditedQuestion(newQuestionText, questionNumber);
+            }
         }
 
         function closeGlobalContextMenu() {
