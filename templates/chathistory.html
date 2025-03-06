@@ -870,12 +870,50 @@
             }
         }
 
-        function deleteQuestion(questionNumber) {
-            if (confirm(`Are you sure you want to delete question ${questionNumber}?`)) {
-                // Actual deletion logic here
-                alert(`Question ${questionNumber} deleted`);
+        function deleteQuestionFromElement(buttonElement) {
+            closeQuestionContextMenu(); // Close the menu
+
+            const questionWrapper = buttonElement.closest('.chat-message-wrapper');
+            if (!questionWrapper) {
+                console.error("❌ Could not find the chat-message-wrapper for deletion.");
+                alert("Could not find the question element for deletion.");
+                return;
             }
-            closeQuestionContextMenu();
+
+            const questionElement = questionWrapper.querySelector('.chat-message.user-message');
+            const questionNumber = questionElement ? questionElement.dataset.questionNumber : "unknown";
+
+            if (!questionNumber) {
+                console.error("❌ Could not identify the question number.");
+                alert("Could not determine the question number.");
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to delete Question ${questionNumber} and its answer?`)) {
+                return;
+            }
+
+            // Use the questionNumber to find the associated AI message, then find its parent wrapper (answer-feedback-wrapper)
+            const aiMessage = document.querySelector(`.chat-message.ai-message[data-question-number="${questionNumber}"]`);
+
+            if (aiMessage) {
+                const answerWrapper = aiMessage.closest('.answer-feedback-wrapper');
+                if (answerWrapper) {
+                    answerWrapper.remove();
+                    console.log(`🗑️ Removed answer-feedback-wrapper for Question ${questionNumber}`);
+                } else {
+                    console.warn(`⚠️ No parent answer-feedback-wrapper found for Question ${questionNumber}, removing AI message directly.`);
+                    aiMessage.remove();
+                }
+            } else {
+                console.warn(`⚠️ No AI message found for Question ${questionNumber}`);
+            }
+
+            // Remove the question wrapper itself
+            questionWrapper.remove();
+            console.log(`🗑️ Removed question-wrapper for Question ${questionNumber}`);
+
+            // Optionally trigger any UI refresh or re-indexing logic
         }
 
         function displayChat(session) {
