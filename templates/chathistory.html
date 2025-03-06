@@ -913,7 +913,63 @@
             questionWrapper.remove();
             console.log(`🗑️ Removed question-wrapper for Question ${questionNumber}`);
 
-            // Optionally trigger any UI refresh or re-indexing logic
+            // Re-index all remaining questions/answers to maintain correct numbering
+            reindexQuestionsAndAnswers();
+        }
+
+        /**
+         * Re-index all questions and answers to ensure sequential numbering (Question 1, 2, 3, etc.)
+         */
+        function reindexQuestionsAndAnswers() {
+            const questionWrappers = document.querySelectorAll('.chat-message-wrapper');
+
+            questionWrappers.forEach((wrapper, index) => {
+                const newNumber = index + 1;
+
+                // Update question number
+                const questionElement = wrapper.querySelector('.chat-message.user-message');
+                if (questionElement) {
+                    questionElement.dataset.questionNumber = newNumber;
+                    const textWithoutNumber = questionElement.textContent.replace(/❓\s*Question\s*\d+:\s*/, '').trim();
+                    questionElement.innerHTML = `❓ Question ${newNumber}: ${textWithoutNumber}`;
+                }
+
+                // Update corresponding answer (if exists)
+                const aiMessage = document.querySelector(`.chat-message.ai-message[data-question-number="${newNumber + 1}"]`);
+                if (aiMessage) {
+                    const answerWrapper = aiMessage.closest('.answer-feedback-wrapper');
+                    if (answerWrapper) {
+                        aiMessage.dataset.questionNumber = newNumber;
+                        const textWithoutNumber = aiMessage.textContent.replace(/💡\s*Answer\s*\d+:\s*/, '').trim();
+                        aiMessage.innerHTML = `💡 Answer ${newNumber}: ${textWithoutNumber}`;
+
+                        // Also update the feedback section (if it exists)
+                        const feedbackContainer = document.getElementById(`feedbackContainer-${newNumber + 1}`);
+                        if (feedbackContainer) {
+                            feedbackContainer.id = `feedbackContainer-${newNumber}`;
+                            const textarea = feedbackContainer.querySelector('textarea');
+                            if (textarea) textarea.id = `feedbackComment-${newNumber}`;
+                            const submitButton = feedbackContainer.querySelector('button');
+                            if (submitButton) {
+                                submitButton.setAttribute('onclick', `submitCompleteFeedback(${newNumber})`);
+                            }
+                            const stars = feedbackContainer.querySelectorAll('.star');
+                            stars.forEach(star => {
+                                star.setAttribute('data-question-number', newNumber);
+                                star.setAttribute('onclick', `setRating(${newNumber}, ${star.dataset.rating})`);
+                                star.setAttribute('onmouseover', `highlightStars(${newNumber}, ${star.dataset.rating})`);
+                                star.setAttribute('onmouseleave', `resetStars(${newNumber})`);
+                            });
+                            const toggleIcon = document.getElementById(`toggleIcon-${newNumber + 1}`);
+                            if (toggleIcon) {
+                                toggleIcon.id = `toggleIcon-${newNumber}`;
+                            }
+                        }
+                    }
+                }
+            });
+
+            console.log("🔄 All questions and answers reindexed after deletion.");
         }
 
         function displayChat(session) {
