@@ -8,6 +8,7 @@
 <body>
     <div class="navbar">
         <div class="navbar-container">
+            <button id="sidebarToggleBtn" class="navbar-sidebar-toggle-btn" onclick="openSidebar()">☰</button>
             <a href="/" class="navbar-logo-container">
                 <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="navbar-logo">
             </a>
@@ -29,7 +30,10 @@
         <div class="chat-container">
             <div class="resizable-container">
                 <div class="chat-sidebar" id="chatSidebar">
-                    <h3>📜 Chat History</h3>
+                    <div class="chat-sidebar-header">
+                        <h3>📜 Chat History</h3>
+                        <button class="close-sidebar-btn" onclick="closeSidebar()">⬅️</button>
+                    </div>
                     <div id="chatHistoryList">
                         <p>Loading history...</p>
                     </div>
@@ -85,6 +89,18 @@
             document.addEventListener('mousemove', handleResize);
             document.addEventListener('mouseup', stopResize);
         });
+
+        function closeSidebar() {
+            document.getElementById('chatSidebar').style.display = 'none';
+            document.getElementById('sidebarResizer').style.display = 'none';
+            document.getElementById('sidebarToggleBtn').classList.remove('hidden');
+        }
+
+        function openSidebar() {
+            document.getElementById('chatSidebar').style.display = 'block';
+            document.getElementById('sidebarResizer').style.display = 'block';
+            document.getElementById('sidebarToggleBtn').classList.add('hidden');
+        }
 
         function handleResize(e) {
             if (!isResizing) return;
