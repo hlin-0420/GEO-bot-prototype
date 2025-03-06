@@ -530,11 +530,36 @@
     border-bottom: 1px solid #ddd;
   }
 
+  /* Common button styles to standardize all header buttons */
+  .sidebar-header-btn {
+    width: 32px;  /* Set uniform width */
+    height: 32px; /* Set uniform height */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .close-sidebar-btn {
     border: none;
     background: none;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+  }
+
+  /* Ensure all buttons (icon or text) use the same base size */
+  .icon-button, .close-sidebar-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;  /* Remove padding to make them exactly the same size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .navbar-sidebar-toggle {
@@ -639,6 +664,40 @@
 
   #chatSidebar {
     min-width: 240px;
+  }
+
+  .sidebar-header-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+  }
+
+  .icon-button {
+    width: 32px; 
+    height: 32px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .icon-button:hover {
+    opacity: 1;
+  }
+
+  .icon-button img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .icon-button img:hover {
+    opacity: 1;
   }
 
   #chatHistoryList {

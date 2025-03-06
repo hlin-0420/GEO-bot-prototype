@@ -32,7 +32,15 @@
                 <div class="chat-sidebar" id="chatSidebar">
                     <div class="chat-sidebar-header">
                         <h3>📜 Chat History</h3>
-                        <button class="close-sidebar-btn" onclick="closeSidebar()">⬅️</button>
+                        <div class="sidebar-header-buttons">
+                            <button class="icon-button" onclick="startNewConversation()" title="New Chat">
+                                <img src="/static/icons/new-chat-icon.png" alt="New Chat" />
+                            </button>
+                            <button class="icon-button" onclick="openSearchModal()" title="Search">
+                                <img src="/static/icons/search-icon.png" alt="Search" />
+                            </button>
+                            <button class="close-sidebar-btn" onclick="closeSidebar()" title="Close sidebar">⬅️</button>
+                        </div>
                     </div>
                     <div id="chatHistoryList">
                         <p>Loading history...</p>
@@ -112,6 +120,69 @@
             newWidth = Math.max(150, Math.min(newWidth, window.innerWidth * 0.5));
 
             sidebar.style.width = `${newWidth}px`;
+        }
+
+        async function openSearchModal() {
+            const searchQuery = prompt("Enter search term to find in chat history:");
+            if (searchQuery) {
+                await searchAcrossSessions(searchQuery);
+            }
+        }
+
+        async function searchAcrossSessions(query) {
+            try {
+                const response = await fetch(`/search?query=${encodeURIComponent(query)}`);
+                const results = await response.json();
+
+                const chatMessages = document.getElementById("chatMessages");
+                chatMessages.innerHTML = ""; // Clear current content
+
+                if (results.length === 0) {
+                    chatMessages.innerHTML = `<p style="text-align:center; color:grey;">No matching results found.</p>`;
+                    return;
+                }
+
+                let tempQuestionNumber = 0;
+
+                results.forEach(({ question, answer, session_id }) => {
+                    tempQuestionNumber++;
+
+                    const questionWrapper = document.createElement("div");
+                    questionWrapper.classList.add("chat-message-wrapper");
+
+                    const userMessageDiv = document.createElement("div");
+                    userMessageDiv.classList.add("chat-message", "user-message");
+                    userMessageDiv.dataset.questionNumber = tempQuestionNumber;
+                    userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${question}`;
+                    questionWrapper.appendChild(userMessageDiv);
+
+                    const optionsButton = document.createElement("button");
+                    optionsButton.classList.add("chat-options");
+                    optionsButton.innerHTML = "⋯";
+                    optionsButton.onclick = (event) => toggleQuestionMenu(event, tempQuestionNumber);
+                    questionWrapper.appendChild(optionsButton);
+
+                    chatMessages.appendChild(questionWrapper);
+
+                    const answerWrapper = document.createElement("div");
+                    answerWrapper.classList.add("answer-feedback-wrapper");
+
+                    const aiMessageDiv = document.createElement("div");
+                    aiMessageDiv.classList.add("chat-message", "ai-message");
+                    aiMessageDiv.dataset.questionNumber = tempQuestionNumber;
+                    aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${answer}`;
+                    answerWrapper.appendChild(aiMessageDiv);
+
+                    chatMessages.appendChild(answerWrapper);
+
+                    addFeedbackSection(aiMessageDiv, tempQuestionNumber);
+                });
+
+                addDynamicSpacer();
+            } catch (error) {
+                console.error("Error during search:", error);
+                alert("Failed to search across chat history.");
+            }
         }
 
         function stopResize() {

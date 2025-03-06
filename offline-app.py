@@ -1299,5 +1299,37 @@ def ask_file():
 
     return jsonify({"message": response}), 200
 
+@app.route('/search')
+def search_chats():
+    query = request.args.get('query', '').lower()
+
+    if not query:
+        return jsonify([])  # No query provided, return empty list
+
+    chat_sessions = load_chat_history()  # Load all sessions from disk
+
+    matching_messages = []
+
+    # Iterate through all sessions and messages to find matches
+    for session in chat_sessions:
+        session_id = session['session_id']
+        temp_question = None
+
+        for message in session['messages']:
+            content = message['content'].lower()
+
+            if query in content:
+                if message['role'] == 'user':
+                    temp_question = message['content']
+                elif message['role'] == 'assistant' and temp_question:
+                    matching_messages.append({
+                        "session_id": session_id,
+                        "question": temp_question,
+                        "answer": message['content']
+                    })
+                    temp_question = None  # Reset after capturing the pair
+
+    return jsonify(matching_messages)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
