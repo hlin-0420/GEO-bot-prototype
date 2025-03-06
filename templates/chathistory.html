@@ -769,7 +769,7 @@
         function renameQuestionFromElement(buttonElement) {
             closeQuestionContextMenu();
 
-            const questionWrapper = buttonElement.closest('.chat-message-wrapper');
+            const questionWrapper = buttonElement.closest('.chat-message-wrapper');  // The button is in this wrapper.
             const questionElement = questionWrapper?.querySelector('.chat-message.user-message');
 
             if (!questionElement) {
@@ -778,12 +778,47 @@
             }
 
             const oldQuestionText = questionElement.textContent.replace(/❓ Question \d+: /, '').trim();
-            const newQuestionText = prompt('Edit your question:', oldQuestionText);
 
-            if (newQuestionText && newQuestionText !== oldQuestionText) {
-                const questionNumber = questionElement.dataset.questionNumber;
-                resubmitEditedQuestion(newQuestionText, questionNumber);
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.value = oldQuestionText;
+            inputField.classList.add('inline-edit-input');
+
+            // Replace the question text with the input field.
+            questionElement.innerHTML = `❓ Question ${questionElement.dataset.questionNumber}: `;
+            questionElement.appendChild(inputField);
+
+            inputField.focus();
+
+            inputField.addEventListener('blur', () => {
+                const newQuestionText = inputField.value.trim();
+                if (newQuestionText && newQuestionText !== oldQuestionText) {
+                    resubmitEditedQuestion(questionElement.dataset.questionNumber, newQuestionText);
+                } else {
+                    // If no change, restore original text
+                    questionElement.innerHTML = `❓ Question ${questionElement.dataset.questionNumber}: ${oldQuestionText}`;
+                }
+            });
+
+            inputField.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    inputField.blur();
+                }
+            });
+        }
+
+        function resubmitEditedQuestion(questionNumber, newText) {
+            console.log(`🔄 Resubmitting Question ${questionNumber} with text: ${newText}`);
+
+            const questionSelector = `.chat-message.user-message[data-question-number="${questionNumber}"]`;
+            const questionElement = document.querySelector(questionSelector);
+
+            if (questionElement) {
+                questionElement.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
             }
+
+            // Send message to model with new question text
+            sendMessage(newText, questionNumber);
         }
 
         function closeGlobalContextMenu() {
@@ -844,9 +879,10 @@
             // ensureLastMessageVisible();
         }
 
-        async function sendMessage() {
-            const inputField = document.getElementById("chatInput");
-            const userMessage = inputField.value.trim();
+        async function sendMessage(userMessage = null, questionNumber = null) {
+            if (!userMessage) {
+                userMessage = document.getElementById("chatInput").value.trim();
+            }
 
             if (!userMessage) {
                 console.warn("No message entered. Exiting function.");
@@ -854,39 +890,49 @@
             }
 
             const chatMessages = document.getElementById("chatMessages");
-            questionCounter++;
 
+            if (!questionNumber) {
+                questionCounter++;
+                questionNumber = questionCounter;  // New question
+            }
+
+            removeDynamicSpacer();
+
+            // Create question container
             const questionContainer = document.createElement("div");
             questionContainer.classList.add("question-container");
 
-            // User question block
+            // User question
             const userMessageDiv = document.createElement("div");
             userMessageDiv.classList.add("chat-message", "user-message");
+            userMessageDiv.dataset.questionNumber = questionNumber;
             userMessageDiv.style.padding = "10px";
             userMessageDiv.style.borderRadius = "5px";
-            userMessageDiv.innerHTML = `❓ Question ${questionCounter}: ${userMessage}`;
+            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${userMessage}`;
             questionContainer.appendChild(userMessageDiv);
 
-            // AI answer block with attached feedback placeholder (answer-feedback-pair)
+            // AI answer placeholder
             const answerFeedbackWrapper = document.createElement("div");
             answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
             const aiMessageDiv = document.createElement("div");
             aiMessageDiv.classList.add("chat-message", "ai-message");
+            aiMessageDiv.dataset.questionNumber = questionNumber;
             aiMessageDiv.style.backgroundColor = "#f8d7da";
             aiMessageDiv.style.padding = "10px";
             aiMessageDiv.style.borderRadius = "5px";
             aiMessageDiv.innerHTML = `
-                💡 Answer ${questionCounter}: 
-                <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">Processing your question...</span>
+                💡 Answer ${questionNumber}: 
+                <span id="answerPlaceholder-${questionNumber}" style="font-style: italic; color: grey;">Processing your question...</span>
             `;
             answerFeedbackWrapper.appendChild(aiMessageDiv);
 
-            // Append the whole answer-feedback pair to the question container
             questionContainer.appendChild(answerFeedbackWrapper);
             chatMessages.appendChild(questionContainer);
 
-            inputField.value = "";
+            if (!questionNumber) {
+                document.getElementById("chatInput").value = "";
+            }
 
             try {
                 const body = {
@@ -906,9 +952,7 @@
                 });
 
                 if (!response.ok) {
-                    const error = await response.json();
-                    document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ ${error.error || "An error occurred."}</span>`;
-                    return;
+                    throw new Error("Failed to send question to server.");
                 }
 
                 const { session_id, question_id } = await response.json();
@@ -918,11 +962,11 @@
                     sessionStorage.setItem("currentSessionId", session_id);
                 }
 
-                await streamModelResponse(question_id, questionCounter, aiMessageDiv);
-                addFeedbackSection(aiMessageDiv, questionCounter);  // Attach feedback directly below AI message
+                await streamModelResponse(question_id, questionNumber, aiMessageDiv);
+                addFeedbackSection(aiMessageDiv, questionNumber);
             } catch (error) {
-                document.getElementById(`answerPlaceholder-${questionCounter}`).innerHTML = `<span style="color: red;">⚠️ Failed to send message.</span>`;
-                console.error("Error during message sending:", error);
+                console.error(`Error processing Question ${questionNumber}:`, error);
+                document.getElementById(`answerPlaceholder-${questionNumber}`).innerHTML = `<span style="color: red;">⚠️ Error sending question.</span>`;
             }
         }
 

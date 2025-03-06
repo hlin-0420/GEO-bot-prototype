@@ -48,5 +48,35 @@
         "role": "assistant",
         "content": "The maximum number of tracks that can be specified within a single ODF file is 200 tracks at most.",
         "timestamp": "2025-03-06T10:04:36.631007Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curves can be plotted in GEO?",
+        "timestamp": "2025-03-06T12:03:10.201381Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Unfortunately, the provided information does not specify a maximum number of curves that can be plotted in GEO. However, it does mention that a curve can wrap around a maximum of 50 times.",
+        "timestamp": "2025-03-06T12:03:10.201381Z"
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of headers I can display in my log?",
+        "timestamp": "2025-03-06T12:04:00.812411Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of headers you can display in your log is up to 50.",
+        "timestamp": "2025-03-06T12:04:00.812411Z"
+    },
+    {
+        "role": "user",
+        "content": "What the maximum number of headers I can display in my log?",
+        "timestamp": "2025-03-06T12:04:07.796140Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of headers you can display in your log is up to 50.",
+        "timestamp": "2025-03-06T12:04:07.796140Z"
     }
 ]
