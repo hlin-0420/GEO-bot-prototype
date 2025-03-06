@@ -733,7 +733,7 @@
             event.stopPropagation(); // Prevent background click events
 
             // Remove any existing menus
-            closeGlobalContextMenu();
+            closeQuestionContextMenu();
 
             const menu = document.createElement("div");
             menu.id = "questionContextMenu";
@@ -759,7 +759,7 @@
             document.body.appendChild(menu);
 
             // Auto-close if clicking outside
-            document.addEventListener('click', closeGlobalContextMenu, { once: true });
+            document.addEventListener('click', closeQuestionContextMenu, { once: true });
         }
 
         function closeGlobalContextMenu() {
@@ -769,14 +769,21 @@
             }
         }
 
+        function closeQuestionContextMenu() {
+            const existingMenu = document.getElementById("questionContextMenu");
+            if (existingMenu) {
+                existingMenu.remove();
+            }
+        }
+
         function renameQuestion(questionNumber) {
             alert(`Rename question ${questionNumber}`);
-            closeGlobalContextMenu();
+            closeQuestionContextMenu();
         }
 
         function resubmitQuestion(questionNumber) {
             alert(`Resubmit question ${questionNumber}`);
-            closeGlobalContextMenu();
+            closeQuestionContextMenu();
         }
 
         function deleteQuestion(questionNumber) {
@@ -784,7 +791,7 @@
                 // Actual deletion logic here
                 alert(`Question ${questionNumber} deleted`);
             }
-            closeGlobalContextMenu();
+            closeQuestionContextMenu();
         }
 
         function displayChat(session) {
