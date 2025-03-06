@@ -78,5 +78,15 @@
         "role": "assistant",
         "content": "The maximum number of headers you can display in your log is up to 50.",
         "timestamp": "2025-03-06T12:04:07.796140Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curves can be plotted in GEO?",
+        "timestamp": "2025-03-06T12:23:05.551200Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Unfortunately, the provided information does not specify a maximum number of curves that can be plotted in GEO. However, it does mention that a curve can wrap around a maximum of 50 times.",
+        "timestamp": "2025-03-06T12:23:05.551200Z"
     }
 ]

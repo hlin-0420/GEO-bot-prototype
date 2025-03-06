@@ -821,6 +821,41 @@
             sendMessage(newText, questionNumber);
         }
 
+        function resubmitQuestionFromElement(buttonElement) {
+            closeQuestionContextMenu();
+
+            // Find the top-level container (e.g., question-wrapper or similar, depending on your actual structure)
+            const questionWrapper = buttonElement.closest('.chat-message-wrapper');
+
+            if (!questionWrapper) {
+                console.error("❌ Could not find the chat-message-wrapper.");
+                alert("Could not find the question element for resubmission.");
+                return;
+            }
+
+            // Find the question element within the wrapper
+            const questionElement = questionWrapper.querySelector('.chat-message.user-message');
+
+            if (!questionElement) {
+                console.error("❌ Could not find the user message inside chat-message-wrapper.");
+                alert("Could not find the question element for resubmission.");
+                return;
+            }
+
+            // Extract question number and text
+            const questionNumber = questionElement.dataset.questionNumber;
+            const questionText = questionElement.textContent.replace(/^❓\s*Question\s*\d+:\s*/, '').trim();
+
+            if (!questionNumber) {
+                console.error("❌ Missing questionNumber for resubmission.");
+                alert("Could not determine the question number.");
+                return;
+            }
+
+            console.log(`🔄 Resubmitting Question ${questionNumber}: ${questionText}`);
+            resubmitEditedQuestion(questionNumber, questionText);
+        }
+
         function closeGlobalContextMenu() {
             const existingMenu = document.getElementById("globalContextMenu");
             if (existingMenu) {
@@ -833,16 +868,6 @@
             if (existingMenu) {
                 existingMenu.remove();
             }
-        }
-
-        function renameQuestion(questionNumber) {
-            alert(`Rename question ${questionNumber}`);
-            closeQuestionContextMenu();
-        }
-
-        function resubmitQuestion(questionNumber) {
-            alert(`Resubmit question ${questionNumber}`);
-            closeQuestionContextMenu();
         }
 
         function deleteQuestion(questionNumber) {
