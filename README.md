@@ -1,5 +1,20 @@
 ## Installation Guide
 
+### System Requirements
+- Operating Systems: Windows 10/11
+- Python version: 3.11
+- Recommended Environment: Virtual Environment (venv)
+
+### Data Folder Structure
+The application uses a `Data` folder to store:
+- Uploaded files (`uploaded_document.txt`)
+- Processed content (`processed_content.txt`)
+- Chat history (`ChatSessions/`)
+- Feedback data (`feedback_dataset.json`)
+- Expected query responses (`expected_query_responses.xlsx`)
+- Query logs (`query_responses.xlsx`)
+
+### Instructions
 Follow these steps to setup the application:
 1. Clone this repository. 
 ```
@@ -33,3 +48,7 @@ ollama pull openai
 ```
 python offline-app.py
 ```
+
+After the instruction is run, wait until the local host link shows up on the command prompt -> open it for navigating to the Flask app homepage. 
+
+Link: `http://127.0.0.1:5000/`
