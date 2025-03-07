@@ -830,7 +830,7 @@
         function groupByDate(chats) {
             const grouped = {};
             chats.forEach(chat => {
-                const date = new Date(chat.messages[0]?.timestamp).toLocaleDateString();
+                const date = new Date(chat.messages[chat.messages.length - 1]?.timestamp).toLocaleDateString();
                 if (!grouped[date]) {
                     grouped[date] = [];
                 }
@@ -1249,6 +1249,7 @@
 
                 await streamModelResponse(question_id, questionNumber, aiMessageDiv);
                 addFeedbackSection(aiMessageDiv, questionNumber);
+                await loadChatHistory(); // reloads chat history to sort conversation by their timestamps. 
             } catch (error) {
                 console.error(`Error processing Question ${questionNumber}:`, error);
                 document.getElementById(`answerPlaceholder-${questionNumber}`).innerHTML = `<span style="color: red;">⚠️ Error sending question.</span>`;
