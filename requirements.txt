@@ -15,3 +15,7 @@ scikit-learn
 elasticsearch
 tiktoken
 openpyxl
+numpy
+rapidfuzz
+nltk
+rouge-score
