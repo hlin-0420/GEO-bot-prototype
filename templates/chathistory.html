@@ -369,8 +369,48 @@
                 .then(response => response.json())
                 .then(async data => {
                     if (data.session_id && data.question_id) {
-                        await waitForModelResponseWithNumbering(data.question_id, questionCounter + 1);
-                        location.reload();
+                        // Find the correct AI message div to pass to the timing function.
+                        const questionNumber = questionCounter + 1;
+
+                        // Create a new message block since this is an edit
+                        const chatMessages = document.getElementById("chatMessages");
+
+                        const questionContainer = document.createElement("div");
+                        questionContainer.classList.add("question-container");
+
+                        const userMessageDiv = document.createElement("div");
+                        userMessageDiv.classList.add("chat-message", "user-message");
+                        userMessageDiv.dataset.questionNumber = questionNumber;
+                        userMessageDiv.style.padding = "10px";
+                        userMessageDiv.style.borderRadius = "5px";
+                        userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
+                        questionContainer.appendChild(userMessageDiv);
+
+                        const answerFeedbackWrapper = document.createElement("div");
+                        answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
+
+                        const aiMessageDiv = document.createElement("div");
+                        aiMessageDiv.classList.add("chat-message", "ai-message");
+                        aiMessageDiv.dataset.questionNumber = questionNumber;
+                        aiMessageDiv.style.backgroundColor = "#f8d7da";
+                        aiMessageDiv.style.padding = "10px";
+                        aiMessageDiv.style.borderRadius = "5px";
+                        aiMessageDiv.innerHTML = `
+                            💡 Answer ${questionNumber}: 
+                            <span id="answerPlaceholder-${questionNumber}" style="font-style: italic; color: grey;">Processing your question...</span>
+                        `;
+                        answerFeedbackWrapper.appendChild(aiMessageDiv);
+                        questionContainer.appendChild(answerFeedbackWrapper);
+
+                        chatMessages.appendChild(questionContainer);
+
+                        // Increment question counter for tracking
+                        questionCounter++;
+
+                        await waitForModelResponseWithNumbering(data.question_id, questionNumber, aiMessageDiv);
+
+                        // Reload chat history to refresh sidebar
+                        await loadChatHistory();
                     } else {
                         alert("Failed to submit the edited question.");
                     }
@@ -449,7 +489,7 @@
                 const { question_id } = await response.json();
 
                 // Wait for the model response to complete before moving to next question
-                await waitForModelResponseWithNumbering(question_id, questionCounter);
+                await waitForModelResponseWithNumbering(question_id, questionCounter, aiMessageDiv);
                 addDynamicSpacer();
             } catch (error) {
                 console.error(`Error sending question ${questionCounter}:`, error);
@@ -457,7 +497,9 @@
             }
         }
 
-        function waitForModelResponseWithNumbering(question_id, questionNumber) {
+        function waitForModelResponseWithNumbering(question_id, questionNumber, aiMessageDiv) {
+            const startTime = Date.now();  // Capture the start time when the stream begins
+
             return new Promise((resolve) => {
                 const eventSource = new EventSource(`/response/${question_id}`);
                 const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
@@ -473,15 +515,13 @@
                         eventSource.close();
                         resolve();  // Continue to next question
                     } else if (data === "Processing your question...") {
-                        // Optional: You could keep or skip this, but it shouldn't overwrite the whole placeholder
-                        // (we already have "Processing your question..." in place so this may not be necessary)
+                        // Optional status message (already displayed initially)
                         console.log(`Status update received for Question ${questionNumber}: ${data}`);
                     } else {
                         // Append the received chunk to the full answer
                         fullAnswer += data;
                         placeholder.innerHTML = fullAnswer;  // Display the accumulated answer
                     }
-
                 };
 
                 eventSource.onerror = function() {
@@ -491,11 +531,39 @@
                         placeholder.innerHTML = `<span style="color: red;">⚠️ Error receiving response for Question ${questionNumber}</span>`;
                     }
                     eventSource.close();
-                    resolve();  // Continue to the next question even if there was a connection error
+
+                    // Calculate and display the time taken even if it failed
+                    const endTime = Date.now();
+                    const duration = ((endTime - startTime) / 1000).toFixed(2);
+
+                    // Append timing message
+                    const timingDiv = document.createElement("div");
+                    timingDiv.style.fontSize = "12px";
+                    timingDiv.style.color = "grey";
+                    timingDiv.innerText = `⏱️ Response generated in ${duration} seconds`;
+
+                    aiMessageDiv.parentElement.appendChild(timingDiv);  // Append under the answer
+
+                    resolve();  // Continue to the next question
                 };
 
                 eventSource.onopen = function() {
                     console.log(`Connection opened for Question ${questionNumber}`);
+                };
+
+                eventSource.onclose = function() {
+                    const endTime = Date.now();
+                    const duration = ((endTime - startTime) / 1000).toFixed(2);
+
+                    // Append timing message
+                    const timingDiv = document.createElement("div");
+                    timingDiv.style.fontSize = "12px";
+                    timingDiv.style.color = "grey";
+                    timingDiv.innerText = `⏱️ Response generated in ${duration} seconds`;
+
+                    aiMessageDiv.parentElement.appendChild(timingDiv);  // Append under the answer
+
+                    resolve();  // Continue to the next question
                 };
             });
         }
