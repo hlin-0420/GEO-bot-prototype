@@ -267,10 +267,7 @@ class OllamaBot:
         self._load_content() 
         ####################
         # Pipeline initialisation.
-        print(f"Selected model name: {selected_model_name}")
-        print(f"List of valid model names: {valid_model_names}")
         if selected_model_name in valid_model_names: # free tier models. 
-            print("This is a valid model.")
             self.llm_model = ChatOllama(
                 model=selected_model_name,
                 temperature=0,
@@ -610,31 +607,33 @@ class OllamaBot:
             return "Error: RAG application is not initialized."
 
         logging.info(f"Processing question: {question}")
-        print(f"The selected Model Name for this training is {selected_model_name}")
 
+        # Step 1: Run the appropriate RAG process
         if selected_model_name in valid_model_names:
             response = rag_application.run(question)
         else:
-            response_object = self.rag_pipe.run({"embedder": {"text": question}, "prompt_builder": {"question": question}})
+            response_object = self.rag_pipe.run({
+                "embedder": {"text": question},
+                "prompt_builder": {"question": question}
+            })
             response = response_object['llm']['replies'][0]._content[0].text
-            
-        # Create a new DataFrame with the question and response
+
+        # Step 2: Prepare new entry DataFrame
         new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
 
-        # Check if the Excel file exists
-        if not os.path.exists(EXCEL_FILE):
-            with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
-                new_entry.to_excel(writer, index=False)
-                auto_adjust_column_width(writer, new_entry)
-        else:
-            # Load existing data and append new entry
-            existing_data = pd.read_excel(EXCEL_FILE)
+        # Step 3: Append to Excel (consolidated I/O operations)
+        if os.path.exists(EXCEL_FILE):
+            # Load once and append
+            existing_data = pd.read_excel(EXCEL_FILE, engine='openpyxl')
             updated_data = pd.concat([existing_data, new_entry], ignore_index=True)
-            updated_data.to_excel(EXCEL_FILE, index=False)
-            
-            with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl') as writer:
-                updated_data.to_excel(writer, index=False)
-                auto_adjust_column_width(writer, updated_data)
+        else:
+            # Just use the new entry if no file exists
+            updated_data = new_entry
+
+        # Write to Excel once (consolidated)
+        with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl', mode='w') as writer:
+            updated_data.to_excel(writer, index=False)
+            auto_adjust_column_width(writer, updated_data)  # Optional - can be removed if speed is critical
 
         return response
 
@@ -758,30 +757,30 @@ def check_selected_options(selectedOptions):
     return set(selectedOptions) == set(expected_options)
 
 def save_chat_session(session_id, messages):
-    if not os.path.exists(CHAT_SESSIONS_DIR):
-        os.makedirs(CHAT_SESSIONS_DIR)
+    # Use a module-level constant or ensure directory creation happens once (outside the function) if possible
+    if not os.path.isdir(CHAT_SESSIONS_DIR):
+        os.makedirs(CHAT_SESSIONS_DIR, exist_ok=True)
 
     session_file = os.path.join(CHAT_SESSIONS_DIR, f"{session_id}.json")
-    
-    # Add timestamps if they don't already exist in messages
-    for message in messages:
-        if "timestamp" not in message:
-            message["timestamp"] = datetime.now().isoformat() + "Z"  # ISO 8601 format with Z for UTC
 
+    # Pre-generate timestamp to avoid recalculating multiple times
+    current_timestamp = datetime.now().isoformat() + "Z"
+
+    # Use a list comprehension to update messages more efficiently
+    updated_messages = [
+        message if "timestamp" in message else {**message, "timestamp": current_timestamp}
+        for message in messages
+    ]
+
+    # Use faster file writing (single write operation)
     with open(session_file, "w", encoding="utf-8") as f:
-        json.dump(messages, f, indent=4)
+        f.write(json.dumps(updated_messages, ensure_ascii=False, indent=4))
 
 def process_question(question_id, question, ai_bot, selectedOptions):
     """
     Simulate long processing of the question and store the response.
     """
     global answer_time, current_session_id, current_session_messages
-    
-    if check_selected_options(selectedOptions) == False:
-        # if not all the options are selected, customise the training function. 
-        ai_bot._load_content(selectedOptions) # resets the web documents information with the feedback.
-        
-    time.sleep(2)  # Simulating "thinking time"
     
     start_time = time.time() # Begins to record how long it takes the model for querying
     
@@ -793,9 +792,6 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     
     # Calculate and print the elapsed time
     answer_time = end_time - start_time
-    print(f"Function execution took {answer_time:.2f} seconds")
-    
-    print(f"Check selected Options: {check_selected_options(selectedOptions)}")
     
     formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
