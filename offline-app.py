@@ -245,6 +245,64 @@ def extract_list(soup):
         lists.append(items)
     return lists
 
+def extract_table_as_text_block(soup, file_path):
+    """
+    Extract tables from HTML as a single formatted text block for inclusion into page_text.
+    Skips navigation tables and handles no-table cases.
+
+    Args:
+        soup (BeautifulSoup): Parsed HTML.
+        file_path (str): Path to the file (for metadata).
+
+    Returns:
+        str: Formatted block of all tables from this file, or a message if no tables are found.
+    """
+    try:
+        tables = pd.read_html(file_path)
+
+        def is_navigation_table(table):
+            """Detect if table is a 'navigation-only' table with just 'back' and 'forward'."""
+            flattened = [str(cell).strip().lower() for cell in table.to_numpy().flatten()]
+            navigation_keywords = {"back", "forward"}
+            return set(flattened).issubset(navigation_keywords)
+        
+        def is_nan_only_table(table):
+            """Detect if the entire table only contains NaN values."""
+            return table.isna().all().all()
+
+        table_texts = []
+        table_count = 0
+
+        for idx, table in enumerate(tables):
+            if is_navigation_table(table) or is_nan_only_table(table):
+                continue
+
+            table_count += 1
+            formatted_table = tabulate(table, headers="keys", tablefmt="grid")
+
+            beautified_table = f"""
+╔════════════════════════════════════════════════════╗
+║            📊 Table {table_count} from {file_path}              ║
+╚════════════════════════════════════════════════════╝
+
+{formatted_table}
+
+╔════════════════════════════════════════════════════╗
+║            🔚 End of Table {table_count}                       ║
+╚════════════════════════════════════════════════════╝
+"""
+            table_texts.append(beautified_table)
+
+        if not table_texts:
+            return ""
+
+        return "\n".join(table_texts)
+
+    except ValueError:
+        # No tables found case
+        return ""
+
+
 class OllamaBot:
     def __init__(self):
         """
@@ -496,7 +554,7 @@ class OllamaBot:
                         clean_text = "" # when the text, table, or list is empty. 
                     
                     if "table" in selectedOptions:
-                        formatted_table = extract_table(soup)
+                        formatted_table = extract_table_as_text_block(soup, file_path)
                     else:
                         formatted_table = ""    
                     
@@ -505,23 +563,16 @@ class OllamaBot:
                     else:
                         lists = ""
                         
-                    page_text = f"""
+                    page_text = ""
                     
-                    Tables: 
-                    ---
-                    {formatted_table}
-                    ---
+                    if clean_text != "":
+                        page_text += f"Text:\n---\n{clean_text}\n---\n"
                     
-                    Text:
-                    ---
-                    {clean_text}
-                    ---
-                    
-                    List:
-                    ---
-                    {lists}
-                    ---
-                    """
+                    if formatted_table != "":
+                        page_text += f"Tables:\n---\n{formatted_table}\n---\n"
+                        
+                    if lists != "":
+                        page_text += f"List:\n---\n{lists}\n---\n"
                     
                     page_texts.append(page_text)
                     

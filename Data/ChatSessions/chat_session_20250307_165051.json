@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "List all the types of limits in the table about GEO limits?",
+        "timestamp": "2025-03-07T16:52:53.318891Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to Table 1 from Data/Introduction\\GEO_Limits.htm, the two types of limits are:\n\n* Types\n* Limits",
+        "timestamp": "2025-03-07T16:52:53.318891Z"
+    },
+    {
+        "role": "user",
+        "content": "What are the names of each row in the GEO Limits table?",
+        "timestamp": "2025-03-07T16:52:53.318891Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The GEO Limits table contains the following fields:\n\n1. Heading for the field\n2. Size of field in characters\n3. Justification (L/R/C) for Left, Right or Center\n4. Default symbol\n5. Offset of the symbol in Screen units (mm or inches) from the left edge of the track\n6. Specifies zero relative column number to use as deviation/dip in degrees to rotate symbol",
+        "timestamp": "2025-03-07T16:52:53.318891Z"
+    }
+]
