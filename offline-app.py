@@ -235,13 +235,22 @@ def extract_table(soup):
     return formatted_tables
 
 def extract_text(soup):
-    # Remove all specific navigation-relating messages
+    # Define navigation-related keyword patterns
+    navigation_keywords = [
+        r'contact\s+us', r'click\s+(here|for)', r'guidance', r'help', r'support', r'assistance',
+        r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more'
+    ]
+    
+    navigation_pattern = re.compile(r"|".join(navigation_keywords), re.IGNORECASE)
+
+    # Remove navigation-related text
     for tag in soup.find_all("p"):
-        if re.search(r"maximize screen", tag.text, re.IGNORECASE):
+        if navigation_pattern.search(tag.text):
             tag.decompose()
 
-    # Extract only meaningful paragraph text
-    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]  # Exclude very short text
+    # Extract only meaningful paragraph text (excluding very short ones)
+    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]
+    
     clean_text = "\n\n".join(paragraphs)
     
     return clean_text
