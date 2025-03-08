@@ -294,6 +294,10 @@ def extract_table_as_text_block(soup, file_path):
         for idx, table in enumerate(tables):
             if is_navigation_table(table) or is_nan_only_table(table):
                 continue
+            
+            if table.shape[1] == 2:
+                # Drop rows where both the second and third columns are NaN
+                table = table.dropna(how='all')
 
             table_count += 1
             formatted_table = tabulate(table, headers="keys", tablefmt="grid")
