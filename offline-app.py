@@ -584,13 +584,13 @@ class OllamaBot:
                     page_text = ""
                     
                     if clean_text != "":
-                        page_text += f"Text:\n---\n{clean_text}\n---\n"
+                        page_text += f"\n{clean_text}\n"
                     
                     if formatted_table != "":
-                        page_text += f"Tables:\n---\n{formatted_table}\n---\n"
+                        page_text += f"\n{formatted_table}\n"
                         
                     if lists != "":
-                        page_text += f"List:\n---\n{lists}\n---\n"
+                        page_text += f"\n{lists}\n"
                     
                     page_texts.append(page_text)
                     

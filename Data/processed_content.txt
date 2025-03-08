@@ -1,5 +1,4 @@
-Text:
----
+
 A list of phone numbers can be foundhere.
 
 Go tohttps://www.geologix.com/contact-us/.
@@ -9,13 +8,11 @@ Scroll down to theCustomer Portalsection and follow the steps to create an acco
 Did you know that Geologix provides free basic training or advanced-feature tuition at our offices in Norwich, Houston, Jakarta, Mumbai or Rio?
 
 This is the best way to learn how to use the GEO Software and is available to all licensed-users and their nominated consultants.
----
 
 
 
 
-Text:
----
+
 GEO is an integrated a PC-based integrated well log authoring, analysis and reporting system which has been developed for petroleum geologists, geoscientists and engineers.
 
 Building upon concepts that the software should be easy to learn, simple and intuitive to use, and invoking our 'you should only have to do it once' method of working, Geologix has developed and enhanced the GEO suite of applications with continuous input from our users.
@@ -31,7 +28,6 @@ Some examples are well proposal charts, lithology logs, composite logs, well sum
 Content can be fully customized to suit individual or corporate preferences.
 
 Lithology patterns, modifiers, symbols, headers and trailers can all be designed or modified by you to match existing or standard log requirements.
----
 
 
 
@@ -40,498 +36,387 @@ Lithology patterns, modifiers, symbols, headers and trailers can all be designed
 
 
 
-Text:
----
+
 Cement volume calculation
----
 
 
-Text:
----
+
 DescriptionD-Exponent Calculation
 
 DX = log(ROP/(60*RPM))/log((12*(WOB*1000))/((10^6)*BS))
----
 
 
-Text:
----
+
 Mechanical Specific Energy
 
 Mechanical Specific Energy Calculation.
 
 MSE = EM*(((4*WOB)/(3.14159265*BS^2))+((480*RPM*TRQ)/(BS^2*ROP*1000)))
----
 
 
-Text:
----
+
 Calculating in Formation Temperature (in degF).
 
 TEMP = TS+((BHT-TS)*Depth/MDTD), if TVDF = 0 otherwise TEMP = TS+((BHT-TS)*TVDV/TVDTD)
----
 
 
-Text:
----
+
 C1 divided by the sum of chromatograph (C1 to C5) to determine the percentage of Methane present in the gas sample.
 
 C1SUM = C1/(C1+C2+C3+iC4+iC5+nC4+nC5)
----
 
 
-Text:
----
+
 Gas Balance Calculation
 
 GBH = (c1+c2)/(c3+ic4+nc4+ic5+nc5)
----
 
 
-Text:
----
+
 Gas Character Calculation
 
 GCH = (ic4+nc4+ic5+nc5)/c3
----
 
 
-Text:
----
+
 Gas Wetness Calculation
 
 GWH = ((c2+c3+ic4+nc4+ic5+nc5)/(c1+c2+c3+ic4+nc4+ic5+nc5))*100
----
 
 
-Text:
----
+
 Inverse Oil Indicator
 
 Inverse Oil indicator to be used in conjunction with the Normal equation
 
 IOI = C1/(C3+iC4+nC4+iC5+nC5)
----
 
 
-Text:
----
+
 Oil indicator to be used in conjunction with the Inverse equation
 
 OI = (C3+iC4+nC4+iC5+nC5)/C1
----
 
 
-Text:
----
+
 Pixler C1/C2 Gas Ratio
 
 C1/C2 gas ratio calculated for the Pixler gas analysis method
----
 
 
-Text:
----
+
 Pixler C1/C3 Gas Ratio
 
 C1/C3 gas ratio calculated for the Pixler gas analysis method
----
 
 
-Text:
----
+
 Pixler C1/C4 Gas Ratio
 
 C1/C4 gas ratio calculated for the Pixler gas analysis method
----
 
 
-Text:
----
+
 Pixler C1/C5 Gas Ratio
 
 C1/C5 gas ratio calculated for the Pixler gas analysis method
----
 
 
-Text:
----
+
 5 fold moving average of C1 to smooth out any anomalous peaks/troughs before working out %in/decrease
 
 C1MA = (C1[-5]+C1[-4]+C1[-3]+C1[-2]+C1[-1]+C1+C1[+1]+C1[+2]+C1[+3]+C1[+4]+C1[+5])/11
----
 
 
-Text:
----
+
 Description5 fold moving average of C2 to smooth out any anomalous peaks/troughs before working out %in/decrease
 
 C2MA = (C2[-5]+C2[-4]+C2[-3]+C2[-2]+C2[-1]+C2+C2[+1]+C2[+2]+C2[+3]+C2[+4]+C2[+5])/11
----
 
 
-Text:
----
+
 Delta C1 Moving Average
 
 Used to calculate the gradient between two adjacent C1 points after a moving average has been applied
----
 
 
-Text:
----
+
 Delta C2 Moving Average
 
 Used to calculate the gradient between two adjacent C2 points after a moving average has been applied
----
 
 
-Text:
----
+
 Delta Total Gas Moving Average
 
 Used to calculate the gradient between two adjacent Total Gas points after a moving average has been applied.
 
 DTGMA = TGMA[-1]/TGMA
----
 
 
-Text:
----
+
 GQR = TGPPM/(C1+(2*C2)+(3*C3)+(4*(iC4+nC4))+(5*(iC5+nC5)))
----
 
 
-Text:
----
+
 Used to convert the Total Gas values from a percentage to part per million so that the Gas Quality Ratio can be calculated correctly.
----
 
 
-Text:
----
+
 Total Gas Moving Average
 
 5 fold moving average of Total Gas to smooth out any anomalous peaks/troughs before working out %in/decrease
 
 TGMA = (TG[-5]+TG[-4]+TG[-3]+TG[-2]+TG[-1]+TG+TG[+1]+TG[+2]+TG[+3]+TG[+4]+TG[+5])/11
----
 
 
-Text:
----
+
 Total Gas Normalization
 
 Normalizes the Total Gas value using Drilling Parameters ROP, Flow rate & Hole Diameter
 
 TGNORM = TG*(((FLOW*ROP)/3.141592654))*((BS/2000)^2))*(100*3.141592654))
----
 
 
-Text:
----
+
 Net Pay (Sw using ARCHIE. Rw from SP)
 
 Calculation for identifying Net Pay, based on Water Saturation from Archie and Effective Porosity.
 
 NPAR = 1 if PHIA > PHIC and SWAR < SWCO, otherwise NPAR = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using ARCHIE. Rw known)
 
 Calculation for identifying Net Pay, based on Water Saturation from Archie and Effective Porosity.
 
 NPA = 1 if PHIA > PHIC and SWA < SWCO, otherwise NPA = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using INDONESIAN. Rw from SP)
 
 Calculation for identifying Net Pay, based on Sw from Indonesian Equation, Effective Porosity and Shale Volume.
 
 NPINR = 1 if PHIE > PHIC and SWINR < SWCO and VSH < VSHC, otherwise NPINR = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using INDONESIAN. Rw known)
 
 Calculation for identifying Net Pay, based on Sw from Indonesian Equation, Effective Porosity and Shale Volume.
----
 
 
-Text:
----
+
 Net Pay (Sw using SCHLUMBERGER. Rw from SP)
 
 Calculation for identifying Net Pay, based on Sw from Schlumberger Equation, Effective Porosity and Shale Volume.
 
 NPSCR = 1 if PHIE > PHIC and SWSCR < SWCO and VSH < VSHC, otherwise NPSCR = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using SCHLUMBERGER. Rw known)
 
 Calculation for identifying Net Pay, based on Sw from Schlumberger Equation, Effective Porosity and Shale Volume.
 
 NPSC = 1 if PHIE > PHIC and SWSC < SWCO and VSH < VSHC, otherwise NPSC = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using SIMANDOUX. Rw from SP)
 
 Calculation for identifying Net Pay, based on Sw from Simandoux Equation, Effective Porosity and Shale
 
 NPSR = 1 if PHIE > PHIC and SWSR < SWCO and VSH < VSHC, otherwise NPSR = 0
----
 
 
-Text:
----
+
 Net Pay (Sw using SIMANDOUX. Rw known)
 
 Calculation for identifying Net Pay, based on Sw from Simandoux Equation, Effective Porosity and Shale Volume.
 
 NPS = 1 if PHIE > PHIC and SWS < SWCO and VSH < VSHC, otherwise NPS = 0
----
 
 
-Text:
----
+
 Porosity Effective (Clean Zone)
 
 Calculating Root Mean Square value of Neutron Porosity and Density Porosity, in clean zone.
 
 PHIA = sqrt((NPHI^2+DPHI^2)/2)
----
 
 
-Text:
----
+
 Porosity Effective (with Shale Correction)
 
 Calculating Root Mean Square value of Neutron Porosity and Density Porosity (with Shale Correction).
 
 PHIE = sqrt(((NPHI-PSH*VSH)^2+DPHIS^2)/2)~1
----
 
 
-Text:
----
+
 Porosity from Density (Clean Zone)
 
 Calculating Density Porosity in clean zone.Formula
 
 DPHI = (((RHOMA-RHOB)/(RHOMA-RHOFL))#0)~1Details
----
 
 
-Text:
----
+
 Porosity from Density (with Shale Correction)
 
 Calculating Density Porosity, with Shale Correction.
 
 DPHIS = ((((RHOMA-RHOB)/(RHOMA-RHOFL))-(VSH*((RHOMA-RHOSH)/(RHOMA-RHOFL))))#0)~1
----
 
 
-Text:
----
+
 Porosity from Sonic (Clean Zone)
 
 Calculating Sonic Porosity in clean zone.
 
 FormulaPHIS = (((DT-DTM)/(DTF-DTM))*(1/CP))~1, otherwise PHIS = ((DT-DTM)/(DTF-DTM)*(1/CP))-(VSH*(DTSH-DTM)/(DTF-DTM))
----
 
 
-Text:
----
+
 Porosity from Sonic (with Shale Correction)
 
 Calculating Sonic Porosity, with Shale Correction.
 
 PHISS = ((DT-DTM)/(DTF-DTM)*(1/CP))-(VSH*(DTSH-DTM)/(DTF-DTM))
----
 
 
-Text:
----
+
 Rw at Formation Temperature
 
 Calculating Rw from SSP reading at Formation Temperature.
 
 RWAT = RW*(RWT+6.77)/(TEMP+6.77)
----
 
 
-Text:
----
+
 Calculating Rw from SSP reading at Formation Temperature.
 
 RWSP = ((10^(0.69*RWE75-0.24))-0.58)*(81.77/(TEMP+6.77)), if RWE 75 > 0.12 otherwise RWSP = ((77*RWE75+5)*(146-377*RWE75))*(81.77/(TEMP+6.77))
----
 
 
-Text:
----
+
 Calculating Shale Volume from GR.
 
 VSH = (((GR-GRCL)/(GRSH-GRCL))#0)~1
----
 
 
-Text:
----
+
 Sw using ARCHIE (Rw known)
 
 Water Saturation calculation using Archie formula, with Rw to be calculated from SP.
 
 SWAR = (((A/(PHIA^M))*(RWSP/RT))^(1/N))~1
----
 
 
-Text:
----
+
 Sw using ARCHIE (Rw known)
 
 Water Saturation calculation using Archie formula, with Rw as an input (known parameter).
 
 SWA = (((A/(PHIA^M))*(RWAT/RT))^(1/N))~1
----
 
 
-Text:
----
+
 NameSw using INDONESIAN (Rw known)
 
 Water Saturation calculation using Indonesian Equation, with Rw to be calculated from SP.
 
 SWINR = ((1/(RT*((((VSH^(1-VSH/2))/SQRT(RSH))+((PHIE^(M/2))/SQRT(A*RWSP)))^2))^(1/N))~1
----
 
 
-Text:
----
+
 Sw using INDONESIAN (Rw known)
 
 Water Saturation calculation using Indonesian Equation, with Rw as an input (known parameter).
 
 SWIN = ((1/(RT*((((VSH^(1-VSH/2))/SQRT(RSH))+((PHIE^(M/2))/SQRT(A*RWAT)))^2))^(1/N))~1
----
 
 
-Text:
----
+
 Sw using SCHLUMBERGER (Rw known)
 
 Water Saturation calculation using Schlumberger Equation, with Rw to be calculated from SP.
 
 SWSCR = ((((-VSH/RSH+((VSH/RSH)^2+(PHIE^2/(RT*RWSP*0.2*(1-VSH))))^0.5)/(PHIE^2/(0.4*RWSP*(1-VSH))))~1
----
 
 
-Text:
----
+
 Sw using SCHLUMBERGER (Rw known)
 
 Water Saturation calculation using Schlumberger Equation, with Rw as an input (known parameter).
 
 SWSC = ((((-VSH/RSH+((VSH/RSH)^2+(PHIE^2/(RT*RWAT*0.2*(1-VSH))))^0.5)/(PHIE^2/(0.4*RWAT*(1-VSH))))~1
----
 
 
-Text:
----
+
 Sw using SIMANDOUX (Rw from SP)
 
 Water Saturation calculation using Simandoux Equation, with Rw to be calculated from SP.
 
 SWSR = (((0.4*RWSP/PHIE^2)*(-VSH/RSH + ((VSH/RSH)^2+((5*PHIE^2)/(RT*RWSP)))^0.5))#0)~1
----
 
 
-Text:
----
+
 Sw using SIMANDOUX (Rw known)
 
 Water Saturation calculation using Simandoux Equation, with Rw as an input (known parameter).
 
 SWS = (((0.4*RWAT/PHIE^2)*(-VSH/RSH + ((VSH/RSH)^2+((5*PHIE^2)/(RT*RWAT)))^0.5))#0)~1
----
 
 
-Text:
----
+
 Thorium to Potassium Ratio, for Mineral Identification
----
 
 
-Text:
----
+
 Calculation of well departure to East (Easting), using Minimum Curvature Method.
 
 EASMC = EIP+DEASMC [++]
----
 
 
-Text:
----
+
 Calculation of well departure toward North (Northing), using Minimum Curvature Method..
 
 NORMC = NIP + DNORMC [++]
----
 
 
-Text:
----
+
 TVD using Minimum Curvature method
 
 Calculating TVD, using Minimum Curvature Method.
 
 TVDMC = Offset+DTVDMC[++]
----
 
 
-Text:
----
+
 TVD using Average Tangential
 
 Calculating TVD, using Average Tangential Method. Use this equation if you DO NOT have azimuth data.
 
 TVDAT = Offset + DTVDAT [++]
----
 
 
-Text:
----
+
 Projection of well departure to certain projection plane.
 
 FormulaVSEC = (NORMC*Cos(PROJ*2*3.141592654/360))+(EASMC*Sin(PROJ*2*3.141592654/360))
----
 
 
-Text:
----
+
 Calculation of the distance between wellhead and projection of bottom – hole to horizontal plane.
 
 DEPT = sqrt(NORMC^2+EASMC^2)
----
 
 
-Text:
----
+
 Data typically stored in tabular format can be converted into a GEO Curve.
 
 On theHometab, on theTablegroup, open theSelectDefinitionlist and select the table containing the data that you wish to display as a curve. The Table Definition dialog box will open.
@@ -549,11 +434,9 @@ To remove the link between a table column and curve, return toCreate Curves For 
 Note. To create a curve from a table column, there must be two or more rows of data present.
 
 Note. Only the following tab column data types can be converted into curve format: String, Integer, Decimal, SymColTxt, Start TVD, Start TVDSS, Start TWT, End TVD, End TVDSS and End TWT.
----
 
 
-Text:
----
+
 Create a zoned curve - a Cutoff Curve - from an existing curve. This is useful for isolating shale zones in pore pressure calculations i.e. a gamma ray curve can be used as a template from which a shale zoned cutoff curve can be created.
 
 On thePorePressuretab, selectCutoffCurve, theCreateNewCutoffCurve. The Create Cutoff Curve dialog box will open.
@@ -577,11 +460,9 @@ To turn off Cutoff Curve mode, hit theEsckey or click on the ribbon.
 Note. The cutoff curve display can be edited in thecurve settings sidebar.
 
 Note. Use the Undo/Redo controls in the quick access toolbar to edit the cutoff curve.
----
 
 
-Text:
----
+
 Manually create more than one curve with the same depth sampling interval (such as Total Gas, C1, C2, C3).
 
 The depth value needs to be entered once for the entire set of curves, as opposed to the same depth information being repeated for each curve.
@@ -607,11 +488,9 @@ ClickOKto view the multiple curve group in theEdit Multiple Curve Data Pointsdia
 Enter theDepthand curve data values to the cells.
 
 UseAppendRow,InsertRowandDelete Rowto add, insert and remove data.
----
 
 
-Text:
----
+
 Create Polyline Curves - user defined curves manually shaped with the Polyline Curve tool.
 
 On thePore Pressuretab, selectPolyline Curve, thenCreate New Polyline Curve. The Create Polyline Curve dialog box will open.
@@ -637,11 +516,9 @@ Adjust the data points by dragging them into the new position.
 To turn off Polyline mode, hit theEsckey or click on the ribbon.
 
 Note. The Polyline Curve display can be edited in the Curve Settings sidebar.
----
 
 
-Text:
----
+
 On theCurvestab, selectCurveData. The Curve Data dialog box will open.
 
 FromSelecta Curve, select an[Unused]curve number.
@@ -655,11 +532,9 @@ To add more depth and value data, selectAppend Row.
 To delete rows, select the row and hitDeleteon your keyboard.Note. All rows displayed in the grid will be used as curve points. So, empty rows (no data) will be treated as valid data points.
 
 Tip. Over a wide depth range (more than 500ft) you should always define the curve or gradient with at least one intermediate data point (that is, use a minimum of 3 data points to define the curve or gradient).The display settings for the new curve are defined in theCurve Settingssidebar . This can be opened by selectingCurves.↵
----
 
 
-Text:
----
+
 This dialog box allows you to append multiple curves. It can be accessed via theCurvestab,Compiler.
 
 Use theCurvedrop list to select the curve you wish to compile. If an[Unused]curve is selected you can enter theCurveMnemonicand clickApplyDefaultsto implement the curves ‘default’ properties (defined in Curve > Curve Settings). If a Curve Default is not defined, a message will invoke explaining this and giving you the option to use the mnemonic or not.
@@ -679,11 +554,9 @@ To exit the dialog box, clickOK.
 TheDeleteRowbutton can be used to remove contributing curves.
 
 To calculate the different depth values (in MD, TVD TVDSS, TWT and VSEC) for a specific depth withoug exiting the dialog box, select the Index Convertor button.
----
 
 
-Text:
----
+
 On theCurvestab, selectCurveData. The Curve Data dialog box will open.
 
 FromSelecta Curve, select the curve you wish to edit.
@@ -695,11 +568,9 @@ Type the new value and select theEnterkey.Note. Edited values appear in red, to 
 SelectExitto end the editing process and close Curve Data.
 
 Tips. After editing the data, the original values are also stored in the Curve Data dialog box, under the Original Value column. You will see this column if you re-open Curve Data after editing the data. You can toggle between edited and original values by selecting either Edited Data or Original Data in the For this Curve Use list.
----
 
 
-Text:
----
+
 Display integrated travel time data as pips on the log plot. This is a useful tool for integrating seismic time with depth.
 
 Load the appropriate integrated travel time data into your ODF via theload wizard.
@@ -725,11 +596,9 @@ InData Value for Major Pips, enter a value for the major pip display length. Thi
 Select theDestination Curve for Pip Data.To create a new pip curve, select an empty number and enter its mnemonic in theMnemonic for New Pip Curve.If you wish the pip curve to occupy a specific mnemonic entry, select<Curve from Mnemonic>and then define select the mnemonic from the adjacent box.
 
 The pips can now be displayed on the plot.
----
 
 
-Text:
----
+
 Use this procedure to flat-line your data, creating a fixed gradient of curve values between two depth points. This feature is useful in fining up/down sequences in Core Log analysis but can also be used to remove poor data.
 
 On theCurvestab, selectMouse Set Curve Data. The cursor will change
@@ -757,11 +626,9 @@ Multiple curves on the same trackIf there are multiple curves on the same track,
 The last curve edited will be the default curve. Therefore, if curve B is edited and then curve A (which appears beforehand in the list) is enabled, curve B will be used for Mouse Set Curve Values, until its display is turned off.
 
 If there are multiple curves on the same track but they occur at different depths then the first curve in the list (at that depth) will be used.
----
 
 
-Text:
----
+
 Multiple curves can be grouped together and viewed in a spreadsheet interface.
 
 On theCurvestab, selectMultipleCurves.Note. If a multiple curve group exists in the ODF, theEdit Multiple Curve Data Pointsdialog box will open.If a multiple curves group is not present, theCurveSelectiondialog box will open. Here you can create a new multiple curve group.
@@ -771,21 +638,17 @@ In theEdit Multiple Curve Data Pointsdialog box, choose the curve group from the
 Use theIndex Converterto calculate the equivalent depth value in MD, TVD, TVDSS, TWT and VSEC for a specific depth without exiting the dialog box.
 
 UseSelect Curvesto edit the curves included in the current group.Note. Any groups listed in open and closed brackets are groups of curves compartmentalized due to their source (i.e. the file name the curves were loaded from). Additional curves cannot be added to these groups.
----
 
 
-Text:
----
+
 View the load and amendment history of curve data.
 
 On theCurvestab, selectHistory. TheView Curve Data Historydialog box will open.
 
 InDisplay History for, select the curve you wish to view the history of.
----
 
 
-Text:
----
+
 On theDefinetab, selectAutoLoad. The Auto Load Definitions dialog box will open.
 
 For a first-time load, enter aNamefor the auto-file load andBrowseto locate and select the relevant curve data file. Alternatively, a file path can be manually typed intoFile Name.
@@ -799,29 +662,23 @@ For loading the file, the same steps should be followed as whenloading a data fi
 Once loaded, you can thenpresent the curvesas desired.
 
 At the time frequency specified, GEO will revert to the specified file and if new data is present, this will be loaded (appended) and the curve extended to reflect the new data.
----
 
 
-Text:
----
+
 You can load data files or either comma-separated (CSV) or tab-delimited text type without additional manipulated via theData Import Wizard.In a comma-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells are separated by a tab character.In a comma-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells are separated by a tab character.In those kinds of files, the range between commas or tabs is taken as the column width.The application simply reads values between commas (or tabs) and ignores any spaces.Compared tospace-delimited data, these are more structured formats, and as such (together with the wholly structured LAS format, or compatible-XML format) are the preferred data formats to request from your vendors.
----
 
 
 
 
-Text:
----
+
 The data import wizard loads curves into an odf.
 
 Data Import Wizard Step 1
 
 Data Import Wizard Step 2
----
 
 
-Text:
----
+
 The process of importing or loading an XML file is very similar to that of loading other types of data. However, the information within the XML file is structured differently so viewing the files contents prior to importing is slightly different. This specific structuring is calledWellLogML.
 
 WellLogML is similar to LAS, in that it specifies how well log data is organized in terms of Well Information, Curve Information, Parameter Information, etc.
@@ -839,13 +696,11 @@ ParametersThis table displays Parameter-Mnemonic information from the WellLogML 
 CurvesInformation on the curves that you wish to load are displayed here. TheCurve Mnemonic,Unit,NameandDescriptionalong withNullValueare listed for each curve within the XML file.The last column,Load?, gives you the opportunity to deselect any curves that you do not wish to load. By default all curves within the XML file will be loaded. To deselect a curve, click the cell in the Load column for that curve (row) and type ‘N’. Type the letter ‘Y’ for yes if you decide to again load the curve.
 
 SelectApplyto save any changes, thenOKto load.
----
 
 
 
 
-Text:
----
+
 In a space-delimited ASCII data file, cells in a column are separated from the next, by one or more spaces.As the number of the spaces may not be constant between columns, the width of each column needs to be explicitly specified.Note. It is very important to have the curve mnemonic, unit and data for each curve to lie within successive columns, and for the first row of data to be the curve mnemonic (column name).In theStep 1 of the Data Import Wizard, adjust the column widths manually.
 
 Ensure that the first row of the data file is fixed as the Curve Mnemonics (column names), by scrolling the data, as required, until the curve mnemonics are central within the text box field.
@@ -863,11 +718,9 @@ Repeat steps 3 to 6 for each column that requires realignment of the separator.
 ClickOKto close theFile Viewdialog box.
 
 It is highly recommended that you scroll through the entire file to ensure the correct positioning of all column separators.Ensure that the last entry in the file is the last row of data values, and not other spurious information.
----
 
 
-Text:
----
+
 The order of curve legends on a plot is determined by the curve order in curve settings list.
 
 By default, the order in the curve settings list is the same order as the order in the file, from which the curves were loaded.
@@ -879,11 +732,9 @@ Open theCurvelist and inSortby, selectUserDefined.
 Select the curve and use theOrderup and down arrows to arrange the curves.
 
 Note. The Curve ID (number) remains the same, even though the order changes. If you choose toSort by Number, the curves appear in the same order as when loaded (numerical order).
----
 
 
-Text:
----
+
 The display settings for each curve, such as curve mnemonic, scale, pen type, pen color, name and measurement units,auto populatecapabilities etc., can besaved as defaults.
 
 These defaults can then be applied in a new ODF.
@@ -895,11 +746,9 @@ Select theCurve, thenClosethe list.Note. The curve mnemonic must match that of t
 SelectApplyDefaults.Note. The Apply Defaults button will only enabled if a default has been saved for this mnemonic.
 
 Note. The defaults are stored within the geocurve.ini file. The correct geocurve.ini file needs to be loadedin order for the saved defaults to be available.
----
 
 
-Text:
----
+
 This feature allows you to save curve display attributes, that will enable a curve - when loaded or computed - to automatically display as desired. This is advantageous when used in a corporate template, so that from the start of a well you can view data immediately.
 
 Curve display attributes, are defined in theCurveSettingssidebar (on theCurvetab, selectCurveSettings), and are saved as 'Curve Defaults' to the geocurve.ini file, which is then saved in the ODF/ODT.
@@ -917,21 +766,17 @@ Do this for each curve you wish to save the default display settings for.
 Note. This will only update the curve defaults for the ODT/ODF you are currently using, not for new or blank ODF/ODT's.
 
 Now, if you load a curve that has a mnemonic (or shared synonym) matching those of the saved curve defaults, it will auto-populate the log on loading it into the ODT/ODF.
----
 
 
-Text:
----
+
 Select the curve on the plot. The selected curve will retain its color and all other curves will become grey. TheSettingscontext tab will appear.
 
 Change the curveName,Mnemonic,Units,Track,Scale,PenandLegend.
 
 Hit Enter to implement changes.
----
 
 
-Text:
----
+
 Change the pen type and color used to draw a curve.
 
 On theCurvestab, selectCurveSettings. The Curve Settings sidebar will open.
@@ -951,11 +796,9 @@ Note. If theAutomatic selection of Wrap Pen Type for Curvesis selected inGlobalS
 Note. A color-plotting device with the relevant driver is required to produce a color hard copy.
 
 Tip. Clear the Use Customized Pens check box to display the curve as a single pixel line.
----
 
 
-Text:
----
+
 Plot Azimuthal distribution data as rose plot diagrams on the log plot.
 
 Load Azimuthal curve datainto GEO
@@ -1035,11 +878,9 @@ Check/clearDisplay Scale Valuesto display/hide each radial grid value.
 Define theFontof the scale values..
 
 Choose thePlot Background Color.
----
 
 
-Text:
----
+
 All curves can be displayed in text format.
 
 On theCurvestab, selectCurvesSettings. The Curve Settings sidebar will open.
@@ -1053,11 +894,9 @@ Open theDisplaynode and select theTrackthe text should display on.Note. Remember
 TickDisplay Curve on Layout.
 
 To change its format (font, interval, justification), remain in theCurveSettingssidebar and on theTexttab, openCurve as textnode.
----
 
 
-Text:
----
+
 Curves are named according to their origin or subsequent manipulation, and to aid their identification and source within the ODF database.
 
 The curve type is detailed in open and closed brackets following the curve name.
@@ -1081,9 +920,7 @@ Only user-defined curves allow the editing of depth values and creation of new d
 You can edit only the data values for all other curve types.
 
 GEO always retains a copy of the original loaded or computed curve data, and you can choose to toggle display between edited and original curves.Once a non user-defined curve’s data has been modified or edited, the curve is then marked as edited.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Curve_Display\Curve_Types_in_GEO.htm              ║
@@ -1109,11 +946,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Customize the way pens appear on the screen and on the printer using in Pen Definitions.
 
 Up to twenty (20) customized pens can be defined (pen 0 through 19).
@@ -1163,11 +998,9 @@ SelectDraw Sample topreview the new pen in theSamplebox.
 SelectUpdateto implement the changes.
 
 Tip. The new pen definition can besaved in a View (Vew) file.
----
 
 
-Text:
----
+
 Data points in a curve can be marked on the plot.
 
 However, since these appear at actual data points, using such markers on a curve with a sample frequency of 0.5 ft (6 inch) on a 1:500 scale would cause the markers to overlap each other.
@@ -1191,11 +1024,9 @@ Select theHighlightColor. This is the color the data points will appear when the
 Specify the number ofDisplay Markers in Curve Legend(i.e. if 2 was entered, 2 markers would display in the curve legend).
 
 SelectApplyto implement the changes.
----
 
 
-Text:
----
+
 Display curve values which are outside of the specified scale range.
 
 On theCurvestab, selectCurveSettings. The Curve Settings dialog box will open.
@@ -1219,11 +1050,9 @@ Display a legend for the wrapped curve by tickingDisplay Backup Curve Legend.
 SelectApplyto implement the changes.
 
 Note. The infinite wrapping is limited by theMaximum number of times to Wrap a Curvein theOthertab inGlobal Settings.
----
 
 
-Text:
----
+
 Display the curve mnemonic or name alongside the plotted curve.
 
 On theCurvestab, selectCurveSettings.  The Curve Settings sidebar will appear.
@@ -1245,11 +1074,9 @@ Enter the distance from the top of the plot you wish to see the first label appe
 Enter the distance between labels inRepeat Labels Everybox.
 
 SelectApplyto implement the changes.
----
 
 
-Text:
----
+
 View and modify tadpole Data.
 
 On theWorkflowstab, selectTadpoleData. The View and Modify Tadpole Data will open.
@@ -1261,11 +1088,9 @@ To modify the data, click on the desired table field, edit the data and hit Ret
 ClickExitto update any changes.
 
 Tip. Quickly toggle to theTadpoleDefinitionsby clickingDefinitionsat the bottom of the dialog box. When inTadpoleDefinitions, revert to theView and Modify Tadpole Datadialog box by clickingData.
----
 
 
-Text:
----
+
 You can have multiple scales for a curve in a plot. This is useful, for instance to change the curve scale at the middle of the plot, to have the curve always within the scale range (i.e. not wrapped).
 
 On theCurvestab, selectCurveSettings. The Curve Settings dialog box will open.
@@ -1279,11 +1104,9 @@ SelectAppend Rowto add another scale for another depth range.
 Enter the depth this scale will start from inDepth Fromand its scale in theStart ValueandEnd Value.
 
 SelectApplyto implement the changes.
----
 
 
-Text:
----
+
 Change the curve name, its mnemonic, as well as its measurement unit.
 
 Select the curve on the plot. The selected curve will retain its color and all other curves will become grey. TheSettingscontext tab will appear.
@@ -1303,11 +1126,9 @@ Change theName,MnemonicandUnits.Note. When editing the mnemonic, remember that a
 Learn how to save the curve name, mnemonic and units as default curve settings.
 
 Learn how to apply default curve names, mnemonics and units.
----
 
 
-Text:
----
+
 The Curve Settings sidebar provides an overview of curve information present in theODFfile of the current session. The mechanisms for tailoring the presentation of a curve are also detailed here.
 
 On theCurvestab, selectCurveSettings. The sidebar will open.
@@ -1327,11 +1148,9 @@ Open thePensnode and select the pensNormal StyleandNormal Color.
 SelectApplyat the bottom of the sidebar to implement the changes.
 
 How to change the curve type and color.How to display the out-of-scale (wrapped curve).Learn how to save the curve display settings as defaults for future usage.
----
 
 
-Text:
----
+
 A tadpole plot is used to present four data sets in graphical format.
 
 The four data sets are:
@@ -1375,11 +1194,9 @@ Select the track that you wish to display the tadpoles on in theTrack for plotti
 Define theQualitythresholdby entering an appropriate value for each fill type in the corresponding boxes.
 
 Adjust the tadpoleCircleDiameterand itsTaillengthin theTadpoleSymbolParameterssection.
----
 
 
-Text:
----
+
 The display settings for each curve, such as curve mnemonic, scale, pen type, pen color, name and measurement units,auto populatecapabilities etc., can be saved as defaults for future usage.
 
 On theCurvestab, selectCurveSettings. The Curve Settings sidebar will open.
@@ -1391,11 +1208,9 @@ SelectSave as Defaults.
 Do this for each curve you wish to save the default display settings for.
 
 The defaults will then be stored within the geocurve.inifile, which usually resides in the GEO library directory.The geocurve.ini file can be loaded into other ODF’s and the saveddefaults appliedto the curves within.
----
 
 
-Text:
----
+
 Shade the region between two curves, between a track edge and a curve or between a fixed value and a curve, with a user-selected color, fill or lithology pattern.
 
 This is useful in highlighting curve features such as density-neutron crossovers, invasion profiles, hole washouts or clean sand cut offs.
@@ -1447,11 +1262,9 @@ SelectData Value Ranges defined belowif you with to define shading zones.Note. I
 The shading interval in the Zone Attributes grid will change toFrom ValueandTo Value(instead of From Depth and To Depth).
 
 Tips. To delete shading from the plot, select theCurveShadingand clearDisplayCurveShadeonLayout, thenUpdate. Although all names remain on this dialog box for later re-selection, the shading is removed from the plot. To totally remove the settings clickReset.
----
 
 
-Text:
----
+
 Lithologies can be applied as curve shading in two ways.
 
 Lithology shading through a cut off or fixed value.
@@ -1513,11 +1326,9 @@ Define theTypecolumn asPattern. In thePatterncolumn, selectClaystone.
 In the third row ofZoneAttributesgrid, enter80in theFromValueand leave the maximum GR value inToValuecolumn.
 
 Tip. The curve shading information entered inZone Attributescan be copied, by clickingCopy. You can thenPasteit into a different ODF.
----
 
 
-Text:
----
+
 The depth of curves can be shifted to shallower or deeper depths using the depth shifts feature. To access this, on theDepthstab, selectCurves and Global Depth Shifts. The Depth Shift Specifications dialog box will open. From here you can perform the following actions.
 
 Global Depth Shift All Curves
@@ -1577,11 +1388,9 @@ To remove the depth shift, selectRevertto Original Depths, thenRemove.GEO Messag
 To make the shifted depths the 'true' data points of the curve (there will be no evidence this curve was depth shifted), selectPreserve Current Depths, thenRemove.GEO Message:826 will appear - clickYes.
 
 ClickExitto return to theDepthShiftSpecifications. The curve selection will need to be refreshed to reflect any changes made in the theCurve Depth Details.
----
 
 
-Text:
----
+
 Shade between the wrapped (or out-of scale value) curves and the left or right track edge.
 
 For example, an ROP curve that has data range between 0 to 380 ft/min needs to be displayed with left and right edge scale at 0 to 300 ft/min. To indicate a fast drilling region, a red curve shading needs to be applied between left track edge and any ROP curve whose value is greater than 300 ft/min.
@@ -1605,11 +1414,9 @@ InTo, select the wrappedROPcurve and tickWrappedbelow.
 ClickAppendand select the shading color asRed.
 
 Only the wrapped ROP (i.e. its value exceeding 300 ft/min) will then be shaded red.
----
 
 
-Text:
----
+
 Take portions of different curves and splice them together to form a new curve. The selected source curve is spliced onto the destination curve over the specified depth interval.
 
 In general, the splicing operation is appropriate only for wireline curves. This is because each wireline curve has its own first and last reading and curves need to be spliced to eliminate or minimize data falling outside these points.
@@ -1645,11 +1452,9 @@ Cancel:aborts the operation.
 The above process may be repeated on the same destination curve with other source curves.
 
 Tip. SelectIndexConverterto calculate the different depth values (in MD, TVD, TVDSS, TWT and VSEC) for a specific depth without exiting the dialog box.
----
 
 
-Text:
----
+
 Shade the region between two curves, between a track edge and a curve or between a fixed value and a curve, with a user-selected color, fill or lithology pattern.
 
 This is useful in highlighting curve features such as density-neutron crossovers, invasion profiles, hole washouts or clean sand cut offs.
@@ -1701,11 +1506,9 @@ SelectData Value Ranges defined belowif you with to define shading zones.Note. I
 The shading interval in the Zone Attributes grid will change toFrom ValueandTo Value(instead of From Depth and To Depth).
 
 Tips. To delete shading from the plot, select theCurveShadingand clearDisplayCurveShadeonLayout, thenUpdate. Although all names remain on this dialog box for later re-selection, the shading is removed from the plot. To totally remove the settings clickReset.
----
 
 
-Text:
----
+
 Lithologies can be applied as curve shading in two ways.
 
 Lithology shading through a cut off or fixed value.
@@ -1767,11 +1570,9 @@ Define theTypecolumn asPattern. In thePatterncolumn, selectClaystone.
 In the third row ofZoneAttributesgrid, enter80in theFromValueand leave the maximum GR value inToValuecolumn.
 
 Tip. The curve shading information entered inZone Attributescan be copied, by clickingCopy. You can thenPasteit into a different ODF.
----
 
 
-Text:
----
+
 Shade between the wrapped (or out-of scale value) curves and the left or right track edge.
 
 For example, an ROP curve that has data range between 0 to 380 ft/min needs to be displayed with left and right edge scale at 0 to 300 ft/min. To indicate a fast drilling region, a red curve shading needs to be applied between left track edge and any ROP curve whose value is greater than 300 ft/min.
@@ -1795,11 +1596,9 @@ InTo, select the wrappedROPcurve and tickWrappedbelow.
 ClickAppendand select the shading color asRed.
 
 Only the wrapped ROP (i.e. its value exceeding 300 ft/min) will then be shaded red.
----
 
 
-Text:
----
+
 Take portions of different curves and splice them together to form a new curve. The selected source curve is spliced onto the destination curve over the specified depth interval.
 
 In general, the splicing operation is appropriate only for wireline curves. This is because each wireline curve has its own first and last reading and curves need to be spliced to eliminate or minimize data falling outside these points.
@@ -1835,11 +1634,9 @@ Cancel:aborts the operation.
 The above process may be repeated on the same destination curve with other source curves.
 
 Tip. SelectIndexConverterto calculate the different depth values (in MD, TVD, TVDSS, TWT and VSEC) for a specific depth without exiting the dialog box.
----
 
 
-Text:
----
+
 Free Format Text is text which appears on data tracks (linear or Logarithmic tracks). It can be used to describe and label objects or highlight information.
 
 Double click where you wish to add the text.The Free Format Text Entry sidebar will open.
@@ -1857,21 +1654,17 @@ For an existing free format text entry, the free format text sidebar can be open
 By defaults, curves will overlay all text entries. You can make the text entries overlay the curves by selectingOverlayCurvesin the Free Format Text sidebar.
 
 Free format text entries can only be created over a linear or logarithmic track. However, once created they can be moved to display on any track (such as depth, lithology, % lithology or text).
----
 
 
-Text:
----
+
 Select the free format text and hitDeleteon your keyboard.
 
 Right click on the free format text and selectDelete.
 
 A confirmation dialog box will open. ClickYes.
----
 
 
-Text:
----
+
 Select the free format text.
 
 Double click on the text. In place editing mode will enable.
@@ -1883,11 +1676,9 @@ Note. The amount of text entered into boxed text entries is limited by the size
 Edit Free Format Text using sidebar
 
 Right click on the text and selectTextProperties.The Free Format Text Entry sidebar will appear.
----
 
 
-Text:
----
+
 Select the text and drag it to its new position.
 
 On theHometab, select theArrowsKeysNudge. Use the keyboard arrow keys to move the text to its new position.
@@ -1899,11 +1690,9 @@ Right click on the text and selectTextProperties.The Free Format Text Entry side
 In theLocationnode, enter the new depth in the At box.
 
 Note. Free format text can only be created on curve data tracks. But it can be relocated to display over any other track (Depth, Lithology, % Lithology or Text).
----
 
 
-Text:
----
+
 The process of adding a Graph (a dynamic GGD file) to your ODF or ODT is much the same as adding anything to a header or trailer.
 
 If you are using Layouts, select the one you wish the graph to appear on.
@@ -1925,11 +1714,9 @@ ClickExitto apply the changes.
 Once a graph has been loaded into the header specifications it can be displayed on multiple layouts. Select the layout you wish to place the graph on and repeat steps 6 onward.
 
 Tip.To make instant changes to a graph, double click the graph.
----
 
 
-Text:
----
+
 GEOGraph is an integrated application which allows you to create X-Y and Z plots from curve data or table data from within GEO. This Graphs can then be displayed in the header or trailer.
 
 Uses can range from well trajectory plots through to pressure plots. Once the data is plotted, calculations of best-fit lines and line intersect can be achieved. This accompanied by full integration with GEO serves as a useful graphics tool.
@@ -1945,11 +1732,9 @@ You can invoke GEOGraph within a GEO document by double-clicking on the GEOGraph
 Learn how to adda graph (ggd file) to your ODF or ODT.
 
 As part of the installation routine you will probably have installed a suite of example files and templates that have some example graphs already set up for you. Please feel free to experiment with these files and see how GEOGraph could benefit your well log.
----
 
 
-Text:
----
+
 The header is all well information and legends attached to the top of the log.
 
 The trailer is the well data or information that is attached to the bottom of the log.
@@ -1973,11 +1758,9 @@ Tip. For a header/trailer table containing data, you can double click to launch 
 See the software’s limits on how many headers/trailers you can put in oneODF file.
 
 Learn how to place a picture such as a location map in your log header.
----
 
 
-Text:
----
+
 The header is the top section of the log where the well information and legends display. The trailer is the bottom section where the
 
 well data or information displays.
@@ -2017,11 +1800,9 @@ Enter theZoom XandY. Values greater than 1 will increase the image size. Values 
 ClickExitto leave the dialog box.
 
 Using the mouse, select the image in the header or trailer and drag to its new position and use the grab handles to resize.
----
 
 
-Text:
----
+
 Vector Object orVOBfiles may contain references to fixed text, mnemonics and tables.
 
 Every text string that is displayed in the VOB file must have a font associated with it.
@@ -2061,11 +1842,9 @@ Dictates the character orientation
 ClickChooseFontto open theFontdialog box where you can change the font type, style, size and color.
 
 ClickDefaultFontto restore the default font settings as specified in theText-Fontstab in theRegistryEditordialog box.
----
 
 
-Text:
----
+
 The header and trailer items can be rearranged to suit your requirements by establishing a hierarchy.
 
 This is especially valuable when dealing with expanding data tables.
@@ -2097,11 +1876,9 @@ Note. The itemsY Positionwill determine its distance from its parent.
 Vertical Margin Between Last Header and Plot
 
 Enter a value in screen units for the gap you wish to have between the last header and the plot (this is relevant only if you have an expanding table as your last header, otherwise the bounds can be used as the margin).
----
 
 
-Text:
----
+
 To add headers or trailers to your log, the required file should be present in theExisting Specificationsof thePlot Header and Trailer
 
 Specificationsdialog box.
@@ -2139,11 +1916,9 @@ Rangedialog box will open. Here you can choose to display report data within the
 All Zones of Type(all data from the zone type selected).
 
 The newly loaded file will be listed in Existing Specifications.From here it can be added to the header and trailers on your log.
----
 
 
-Text:
----
+
 The font type, size and style of your vector object (VOB) font can be defined in the Fonts for Vector objects dialog box.
 
 This dialog box opens when the user clicksFontsorChooseFontfrom any dialog box that gives you the choice to select the fonts.
@@ -2155,11 +1930,9 @@ Note. The font type that is available is dependent on the capabilities of the cu
 You can also choose theFontStyle,Size,Colorand toStrikeoutand/orUnderlinethe text.
 
 ClickOKto save any changes.
----
 
 
-Text:
----
+
 In a plot header or trailer, you need to be able to fill in well or log information such as well name, field name, company name, vendors name, name of the geologists, coring intervals, casing intervals etc.
 
 To do this, a specific mnemonic is assigned to each piece of information in the plot header or trailer. All mnemonics must be unique within the ODF file. The software uses the mnemonic ID to uniquely identify a mnemonic.
@@ -2215,9 +1988,7 @@ If you now wish to export a curve as XML, the mnemonics assigned as Parameter In
 Select the corresponding LAS file (from theFilelist box inDefine Mnemonicsdialog box) to determine the appropriate mnemonic values for your plot header.
 
 The possible length of a mnemonic is 32 characters. The API standards have not changed, so most mnemonics will still be three or four characters, but you have the option of creating user defined mnemonics that are longer.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Headers_and_Trailers\Mnemonics_for_Header_and_Trailers\Mnemonics_in_G.htm              ║
@@ -2243,11 +2014,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Header mnemonicscan be defined asSystemVariables.
 
 System Variables allow you to present aMnemonic Identifier(ID) with differentValues, in each layout.
@@ -2299,9 +2068,7 @@ The optional formatting specifications are listed below.
 Add System Variable in GEOVectdraw
 
 Tip. You can change the type of system variable assigned to a mnemonic in GEO.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Headers_and_Trailers\Mnemonics_for_Header_and_Trailers\System_Variables_in_Header_Mnemonics.htm              ║
@@ -2366,11 +2133,9 @@ Tables:
 ║            🔚 End of Table 2                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Add horizontal lithology descriptions or remarks to a special text track.
 
 Double click on text track. The Track Text Entry dialog box will open.
@@ -2404,11 +2169,9 @@ Enter the desired URL in theExternal Linkor clickBrowseto locate the local or ne
 For anInternal link, select theHeaderorTrailerthen use the lists below to selectinLayoutandHeader/Trailer.
 
 Choose to identify links using a marker in theLink Object on Screen Display with Link Markerlist.
----
 
 
-Text:
----
+
 Select the text and hitDeleteon your keyboard.
 
 Right click on the text and selectDelete.
@@ -2430,19 +2193,15 @@ Identify the entry you wish to delete and select the grey cell adjacent to highl
 Clear theIn-Usecheck box.
 
 ClickUpdate.If multiple entries are selected a message will appear  - confirmYesto delete.
----
 
 
-Text:
----
+
 Double click on the text. In-place editing will invoke. Edit the text and hitEnter.Or,
 
 Right click on the text and selectTrackTextProperties. Edit the text and selectApplyandClose.
----
 
 
-Text:
----
+
 Import text from another application (such as MS wordTM).
 
 It should have the following format.
@@ -2456,11 +2215,9 @@ From theTrackList, select the track that you want to import the text into.
 A confirmation dialog box will open. ClickYes.
 
 Note.The imported text will adopt the current settings (such as fonts, text margins, justifications and text type).
----
 
 
-Text:
----
+
 Select the text and drag it upwards of downwards to its new position.
 
 On theHometab, selectArrowsKeysNudge. Use the keyboard arrow keys to move the text to its new position.
@@ -2470,21 +2227,17 @@ Move lithology descriptions of remarks text with precision
 On theToolstab, selectTrackText.TheTrackTextManagerwill open.
 
 Enter the depth in theDisplayDepthsStartbox.
----
 
 
-Text:
----
+
 The Application Look refers to the GEO interface style.
 
 If you wish to change this, open theToolstab and click onApplicationLook- a range of 'Looks' will invoke. Select as desired and the interface will automatically change.
 
 To return to the classic GEO interface (i.e. non ribbons), on theToolstab, checkClassicView.
----
 
 
-Text:
----
+
 Your software level and version are written at the top at the GEO-About box that is invoked.
 
 Apart from these software details, this box also provides the following information:
@@ -2502,19 +2255,15 @@ Note that it is the security-device (dongle) provided with your software that de
 The software version however is determined by the software installed from CD-ROM (or web-downloaded update).
 
 You can therefore upgrade the level of your installation easily at any time (e.g. from GEOLiteto GEO) by simply substituting a new dongle supplied by Geologix Limited. You don’t need to re-install the application, except when upgrading from GEOLogger.
----
 
 
-Text:
----
+
 The following restrictions currently apply within each session of GEO, or instance ofODFfile.
 
 Once a limit is reached, the system may beep and/or display an error message for that object type.
 
 The Statistics dialog box displays the number of modifiers, lithologies, symbols, texts and lines, which are being used in the currently-open ODF.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Introduction\GEO_Limits.htm              ║
@@ -2802,11 +2551,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 The RUS (Remote Update Service) Dongle is specially configured to be used for rented licenses of our applications. This new style of renting gives greater flexibility for rental terms and also increased access to updates.
 
 The clock on your machine now governs your rental periods. A license will run from one set date and time to another set date and time. The period between these two dates will be when you can access your GEO Software Suite application.
@@ -2846,11 +2593,9 @@ New license Period activatedindication will appear.
 Should you need to change your computers clock
 
 Important. Usage Information is stored in the RUS dongle using your computers clock. If changing your machine time is required i.e. you are changing time zones, it is recommended that you use the Time Zones feature accessible through the WindowsÔclock, rather than changing your time manually. Changing the clock manually will disrupt the time configuration and you may risk losing time on your rental - or worse rendering your licencecompletely inaccessible.
----
 
 
-Text:
----
+
 The minimum system requirements,
 
 1Ghz or higher. x86 or x64
@@ -2862,11 +2607,9 @@ The minimum system requirements,
 4.6 GB (including Microsoft .Net Framework 4.8 installation on x86/x64 processor)
 
 Dongle Port USB-A Compatible
----
 
 
-Text:
----
+
 Draw a line on the plot.
 
 On theHometab, selectLine. The cursor will display the textST.LINEto indicate that the mouse may be used to define the starting position of a line.
@@ -2896,29 +2639,23 @@ If the<Ctrl>key is depressed before the end point is defined, adiagonalline will
 Please notethat this type of line can only be created with custom or solid lines.
 
 To terminate the line definition mode, prior to defining the end point, press the<Esc>key.
----
 
 
-Text:
----
+
 Select the line and hitDeleteon your keyboard.
 
 Right click on the line and selectDelete.
 
 A confirmation dialog box will open. ClickYes.
----
 
 
-Text:
----
+
 Right click on the line and selectLineProperties. TheLineDefinitiondialog box will open.
 
 AddorEditthe lines text
----
 
 
-Text:
----
+
 Select the line and drag to a new position.
 
 On theHometab, select theArrows Keys Nudge. Use the keyboard arrow keys to move the line to its new position.
@@ -2930,11 +2667,9 @@ Right click on theLineand selectLineProperties. TheLineDefinitiondialog box will
 Edit the lines depth and x-position in theStart and End Point Attributes.
 
 Select the line and use the grab handles to change the line size and position.
----
 
 
-Text:
----
+
 Append curves from successive mud log, MWD or LWD data files to existing curves within the ODF to create a continuous set of curves.
 
 To append, the following conditions must be applied.
@@ -2980,11 +2715,9 @@ Edit the curveName,Mnemonic,Synonym,UnitsandTypeas required.
 Elect to not load certain data by clicking on the column header. Or use theSelectAllorDeselectAllbuttons. Selected data will be black and deselected data will be red. If a mnemonic is not formatted in the curve default ini file, it will be blue.
 
 ClickFinishto complete the wizard.
----
 
 
-Text:
----
+
 On theDefinetab, selectAutoLoad. The Auto Load Definitions dialog box will open.
 
 For a first-time load, enter aNamefor the auto-file load andBrowseto locate and select the relevant curve data file. Alternatively, a file path can be manually typed intoFile Name.
@@ -2998,17 +2731,13 @@ For loading the file, the same steps should be followed as whenloading a data fi
 Once loaded, you can thenpresent the curvesas desired.
 
 At the time frequency specified, GEO will revert to the specified file and if new data is present, this will be loaded (appended) and the curve extended to reflect the new data.
----
 
 
-Text:
----
+
 You can load data files or either comma-separated (CSV) or tab-delimited text type without additional manipulated via theData Import Wizard.In a comma-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells are separated by a tab character.In a comma-delimited ASCII file, cells in a column are separated from the next by a comma, while in a tab-delimited ASCII file, cells are separated by a tab character.In those kinds of files, the range between commas or tabs is taken as the column width.The application simply reads values between commas (or tabs) and ignores any spaces.Compared tospace-delimited data, these are more structured formats, and as such (together with the wholly structured LAS format, or compatible-XML format) are the preferred data formats to request from your vendors.
----
 
 
-Text:
----
+
 On theToolstab, clickLIS to LAS.
 
 A message displays detailing the number of constants that were loaded from the lis_cons.dat file. The constants or parameters in that file can be edited using any text editor such as WordpadTM. ClickOK.
@@ -3018,11 +2747,9 @@ TheOpendialog box will open. Select the LIS file to be loaded and clickOpen.
 A list of logical files in that LIS file will be displayed. Click a logical file and all relevant details for that file (such as file name, generation date depth interval etc) will be displayed to aide the selection.
 
 Type theNameof the LAS (output) file. By default, the LAS file will have same name as the loaded LIS file.
----
 
 
-Text:
----
+
 The data import wizard loads curves into an odf.
 
 On theGEOtab, selectImport. The Open dialog box will open.
@@ -3104,11 +2831,9 @@ Multiple columns (other than the Depth or Time index column #1) may be deselecte
 The curveName.Mnemonic,Synonym,UnitsandTypecan be changed by typing in the cells.
 
 ClickFinishto complete the import wizard and load the data.
----
 
 
-Text:
----
+
 GEO can load several different types of ASCII files, such as CWLAS (LAS), tab-delimited, space-delimited and comma-delimited.If the ASCII file is not a LAS file, there are some basic requirements to follow prior to loading.
 
 The curve data must be laid out in rows and columns.
@@ -3126,11 +2851,9 @@ The delimiter used at the first column must be same for rest for data. Thus, you
 As an option, the second row of the file may be the curve unit (such as ft/hr, %, or GAPI).
 
 Deviation from the above may cause errors during loading data from files. When such errors occur, it is advisable to examine the data set to determine the cause of the problem.Tip. If possible, ask for LAS files from your data provider. LAS format is the easiest curve data format to load. If the vendor cannot provide LAS file, please ask them to give you the Tab-delimited ASCII file.
----
 
 
-Text:
----
+
 The process of importing or loading an XML file is very similar to that of loading other types of data. However, the information within the XML file is structured differently so viewing the files contents prior to importing is slightly different. This specific structuring is calledWellLogML.
 
 WellLogML is similar to LAS, in that it specifies how well log data is organized in terms of Well Information, Curve Information, Parameter Information, etc.
@@ -3148,11 +2871,9 @@ ParametersThis table displays Parameter-Mnemonic information from the WellLogML 
 CurvesInformation on the curves that you wish to load are displayed here. TheCurve Mnemonic,Unit,NameandDescriptionalong withNullValueare listed for each curve within the XML file.The last column,Load?, gives you the opportunity to deselect any curves that you do not wish to load. By default all curves within the XML file will be loaded. To deselect a curve, click the cell in the Load column for that curve (row) and type ‘N’. Type the letter ‘Y’ for yes if you decide to again load the curve.
 
 SelectApplyto save any changes, thenOKto load.
----
 
 
-Text:
----
+
 GEO accepts curve data in ascii (space, comma and tab delimited), Las and XML format.
 
 On theGEOtab, selectImport.
@@ -3178,13 +2899,11 @@ Edit the curveName,Mnemonic,Synonym,UnitsandTypeas required.
 Elect to not load certain data by clicking on the column header. Or use theSelect AllorDeselect Allbuttons. Selected data will be black and deselected data will be red.If a mnemonic is not formatted in the curve default ini file, it will be blue.
 
 ClickFinishto complete the wizard.
----
 
 
 
 
-Text:
----
+
 In a space-delimited ASCII data file, cells in a column are separated from the next, by one or more spaces.As the number of the spaces may not be constant between columns, the width of each column needs to be explicitly specified.Note. It is very important to have the curve mnemonic, unit and data for each curve to lie within successive columns, and for the first row of data to be the curve mnemonic (column name).In theStep 1 of the Data Import Wizard, adjust the column widths manually.
 
 Ensure that the first row of the data file is fixed as the Curve Mnemonics (column names), by scrolling the data, as required, until the curve mnemonics are central within the text box field.
@@ -3202,11 +2921,9 @@ Repeat steps 3 to 6 for each column that requires realignment of the separator.
 ClickOKto close the File Viewdialog box.
 
 It is highly recommended that you scroll through the entire file to ensure the correct positioning of all column separators.Ensure that the last entry in the file is the last row of data values, and not other spurious information.
----
 
 
-Text:
----
+
 On theGEOtab, selectImport.
 
 In theOpendialog box, theFiles of Typebox lists the curve data types accepted. Select the type required.
@@ -3230,17 +2947,13 @@ Edit the curveName,Mnemonic,Synonym,UnitsandTypeas required.
 Elect to not load certain data by clicking on the column header. Or use theSelect AllorDeselect Allbuttons. Selected data will be black and deselected data will be red. If a mnemonic is not formatted in the curve default ini file, it will be blue.
 
 ClickFinishto complete the wizard.
----
 
 
-Text:
----
+
 The following curve data formats can be loaded.
 
 Note. LIS to LAS converter is a standard module in GEO only.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Load_Curve_Data\Types_of_Curve_Data.htm              ║
@@ -3266,11 +2979,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 The qualitative track allows you to easily record and display a range of depth related values. Examples include shows, porosity, grain-size and sorting.
 
 Geo provides a visual indication of these values and builds the information into a database. This means that at any point the data is easily accessible for export.
@@ -3320,11 +3031,9 @@ To display vertical lines between each graduation, selectDisplay Graduation Line
 Define the display of the graduation legend by selecting from thenDisplay inandOrientationboxes and theFontbutton.
 
 SelectOKto return to the Track Settings dialog box. Exit the Track Settings dialog box to view your changes.
----
 
 
-Text:
----
+
 The layout feature can be used to organize and display data in several different formats (composite log, lithology log, wireline log, etc.) all within one file.
 
 If adding a layout to a new ‘blank’ session of GEO,Load an existing Vew fileorcreate a new one.
@@ -3346,11 +3055,9 @@ Note. Only once a new View file of track settings has been created is the layout
 The name of the actively displayed layout will also appear in the quick access toolbar.
 
 Toggle between layouts using the drop box on the Home menu or in the quick access toolbar.
----
 
 
-Text:
----
+
 Use the following procedure to create a new track format.
 
 This can be saved as a View file which can be imported into other ODF or ODT files.
@@ -3380,9 +3087,7 @@ Select theTrackSub-type;Remarks(for horizontal text entries) or,Chronological/St
 Go to the next track number and repeat the steps 4-9 until all tracks are set up as required.
 
 ClickOKorCloseto exit.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Log_Presentation_and_Layout\Create_Presentation_or_Track_Format.htm              ║
@@ -3406,11 +3111,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Qualitative data can be imported from .txt file.
 
 The .txt file needs to be tab delimited and have a depth range that is within the global depth range of the receiving odf.
@@ -3426,11 +3129,9 @@ InLookinbrowse to the .txt file, select it andOpen.
 ClickOKto exit theQualitative Track Information.
 
 ClickOKto exit Track Settings.
----
 
 
-Text:
----
+
 For each layout in an ODF, more detailed information about it can be found in the Layout Items.
 
 To access this, on theHometab, selectLayout. The Layout Manager will open. Select the layout and clickView Layout Items. TheLayout Itemsdialog will open.
@@ -3450,9 +3151,7 @@ The trailer name, type and position (X and Y) on the plot.
 Display Table-Symbols
 
 The layout items report can be sent to other applications (such as MS Word TM). Select the rows, on your keyboard hold <Ctrl> and press C to copy to clipboard. Paste the clipboard contents into the other application.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Log_Presentation_and_Layout\Layout_Items.htm              ║
@@ -3476,11 +3175,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 The layout manager dialog box can be accessed by selectingLayouton theToolstab.
 
 It allows you to administer and define individual properties for individual layouts.
@@ -3532,11 +3229,9 @@ TheDateRangeandDepthRangeof theRunDateTimeselected are detailed below the drop l
 Select the layout in theSelectLayoutlist.
 
 ClickYesto the confirmation message.
----
 
 
-Text:
----
+
 The track shift feature allows you to shift individual, or entire sets of tracks.
 
 This ensures that you do not have to modify each individual track’s left and right edge values should the entire set of tracks need shifting.
@@ -3550,11 +3245,9 @@ Select the track from where the shift is to be applied.Note. The track list is o
 Enter the shift value inShift selected and all subsequent tracks by.A positive value will shift the tracks to the right and a negative value will shift the tracks to the left. Note that the units (i.e. inches or millimeters) of the value entered is dependent on the screen units defined inGlobal Settings(found onEdittab).
 
 Tip. Before exiting theShiftTracksdialog box, you can clickTracksto display theTrackSettingsdialog box and specify a new track on your plot.
----
 
 
-Text:
----
+
 The plot index can be depth or date-time based.Note. Once an ODF has been saved in date-time or depth mode, you cannot convert to the other.
 
 Open a new session of GEO. The plot type will be detailed in the bottom status bar.
@@ -3562,15 +3255,11 @@ Open a new session of GEO. The plot type will be detailed in the bottom status b
 On theGEOmenu, select eitherDate Time -> DepthorDepth -> Date Timeas required.
 
 Note. Some advanced features in GEO may be disabled in date-time mode, such as edit/copy special tracks.
----
 
 
-Text:
----
+
 The following Date-Time formats are accepted by GEO;
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Log_Structure_and_Presentation\Date-Time_Formats.htm              ║
@@ -3598,11 +3287,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Change Plot Index Range
 
 On theDepthtab, enter the range you wish to display on the plot in theFromandToboxes.
@@ -3644,11 +3331,9 @@ The log can be converted from feet to meters or vice versa.
 On theDepthtab in theIndexUnits group, selectFeetorMetersas required.
 
 Note. If the depth unit for a symbol or in a table does not change, some adjustments may be required in the individual symbol or table .vob file. Contact Geologix for further information.
----
 
 
-Text:
----
+
 Change Plot Index Range
 
 Note. The tab for controlling the date time range is labelledDepth.
@@ -3658,11 +3343,9 @@ On theDepthtab, enter the time range you wish to display on the plot in theFroma
 The time unit can be set to Hours, Minutes or Seconds.
 
 On theDepthtab, selectHours,Minutesor Seconds as theIndexUnit.
----
 
 
-Text:
----
+
 The Global Settings - which control the scale and log appearance attributes - can be accessed by selectingGlobalSettingson theEdittab.
 
 The Global Settings content will change depending on if your log is plotted against depth or time.
@@ -3786,11 +3469,9 @@ Track Legend Height- Define the height of the track legend.
 Gap Between Curve Legends- Define the distance between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).
 
 Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.
----
 
 
-Text:
----
+
 The Global Settings - which control the scale and log appearance attributes - can be accessed by selectingGlobalSettingson theEdittab.
 
 The Global Settings content will change depending on if your log is plotted against depth or time.
@@ -3928,21 +3609,17 @@ Track Legend Height- Define the height of the track legend.
 Gap Between Curve Legends- Define the distance between curve legends.Note.The height and gap unit - mm or inch - depends on the specified screen unit (in Scale & Grid tab).
 
 Curve FontandTrack Font- Select the preferred font size and style for both the curves and track legends.
----
 
 
-Text:
----
+
 On theHometab, select the lithology from theInterpretedLithologypalette.Use the arrows to view more lithology types.
 
 Place the cursor over the lithology track at the lithology start depth.
 
 Left click and hold, drag to the lithology end depth and then release.Lithology can be inserted lithology onto an empty section of track or as interbeds within an existing lithology unit.The cursor will become awhen inserting lithology onto an empty section of track and awhen inserting interbeds.
----
 
 
-Text:
----
+
 Delete lithology using the right click menu or theDefinitionTooltab.
 
 Using the right click menu
@@ -3958,11 +3635,9 @@ Using the Definition Tool tab
 Select the lithology unit.This will remain in color and unselected units will become monochrome.TheDefinitionTooltab will appear.
 
 Select theDeletebutton.
----
 
 
-Text:
----
+
 Change the lithology boundary
 
 The lithology boundary can be changed using the mouse or by entering a specific start and end depth.
@@ -3990,11 +3665,9 @@ This will remain in colour and unselected units will become monochrome.
 TheDefinitionTooltab will appear.
 
 On theDefinitiontool, select the new lithology type.
----
 
 
-Text:
----
+
 A template file (.ODT file) can be generated from anODFfile using the template building wizard.
 
 Creating a template from an approved final log ODF, preserves a standard format that can be used for future wells. It will contain the library information (headers, lithology, modifiers, structures and symbols) and view file contents (track layout information, depth and screen units, scale and pen information (optional)). The wizard allows users to include or omit further plot elements from an existing ODF.
@@ -4012,11 +3685,9 @@ Enter a template ID and clickOK.
 TheSaveAsTemplatewill open. Browse to the relevant directory, specify afilenameandSave.
 
 Each time the ODT is used, and an ODF is generated from the template, the ODT remains unchanged ready for the next well.
----
 
 
-Text:
----
+
 Modifiers denote the isolated existence of a certain mineral, grade, structure or fossil.
 
 On theHometab, select the modifier from theModifierpalette.Use the arrows to view more modifier types.
@@ -4024,11 +3695,9 @@ On theHometab, select the modifier from theModifierpalette.Use the arrows to vie
 The cursor will become the modifier selected.Place it over the lithology track at the required point and left click.
 
 HitEscor click on the ribbon to exit modifier mode.
----
 
 
-Text:
----
+
 Qualifiers denote the existence and abundance of a certain mineral, grade, structure or fossil.
 
 On theHometab, select the qualifier from theQualifierpalette.Use the arrows to view more qualifier types.
@@ -4046,31 +3715,25 @@ In theQualifiers & Modifierstab, clickAppendto add a row.
 Select theQualifieryou wish to add.
 
 Define the abundance via theAbundance %orAbundance Code.
----
 
 
-Text:
----
+
 Select the modifier and hitDeleteon your keyboard.
 
 Right click on the modifier and selectDelete.
 
 A confirmation dialog box will open. ClickYes.
----
 
 
-Text:
----
+
 Double click on the lithology unit.TheLithologytab will open.
 
 In theQualifiers & Modifierstab, select the row to delete and clickDelete.
 
 GEO Message: 1789will invoke, clickYes.
----
 
 
-Text:
----
+
 Select the modifier and drag it to its new position.
 
 On theHometab, selectArrowKeysNudge. Use the arrow keys to move the modifier to its new position.
@@ -4080,15 +3743,11 @@ Move modifier with precision
 Right click on the modifier and selectModifier Properties.The Accessory Information dialog box will open.
 
 Enter the depth in theAtbox.
----
 
 
-Text:
----
+
 View the log in horizontally (for geosteering).
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Navigate_GEO\GEO_Menu.htm              ║
@@ -4138,11 +3797,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Each time the software is launched, theLog on as Userdialog opens by default. A user must log in before using the software. Type a name for the new user, or select an existing user of that ODF from the drop box. ClickOKto start GEO.
 
 The user name is just one item retained as part of the software's audit trail, and can be viewed in the following areas of GEO;
@@ -4158,11 +3815,9 @@ Show this dialog box each time GEO Starts
 The dialog box opens each time GEO Starts if the check box is selected. For multiple users, the check box is best left selected to ensure each user correctly logs in prior to each session of GEO.
 
 Tip. For a single user, clear theShow this dialog box every time GEO startscheck box. The dialog box will not open when a new GEO session is started. The current user will be assumed to be the same as the last person logged-on, if no one else logs-on prior to the current GEO session.
----
 
 
-Text:
----
+
 Import file into GEO.
 
 Save the active document.
@@ -4176,11 +3831,9 @@ AddMoreCommandsto toolbar.
 Choose the position of the toolbar -Show Below the RibbonorShow Above the Ribbon.
 
 Choose toMinimize the Ribbon. The tab titles remain, but the buttons are removed. Once a tab is selected, it's buttons will appear.
----
 
 
-Text:
----
+
 The ribbons toolbar contains tab options that the user may select.
 
 The toolbar is used to initiate processes in the application.
@@ -4342,11 +3995,9 @@ Other: View display resource statistics, object definitions details, document in
 Updates: Choose how to update the software - via the internet, search for critical update on startup, search for updates every 30 days or search for updates now.
 
 License: switch to another Geo license.
----
 
 
-Text:
----
+
 To maximize the viewing potential of your logs it is possible to divide the main GEO window into two horizontal sections. This allows you to view two totally separate areas of the plot. This may be beneficial if you wish to compare two sections of your well log that are hundreds of feet/meters apart. It is also possible to retain a header or trailer table data in one section whilst looking at the plot where that information refers.
 
 To apply this feature:
@@ -4368,11 +4019,9 @@ To return the screen to just one whole section, simply click and hold the bar as
 Tip.You can also perform this same operation via theViewtab, by selecting theCreate/CloseSplitWindow.
 
 Tip. To split the screen so that the track legend automatically freezes on the top half of the screen, on theViewtab clickFreeze Legend Pane.
----
 
 
-Text:
----
+
 GEO is launched using any of the following methods;
 
 Click the program icon (GEO for Windows) in the Windows menu.Note. The GEO icon may not appear in the Start menu anymore, when you do a fresh installation of this current version of GEO.
@@ -4384,11 +4033,9 @@ In Windows Explorer, locate the installation location and double click theGeo.ex
 An example of the new GEO session is shown below.
 
 Most interactions with the program are done through the menu and its commands. The dialog boxes that appear provide a means for entering and editing data, selecting options and executing tasks.
----
 
 
-Text:
----
+
 Currently selected printer.
 
 If an alternate depth system is defined, such as TVD, TWT or VSEC, this will be stated also.
@@ -4398,9 +4045,7 @@ Mouse pointer position in the the plot.
 Data range of the ODF.
 
 Enlarges any part of the log confined within a user defined rectangle around the section or object of interest.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Navigate_GEO\Status_Bar.htm              ║
@@ -4432,11 +4077,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 The title bar displays the following information:
 
 Name of the program:GEO
@@ -4452,11 +4095,9 @@ Minimize. This causes the application to remain on the task bar but not appear i
 Maximize(restore). This causes the application window to occupy the entire screen. Clicking again restores the initial dimensions of the application window.
 
 Close. This exits the application. If work has been done you will be offered the chance to save it.
----
 
 
-Text:
----
+
 Double click on the % Lithology track, or on theLithologytab select the% Lithologytrack. The Percentage Lithology Information dialog box will open.
 
 ClickSelect Lithologies for Rowto select the lithology type of each column.Up to 10 lithology columns can be displayed for each depth interval.The lithology defined in Column 1 will display on the left edge of the percent lithology track, column 2 will be the next lithology and so on moving to the right track edge.
@@ -4494,11 +4135,9 @@ If you wish to apply the default % Lithology types in every layout that the %Lit
 ClickApplyand thenClose.
 
 On theGEOtab, selectTemplatethenSaveAs. Enter a template ID and clickOK. Enter aFileNameandSave.
----
 
 
-Text:
----
+
 Double click on the % Lithology track.The Percentage Lithology Information dialog box will invoke.
 
 A column titledDescriptionsshould display in the grid. If the column is missing, you need to establish a link between the percent lithology and the descriptions track;
@@ -4516,11 +4155,9 @@ Enter theDescriptionand hitEnter. A preview will display below.
 ClickOKto return to the Percentage Lithology Information dialog box.
 
 The cell will be highlighted green to indicate that a description has been added.
----
 
 
-Text:
----
+
 Double click on the % Lithology track, or on theLithologytab select the% Lithologytrack. The Percentage Lithology Information dialog box will open.
 
 Select specific rows you wish to export by clicking on the grey, numbered cell to the right of the row. To export all rows, select the cell in the top left corner.
@@ -4530,11 +4167,9 @@ To include a start and end depth for each row of data, tickIndex Range in each r
 ClickExport.Note. Anypercent lithology descriptionswill also be exported.
 
 Open notepad or a similar application and paste the exported data.
----
 
 
-Text:
----
+
 On theExporttab, selectExport Curve(s). The Export Curve Data dialog box will open.
 
 InExportFormat, selectLASFile.
@@ -4548,11 +4183,9 @@ Change theStartDepth,EndDepthandNullValueif necessary.
 Choose the appropriate value for theParameter Information fromand theWell Information from.
 
 ClickExport, choose a folder and file-name to export to and clickSave.
----
 
 
-Text:
----
+
 The are two ways to import percent lithology data into your log.
 
 Import from ASCII file
@@ -4600,9 +4233,7 @@ Clear theIn Usecheck box to delete all data in that track.
 ClickYesto confirm the deletion, then clickUpdate& Exit.
 
 Now, you can import the percent lithology file by clickingImport %Lithologyon theLithologytab.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Percent_Lithology\Import_Percent_Lithology.htm              ║
@@ -4626,11 +4257,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Once thepercent lithology data has been loadedit can be shaped with the mouse.
 
 On theLithologytab, selectShape %Litho with Mouse.The cursor arrow will become a pencil.
@@ -4646,11 +4275,9 @@ To shape a specific depth range, right click on a point (in the percent litholog
 To revert back to a fully shapeable percent lithology, right click in the percent lithology track and selectUnlockShaping.
 
 To exit this mode, hitEscon the keyboard.
----
 
 
-Text:
----
+
 Open the layout you want to print.
 
 On theGEOtab, selectPrint. The Print dialog box will open.
@@ -4666,11 +4293,9 @@ ChooseFit Plot to Page Width- the plot width will adjust to the paper size - orF
 Choose toPrint Header,Print Zones,Print TrailerandPrint Zone Reportsby selecting/unselecting the boxes as required.
 
 Define theLeftandTopMargin.
----
 
 
-Text:
----
+
 The following guidelines are for printing the log to CutePDF writer or Adobe pdf.
 
 Note. Other PDF writers can be used, but the instructions may not be accurate to these applications.
@@ -4700,11 +4325,9 @@ ClickOK, thenOK, thenOK,to return to the print window.
 Define an appropriateLeftandRightMargin.You can useyour custom width and height to work out what to put in these boxes by using the total track width at the bottom of the window.Note. Only a small height change of 5mm is required.
 
 File Explorer will open. Enter a PDFNameand choose a location, thenSave.
----
 
 
-Text:
----
+
 There are two types of qualitative tracks;histogramanddifferential.
 
 Thehistogramtype might be used to present porosity. If you click in a cell allocated ‘Good’ porosity, the cells to the left (Fair and Poor) would automatically be filled.
@@ -4718,11 +4341,9 @@ Left click to fill a cell. For differential histogram, the color which paints wi
 Right click on a filled cell, to empty it.
 
 To fill multiple cells, hold the left mouse buttons down and drag over the cells in a downward motion.
----
 
 
-Text:
----
+
 Qualitative data can be exported to a .txt file or to the clipboard.
 
 On theEditmenu, selectTrackSettings. The Track Settings dialog box will open.
@@ -4734,11 +4355,9 @@ SelectDetails. TheQualitativeTrackInformationwill open.
 ExporttoFile; SelectExporttoFile. InSaveinbrowse to the location you wish to save the file, enter aFile nameand selectSave.
 
 or,Export to Clipboard; SelectExporttoClipboard, open an external application (i.e. Excel) and paste the contents of your clipboard.
----
 
 
-Text:
----
+
 Qualitative data can be imported from .txt file.
 
 The .txt file needs to be tab delimited and have a depth range that is within the global depth range of the receiving odf.
@@ -4754,11 +4373,9 @@ InLookinbrowse to the .txt file, select it andOpen.
 ClickOKto exit theQualitative Track Information.
 
 ClickOKto exit Track Settings.
----
 
 
-Text:
----
+
 Align track text and free format text in using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4766,11 +4383,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, choose from theAlign Text Left,CenterorAlign Text Rightbutton.or,
 
 Right click to open the Rich Edit control. Choose from theAlign Text Left,CenterorAlign Text Rightbutton.
----
 
 
-Text:
----
+
 Highlight track text and free format text using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4778,11 +4393,9 @@ Highlight the text you wish to change.
 On theFormatTextcontext tab, select theHighlightbutton and select a color.or,
 
 Right click to open theRichEditcontrol. Select theHighlightbutton and select a color.
----
 
 
-Text:
----
+
 Change track text and free format text indent in using either the Format Text context tab or use the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4790,11 +4403,9 @@ Highlight the text you wish to change.
 On theFormatTextcontext tab, select theDecrease/Increase Indentbutton.or,
 
 Right click to open theRichEditcontrol. Select theDecrease/Increase Indentbutton.
----
 
 
-Text:
----
+
 Change track text and free format text line spacing using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4802,11 +4413,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, select theLine Spacingbutton and choose from the line spacing values.or,
 
 Right click to open theRich Editcontrol. select theLine Spacingbutton and choose from the line spacing values.
----
 
 
-Text:
----
+
 Change the color of track text and free format text using either the Format Text context tab or  the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4814,11 +4423,9 @@ Highlight the text you wish to change.
 On theFormatTextcontext tab, select theTextColorbutton and select a color.or,
 
 Right click to open theRichEditcontrol. Select theTextColorbutton and select a color.
----
 
 
-Text:
----
+
 The track text and free format text font family can be changed using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4826,11 +4433,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, selectFontFamilyand select from the list.or,
 
 Right click to open theRichEditcontrol. SelectFontFamilyand select from the list.
----
 
 
-Text:
----
+
 The track text and free format text font size can be changed using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4840,11 +4445,9 @@ On theFormat Textcontext tab, selectFont Sizeand select from the list.or,
 Right click to open theRich Editcontrol. SelectFont Sizeand select from the list.
 
 Tip. You can also click theGrowFontorShrinkFontuntil the size you want is displayed in theFontSizebox.
----
 
 
-Text:
----
+
 Format track text and free format text entries using the Format Text context tab.
 
 Highlight the text you wish to edit. The Format Text context tab will open.
@@ -4852,9 +4455,7 @@ Highlight the text you wish to edit. The Format Text context tab will open.
 See the table below for the names and functions of all the buttons in the Format Text tab and select the format you wish to implement.
 
 Draw the text smaller and lower than regular text
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Rich_Format_Text\Format_Text_Using_the_Format_Text_Tab.htm              ║
@@ -4908,11 +4509,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Format track text and free format text entries using the Rich Edit control.
 
 Highlight the text you wish to edit and right click. The Rich Edit control will appear.
@@ -4922,9 +4521,7 @@ See the table below for the names and functions of all the buttons in the rich e
 Draw the text smaller and lower than regular text
 
 Draw a line through the text
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Rich_Format_Text\Format_Text_Using_the_Rich_Edit_Control.htm              ║
@@ -4978,11 +4575,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Insert a subscript character in a track text entry and free format text entry in using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -4990,11 +4585,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, select theSubscriptbutton.or,
 
 Right click to open theRich Editcontrol. Select theSubscriptbutton.
----
 
 
-Text:
----
+
 Insert a superscript character in a track text entry and free format text entry using either the Format Text context tab or use the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -5002,11 +4595,9 @@ Highlight the text you wish to change.
 On theFormatTextcontext tab, select theSuperscriptbutton.or,
 
 Right click to open theRichEditcontrol. Select theSuperscriptbutton.
----
 
 
-Text:
----
+
 The track text and free format text can be made bold using either the Format Text context tab or  the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -5014,11 +4605,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, select theBoldbutton.or,
 
 Right click to open theRich Editcontrol. Select theBoldbutton.
----
 
 
-Text:
----
+
 The track text and free format text can be made Italic using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -5026,11 +4615,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, select theItalicbutton.or,
 
 Right click to open theRich Editcontrol. Select theItalicbutton.
----
 
 
-Text:
----
+
 The track text and free format text can be listed using the Format Text context tab or on the Rich Edit control.
 
 Highlight the text you wish to list.
@@ -5038,11 +4625,9 @@ Highlight the text you wish to list.
 On theFormat Textcontext tab, select theStart a Listbutton and choose the list style.or,
 
 Right click to open theRichEditcontrol. Select theStartaListbutton and choose the list style.
----
 
 
-Text:
----
+
 Strikethrough track text and free format text using either the Format Text context tab or the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -5050,11 +4635,9 @@ Highlight the text you wish to change.
 On theFormatTextcontext tab, select theStrikethroughbutton.or,
 
 Right click to open theRichEditcontrol. Select theStrikethroughbutton.
----
 
 
-Text:
----
+
 The track text and free format text can be underlined using either the Format Text context tab or  the Rich Edit control.
 
 Highlight the text you wish to change.
@@ -5062,11 +4645,9 @@ Highlight the text you wish to change.
 On theFormat Textcontext tab, select theUnderlinebutton.or,
 
 Right click to open theRichEditcontrol. Select theUnderlinebutton.
----
 
 
-Text:
----
+
 Configuring an ODF to be opened by e-View is the most efficient and cost effective way of sharing your data. Our free viewer, GEOe-View can be downloaded from our websitewww.geologix.com/eview.
 
 Warning.When an ODF becomes e-View enabled anyone with a copy of e-View can potentially open the file, thus as default all ODF's are e-view disabled.
@@ -5092,11 +4673,9 @@ On theEdittab, selectEditGEOSettings. TheGEO Registry Editorwill open.
 On theGeneraltab, check theAllow New ODFs to be Opened by GEOeViewby default(middle right).
 
 Of course you can disable and enable individual documents as you please using the option inGlobalSettings.
----
 
 
-Text:
----
+
 The Event log records important episodes in the life of an ODF file.
 
 File saving, curve editing and loading episodes are all recorded in theView Event Login Descending Chronological orderdialog box. This can be invoked by selectingView Event Logfrom theGEOtab.
@@ -5124,11 +4703,9 @@ Description. This information depends on the ‘event’. If it were a file load
 ClickPrintto print the event log using the printer that you have setup through thePrint Setup.
 
 Note. The user can resize this dialog box, as well as the widths of the data-table columns. The next time this dialog box is invoked, it will use the last-sized width (also the data-table columns).
----
 
 
-Text:
----
+
 To jump or go to a certain place on your log (eitherDepthorTime, depends on the definedPlot Index), on theDepthtab selectIndexConvertor, or press <CTRL>+<HOME> on your keyboard.
 
 This will open the Convert Index dialog box.
@@ -5140,11 +4717,9 @@ This will instantly display the relevant depth section and so eradicates the nee
 Tip. Placing your mouse cursor over the scroll-button and then left-clicking and holding, invokes a tool-tip showing the depth currently at the top of the on-screen log. Dragging the button up or down changes the depth within the tool-tip.
 
 Release the left-mouse button at the required depth, and the on-screen log will re-draw with the selected depth at the top of the screen.
----
 
 
-Text:
----
+
 In order to preserve secrecy on any work that you do within GEO, it is possible for you to setpasswordprotection on your files. There are three levels of protection you can apply to a document: Update, View / Print and Export.
 
 When attempting to access a document that is password protected you will be faced with a drop down option box and a text box.
@@ -5162,11 +4737,9 @@ Note. ClickingCancelwill result in the appearance of a warning message and termi
 Once access is granted you may perform the relevant modifications or actions dependent on the access level you have reached. Any option that is ‘grayed’ out will not be available on the current level of access.
 
 Note.Passwords arenotcase sensitive.
----
 
 
-Text:
----
+
 ODF files can be password protected should the content of the file be of a confidential nature, and/or you want to prevent certain recipients of the file from modifying or updating its content.
 
 Use the following procedure to password your file.
@@ -5192,11 +4765,9 @@ Notes.You cannot apply a password forView / Printaccess, without first applying 
 Password protection can be removed/changed only by opening the ODF with theUpdateaccess level password, and then deleting the entries in the password fields. You must delete theView / Printaccess password first, before attempting to remove the password forUpdateaccess.
 
 Tip. If a password forUpdateaccess has been applied to an ODF, you basically send it as a ‘Read-Only’ file to another party (or simply like a picture). The other party will not have any access to the data that builds this ODF, unless they are separately provided with the appropriate password.
----
 
 
-Text:
----
+
 All of the object links (to further or additional information on these objects) in GEO can be viewed and modified in theView or Modify All External and Internal Linksdialog box (on theToolstab, selectLinks).
 
 The object type where the link is assigned, such as symbol, lithology, text.
@@ -5224,9 +4795,7 @@ Note. In the case of anInternal Link(i.e. link with header or trailer specificat
 Tip.TheCreate or Modify External and InternalLinks for an Objectdialog box can be also invoked by right-clicking any object (such as a symbol, modifier, line, free-format text, track-text block or lithology unit) and clickingCreate/Modify Linkfrom the menu.
 
 Note. The user can resize this dialog box, as well as the widths of the data-table columns.The next time this dialog box is invoked, it will use the last-sized width (also the data-table columns).
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Sharing\Create_a_Report_Link_to_an_Object_in_the_Log\Links_Mana.htm              ║
@@ -5250,11 +4819,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 You can provide additional information for log elements (such as lithology units, modifiers, symbols, free format text and track text blocks) by linking those objects, at any instance within the log, with another file (e.g. a morning-report that is written in MS WordÔformat).
 
 When viewing the log (ODF) within a web browser (such as Internet ExplorerÔ), the link feature will allow the user to click an object and read any further information that is linked to it.
@@ -5318,11 +4885,9 @@ SVG output also contains External link information and may be viewed by double c
 If an object has a link, when the mouse pointer is brought over the object in the SVG display, the mouse pointer should also change to a hand pointer and display link information in the status bar of the Web browser.
 
 Learn how to export the plot to SVG format.
----
 
 
-Text:
----
+
 You can now export and import yourINI files,Geological Dictionary,Training CardandExport profiles,so they can be quickly and easily shared with colleagues and partners.
 
 On the theToolstab, selectBaggage.TheManage Baggage Filesdialog box will open. It is split into seven sections.
@@ -5334,11 +4899,9 @@ Warning. When you open up an ODF or ODT it is a good idea to assume the INI file
 In order to load a file into a template or ODF click theLoadbutton. This will open theLoaddialog box. Here you can choose the file you wish to use.
 
 You can give your files a custom name, however theGeoTable,GeoCurveandGeoCCini files with regards to their content do still exclusively apply to that area of GEO only.
----
 
 
-Text:
----
+
 Some of the information used to create a composite log may need to be cataloged in other systems such as the corporate geological database.
 
 Therefore, there should be a means to export data captured by GEO (and encapsulated in the ODF) to the other system.
@@ -5414,11 +4977,9 @@ BEGIN Table <table-name> <table-id>
 <depth>   <length>:<*text>
 
 <start-depth> <end-depth>  <*text>
----
 
 
-Text:
----
+
 You can export the complete set of library and baggage components from within an ODF or ODT. This can be used for the sharing of your library, or for checking the content of an ODT when in construction.
 
 On theToolstab, selectExportLibrary. The Browse For Folder dialog box will open.
@@ -5428,11 +4989,9 @@ Select a location to export to.
 SelectMakeNewFolderand enter a suitable name.
 
 Tip. To input library files into another ODF/ODT, use the multi-file load feature - on theToolstab, selectLibraryTools(this opens the Library Manager)and select the relevant category radio button. I.e. Symbols, Lithology etc. Browse to the file, select it and clickOpen.
----
 
 
-Text:
----
+
 This feature allows curve data to be exported from GEO in three different ASCII formats:
 
 Text Tab-delimited ASCII file
@@ -5490,9 +5049,7 @@ Note. Use any text editor (such as NotepadÔto see the exported data).
 Note. TheCopylistto Clipboard buttonallows you to copy the list of curve data in the dialog box onto the clipboard. This allows you to acquire a summary of the curve diagnostics with the benefit of being able to export them into other applications.
 
 The summary includes information on curve Number, Mnemonic, Name, the Interval (Feet), Start Depth, End Depth, Minimum and Maximum values, Units and the file Origin.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Sharing\Export_Data_and_Information\Export_Curve_Data.htm              ║
@@ -5526,11 +5083,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 XML(eXtensible Markup Language) is a platform-independent meta-markup language that provides a format for describing structured data.
 
 XML provides a structural representation of data that has proved broadly implementable and easy to deploy across all platforms.
@@ -5556,11 +5111,9 @@ Change theStartDepth,EndDepthandNullValueif necessary.
 Choose the appropriate value for theParameter Information fromand theWell Information from.
 
 ClickExport, choose a folder and file-name to export to and clickSave.
----
 
 
-Text:
----
+
 WitsML is an information transfer standard based on XML technology that has no set platform and is language independent, making it wholly flexible for the range of data that can be attained from a well.
 
 There are six types of data you may export from an ODF/ODT:
@@ -5578,9 +5131,7 @@ Usedto export data related to the BHA and drillstring.
 Deals with curve data, a single Log object can harbor multiple curves.
 
 If you have the export modules as part of your GEO Licence you can access the Export wizard from theExporttab, and selectCreate Text Output Profile.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Sharing\Export_Data_and_Information\Export_Data_to_WitsML.htm              ║
@@ -5606,11 +5157,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 There are multiple options for the conversion of your plot into an image format.
 
 Metafiles are essentially a way of intelligently storing pictorial information and provide a useful means of transferring plots to other applications.
@@ -5634,11 +5183,9 @@ GEO will use the device driver to obtain the horizontal resolution (pixels per i
 We recommend you install a suitable printer driver for just this purpose, as our experience has shown that certain printer-drivers are poor at creating metafiles.
 
 We recommend use of the printer-driver for the EPSON STYLUS 1520 COLORÔprinter for optimum metafile creation.
----
 
 
-Text:
----
+
 The CGM (Computer Graphic Metafile) format can be used to transfer a plot to a large plotter (e.g. HP DesignJetÔ) through CGM interpreter software (such as Zeh GraphicsÔor SDIÔsoftware).
 
 One reason for doing so is to circumvent the length limitation (109 inches) of certain printer-drivers operating under WindowsÔ. This limitation does not of course arise when plotting under the UNIX platform.
@@ -5664,11 +5211,9 @@ On theExporttab, selectExportas...thenCGM. TheExport to CGM (32 bit)will open.
 Enter theFilenameand specify the path to save to.
 
 For output to the plotter, such as the HP DesignJetÔseries transfer the corresponding CGM format and its parameter file (with par extension) to the plotter by using FTP (File Transfer Protocol) to the UNIX platform.
----
 
 
-Text:
----
+
 EMF (Enhanced Meta File) may sometimes be more preferable than WMF format, since EMF format is able to cope with alonger plotthan WMF.
 
 Therefore it may be advisable to export a particular section of your plot intoEMF-Enhanced Metafile to clipboardand paste it to MS PowerPointÔfor presentation purposes.
@@ -5682,11 +5227,9 @@ On theExporttab, selectExportas...then eitherEMF-Enhanced MetafileorEMF-Enhanced
 AnExportTodialog box will open (unless you selectEMF-Metafile picture to clipboard).  Enter aFilenameand the directory where it is going to be stored.
 
 The following video selects WMF as the format to export. Simply replace this selection with EMF.
----
 
 
-Text:
----
+
 Scalable Vector Graphics (SVG) is an open standard vector graphics language.
 
 It is XML-based and can be used for Web graphics.
@@ -5714,11 +5257,9 @@ In the following example, a reference to a generated SVG filee:\temp\test.svghas
 The height and width should correspond to the size of the graphic image in the SVG file. This is especially useful for efficient scrolling of relatively long sections of log in a Web browser.
 
 <EMBED SRC="e:\temp\test.svg" NAME="SVGEmbed" TYPE="image/svg-xml" PLUGINSPAGE="http://www.adobe.com/svg/viewer/install/" height=10000 width=1000>
----
 
 
-Text:
----
+
 The TIFF export option can be used to replicate the GEO plot in to a commonly used graphics format. This file can then be viewed within many third party graphics applications.
 
 The TIFF feature can be used to export the plot as a whole, however for large plots, in both width and length there are some associated limits to be aware of.
@@ -5728,11 +5269,9 @@ There are two controls for exporting to TIFF format -DPIandPageHeight.Both of th
 The following video selects WMF as the export format. Simply replace this selection with TIFF.
 
 Tip. If you experience memory issues during this process, try reducing the DPI.
----
 
 
-Text:
----
+
 WMF is useful for transferring asmallsection of the plot into another application such as MS WordÔor MS PowerPointÔ.
 
 We do specify asmallsection of the plot, primarily because of two reasons;
@@ -5752,11 +5291,9 @@ AnExportTodialog box will open (unless you selectWMF-Metafile picture to clipboa
 If the plot is exported asWMF-Metafile picture to clipboard, bring it to the other application by pasting it.
 
 Tip.The best route to bring the plot to your MS PowerPointÔfor presentation is to specify the zone of interest depth range and export the plot either as WMF-Metafile picture to clipboard or EMF-Enhanced Metafile to clipboard. Then paste it to MS PowerPointÔ.
----
 
 
-Text:
----
+
 Adjust the amount of vertical graphic in each individual graphic file.
 
 On theDepthtab, enter the Index Range you wish to export inFromandTo.
@@ -5764,11 +5301,9 @@ On theDepthtab, enter the Index Range you wish to export inFromandTo.
 On theExporttab, selectHTML Using...thenchoose your preferred image format.
 
 AnExportTodialog box will open.  Enter aFilenameand the directory where it is going to be stored.
----
 
 
-Text:
----
+
 The ODF Update File or OUF, which was introduced with version 4 of GEO Software, enables you to send daily updates with a high level of security, very cost effectively.
 
 The prime purposes are:
@@ -5846,11 +5381,9 @@ In the above example, the Replication Information dialog box would not have been
 A sandstone block has two pyritic modifiers at 3000ft. GEO assigns these modifiers their own unique id numbers (e.g. 20 & 21). The child ODF is altered, by shifting modifier 20 to 2995ft and then saved. The PARENT ODF is altered, by shifting modifier 21 to 3005ft. The next sequential OUF is then saved. When this OUF is loaded into the child ODF, aReplicationInformationdialog box will not open.
 
 If however, in a later OUF, modifier 20 is shifted from 3000ft to 3005ft, upon loading this OUF aReplicationInformationdialog box is opened. This is because the OUF records the shift from 3000ft to 3005ft in the parent ODF. When scanning the child ODF, GEO by default, assumes the modifier to be positioned at 3000ft but upon loading the OUF scans and records the same modifier (20), positioned at 2995ft. This ‘deviation’ invokes theReplicationInformationdialog box.
----
 
 
-Text:
----
+
 Save an ODF file in the normal way by clickingSave Asfrom theGEOmenu.
 
 Create an OUF file from that ODF by selectingSave OUF UpdatesfromGEOmenu.
@@ -5860,11 +5393,9 @@ Any amendments in the ODF file can then be saved into OUF format by selectingSav
 Note. Alternatively, if your e-mail software has been setup, clickSend OUF updates via Mailfrom theGEOmenu. This method also creates an OUF file with a sequentially-numbered file name, and in addition incorporates the OUF into an e-mail as the correctly named file-attachment.
 
 Tip.Do not rename OUF files. GEO gives the OUF the same filename as its PARENT ODF together with its sequence number.
----
 
 
-Text:
----
+
 Upon receiving an OUF file, load the file either by detaching the e-mail attachments or by selectingLoad OUF Updatesfrom theGEOmenu.
 
 Locate the OUF file andOpen.
@@ -5872,11 +5403,9 @@ Locate the OUF file andOpen.
 Save the file as an ODF file in the normal way (clickSave Asfrom theGEOmenu). This saves the ‘Child’ ODF onto your machine.
 
 Repeat these steps to load the sequential incoming OUF files and save them into one ODF file to create the local replica (or child) of the PARENT ODF.
----
 
 
-Text:
----
+
 The Auto merge OUF feature allows users to load OUF files received (from wellsite or well partner) at a user-defined frequency (or time interval).
 
 This frequency can be set by entering the appropriate value (in minutes) atAuto Merge OUFs everybox at theOthertab ofGlobal Settingsdialog box(on theEdittab).
@@ -5898,11 +5427,9 @@ From this point, the software will revert to the folder location specified, at t
 If the next expected file is present in the OUF Load folder, and the relevant ODF file open, the software will confirm whether you wish to load that sequential OUF. If multiple sequential OUF files are encountered, these can be loaded in turn.
 
 Note. If the frequency of transmission of OUF files from the wellsite is increased, if only to match the realistic acquisition of data, then this feature may be deployed to provide an often operationally satisfactory ‘near-real time’ data stream to the operations base.
----
 
 
-Text:
----
+
 What happens if somehow the chain of OUF file is broken (for instance, lost during sending) and cannot be re-sent? There is an OUF re-save feature that enables the parent OUF user to re-save over previously saved OUFs.
 
 The wellsite user saves 007.ouf after loading new data. This data happens to be corrupt and upon mailing, the recipient experiences difficulty loading the OUF. When the 007 is re-sent, the same problem occurs again so the well site user becomes aware of the problem. The corrupt data is stripped from the ODF, and new data is reloaded.
@@ -5922,11 +5449,9 @@ If the recipient user accidentally deleted the child ODF and the constituent OUF
 In an extreme scenario, the wellsite user, after saving 1000 OUFs could clickRe-Save Range of OUF Updatesand select number 001.ouf from the dialog box list. GEO would then create a 001_1001.ouf, which would include every well data amendment and addition in those 1000 OUFs. This could be e-mailed to the operations base user, loaded, and saved as a new child ODF.
 
 The next OUF saved by the wellsite user will be 1002.ouf. The operations base user could then load this OUF without any problem.
----
 
 
-Text:
----
+
 In most cases, the OUF will be sent from one place to another as an e-mail attachment. There are two ways to place the OUF as an e-mail attachment:
 
 By attaching the OUF files manually within your e-mail software itself.
@@ -5950,11 +5475,9 @@ Next time you clickSend OUF Updates via Mailfrom theGEOmenu, the corresponding O
 In the event that you not complete theSend OUF via Mailsequence and quit partially through the steps (e.g. you do not really send the e-mail), GEO will inform you that the OUF file has already been saved (specifying the file path) and that the particular OUF must be sent manually (as an e-mail attachment, for example).
 
 If you clickSendRange ofOUF Updates via Mail, aRe-Save range of updatesdialog box opens. Click the row which details the OUF sequence number to be saved over. ClickSaveand this will create an underscore OUF number that can be sent as an e-mail attachment.
----
 
 
-Text:
----
+
 With the VUF feature it is possible to transferODFfiles quickly, efficiently and in real time between remote locations via an Internet connection. This feature is also used to publish the ODF into a web folder.
 
 The ODF is divided into multiple VUF files based on chunk size (in pixels), which are compressed during the saving process and then published to a web folder. The VUF files can then be streamed in, in a sequential manner, decompressing as they do.
@@ -5984,11 +5507,9 @@ Tip. Large graphics in the headers and trailers will significantly decrease stre
 The bigger the chunk size in pixels, the longer it will take the first file to stream in, however a bigger chunk size will generate less chunks, thus total time may be slightly decreased.
 
 As a guide we recommend a chunk size of approx 800 pixels.
----
 
 
-Text:
----
+
 A sidetrack well can be created from any ODF you have saved. This will allow you to select an existing well, and at a given depth truncate that well so that from that Kick Off Point you can add new data and new interpretations for the new sidetrack.
 
 To create a Sidetrack:
@@ -6004,11 +5525,9 @@ ClickOK.TheSave Sidetrack to Documentbox will open.
 Afile nameand save location for your sidetrack will be suggested. Change if required.
 
 The ‘sidetrack’ ODF will open on returning to GEO.
----
 
 
-Text:
----
+
 Symbols are used to add important information to the plot.
 
 On theSymbolstab, select the symbol from theSymbolpalette.Use the arrows to view more symbol types.
@@ -6016,21 +5535,17 @@ On theSymbolstab, select the symbol from theSymbolpalette.Use the arrows to view
 The cursor will become the symbol selected.Place it over the track where you want the symbol to appear and click.
 
 HitEscor click on the ribbon to exit modifier mode.
----
 
 
-Text:
----
+
 Select the symbol and hitDeleteon your keyboard.
 
 Right click on the symbol and selectDelete.
 
 A confirmation dialog box will open. ClickYes.
----
 
 
-Text:
----
+
 Select the symbol and drag it to its new position.
 
 On theHometab, selectArrow Keys Nudge. Use the arrow keys to move the symbol to its new position.
@@ -6040,11 +5555,9 @@ Move symbols with precision
 Right click on the symbol.TheSymbol Informationdialog box will open.
 
 Change theX-PositionandAtdepth to place the symbol.Note.the symbol will have a reference point (REF1) which will be used for the placement of that symbol.
----
 
 
-Text:
----
+
 Tables store tabular information, that relates to specific symbols on the plot.
 
 This information may appear in the plot header or trailer, with its corresponding symbol on the log.
@@ -6068,11 +5581,9 @@ Use thetabkey to move from one cell to another.
 At the last cell, you will need to hitEnteron your keyboard to confirm the data.
 
 Use theAppendRow,Insert RowandDeleteRowto edit rows.
----
 
 
-Text:
----
+
 At some point, you may want to edit an existing table template with more columns, different column labels or even different default symbols. You may want to create a completely new table template for ease of entering data specific to your odf.
 
 See the software's limits on how many tables you can put in one ODF file.
@@ -6132,11 +5643,9 @@ The text you enter in this column in the actual table can be freehand, or preset
 Note. If the old table template has been opened, you cannot apply the new edited template unless youdelete the old format from the table.
 
 If a table requires data to be uploaded/imported from a WitsML server you need to assign a relevant Object to the table by selecting from the drop down menu. You also will need to define which element is to be used for the depth, again using the drop down menu.Another method to edit or create a table template is by editing thegeotable.inifile itself, which actually houses the table template definitions.
----
 
 
-Text:
----
+
 The content of a table can be easily exported to the clipboard and pasted into another application, such as MS ExcelTM, MS WordTMor Notepad.
 
 In the GEOHometab, select the table from theSelect Definitionbox.
@@ -6144,11 +5653,9 @@ In the GEOHometab, select the table from theSelect Definitionbox.
 ClickExport. This will export the content of the table to the clipboard.
 
 Open another application, such as MS ExcelTM, MS WordTMor Notepad, andPastefrom the clipboard. This will bring in the table values exported from the clipboard.
----
 
 
-Text:
----
+
 The geotable.ini file which usually resides in the Windows directory (or under Documents and Settings) houses the table template definitions.
 
 The table template definitions in this geotable.ini file can be applied through theTable Definitiondialog box.
@@ -6184,9 +5691,7 @@ See the software's limits on how many tables you can put in one ODF file.
 The following is a sample of the Table Template entry for the Casing table in the geotable.ini file.
 
 [TableTemplate2]Name=CASING RECORDType=NormalTableID=CasingSymbol=Casing ShoeTrack=0Offset=0UseEndDepthCol=FALSEDepJustification=CField0=SIZE, 10, C,"Field1=TYPE, 28, C,Field2=WEIGHT, 20, C,Field3=INTERVAL, 20, C,Field4=GRADE, 30, C,Field5=CEMENT, 25, C,Field6=CMT WEIGHT, 25, C,RotationColumn=-1LockSymbolDepths=FALSEOffsetUnit=InchesWrapCells=TRUECellVertJustification=CLockSymbolTrack=FALSEDispTblSymLayout=Complog,Wellsite Log,Litholog,FieldDataType0=0,FieldValueList0=30|20|16|13 3/8|9 5/8|7 5/8|7FieldDataType1=0,FieldDataType2=0,FieldDataType3=0,FieldDataType4=0,FieldDataType5=0,FieldDataType6=0,SymbolList0=Casing Shoe|ConductorSymbolList1=Liner Hanger|LinerCategory=OperationsSymbolList2=Casing Shoe|Surface ConductorSymbolList3=Casing Shoe|IntermediateWarning: Please keep a back-up or copy of the geotable.ini safely on a separate drive, so you do not lose your own-defined table template when you have the machine changed or the software is re-installed.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Tables\Geotable.htm              ║
@@ -6220,11 +5725,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 In another application, such as MS ExcelTM, select or highlight the data cells that you want to import, using the following rules.
 
 The first selected column must be depth values.
@@ -6256,11 +5759,9 @@ Yesto append the rows
 Noto replace existing rows
 
 Cancelto abort the import
----
 
 
-Text:
----
+
 TheTableDefinitionsdialog box stores tabular information, that relates to specific symbols on the plot.
 
 On theHometab, in theTablesgroup, select a table template from theSelectDefinitionslist. The Table Definitions dialog bow will open.
@@ -6292,11 +5793,9 @@ Create Curves from Columns
 Your table column data can now be converted into curve data. Click theSelect Curvesbutton to invoke theCreate Curves for Tabledialog box, enter aCurve Mnemonicfor the table column you wish to create a curve from, and clickOK.
 
 Calculate the different depth values (in MD, TVD, TVDSS, TWT and VSEC) for a specific depth without exiting the Table Definition dialog box.
----
 
 
-Text:
----
+
 A symbol(s) can be linked to the table. Every time a new data row is added, you can choose to display a symbol on the plot based at the depth entered in the Start Depth column.
 
 In theTable Definitiondialog box, select theShow/Hide Columnsbutton to expose symbol information.TheShow/Hide Columnsdialog box will open.
@@ -6320,9 +5819,7 @@ The plot depth the symbol displays at.
 Note. The Offset and Start Depth determines the symbols position in relation to a specific reference point, or REF1. This is defined in the symbol .vob file.
 
 InDisplay Table Symbols in Layoutselect the layout(s) to display the symbol on.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Tables\Place_Symbols_from_Table_Data.htm              ║
@@ -6348,11 +5845,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 If you have edited an existing table template in an ODF and would like to apply this new template for the same data set, the old table template needs to be deleted from the Tables Values dialog box.
 
 The existing data in that table can be saved and then re-imported (i.e. to prevent you from re-entering the data).
@@ -6368,11 +5863,9 @@ ClickCreateand select the new templates from theTemplatebox. ClickApply.
 ClickClipboardfrom theLoadRowsFrom. This will paste the data exported to clipboard previously.
 
 Note. If the data column number changed on the new template, you may not get your data imported properly when you clickClipboardfrom theLoadRowsFromsection.
----
 
 
-Text:
----
+
 You can define a geological dictionary as a .txt file that lists the company standard lithostratigraphic and chronostratigraphic names.
 
 The .txt file can then be loaded into your ODF or Template, so that when you write chronostratigraphic and lithostratigraphic names in Track or free format texts, you will be alerted to any spelling mistakes.
@@ -6392,11 +5885,9 @@ On theToolstab, selectBaggage.TheManage Baggage Fileswill open.
 In theDictionary Chronostratigraphicsection, clickLoadand browse to the Chronostratigrahic dictionary .txt file, select it andOpen.
 
 In theDictionary LithoStratigraphicsection, clickLoadand browse to the LithoStratigraphic dictionary .txt file, select it andOpen.
----
 
 
-Text:
----
+
 Any track text, such as remarks, lithology description and stratigraphy and chronology can be spell checked.
 
 On theToolstab, selectSpelling. The Spell Check and Abbreviation Expansion will open.
@@ -6416,11 +5907,9 @@ The suggested correction will be detailed inChangeto. It can also be edited here
 AlternativeSuggestionswill also be detailed. Select the option you wish to change it to and clickChange. You can also choose toIgnorethe suggestion.
 
 To add the suggestion to the spell check library, selectAdd.
----
 
 
-Text:
----
+
 The available gestures are listed below.
 
 Use panning to see another part of a page that has scroll bars. For example, you can pan to see part of a long document or spreadsheet that doesn't appear in the window.
@@ -6436,11 +5925,9 @@ To perform the action, touch the screen where you want to right-click, hold unti
 Use zooming to make an item on the screen larger or smaller. Zooming in shows a smaller area in more detail; zooming out shows a larger area.
 
 To zoom out, touch two points on the item, and then move your fingers toward each other, as if you're pinching them together. To zoom in, touch two points on the item, and then move your fingers away from each other, as if you're stretching them apart.
----
 
 
-Text:
----
+
 The index converter calculates the equivalent MD, TVD, TVDSS, TWT and VSEC for a specific depth, and navigates the log plot to a specific depth. To access this dialog box, go toToolsand selectIndexConverteror select the Index Convertor buttonfrom theMouse & Keyboard Modestoolbar . Alternatively, hit Ctrl + Home on the keyboard.
 
 Select the index - MD, TVD, TVDSS, TWT, VSEC - and enter the value that you wish to know an equivalent index for.
@@ -6450,11 +5937,9 @@ ClickConvert. A grid detailing the other availableIndexTypesand their equivalent
 Go tomoves the plot view to the specified depth.
 
 Cancelcloses the dialog box.
----
 
 
-Text:
----
+
 You can present the True Vertical Depth (TVD) in your log, just by itself, or together with the Measured Depth (MD).
 
 In GEO, we call those two depth references as primary and alternate depth system.
@@ -6476,11 +5961,9 @@ To specify which depths are primary or alternative, clickGlobalSettingson theEdi
 To define MD as the primary depth, select theMDbutton in thePrimaryDepthSystemsection.TVDwill be automatically selected as theAlternateDepthSystem. In this case, ifPrimary & Alternateis selected at theDisplaybox of theTrackSettingsdialog box, bothMDandTVDwill be displayed.
 
 To compress the whole log into TVD selectTVDas yourPrimaryDepth SysteminGlobalSettings. Then, in theTrackSettingsopen theLegendsandDepthstab anbd selectPrimaryOnlyin theDisplaylist.
----
 
 
-Text:
----
+
 Add vertical chronological or stratigraphic text to a special text track.
 
 On the vertical text track, double click where you would like to add a text entry.The Track Text Entry will open.Note.To add a new vertical text entry over an existing entry, hold CTRL and double click.
@@ -6516,11 +5999,9 @@ Enter the desired URL in theExternalLinkor clickBrowseto locate the local or net
 For an Internal link, select theHeaderorTrailerthen use the lists below to selectin LayoutandHeader/Trailer.
 
 Choose to identify links using a marker in theLink Object on Screen Display with Link Markerlist.
----
 
 
-Text:
----
+
 Hover the cursor over the vertical text entry border you wish to adjust.
 
 Hold the right mouse button down, drag the border to the desired depth and release the mouse button.
@@ -6528,11 +6009,9 @@ Hold the right mouse button down, drag the border to the desired depth and relea
 Right click on the text you wish to edit, and selectTrackTextproperties. The Track Text Entry will open.
 
 Edit theDepthStartandEndvalues as required.
----
 
 
-Text:
----
+
 Right click on the track text entry and selectTrackTextProperties. The Track Text Entry will open.
 
 Clear theIn-Usecheck box.
@@ -6550,21 +6029,17 @@ Identify the entry you wish to delete and select the grey cell adjacent to highl
 Clear theIn-Usecheck box.
 
 ClickUpdate.If multiple entries are selected a message will appear  - confirmYesto delete.
----
 
 
-Text:
----
+
 Double click on the text you with to edit or right and selectTrackTextproperties. The Track Text Entry will open.
 
 Edit the properties as required and clickApplythenClose.
 
 Note. Double clicking on an existing text entry will not invoke the Track Text Properties, but will add a new text entry.
----
 
 
-Text:
----
+
 Use the stratigraphy manager to visualize a hierarchy of the different formations and members assigned previously in Track Settings.
 
 If there are a few chronological/Stratigraphic tracks, you can assign their hierarchy by selecting which track is the parent of the others. This will determine the hierarcy in the Stratigraphy manager.
@@ -6594,11 +6069,9 @@ You may increase or decrease the amount of displacement between each branch of t
 To do this, locate the horizontally segmented bar that details the chronostratigraphic track headers within the ODF. Where any two of the track columns meet, click with theleftmouse button. You can then drag the cursor right or left, depending on whether you wish to expand or reduce the chronostratigraphic tree. The other tracks will resize in proportion.
 
 To export all the information from theStratigraphy managerclickExport to Clipboard. The information from the lowerpane will be exported in the proportions set by the collapsible column header bar.
----
 
 
-Text:
----
+
 The following information is based around creating plot objects using the VLCP - Vector Language Compiler Program, a feature which comes as a standard with the GEO for Window application.In conjunction with the VLCP package, GEO is packaged with a simpler drawing application called VectDraw, which allows you to create or modify log objects using a more user-friendly graphics interface.
 
 Log objects such as symbols, modifiers, lithology patterns, headers, trailers and tables that appear on the plot, can all be customized by you.
@@ -6630,11 +6103,9 @@ The program only accepts two color bitmaps. Typically, they are black and white.
 Depending on the complexity of the bitmaps, they may distort when scaled (aliasing).
 
 Scaling factors, to cope with resolution differences between screen and printer need to be specified in the Zoom factor Bitmaps on Screen on the General tab of the Registry Editor dialog box.Note.Some high-end plotters cannot plot bitmaps.
----
 
 
-Text:
----
+
 Vector Objects (symbols, modifiers, headers) can be defined or customized by creating a text file and saving it as a VOT file.
 
 A VOT file constructed using Vector Object Definition Language, can be edited and compiled using the VLCP feature included in a full GEO license.
@@ -6646,21 +6117,17 @@ Select the VOT file to be edited or compiled.
 Edit the VOT as required.
 
 Click Save VOB to save VOB into your selected folder.Note. It is strongly recommended that you save the VOBs into their appropriate folder. For example. a new symbol vob would be saved to GEO for Windows/Library/Symbols.
----
 
 
-Text:
----
+
 On theGEOtab, selectClose.
 
 If there are unsaved changes a message will appear asking if you would like to save them. SelectYes,NoorCancelas required.
 
 The GEO application will remain open, ready to open another ODF. To close the application, select the cross in the top right corner.
----
 
 
-Text:
----
+
 Files reside in directories located on the in-use disk, where they are identified by their names.
 
 By default, GEO files reside in the following location (unless formatted differently on installation).
@@ -6674,15 +6141,11 @@ File names are in the form of a name (given by a user) and an extension specific
 The name can be up to 255 characters long (including the space and path names), while the extension (after the period [.]) is usually 3 characters long.
 
 The File menu is used to control file related activities such as opening, closing and saving files as well as printing and loading data, or importing %lithology from an ASCII file.
----
 
 
-Text:
----
+
 Note. CGM is standard feature in GEO, while OUF is a standard feature only in GEO and GEOLite.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Working_with_Files\File_Types_Handled_by_GEO.htm              ║
@@ -6736,11 +6199,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Open the layout you wish to load the VEW file into.
 
 On theGEO(file) menu, selectOpenthenBrowse.
@@ -6748,11 +6209,9 @@ On theGEO(file) menu, selectOpenthenBrowse.
 In theOpendialog box, locate and select the .VEW file you wish to load (ensure .VEW is selected in the file type drop list).
 
 The track format for the current layout will be replaced by that of the Vew file.
----
 
 
-Text:
----
+
 If an ODF file, has a data range of 0-10000ft, but only a specific depth range, 7000-8000ft is of interest, sending an ODF with the remaining 9000ft of data is unnecessary and inefficient. Instead, an OIF file containing the 7000-8000ft of data can be saved, creating a much smaller file.
 
 Display the depth range required. On theDepthtab, enter theFromandToindex range i.e. 7000-8000.
@@ -6760,11 +6219,9 @@ Display the depth range required. On theDepthtab, enter theFromandToindex range 
 On theGEOmenu, selectSave Displayed Depth or Time interval As (OIF)…
 
 Enter aFilenameand selectSave.
----
 
 
-Text:
----
+
 A template (ODT) can be created from fresh or from an existing ODF file. This means once a preferred format has been created it can be saved as a template and utilized thereafter.
 
 Unlike a View file (a file with VEW extension), which only saves the track layout, the template function saves all the ODF constituents in a template format. This ensures that preferred components, such as library files (i.e. lithology, headers with included location maps, symbols, modifiers) are incorporated into the template. Any plot objects in the ODF will also be incorporated into the template saved.
@@ -6784,11 +6241,9 @@ ODT Document Information
 This option allows you to see information within the ODT organized in a tree structure. It will warn you if some components of the ODT are not functioning correctly or have settings that are deemed not best practice.
 
 When creating a template you can consult the document information tree to see what warnings appear, that would otherwise be not obvious. You can therefore attempt to rectify them.
----
 
 
-Text:
----
+
 The ODF Update File or OUF, enables you to send daily updates with a high level of security, very cost effectively.
 
 The prime purposes are adding security when e-mailing files (the OUF files must be loaded sequentially) and reducing the size, and therefore cost, of e-mailing daily updates over expensive satellite links.
@@ -6850,11 +6305,9 @@ In the above example, the Replication Information dialog box would not have been
 A sandstone block has two pyritic modifiers at 3000ft. GEO assigns these modifiers their own unique id numbers (e.g. 20 & 21). The child ODF is altered, by shifting modifier 20 to 2995ft and then saved. The PARENT ODF is altered, by shifting modifier 21 to 3005ft. The next sequential OUF is then saved. When this OUF is loaded into the child ODF, aReplicationInformationdialog box will not open.
 
 If however, in a later OUF, modifier 20 is shifted from 3000ft to 3005ft, upon loading this OUF aReplicationInformationdialog box is opened. This is because the OUF records the shift from 3000ft to 3005ft in the parent ODF. When scanning the child ODF, GEO by default, assumes the modifier to be positioned at 3000ft but upon loading the OUF scans and records the same modifier (20), positioned at 2995ft. This ‘deviation’ invokes theReplicationInformationdialog box.
----
 
 
-Text:
----
+
 On theGEOtab selectOpen.There are several ways to locate the file you wish to open.
 
 SelectRecentto view all recently opened .odf and .vew files in the right panel, then select the one you wish to open.
@@ -6862,11 +6315,9 @@ SelectRecentto view all recently opened .odf and .vew files in the right panel, 
 Select yourOneDriveorSharepointfrom the Open panel - the files and folders will be listed on the right. Select the desired .odf or .vew file you wish to open.Note. If Sharepoint or OneDrive are not listed, you may needSignInfirst.
 
 ClickBrowseto locate the file on your computer.In theOpendialog box select the location of the file you wish to open, select the file andOpen.Note. Ensure the relevant files type is selected in the Open dialog box.
----
 
 
-Text:
----
+
 On theGEOMenu, selectTemplatethenOpen.
 
 In the Open Template dialog box, browse to the ODT location (ensure theFiles of typeisTemplate files (*.ODT)).
@@ -6874,11 +6325,9 @@ In the Open Template dialog box, browse to the ODT location (ensure theFiles of 
 Select the ODT and clickOpen.
 
 A suite of example templates are available from C:\Users\*yourname*\AppData\Roaming\SDC Software\Geo Suite 8\Geo\Templates.
----
 
 
-Text:
----
+
 The Output Database File or ODF is the compact database file created by GEO.It contains all information needed for rapid recall of all data relating to a particular well, either for further editing/update or for recreating the log.The main components of an ODF are:
 
 Any loaded curve data and information about their source.
@@ -6896,11 +6345,9 @@ Embedded objects, such as documents, spreadsheets, maps, diagrams, photographs, 
 Links to related external documents, such as reports, spreadsheets, photographs, other ODFs, etc.
 
 ODF files may be shared with other members of the team (or with well partners) who require read-only access to the log and embedded curve data, using GEOView, or the free viewer, GEOe-View.For added security, an ODF must first be made e-View enabled before it can be opened by GEOe-View. The bottom status bar will state if the open ODF is e-View enabled or disabled. If disabled, right click on it and select e-View enabled.Both GEOView and GEOe-View can operate as ‘plug-in’ controls to the Internet Explorer web browser, so effectively allowing ODF files to be opened (normally by clicking a hyperlink to the ODF on an intranet web-page) within this standard browser.(If you are interested in setting-up a corporate intranet for securely-sharing your well data, please contact your local office ofGeologix Limited. We shall be pleased to discuss your requirements and to offer our expertise within a range of service solutions).
----
 
 
-Text:
----
+
 When an ODF file is saved in GEO, all curve data along with any other data such as lithology, modifiers, symbols, and texts will be saved. In addition, all other information that is required to reproduce the log as it was at the time of saving (such as track layout, curve presentation attributes, zoom factors, header/trailer layout and mnemonics) is also saved.
 
 On theGEOmenu, selectSaveAs.
@@ -6916,11 +6363,9 @@ On theGEOmenu, selectSave.
 Select theSavebutton on the quick access toolbar.
 
 Note. Each time an ODF is modified, an Asterix (*) will appear against the ODF name on the title bar. This indicates that the ODF needs to be saved to retain the changes made since the last save.
----
 
 
-Text:
----
+
 On theGEOmenu, selectTemplatethenSave As.
 
 Enter a template ID and clickOK.
@@ -6928,9 +6373,7 @@ Enter a template ID and clickOK.
 InSave As Template, browse to the location the template will be saved to.
 
 Enter aFile nameand selectSave.
----
-Tables:
----
+
 
 ╔════════════════════════════════════════════════════╗
 ║            📊 Table 1 from Data/Working_with_Files\Save_an_ODT_File.htm              ║
@@ -6946,11 +6389,9 @@ Tables:
 ║            🔚 End of Table 1                       ║
 ╚════════════════════════════════════════════════════╝
 
----
 
 
-Text:
----
+
 Open the layout which contains the track layout you wish to save.
 
 On theGEOtab, selectSaveAs.
@@ -6958,19 +6399,15 @@ On theGEOtab, selectSaveAs.
 InSaveAs, select a suitable location to save the file.
 
 CheckViewOnly, orselectGEO View files (*.VEW)from the the file types drop list.
----
 
 
-Text:
----
+
 A VEW file contains information related to data presentation, such as the track layout and log scale.
 
 It does not contain data.
----
 
 
-Text:
----
+
 ODF files may be shared with other members of the team (or with well partners) who require read-only access to the log and embedded curve data, using GEOView, or the free viewer, GEOe-View.
 
 For added security, an ODF must first be madee-View enabledbefore it can be opened by GEOe-View. The bottom status bar will state if the open ODF is e-View enabled or disabled. If disabled, right click on it and select e-View enabled.
@@ -6978,7 +6415,6 @@ For added security, an ODF must first be madee-View enabledbefore it can be open
 Both GEOView and GEOe-View can operate as ‘plug-in’ controls to the Internet Explorer web browser, so effectively allowing ODF files to be opened (normally by clicking a hyperlink to the ODF on an intranet web-page) within this standard browser.
 
 If you are interested in setting-up a corporate intranet for securely-sharing your well data, please contact your local office ofGeologix. We shall be pleased to discuss your requirements and to offer our expertise within a range of service solutions.
----
 
 
 ---Feedback---
