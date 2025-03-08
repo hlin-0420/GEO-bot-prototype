@@ -1,7 +1,5 @@
 Text:
 ---
-*Maximize screen to view table of contents*
-
 ODF files may be shared with other members of the team (or with well partners) who require read-only access to the log and embedded curve data, using GEOView, or the free viewer, GEOe-View.
 
 For added security, an ODF must first be madee-View enabledbefore it can be opened by GEOe-View. The bottom status bar will state if the open ODF is e-View enabled or disabled. If disabled, right click on it and select e-View enabled.

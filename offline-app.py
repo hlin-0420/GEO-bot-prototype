@@ -31,6 +31,10 @@ from rapidfuzz import process
 from nltk.translate.bleu_score import sentence_bleu
 from rouge_score import rouge_scorer
 from datetime import datetime
+from bs4 import XMLParsedAsHTMLWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 # tracks the current sessions in memory
 current_session_id = None
@@ -231,6 +235,11 @@ def extract_table(soup):
     return formatted_tables
 
 def extract_text(soup):
+    # Remove all specific navigation-relating messages
+    for tag in soup.find_all("p"):
+        if re.search(r"maximize screen", tag.text, re.IGNORECASE):
+            tag.decompose()
+
     # Extract only meaningful paragraph text
     paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]  # Exclude very short text
     clean_text = "\n\n".join(paragraphs)
