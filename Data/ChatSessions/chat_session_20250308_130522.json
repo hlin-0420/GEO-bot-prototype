@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "What are the size of curve units?",
+        "timestamp": "2025-03-08T13:06:42.988346Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The size of curve units is 24.",
+        "timestamp": "2025-03-08T13:06:42.988346Z"
+    },
+    {
+        "role": "user",
+        "content": "How many queries can be defined per zone type?",
+        "timestamp": "2025-03-08T13:06:42.988346Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, there are 75 query definitions per zone type.",
+        "timestamp": "2025-03-08T13:06:42.988346Z"
+    }
+]
