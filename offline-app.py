@@ -33,6 +33,7 @@ from rouge_score import rouge_scorer
 from datetime import datetime
 from bs4 import XMLParsedAsHTMLWarning
 import warnings
+import requests
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
@@ -1403,6 +1404,54 @@ def search_chats():
                     temp_question = None  # Reset after capturing the pair
 
     return jsonify(matching_messages)
+
+@app.route('/generate-title', methods=['POST'])
+def generate_chat_title():
+    """Generate a concise chat title using Ollama based on user-provided conversation data."""
+
+    # Extract messages from frontend request
+    data = request.json
+    messages = data.get("messages", [])
+
+    print(f"📥 Received messages: {messages}")
+
+    if not messages:
+        print(f"⚠️ No valid messages received: {data}")
+        return jsonify({"title": "Untitled Chat"}), 400
+
+    # Convert chat messages into a summarized format
+    conversation_text = " ".join([msg["content"] for msg in messages])
+
+    # ✅ Modified prompt to enforce conciseness
+    ollama_request = {
+        "model": "llama3.2:latest",
+        "prompt": (
+            "Generate a **very short, clear, and concise** title for this conversation."
+            " Keep it **under 8 words** and make it **informative**:"
+            f"\n\n{conversation_text}"
+        ),
+        "stream": False
+    }
+
+    try:
+        response = requests.post("http://localhost:11434/api/generate", json=ollama_request)
+        response_json = response.json()
+
+        print(f"✅ Ollama response: {response_json}")
+
+        title = response_json.get("response", "Untitled Chat").strip()
+
+        # ✅ Additional Post-Processing: Keep **max 8 words**
+        title_words = title.split()
+        if len(title_words) > 8:
+            title = " ".join(title_words[:8]) + "..."  # Truncate and add ellipsis
+
+        print(f"🎯 Final Shortened Title: {title}")
+        return jsonify({"title": title})
+
+    except Exception as e:
+        print(f"❌ Error calling Ollama: {e}")
+        return jsonify({"title": "Untitled Chat"}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

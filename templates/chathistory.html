@@ -266,27 +266,36 @@
 
             const chatMessages = document.getElementById("chatMessages");
             
-            // Clear existing messages and the placeholder message
+            // Clear existing messages
             chatMessages.innerHTML = "";
 
             try {
                 const response = await fetch(`/chat-history/${sessionId}`);
+                if (!response.ok) {
+                    console.error(`Failed to fetch messages for session: ${sessionId}`);
+                    return;
+                }
+
                 const session = await response.json();
-                const chatMessages = document.getElementById("chatMessages");
-                chatMessages.innerHTML = "";
+                const messages = session.messages || [];
 
-                let tempQuestionNumber = 0;
+                console.log(`Fetched ${messages.length} messages for session ${sessionId}`);
 
-                session.messages.forEach((msg) => {
+                let tempQuestionNumber = 0;  // Question counter
+
+                messages.forEach((msg) => {
                     if (msg.role === "user") {
                         tempQuestionNumber++;
 
+                        // Wrapper for question message
                         const questionWrapper = document.createElement("div");
                         questionWrapper.classList.add("chat-message-wrapper");
 
+                        // Create user question element
                         const userMessageDiv = document.createElement("div");
                         userMessageDiv.classList.add("chat-message", "user-message");
-                        userMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
+                        userMessageDiv.dataset.questionNumber = tempQuestionNumber;
+                        userMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         userMessageDiv.style.padding = "10px";
                         userMessageDiv.style.borderRadius = "5px";
                         userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${msg.content}`;
@@ -297,38 +306,45 @@
                         optionsButton.innerHTML = "⋯";
                         optionsButton.onclick = (event) => toggleQuestionMenu(event, tempQuestionNumber);
 
-                        // Append the message and button into the wrapper
+                        // Append elements into the wrapper
                         questionWrapper.appendChild(userMessageDiv);
                         questionWrapper.appendChild(optionsButton);
-
-                        // Finally, append the wrapper to `chatMessages`
                         chatMessages.appendChild(questionWrapper);
-                    } else if (msg.role === "assistant") {
+                    } 
+                    else if (msg.role === "assistant") {
+                        // Wrapper for answer and feedback section
                         const answerFeedbackWrapper = document.createElement("div");
                         answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
+                        // Create AI answer element
                         const aiMessageDiv = document.createElement("div");
-                        aiMessageDiv.classList.add("chat-message", "ai-message");                        
-                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;  // <- Add this line
+                        aiMessageDiv.classList.add("chat-message", "ai-message");
+                        aiMessageDiv.dataset.questionNumber = tempQuestionNumber;
+                        aiMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${msg.content}`;
                         
+                        // Append answer to the wrapper
                         answerFeedbackWrapper.appendChild(aiMessageDiv);
                         chatMessages.appendChild(answerFeedbackWrapper);
 
+                        // Add a feedback section below AI answers
                         addFeedbackSection(aiMessageDiv, tempQuestionNumber);
 
-                        selectedRatings[tempQuestionNumber] = 0;  // Explicitly set no rating on initial load
-                        resetStars(tempQuestionNumber);           // Ensure stars match the default 0 rating
+                        // Ensure rating is explicitly set to 0 on initial load
+                        selectedRatings[tempQuestionNumber] = 0;
+                        resetStars(tempQuestionNumber);
                         console.log(`Resetting stars for Question ${tempQuestionNumber}, selectedRating = ${selectedRatings[tempQuestionNumber]}`);
                     }
                 });
 
                 questionCounter = tempQuestionNumber;
-                addDynamicSpacer(); // ✅ Add dynamic spacer at the very end to improve spacing after all content is rendered
+                addDynamicSpacer();  // ✅ Adds extra spacing at the end
+
+                console.log(`✅ Successfully loaded ${tempQuestionNumber} question-answer pairs for session ${sessionId}`);
             } catch (error) {
-                console.error("Failed to load session messages:", error);
+                console.error("❌ Failed to load session messages:", error);
             }
         }
 
@@ -871,40 +887,109 @@
                 data = sortChatHistoryByTime(data);
                 const groupedChats = groupByDate(data);
 
+                console.log("Grouped Chats:", groupedChats); // Debugging
+
                 for (const [date, chats] of Object.entries(groupedChats)) {
                     const dateHeader = document.createElement("div");
                     dateHeader.textContent = date === new Date().toLocaleDateString() ? "Today" : date;
                     dateHeader.classList.add("date-header");
                     chatHistoryList.appendChild(dateHeader);
 
-                    chats.forEach(session => {
+                    for (const session of chats) {
                         const chatItem = document.createElement("div");
                         chatItem.classList.add("chat-entry-with-options");
 
+                        let title = session.session_name;
+                        if (!title || title.startsWith("chat_session")) {
+                            title = await generateChatTitle(session.session_id);  // Ensure title is fetched before rendering
+                        }
+
                         chatItem.innerHTML = `
                             <div class="chat-entry-content" data-session-id="${session.session_id}">
-                                💬 ${session.session_name}
+                                💬 ${title}
                             </div>
                             <div class="chat-entry-options">
                                 <button class="chat-options" onclick="toggleContextMenu(event, '${session.session_id}')">⋯</button>
                             </div>
                         `;
 
-                        // console.log(chatItem.outerHTML);
-                        chatItem.querySelector('.chat-entry-content').addEventListener('click', () => {
+                        // Ensure messages load before getting UI elements
+                        chatItem.querySelector('.chat-entry-content').addEventListener('click', async () => {
                             currentSessionId = session.session_id;
                             sessionStorage.setItem("currentSessionId", currentSessionId);
-                            loadSessionMessages(currentSessionId);
+                            await loadSessionMessages(currentSessionId);  // Ensure messages load before next step
+                            
+                            setTimeout(() => {  
+                                console.log(`Checking messages in UI for session: ${currentSessionId}`);
+                                const messages = getChatMessagesFromBackend(currentSessionId);
+                                console.log("Retrieved messages from UI:", messages);
+                            }, 1000);  // Small delay to ensure UI updates
                         });
 
                         chatHistoryList.appendChild(chatItem);
-                    });
+                    }
                 }
-
-                console.log(chatHistoryList);
             } catch (error) {
                 console.error("Error loading chat history:", error);
                 document.getElementById("chatHistoryList").innerHTML = `<p style="color: red;">Failed to load chat history.</p>`;
+            }
+        }
+
+        async function generateChatTitle(sessionId) {
+            try {
+                console.log(`📝 Generating title for session: ${sessionId}`);
+
+                // Always fetch chat messages from the backend
+                const chatMessages = await getChatMessagesFromBackend(sessionId);
+
+                if (!Array.isArray(chatMessages) || chatMessages.length === 0) {
+                    console.warn(`⚠️ No valid messages found for session: ${sessionId}. Returning 'Untitled Chat'.`);
+                    return "Untitled Chat";
+                }
+
+                console.log("📩 Sending request to /generate-title with:", JSON.stringify({ messages: chatMessages }));
+
+                const requestBody = JSON.stringify({ messages: chatMessages });
+
+                const response = await fetch("/generate-title", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: requestBody
+                });
+
+                if (!response.ok) {
+                    console.error(`❌ Failed to generate title: ${response.status} ${response.statusText}`);
+                    return "Untitled Chat";
+                }
+
+                const data = await response.json();
+                console.log("🎯 Received generated title:", data.title);
+
+                return data.title || "Untitled Chat";
+            } catch (error) {
+                console.error("❌ Error generating chat title:", error);
+                return "Untitled Chat";
+            }
+        }
+
+        async function getChatMessagesFromBackend(sessionId) {
+            try {
+                console.log(`📥 Fetching chat history from backend for session: ${sessionId}`);
+
+                const response = await fetch(`/chat-history/${sessionId}`);
+                if (!response.ok) {
+                    console.error(`❌ Backend returned an error for session ${sessionId}: ${response.status}`);
+                    return [];
+                }
+
+                const sessionData = await response.json();
+                const messages = sessionData.messages || [];
+                console.log(`✅ Loaded ${messages.length} messages from backend for session ${sessionId}:`, messages);
+
+                return messages;
+            } catch (error) {
+                console.error(`❌ Error fetching messages from backend for session ${sessionId}:`, error);
+                return [];
             }
         }
 
