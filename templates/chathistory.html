@@ -110,6 +110,21 @@
             document.getElementById('sidebarToggleBtn').classList.add('hidden');
         }
 
+        function formatAnswerContainer(questionNumber) {
+            return `
+                <div style="background-color: #f8d7da; color: #721c24; padding: 10px; 
+                            border-radius: 5px; border: 1px solid #f5c6cb; 
+                            font-weight: 500; font-size: 14px;">
+                    💡 <strong>Answer ${questionNumber}:</strong> 
+                    <span id="answerPlaceholder-${questionNumber}" 
+                        style="font-style: italic; color: grey; display: inline-block; 
+                                margin-left: 5px; animation: blink 1.5s infinite;">
+                        Processing your question...
+                    </span>
+                </div>
+            `;
+        }
+
         function handleResize(e) {
             if (!isResizing) return;
 
@@ -395,10 +410,7 @@
                         aiMessageDiv.style.backgroundColor = "#f8d7da";
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
-                        aiMessageDiv.innerHTML = `
-                            💡 Answer ${questionNumber}: 
-                            <span id="answerPlaceholder-${questionNumber}" style="font-style: italic; color: grey;">Processing your question...</span>
-                        `;
+                        aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
                         answerFeedbackWrapper.appendChild(aiMessageDiv);
                         questionContainer.appendChild(answerFeedbackWrapper);
 
@@ -468,7 +480,7 @@
             aiMessage.style.backgroundColor = "#f8d7da";
             aiMessage.style.padding = "10px";
             aiMessage.style.borderRadius = "5px";
-            aiMessage.innerHTML = `💡 Answer ${questionCounter}: <span id="answerPlaceholder-${questionCounter}" style="font-style: italic; color: grey;">Processing your question...</span>`;
+            aiMessage.innerHTML = formatAnswerContainer(questionCounter);
             aiMessageDiv.appendChild(aiMessage);
             questionContainer.appendChild(aiMessageDiv);
 
@@ -1275,10 +1287,7 @@
             aiMessageDiv.style.backgroundColor = "#f8d7da";
             aiMessageDiv.style.padding = "10px";
             aiMessageDiv.style.borderRadius = "5px";
-            aiMessageDiv.innerHTML = `
-                💡 Answer ${questionNumber}: 
-                <span id="answerPlaceholder-${questionNumber}" style="font-style: italic; color: grey;">Processing your question...</span>
-            `;
+            aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
             answerFeedbackWrapper.appendChild(aiMessageDiv);
 
             questionContainer.appendChild(answerFeedbackWrapper);
