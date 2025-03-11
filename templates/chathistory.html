@@ -886,6 +886,15 @@
             }
         });
 
+        function attachContextMenuListeners() {
+            document.querySelectorAll(".chat-options").forEach(button => {
+                button.addEventListener("click", function(event) {
+                    const sessionId = this.getAttribute("data-session-id");
+                    toggleContextMenu(event, sessionId);
+                });
+            });
+        }
+
         async function loadChatHistory() {
             try {
                 const response = await fetch("/chat-history");
@@ -934,7 +943,7 @@
                                 💬 ${title}
                             </div>
                             <div class="chat-entry-options">
-                                <button class="chat-options" onclick="toggleContextMenu(event, '${session.session_id}')">⋯</button>
+                                <button class="chat-options" data-session-id="${session.session_id}">⋯</button>
                             </div>
                         `;
 
@@ -953,6 +962,8 @@
 
                         chatHistoryList.appendChild(chatItem);
                     }
+
+                    attachContextMenuListeners(); // Ensure event listeners are added after elements exist
                 }
             } catch (error) {
                 console.error("Error loading chat history:", error);
@@ -1030,6 +1041,20 @@
             return grouped;
         }
 
+        document.addEventListener("click", function(event) {
+            // Check if the clicked element is a Rename button
+            if (event.target.classList.contains("rename-session")) {
+                const sessionId = event.target.getAttribute("data-session-id");
+                startRenameSession(sessionId);
+            }
+
+            // Check if the clicked element is a Delete button
+            if (event.target.classList.contains("delete-session")) {
+                const sessionId = event.target.getAttribute("data-session-id");
+                deleteSession(sessionId);
+            }
+        });
+
         function toggleContextMenu(event, sessionId) {
             event.stopPropagation();  // Prevent parent div click
             closeGlobalContextMenu();  // Close any existing open menu
@@ -1038,8 +1063,8 @@
             menu.id = "globalContextMenu";
             menu.classList.add("context-menu");
             menu.innerHTML = `
-                <button onclick="startRenameSession('${sessionId}')" style="color:black">✏️ Rename</button>
-                <button onclick="deleteSession('${sessionId}')" style="color:black">🗑️ Delete</button>
+                <button class="session-action rename-session" data-session-id="${sessionId}">✏️ Rename</button>
+                <button class="session-action delete-session" data-session-id="${sessionId}">🗑️ Delete</button>
             `;
 
             menu.style.position = 'absolute';

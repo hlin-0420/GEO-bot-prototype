@@ -1352,6 +1352,20 @@
       color: #f8c33c;
   }
 
+  .session-action {
+    color: black !important; /* Ensure visibility */
+    background-color: white !important; /* Fix background in dark mode */
+    border: 1px solid #ccc; /* Optional: Improve visibility */
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .session-action:hover {
+      background-color: #f0f0f0; /* Light gray on hover */
+  }
+
   /* Ensures spacing for page content under fixed navbar */
   .content {
       margin-top: 80px;
