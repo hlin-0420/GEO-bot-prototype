@@ -1,13 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Knowledge Tree</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Software Knowledge Tree</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
+        
+        <style>
+            /* Page Styling */
+            .panel {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #2c3e50;
+                color: white;
+                padding: 15px 20px;
+                border-bottom: 3px solid #34495e;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Title Styling */
+            .panel h1 {
+                flex-grow: 1;
+                text-align: right; /* Centers the text */
+                font-size: 18px; /* Adjust font size */
+                font-family: 'Georgia', serif; /* Change font style */
+                font-weight: bold;
+                color: #f1c40f; /* Gold color for contrast */
+                margin: 0;
+            }
+
+            /* Home Button */
+            .home-button {
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                background-color: #1abc9c;
+                padding: 8px 12px;
+                border-radius: 5px;
+                transition: background 0.3s ease;
+            }
+
+            .home-button:hover {
+                background-color: #16a085;
+            }
+    
+            /* Tree Container */
+            #tree-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: calc(100vh - 80px);
+                overflow: auto;
+                background-color: white;
+                border: 2px solid #ccc;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin: 20px;
+                border-radius: 8px;
+            }
+    
+            /* Nodes */
+            circle {
+                stroke: #222;
+                stroke-width: 2px;
+                transition: fill 0.3s ease-in-out;
+            }
+    
+            circle:hover {
+                fill: #f39c12;
+                cursor: pointer;
+            }
+    
+            /* Links */
+            line {
+                stroke: #777;
+                stroke-width: 2px;
+            }
+    
+            /* Labels */
+            text {
+                font-size: 12px;
+                font-weight: bold;
+                fill: #333;
+            }
+        </style>
+    </head>    
 <body>
-    <h1>Software Knowledge Tree</h1>
+    <!-- Navigation Panel -->
+    <div class="panel">
+        <a href="/" class="home-button">🏠 Home</a>
+        <h1>Software Knowledge Tree</h1>
+    </div>
     <div id="tree-container"></div>
 
     <script nonce="{{ g.nonce }}">
