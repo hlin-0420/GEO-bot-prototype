@@ -6529,3 +6529,13 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "feedback": "The generated information was redundant and could be more concise -> focus on the correct answer being a limit of 200 tracks in ODF files.",
     "rating-score": 3
 }
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "How many tadpole definitions am I allowed?",
+    "response": "You are allowed to create up to 64 tadpole definitions.",
+    "feedback": "You can only create up to 5 tadpole definitions.",
+    "rating-score": "1"
+}

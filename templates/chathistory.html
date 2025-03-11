@@ -1557,28 +1557,24 @@
         function addFeedbackSection(aiMessageDiv, questionNumber) {
             const feedbackContainer = document.createElement("div");
             feedbackContainer.id = `feedbackContainer-${questionNumber}`;
-            feedbackContainer.classList.add("feedback-container"); // ✅ Now uses CSS instead of inline styles
+            feedbackContainer.classList.add("feedback-container"); // Uses CSS instead of inline styles
 
             feedbackContainer.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" id="feedbackToggle-${questionNumber}">
                     <span style="font-weight: bold;">✅ How accurate is this response compared to the expected answer?</span>
-                    <span id="toggleIcon-${questionNumber}" style="font-size: 18px;">🔽</span>
+                    <span id="toggleIcon-${questionNumber}" style="font-size: 18px; cursor: pointer;">🔽</span>
                 </div>
                 <span class="feedback-stars">
                     ${[1, 2, 3, 4, 5].map(star => `
                         <span class="star" data-question-number="${questionNumber}" data-rating="${star}" id="star-${questionNumber}-${star}"
-                            
-                            
                             style="cursor: pointer; color: #ccc;">★</span>
                     `).join('')}
                 </span>
                 <div id="feedbackCommentContainer-${questionNumber}" 
                     style="margin-top: 5px; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 5px; padding: 5px; background-color: #f9f9f9; display: none;">
-
                     <textarea id="feedbackComment-${questionNumber}" 
                         placeholder="Optional feedback..." 
                         style="flex-grow: 1; border: none; outline: none; resize: none; padding: 5px; font-size: 14px;"></textarea>
-
                     <button id="submitFeedback-${questionNumber}"
                         style="border: none; 
                             background: none; 
@@ -1604,6 +1600,28 @@
 
             // Ensure stars are in the correct state based on preloaded ratings (if any)
             resetStars(questionNumber);
+
+            // Add event listener to toggle the feedback comment section when clicking the toggle icon
+            document.getElementById(`toggleIcon-${questionNumber}`).addEventListener("click", () => {
+                const commentContainer = document.getElementById(`feedbackCommentContainer-${questionNumber}`);
+                if (commentContainer.style.display === "none" || commentContainer.style.display === "") {
+                    commentContainer.style.display = "flex";
+                    document.getElementById(`toggleIcon-${questionNumber}`).innerText = "🔼";  // Change to up arrow
+                } else {
+                    commentContainer.style.display = "none";
+                    document.getElementById(`toggleIcon-${questionNumber}`).innerText = "🔽";  // Change to down arrow
+                }
+            });
+
+            // Add event listeners for stars
+            stars.forEach(star => {
+                star.addEventListener("click", () => setRating(questionNumber, star.dataset.rating));
+                star.addEventListener("mouseover", () => highlightStars(questionNumber, star.dataset.rating));
+                star.addEventListener("mouseleave", () => resetStars(questionNumber));
+            });
+
+            // Add event listener to submit feedback
+            document.getElementById(`submitFeedback-${questionNumber}`).addEventListener("click", () => submitCompleteFeedback(questionNumber));
         }
 
         const selectedRatings = {};  // To store the selected rating for each question
