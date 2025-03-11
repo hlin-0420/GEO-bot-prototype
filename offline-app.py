@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Response, send_from_directory
+from flask import Flask, request, jsonify, render_template, Response, send_from_directory, g
 import logging
 import os
 import threading
@@ -34,7 +34,12 @@ from datetime import datetime
 from bs4 import XMLParsedAsHTMLWarning
 import warnings
 import requests
+from collections import defaultdict
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
+import secrets
 
+os.environ["LOKY_MAX_CPU_COUNT"] = "2"
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 # tracks the current sessions in memory
@@ -45,11 +50,15 @@ valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
 # Initialize the selected bot. 
 app = Flask(__name__)
 
+@app.before_request
+def set_nonce():
+    g.nonce = secrets.token_urlsafe(16)  # Generate a nonce for each request
+
 @app.after_request
 def add_csp_headers(response):
     response.headers['Content-Security-Policy'] = (
-        "default-src 'self' https://apis.google.com https://content.googleapis.com https://www.gstatic.com;"
-        "script-src 'self' https://apis.google.com https://www.gstatic.com https://accounts.google.com/gsi/client 'unsafe-inline' 'unsafe-eval' blob:;"
+        f"default-src 'self' https://cdnjs.cloudflare.com https://apis.google.com https://content.googleapis.com https://www.gstatic.com;"
+        f"script-src 'self' 'nonce-{g.nonce}' 'unsafe-eval' https://cdnjs.cloudflare.com https://apis.google.com https://www.gstatic.com https://accounts.google.com/gsi/client;"
         "connect-src 'self' https://www.googleapis.com https://content.googleapis.com;"
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
         "img-src 'self' https://upload.wikimedia.org https://www.gstatic.com data:;"
@@ -77,6 +86,44 @@ PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
+
+@app.route("/knowledge-tree")
+def knowledge_tree():
+    # Load chat data
+    chat_data = []
+    for filename in os.listdir(CHAT_SESSIONS_DIR):
+        if filename.endswith(".json"):
+            with open(os.path.join(CHAT_SESSIONS_DIR, filename), "r", encoding="utf-8") as file:
+                chat_data.extend(json.load(file))
+
+    # Extract user questions
+    questions = [entry["content"] for entry in chat_data if entry["role"] == "user"]
+
+    # Apply TF-IDF to extract key topics
+    vectorizer = TfidfVectorizer(stop_words="english", max_features=50)
+    X = vectorizer.fit_transform(questions)
+
+    # Cluster similar topics
+    num_clusters = min(6, len(questions))  # Avoid exceeding available questions
+    kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
+    labels = kmeans.fit_predict(X)
+
+    # Organize topics into tree structure
+    knowledge_tree = defaultdict(list)
+    for idx, label in enumerate(labels):
+        cluster_label = f"Topic {label+1}"
+        knowledge_tree[cluster_label].append(questions[idx])
+
+    # Correct structured tree format
+    structured_tree = {
+        "name": "GEO Software Knowledge Tree",
+        "children": [
+            {"name": topic, "children": [{"name": subtopic} for subtopic in sorted(set(subs))]}
+            for topic, subs in knowledge_tree.items()
+        ],
+    }
+
+    return render_template("knowledge_tree.html", tree_data=structured_tree)
 
 @app.route("/chat-history/<session_id>", methods=["GET"])
 def get_single_chat_session(session_id):

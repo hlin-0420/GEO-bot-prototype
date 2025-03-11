@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Knowledge Tree</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js"></script>
+</head>
+<body>
+    <h1>Software Knowledge Tree</h1>
+    <div id="tree-container"></div>
+
+    <script nonce="{{ g.nonce }}">
+        console.log(`Raw JSON from Flask: `, `{{ tree_data | tojson | safe }}`);
+        const treeData = {{ tree_data | tojson | safe }};
+
+        const root = d3.hierarchy(treeData);
+        console.log("D3 Hierarchy Root:", root);
+
+        if (!treeData || typeof treeData.name === "undefined") {
+            console.error("Invalid treeData structure:", treeData);
+            document.getElementById("tree-container").innerHTML = "<p>Error loading knowledge tree.</p>";
+        } else {
+            console.log("Valid treeData:", treeData);
+            const width = 800, height = 600;
+
+            const svg = d3.select("#tree-container")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(50,50)");
+
+            const root = d3.hierarchy(treeData);
+            const treeLayout = d3.tree().size([width - 100, height - 100]);
+            treeLayout(root);
+
+            // Draw links
+            svg.selectAll("line")
+                .data(root.links())
+                .enter().append("line")
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y)
+                .style("stroke", "black");
+
+            // Draw nodes
+            svg.selectAll("circle")
+                .data(root.descendants())
+                .enter().append("circle")
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y)
+                .attr("r", 5)
+                .style("fill", "blue");
+
+            // Add labels
+            svg.selectAll("text")
+                .data(root.descendants())
+                .enter().append("text")
+                .attr("x", d => d.x + 5)
+                .attr("y", d => d.y - 5)
+                .text(d => d.data.name);
+        }
+    </script>
+</body>
+</html>
