@@ -678,6 +678,12 @@
             optionsMenu.id = 'optionsMenu';
             document.body.appendChild(optionsMenu);
 
+            // ✅ Attach the event listener after the button is added to the DOM
+            document.getElementById("newConversationButton").addEventListener("click", startNewConversation);
+            document.getElementById("clearChatHistoryButton").addEventListener("click", clearChatHistory);
+            document.getElementById("questionsFileInput").addEventListener("change", handleQuestionsFileUpload);
+            document.getElementById("closeOptionsButton").addEventListener("click", closeOptionsMenu);
+
             // Position the menu above the plus button
             const plusButton = document.querySelector('.chat-icon-button');
             if (plusButton) {
