@@ -902,6 +902,12 @@
                         let title = session.session_name;
                         if (!title || title.startsWith("chat_session")) {
                             title = await generateChatTitle(session.session_id);  // Ensure title is fetched before rendering
+
+                            await fetch("/rename-session", {
+                                method: "POST", 
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({session_id: session.session_id, new_name: title})
+                            });
                         }
 
                         chatItem.innerHTML = `
