@@ -19,3 +19,5 @@ numpy
 rapidfuzz
 nltk
 rouge-score
+requests
+bs4
