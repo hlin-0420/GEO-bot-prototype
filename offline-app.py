@@ -136,7 +136,7 @@ def knowledge_tree():
     knowledge_tree = defaultdict(list)
     for idx, label in enumerate(labels):
         topic_name = extract_keywords(cluster_names[label])  # Simplify topic names
-        knowledge_tree[topic_name].append(extract_keywords(questions[idx], top_n=3))  # Keep 3-word summaries
+        knowledge_tree[topic_name].append(extract_keywords(questions[idx], top_n=1))  # Keep 3-word summaries
         
     # Correct structured tree format
     structured_tree = {

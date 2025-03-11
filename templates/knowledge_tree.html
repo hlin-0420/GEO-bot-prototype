@@ -41,7 +41,7 @@
             const root = d3.hierarchy(treeData);
             
             const treeLayout = d3.tree()
-                .size([height - 300, width - 500]);
+                .nodeSize([60, 200]);
     
             treeLayout(root);
     
@@ -72,13 +72,13 @@
                 .data(root.descendants())
                 .enter().append("text")
                 .attr("x", d => d.x)
-                .attr("y", d => d.y - 15)
+                .attr("y", d => d.children ? d.y - 15 : d.y + 25)
                 .attr("text-anchor", "middle")
-                .style("font-size", "14px")
+                .style("font-size", "12px")
                 .style("font-weight", "bold")
                 .style("fill", "#000")
                 .text(d => d.data.name)
-                .call(wrapText, 200);
+                .call(wrapText, 150);
     
             function wrapText(selection, width) {
                 selection.each(function () {
