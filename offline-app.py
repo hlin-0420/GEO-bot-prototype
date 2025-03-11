@@ -38,6 +38,12 @@ from collections import defaultdict
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import secrets
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+nltk.download("punkt")
+nltk.download("stopwords")
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "2"
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
@@ -87,6 +93,13 @@ UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
 
+def extract_keywords(text, top_n=3):
+    """Extracts top N keywords from text using TF-IDF."""
+    words = word_tokenize(text.lower())  # Tokenize and lowercase
+    filtered_words = [word for word in words if word.isalnum() and word not in stopwords.words("english")]
+    
+    return " ".join(filtered_words[:top_n])  # Take top keywords
+
 @app.route("/knowledge-tree")
 def knowledge_tree():
     # Load chat data
@@ -116,15 +129,15 @@ def knowledge_tree():
     order_centroids = kmeans.cluster_centers_.argsort()[:, ::-1]
     cluster_names = {}
     for i in range(num_clusters):
-        top_keywords = [feature_names[ind] for ind in order_centroids[i, :3]]  # Top 3 words
+        top_keywords = [feature_names[ind] for ind in order_centroids[i, :1]]  # Top 3 words
         cluster_names[i] = ", ".join(top_keywords)  # Assign top keywords as cluster name
 
-    # Organize topics into tree structure
+    # Organize topics into a tree structure
     knowledge_tree = defaultdict(list)
     for idx, label in enumerate(labels):
-        topic_name = cluster_names[label]  # Use extracted keywords as topic names
-        knowledge_tree[topic_name].append(questions[idx])
-
+        topic_name = extract_keywords(cluster_names[label])  # Simplify topic names
+        knowledge_tree[topic_name].append(extract_keywords(questions[idx], top_n=3))  # Keep 3-word summaries
+        
     # Correct structured tree format
     structured_tree = {
         "name": "GEO Software Knowledge Tree",
