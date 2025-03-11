@@ -60,15 +60,18 @@
                 border-radius: 8px;
             }
     
-            /* Nodes */
-            circle {
+            /* Nodes - Rectangles instead of Circles */
+            rect {
                 stroke: #222;
                 stroke-width: 2px;
+                fill: #3498db; /* Blue color */
                 transition: fill 0.3s ease-in-out;
+                rx: 5px; /* Rounded corners */
+                ry: 5px;
             }
-    
-            circle:hover {
-                fill: #f39c12;
+
+            rect:hover {
+                fill: #f39c12; /* Highlight color on hover */
                 cursor: pointer;
             }
     
@@ -124,12 +127,10 @@
     
             const root = d3.hierarchy(treeData);
             
-            const treeLayout = d3.tree()
-                .nodeSize([60, 200]);
-    
+            const treeLayout = d3.tree().nodeSize([150, 100]); // Wider spacing for nodes
             treeLayout(root);
-    
-            // Draw links
+
+            // Adjust link drawing to match top-down hierarchy
             svg.selectAll("line")
                 .data(root.links())
                 .enter().append("line")
@@ -139,30 +140,32 @@
                 .attr("y2", d => d.target.y)
                 .style("stroke", "#555")
                 .style("stroke-width", "2px");
-    
-            // Draw nodes
-            svg.selectAll("circle")
+
+            // Adjust node positioning for vertical tree with rectangles
+            svg.selectAll("rect")
                 .data(root.descendants())
-                .enter().append("circle")
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y)
-                .attr("r", 8)
-                .style("fill", "#3498db")
-                .style("stroke", "#222")
-                .style("stroke-width", "2px");
-    
-            // Add labels
+                .enter().append("rect")
+                .attr("x", d => d.x - 40) // Center rectangles horizontally
+                .attr("y", d => d.y - 15) // Offset to align with node positions
+                .attr("width", 80) // Rectangle width
+                .attr("height", 50) // Rectangle height
+                .style("fill", "#3498db") // Blue color fill
+                .style("stroke", "#222") // Dark border
+                .style("stroke-width", "2px")
+                .style("rx", 5) // Rounded corners for aesthetics
+                .style("ry", 5);
+
             svg.selectAll("text")
                 .data(root.descendants())
                 .enter().append("text")
                 .attr("x", d => d.x)
-                .attr("y", d => d.children ? d.y - 15 : d.y + 25)
+                .attr("y", d => d.y + 5) // Center text inside rectangle
                 .attr("text-anchor", "middle")
-                .style("font-size", "12px")
+                .style("font-size", "14px")
                 .style("font-weight", "bold")
-                .style("fill", "#000")
+                .style("fill", "#fff") // White text for contrast
                 .text(d => d.data.name)
-                .call(wrapText, 150);
+                .call(wrapText, 80);
     
             function wrapText(selection, width) {
                 selection.each(function () {
