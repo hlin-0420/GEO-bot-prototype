@@ -58,7 +58,6 @@
                         <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
                     </div>
                     <div class="chat-actions-row">
-                        <!-- Remove the inline onclick event -->
                         <button id="chatOptionsButton" class="chat-icon-button">➕</button>
                         <button id="searchQueryButton" class="chat-action-button">🌍 Search</button>
                         <button id="deepResearchButton" class="chat-action-button">🚀 Deep research</button>
@@ -73,6 +72,23 @@
     
     <script nonce="{{ g.nonce }}">
         document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
+            const questionNumber = element.id.split("-")[1];
+            element.addEventListener("click", () => toggleFeedbackComment(questionNumber));
+        });
+
+        document.querySelectorAll("[id^='star-']").forEach(star => {
+            const [_, questionNumber, rating] = star.id.split("-");
+            star.addEventListener("click", () => setRating(questionNumber, rating));
+            star.addEventListener("mouseover", () => highlightStars(questionNumber, rating));
+            star.addEventListener("mouseleave", () => resetStars(questionNumber));
+        });
+
+        document.querySelectorAll("[id^='submitFeedback-']").forEach(button => {
+            const questionNumber = button.id.split("-")[1];
+            button.addEventListener("click", () => submitCompleteFeedback(questionNumber));
+        });
+
             // Navbar Buttons
             document.getElementById("sidebarToggleBtn").addEventListener("click", openSidebar);
             document.getElementById("closeSidebarBtn").addEventListener("click", closeSidebar);
@@ -187,7 +203,7 @@
                     const optionsButton = document.createElement("button");
                     optionsButton.classList.add("chat-options");
                     optionsButton.innerHTML = "⋯";
-                    optionsButton.onclick = (event) => toggleQuestionMenu(event, tempQuestionNumber);
+                    optionsButton.addEventListener('click', (event) => toggleQuestionMenu(event, tempQuestionNumber));
                     questionWrapper.appendChild(optionsButton);
 
                     chatMessages.appendChild(questionWrapper);
@@ -317,7 +333,7 @@
                         const optionsButton = document.createElement("button");
                         optionsButton.classList.add("chat-options");
                         optionsButton.innerHTML = "⋯";
-                        optionsButton.onclick = (event) => toggleQuestionMenu(event, tempQuestionNumber);
+                        optionsButton.addEventListener('click', (event) => toggleQuestionMenu(event, tempQuestionNumber));
 
                         // Append elements into the wrapper
                         questionWrapper.appendChild(userMessageDiv);
@@ -725,7 +741,7 @@
                 const newEntry = document.createElement("div");
                 newEntry.classList.add("chat-entry");
                 newEntry.textContent = "🆕 New Conversation";
-                newEntry.onclick = () => loadNewConversation();  // Optional, you could define this
+                newEntry.addEventListener('click', () => loadNewConversation());  // Optional, you could define this
                 chatHistoryList.prepend(newEntry);  // Add to the top
             } else {
                 console.error("chatHistoryList not found");
@@ -790,13 +806,13 @@
             const saveButton = document.createElement("button");
             saveButton.innerText = "💾";
             saveButton.style.cursor = "pointer";
-            saveButton.onclick = () => saveRenameSession(sessionId);
+            saveButton.addEventListener('click', () => saveRenameSession(sessionId));
 
             // Cancel button
             const cancelButton = document.createElement("button");
             cancelButton.innerText = "❌";
             cancelButton.style.cursor = "pointer";
-            cancelButton.onclick = () => cancelRenameSession(sessionId, currentName);
+            cancelButton.addEventListener('click', () => cancelRenameSession(sessionId, currentName));
 
             // Append input and buttons to container
             renameContainer.appendChild(inputField);
@@ -833,11 +849,11 @@
             const sessionItem = document.querySelector(`[data-session-id="${sessionId}"]`);
             if (sessionItem) {
                 sessionItem.innerHTML = `💬 ${originalName}`;
-                sessionItem.onclick = () => {
-                    currentSessionId = sessionId;
-                    sessionStorage.setItem("currentSessionId", sessionId);
-                    loadSessionMessages(sessionId);
-                };
+                sessionItem.addEventListener('click', () => {
+    currentSessionId = sessionId;
+    sessionStorage.setItem('currentSessionId', sessionId);
+    loadSessionMessages(sessionId);
+});
             }
         }
 
@@ -1162,12 +1178,12 @@
             const saveButton = document.createElement('button');
             saveButton.innerText = '💾 Save';
             saveButton.classList.add('edit-save-button');
-            saveButton.onclick = () => finishEditing(true);
+            saveButton.addEventListener('click', () => finishEditing(true));
 
             const cancelButton = document.createElement('button');
             cancelButton.innerText = '❌ Cancel';
             cancelButton.classList.add('edit-cancel-button');
-            cancelButton.onclick = () => finishEditing(false);
+            cancelButton.addEventListener('click', () => finishEditing(false));
 
             buttonGroup.appendChild(saveButton);
             buttonGroup.appendChild(cancelButton);
@@ -1333,12 +1349,12 @@
                             if (textarea) textarea.id = `feedbackComment-${newNumber}`;
                             const submitButton = feedbackContainer.querySelector('button');
                             if (submitButton) {
-                                submitButton.setAttribute('onclick', `submitCompleteFeedback(${newNumber})`);
+                                submitButton.addEventListener('click', () => submitCompleteFeedback(newNumber));
                             }
                             const stars = feedbackContainer.querySelectorAll('.star');
                             stars.forEach(star => {
                                 star.setAttribute('data-question-number', newNumber);
-                                star.setAttribute('onclick', `setRating(${newNumber}, ${star.dataset.rating})`);
+                                star.addEventListener('click', () => setRating(newNumber, star.dataset.rating));
                                 star.setAttribute('onmouseover', `highlightStars(${newNumber}, ${star.dataset.rating})`);
                                 star.setAttribute('onmouseleave', `resetStars(${newNumber})`);
                             });
@@ -1544,23 +1560,16 @@
             feedbackContainer.classList.add("feedback-container"); // ✅ Now uses CSS instead of inline styles
 
             feedbackContainer.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" 
-                    onclick="toggleFeedbackComment(${questionNumber})">
+                <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" id="feedbackToggle-${questionNumber}">
                     <span style="font-weight: bold;">✅ How accurate is this response compared to the expected answer?</span>
                     <span id="toggleIcon-${questionNumber}" style="font-size: 18px;">🔽</span>
                 </div>
                 <span class="feedback-stars">
                     ${[1, 2, 3, 4, 5].map(star => `
-                        <span 
-                            class="star" 
-                            data-question-number="${questionNumber}" 
-                            data-rating="${star}" 
-                            onclick="setRating(${questionNumber}, ${star})"
-                            onmouseover="highlightStars(${questionNumber}, ${star})"
-                            onmouseleave="resetStars(${questionNumber})"
-                            style="cursor: pointer; color: #ccc;">
-                            ★
-                        </span>
+                        <span class="star" data-question-number="${questionNumber}" data-rating="${star}" id="star-${questionNumber}-${star}"
+                            
+                            
+                            style="cursor: pointer; color: #ccc;">★</span>
                     `).join('')}
                 </span>
                 <div id="feedbackCommentContainer-${questionNumber}" 
@@ -1570,7 +1579,7 @@
                         placeholder="Optional feedback..." 
                         style="flex-grow: 1; border: none; outline: none; resize: none; padding: 5px; font-size: 14px;"></textarea>
 
-                    <button onclick="submitCompleteFeedback(${questionNumber})"
+                    <button id="submitFeedback-${questionNumber}"
                         style="border: none; 
                             background: none; 
                             cursor: pointer; 
@@ -1712,6 +1721,41 @@
             addDynamicSpacer();
         });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
+                const questionNumber = element.id.split("-")[1];
+                element.addEventListener("click", () => toggleFeedbackComment(questionNumber));
+            });
+
+            document.querySelectorAll("[id^='star-']").forEach(star => {
+                const [_, questionNumber, rating] = star.id.split("-");
+                star.addEventListener("click", () => setRating(questionNumber, rating));
+                star.addEventListener("mouseover", () => highlightStars(questionNumber, rating));
+                star.addEventListener("mouseleave", () => resetStars(questionNumber));
+            });
+
+            document.querySelectorAll("[id^='submitFeedback-']").forEach(button => {
+                const questionNumber = button.id.split("-")[1];
+                button.addEventListener("click", () => submitCompleteFeedback(questionNumber));
+            });
+
+            document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
+                const questionNumber = element.id.split("-")[1];
+                element.addEventListener("click", () => toggleFeedbackComment(questionNumber));
+            });
+
+            document.querySelectorAll("[id^='star-']").forEach(star => {
+                const [_, questionNumber, rating] = star.id.split("-");
+                star.addEventListener("click", () => setRating(questionNumber, rating));
+                star.addEventListener("mouseover", () => highlightStars(questionNumber, rating));
+                star.addEventListener("mouseleave", () => resetStars(questionNumber));
+            });
+
+            document.querySelectorAll("[id^='submitFeedback-']").forEach(button => {
+                const questionNumber = button.id.split("-")[1];
+                button.addEventListener("click", () => submitCompleteFeedback(questionNumber));
+            });
+        });
     </script>
 </body>
 
