@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "How many log headers can I add to my log?",
+        "timestamp": "2025-03-11T17:02:24.910362Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of headers you can display in your log is up to 50.",
+        "timestamp": "2025-03-11T17:02:24.910362Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tadpole definitions am I allowed?",
+        "timestamp": "2025-03-11T17:04:10.468086Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You are allowed to create up to 64 tadpole definitions.",
+        "timestamp": "2025-03-11T17:04:10.468086Z"
+    }
+]

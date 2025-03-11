@@ -8,12 +8,12 @@
 <body>
     <div class="navbar">
         <div class="navbar-container">
-            <button id="sidebarToggleBtn" class="navbar-sidebar-toggle-btn" onclick="openSidebar()">☰</button>
+            <button id="sidebarToggleBtn" class="navbar-sidebar-toggle-btn">☰</button>
             <a href="/" class="navbar-logo-container">
                 <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="navbar-logo">
             </a>
             <!-- Dropdown for selecting model -->
-            <select id="modelSelector" class="navbar-dropdown" onchange="updateModel()" style="color: white">
+            <select id="modelSelector" class="navbar-dropdown">
                 <option value="deepseek1.5" style="color:black">DeepSeek 1.5</option>
                 <option value="llama3.2:latest" style="color:black" selected>Llama 3.2</option>
                 <option value="openai" style="color:black">OpenAI</option>
@@ -33,13 +33,13 @@
                     <div class="chat-sidebar-header">
                         <h3>📜 Chat History</h3>
                         <div class="sidebar-header-buttons">
-                            <button class="icon-button" onclick="startNewConversation()" title="New Chat">
+                            <button id="startNewChatBtn" class="icon-button" title="New Chat">
                                 <img src="/static/icons/new-chat-icon.png" alt="New Chat" />
                             </button>
-                            <button class="icon-button" onclick="openSearchModal()" title="Search">
+                            <button id="searchModalBtn" class="icon-button" title="Search">
                                 <img src="/static/icons/search-icon.png" alt="Search" />
                             </button>
-                            <button class="close-sidebar-btn" onclick="closeSidebar()" title="Close sidebar">⬅️</button>
+                            <button id="closeSidebarBtn" class="close-sidebar-btn" title="Close sidebar">⬅️</button>
                         </div>
                     </div>
                     <div id="chatHistoryList">
@@ -58,26 +58,13 @@
                         <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
                     </div>
                     <div class="chat-actions-row">
-                        <button class="chat-icon-button" onclick="openOptions()">
-                            ➕
-                        </button>
-                        <div class="chat-action-buttons">
-                            <button class="chat-action-button" onclick="searchQuery()">
-                                🌍 Search
-                            </button>
-                            <button class="chat-action-button" onclick="deepResearch()">
-                                🚀 Deep research
-                            </button>
-                            <button class="chat-icon-button" onclick="toggleDarkMode()">
-                                🌙
-                            </button>
-                            <button class="chat-action-button" onclick="moreOptions()">
-                                ⋯
-                            </button>
-                        </div>
-                        <button class="voice-button" onclick="startVoiceInput()">
-                            🎙️
-                        </button>
+                        <!-- Remove the inline onclick event -->
+                        <button id="chatOptionsButton" class="chat-icon-button">➕</button>
+                        <button id="searchQueryButton" class="chat-action-button">🌍 Search</button>
+                        <button id="deepResearchButton" class="chat-action-button">🚀 Deep research</button>
+                        <button id="toggleDarkModeButton" class="chat-icon-button">🌙</button>
+                        <button id="moreOptionsButton" class="chat-action-button">⋯</button>
+                        <button id="startVoiceInputButton" class="voice-button">🎙️</button>
                     </div>
                 </div>                
             </div>
@@ -85,6 +72,32 @@
     </div>
     
     <script nonce="{{ g.nonce }}">
+        document.addEventListener("DOMContentLoaded", function() {
+            // Navbar Buttons
+            document.getElementById("sidebarToggleBtn").addEventListener("click", openSidebar);
+            document.getElementById("closeSidebarBtn").addEventListener("click", closeSidebar);
+            
+            // Sidebar Header Buttons
+            document.getElementById("startNewChatBtn").addEventListener("click", startNewConversation);
+            document.getElementById("searchModalBtn").addEventListener("click", openSearchModal);
+            
+            // Chat Actions Row Buttons
+            document.getElementById("chatOptionsButton").addEventListener("click", openOptions);
+            document.getElementById("searchQueryButton").addEventListener("click", searchQuery);
+            document.getElementById("deepResearchButton").addEventListener("click", deepResearch);
+            document.getElementById("toggleDarkModeButton").addEventListener("click", toggleDarkMode);
+            document.getElementById("moreOptionsButton").addEventListener("click", moreOptions);
+            document.getElementById("startVoiceInputButton").addEventListener("click", startVoiceInput);
+
+            // Dropdown for model selection
+            document.getElementById("modelSelector").addEventListener("change", updateModel);
+
+            document.getElementById("newConversationButton").addEventListener("click", startNewConversation);
+            document.getElementById("clearChatHistoryButton").addEventListener("click", clearChatHistory);
+            document.getElementById("questionsFileInput").addEventListener("change", handleQuestionsFileUpload);
+            document.getElementById("closeOptionsButton").addEventListener("click", closeOptionsMenu);
+        });
+
         let currentSessionId = null;
 
         const sidebar = document.getElementById('chatSidebar');
@@ -647,13 +660,13 @@
 
             // Add options
             optionsMenu.innerHTML = `
-                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="startNewConversation()">🆕 New Conversation</button>
-                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="clearChatHistory()">🗑️ Clear Chat History</button>
-                <label style="display: block; width: 100%; padding: 5px 10px; cursor: pointer; background: none; color: black; text-align: left;">
+                <button id="newConversationButton" class="options-menu-button">🆕 New Conversation</button>
+                <button id="clearChatHistoryButton" class="options-menu-button">🗑️ Clear Chat History</button>
+                <label class="options-menu-button">
                     📂 Upload Questions File
-                    <input type="file" id="questionsFileInput" style="display: none;" accept=".txt" onchange="handleQuestionsFileUpload(event)">
+                    <input type="file" id="questionsFileInput" style="display: none;" accept=".txt">
                 </label>
-                <button style="display: block; width: 100%; text-align: left; padding: 5px 10px; border: none; background: none; cursor: pointer; color: black" onclick="closeOptionsMenu()">❌ Close Menu</button>
+                <button id="closeOptionsButton" class="options-menu-button">❌ Close Menu</button>
             `;
 
             // Remove any existing menu
