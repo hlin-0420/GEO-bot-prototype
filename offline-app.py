@@ -99,20 +99,31 @@ def knowledge_tree():
     # Extract user questions
     questions = [entry["content"] for entry in chat_data if entry["role"] == "user"]
 
+    if not questions:
+        return render_template("knowledge_tree.html", tree_data={"name": "No Data", "children": []})
+
     # Apply TF-IDF to extract key topics
     vectorizer = TfidfVectorizer(stop_words="english", max_features=50)
     X = vectorizer.fit_transform(questions)
+    feature_names = vectorizer.get_feature_names_out()  # Get words corresponding to features
 
     # Cluster similar topics
     num_clusters = min(6, len(questions))  # Avoid exceeding available questions
     kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
     labels = kmeans.fit_predict(X)
 
+    # Extract Top Keywords for Cluster Naming
+    order_centroids = kmeans.cluster_centers_.argsort()[:, ::-1]
+    cluster_names = {}
+    for i in range(num_clusters):
+        top_keywords = [feature_names[ind] for ind in order_centroids[i, :3]]  # Top 3 words
+        cluster_names[i] = ", ".join(top_keywords)  # Assign top keywords as cluster name
+
     # Organize topics into tree structure
     knowledge_tree = defaultdict(list)
     for idx, label in enumerate(labels):
-        cluster_label = f"Topic {label+1}"
-        knowledge_tree[cluster_label].append(questions[idx])
+        topic_name = cluster_names[label]  # Use extracted keywords as topic names
+        knowledge_tree[topic_name].append(questions[idx])
 
     # Correct structured tree format
     structured_tree = {
