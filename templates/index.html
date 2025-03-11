@@ -243,7 +243,7 @@
         </div>
     </div>
 
-    <script>
+    <script nonce="{{ g.nonce }}">
         function updateResponseOutput(text) {
             let responseDiv = document.getElementById("responseOutput");
             responseDiv.textContent = text;
