@@ -247,16 +247,36 @@ def chathistory():
     return render_template("chathistory.html")
 
 class RAGApplication:
-    def __init__(self, retriever, rag_chain):
+    def __init__(self, retriever, rag_chain, web_documents):
         self.retriever = retriever
         self.rag_chain = rag_chain
+        self.web_documents = web_documents  # Store the documents for feedback retrieval
+
     def run(self, question):
         # Retrieve relevant documents
         documents = self.retriever.invoke(question)
-        # Extract content from retrieved documents
-        doc_texts = "\\n".join([doc.page_content for doc in documents])
-        # Get the answer from the language model
-        answer = self.rag_chain.invoke({"question": question, "documents": doc_texts})
+        doc_texts = "\n".join([doc.page_content for doc in documents])
+
+        # Retrieve relevant feedback
+        feedback_documents = [doc for doc in self.web_documents if "---Feedback---" in doc.page_content]
+        feedback_texts = "\n".join([doc.page_content for doc in feedback_documents])
+
+        # **🔍 Debugging: Log Retrieved Feedback**
+        logging.info(f"Retrieved Feedback:\n{feedback_texts}")
+
+        if not feedback_texts.strip():
+            logging.warning("⚠️ No feedback found for this query.")
+
+        # Generate the answer using the updated prompt format
+        answer = self.rag_chain.invoke({
+            "question": question,
+            "documents": doc_texts,
+            "feedback": feedback_texts  # Pass retrieved feedback separately
+        })
+
+        # **🔍 Debugging: Log Model Output**
+        logging.info(f"Model Output:\n{answer}")
+
         return answer
 
 def load_feedback_dataset():
@@ -468,36 +488,44 @@ class OllamaBot:
         if selected_model_name in valid_model_names:
             prompt = PromptTemplate(
                 template="""
-                You are an assistant for helping the users becoming more familiar with using the GEO   \ 
-                application. 
-                
-                GEO is an integrated a PC-based integrated well log authoring, analysis and reporting  \
-                system which has been developed for petroleum geologists, geoscientists and engineers.
-                
-                Answer the user's questions accurately using retrieved information from the Documents  \
-                section precisely. The Document section contains the help content written by software  \ 
-                developers for the GEO application. 
-                
-                Ensure that the answer is concise and answers the question to the point without the    \
-                inclusion of any irrelevant information. Only the answer to the question should be     \
-                outputted as the generated response. 
-                
-                Use the information from the section under the title "---Feedback---" as feedback for  \
-                making improvements to your answers. Use the feedback as guidelines to determine which \
-                area you need to improve your answer after assessing their validity and feasibility. 
-                
-                Documents
-                ----------------------------------------------------------------------------------------
-                {documents}
-                ----------------------------------------------------------------------------------------
-                            
-                Question: {question}
-                Answer: """,
-                input_variables=["question", "documents"],
+                You are an AI assistant designed to help users navigate the GEO application.
+
+                **Context:**  
+                GEO is a well log authoring, analysis, and reporting system for petroleum geologists, geoscientists, and engineers.  
+                Answer the user's question using **only** the provided documents.  
+
+                **Instructions:**  
+                - Use information from the **Documents** section to generate your response.  
+                - **Do not add irrelevant details.**  
+                - Ensure your response is **concise** and **directly answers the question**.  
+
+                **Feedback Guidelines:**  
+                - Review past user feedback under the **Feedback** section.  
+                - If feedback suggests improvements, apply them before finalizing your response.  
+                - Adjust your wording, structure, or level of detail based on feedback.  
+
+                ---
+                **Documents:**  
+                {documents}  
+                ---
+
+                **Feedback:**  
+                {feedback}  
+                ---
+
+                **Question:** {question}  
+
+                **Your Optimized Answer:**  
+                """,
+                input_variables=["question", "documents", "feedback"]
             )
             
             # Save the prompt template to a file
-            prompt_text = prompt.format(question="<QUESTION_PLACEHOLDER>", documents="<DOCUMENTS_PLACEHOLDER>", answer="<ANSWER_PLACEHOLDER>")
+            prompt_text = prompt.format(
+                question="<QUESTION_PLACEHOLDER>", 
+                documents="<DOCUMENTS_PLACEHOLDER>", 
+                feedback="<FEEDBACK_PLACEHOLDER>"
+            )
             with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
                 file.write(prompt_text)
             # Save the second-to-last document for verification
@@ -509,7 +537,7 @@ class OllamaBot:
             rag_chain = prompt | self.llm_model | StrOutputParser()
 
             # Set the global variable
-            rag_application = RAGApplication(retriever, rag_chain)
+            rag_application = RAGApplication(retriever, rag_chain, self.web_documents)
         else:
             # if the prompt structure is designed for a haystack model.
             prompt = PromptTemplate(

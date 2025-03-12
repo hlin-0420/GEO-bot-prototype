@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "I want to add this name as my curve shade name length \"Hydrocarbon bearing zone highlighted\"",
+        "timestamp": "2025-03-12T18:02:52.431759Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To set the curve shading name, click on the \"Curve\" tab in the GEO application and select \"Shading\" from the dropdown menu. Then, enter \"Hydrocarbon bearing zone highlighted\" in the \"Shading Name\" field and press Enter.",
+        "timestamp": "2025-03-12T18:02:52.431759Z"
+    }
+]

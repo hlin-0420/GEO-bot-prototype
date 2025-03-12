@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What's the maximum number of data points allowed per curve?",
+        "timestamp": "2025-03-12T17:28:11.730915Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The maximum number of data points allowed per curve is unlimited.",
+        "timestamp": "2025-03-12T17:28:11.730915Z"
+    }
+]
