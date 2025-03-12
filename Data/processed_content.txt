@@ -6599,3 +6599,23 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "feedback": "You can define up to 5 tadpole definition templates.",
     "rating-score": "1"
 }
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "Why can I not add another layout to my log?",
+    "response": "According to the document, if adding a layout to an existing 'blank' session of GEO, you should load an existing Vew file or create a new one. If adding a layout to an odf with layouts already defined, you need to create the layout first (step 1-2), which will create a copy of the layout currently opened, and then you can overwrite its contents by loading a view file or creating a new one by editing the existing tracks.",
+    "feedback": "Think about the limit to the number of layouts per ODF file and whether you reached the limit.",
+    "rating-score": "1"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "Why can I not add another layout to my log?",
+    "response": "According to the document, if adding a layout to an existing 'blank' session of GEO, you should load an existing Vew file or create a new one. If adding a layout to an odf with layouts already defined, you need to create the layout first (step 1-2), which will create a copy of the layout currently opened, and then you can overwrite its contents by loading a view file or creating a new one by editing the existing tracks.",
+    "feedback": "Because you reached the limit for the layouts -> the layout specifies up to 19 layouts per ODF file.",
+    "rating-score": "1"
+}

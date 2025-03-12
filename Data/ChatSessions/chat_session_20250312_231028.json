@@ -1,0 +1,72 @@
+[
+    {
+        "role": "user",
+        "content": "How many tadpole definitions am I allowed?",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You are allowed to create a maximum of 5 new tadpole definition templates.",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "user",
+        "content": "What's the maximum curves I can load in a data file?",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to Document 30, the maximum number of data files you can load is unlimited. However, it does not specify the maximum number of curves per data file.\n\nTo answer your question accurately, let's look at another document that might provide more information on this topic.\n\nDocument 29 states: \"Deviation from the above may cause errors during loading data from files.\" It also mentions that if possible, you should ask for LAS files from your data provider. However, it does not specify a maximum number of curves per file.\n\nUnfortunately, without further information or clarification, I cannot provide an accurate answer to your question about the maximum number of curves you can load in a single data file.",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can I not add another layout to my log?",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, if adding a layout to an existing 'blank' session of GEO, you should load an existing Vew file or create a new one. If adding a layout to an odf with layouts already defined, you need to create the layout first (step 1-2), which will create a copy of the layout currently opened, and then you can overwrite its contents by loading a view file or creating a new one by editing the existing tracks.",
+        "timestamp": "2025-03-12T23:15:43.433787Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can I not add another layout to my log?",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, if adding a layout to an existing 'blank' session of GEO, you should load an existing Vew file or create a new one. If adding a layout to an odf with layouts already defined, you need to create the layout first (step 1-2), which will create a copy of the layout currently opened, and then you can overwrite its contents by loading a view file or creating a new one by editing the existing tracks.",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can I not add another layout to my log?",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the document, you cannot add another layout to your log because the layout specifies up to 19 layouts per ODF file.",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can't I add 251 curve shades to my log?",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to document 25, the maximum number of curve shades per plot is 250. This means you cannot add more than 250 curve shades to your log.",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit specified on theHometab.",
+        "timestamp": "2025-03-12T23:22:55.121166Z"
+    }
+]
