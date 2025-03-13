@@ -72,7 +72,7 @@ python offline-app.py
 
 ### 💡 **Troubleshooting**
 #### ❌ **Ollama Models Not Found?**
-- Ensure Ollama is running:
+- Ensure Ollama is running by opening Ollama from the search bar. List all the downloaded models through the following instruction: 
   ```sh
   ollama list
   ```
