@@ -16,7 +16,7 @@ The application uses a `Data` folder to store:
 - 📝 Uploaded files → `uploaded_document.txt`
 - 📝 Processed content → `processed_content.txt`
 - 💬 Chat history → `ChatSessions/`
-- 💑 Feedback data → `feedback_dataset.json`
+- 📩 Feedback data → `feedback_dataset.json`
 - 📊 Expected query responses → `expected_query_responses.xlsx`
 - 🔍 Query logs → `query_responses.xlsx`
 
@@ -53,7 +53,12 @@ This project uses **Llama 3.2, Deepseek 1.5, and OpenAI models**. Install them u
 ollama pull llama3.2:latest
 ollama pull deepseek-r1:1.5b
 ```
-> ⚠️ Note: OpenAI models are not available through `ollama pull`. Instead, configure OpenAI API if needed.
+> ⚠️ **Note**: OpenAI models are **not** available via `ollama pull`.  
+> Instead, configure OpenAI API by setting an environment variable:
+> ```sh
+> export OPENAI_API_KEY="your-api-key-here"  # macOS/Linux
+> set OPENAI_API_KEY="your-api-key-here"  # Windows
+> ```
 
 #### **6⃣ Start the Chatbot**
 Run the application:
@@ -72,7 +77,9 @@ python offline-app.py
 
 ### 💡 **Troubleshooting**
 #### ❌ **Ollama Models Not Found?**
-- Ensure Ollama is running by opening Ollama from the search bar. List all the downloaded models through the following instruction: 
+**Ensure Ollama is running**:
+- Open Ollama from the **Windows search bar** (or Terminal for macOS/Linux).
+- Verify the installed models using:
   ```sh
   ollama list
   ```
