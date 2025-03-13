@@ -1,54 +1,117 @@
-## Installation Guide
+# GEO Bot Prototype
 
-### System Requirements
-- Operating Systems: Windows 10/11
-- Python version: 3.11
-- Recommended Environment: Virtual Environment (venv)
+A chatbot application for querying geological data using LLMs (Llama 3.2, Deepseek 1.5, OpenAI) via Ollama.
 
-### Data Folder Structure
+## 🚀 Installation Guide
+
+### ✅ System Requirements
+- **Operating System:** Windows 10/11
+- **Python Version:** 3.11+
+- **Recommended Environment:** Virtual Environment (`venv`)
+
+---
+
+### 📂 Data Folder Structure
 The application uses a `Data` folder to store:
-- Uploaded files (`uploaded_document.txt`)
-- Processed content (`processed_content.txt`)
-- Chat history (`ChatSessions/`)
-- Feedback data (`feedback_dataset.json`)
-- Expected query responses (`expected_query_responses.xlsx`)
-- Query logs (`query_responses.xlsx`)
+- 📝 Uploaded files → `uploaded_document.txt`
+- 📝 Processed content → `processed_content.txt`
+- 💬 Chat history → `ChatSessions/`
+- 💑 Feedback data → `feedback_dataset.json`
+- 📊 Expected query responses → `expected_query_responses.xlsx`
+- 🔍 Query logs → `query_responses.xlsx`
 
-### Instructions
-Follow these steps to setup the application:
-1. Clone this repository. 
-```
+---
+
+### 🛠️ Installation Steps
+
+#### **1⃣ Clone the Repository**
+```sh
 git clone https://github.com/hlin-0420/GEO-bot-prototype.git
-```
-2. Create and activate a virtual environment to prepare for installing relevant dependencies. 
-```
-python -m venv venv
-venv/Scripts/activate
-```
-3. Download all relevant Python Libraries from requirements.txt
-```
 cd GEO-bot-prototype
+```
+
+#### **2⃣ Set Up a Virtual Environment**
+```sh
+python -m venv venv
+# Windows
+venv\Scripts\activate  
+# macOS/Linux
+source venv/bin/activate
+```
+
+#### **3⃣ Install Dependencies**
+```sh
 pip install -r requirements.txt
 ```
-4. Install Ollama
-Install Ollama setup from https://ollama.com/download/windows
 
+#### **4⃣ Install Ollama**
+- Download and install **Ollama** from [Ollama Official Site](https://ollama.com/download).
 
-5. Download relevant models for Ollama 
-
-This project uses Ollama model variants: Llama 3.2, Deepseek 1.5, and OpenAI, the following installation instructions will be used:
-
-```
-ollama pull llama3:2:latest
+#### **5⃣ Download Required Ollama Models**
+This project uses **Llama 3.2, Deepseek 1.5, and OpenAI models**. Install them using:
+```sh
+ollama pull llama3.2:latest
 ollama pull deepseek-r1:1.5b
-ollama pull openai
 ```
+> ⚠️ Note: OpenAI models are not available through `ollama pull`. Instead, configure OpenAI API if needed.
 
-6. After setting up the models, run the chatbot via the following instruction:
-```
+#### **6⃣ Start the Chatbot**
+Run the application:
+```sh
 python offline-app.py
 ```
+- Wait until the **local host link** appears.
+- Open the link in your browser:
+  ```
+  http://127.0.0.1:5000/
+  ```
 
-After the instruction is run, wait until the local host link shows up on the command prompt -> open it for navigating to the Flask app homepage. 
+> ✅ **Before running**, make sure **Ollama is open** to enable the chatbot's connection with the model.
 
-Link: `http://127.0.0.1:5000/`
+---
+
+### 💡 **Troubleshooting**
+#### ❌ **Ollama Models Not Found?**
+- Ensure Ollama is running:
+  ```sh
+  ollama list
+  ```
+  If no models appear, re-run:
+  ```sh
+  ollama pull llama3:latest
+  ollama pull deepseek:1.5
+  ```
+
+#### ❌ **Flask App Not Starting?**
+- Run the command:
+  ```sh
+  python offline-app.py
+  ```
+- If you see `ModuleNotFoundError`, try:
+  ```sh
+  pip install -r requirements.txt
+  ```
+
+#### ❌ **404 Page Not Found?**
+- Ensure Flask is running and open:
+  ```
+  http://127.0.0.1:5000/
+  ```
+
+---
+
+### ✅ **Expected Output**
+Upon successful execution, you should see:
+```
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
+Copy and paste this link into your browser.
+
+---
+
+### 🎯 **Next Steps**
+- 📚 Read the **[Documentation]()**.
+- 🛠️ Customize models in **configurations**.
+- 🚀 Extend functionality with additional APIs.
+
+---
