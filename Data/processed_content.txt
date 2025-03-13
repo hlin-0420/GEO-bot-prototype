@@ -6619,3 +6619,53 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "feedback": "Because you reached the limit for the layouts -> the layout specifies up to 19 layouts per ODF file.",
     "rating-score": "1"
 }
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "What's the maximum curves I can load in a data file?",
+    "response": "According to Document 30, the maximum number of data files you can load is unlimited. However, it does not specify the maximum number of curves per data file.To answer your question accurately, let's look at another document that might provide more information on this topic.Document 29 states: \"Deviation from the above may cause errors during loading data from files.\" It also mentions that if possible, you should ask for LAS files from your data provider. However, it does not specify a maximum number of curves per file.Another relevant document is Document 27, which states: \"Curve shade name length\" with a value of 20. This might imply that the maximum curve name length is 20 characters, but it doesn't provide information on the maximum number of curves you can load in a single data file.Based on these documents, I couldn't find any specific information on the maximum number of curves you can load in a data file.",
+    "feedback": "The curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file -> sometimes 1/2 of a column might be used for depth or index or this needs to be considered in the application.",
+    "rating-score": "1"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "What's the maximum curves I can load in a data file?",
+    "response": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is:You can load up to 200 tracks (curves) per data file.",
+    "feedback": "The maximum number of columns that can be loaded in a GEO file value is incorrect while the answer made some progress and began to look for the maximum number of columns in a data file.",
+    "rating-score": "2"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "What's the maximum curves I can load in a data file?",
+    "response": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is:You can load up to 200 tracks (curves) per data file.",
+    "feedback": "The maximum number of columns should be 450 -> since your previous answers for the maximum number of curves that can be loaded is 450.",
+    "rating-score": "2"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "What's the maximum number of curves I can load?",
+    "response": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is: You can load up to 200 tracks (curves) per data file.",
+    "feedback": "This is not correct since the number of columns are 450.",
+    "rating-score": "1"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "What's the maximum number of curves I can load?",
+    "response": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is: You can load up to 450 tracks (curves) per data file.",
+    "feedback": "Slightly better response and you correctly identified 450 as the limit but please use the term curves when I specify a question about curves: \"You can load up to 450 curves per data file\".",
+    "rating-score": "4"
+}
