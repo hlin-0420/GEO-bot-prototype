@@ -73,6 +73,31 @@ python offline-app.py
 
 > ✅ **Before running**, make sure **Ollama is open** to enable the chatbot's connection with the model.
 
+####  **7⃣ Install and Build Documentation**
+
+Sphinx generates the documentation through the following steps:
+1. Install Sphinx and its required themes:
+```
+pip install sphinx sphinx-rtd-theme
+```
+2. Navigate to the `docs` folder from your project root folder:
+```
+cd docs
+```
+Based on your OS, build the documentation with the instructions:
+
+- For Windows (**Powershell** or **CMD**)
+```
+.\make.bat html
+```
+
+- For macOS / Linux
+```
+make html
+```
+
+3. Move the built documentation file to the Flask templates directory. 
+
 ---
 
 ### 💡 **Troubleshooting**
@@ -117,7 +142,7 @@ Copy and paste this link into your browser.
 ---
 
 ### 🎯 **Next Steps**
-- 📚 Read the **[Documentation]()**.
+- 📚 Read the **[Documentation]** by viewing the option `📖 Documentation` from the menu page.
 - 🛠️ Customize models in **configurations**.
 - 🚀 Extend functionality with additional APIs.
 
