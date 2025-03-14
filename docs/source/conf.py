@@ -26,12 +26,23 @@ release = '1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc']
+# Sphinx extensions
+extensions = [
+    "sphinx.ext.autodoc",     # Auto-generate documentation from docstrings
+    "sphinx.ext.napoleon",    # Support for Google-style docstrings
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+# Automatically include special/private methods and __init__
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": True,
+    "special-members": "__init__",
+    "show-inheritance": True,
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

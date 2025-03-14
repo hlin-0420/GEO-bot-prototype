@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Usage" href="usage.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>RAG Application - GEO-chatbot 1.0 documentation</title>
@@ -198,8 +198,9 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
+  <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">RAG Application</a></li>
 </ul>
 
 </div>
@@ -246,10 +247,113 @@
 <dt class="sig sig-object py" id="classes.rag_application.RAGApplication">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">classes.rag_application.</span></span><span class="sig-name descname"><span class="pre">RAGApplication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rag_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">web_documents</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.rag_application.RAGApplication" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Retrieval-Augmented Generation (RAG) model that enhances responses by combining
+retrieved GEO help guide documents with generative AI capabilities and user feedback.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication.retriever">
+<span class="sig-name descname"><span class="pre">retriever</span></span><a class="headerlink" href="#classes.rag_application.RAGApplication.retriever" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the most relevant documents based on user queries, ensuring context-aware responses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication.rag_chain">
+<span class="sig-name descname"><span class="pre">rag_chain</span></span><a class="headerlink" href="#classes.rag_application.RAGApplication.rag_chain" title="Link to this definition">¶</a></dt>
+<dd><p>A language model trained with structured prompts to generate well-formatted and accurate answers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication.web_documents">
+<span class="sig-name descname"><span class="pre">web_documents</span></span><a class="headerlink" href="#classes.rag_application.RAGApplication.web_documents" title="Link to this definition">¶</a></dt>
+<dd><p>A repository of GEO help guide documents indexed for retrieval.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication.feedback_model">
+<span class="sig-name descname"><span class="pre">feedback_model</span></span><a class="headerlink" href="#classes.rag_application.RAGApplication.feedback_model" title="Link to this definition">¶</a></dt>
+<dd><p>A sentence transformer that encodes and ranks user feedback for similarity-based selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SentenceTransformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">retriever</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rag_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">web_documents</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.rag_application.RAGApplication.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>A Retrieval-Augmented Generation (RAG) model that enhances responses by combining
+retrieved GEO help guide documents with generative AI capabilities and user feedback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>retriever</strong> (<em>object</em>) – Retrieves the most relevant documents based on user queries, ensuring context-aware responses.</p></li>
+<li><p><strong>rag_chain</strong> (<em>object</em>) – A language model trained with structured prompts to generate well-formatted and accurate answers.</p></li>
+<li><p><strong>web_documents</strong> (<em>list</em>) – A repository of GEO help guide documents indexed for retrieval.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="classes.rag_application.RAGApplication._get_relevant_feedback">
+<span class="sig-name descname"><span class="pre">_get_relevant_feedback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.rag_application.RAGApplication._get_relevant_feedback" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the top-k most relevant feedback entries based on semantic similarity and question type matching.</p>
+<p>This function selects feedback related to the user’s query and past responses to enhance future answer accuracy.</p>
+<p>This function:
+1. Loads user feedback stored in a JSON file.
+2. Computes semantic similarity between the query and past feedback questions.
+3. Sorts and returns the most relevant feedback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>question</strong> (<em>str</em>) – The user’s query.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of top relevant feedback responses to return. Defaults to 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The concatenated relevant feedback responses.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="classes.rag_application.RAGApplication.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">question</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.rag_application.RAGApplication.run" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Runs the RAG model pipeline for a given question.</p>
+<p>This method:
+1. Retrieves relevant documents using the retriever.
+2. Finds user feedback related to the query.
+3. Generates an answer using retrieved documents and feedback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>question</strong> (<em>str</em>) – The user’s query.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generated response from the RAG model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -261,7 +365,17 @@
         
         <div class="related-pages">
           
-          
+          <a class="prev-page" href="usage.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Usage</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -294,6 +408,12 @@
             <ul>
 <li><a class="reference internal" href="#">RAG Application</a><ul>
 <li><a class="reference internal" href="#classes.rag_application.RAGApplication"><code class="docutils literal notranslate"><span class="pre">RAGApplication</span></code></a><ul>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication.retriever"><code class="docutils literal notranslate"><span class="pre">RAGApplication.retriever</span></code></a></li>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication.rag_chain"><code class="docutils literal notranslate"><span class="pre">RAGApplication.rag_chain</span></code></a></li>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication.web_documents"><code class="docutils literal notranslate"><span class="pre">RAGApplication.web_documents</span></code></a></li>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication.feedback_model"><code class="docutils literal notranslate"><span class="pre">RAGApplication.feedback_model</span></code></a></li>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication.__init__"><code class="docutils literal notranslate"><span class="pre">RAGApplication.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#classes.rag_application.RAGApplication._get_relevant_feedback"><code class="docutils literal notranslate"><span class="pre">RAGApplication._get_relevant_feedback()</span></code></a></li>
 <li><a class="reference internal" href="#classes.rag_application.RAGApplication.run"><code class="docutils literal notranslate"><span class="pre">RAGApplication.run()</span></code></a></li>
 </ul>
 </li>

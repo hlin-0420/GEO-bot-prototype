@@ -6,14 +6,51 @@ from sentence_transformers import SentenceTransformer, util
 FEEDBACK_FILE = "feedback.json"
 
 class RAGApplication:
+    """
+    A Retrieval-Augmented Generation (RAG) model that enhances responses by combining 
+    retrieved GEO help guide documents with generative AI capabilities and user feedback.
+
+    Attributes:
+        retriever (object): Retrieves the most relevant documents based on user queries, ensuring context-aware responses.
+        rag_chain (object): A language model trained with structured prompts to generate well-formatted and accurate answers.
+        web_documents (list): A repository of GEO help guide documents indexed for retrieval.
+        feedback_model (SentenceTransformer): A sentence transformer that encodes and ranks user feedback for similarity-based selection.
+    """
+    
     def __init__(self, retriever, rag_chain, web_documents):
+        """
+        A Retrieval-Augmented Generation (RAG) model that enhances responses by combining 
+        retrieved GEO help guide documents with generative AI capabilities and user feedback.
+
+        Args:
+            retriever (object): Retrieves the most relevant documents based on user queries, ensuring context-aware responses.
+            rag_chain (object): A language model trained with structured prompts to generate well-formatted and accurate answers.
+            web_documents (list): A repository of GEO help guide documents indexed for retrieval.
+        """
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.web_documents = web_documents  # Store the documents for feedback retrieval
         self.feedback_model = SentenceTransformer("all-MiniLM-L6-v2")  # Embedding model for similarity
 
     def _get_relevant_feedback(self, question, top_k=3):
-        """Retrieve the most relevant feedback entries based on semantic similarity and question type matching."""
+        """
+        Retrieves the top-k most relevant feedback entries based on semantic similarity and question type matching.
+
+        This function selects feedback related to the user's query and past responses to enhance future answer accuracy.
+        
+        This function:
+        1. Loads user feedback stored in a JSON file.
+        2. Computes semantic similarity between the query and past feedback questions.
+        3. Sorts and returns the most relevant feedback.
+
+        Args:
+            question (str): The user's query.
+            top_k (int, optional): The number of top relevant feedback responses to return. Defaults to 3.
+
+        Returns:
+            str: The concatenated relevant feedback responses.
+        """
+
 
         logging.info(f"🔍 Received question: {question}")
 
@@ -100,6 +137,20 @@ class RAGApplication:
         return "\n".join(selected_feedback) if selected_feedback else ""  # Return an empty string if no relevant feedback is found
 
     def run(self, question):
+        """
+        Runs the RAG model pipeline for a given question.
+
+        This method:
+        1. Retrieves relevant documents using the retriever.
+        2. Finds user feedback related to the query.
+        3. Generates an answer using retrieved documents and feedback.
+
+        Args:
+            question (str): The user's query.
+
+        Returns:
+            str: The generated response from the RAG model.
+        """
         # Retrieve relevant documents
         documents = self.retriever.invoke(question)
         doc_texts = "\n".join([doc.page_content for doc in documents])
