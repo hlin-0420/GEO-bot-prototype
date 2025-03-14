@@ -93,6 +93,10 @@ UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
 
+@app.route("/docs")
+def documentation():
+    return send_from_directory("templates/docs", "index.html")
+
 def extract_keywords(text, top_n=3):
     """Extracts top N keywords from text using TF-IDF."""
     words = word_tokenize(text.lower())  # Tokenize and lowercase
