@@ -5,6 +5,18 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+import os
+import sys
+# Hardcode the absolute path (replace with your actual path)
+PROJECT_ROOT = "C:\\Users\\HaochengLin\\Documents\\GitHub\\GEO-BOT-PROTOTYPE"
+CLASSES_PATH = os.path.join(PROJECT_ROOT, "classes")
+
+# Force-add these paths to sys.path
+sys.path.insert(0, PROJECT_ROOT)
+sys.path.insert(0, CLASSES_PATH)
+
+# Debugging: Print sys.path
+print(f"✅ sys.path now includes:\n{sys.path}")
 
 project = 'GEO-chatbot'
 copyright = '2025, Haocheng Lin'
