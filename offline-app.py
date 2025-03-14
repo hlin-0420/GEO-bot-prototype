@@ -95,7 +95,7 @@ SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
 
 @app.route("/docs")
 def documentation():
-    return send_from_directory("templates/docs", "index.html")
+    return send_from_directory("docs/build/html", "index.html")
 
 def extract_keywords(text, top_n=3):
     """Extracts top N keywords from text using TF-IDF."""
