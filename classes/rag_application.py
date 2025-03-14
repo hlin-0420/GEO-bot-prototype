@@ -26,6 +26,48 @@ class RAGApplication:
             retriever (object): Retrieves the most relevant documents based on user queries, ensuring context-aware responses.
             rag_chain (object): A language model trained with structured prompts to generate well-formatted and accurate answers.
             web_documents (list): A repository of GEO help guide documents indexed for retrieval.
+            
+        Example:
+        
+        >>> from classes.rag_application import RAGApplication
+        >>> from langchain.vectorstores import SKLearnVectorStore
+        >>> from langchain.embeddings import HuggingFaceEmbeddings
+        >>> from langchain.chat_models import ChatOllama
+        >>> from langchain.prompts import PromptTemplate
+        >>> from langchain.schema import StrOutputParser
+        >>> from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+        >>> # Sample web documents
+        >>> web_documents = [{"page_content": "GEO help guide: How to reset your password."},
+        ...                  {"page_content": "GEO system troubleshooting guide."}]
+
+        >>> # Setup text splitter
+        >>> text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
+        >>> doc_splits = text_splitter.split_documents(web_documents)
+
+        >>> # Setup embedding model
+        >>> embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+
+        >>> # Initialize vectorstore for retrieval
+        >>> vectorstore = SKLearnVectorStore.from_documents(
+        ...     documents=doc_splits,
+        ...     embedding=embedding_model,
+        ... )
+
+        >>> retriever = vectorstore.as_retriever(k=4)
+
+        >>> # Setup RAG Chain with ChatOllama
+        >>> prompt = PromptTemplate(input_variables=["question"], template="Answer the following question: {question}")
+        >>> llm_model = ChatOllama(model="mistral", temperature=0)
+        >>> rag_chain = prompt | llm_model | StrOutputParser()
+
+        >>> # Initialize RAGApplication
+        >>> app = RAGApplication(retriever, rag_chain, web_documents)
+
+        >>> # Run a sample query
+        >>> response = app.run("How do I reset my GEO password?")
+        >>> isinstance(response, str)
+        True
         """
         self.retriever = retriever
         self.rag_chain = rag_chain

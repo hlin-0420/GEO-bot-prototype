@@ -30,6 +30,7 @@ release = '1.0'
 extensions = [
     "sphinx.ext.autodoc",     # Auto-generate documentation from docstrings
     "sphinx.ext.napoleon",    # Support for Google-style docstrings
+    "sphinx.ext.doctest"      # Enable documentation testing. 
 ]
 
 templates_path = ['_templates']
