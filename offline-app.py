@@ -41,11 +41,12 @@ import secrets
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from concurrent.futures import ThreadPoolExecutor
 
 nltk.download("punkt")
 nltk.download("stopwords")
 
-os.environ["LOKY_MAX_CPU_COUNT"] = "2"
+os.environ["LOKY_MAX_CPU_COUNT"] = "5" # changing from 2 to 5 cores for simultaneous processing.
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 # tracks the current sessions in memory
@@ -294,105 +295,94 @@ class RAGApplication:
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.web_documents = web_documents  # Store the documents for feedback retrieval
-        self.feedback_model = SentenceTransformer("all-MiniLM-L6-v2")  # Embedding model for similarity
+        self.feedback_model = SentenceTransformer("all-MiniLM-L12-v2")  # Embedding model for similarity
+        self.feedback_data, self.feedback_embeddings = self._load_feedback()
 
-    def _get_relevant_feedback(self, question, top_k=3):
-        """Retrieve the most relevant feedback entries based on semantic similarity and question type matching."""
-
-        # load from FEEDBACK_FILE 
-        if os.path.exists(FEEDBACK_FILE):
-                try:
-                    with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
-                        feedback_data = json.load(file)  # Load as JSON array
-                except json.JSONDecodeError:
-                    logging.error("⚠️ Error decoding feedback JSON file. Returning empty feedback.")
-                    return ""
-        else:
+    def _load_feedback(self):
+        """Loads feedback from file and precomputes embeddings to optimize retrieval."""
+        if not os.path.exists(FEEDBACK_FILE):
             logging.warning("⚠️ No feedback file found.")
-            return ""
+            return [], []
 
-        # 🔹 Step 2: Extract and structure feedback data
-        extracted_feedback = []
-        
-        for entry in feedback_data:
-            if "question" in entry and "feedback" in entry:
-                extracted_feedback.append({
-                    "question": entry["question"],
-                    "feedback": entry["feedback"],
-                    "rating": int(entry.get("rating-score", 0))  # Ensure rating is numeric
-                })
+        try:
+            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
+                feedback_data = json.load(file)  # Load feedback JSON array
+        except json.JSONDecodeError:
+            logging.error("⚠️ Error decoding feedback JSON file. Returning empty feedback.")
+            return [], []
+
+        extracted_feedback = [
+            {
+                "question": entry["question"],
+                "feedback": entry["feedback"],
+                "rating": int(entry.get("rating-score", 0))
+            }
+            for entry in feedback_data if "question" in entry and "feedback" in entry
+        ]
 
         if not extracted_feedback:
             logging.warning("⚠️ No valid feedback extracted.")
-            return ""  # Return an empty string if no valid feedback is available
+            return [], []
 
-        # 🔹 Step 2: Compute embeddings for the question
+        # Compute embeddings in parallel
+        with ThreadPoolExecutor() as executor:
+            feedback_embeddings = list(executor.map(
+                lambda fb: self.feedback_model.encode(fb["question"], convert_to_tensor=True),
+                extracted_feedback
+            ))
+
+        return extracted_feedback, feedback_embeddings
+        
+    def _get_relevant_feedback(self, question, top_k=3):
+        """Retrieve the most relevant feedback based on semantic similarity."""
+        if not self.feedback_data:
+            return ""
+
+        # Compute embedding for the new question
         question_embedding = self.feedback_model.encode(question, convert_to_tensor=True)
 
-        # 🔹 Step 3: Compute similarity scores for each feedback entry based on the "question" field
-        feedback_embeddings = [self.feedback_model.encode(fb["question"], convert_to_tensor=True) for fb in extracted_feedback]
-        similarities = [util.pytorch_cos_sim(question_embedding, fb_emb)[0].item() for fb_emb in feedback_embeddings]
+        # Compute cosine similarities
+        similarities = np.array([
+            util.pytorch_cos_sim(question_embedding, fb_emb)[0].item()
+            for fb_emb in self.feedback_embeddings
+        ])
 
-        # 🔹 Step 4: Pair feedback entries with their similarity scores and sort by similarity
-        sorted_feedback = sorted(
-            zip(extracted_feedback, similarities),
-            key=lambda x: x[1],  # Sort only by similarity score (higher is better)
-            reverse=True
-        )
+        # Get indices of top-k similar feedback
+        top_indices = similarities.argsort()[-top_k:][::-1]
 
-        # 🔹 Step 5: Ensure a mix of semantic similarity & question type matching
-        unique_questions = set()  # Track unique question types
+        # Extract unique questions while maintaining order
         selected_feedback = []
-        
-        # 🔹 Step 5.1: Add the most semantically similar feedback
-        for fb, sim_score in sorted_feedback:
-            selected_feedback.append(fb["feedback"])
-            unique_questions.add(fb["question"].lower().replace("?", "").strip())  # Normalize the question type
-            
-            if len(selected_feedback) >= top_k:
-                break
-            
-        print(f"Selected Feedback: {selected_feedback}")
+        unique_questions = set()
 
-        # 🔹 Step 5.2: Ensure at least one feedback entry from the same question type exists
-        for fb, sim_score in sorted_feedback:
-            base_question = fb["question"].lower().replace("?", "").strip()
-            if base_question in unique_questions:  # Ensure we already have this question type
-                continue  # Skip if already included
-            
-            selected_feedback.append(fb["feedback"])
-            unique_questions.add(base_question)
-
+        for idx in top_indices:
+            fb = self.feedback_data[idx]
+            base_question = fb["question"].lower().strip("?")
+            if base_question not in unique_questions:
+                selected_feedback.append(fb["feedback"])
+                unique_questions.add(base_question)
             if len(selected_feedback) >= top_k:
                 break
 
-        return "\n".join(selected_feedback) if selected_feedback else ""  # Return an empty string if no relevant feedback is found
+        return "\n".join(selected_feedback) if selected_feedback else ""
 
     def run(self, question):
+        """Runs the RAG retrieval and generates a response."""
         # Retrieve relevant documents
         documents = self.retriever.invoke(question)
-        doc_texts = "\n".join([doc.page_content for doc in documents])
+        doc_texts = "\n".join(doc.page_content for doc in documents)
 
         # Retrieve relevant feedback
-        feedback_documents = [doc for doc in self.web_documents if "---Feedback---" in doc.page_content]
-        feedback_texts = "\n".join([doc.page_content for doc in feedback_documents])
-
-        # Select the most relevant feedback
         feedback_texts = self._get_relevant_feedback(question)
         
-        print(f"Feedback Texts: {feedback_texts}")
-
         if not feedback_texts.strip():
             logging.warning("⚠️ No feedback found for this query.")
 
         # Generate the answer using the updated prompt format
-        answer = self.rag_chain.invoke({
+        return self.rag_chain.invoke({
             "question": question,
             "documents": doc_texts,
-            "feedback": feedback_texts  # Pass retrieved feedback separately
+            "feedback": feedback_texts
         })
-
-        return answer
 
 def load_feedback_dataset():
     if not os.path.exists(FEEDBACK_FILE):
@@ -571,7 +561,7 @@ class OllamaBot:
     def _load_content_haystack(self):
         indexing_pipeline = Pipeline()
         indexing_pipeline.add_component(
-            instance=SentenceTransformersDocumentEmbedder(model="sentence-transformers/all-MiniLM-L6-v2"), name="doc_embedder"
+            instance=SentenceTransformersDocumentEmbedder(model="sentence-transformers/all-MiniLM-L12-v2"), name="doc_embedder"
         )
         indexing_pipeline.add_component(instance=DocumentWriter(document_store=self.document_store), name="doc_writer")
 
@@ -591,7 +581,7 @@ class OllamaBot:
         
         doc_splits = text_splitter.split_documents(self.web_documents) # uses documents loaded for the free-tier models. 
 
-        embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L12-v2")
         
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
@@ -685,7 +675,7 @@ class OllamaBot:
                 Answer:""",
                 input_variables=["question", "documents"],
             )
-            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="sentence-transformers/all-MiniLM-L6-v2"))
+            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="sentence-transformers/all-MiniLM-L12-v2"))
             self.rag_pipe.add_component("retriever", InMemoryEmbeddingRetriever(document_store=self.document_store))
             self.rag_pipe.add_component("prompt_builder", ChatPromptBuilder(template=prompt))
             self.rag_pipe.add_component("llm", OpenAIChatGenerator(model="gpt-4o-mini"))

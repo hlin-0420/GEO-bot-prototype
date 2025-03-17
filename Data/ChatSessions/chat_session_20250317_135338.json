@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-03-17T13:56:22.160162Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 20000.",
+        "timestamp": "2025-03-17T13:56:22.160162Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can I not add another layout to my log?",
+        "timestamp": "2025-03-17T13:56:22.160162Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add another layout to your log because you have reached the limit of 19 layouts per ODF file, as specified by the GEO application.",
+        "timestamp": "2025-03-17T13:56:22.160162Z"
+    }
+]
