@@ -4,5 +4,11 @@
         "question": "What's the maximum number of data points allowed per curve?",
         "response_time": 62.15,
         "timestamp": "2025-03-17T10:47:27.223Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What's the maximum curves I can load in a data file?",
+        "response_time": 70.07,
+        "timestamp": "2025-03-17T11:22:55.042Z"
     }
 ]
