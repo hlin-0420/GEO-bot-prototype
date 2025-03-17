@@ -7,8 +7,9 @@
 
                 **Instructions:**  
                 - Use information from the **Documents** section to generate your response.  
-                - **Do not add irrelevant details.**  
-                - Ensure your response is **concise** and **directly answers the question**.  
+                - Provide a **direct**, **concise**, and **factual** answer. 
+                - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
+                - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
 
                 **Feedback Guidelines:**  
                 - Review past user feedback under the **Feedback** section.  

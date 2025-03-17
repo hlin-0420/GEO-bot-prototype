@@ -6669,3 +6669,33 @@ If you are interested in setting-up a corporate intranet for securely-sharing yo
     "feedback": "Slightly better response and you correctly identified 450 as the limit but please use the term curves when I specify a question about curves: \"You can load up to 450 curves per data file\".",
     "rating-score": "4"
 }
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+    "response": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 19.",
+    "feedback": "The limit is 20000 and not 19 for the number of modifiers",
+    "rating-score": "1"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+    "response": "You cannot add more than 20000 modifiers per plot because you reached the limit for the number of layouts per ODF file, which is 19.",
+    "feedback": "The limit for the number of modifiers to be used in this answer should be 20000!",
+    "rating-score": "1"
+}
+
+
+---Feedback---
+{
+    "model-name": "llama3.2:latest",
+    "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+    "response": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 100 tables in a log.",
+    "feedback": "The number of modifier limit per plot is clearly 20000 not 100! Your answer is incorrect.",
+    "rating-score": "1"
+}
