@@ -351,6 +351,8 @@ class RAGApplication:
             
             if len(selected_feedback) >= top_k:
                 break
+            
+        print(f"Selected Feedback: {selected_feedback}")
 
         # 🔹 Step 5.2: Ensure at least one feedback entry from the same question type exists
         for fb, sim_score in sorted_feedback:
@@ -377,6 +379,8 @@ class RAGApplication:
 
         # Select the most relevant feedback
         feedback_texts = self._get_relevant_feedback(question)
+        
+        print(f"Feedback Texts: {feedback_texts}")
 
         if not feedback_texts.strip():
             logging.warning("⚠️ No feedback found for this query.")
@@ -610,6 +614,7 @@ class OllamaBot:
                 - Provide a **direct**, **concise**, and **factual** answer. 
                 - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
                 - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
+                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value. 
 
                 **Feedback Guidelines:**  
                 - Review past user feedback under the **Feedback** section.  
