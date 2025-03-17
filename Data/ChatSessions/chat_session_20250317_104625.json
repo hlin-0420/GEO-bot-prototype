@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What's the maximum number of data points allowed per curve?",
+        "timestamp": "2025-03-17T10:47:26.786525Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is:\n\nYou can load an unlimited number of data points per curve.",
+        "timestamp": "2025-03-17T10:47:26.786525Z"
+    }
+]

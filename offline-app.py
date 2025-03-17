@@ -92,6 +92,49 @@ PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
+TIMED_RESPONSES_FILE = os.path.join(DATA_DIR, "timed_responses.json")
+
+@app.route("/store-response-time", methods=["POST"])
+def store_response_time():
+    """Stores response time, question asked, and timestamp in a JSON file."""
+    try:
+        data = request.json
+        question_number = str(data.get("questionNumber"))
+        question_text = data.get("question")
+        duration = float(data.get("duration"))
+        timestamp = data.get("timestamp")
+
+        if not question_number or not question_text or duration is None or not timestamp:
+            return jsonify({"error": "Invalid data"}), 400
+
+        response_times = []
+
+        # Load existing response times
+        if os.path.exists(TIMED_RESPONSES_FILE):
+            with open(TIMED_RESPONSES_FILE, "r", encoding="utf-8") as file:
+                try:
+                    response_times = json.load(file)
+                except json.JSONDecodeError:
+                    response_times = []
+
+        # Append new entry
+        response_entry = {
+            "question_number": question_number,
+            "question": question_text,
+            "response_time": duration,
+            "timestamp": timestamp
+        }
+        response_times.append(response_entry)
+
+        # Save updated data
+        with open(TIMED_RESPONSES_FILE, "w", encoding="utf-8") as file:
+            json.dump(response_times, file, indent=4)
+
+        return jsonify({"message": "Response time stored successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 def extract_keywords(text, top_n=3):
     """Extracts top N keywords from text using TF-IDF."""
