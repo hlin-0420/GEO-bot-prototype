@@ -100,5 +100,41 @@
         "question": "Why can I not add another layout to my log?",
         "response_time": 49.06,
         "timestamp": "2025-03-17T13:56:22.953Z"
+    },
+    {
+        "question_number": "1",
+        "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "response_time": 50.12,
+        "timestamp": "2025-03-18T10:06:31.066Z"
+    },
+    {
+        "question_number": "2",
+        "question": "Why can't I add 251 curve shades to my log?",
+        "response_time": 45.09,
+        "timestamp": "2025-03-18T10:36:16.852Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Why can't I add 251 curve shades to my log?",
+        "response_time": 0.06,
+        "timestamp": "2025-03-18T12:41:27.760Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Why can't I add 251 curve shades to my log?",
+        "response_time": 0.01,
+        "timestamp": "2025-03-18T12:46:06.108Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Why can't I add 251 curve shades to my log?",
+        "response_time": 26.05,
+        "timestamp": "2025-03-18T12:49:46.069Z"
+    },
+    {
+        "question_number": "2",
+        "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "response_time": 42.59,
+        "timestamp": "2025-03-18T12:51:51.303Z"
     }
 ]

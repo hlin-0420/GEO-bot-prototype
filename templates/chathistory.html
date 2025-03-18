@@ -1470,6 +1470,8 @@
                     body.session_id = currentSessionId;
                 }
 
+                const startTime = Date.now();  // Start timing within the stream as well (useful if you want more granular control)
+
                 const response = await fetch("/ask", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -1487,7 +1489,7 @@
                     sessionStorage.setItem("currentSessionId", session_id);
                 }
 
-                await streamModelResponse(question_id, questionNumber, aiMessageDiv);
+                await streamModelResponse(question_id, questionNumber, aiMessageDiv, startTime);
                 addFeedbackSection(aiMessageDiv, questionNumber);
                 await loadChatHistory(); // reloads chat history to sort conversation by their timestamps. 
             } catch (error) {
@@ -1496,8 +1498,7 @@
             }
         }
 
-        function streamModelResponse(question_id, questionNumber, aiMessageDiv) {
-            const startTime = Date.now();  // Start timing within the stream as well (useful if you want more granular control)
+        function streamModelResponse(question_id, questionNumber, aiMessageDiv, startTime) {
 
             return new Promise((resolve) => {
                 const eventSource = new EventSource(`/response/${question_id}`);

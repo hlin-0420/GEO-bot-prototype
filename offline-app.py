@@ -894,7 +894,11 @@ class OllamaBot:
 
         # Step 1: Run the appropriate RAG process
         if selected_model_name in valid_model_names:
-            response = rag_application.run(question)
+            rag_start_time = time.time()  # Start timing RAG application run
+            response = rag_application.run(question)  # Actual function execution
+            rag_execution_time = time.time() - rag_start_time  # Measure RAG execution time
+            
+            print(f"⏱️ The time taken to implement the `run` function of the RAG application is {rag_execution_time:.4f} seconds.")
         else:
             response_object = self.rag_pipe.run({
                 "embedder": {"text": question},
@@ -1077,6 +1081,8 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     # Calculate and print the elapsed time
     answer_time = end_time - start_time
     
+    print(f"⏱️ The time taken to implement `query` function is {answer_time:.4f} seconds.")
+    
     formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
     stored_responses[question_id] = formatted_response
@@ -1147,13 +1153,27 @@ def ask():
         # Append new user message
         current_session_messages.append({"role": "user", "content": question})
 
+        def process_question_wrapper(*args):
+            """Wraps process_question to measure its execution time."""
+            global execution_time
+            start_time = time.time()
+            process_question(*args)  # Run the actual function
+            execution_time = time.time() - start_time  # Store execution time
+        
         with lock:
             current_id = str(question_id)
             question_id += 1
 
         pending_responses[current_id] = "Processing..."
+        
+        # Start a thread and track execution time properly
+        process_question_start_time = time.time()  # Start the timer before the thread starts
+        process_question_thread = threading.Thread(target=process_question_wrapper, args=(current_id, question, ai_bot, selectedOptions))
+        process_question_thread.start()
+        process_question_thread.join()  # Ensures we wait for the function to finish
+        process_question_time = time.time() - process_question_start_time  # Stop the timer after the thread finishes
 
-        threading.Thread(target=process_question, args=(current_id, question, ai_bot, selectedOptions)).start()
+        print(f"⏱️ The time taken to implement `process_question` function is {process_question_time:.4f} seconds.")
 
         return jsonify({"question_id": current_id, "session_id": current_session_id}), 200
 
