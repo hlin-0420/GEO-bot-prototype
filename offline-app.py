@@ -366,23 +366,48 @@ class RAGApplication:
         return "\n".join(selected_feedback) if selected_feedback else ""
 
     def run(self, question):
-        """Runs the RAG retrieval and generates a response."""
-        # Retrieve relevant documents
+        """Runs the RAG retrieval and generates a response with detailed runtime analysis."""
+        
+        total_start_time = time.perf_counter()  # Start total execution timer
+        
+        # Step 1: Retrieve relevant documents
+        retrieval_start_time = time.perf_counter()
         documents = self.retriever.invoke(question)
+        retrieval_end_time = time.perf_counter()
+        retrieval_time = retrieval_end_time - retrieval_start_time
+
         doc_texts = "\n".join(doc.page_content for doc in documents)
 
-        # Retrieve relevant feedback
+        # Step 2: Retrieve relevant feedback
+        feedback_start_time = time.perf_counter()
         feedback_texts = self._get_relevant_feedback(question)
-        
+        feedback_end_time = time.perf_counter()
+        feedback_time = feedback_end_time - feedback_start_time
+
         if not feedback_texts.strip():
             logging.warning("⚠️ No feedback found for this query.")
 
-        # Generate the answer using the updated prompt format
-        return self.rag_chain.invoke({
+        # Step 3: Generate the answer using the updated prompt format
+        response_start_time = time.perf_counter()
+        response = self.rag_chain.invoke({
             "question": question,
             "documents": doc_texts,
             "feedback": feedback_texts
         })
+        response_end_time = time.perf_counter()
+        response_time = response_end_time - response_start_time
+
+        total_end_time = time.perf_counter()
+        total_execution_time = total_end_time - total_start_time
+
+        # Logging detailed runtime analysis
+        logging.info(f"🕒 RAG Execution Time Breakdown:")
+        logging.info(f"   - Document Retrieval Time: {retrieval_time:.4f} seconds")
+        logging.info(f"   - Feedback Extraction Time: {feedback_time:.4f} seconds")
+        logging.info(f"   - Response Generation Time: {response_time:.4f} seconds")
+        logging.info(f"   - Total Execution Time: {total_execution_time:.4f} seconds")
+
+        return response
 
 def load_feedback_dataset():
     if not os.path.exists(FEEDBACK_FILE):
