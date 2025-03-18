@@ -142,5 +142,29 @@
         "question": "I want to add this name as my curve shade name length \"Hydrocarbon bearing zone highlighted\"",
         "response_time": 47.04,
         "timestamp": "2025-03-18T13:09:14.701Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Why can't I add 251 curve shades to my log?",
+        "response_time": 30.93,
+        "timestamp": "2025-03-18T14:01:29.389Z"
+    },
+    {
+        "question_number": "2",
+        "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "response_time": 38.43,
+        "timestamp": "2025-03-18T14:05:40.061Z"
+    },
+    {
+        "question_number": "3",
+        "question": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "response_time": 3.61,
+        "timestamp": "2025-03-18T14:06:22.488Z"
+    },
+    {
+        "question_number": "4",
+        "question": "How many log headers can I add to my log?",
+        "response_time": 21.25,
+        "timestamp": "2025-03-18T14:07:02.227Z"
     }
 ]

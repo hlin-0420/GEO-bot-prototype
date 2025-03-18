@@ -42,6 +42,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from concurrent.futures import ThreadPoolExecutor
+import torch
 
 nltk.download("punkt")
 nltk.download("stopwords")
@@ -392,7 +393,8 @@ class RAGApplication:
         response = self.rag_chain.invoke({
             "question": question,
             "documents": doc_texts,
-            "feedback": feedback_texts
+            "feedback": feedback_texts,
+            "stream": True
         })
         response_end_time = time.perf_counter()
         response_time = response_end_time - response_start_time
@@ -577,6 +579,7 @@ class OllamaBot:
             self.llm_model = ChatOllama(
                 model=selected_model_name,
                 temperature=0,
+                num_predict=150
             ) # initialises a free-tier model.
             # Initialize RAG application globally
             self._initialize_rag_application() # Generalised rag pipeline initialisation.
@@ -613,7 +616,7 @@ class OllamaBot:
             embedding=embedding_model,
         )
         
-        retriever = vectorstore.as_retriever(k=4)
+        retriever = vectorstore.as_retriever(k=2)
         
         if selected_model_name in valid_model_names:
             prompt = PromptTemplate(

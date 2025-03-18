@@ -1,0 +1,32 @@
+[
+    {
+        "role": "user",
+        "content": "Why can't I add 251 curve shades to my log?",
+        "timestamp": "2025-03-18T14:01:29.369633Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add 251 curve shades to your log because the limit is 250.",
+        "timestamp": "2025-03-18T14:01:29.369633Z"
+    },
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-03-18T14:06:22.475331Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 20000.",
+        "timestamp": "2025-03-18T14:06:22.475331Z"
+    },
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-03-18T14:06:22.475331Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 20000.",
+        "timestamp": "2025-03-18T14:06:22.475331Z"
+    }
+]

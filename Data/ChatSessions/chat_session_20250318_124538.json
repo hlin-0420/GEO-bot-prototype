@@ -28,5 +28,15 @@
         "role": "assistant",
         "content": "The operation is not allowed due to the character length constraint, as the chosen name \"Hydrocarbon bearing zone highlighted\" has a length of 37 characters, exceeding the allowed limit of 20 characters.",
         "timestamp": "2025-03-18T13:09:14.674319Z"
+    },
+    {
+        "role": "user",
+        "content": "How many log headers can I add to my log?",
+        "timestamp": "2025-03-18T14:07:02.205967Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Based on the provided feedback, you can select up to 50 headers for display in your log.",
+        "timestamp": "2025-03-18T14:07:02.205967Z"
     }
 ]
