@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "Why can't I add 251 curve shades to my log?",
+        "timestamp": "2025-03-21T19:12:20.982272Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add 251 curve shades to your log because the limit is 250.",
+        "timestamp": "2025-03-21T19:12:20.982272Z"
+    }
+]

@@ -44,8 +44,7 @@ from nltk.tokenize import word_tokenize
 from concurrent.futures import ThreadPoolExecutor
 import torch
 
-nltk.download("punkt")
-nltk.download("stopwords")
+nltk.data.path.append('/nltk_data')
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "5" # changing from 2 to 5 cores for simultaneous processing.
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
@@ -296,7 +295,7 @@ class RAGApplication:
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.web_documents = web_documents  # Store the documents for feedback retrieval
-        self.feedback_model = SentenceTransformer("all-MiniLM-L12-v2")  # Embedding model for similarity
+        self.feedback_model = SentenceTransformer("./offline_model")  # Embedding model for similarity
         self.feedback_data, self.feedback_embeddings = self._load_feedback()
 
     def _load_feedback(self):
@@ -589,7 +588,8 @@ class OllamaBot:
     def _load_content_haystack(self):
         indexing_pipeline = Pipeline()
         indexing_pipeline.add_component(
-            instance=SentenceTransformersDocumentEmbedder(model="sentence-transformers/all-MiniLM-L12-v2"), name="doc_embedder"
+            instance=SentenceTransformersDocumentEmbedder(model="./offline_model"), 
+            name="doc_embedder"
         )
         indexing_pipeline.add_component(instance=DocumentWriter(document_store=self.document_store), name="doc_writer")
 
@@ -609,7 +609,7 @@ class OllamaBot:
         
         doc_splits = text_splitter.split_documents(self.web_documents) # uses documents loaded for the free-tier models. 
 
-        embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L12-v2")
+        embedding_model = HuggingFaceEmbeddings(model_name="./offline_model")
         
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
@@ -703,7 +703,7 @@ class OllamaBot:
                 Answer:""",
                 input_variables=["question", "documents"],
             )
-            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="sentence-transformers/all-MiniLM-L12-v2"))
+            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="./offline_model"))
             self.rag_pipe.add_component("retriever", InMemoryEmbeddingRetriever(document_store=self.document_store))
             self.rag_pipe.add_component("prompt_builder", ChatPromptBuilder(template=prompt))
             self.rag_pipe.add_component("llm", OpenAIChatGenerator(model="gpt-4o-mini"))
