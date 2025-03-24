@@ -1,18 +1,17 @@
 flask
 beautifulsoup4
+bs4  # Optional; usually bundled with beautifulsoup4, but kept for compatibility
 pandas
 langchain
 langchain-community
 langchain-huggingface
 langchain-ollama
 langchain-core
-haystack-ai
 datasets>=2.6.1
 sentence-transformers>=3.0.0
 tabulate
 json5
 scikit-learn
-elasticsearch
 tiktoken
 openpyxl
 numpy
@@ -20,4 +19,3 @@ rapidfuzz
 nltk
 rouge-score
 requests
-bs4

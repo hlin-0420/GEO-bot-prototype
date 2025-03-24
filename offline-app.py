@@ -16,15 +16,6 @@ from langchain_core.output_parsers import StrOutputParser
 import json
 from tabulate import tabulate
 import re
-from haystack.document_stores.in_memory import InMemoryDocumentStore
-from haystack.components.writers import DocumentWriter
-from haystack.components.embedders import SentenceTransformersDocumentEmbedder
-from haystack import Pipeline
-from haystack import Document as HaystackDocument
-from haystack.components.embedders import SentenceTransformersTextEmbedder
-from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
-from haystack.components.builders import ChatPromptBuilder
-from haystack.components.generators.chat import OpenAIChatGenerator
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
 from rapidfuzz import process
@@ -42,7 +33,6 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from concurrent.futures import ThreadPoolExecutor
-import torch
 
 nltk.data.path.append('/nltk_data')
 
@@ -568,56 +558,41 @@ class OllamaBot:
         # Storage Processing
         # Data Directory initialisation
         self.base_directory = "Data"
-        self.document_store = InMemoryDocumentStore()
         self.web_documents = [] # stores the web documents for free tier models.
-        self.web_documents_haystack = [] # intialise the web documents for the premium tier models.
         self._load_content() 
         ####################
         # Pipeline initialisation.
-        if selected_model_name in valid_model_names: # free tier models. 
-            self.llm_model = ChatOllama(
-                model=selected_model_name,
-                temperature=0,
-                num_predict=150
-            ) # initialises a free-tier model.
-            # Initialize RAG application globally
-            self._initialize_rag_application() # Generalised rag pipeline initialisation.
-        else: # initialising a premium tier model. 
-            self.rag_pipe = Pipeline()
-        
-    def _load_content_haystack(self):
-        indexing_pipeline = Pipeline()
-        indexing_pipeline.add_component(
-            instance=SentenceTransformersDocumentEmbedder(model="./offline_model"), 
-            name="doc_embedder"
-        )
-        indexing_pipeline.add_component(instance=DocumentWriter(document_store=self.document_store), name="doc_writer")
-
-        indexing_pipeline.connect("doc_embedder.documents", "doc_writer.documents")
-
-        indexing_pipeline.run({"doc_embedder": {"documents": self.web_documents_haystack}})
+        self.llm_model = ChatOllama(
+            model=selected_model_name,
+            temperature=0,
+            num_predict=150
+        ) # initialises a free-tier model.
+        # Initialize RAG application globally
+        self._initialize_rag_application() # Generalised rag pipeline initialisation.
         
     def _initialize_rag_application(self):
         """
-        Initializes the RAGApplication globally.
+        Initializes the RAGApplication globally using LangChain components only.
         """
         global rag_application
-        
+
+        # Step 1: Split web documents into manageable chunks
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
             chunk_size=250, chunk_overlap=0
         )
-        
-        doc_splits = text_splitter.split_documents(self.web_documents) # uses documents loaded for the free-tier models. 
+        doc_splits = text_splitter.split_documents(self.web_documents)
 
+        # Step 2: Load the offline embedding model
         embedding_model = HuggingFaceEmbeddings(model_name="./offline_model")
-        
+
+        # Step 3: Create vector store and retriever
         vectorstore = SKLearnVectorStore.from_documents(
             documents=doc_splits,
             embedding=embedding_model,
         )
-        
         retriever = vectorstore.as_retriever(k=2)
-        
+
+        # Step 4: Define prompt template for supported models
         if selected_model_name in valid_model_names:
             prompt = PromptTemplate(
                 template="""
@@ -632,7 +607,7 @@ class OllamaBot:
                 - Provide a **direct**, **concise**, and **factual** answer. 
                 - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
                 - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
-                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value. 
+                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.  
 
                 **Feedback Guidelines:**  
                 - Review past user feedback under the **Feedback** section.  
@@ -654,8 +629,8 @@ class OllamaBot:
                 """,
                 input_variables=["question", "documents", "feedback"]
             )
-            
-            # Save the prompt template to a file
+
+            # Save prompt visualisation for debugging or manual review
             prompt_text = prompt.format(
                 question="<QUESTION_PLACEHOLDER>", 
                 documents="<DOCUMENTS_PLACEHOLDER>", 
@@ -663,54 +638,21 @@ class OllamaBot:
             )
             with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
                 file.write(prompt_text)
-            # Save the second-to-last document for verification
+
+            # Save second-to-last document for verification
             if len(self.web_documents) > 1:
                 second_to_last_document = self.web_documents[-2].page_content
                 with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
                     file.write(second_to_last_document)
 
+            # Create the RAG chain
             rag_chain = prompt | self.llm_model | StrOutputParser()
 
-            # Set the global variable
+            # Set the global application object
             rag_application = RAGApplication(retriever, rag_chain, self.web_documents)
+
         else:
-            # if the prompt structure is designed for a haystack model.
-            prompt = PromptTemplate(
-                template="""
-                You are an assistant designed to help users become more familiar with the GEO application.
-        
-                GEO is a PC-based well log authoring, analysis, and reporting system developed for 
-                petroleum geologists, geoscientists, and engineers.
-                
-                Answer the user's questions accurately using retrieved information from the "Context" 
-                section. This section contains help content written by software developers specifically 
-                for the GEO application.
-                
-                Ensure that your response is concise and directly addresses the question, avoiding any 
-                irrelevant information. The generated response should contain only the answer to the 
-                user's question.
-                
-                Use the information from the section titled "---Feedback---" as guidelines for improving 
-                your answers. Assess the validity and feasibility of the feedback before applying it to 
-                refine future responses.
-
-                Context:
-                {% for document in documents %}
-                    {{ document.content }}
-                {% endfor %}
-
-                Question: {{ question }}
-                Answer:""",
-                input_variables=["question", "documents"],
-            )
-            self.rag_pipe.add_component("embedder", SentenceTransformersTextEmbedder(model="./offline_model"))
-            self.rag_pipe.add_component("retriever", InMemoryEmbeddingRetriever(document_store=self.document_store))
-            self.rag_pipe.add_component("prompt_builder", ChatPromptBuilder(template=prompt))
-            self.rag_pipe.add_component("llm", OpenAIChatGenerator(model="gpt-4o-mini"))
-            
-            self.rag_pipe.connect("embedder.embedding", "retriever.query_embedding")
-            self.rag_pipe.connect("retriever", "prompt_builder.documents")
-            self.rag_pipe.connect("prompt_builder.prompt", "llm.messages")
+            raise ValueError(f"Model '{selected_model_name}' is not supported in this configuration.")
 
     def _list_htm_files(self):
         """
@@ -756,20 +698,12 @@ class OllamaBot:
                     last_document.page_content += f"\n{json_feedback}\n"
                 else:
                     # Create new feedback document if none exists
-                    if selected_model_name in valid_model_names:
-                        new_document = LangchainDocument(page_content=formatted_feedback)
-                        self.web_documents.append(new_document)
-                    else:
-                        new_document = HaystackDocument(content=formatted_feedback)
-                        self.web_documents_haystack.append(new_document)
-            else:
-                # Handle case where no documents exist (first-time load)
-                if selected_model_name in valid_model_names:
                     new_document = LangchainDocument(page_content=formatted_feedback)
                     self.web_documents.append(new_document)
-                else:
-                    new_document = HaystackDocument(content=formatted_feedback)
-                    self.web_documents_haystack.append(new_document)
+            else:
+                # Handle case where no documents exist (first-time load)
+                new_document = LangchainDocument(page_content=formatted_feedback)
+                self.web_documents.append(new_document)
 
             # For processed_content.txt, add just the JSON feedback (without header)
             page_texts.append(formatted_feedback)
@@ -842,19 +776,13 @@ class OllamaBot:
                         'link': page_links
                     }
                     
-                    if selected_model_name in valid_model_names:
-                        document = LangchainDocument(
-                            page_content=page_data['text'],
-                            metadata={
-                                'links': page_data['link'],
-                            }
-                        )
-                        self.web_documents.append(document)
-                    else:
-                        document = HaystackDocument(
-                            content=page_data['text']
-                        )
-                        self.web_documents_haystack.append(document)
+                    document = LangchainDocument(
+                        page_content=page_data['text'],
+                        metadata={
+                            'links': page_data['link'],
+                        }
+                    )
+                    self.web_documents.append(document)
                     
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
@@ -872,12 +800,8 @@ class OllamaBot:
         """
         feedback_heading = "---Feedback---"
         
-        if selected_model_name in valid_model_names:
-            new_document = LangchainDocument(page_content=content)
-            temp_documents = self.web_documents
-        else:
-            new_document = HaystackDocument(content=content)
-            temp_documents = self.web_documents_haystack # initialise a temp document variable to store the document information
+        new_document = LangchainDocument(page_content=content)
+        temp_documents = self.web_documents
         
         if temp_documents:
             last_document = temp_documents[-1]
@@ -892,10 +816,7 @@ class OllamaBot:
                 temp_documents.append(new_document)
             logging.info("New content added.")
             
-            if selected_model_name in valid_model_names:
-                self.web_documents = temp_documents
-            else:
-                self.web_documents_haystack = temp_documents
+            self.web_documents = temp_documents
             
         self._initialize_rag_application() # resets the initialisation to retrain model on updated information. 
             
@@ -921,18 +842,11 @@ class OllamaBot:
         logging.info(f"Processing question: {question}")
 
         # Step 1: Run the appropriate RAG process
-        if selected_model_name in valid_model_names:
-            rag_start_time = time.time()  # Start timing RAG application run
-            response = rag_application.run(question)  # Actual function execution
-            rag_execution_time = time.time() - rag_start_time  # Measure RAG execution time
+        rag_start_time = time.time()  # Start timing RAG application run
+        response = rag_application.run(question)  # Actual function execution
+        rag_execution_time = time.time() - rag_start_time  # Measure RAG execution time
             
-            print(f"⏱️ The time taken to implement the `run` function of the RAG application is {rag_execution_time:.4f} seconds.")
-        else:
-            response_object = self.rag_pipe.run({
-                "embedder": {"text": question},
-                "prompt_builder": {"question": question}
-            })
-            response = response_object['llm']['replies'][0]._content[0].text
+        print(f"⏱️ The time taken to implement the `run` function of the RAG application is {rag_execution_time:.4f} seconds.")
 
         # Step 2: Prepare new entry DataFrame
         new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
