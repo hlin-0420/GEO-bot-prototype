@@ -1,0 +1,82 @@
+[
+    {
+        "role": "user",
+        "content": "Why can't I add 251 curve shades to my log?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add 251 curve shades to your log because the limit is 250.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "What's the maximum number of data points allowed per curve?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Based on Document 2, the maximum number of columns (data points) allowed per curve is 450.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "I want to add this name as my curve shade name length \"Hydrocarbon bearing zone highlighted\"",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The operation is not allowed due to the character length constraint, as the chosen name \"Hydrocarbon bearing zone highlighted\" has a length of 37 characters, exceeding the allowed limit of 20 characters.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "What's the maximum curves I can load in a data file?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Based on Document 29, which states: \"Deviation from the above may cause errors during loading data from files.\" and considering that the curves are being loaded into columns in Geo so the maximum number of curves correspond to the maximum number of columns in the data file, the answer is:\n\nYou can load up to 450 curves per data file.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 20000.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "How many log headers can I add to my log?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Based on the provided feedback, you can select up to 50 headers for display in your log.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "How many tadpole definitions am I allowed?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You are allowed to create a maximum of 5 tadpole definition templates.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "user",
+        "content": "Why can I not add another layout to my log?",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add another layout to your log because you have reached the limit of 19 layouts per ODF file, as specified by the GEO application.",
+        "timestamp": "2025-03-24T14:32:46.966158Z"
+    }
+]
