@@ -10,7 +10,7 @@
                 - Provide a **direct**, **concise**, and **factual** answer. 
                 - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
                 - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
-                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value. 
+                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.  
 
                 **Feedback Guidelines:**  
                 - Review past user feedback under the **Feedback** section.  
