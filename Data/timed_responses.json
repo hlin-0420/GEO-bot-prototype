@@ -178,5 +178,65 @@
         "question": "I want to add this name as my curve shade name length \"Hydrocarbon bearing zone highlighted\"",
         "response_time": 47.63,
         "timestamp": "2025-03-24T09:57:51.411Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What's the maximum number of lithology types in an log?",
+        "response_time": 52.13,
+        "timestamp": "2025-03-24T11:42:41.359Z"
+    },
+    {
+        "question_number": "2",
+        "question": "How many tracks can you define in one ODF?",
+        "response_time": 37.24,
+        "timestamp": "2025-03-24T11:43:21.557Z"
+    },
+    {
+        "question_number": "3",
+        "question": "How many curve shades can I create?",
+        "response_time": 22.57,
+        "timestamp": "2025-03-24T11:44:32.552Z"
+    },
+    {
+        "question_number": "4",
+        "question": "How many curves can I load in one go?",
+        "response_time": 82.38,
+        "timestamp": "2025-03-24T11:46:54.214Z"
+    },
+    {
+        "question_number": "5",
+        "question": "What the maximum number of headers I can display in my log?",
+        "response_time": 72.67,
+        "timestamp": "2025-03-24T11:46:54.706Z"
+    },
+    {
+        "question_number": "6",
+        "question": "How many tables can I have in my log?",
+        "response_time": 26.56,
+        "timestamp": "2025-03-24T11:47:32.595Z"
+    },
+    {
+        "question_number": "7",
+        "question": "What's the maximum number of characters in a single text entry?",
+        "response_time": 33.72,
+        "timestamp": "2025-03-24T11:48:16.765Z"
+    },
+    {
+        "question_number": "8",
+        "question": "How many symbols can I have in the plot at any one time?",
+        "response_time": 21.65,
+        "timestamp": "2025-03-24T11:48:55.021Z"
+    },
+    {
+        "question_number": "9",
+        "question": "How many scales can I define?",
+        "response_time": 20.21,
+        "timestamp": "2025-03-24T11:52:31.783Z"
+    },
+    {
+        "question_number": "10",
+        "question": "What is the maximum number of data files I can load?",
+        "response_time": 43.87,
+        "timestamp": "2025-03-24T11:53:29.122Z"
     }
 ]
