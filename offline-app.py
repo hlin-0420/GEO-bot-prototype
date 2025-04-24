@@ -776,10 +776,13 @@ class OllamaBot:
                         'link': page_links
                     }
                     
+                    page_name = os.path.basename(file_path)  # Extracts the file name, e.g., "example.htm"
+                    
                     document = LangchainDocument(
                         page_content=page_data['text'],
                         metadata={
                             'links': page_data['link'],
+                            'page_name': page_name
                         }
                     )
                     self.web_documents.append(document)
@@ -1629,7 +1632,12 @@ def semantic_search_page():
 
             # Retrieve best matching documents from your RAG vector store
             retrieved_docs = rag_application.retriever.invoke(query)
-            results = [doc.page_content for doc in retrieved_docs]
+
+            # Include both content and metadata (e.g., file name)
+            results = [
+                {"content": doc.page_content, "source": doc.metadata.get("page_name", "Unknown File")}
+                for doc in retrieved_docs
+            ]
 
     return render_template("semantic_search.html", results=results, query=query)
 
