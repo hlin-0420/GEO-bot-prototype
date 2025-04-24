@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Semantic Search | GEO App</title>
+  <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo-container">
+        <img src="{{ url_for('static', filename='images/logo/geologix-logo.png') }}" alt="Logo" class="navbar-logo">
+        <span style="color:white; font-weight:bold;">GEO App</span>
+      </div>
+      <div class="navbar-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('semantic_search_page') }}" style="color: #f8c33c;">Semantic Search</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content container">
+    <h1>Semantic Search</h1>
+
+    <div class="section shadow-lg">
+      <form method="POST" class="flex space-x-2 items-center">
+        <input type="text" name="query" placeholder="Search geological terms..." value="{{ query }}" required
+       class="flex-grow px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 w-full">
+        <button type="submit" class="custom-button ml-2">Search</button>
+      </form>
+    </div>
+
+    {% if results %}
+    <div class="section mt-2 shadow">
+      <h2 class="h3">Results</h2>
+      <ul>
+        {% for res in results %}
+          <li class="border-b border-gray-200 py-2 text-left">{{ res|safe }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="mt-2">
+      <a href="{{ url_for('index') }}" class="custom-button">⬅ Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

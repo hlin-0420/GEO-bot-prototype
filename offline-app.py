@@ -1615,6 +1615,23 @@ def generate_chat_title():
     except Exception as e:
         print(f"❌ Error calling Ollama: {e}")
         return jsonify({"title": "Untitled Chat"}), 500
+    
+@app.route('/semantic-search', methods=['GET', 'POST'])
+def semantic_search_page():
+    results = []
+    query = ""
+
+    if request.method == 'POST':
+        query = request.form.get('query', '').strip()
+        if query:
+            model = SentenceTransformer("./offline_model")
+            embeddings = model.encode([query], convert_to_tensor=True)
+
+            # Retrieve best matching documents from your RAG vector store
+            retrieved_docs = rag_application.retriever.invoke(query)
+            results = [doc.page_content for doc in retrieved_docs]
+
+    return render_template("semantic_search.html", results=results, query=query)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
