@@ -1,5 +1,0 @@
-Item Type,"The object type where the link is assigned, such as symbol, lithology, text."
-Item Nr.,"The sequential number of the linking process, i.e. which object is linked first, second etc."
-Depth,Depth of the linked object within the plot.
-External Link,The location and file name of the link.
-Internal Link,"The name of the header or trailer specification, which is linked to that particular object."

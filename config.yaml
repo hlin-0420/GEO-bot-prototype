@@ -1,4 +1,0 @@
-embedder:
-  provider: openai
-  config:
-    model: 'text-embedding-ada-002'
