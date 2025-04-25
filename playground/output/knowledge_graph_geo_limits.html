@@ -1,0 +1,258 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 750px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lightgreen", "font": {"color": "white"}, "id": "Back", "label": "Back", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Forward", "label": "Forward", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Types", "label": "Types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Limits", "label": "Limits", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of curves", "label": "Number of curves", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "450", "label": "450", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of curve units", "label": "Size of curve units", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "24", "label": "24", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of curve name", "label": "Size of curve name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "90", "label": "90", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of data files to form one curve", "label": "Number of data files to form one curve", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "None", "label": "None", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of pen definitions", "label": "Number of pen definitions", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "20", "label": "20", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Curve selection name", "label": "Curve selection name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "60", "label": "60", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Curve to lithology name", "label": "Curve to lithology name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "50", "label": "50", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Curve to lithology lithology types", "label": "Curve to lithology lithology types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "10", "label": "10", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Data points per curve", "label": "Data points per curve", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Unlimited", "label": "Unlimited", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Computed curve parameters", "label": "Computed curve parameters", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "250", "label": "250", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of computed curve parameters name", "label": "Size of computed curve parameters name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "12", "label": "12", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Computed curve expressions", "label": "Computed curve expressions", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "300", "label": "300", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of computed curve expressions name", "label": "Size of computed curve expressions name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "25", "label": "25", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of computed curve parameter description", "label": "Size of computed curve parameter description", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "150", "label": "150", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of \u0027curves for surfaces\u0027 definitions", "label": "Number of \u0027curves for surfaces\u0027 definitions", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of curve synonym-pairs", "label": "Number of curve synonym-pairs", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "500", "label": "500", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of tracks", "label": "Number of tracks", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "200", "label": "200", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of qualitative tracks", "label": "Number of qualitative tracks", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "30", "label": "30", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of track name", "label": "Size of track name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "75", "label": "75", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of curve shades per plot", "label": "Number of curve shades per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of zones per curve shade", "label": "Number of zones per curve shade", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Curve shade name length", "label": "Curve shade name length", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of data files", "label": "Number of data files", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Columns per data file", "label": "Columns per data file", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of file name (including the path names)", "label": "Size of file name (including the path names)", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "255", "label": "255", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of file ID", "label": "Size of file ID", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "9", "label": "9", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of file ID", "label": "Number of file ID", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "100", "label": "100", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Auto file load definition name", "label": "Auto file load definition name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "40", "label": "40", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of mnemonics per file", "label": "Number of mnemonics per file", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of mnemonics per plot", "label": "Number of mnemonics per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "600", "label": "600", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of curve mnemonic", "label": "Size of curve mnemonic", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "32", "label": "32", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of file mnemonic value", "label": "Size of file mnemonic value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of plot mnemonic value", "label": "Size of plot mnemonic value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "1000", "label": "1000", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of mnemonic description", "label": "Size of mnemonic description", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of free format text blocks per plot", "label": "Number of free format text blocks per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "4500", "label": "4500", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of characters per free format text block", "label": "Number of characters per free format text block", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of free format text\u0027s related to a symbol", "label": "Number of free format text\u0027s related to a symbol", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "6", "label": "6", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of free format text tags", "label": "Number of free format text tags", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Free format text tag size", "label": "Free format text tag size", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "31", "label": "31", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of track text blocks per plot", "label": "Number of track text blocks per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "6000", "label": "6000", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of characters per track text block", "label": "Number of characters per track text block", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "32000", "label": "32000", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of graduations per qualitative track", "label": "Number of graduations per qualitative track", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Qualitative track name length", "label": "Qualitative track name length", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Qualitative track abbreviation length", "label": "Qualitative track abbreviation length", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "8", "label": "8", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of tables", "label": "Number of tables", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of rows in \u0027operations diary\u0027 type table", "label": "Number of rows in \u0027operations diary\u0027 type table", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "4320", "label": "4320", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of rows in \u0027normal\u0027 and \u0027operations remarks\u0027 type table", "label": "Number of rows in \u0027normal\u0027 and \u0027operations remarks\u0027 type table", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of fields in a row`", "label": "Number of fields in a row`", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Columns per table", "label": "Columns per table", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of table name", "label": "Size of table name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "29", "label": "29", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of table ID", "label": "Size of table ID", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of table column heading", "label": "Size of table column heading", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of postfix", "label": "Size of postfix", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Characters for all columns in table", "label": "Characters for all columns in table", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "10000", "label": "10000", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Characters for an individual cell", "label": "Characters for an individual cell", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "1999", "label": "1999", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of lithology types", "label": "Number of lithology types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of lithology sections per plot", "label": "Number of lithology sections per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "20000", "label": "20000", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "%Litho track per plot", "label": "%Litho track per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "3", "label": "3", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of lithology types per %Litho track", "label": "Number of lithology types per %Litho track", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of modifier types", "label": "Number of modifier types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of modifiers per plot", "label": "Number of modifiers per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of symbol types", "label": "Number of symbol types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of symbols per plot", "label": "Number of symbols per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of lines per plot", "label": "Number of lines per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "750", "label": "750", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of header \u0026 trailers specification files", "label": "Number of header \u0026 trailers specification files", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of specifications to make a plot header", "label": "Number of specifications to make a plot header", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of specifications to make a plot trailer", "label": "Number of specifications to make a plot trailer", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Tadpole definitions", "label": "Tadpole definitions", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "5", "label": "5", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Tadpole definitions name", "label": "Tadpole definitions name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "16", "label": "16", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Minimum dip value", "label": "Minimum dip value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "0", "label": "0", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum dip value", "label": "Maximum dip value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Minimum azimuth value", "label": "Minimum azimuth value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum azimuth value", "label": "Maximum azimuth value", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "360", "label": "360", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum dip types", "label": "Maximum dip types", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "64", "label": "64", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum length of dip type name", "label": "Maximum length of dip type name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "63", "label": "63", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum tadpole definition templates", "label": "Maximum tadpole definition templates", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Minimum zoom", "label": "Minimum zoom", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "0.1", "label": "0.1", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum zoom", "label": "Maximum zoom", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of plot description", "label": "Size of plot description", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of CGM fonts for font mapping", "label": "Number of CGM fonts for font mapping", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of CGM font name", "label": "Size of CGM font name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Scale settings", "label": "Scale settings", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "23", "label": "23", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Password length", "label": "Password length", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of image name", "label": "Size of image name", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "User ID\u0027s per plot", "label": "User ID\u0027s per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Vendor ID\u0027s per plot", "label": "Vendor ID\u0027s per plot", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum layouts per ODF", "label": "Maximum layouts per ODF", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "19", "label": "19", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of points per polygon in VOB", "label": "Number of points per polygon in VOB", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of different fonts for VOB", "label": "Number of different fonts for VOB", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Size of text in VOB", "label": "Size of text in VOB", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Memory for all bitmaps and VOBs", "label": "Memory for all bitmaps and VOBs", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "300 KB", "label": "300 KB", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum imaging tools", "label": "Maximum imaging tools", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum pads per tool", "label": "Maximum pads per tool", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum sensors per pad", "label": "Maximum sensors per pad", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum name length", "label": "Maximum name length", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Maximum significant decimals", "label": "Maximum significant decimals", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "4", "label": "4", "shape": "dot", "title": "Type: Limit"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Number of query definitions per zone type", "label": "Number of query definitions per zone type", "shape": "dot", "title": "Type: Type"}, {"color": "lightgreen", "font": {"color": "white"}, "id": "Correlation items", "label": "Correlation items", "shape": "dot", "title": "Type: Type"}]);
+                  edges = new vis.DataSet([{"from": "Back", "to": "Forward"}, {"from": "Types", "to": "Limits"}, {"from": "Number of curves", "to": "450"}, {"from": "450", "to": "Columns per data file"}, {"from": "450", "to": "Number of lithology types"}, {"from": "450", "to": "Number of modifier types"}, {"from": "Size of curve units", "to": "24"}, {"from": "Size of curve name", "to": "90"}, {"from": "90", "to": "Maximum dip value"}, {"from": "Number of data files to form one curve", "to": "None"}, {"from": "Number of pen definitions", "to": "20"}, {"from": "20", "to": "Curve shade name length"}, {"from": "20", "to": "Number of graduations per qualitative track"}, {"from": "20", "to": "Number of fields in a row`"}, {"from": "20", "to": "Size of postfix"}, {"from": "20", "to": "Number of CGM fonts for font mapping"}, {"from": "20", "to": "Number of points per polygon in VOB"}, {"from": "Curve selection name", "to": "60"}, {"from": "Curve to lithology name", "to": "50"}, {"from": "50", "to": "Number of zones per curve shade"}, {"from": "50", "to": "Number of free format text tags"}, {"from": "50", "to": "Number of specifications to make a plot header"}, {"from": "50", "to": "Number of specifications to make a plot trailer"}, {"from": "50", "to": "Maximum tadpole definition templates"}, {"from": "50", "to": "Number of different fonts for VOB"}, {"from": "50", "to": "Correlation items"}, {"from": "Curve to lithology lithology types", "to": "10"}, {"from": "10", "to": "Number of \u0027curves for surfaces\u0027 definitions"}, {"from": "10", "to": "Number of qualitative tracks"}, {"from": "10", "to": "Number of lithology types per %Litho track"}, {"from": "10", "to": "Maximum zoom"}, {"from": "10", "to": "Maximum imaging tools"}, {"from": "10", "to": "Maximum pads per tool"}, {"from": "Data points per curve", "to": "Unlimited"}, {"from": "Unlimited", "to": "Number of data files"}, {"from": "Computed curve parameters", "to": "250"}, {"from": "250", "to": "Number of curve shades per plot"}, {"from": "250", "to": "Size of file mnemonic value"}, {"from": "250", "to": "Number of characters per free format text block"}, {"from": "Size of computed curve parameters name", "to": "12"}, {"from": "12", "to": "Size of table ID"}, {"from": "Computed curve expressions", "to": "300"}, {"from": "300", "to": "Size of text in VOB"}, {"from": "Size of computed curve expressions name", "to": "25"}, {"from": "Size of computed curve parameter description", "to": "150"}, {"from": "Number of curve synonym-pairs", "to": "500"}, {"from": "Number of tracks", "to": "200"}, {"from": "Number of qualitative tracks", "to": "30"}, {"from": "30", "to": "Size of CGM font name"}, {"from": "Size of track name", "to": "75"}, {"from": "75", "to": "Number of query definitions per zone type"}, {"from": "Size of file name (including the path names)", "to": "255"}, {"from": "Size of file ID", "to": "9"}, {"from": "Number of file ID", "to": "100"}, {"from": "100", "to": "Number of mnemonics per file"}, {"from": "100", "to": "Number of tables"}, {"from": "100", "to": "Number of header \u0026 trailers specification files"}, {"from": "Auto file load definition name", "to": "40"}, {"from": "40", "to": "Size of mnemonic description"}, {"from": "Number of mnemonics per plot", "to": "600"}, {"from": "Size of curve mnemonic", "to": "32"}, {"from": "32", "to": "Qualitative track name length"}, {"from": "32", "to": "Size of image name"}, {"from": "Size of plot mnemonic value", "to": "1000"}, {"from": "1000", "to": "Number of symbol types"}, {"from": "Number of free format text blocks per plot", "to": "4500"}, {"from": "Number of free format text\u0027s related to a symbol", "to": "6"}, {"from": "Free format text tag size", "to": "31"}, {"from": "Number of track text blocks per plot", "to": "6000"}, {"from": "Number of characters per track text block", "to": "32000"}, {"from": "32000", "to": "Number of rows in \u0027normal\u0027 and \u0027operations remarks\u0027 type table"}, {"from": "Qualitative track abbreviation length", "to": "8"}, {"from": "Number of rows in \u0027operations diary\u0027 type table", "to": "4320"}, {"from": "4320", "to": "Columns per table"}, {"from": "Size of table name", "to": "29"}, {"from": "29", "to": "Size of table column heading"}, {"from": "29", "to": "Size of plot description"}, {"from": "Characters for all columns in table", "to": "10000"}, {"from": "10000", "to": "Number of symbols per plot"}, {"from": "Characters for an individual cell", "to": "1999"}, {"from": "Number of lithology sections per plot", "to": "20000"}, {"from": "20000", "to": "Number of modifiers per plot"}, {"from": "%Litho track per plot", "to": "3"}, {"from": "Number of lines per plot", "to": "750"}, {"from": "Tadpole definitions", "to": "5"}, {"from": "Tadpole definitions name", "to": "16"}, {"from": "16", "to": "Password length"}, {"from": "Minimum dip value", "to": "0"}, {"from": "0", "to": "Minimum azimuth value"}, {"from": "Maximum azimuth value", "to": "360"}, {"from": "Maximum dip types", "to": "64"}, {"from": "64", "to": "User ID\u0027s per plot"}, {"from": "64", "to": "Vendor ID\u0027s per plot"}, {"from": "64", "to": "Maximum sensors per pad"}, {"from": "Maximum length of dip type name", "to": "63"}, {"from": "63", "to": "Maximum name length"}, {"from": "Minimum zoom", "to": "0.1"}, {"from": "Scale settings", "to": "23"}, {"from": "Maximum layouts per ODF", "to": "19"}, {"from": "Memory for all bitmaps and VOBs", "to": "300 KB"}, {"from": "Maximum significant decimals", "to": "4"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
