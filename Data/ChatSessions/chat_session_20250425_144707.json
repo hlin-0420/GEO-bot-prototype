@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "I have 20000 modifiers added ty log, why I can't I add anymore?",
+        "timestamp": "2025-04-25T14:50:24.606154Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You cannot add more than 20000 modifiers per plot because of the limit on the number of layouts per ODF file. The maximum number of layouts allowed is 20000.",
+        "timestamp": "2025-04-25T14:50:24.606154Z"
+    }
+]

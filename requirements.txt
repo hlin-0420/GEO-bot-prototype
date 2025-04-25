@@ -19,3 +19,7 @@ rapidfuzz
 nltk
 rouge-score
 requests
+youtube-transcript-api
+spacy
+networkx
+matplotlib
