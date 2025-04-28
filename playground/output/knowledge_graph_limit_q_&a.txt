@@ -1,0 +1,57 @@
+Question: Why can't I add 251 curve shades to my log?
+Top Retrieved Info:
+- 250: Number of curve shades per plot
+- 20: Curve shade name length
+- 50: Number of zones per curve shade
+Answer: The limit of 250 curve shades is due to a technical constraint. This limitation prevents excessive data from being displayed, maintaining readability and usability in the log.
+
+Question: What is the maximum number of data points allowed per curve?
+Top Retrieved Info:
+- Data points per curve: Unlimited
+- Number of data files to form one curve: None
+- Number of curves: 450
+Answer: The maximum number of data points allowed per curve is Unlimited.
+
+Question: I want to use the name 'Hydrocarbon bearing zone highlighted' as my curve shade name. Why is it not allowed?
+Top Retrieved Info:
+- Curve to lithology name: 50
+- 20: Curve shade name length
+- 50: Number of zones per curve shade
+Answer: The curve shade name 'Hydrocarbon bearing zone highlighted' exceeds the maximum length of 20 characters, which is a constraint defined in the system.
+
+Question: What is the maximum number of curves I can load in a data file?
+Top Retrieved Info:
+- Number of data files to form one curve: None
+- Data points per curve: Unlimited
+- Number of curves: 450
+Answer: The maximum number of curves you can load in a data file is not explicitly stated, but it's implied that there is no limit. The statement "Number of data files to form one curve: None" suggests that multiple curves can be loaded into a single data file without any restrictions.
+
+Question: I have already added 20,000 modifiers to my log. Why can't I add more?
+Top Retrieved Info:
+- 20000: Number of modifiers per plot
+- 450: Number of modifier types
+- Number of rows in 'operations diary' type table: 4320
+Answer: The reason you cannot add more modifiers is because you have reached the maximum allowed number of modifiers per plot, which is 20,000.
+
+Question: How many log headers can I add to my log?
+Top Retrieved Info:
+- 50: Number of specifications to make a plot header
+- 100: Number of header & trailers specification files
+- Number of track text blocks per plot: 6000
+Answer: Based on the provided context, there is no specific limit mentioned for log headers. The limits mentioned are related to plot specifications (50 for plot headers, 100 for header/trailers files, and 6000 for track text blocks).
+
+Question: How many tadpole definitions am I allowed to create?
+Top Retrieved Info:
+- 50: Maximum tadpole definition templates
+- Tadpole definitions: 5
+- Tadpole definitions name: 16
+Answer: You are allowed to create up to 5 tadpole definitions.
+
+Question: Why can't I add another layout to my log?
+Top Retrieved Info:
+- Maximum layouts per ODF: 19
+- Number of track text blocks per plot: 6000
+- 29: Size of plot description
+Answer: The maximum number of layouts per ODF (OpenDocument Format) is 19. You have already reached this limit, which prevents you from adding another layout to your log.
+
+Time taken to answer all questions: 1 minute and 8.6 seconds. 
