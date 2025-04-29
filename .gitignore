@@ -4,3 +4,4 @@ node_modules
 offline_model
 nltk_data
 playground/.env
+preprocessing/.env
