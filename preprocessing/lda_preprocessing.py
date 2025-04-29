@@ -26,6 +26,24 @@ script_dir = Path(__file__).resolve().parent
 # Construct the full path to GEO_Limits.htm
 geo_limits_path = os.path.join(script_dir, '..', 'Data', 'Introduction', 'GEO_Limits.htm')
 
+# Path to Introduction folder
+introduction_dir = os.path.join(script_dir, '..', 'Data', 'Introduction')
+introduction_dir = os.path.normpath(introduction_dir)
+
+# Aggregate all .htm file contents
+all_texts = []
+
+for file in os.listdir(introduction_dir):
+    if file.endswith(".htm"):
+        file_path = os.path.join(introduction_dir, file)
+        with open(file_path, encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+            text = soup.get_text(separator=" ", strip=True)
+            all_texts.append(text)
+
+# Join all document texts into a single string
+combined_text = " ".join(all_texts)
+
 # construct the full path to the output folder from "playground"
 playground_output_lda_vis_path = os.path.join(script_dir, '..', 'playground', 'output', 'lda_visualisation.html')
 
@@ -62,7 +80,7 @@ def preprocess(doc):
         if token not in stop_words
     ]
 
-processed_docs = [preprocess(text)]
+processed_docs = [preprocess(combined_text)]
 
 # Create dictionary and corpus
 dictionary = corpora.Dictionary(processed_docs)
