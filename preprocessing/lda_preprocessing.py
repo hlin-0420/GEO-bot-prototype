@@ -14,6 +14,7 @@ from neo4j import GraphDatabase, basic_auth
 from neo4j.exceptions import AuthError
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
+import ollama
 
 # Load environment variables
 load_dotenv()
@@ -134,5 +135,40 @@ else:
 
 print(f"Opening Neo4j Browser with visualisation: {neo4j_browser_url}")
 webbrowser.open(neo4j_browser_url)
+
+def query_neo4j(user_query):
+    with driver.session() as session:
+        cypher_query = """
+        MATCH (k:Keyword)-[:RELATED_TO]->(t:Topic)
+        RETURN k.name AS keyword, t.name AS topic
+        """
+        result = session.run(cypher_query)
+        records = [f"Keyword: {record['keyword']} -> Topic: {record['topic']}" for record in result]
+    return "\n".join(records)
+
+def query_ollama(prompt):
+    response = ollama.chat(
+        model="llama3.2",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+    return response['message']['content']
+
+def answer_user_query(user_question):
+    context = query_neo4j(user_question)
+    full_prompt = f"""
+You are an assistant who answers questions based on the following ontology information:
+
+{context}
+
+Now answer the user's question: {user_question}
+"""
+    response = query_ollama(full_prompt)
+    print("🔵 Answer:\n", response)
+
+# Example Usage
+user_question = input("Ask your question: ")
+answer_user_query(user_question)
 
 driver.close()
