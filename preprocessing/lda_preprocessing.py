@@ -13,8 +13,9 @@ import webbrowser
 from neo4j import GraphDatabase, basic_auth
 from neo4j.exceptions import AuthError
 from dotenv import load_dotenv
-import os
+from urllib.parse import quote_plus
 
+# Load environment variables
 load_dotenv()
 
 NEO4J_URI = os.getenv("NEO4J_URI")
@@ -23,36 +24,36 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 
 script_dir = Path(__file__).resolve().parent
 
-# Construct the full path to GEO_Limits.htm
-geo_limits_path = os.path.join(script_dir, '..', 'Data', 'Introduction', 'GEO_Limits.htm')
+# Path to the Data folder
+data_dir = os.path.normpath(os.path.join(script_dir, '..', 'Data'))
 
-# Path to Introduction folder
-introduction_dir = os.path.join(script_dir, '..', 'Data', 'Introduction')
-introduction_dir = os.path.normpath(introduction_dir)
-
-# Aggregate all .htm file contents
+# Aggregate all .htm file contents recursively
 all_texts = []
+loaded_files = []
+for root, dirs, files in os.walk(data_dir):
+    for file in files:
+        if file.endswith(".htm"):
+            file_path = os.path.join(root, file)
+            with open(file_path, encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "html.parser")
+                text = soup.get_text(separator=" ", strip=True)
+                all_texts.append(text)
+                loaded_files.append(file_path)
 
-for file in os.listdir(introduction_dir):
-    if file.endswith(".htm"):
-        file_path = os.path.join(introduction_dir, file)
-        with open(file_path, encoding="utf-8") as f:
-            soup = BeautifulSoup(f, "html.parser")
-            text = soup.get_text(separator=" ", strip=True)
-            all_texts.append(text)
+# Debug: print all loaded file paths
+print("Loaded the following .htm files:")
+for f in loaded_files:
+    print(f)
 
 # Join all document texts into a single string
 combined_text = " ".join(all_texts)
 
-# construct the full path to the output folder from "playground"
-playground_output_lda_vis_path = os.path.join(script_dir, '..', 'playground', 'output', 'lda_visualisation.html')
+# Path to output visualisation
+playground_output_lda_vis_path = os.path.normpath(os.path.join(script_dir, '..', 'playground', 'output', 'lda_visualisation.html'))
 
-# Normalize the path to eliminate any redundant separators or up-level references
-geo_limits_path = os.path.normpath(geo_limits_path)
-
+# Authenticate Neo4j connection
 try:
     driver = GraphDatabase.driver(NEO4J_URI, auth=basic_auth(NEO4J_USER, NEO4J_PASSWORD))
-    # Try opening a session to force auth check
     with driver.session() as session:
         session.run("RETURN 1")
     print("✅ Neo4j authentication successful.")
@@ -61,12 +62,7 @@ except AuthError as e:
     print(f"Details: {e}")
     exit(1)
 
-with open(geo_limits_path, encoding="utf-8") as f:
-    soup = BeautifulSoup(f, "html.parser")
-
-# Extract visible text
-text = soup.get_text(separator=" ", strip=True)
-
+# Download necessary NLTK resources
 nltk.download("stopwords")
 nltk.download("wordnet")
 
@@ -80,27 +76,30 @@ def preprocess(doc):
         if token not in stop_words
     ]
 
+# Preprocess documents
 processed_docs = [preprocess(combined_text)]
 
 # Create dictionary and corpus
 dictionary = corpora.Dictionary(processed_docs)
 corpus = [dictionary.doc2bow(doc) for doc in processed_docs]
 
+# Train LDA model
 lda_model = LdaModel(corpus=corpus, id2word=dictionary, num_topics=5, random_state=42, passes=10)
 
-# Display the topics
+# Display topics
 topics = lda_model.print_topics()
 for topic in topics:
     print(topic)
-    
+
+# Extract topic keywords
 topic_keywords = {}
 for topic_id, topic_terms in lda_model.show_topics(formatted=False):
     keywords = [word for word, prob in topic_terms]
     topic_keywords[f"Topic_{topic_id}"] = keywords
-    
+
+# Save LDA visualisation
 vis_data = gensimvis.prepare(lda_model, corpus, dictionary)
 pyLDAvis.save_html(vis_data, playground_output_lda_vis_path)
-
 webbrowser.open(playground_output_lda_vis_path)
 
 def create_ontology(tx, topic, keyword):
@@ -109,29 +108,28 @@ def create_ontology(tx, topic, keyword):
         MERGE (k:Keyword {name: $keyword})
         MERGE (k)-[:RELATED_TO]->(t)
     """, topic=topic, keyword=keyword)
-    
-with driver.session() as session:
-    for topic, keywords in topic_keywords.items():
-        for keyword in keywords:
-            session.execute_write(create_ontology, topic, keyword)
-            
+
+# Insert ontology into Neo4j
+def insert_ontology_to_neo4j():
+    with driver.session() as session:
+        for topic, keywords in topic_keywords.items():
+            for keyword in keywords:
+                session.execute_write(create_ontology, topic, keyword)
+
+insert_ontology_to_neo4j()
+
 print("Ontology successfully created in Neo4j.")
 
-# --- Generate Cypher visualisation link ---
-# This will open the Neo4j Browser with a pre-filled MATCH query
-from urllib.parse import quote_plus
-
+# Generate Cypher visualisation link
 cypher_query = """
 MATCH (k:Keyword)-[:RELATED_TO]->(t:Topic)
 RETURN k, t
 """
 encoded_query = quote_plus(cypher_query)
 
-# Update this URL if you are using a remote instance
 if "localhost" in NEO4J_URI:
     neo4j_browser_url = f"http://localhost:7474/browser/?cmd=play&arg={encoded_query}"
 else:
-    # NOTE: Replace with your actual sandbox URL
     neo4j_browser_url = f"https://db168837adc35d7d42f6c550e803f71a.neo4jsandbox.com/browser/?cmd=play&arg={encoded_query}"
 
 print(f"Opening Neo4j Browser with visualisation: {neo4j_browser_url}")
