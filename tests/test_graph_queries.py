@@ -1,5 +1,6 @@
 import sys
 import os
+import time  # ⏱️ Import timing module
 
 # Add src/ to import path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
@@ -41,11 +42,18 @@ def main():
     print("❓ Running sample queries...\n")
     for q in questions:
         print(f"Question: {q}")
+        start_time = time.time()  # Start timing
+
         response = rag_chain.invoke({
             "question": q,
-            "graph_context": graph_context  # ✅ pass both required inputs
+            "graph_context": graph_context
         })
-        print(f"Answer: {response.strip()}\n{'-'*60}")
+
+        end_time = time.time()  # End timing
+        duration = end_time - start_time
+
+        print(f"Answer: {response.strip()}")
+        print(f"⏱️ Time taken: {duration:.2f} seconds\n{'-'*60}")
 
 if __name__ == "__main__":
     main()
