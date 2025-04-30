@@ -73,17 +73,26 @@ selected_model_name = "llama3.2:latest"
 answer_time = 0 # default time taken to answer a question.
 # Declare global variable
 rag_application = None 
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
-EXCEL_FILE = os.path.join(DATA_DIR, "query_responses.xlsx")
-EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "expected_query_responses.xlsx")
-FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback_dataset.json")
-PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "prompt_visualisation.txt")
-PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "processed_content.txt")
-UPLOADED_FILE = os.path.join(DATA_DIR, "uploaded_document.txt")
-CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "ChatSessions")
-SESSION_METADATA_FILE = os.path.join(DATA_DIR, "session_metadata.json")
-TIMED_RESPONSES_FILE = os.path.join(DATA_DIR, "timed_responses.json")
+
+# Evaluation files
+EXCEL_FILE = os.path.join(DATA_DIR, "evaluation", "query_responses.xlsx")
+EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "evaluation", "expected_query_responses.xlsx")
+
+# Feedback
+FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback", "feedback_dataset.json")
+
+# Model files
+PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visualisation.txt")
+PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "model_files", "processed_content.txt")
+UPLOADED_FILE = os.path.join(DATA_DIR, "model_files", "uploaded_document.txt")
+
+# User session files
+CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "user_sessions", "ChatSessions")
+SESSION_METADATA_FILE = os.path.join(DATA_DIR, "user_sessions", "session_metadata.json")
+TIMED_RESPONSES_FILE = os.path.join(DATA_DIR, "user_sessions", "timed_responses.json")
 
 @app.route("/store-response-time", methods=["POST"])
 def store_response_time():
