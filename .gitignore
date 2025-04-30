@@ -1,6 +1,5 @@
 csv-files
 __pycache__/
-offline_model
-nltk_data
+local_models
 playground/.env
 preprocessing/.env

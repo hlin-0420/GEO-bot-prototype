@@ -34,7 +34,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from concurrent.futures import ThreadPoolExecutor
 
-nltk.data.path.append('/nltk_data')
+nltk.data.path.append('./local_models/nltk_data')
 
 os.environ["LOKY_MAX_CPU_COUNT"] = "5" # changing from 2 to 5 cores for simultaneous processing.
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
@@ -294,7 +294,7 @@ class RAGApplication:
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.web_documents = web_documents  # Store the documents for feedback retrieval
-        self.feedback_model = SentenceTransformer("./offline_model")  # Embedding model for similarity
+        self.feedback_model = SentenceTransformer("./local_models/offline_model")  # Embedding model for similarity
         self.feedback_data, self.feedback_embeddings = self._load_feedback()
 
     def _load_feedback(self):
@@ -592,7 +592,7 @@ class OllamaBot:
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Step 2: Load the offline embedding model
-        embedding_model = HuggingFaceEmbeddings(model_name="./offline_model")
+        embedding_model = HuggingFaceEmbeddings(model_name="./local_models/offline_model")
 
         # Step 3: Create vector store and retriever
         vectorstore = SKLearnVectorStore.from_documents(
@@ -1636,7 +1636,7 @@ def semantic_search_page():
     if request.method == 'POST':
         query = request.form.get('query', '').strip()
         if query:
-            model = SentenceTransformer("./offline_model")
+            model = SentenceTransformer("./local_models/offline_model")
             embeddings = model.encode([query], convert_to_tensor=True)
 
             # Retrieve best matching documents from your RAG vector store
