@@ -1,6 +1,5 @@
 csv-files
 __pycache__/
-node_modules
 offline_model
 nltk_data
 playground/.env
