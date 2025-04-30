@@ -27,4 +27,4 @@ def build_neo4j_rag_pipeline(uri, username, password, model_name="llama3.2:lates
     llm = ChatOllama(model=model_name, temperature=0, num_predict=150)
     rag_chain = cypher_prompt | llm | StrOutputParser()
 
-    return rag_chain, graph
+    return rag_chain
