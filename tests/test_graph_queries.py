@@ -8,8 +8,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from config import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, CYPHER_FILE_PATH
 from graph_utils import load_cypher_file_to_neo4j, clear_database
 from rag_pipeline import build_neo4j_rag_pipeline, format_graph_info  # ✅ import helper
-from load_htm_file import load_htm_file_content
+from load_htm_file import load_htm_file_content, select_relevant_sentences
 from langchain_neo4j import Neo4jGraph
+import re
 
 def main():
     print("🧹 Clearing graph database...")
@@ -23,6 +24,8 @@ def main():
     graph = Neo4jGraph(url=NEO4J_URI, username=NEO4J_USERNAME, password=NEO4J_PASSWORD)
     
     odf_text_content = load_htm_file_content()
+    
+    odf_text_content = re.sub(r"\n\s*\n", "\n", odf_text_content)
     
     print(f"""FILE CONTENT
           ***
@@ -41,22 +44,34 @@ def main():
     graph_context = format_graph_info(records)
 
     questions = [
-        "What tool helps create ODF templates?",
+        "Which tool helps to create ODF templates?",
         "What features does the Template Creation Wizard enable?",
         "What does the ODF Template File (ODT) contain?",
         "Which service customizes the ODT template?",
         "What warnings are detected in the generated template?"
     ]
+    
+    # 🧠 Warm-up phase to avoid first-call latency
+    print("🔥 Warming up LLM model (first dummy call)...")
+    _ = rag_chain.invoke({
+        "question": "This is a warm-up question. You can ignore this.",
+        "graph_context": "A -[REL]-> B",
+        "text_content": "This is warm-up content."
+    })
+    time.sleep(2)  # 💤 Allow model to fully settle
+    print("✅ Warm-up complete.\n")
 
     print("❓ Running sample queries...\n")
     for q in questions:
         print(f"Question: {q}")
         start_time = time.time()  # Start timing
+        
+        # question_text_context = odf_text_content = select_relevant_sentences(odf_text_content, q)
 
         response = rag_chain.invoke({
             "question": q,
             "graph_context": graph_context,
-            "text_context": odf_text_content
+            "text_content": odf_text_content
         })
 
         end_time = time.time()  # End timing

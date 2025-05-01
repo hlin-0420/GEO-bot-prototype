@@ -17,8 +17,8 @@ def build_neo4j_rag_pipeline(uri, username, password, model_name="llama3.2:lates
         **Graph Context:**
         {graph_context}
         
-        **Text Context:**
-        {text_context}
+        **Text Content:**
+        {text_content}
 
         **Question:** {question}
 

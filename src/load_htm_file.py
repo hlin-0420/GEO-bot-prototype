@@ -1,5 +1,23 @@
 from config import *
 from bs4 import BeautifulSoup
+import re
+
+def select_relevant_sentences(text, question, top_k=5):
+    # Tokenise
+    question_words = set(re.findall(r'\w+', question.lower()))
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+
+    # Score each sentence by keyword overlap
+    scored = []
+    for sentence in sentences:
+        sentence_words = set(re.findall(r'\w+', sentence.lower()))
+        overlap = question_words & sentence_words
+        scored.append((len(overlap), sentence))
+
+    # Sort and return top-k scoring sentences
+    top_sentences = [s for _, s in sorted(scored, reverse=True)[:top_k]]
+    return "\n".join(top_sentences)
+
 
 def load_htm_file_content():
     # 📥 Load and clean HTML content
