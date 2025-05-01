@@ -18,6 +18,41 @@ def select_relevant_sentences(text, question, top_k=5):
     top_sentences = [s for _, s in sorted(scored, reverse=True)[:top_k]]
     return "\n".join(top_sentences)
 
+def load_all_htm_files_content():
+    """Recursively loads and compresses content from all .htm files under HTM_FOLDER_PATH and its subdirectories."""
+    all_texts = []
+    file_count = 0
+
+    if not os.path.exists(HTM_FOLDER_PATH):
+        print(f"⚠️ Folder not found: {HTM_FOLDER_PATH}")
+        return ""
+
+    for root, _, files in os.walk(HTM_FOLDER_PATH):
+        for filename in files:
+            if filename.endswith(".htm"):
+                filepath = os.path.join(root, filename)
+                try:
+                    with open(filepath, "r", encoding="utf-8") as f:
+                        soup = BeautifulSoup(f, "html.parser")
+                        raw_text = soup.get_text(separator="\n").strip()
+                        lines = [line.strip() for line in raw_text.splitlines() if line.strip()]
+
+                        # Remove known boilerplate patterns
+                        remove_phrases = {
+                            "Click here to see this page in full context",
+                            "*Maximize screen to view table of contents*",
+                            "Back", "Forward",
+                            "ODF Template File (ODT)"
+                        }
+                        clean_lines = [line for line in lines if line not in remove_phrases]
+                        all_texts.append("\n".join(clean_lines))
+                        file_count += 1
+                        print(f"✅ Loaded: {filepath}")
+                except Exception as e:
+                    print(f"⚠️ Failed to load {filepath}: {e}")
+
+    print(f"\n📊 Total .htm files loaded: {file_count}")
+    return "\n".join(all_texts)
 
 def load_htm_file_content():
     # 📥 Load and clean HTML content
