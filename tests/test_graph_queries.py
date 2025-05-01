@@ -44,11 +44,12 @@ def main():
     graph_context = format_graph_info(records)
 
     questions = [
-        "Which tool helps to create ODF templates?",
         "What features does the Template Creation Wizard enable?",
         "What does the ODF Template File (ODT) contain?",
+        "Which tool helps to create ODF template files?",
         "Which service customizes the ODT template?",
-        "What warnings are detected in the generated template?"
+        "What warnings are detected in the generated template?",
+        "What is a computed curve?"
     ]
     
     # 🧠 Warm-up phase to avoid first-call latency
