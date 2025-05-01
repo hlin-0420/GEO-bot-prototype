@@ -11,7 +11,7 @@ from langchain.chains import create_retrieval_chain # https://python.langchain.c
 def format_graph_info(records):
     return "\n".join([f"{r['from']} -[{r['relationship']}]-> {r['to']}" for r in records])
 
-def build_offline_chatbot(content, model_name="llama3.2:latest"):
+def build_offline_chatbot(content, model_name="smollm:135m"):
     # 1. Chunk the text
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     chunks = splitter.split_text(content)
