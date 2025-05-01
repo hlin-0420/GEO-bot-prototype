@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from config import NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, CYPHER_FILE_PATH
 from graph_utils import load_cypher_file_to_neo4j, clear_database
 from rag_pipeline import build_neo4j_rag_pipeline, format_graph_info  # ✅ import helper
+from load_htm_file import load_htm_file_content
 from langchain_neo4j import Neo4jGraph
 
 def main():
@@ -20,6 +21,14 @@ def main():
     print("⚙️ Initialising Neo4j RAG pipeline...")
     
     graph = Neo4jGraph(url=NEO4J_URI, username=NEO4J_USERNAME, password=NEO4J_PASSWORD)
+    
+    odf_text_content = load_htm_file_content()
+    
+    print(f"""FILE CONTENT
+          ***
+          {odf_text_content}
+          ***
+          """)
 
     rag_chain = build_neo4j_rag_pipeline(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD)
 
@@ -46,7 +55,8 @@ def main():
 
         response = rag_chain.invoke({
             "question": q,
-            "graph_context": graph_context
+            "graph_context": graph_context,
+            "text_context": odf_text_content
         })
 
         end_time = time.time()  # End timing

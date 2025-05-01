@@ -16,12 +16,15 @@ def build_neo4j_rag_pipeline(uri, username, password, model_name="llama3.2:lates
 
         **Graph Context:**
         {graph_context}
+        
+        **Text Context:**
+        {text_context}
 
         **Question:** {question}
 
         **Answer:**
         """,
-        input_variables=["question", "graph_context"]
+        input_variables=["question", "graph_context", "text_content"]
     )
 
     llm = ChatOllama(model=model_name, temperature=0, num_predict=150)
