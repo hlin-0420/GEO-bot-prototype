@@ -11,9 +11,9 @@ from langchain.chains import create_retrieval_chain # https://python.langchain.c
 def format_graph_info(records):
     return "\n".join([f"{r['from']} -[{r['relationship']}]-> {r['to']}" for r in records])
 
-def build_offline_chatbot(content, model_name="smollm:135m"):
+def build_offline_chatbot(content, model_name="llama3.2:1b"):
     # 1. Chunk the text
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     chunks = splitter.split_text(content)
 
     # 2. Load local embedding model
@@ -21,24 +21,27 @@ def build_offline_chatbot(content, model_name="smollm:135m"):
 
     # 3. Create retriever (in-memory FAISS)
     vectorstore = FAISS.from_texts(chunks, embedder)
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 8})
 
     # 4. Define prompt template
     prompt = PromptTemplate(
-        input_variables=["context", "input"],
+    input_variables=["context", "input"],
         template="""
-            You are an expert assistant for petroleum geology software.
-            Only use the following content to answer the question.
-            If the answer is not in the content, say you don't know.
+    You are a highly knowledgeable assistant trained exclusively on GEO petroleum geology software documentation.
 
-            **Content**:
-            {context}
+    Answer the user's question **using only the GEO documentation provided below**. If you cannot find the answer, respond with: "I don't know based on the provided documentation."
 
-            **Question**:
-            {input}
+    Respond with **only the final answer**—do not repeat the question or the content.
 
-            **Answer**:
-        """
+    ---
+    GEO Documentation:
+    {context}
+
+    User Question:
+    {input}
+
+    Answer:
+    """
     )
 
     # 5. Load local LLM (via Ollama)

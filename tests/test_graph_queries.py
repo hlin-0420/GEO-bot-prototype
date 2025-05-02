@@ -12,10 +12,7 @@ from rag_pipeline import build_offline_chatbot
 # 🧠 Step 1: Warm up the model
 def warm_up_llm(qa_chain):
     print("🔥 Warming up LLM model (first dummy call)...")
-    _ = qa_chain.invoke({
-        "input": "This is a warm-up question. You can ignore this.",
-        "context": "Warm-up context."
-    })
+    _ = qa_chain.invoke({"input": "This is a warm-up question. You can ignore this."})
     time.sleep(2)
     print("✅ Warm-up complete.\n")
 
@@ -27,7 +24,7 @@ def load_and_prepare_content():
     return content
 
 # ❓ Step 3: Run sample questions
-def run_sample_questions(qa_chain, context):
+def run_sample_questions(qa_chain):
     questions = [
         "What features does the Template Creation Wizard enable?",
         "What does the ODF Template File (ODT) contain?",
@@ -43,21 +40,17 @@ def run_sample_questions(qa_chain, context):
     for q in questions:
         print(f"Question: {q}")
         start_time = time.time()
-        response = qa_chain.invoke({
-            "input": q,
-            "context": context
-        })
+        response = qa_chain.invoke({"input": q})  # ✅ Use dynamic retrieval
         duration = time.time() - start_time
         print(f"Answer: {response['answer'].strip()}")
-        print(f"⏱️ Time taken: {duration:.2f}")
-        # print(f"⏱️ Time taken: {duration:.2f} seconds\n{'-'*60}")
+        print(f"⏱️ Time taken: {duration:.2f} seconds\n{'-'*60}")
 
 # 🔁 Main Orchestrator
 def main():
     content = load_and_prepare_content()
     qa_chain = build_offline_chatbot(content)
-    warm_up_llm(qa_chain)
-    run_sample_questions(qa_chain, content)
+    # warm_up_llm(qa_chain)
+    run_sample_questions(qa_chain)
 
 if __name__ == "__main__":
     main()
