@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "Which tool helps to create ODF template files?",
+        "timestamp": "2025-05-02T11:21:47.970033Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The Template building wizard in GEO helps to create ODF template files.",
+        "timestamp": "2025-05-02T11:21:47.970033Z"
+    }
+]

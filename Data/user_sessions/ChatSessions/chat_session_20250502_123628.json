@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "Which tool helps to create ODF template files?",
+        "timestamp": "2025-05-02T12:37:15.479248Z"
+    },
+    {
+        "role": "assistant",
+        "content": "The GEONet Template Customization Service helps to create ODF template files.",
+        "timestamp": "2025-05-02T12:37:15.479248Z"
+    }
+]
