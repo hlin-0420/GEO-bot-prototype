@@ -561,8 +561,6 @@ class OllamaBot:
             base_directory (str): Path to the base directory containing .htm files.
         """
         global valid_model_names
-        # API Key initialisation##################
-        self.api_key = os.getenv("OPENAI_API_KEY")
         ##########################################
         # Storage Processing
         # Data Directory initialisation
@@ -587,7 +585,7 @@ class OllamaBot:
 
         # Step 1: Split web documents into manageable chunks
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=250, chunk_overlap=0
+            chunk_size=250, chunk_overlap=20
         )
         doc_splits = text_splitter.split_documents(self.web_documents)
 
@@ -599,7 +597,7 @@ class OllamaBot:
             documents=doc_splits,
             embedding=embedding_model,
         )
-        retriever = vectorstore.as_retriever(k=2)
+        retriever = vectorstore.as_retriever(k=3)
 
         # Step 4: Define prompt template for supported models
         if selected_model_name in valid_model_names:
@@ -638,21 +636,6 @@ class OllamaBot:
                 """,
                 input_variables=["question", "documents", "feedback"]
             )
-
-            # Save prompt visualisation for debugging or manual review
-            prompt_text = prompt.format(
-                question="<QUESTION_PLACEHOLDER>", 
-                documents="<DOCUMENTS_PLACEHOLDER>", 
-                feedback="<FEEDBACK_PLACEHOLDER>"
-            )
-            with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
-                file.write(prompt_text)
-
-            # Save second-to-last document for verification
-            if len(self.web_documents) > 1:
-                second_to_last_document = self.web_documents[-2].page_content
-                with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
-                    file.write(second_to_last_document)
 
             # Create the RAG chain
             rag_chain = prompt | self.llm_model | StrOutputParser()
