@@ -364,5 +364,17 @@
         "question": "Can an ODT be created from an existing ODF file?",
         "response_time": 43.16,
         "timestamp": "2025-04-29T16:14:20.232Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Which tool helps to create ODF template files?",
+        "response_time": 51.47,
+        "timestamp": "2025-05-02T10:21:48.008Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Which tool helps to create ODF template files?",
+        "response_time": 47.2,
+        "timestamp": "2025-05-02T11:37:15.506Z"
     }
 ]
