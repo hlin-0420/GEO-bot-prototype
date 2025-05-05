@@ -10,9 +10,10 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SKLearnVectorStore
-from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
+from langchain_ollama import OllamaEmbeddings
 import json
 from tabulate import tabulate
 import re
@@ -590,7 +591,7 @@ class OllamaBot:
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Step 2: Load the offline embedding model
-        embedding_model = HuggingFaceEmbeddings(model_name="./local_models/offline_model")
+        embedding_model = OllamaEmbeddings(model="llama3")
 
         # Step 3: Create vector store and retriever
         vectorstore = SKLearnVectorStore.from_documents(
@@ -1619,8 +1620,8 @@ def semantic_search_page():
     if request.method == 'POST':
         query = request.form.get('query', '').strip()
         if query:
-            model = SentenceTransformer("./local_models/offline_model")
-            embeddings = model.encode([query], convert_to_tensor=True)
+            # model = SentenceTransformer("./local_models/offline_model")
+            embeddings = OllamaEmbeddings(model="llama3")
 
             # Retrieve best matching documents from your RAG vector store
             retrieved_docs = rag_application.retriever.invoke(query)
