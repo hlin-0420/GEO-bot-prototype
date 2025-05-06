@@ -9,8 +9,9 @@ import os
 
 # Define root-relative template path
 TEMPLATE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates"))
+STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
 
-app = Flask(__name__, template_folder=TEMPLATE_PATH)
+app = Flask(__name__, template_folder=TEMPLATE_PATH, static_folder=STATIC_PATH)
 print("[DEBUG] Flask app instance created")
 
 # Register blueprints
