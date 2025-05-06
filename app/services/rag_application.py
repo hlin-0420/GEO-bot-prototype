@@ -10,12 +10,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "Data")
 FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback", "feedback_dataset.json")
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+MODEL_PATH = os.path.join(ROOT_DIR, "local_models", "offline_model")
+
 class RAGApplication:
     def __init__(self, retriever, rag_chain, web_documents):
         self.retriever = retriever
         self.rag_chain = rag_chain
         self.web_documents = web_documents  # Store the documents for feedback retrieval
-        self.feedback_model = SentenceTransformer("./local_models/offline_model")  # Embedding model for similarity
+        self.feedback_model = SentenceTransformer(MODEL_PATH)  # Embedding model for similarity
         self.feedback_data, self.feedback_embeddings = self._load_feedback()
 
     def _load_feedback(self):
