@@ -589,7 +589,7 @@ class OllamaBot:
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Step 2: Load the offline embedding model
-        embedding_model = OllamaEmbeddings(model="llama3")
+        embedding_model = OllamaEmbeddings(model="llama3.2:latest")
 
         # Step 3: Create vector store and retriever
         vectorstore = SKLearnVectorStore.from_documents(
@@ -1592,7 +1592,7 @@ def semantic_search_page():
         query = request.form.get('query', '').strip()
         if query:
             # model = SentenceTransformer("./local_models/offline_model")
-            embeddings = OllamaEmbeddings(model="llama3")
+            embeddings = OllamaEmbeddings(model="llama3.2:latest")
 
             # Retrieve best matching documents from your RAG vector store
             retrieved_docs = rag_application.retriever.invoke(query)
