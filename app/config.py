@@ -1,10 +1,12 @@
 import os
 
-# Project Base Directory
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(BASE_DIR)  # One level up to reach root
+# Get absolute path to the app/ directory (where config.py is)
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Data Directory
+# Project root (offline_app/)
+ROOT_DIR = os.path.abspath(os.path.join(APP_DIR, ".."))
+
+# Data Directory at the root level
 DATA_DIR = os.path.join(ROOT_DIR, "Data")
 
 # Session Directories
@@ -32,5 +34,6 @@ VALID_MODEL_NAMES = {"deepseek1.5", "llama3.2:latest", "openai"}
 DEBUG_MODE = True
 PORT = 5000
 
-selected_model_name = "llama3.2:latest"
-valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
+# Active model setting
+selected_model_name = DEFAULT_MODEL_NAME
+valid_model_names = VALID_MODEL_NAMES

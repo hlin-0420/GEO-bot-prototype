@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 import os, json, time, threading
 from app.services.ollama_bot import ai_bot
 from app.services.session_manager import save_chat_session
-from app.services.processor import process_question  # you may move this to its own service file
+from app.services.question_handler import process_question  # you may move this to its own service file
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
