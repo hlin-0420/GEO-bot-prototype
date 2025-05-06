@@ -338,4 +338,10 @@ class OllamaBot:
 
         return response
 
-ai_bot = OllamaBot()
+_ai_bot = None
+
+def get_bot():
+    global _ai_bot
+    if _ai_bot is None:
+        _ai_bot = OllamaBot()
+    return _ai_bot

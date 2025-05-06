@@ -1,7 +1,7 @@
 # app/routes/api.py
 from flask import Blueprint, request, jsonify
 import os, json, time, threading
-from app.services.ollama_bot import ai_bot
+from app.services.ollama_bot import get_bot
 from app.services.session_manager import save_chat_session
 from app.services.question_handler import process_question  # you may move this to its own service file
 from app import state  # import shared state
@@ -53,7 +53,7 @@ def ask():
         process_question_start_time = time.time()
         thread = threading.Thread(
             target=process_question_wrapper,
-            args=(current_id, question, ai_bot, selectedOptions)
+            args=(current_id, question, get_bot(), selectedOptions)
         )
         thread.start()
         thread.join()
