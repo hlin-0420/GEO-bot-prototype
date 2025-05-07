@@ -1,13 +1,16 @@
-print("[DEBUG] run.py started")
-
-import sys
 import os
-print(f"[DEBUG] Python version: {sys.version}")
+import platform
+
+print("[DEBUG] run.py started")
+print(f"[DEBUG] Python version: {platform.python_version()} ({platform.python_implementation()})")
 print(f"[DEBUG] Working directory: {os.getcwd()}")
 
-from app.main import app
-print("[DEBUG] Imported app from main.py")
+from app.main import create_app
+print("[DEBUG] main.py loaded")
+
+app = create_app()
+print("[DEBUG] Flask app created")
 
 if __name__ == "__main__":
-    print("[DEBUG] Launching Flask app")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    print("[DEBUG] Starting Flask app...")
+    app.run(debug=True)

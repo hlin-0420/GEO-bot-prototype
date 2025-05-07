@@ -1,12 +1,15 @@
-from flask import Blueprint, render_template, request, jsonify
-import os, json
-from app.config import DATA_DIR, TIMED_RESPONSES_FILE, FEEDBACK_FILE, CHAT_SESSIONS_DIR, selected_model_name
-from app.services.session_manager import load_chat_history, load_session_metadata, save_session_metadata
-from app.services.ollama_bot import get_bot
+from flask import Blueprint, render_template, jsonify, request
+import os
+import json
+from app.config import DATA_DIR, FEEDBACK_FILE
+from app.services.session_manager import load_chat_history
 from app.utils.file_helpers import process_file
 
 ui_blueprint = Blueprint('ui', __name__)
-ai_bot = get_bot()
+
+def get_ai_bot():
+    from app.services.ollama_bot import get_bot
+    return get_bot()
 
 @ui_blueprint.route('/')
 def index():
@@ -19,6 +22,40 @@ def feedback():
 @ui_blueprint.route('/chathistory')
 def chathistory():
     return render_template("chathistory.html")
+
+@ui_blueprint.route("/submit-feedback", methods=["POST"])
+def submit_feedback():
+    try:
+        data = request.json
+        comment = data.get("comment") or data.get("details") or ""
+        rating = data.get("rating")
+        response = data.get("response")
+        question = data.get("question")
+
+        feedback_entry = {
+            "question": question,
+            "response": response,
+            "feedback": comment,
+            "rating-score": rating
+        }
+
+        feedback_data = []
+        if os.path.exists(FEEDBACK_FILE):
+            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
+                try:
+                    feedback_data = json.load(file)
+                except json.JSONDecodeError:
+                    feedback_data = []
+
+        feedback_data.append(feedback_entry)
+        with open(FEEDBACK_FILE, "w", encoding="utf-8") as file:
+            json.dump(feedback_data, file, indent=4)
+
+        get_ai_bot().refresh()  # Safe call now
+        return jsonify({"message": "Thank you for your detailed feedback!"}), 200
+
+    except Exception:
+        return jsonify({"error": "Internal Server Error"}), 500
 
 @ui_blueprint.route('/chat-history', methods=['GET'])
 def get_chat_history():
@@ -36,3 +73,15 @@ def get_single_chat_session(session_id):
         return jsonify({"session_id": session_id, "messages": messages}), 200
     except Exception:
         return jsonify({"error": "Internal Server Error"}), 500
+
+@ui_blueprint.route("/upload", methods=["POST"])
+def upload():
+    if "file" not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    file = request.files["file"]
+    if file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
+    file_path = f"./Data/{file.filename}"
+    file.save(file_path)
+    result = process_file(file_path)
+    return jsonify({"message": result})

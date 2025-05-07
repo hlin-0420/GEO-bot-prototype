@@ -1,10 +1,11 @@
 from flask import Blueprint, request, jsonify
 import os, json
 from app.config import FEEDBACK_FILE, selected_model_name
-from app.services.ollama_bot import get_bot
 
 feedback_routes = Blueprint('feedback', __name__)
-ai_bot = get_bot()
+def get_ai_bot():
+    from app.services.ollama_bot import get_bot
+    return get_bot()
 
 @feedback_routes.route("/submit-feedback", methods=["POST"])
 def submit_feedback():
@@ -35,7 +36,7 @@ def submit_feedback():
         with open(FEEDBACK_FILE, "w", encoding="utf-8") as file:
             json.dump(feedback_data, file, indent=4)
 
-        ai_bot.refresh()
+        get_ai_bot().refresh()
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
 
     except Exception:
