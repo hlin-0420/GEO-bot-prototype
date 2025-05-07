@@ -1,8 +1,23 @@
 import os
 import json
 import pandas as pd
-from openpyxl import load_workbook
-from tabulate import tabulate
+import logging
+
+# Process uploaded file
+def process_file(file_path):
+    from app.services.ollama_bot import get_bot
+
+    print("***PROCESSING FILE***")
+    ai_bot = get_bot()
+    try:
+        print(f"Processing file: {file_path}")
+        with open(file_path, encoding="utf-8") as file:
+            content = file.read()
+            ai_bot.add(content)
+        return "File processed successfully."
+    except UnicodeDecodeError:
+        logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
+        return "Error: Invalid file encoding."
 
 def clean_dataframe(df):
     """
