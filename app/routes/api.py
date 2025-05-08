@@ -1,5 +1,5 @@
 # app/routes/api.py
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, Response
 import os, json, time, threading
 from app.services.ollama_bot import get_bot
 from app.services.session_manager import save_chat_session
@@ -7,6 +7,41 @@ from app.services.question_handler import process_question  # you may move this 
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
+
+@api_blueprint.route("/response/<question_id>", methods=["GET"])
+def get_response(question_id):
+    """
+    SSE endpoint for EventSource to fetch the response.
+    """
+    def generate_response():
+        while True:
+            response = state.pending_responses.get(question_id)
+
+            if response == "Processing" or response is None:
+                yield "data: Processing your question...\n\n"
+            elif response:
+                formatted_response = response.replace("\n", "<br>")
+                yield f"data: {formatted_response}\n\n"
+                break
+            else:
+                yield "data: Error: Invalid question ID\n\n"
+                break
+            time.sleep(1)
+
+    return Response(generate_response(), content_type="text/event-stream")
+
+@api_blueprint.route("/selection", methods=["GET"])
+def update_model_name():
+    model_name = request.args.get("model")  # Retrieve model name from URL parameters
+
+    if not model_name:
+        return jsonify({"error": "No model selected"}), 400
+
+    # Update the global variable (if it's mutable; else use global keyword and redefine)
+    selected_model_name = model_name
+    print(f"Selected model name: \"{selected_model_name}\".")
+
+    return jsonify({"message": f"Model updated to {model_name}"}), 200
 
 @api_blueprint.route("/ask", methods=["POST"])
 def ask():

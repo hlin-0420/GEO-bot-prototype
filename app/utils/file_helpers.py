@@ -2,6 +2,7 @@ import os
 import json
 import pandas as pd
 import logging
+from app.config import selected_model_name, EXCEL_FILE
 
 # Process uploaded file
 def process_file(file_path):
@@ -24,22 +25,6 @@ def clean_dataframe(df):
     Replace NaN, None, or other invalid values with an empty string in the given DataFrame.
     """
     return df.fillna("").replace({None: ""})
-
-def append_to_excel(question, response, excel_file, model_name):
-    """
-    Append a new question and response row to the Excel file.
-    """
-    new_entry = pd.DataFrame([[question, model_name, response]], columns=["Question", "Model Name", "Response"])
-
-    if not os.path.exists(excel_file):
-        with pd.ExcelWriter(excel_file, engine="openpyxl") as writer:
-            new_entry.to_excel(writer, index=False)
-    else:
-        existing_data = pd.read_excel(excel_file)
-        updated_data = pd.concat([existing_data, new_entry], ignore_index=True)
-        with pd.ExcelWriter(excel_file, engine="openpyxl", mode='w') as writer:
-            updated_data.to_excel(writer, index=False)
-            auto_adjust_column_width(writer, updated_data)
 
 def auto_adjust_column_width(writer, df):
     """
@@ -65,3 +50,15 @@ def load_json(filepath):
             return json.load(f)
         except json.JSONDecodeError:
             return []
+        
+def append_to_excel(question, response):
+    """Append question and response to the Excel file."""
+    new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
+
+    if not os.path.exists(EXCEL_FILE):
+        with pd.ExcelWriter(EXCEL_FILE, engine="openpyxl") as writer:
+            new_entry.to_excel(writer, index=False)
+    else:
+        existing_data = pd.read_excel(EXCEL_FILE)
+        updated_data = pd.concat([existing_data, new_entry], ignore_index=True)
+        updated_data.to_excel(EXCEL_FILE, index=False)

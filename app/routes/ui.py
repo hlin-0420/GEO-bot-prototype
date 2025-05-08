@@ -4,6 +4,8 @@ import json
 from app.config import DATA_DIR, FEEDBACK_FILE
 from app.services.session_manager import load_chat_history
 from app.utils.file_helpers import process_file
+from app.services.rag_application import RAGApplication  
+from langchain.embeddings import OllamaEmbeddings  # or wherever you're sourcing this
 
 ui_blueprint = Blueprint('ui', __name__)
 
@@ -85,3 +87,18 @@ def upload():
     file.save(file_path)
     result = process_file(file_path)
     return jsonify({"message": result})
+
+@ui_blueprint.route('/semantic-search', methods=['GET', 'POST'])
+def semantic_search_page():
+    results = []
+    query = ""
+
+    if request.method == 'POST':
+        query = request.form.get('query', '').strip()
+        if query:
+
+            results = [
+                
+            ]
+
+    return render_template("semantic_search.html", results=results, query=query)

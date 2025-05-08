@@ -1,6 +1,6 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, send_from_directory
 import os, json
-from app.config import FEEDBACK_FILE, selected_model_name
+from app.config import FEEDBACK_FILE, selected_model_name, DATA_DIR
 
 feedback_routes = Blueprint('feedback', __name__)
 def get_ai_bot():
@@ -41,3 +41,7 @@ def submit_feedback():
 
     except Exception:
         return jsonify({"error": "Internal Server Error"}), 500
+
+@feedback_routes.route('/feedback_dataset.json', methods=["GET"])
+def feedback_data():
+    return send_from_directory(DATA_DIR, "feedback_dataset.json")
