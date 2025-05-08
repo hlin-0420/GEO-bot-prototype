@@ -4,8 +4,6 @@ import json
 from app.config import DATA_DIR, FEEDBACK_FILE
 from app.services.session_manager import load_chat_history
 from app.utils.file_helpers import process_file
-from app.services.rag_application import RAGApplication  
-from langchain.embeddings import OllamaEmbeddings  # or wherever you're sourcing this
 
 ui_blueprint = Blueprint('ui', __name__)
 
