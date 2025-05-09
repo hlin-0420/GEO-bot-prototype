@@ -1,3 +1,5 @@
+# app/routes/__init__.py
+
 print("[DEBUG] routes/__init__.py: starting blueprint imports")
 
 try:

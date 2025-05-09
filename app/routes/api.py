@@ -2,8 +2,7 @@
 from flask import Blueprint, request, jsonify, Response
 import os, json, time, threading
 from app.services.ollama_bot import get_bot
-from app.services.session_manager import save_chat_session
-from app.services.question_handler import process_question  # you may move this to its own service file
+from app.services.question_handler import process_question
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
@@ -46,8 +45,10 @@ def update_model_name():
 @api_blueprint.route("/ask", methods=["POST"])
 def ask():
     try:
+        print("📥 Received a POST request to /ask")
         data = request.json
         if not data:
+            print("⚠️ No JSON payload received")
             return jsonify({"error": "No JSON payload received"}), 400
 
         question = data.get("question", "").strip()
@@ -55,29 +56,47 @@ def ask():
         incoming_session_id = data.get("session_id")
 
         if not question:
+            print("⚠️ Question is empty")
             return jsonify({"error": "Question cannot be empty"}), 400
+
+        print(f"💬 User question: {question}")
+        print(f"🧾 Selected options: {selectedOptions}")
+        print(f"🔑 Incoming session ID: {incoming_session_id}")
 
         # Manage session ID and messages
         if incoming_session_id:
             if state.current_session_id != incoming_session_id:
+                print("🔄 Session ID changed, loading new session")
                 state.current_session_id = incoming_session_id
                 session_file = os.path.join("Data/user_sessions/ChatSessions", f"{state.current_session_id}.json")
 
                 if os.path.exists(session_file):
+                    print("📂 Loading existing session file")
                     with open(session_file, "r", encoding="utf-8") as f:
                         state.current_session_messages = json.load(f)
                 else:
+                    print("📁 No session file found, starting new session")
                     state.current_session_messages = []
         elif state.current_session_id is None:
             state.current_session_id = f"chat_session_{time.strftime('%Y%m%d_%H%M%S')}"
+            print(f"🆕 Created new session ID: {state.current_session_id}")
             state.current_session_messages = []
 
         state.current_session_messages.append({"role": "user", "content": question})
 
         def process_question_wrapper(*args):
-            start_time = time.time()
-            process_question(*args)
-            state.execution_time = time.time() - start_time
+            try:
+                start_time = time.time()
+                print("🚀 Starting question processing thread")
+                question_id, question, selectedOptions = args
+                print("📦 Calling get_bot()...")
+                bot = get_bot()
+                print("✅ get_bot() returned.")
+                process_question(question_id, question, bot, state.current_session_id, state.current_session_messages, state.stored_responses)
+                state.execution_time = time.time() - start_time
+                print(f"✅ Finished processing question in {state.execution_time:.4f} seconds")
+            except Exception as e:
+                print(f"❌ Error in thread: {str(e)}")
 
         with state.lock:
             current_id = str(state.question_id)
@@ -85,16 +104,18 @@ def ask():
 
         state.pending_responses[current_id] = "Processing..."
 
+        print(f"🆔 Assigned question ID: {current_id}")
+        print("🧠 Spawning background thread for processing...")
+
         process_question_start_time = time.time()
         thread = threading.Thread(
             target=process_question_wrapper,
-            args=(current_id, question, get_bot(), selectedOptions)
+            args=(current_id, question, selectedOptions)
         )
         thread.start()
-        thread.join()
         process_time = time.time() - process_question_start_time
 
-        print(f"⏱️ Process time: {process_time:.4f} seconds.")
+        print(f"⏱️ Returned response immediately after starting thread in {process_time:.4f} seconds")
 
         return jsonify({
             "question_id": current_id,
