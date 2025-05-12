@@ -43,13 +43,9 @@ def get_prompt_template():
         {documents}  
         ---
 
-        **Feedback:**  
-        {feedback}  
-        ---
-
         **Question:** {question}  
 
         **Your Optimized Answer:**  
         """,
-        input_variables=["question", "documents", "feedback"]
+        input_variables=["question", "documents"]
     )

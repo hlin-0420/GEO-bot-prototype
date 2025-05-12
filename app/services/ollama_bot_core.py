@@ -1,6 +1,6 @@
 from app.services.rag_application import RAGApplication
 from app.utils.file_helpers import auto_adjust_column_width
-from app.services.document_processor import DocumentProcessor
+from app.utils.html_file_loader import process_single_file
 # from app.services.document_processor.DocumentProcessor import extract_text, extract_list, extract_table_as_text_block
 from app.config import (
     PROCESSED_CONTENT_FILE,
@@ -23,7 +23,7 @@ import pandas as pd
 import os
 import logging
 import time
-from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
+from bs4 import XMLParsedAsHTMLWarning
 import warnings
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
@@ -118,70 +118,16 @@ class OllamaBot:
         """
         htm_files = list_htm_files(self.base_directory)
         logging.info(f"Found {len(htm_files)} .htm files.")
-        
-        if selectedOptions is None:
-            selectedOptions = ["text", "table", "list"]
-        
+        selectedOptions = selectedOptions or ["text", "table", "list"]
         # initialise empty training web documents.
         self.web_documents = []
-        
-        page_texts = []
 
         for file_path in htm_files:
             try:
-                with open(file_path, encoding="utf-8") as file:
-                    content = file.read()
-                    
-                    # ignore the redundant header section from content
-                    content = content[content.find("<body>")+6:content.find("</body>")]
-                    
-                    soup = BeautifulSoup(content, "html.parser")
-                    
-                    page_links = [a['href'] for a in soup.find_all('a', href=True)]
-                                                
-                    if "text" in selectedOptions:
-                        clean_text = DocumentProcessor.extract_text(soup)
-                    else:
-                        clean_text = "" # when the text, table, or list is empty. 
-                    
-                    if "table" in selectedOptions:
-                        formatted_table = DocumentProcessor.extract_table_as_text_block(soup, file_path)
-                    else:
-                        formatted_table = ""    
-                    
-                    if list in selectedOptions:    
-                        lists = DocumentProcessor.extract_list(soup)
-                    else:
-                        lists = ""
-                        
-                    page_text = ""
-                    
-                    if clean_text != "":
-                        page_text += f"\n{clean_text}\n"
-                    
-                    if formatted_table != "":
-                        page_text += f"\n{formatted_table}\n"
-                        
-                    if lists != "":
-                        page_text += f"\n{lists}\n"
-                    
-                    page_texts.append(page_text)
-                    
-                    page_data = {
-                        'text': page_text,
-                        'link': page_links
-                    }
-                    
-                    page_name = os.path.basename(file_path)  # Extracts the file name, e.g., "example.htm"
-                    
-                    document = LangchainDocument(
-                        page_content=page_data['text'],
-                        metadata={
-                            'links': page_data['link'],
-                            'page_name': page_name
-                        }
-                    )
-                    self.web_documents.append(document)
+                doc = process_single_file(file_path, selectedOptions)
+                
+                if doc:
+                    self.web_documents.append(doc)
                     
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
