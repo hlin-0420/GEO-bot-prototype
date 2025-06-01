@@ -522,7 +522,7 @@ def extract_table_as_text_block(soup, file_path):
 
                 last_col = table.columns[-1]
 
-                table[last_col] = table[last_col].fillna("")
+                table.loc[:, last_col] = table[last_col].fillna("")
 
             table_count += 1
             formatted_table = tabulate(table, headers="keys", tablefmt="grid")
