@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, Response, send_from_directory, g
+from flask import Flask, request, jsonify, render_template, Response, g
 import logging
 import os
 import threading
@@ -34,14 +34,18 @@ import textwrap
 
 nltk.data.path.append('./local_models/nltk_data')
 
-os.environ["LOKY_MAX_CPU_COUNT"] = "5" # changing from 2 to 5 cores for simultaneous processing.
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 # tracks the current sessions in memory
 current_session_id = None
 current_session_messages = []
 
-valid_model_names = {"deepseek1.5", "llama3.2:latest", "openai"}
+valid_model_names = {
+    "deepseek1.5",
+    "llama3.2:latest",
+    "tinyllama:latest",
+    "gemma3:1b"
+}
 # Initialize the selected bot. 
 app = Flask(__name__)
 
@@ -780,11 +784,6 @@ def upload():
         result = process_file(file_path)
         print(f"Processed result: {result}")
         return jsonify({"message": result})
-
-
-def check_selected_options(selectedOptions):
-    expected_options = ["text", "table", "list"]
-    return set(selectedOptions) == set(expected_options)
 
 def save_chat_session(session_id, messages):
     # Use a module-level constant or ensure directory creation happens once (outside the function) if possible
