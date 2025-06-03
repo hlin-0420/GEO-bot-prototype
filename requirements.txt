@@ -18,3 +18,5 @@ nltk
 requests
 re  # stdlib, but often mentioned for clarity
 textwrap  # stdlib
+python-dotenv
+

@@ -1,6 +1,11 @@
 # src/config.py
 import os
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional dependency
+    def load_dotenv(*_args, **_kwargs):
+        """Fallback no-op if python-dotenv is not installed."""
+        pass
 
 # Load variables from .env
 load_dotenv()

@@ -1,5 +1,26 @@
 from config import *
-from bs4 import BeautifulSoup
+try:
+    from bs4 import BeautifulSoup  # type: ignore
+except ImportError:  # pragma: no cover - optional dependency
+    from html.parser import HTMLParser
+
+    class _FallbackParser(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.parts = []
+
+        def handle_data(self, data):
+            self.parts.append(data)
+
+    def BeautifulSoup(html, parser="html.parser"):
+        p = _FallbackParser()
+        p.feed(html)
+
+        class _Doc:
+            def get_text(self, separator="\n"):
+                return separator.join(p.parts)
+
+        return _Doc()
 import re
 
 def select_relevant_sentences(text, question, top_k=5):
