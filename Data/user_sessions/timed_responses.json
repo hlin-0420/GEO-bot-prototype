@@ -382,5 +382,11 @@
         "question": "How many types of GEO limits are there in the GEO help guide?",
         "response_time": 47.67,
         "timestamp": "2025-06-03T08:30:09.721Z"
+    },
+    {
+        "question_number": "1",
+        "question": "How many types of geo limits are there?",
+        "response_time": 59.79,
+        "timestamp": "2025-06-03T13:34:53.062Z"
     }
 ]

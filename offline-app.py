@@ -83,6 +83,8 @@ DATA_DIR = os.path.join(BASE_DIR, "Data")
 EXCEL_FILE = os.path.join(DATA_DIR, "evaluation", "query_responses.xlsx")
 EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "evaluation", "expected_query_responses.xlsx")
 
+# Feedback
+FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback", "feedback_dataset.json")
 # Model files
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "model_files", "processed_content.txt")
@@ -292,8 +294,13 @@ class RAGApplication:
     def __init__(self, retriever, rag_chain, web_documents):
         self.retriever = retriever
         self.rag_chain = rag_chain
-        self.web_documents = web_documents  # Store the documents
+        self.web_documents = web_documents  # Store the documents for feedback retrieval
         self.feedback_model = SentenceTransformer("./local_models/offline_model")  # Embedding model for similarity
+        self.feedback_data, self.feedback_embeddings = self._load_feedback()
+
+    def _load_feedback(self):
+        """Loads feedback from file and precomputes embeddings to optimize retrieval."""
+        if not os.path.exists(FEEDBACK_FILE):
 
     def run(self, question):
         """Runs the RAG retrieval and generates a response with detailed runtime analysis."""
