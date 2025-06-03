@@ -6,7 +6,7 @@ A chatbot application for querying geological data using LLMs (Llama 3.2, Deepse
 
 ### ✅ System Requirements
 - **Operating System:** Windows 10/11
-- **Python Version:** 3.11+
+- **Python Version:** 3.13
 - **Recommended Environment:** Virtual Environment (`venv`)
 
 ---
