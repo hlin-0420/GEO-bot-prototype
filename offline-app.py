@@ -301,6 +301,10 @@ class RAGApplication:
     def _load_feedback(self):
         """Loads feedback from file and precomputes embeddings to optimize retrieval."""
         if not os.path.exists(FEEDBACK_FILE):
+            with open(FEEDBACK_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f)  # Initialize an empty list
+        with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
 
     def run(self, question):
         """Runs the RAG retrieval and generates a response with detailed runtime analysis."""
