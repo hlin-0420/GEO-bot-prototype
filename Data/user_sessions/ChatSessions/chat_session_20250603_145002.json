@@ -1,0 +1,22 @@
+[
+    {
+        "role": "user",
+        "content": "How many types of GEO limits are there from the GEO limit table?",
+        "timestamp": "2025-06-03T14:52:15.840058Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to Table 1 from Data/html_files\\introduction\\Introduction\\GEO_Limits.htm, there are 8 types of GEO limits.",
+        "timestamp": "2025-06-03T14:52:15.840058Z"
+    },
+    {
+        "role": "user",
+        "content": "How many curves can you plot in GEO?",
+        "timestamp": "2025-06-03T14:52:15.840058Z"
+    },
+    {
+        "role": "assistant",
+        "content": "You can load up to 450 curves per data file.",
+        "timestamp": "2025-06-03T14:52:15.840058Z"
+    }
+]

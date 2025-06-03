@@ -585,6 +585,36 @@
     border-bottom: 1px solid #ddd;
   }
 
+  body.dark-mode .chat-sidebar-header {
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #444;
+    color: #f5f5f5;
+  }
+
+  body.dark-mode .chat-sidebar-header h3 {
+      color: #f5f5f5;
+  }
+
+  body.dark-mode .icon-button img {
+      filter: brightness(0.8);
+  }
+
+  body.dark-mode .close-sidebar-btn {
+      color: #f5f5f5;
+  }
+
+  /* Dark mode background for main chat panel */
+  body.dark-mode .chat-main {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+  }
+
+  /* Dark mode background for message container */
+  body.dark-mode #chatMessages {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+  }
+
   /* Common button styles to standardize all header buttons */
   .sidebar-header-btn {
     width: 32px;  /* Set uniform width */
@@ -1541,6 +1571,87 @@
   .dark-mode .chat-actions-row {
     background-color: #2c2c2c;
     border-top: 1px solid #555;
+  }
+
+  body.dark-mode .chat-message.user-message {
+    background-color: #3a3a3a;
+    color: #ffffff;
+  }
+
+  body.dark-mode .chat-message.ai-message {
+    background-color: #2f2f2f;
+    color: #e5e5e5;
+  }
+
+  body.dark-mode .chat-actions-row {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+  }
+
+  body.dark-mode .message-content {
+    color: #f0f0f0;
+  }
+
+  body.dark-mode .chat-timestamp {
+    color: #bbbbbb;
+  }
+
+  body.dark-mode button, 
+  body.dark-mode input[type="text"] {
+    background-color: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
+  }
+
+  body.dark-mode ::-webkit-scrollbar {
+    background-color: #2c2c2c;
+  }
+  body.dark-mode ::-webkit-scrollbar-thumb {
+    background-color: #555;
+  }
+
+  body.dark-mode .border {
+    border-color: #555 !important;
+  }
+
+  .dark-mode input:focus, .dark-mode textarea:focus {
+    border-color: #888;
+    box-shadow: 0 0 4px rgba(200, 200, 255, 0.3);
+  }
+
+  /* Light mode (default) */
+  .navbar-dropdown {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Optional: style the options too */
+  .navbar-dropdown option {
+    background-color: white;
+    color: black;
+  }
+
+  /* Dark mode */
+  body.dark-mode .navbar-dropdown {
+    background-color: #333;
+    color: #f5f5f5;
+    border: 1px solid #555;
+  }
+
+  /* Dark mode options */
+  body.dark-mode .navbar-dropdown option {
+    background-color: #333;
+    color: #f5f5f5;
+  }
+
+  .navbar-dropdown:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(100, 150, 250, 0.4);
   }
 
   /* Default (light mode) feedback styling */
