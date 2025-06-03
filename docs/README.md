@@ -51,7 +51,7 @@ pip install -r requirements.txt
 This project uses **Llama 3.2, Deepseek 1.5, and OpenAI models**. Install them using:
 ```sh
 ollama pull llama3.2:latest
-ollama pull deepseek-r1:1.5b
+ollama pull deepseek1.5
 ```
 > ⚠️ **Note**: OpenAI models are **not** available via `ollama pull`.  
 > Instead, configure OpenAI API by setting an environment variable:
