@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify, Response
 import os, json, time, threading
 from app.services.ollama_bot import get_bot
 from app.services.question_handler import process_question
+from app.config import selected_model_name  # import active model setting
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
@@ -31,12 +32,13 @@ def get_response(question_id):
 
 @api_blueprint.route("/selection", methods=["GET"])
 def update_model_name():
+    global selected_model_name
+
     model_name = request.args.get("model")  # Retrieve model name from URL parameters
 
     if not model_name:
         return jsonify({"error": "No model selected"}), 400
 
-    # Update the global variable (if it's mutable; else use global keyword and redefine)
     selected_model_name = model_name
     print(f"Selected model name: \"{selected_model_name}\".")
 
