@@ -73,7 +73,7 @@ python offline-app.py
 
 > ✅ **Before running**, make sure **Ollama is open** to enable the chatbot's connection with the model.
 
-####  **7⃣ Install and Build Documentation**
+####  **Optional 7⃣ Install and Build Documentation**
 
 Sphinx generates the documentation through the following steps:
 1. Install Sphinx and its required themes:
@@ -110,8 +110,10 @@ make html
   ```
   If no models appear, re-run:
   ```sh
-  ollama pull llama3:latest
-  ollama pull deepseek:1.5
+  ollama pull llama3.2:latest
+  ollama pull deepseek1.5
+  ollama pull tinyllama:latest
+  ollama pull gemma3:1b
   ```
 
 #### ❌ **Flask App Not Starting?**

@@ -1,13 +1,11 @@
 flask
 beautifulsoup4
-bs4  # Optional; usually bundled with beautifulsoup4, but kept for compatibility
 pandas
 langchain
 langchain-community
 langchain-huggingface
 langchain-ollama
 langchain-core
-datasets>=2.6.1
 sentence-transformers>=3.0.0
 tabulate
 json5
@@ -17,9 +15,6 @@ openpyxl
 numpy
 rapidfuzz
 nltk
-rouge-score
 requests
-youtube-transcript-api
-spacy
-networkx
-matplotlib
+re  # stdlib, but often mentioned for clarity
+textwrap  # stdlib
