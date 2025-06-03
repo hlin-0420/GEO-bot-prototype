@@ -376,5 +376,11 @@
         "question": "Which tool helps to create ODF template files?",
         "response_time": 47.2,
         "timestamp": "2025-05-02T11:37:15.506Z"
+    },
+    {
+        "question_number": "1",
+        "question": "How many types of GEO limits are there in the GEO help guide?",
+        "response_time": 47.67,
+        "timestamp": "2025-06-03T08:30:09.721Z"
     }
 ]

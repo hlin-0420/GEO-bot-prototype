@@ -10,10 +10,9 @@ from langchain.prompts import PromptTemplate
 from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import SKLearnVectorStore
-# from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
-from langchain_ollama import OllamaEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 import json
 from tabulate import tabulate
 import re
@@ -31,7 +30,7 @@ import secrets
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from concurrent.futures import ThreadPoolExecutor
+import textwrap
 
 nltk.data.path.append('./local_models/nltk_data')
 
@@ -79,9 +78,6 @@ DATA_DIR = os.path.join(BASE_DIR, "Data")
 # Evaluation files
 EXCEL_FILE = os.path.join(DATA_DIR, "evaluation", "query_responses.xlsx")
 EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "evaluation", "expected_query_responses.xlsx")
-
-# Feedback
-FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback", "feedback_dataset.json")
 
 # Model files
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visualisation.txt")
@@ -292,76 +288,8 @@ class RAGApplication:
     def __init__(self, retriever, rag_chain, web_documents):
         self.retriever = retriever
         self.rag_chain = rag_chain
-        self.web_documents = web_documents  # Store the documents for feedback retrieval
+        self.web_documents = web_documents  # Store the documents
         self.feedback_model = SentenceTransformer("./local_models/offline_model")  # Embedding model for similarity
-        self.feedback_data, self.feedback_embeddings = self._load_feedback()
-
-    def _load_feedback(self):
-        """Loads feedback from file and precomputes embeddings to optimize retrieval."""
-        if not os.path.exists(FEEDBACK_FILE):
-            logging.warning("⚠️ No feedback file found.")
-            return [], []
-
-        try:
-            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
-                feedback_data = json.load(file)  # Load feedback JSON array
-        except json.JSONDecodeError:
-            logging.error("⚠️ Error decoding feedback JSON file. Returning empty feedback.")
-            return [], []
-
-        extracted_feedback = [
-            {
-                "question": entry["question"],
-                "feedback": entry["feedback"],
-                "rating": int(entry.get("rating-score", 0))
-            }
-            for entry in feedback_data if "question" in entry and "feedback" in entry
-        ]
-
-        if not extracted_feedback:
-            logging.warning("⚠️ No valid feedback extracted.")
-            return [], []
-
-        # Compute embeddings in parallel
-        with ThreadPoolExecutor() as executor:
-            feedback_embeddings = list(executor.map(
-                lambda fb: self.feedback_model.encode(fb["question"], convert_to_tensor=True),
-                extracted_feedback
-            ))
-
-        return extracted_feedback, feedback_embeddings
-        
-    def _get_relevant_feedback(self, question, top_k=3):
-        """Retrieve the most relevant feedback based on semantic similarity."""
-        if not self.feedback_data:
-            return ""
-
-        # Compute embedding for the new question
-        question_embedding = self.feedback_model.encode(question, convert_to_tensor=True)
-
-        # Compute cosine similarities
-        similarities = np.array([
-            util.pytorch_cos_sim(question_embedding, fb_emb)[0].item()
-            for fb_emb in self.feedback_embeddings
-        ])
-
-        # Get indices of top-k similar feedback
-        top_indices = similarities.argsort()[-top_k:][::-1]
-
-        # Extract unique questions while maintaining order
-        selected_feedback = []
-        unique_questions = set()
-
-        for idx in top_indices:
-            fb = self.feedback_data[idx]
-            base_question = fb["question"].lower().strip("?")
-            if base_question not in unique_questions:
-                selected_feedback.append(fb["feedback"])
-                unique_questions.add(base_question)
-            if len(selected_feedback) >= top_k:
-                break
-
-        return "\n".join(selected_feedback) if selected_feedback else ""
 
     def run(self, question):
         """Runs the RAG retrieval and generates a response with detailed runtime analysis."""
@@ -376,21 +304,11 @@ class RAGApplication:
 
         doc_texts = "\n".join(doc.page_content for doc in documents)
 
-        # Step 2: Retrieve relevant feedback
-        feedback_start_time = time.perf_counter()
-        feedback_texts = self._get_relevant_feedback(question)
-        feedback_end_time = time.perf_counter()
-        feedback_time = feedback_end_time - feedback_start_time
-
-        if not feedback_texts.strip():
-            logging.warning("⚠️ No feedback found for this query.")
-
         # Step 3: Generate the answer using the updated prompt format
         response_start_time = time.perf_counter()
         response = self.rag_chain.invoke({
             "question": question,
             "documents": doc_texts,
-            "feedback": feedback_texts,
             "stream": True
         })
         response_end_time = time.perf_counter()
@@ -402,18 +320,10 @@ class RAGApplication:
         # Logging detailed runtime analysis
         logging.info(f"🕒 RAG Execution Time Breakdown:")
         logging.info(f"   - Document Retrieval Time: {retrieval_time:.4f} seconds")
-        logging.info(f"   - Feedback Extraction Time: {feedback_time:.4f} seconds")
         logging.info(f"   - Response Generation Time: {response_time:.4f} seconds")
         logging.info(f"   - Total Execution Time: {total_execution_time:.4f} seconds")
 
         return response
-
-def load_feedback_dataset():
-    if not os.path.exists(FEEDBACK_FILE):
-        with open(FEEDBACK_FILE, "w", encoding="utf-8") as f:
-            json.dump([], f)  # Initialize an empty list
-    with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 def auto_adjust_column_width(writer, df):
     """ Auto-adjusts column width based on the max length of cell content in each column """
@@ -589,7 +499,7 @@ class OllamaBot:
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Step 2: Load the offline embedding model
-        embedding_model = OllamaEmbeddings(model="llama3.2:latest")
+        embedding_model = HuggingFaceEmbeddings(model_name="thenlper/gte-small")
 
         # Step 3: Create vector store and retriever
         vectorstore = SKLearnVectorStore.from_documents(
@@ -602,38 +512,27 @@ class OllamaBot:
         if selected_model_name in valid_model_names:
             prompt = PromptTemplate(
                 template="""
-                You are an AI assistant designed to help users navigate the GEO application.
+                You are an AI assistant designed to help users learn how to use the GEO Help Guide. 
 
                 **Context:**  
                 GEO is a well log authoring, analysis, and reporting system for petroleum geologists, geoscientists, and engineers.  
-                Answer the user's question using **only** the provided documents.  
+                Answer the user's question using reasoning and logic supported by the information from the Help Documents. 
 
-                **Instructions:**  
-                - Use information from the **Documents** section to generate your response.  
+                **Instructions:**
+                - Use information from the **Documents** section to guide how you write your responses.   
                 - Provide a **direct**, **concise**, and **factual** answer. 
-                - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
-                - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
-                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.  
-
-                **Feedback Guidelines:**  
-                - Review past user feedback under the **Feedback** section.  
-                - If feedback suggests improvements, apply them before finalizing your response.  
-                - Adjust your wording, structure, or level of detail based on feedback.  
+                - **Avoid** speculative or unnecessary **explanations** or **justifications**.   
 
                 ---
                 **Documents:**  
                 {documents}  
                 ---
 
-                **Feedback:**  
-                {feedback}  
-                ---
-
                 **Question:** {question}  
 
                 **Your Optimized Answer:**  
                 """,
-                input_variables=["question", "documents", "feedback"]
+                input_variables=["question", "documents"]
             )
 
             # Create the RAG chain
@@ -659,53 +558,6 @@ class OllamaBot:
                     relative_path = os.path.relpath(os.path.join(root, file), start=self.base_directory)
                     htm_files.append(self.base_directory + "/" + relative_path)
         return htm_files
-    
-    def _load_feedback_into_documents_and_file(self, page_texts):
-        """
-        Loads feedback from feedback_dataset.json, formats it, and appends it to documents and processed_content.txt.
-        This ensures feedback is properly separated with '---Feedback---' for easy retrieval during RAG training.
-        """
-
-        feedback_data = load_feedback_dataset()
-        feedback_heading = "---Feedback---"
-
-        # Collect formatted feedback for processed_content.txt
-        formatted_feedback_blocks = []
-
-        for feedback_entry in feedback_data:
-            # Convert feedback entry to pretty JSON
-            json_feedback = json.dumps(feedback_entry, indent=4)
-
-            # Create full feedback block with header
-            formatted_feedback = f"{feedback_heading}\n{json_feedback}\n"
-            formatted_feedback_blocks.append(formatted_feedback)
-
-            # Insert into document store (Langchain or Haystack) depending on model
-            if self.web_documents:
-                last_document = self.web_documents[-1]
-
-                if last_document.page_content.startswith(feedback_heading):
-                    # Append to the existing feedback document
-                    last_document.page_content += f"\n{json_feedback}\n"
-                else:
-                    # Create new feedback document if none exists
-                    new_document = LangchainDocument(page_content=formatted_feedback)
-                    self.web_documents.append(new_document)
-            else:
-                # Handle case where no documents exist (first-time load)
-                new_document = LangchainDocument(page_content=formatted_feedback)
-                self.web_documents.append(new_document)
-
-            # For processed_content.txt, add just the JSON feedback (without header)
-            page_texts.append(formatted_feedback)
-
-        # Combine all page texts into final output and write to processed_content.txt
-        temp_page_texts = "\n\n".join(page_texts)
-
-        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
-            file.write(temp_page_texts)
-
-        logging.info(f"Processed content (including feedback) saved to {PROCESSED_CONTENT_FILE}")
         
     def _load_content(self, selectedOptions=None):
         """
@@ -780,8 +632,6 @@ class OllamaBot:
                     
             except UnicodeDecodeError:
                 logging.error(f"Could not read the file {file_path}. Check the file encoding.")
-
-        self._load_feedback_into_documents_and_file(page_texts)
 
         logging.info(f"Processed content saved to {PROCESSED_CONTENT_FILE}")
 
@@ -881,32 +731,6 @@ def process_file(file_path):
         logging.error(f"Error: Could not read the file {file_path}. Please check the file encoding.")
         return "Error: Invalid file encoding."
 
-def append_feedback(feedback_entry):
-    try:
-        # Check if the file exists and is non-empty
-        if os.path.exists(FEEDBACK_FILE) and os.path.getsize(FEEDBACK_FILE) > 0:
-            with open(FEEDBACK_FILE, "r", encoding="utf-8") as f:
-                try:
-                    data = json.load(f)  # Load existing data
-                    if not isinstance(data, list):  # Ensure it's a list
-                        data = []
-                except json.JSONDecodeError:
-                    data = []  # If there's a parsing error, start fresh
-        else:
-            data = []  # Initialize an empty list if file doesn't exist or is empty
-
-        # Append new entry
-        data.append(feedback_entry)
-
-        # Write back as a proper JSON list
-        with open(FEEDBACK_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2)  # Pretty formatting for readability
-
-        print("Feedback appended successfully!")
-
-    except Exception as e:
-        print(f"Error while appending feedback: {e}")
-
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -923,36 +747,18 @@ def submitFeedback():
         rating = data.get("rating")
         response = data.get("response")
         question = data.get("question")
-
-        # if not details and not question:
-        #     return jsonify({"error": "Both feedback details and question details are required"}), 400
-
-        feedback_entry = {
-            "model-name": selected_model_name,
-            "question": question,
-            "response": response,
-            "feedback": comment,
-            "rating-score": rating
-        }
         
-        # Write data_string to feedback file without overwriting existing contents
-        feedback_data = []
-        if os.path.exists(FEEDBACK_FILE):
-            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
-                try:
-                    feedback_data = json.load(file)
-                except json.JSONDecodeError:
-                    feedback_data = []  # Initialize as empty list if file is corrupted
-        
-        feedback_data.append(feedback_entry)
-        
-        with open(FEEDBACK_FILE, "w", encoding="utf-8") as file:
-            json.dump(feedback_data, file, indent=4)
-            
-        # reload the contents
-        ai_bot._load_content()
-        # retrains the application whenever new training data is updated.
-        ai_bot._initialize_rag_application()
+        # Beautified print statements
+        print("\n" + "="*60)
+        print("📌 Question:")
+        print(textwrap.fill(question or "N/A", width=80))
+        print("\n💬 User Comment/Details:")
+        print(textwrap.fill(comment or "No comment provided.", width=80))
+        print("\n⭐ Rating:")
+        print(f"{rating if rating is not None else 'No rating given'}")
+        print("\n✅ Response:")
+        print(textwrap.fill(response or "No response available.", width=80))
+        print("="*60 + "\n")
         
         return jsonify({"message": "Thank you for your detailed feedback!"}), 200
     except Exception as e:
@@ -1193,14 +999,6 @@ def update_model_name():
     print(f"Selected model name: \"{selected_model_name}\".")
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
-
-@app.route('/feedback')
-def feedback():
-    return render_template('feedback.html')
-
-@app.route('/feedback_dataset.json')
-def feedback_data():
-    return send_from_directory(DATA_DIR, "feedback_dataset.json")
 
 @app.route("/view-file", methods=["GET"])
 def view_file():
@@ -1591,8 +1389,6 @@ def semantic_search_page():
     if request.method == 'POST':
         query = request.form.get('query', '').strip()
         if query:
-            # model = SentenceTransformer("./local_models/offline_model")
-            embeddings = OllamaEmbeddings(model="llama3.2:latest")
 
             # Retrieve best matching documents from your RAG vector store
             retrieved_docs = rag_application.retriever.invoke(query)

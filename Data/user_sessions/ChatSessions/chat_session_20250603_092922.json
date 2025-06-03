@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How many types of GEO limits are there in the GEO help guide?",
+        "timestamp": "2025-06-03T09:30:09.638266Z"
+    },
+    {
+        "role": "assistant",
+        "content": "According to Table 1 from Data/html_files\\introduction\\Introduction\\GEO_Limits.htm, there is only one type of GEO limit mentioned.",
+        "timestamp": "2025-06-03T09:30:09.638266Z"
+    }
+]
