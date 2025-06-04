@@ -9,7 +9,7 @@ import pandas as pd
 from langchain.prompts import PromptTemplate
 from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
+from langchain_community.vectorstores.faiss import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
@@ -32,7 +32,8 @@ import secrets
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from concurrent.futures import ThreadPoolExecutor
+import logging
+logging.getLogger("faiss").setLevel(logging.ERROR)
 
 nltk.data.path.append('/local_models/nltk_data')
 
@@ -294,123 +295,14 @@ def chathistory():
     return render_template("chathistory.html")
 
 class RAGApplication:
-    def __init__(self, retriever, rag_chain, web_documents):
+    def __init__(self, retriever, rag_chain):
         self.retriever = retriever
         self.rag_chain = rag_chain
-        self.web_documents = web_documents  # Store the documents for feedback retrieval
-        self.feedback_model = SentenceTransformer("./local_models/offline_model")  # Embedding model for similarity
-        self.feedback_data, self.feedback_embeddings = self._load_feedback()
-
-    def _load_feedback(self):
-        """Loads feedback from file and precomputes embeddings to optimize retrieval."""
-        if not os.path.exists(FEEDBACK_FILE):
-            logging.warning("⚠️ No feedback file found.")
-            return [], []
-
-        try:
-            with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
-                feedback_data = json.load(file)  # Load feedback JSON array
-        except json.JSONDecodeError:
-            logging.error("⚠️ Error decoding feedback JSON file. Returning empty feedback.")
-            return [], []
-
-        extracted_feedback = [
-            {
-                "question": entry["question"],
-                "feedback": entry["feedback"],
-                "rating": int(entry.get("rating-score", 0))
-            }
-            for entry in feedback_data if "question" in entry and "feedback" in entry
-        ]
-
-        if not extracted_feedback:
-            logging.warning("⚠️ No valid feedback extracted.")
-            return [], []
-
-        # Compute embeddings in parallel
-        with ThreadPoolExecutor() as executor:
-            feedback_embeddings = list(executor.map(
-                lambda fb: self.feedback_model.encode(fb["question"], convert_to_tensor=True),
-                extracted_feedback
-            ))
-
-        return extracted_feedback, feedback_embeddings
-        
-    def _get_relevant_feedback(self, question, top_k=3):
-        """Retrieve the most relevant feedback based on semantic similarity."""
-        if not self.feedback_data:
-            return ""
-
-        # Compute embedding for the new question
-        question_embedding = self.feedback_model.encode(question, convert_to_tensor=True)
-
-        # Compute cosine similarities
-        similarities = np.array([
-            util.pytorch_cos_sim(question_embedding, fb_emb)[0].item()
-            for fb_emb in self.feedback_embeddings
-        ])
-
-        # Get indices of top-k similar feedback
-        top_indices = similarities.argsort()[-top_k:][::-1]
-
-        # Extract unique questions while maintaining order
-        selected_feedback = []
-        unique_questions = set()
-
-        for idx in top_indices:
-            fb = self.feedback_data[idx]
-            base_question = fb["question"].lower().strip("?")
-            if base_question not in unique_questions:
-                selected_feedback.append(fb["feedback"])
-                unique_questions.add(base_question)
-            if len(selected_feedback) >= top_k:
-                break
-
-        return "\n".join(selected_feedback) if selected_feedback else ""
 
     def run(self, question):
-        """Runs the RAG retrieval and generates a response with detailed runtime analysis."""
-        
-        total_start_time = time.perf_counter()  # Start total execution timer
-        
-        # Step 1: Retrieve relevant documents
-        retrieval_start_time = time.perf_counter()
         documents = self.retriever.invoke(question)
-        retrieval_end_time = time.perf_counter()
-        retrieval_time = retrieval_end_time - retrieval_start_time
-
         doc_texts = "\n".join(doc.page_content for doc in documents)
-
-        # Step 2: Retrieve relevant feedback
-        feedback_start_time = time.perf_counter()
-        feedback_texts = self._get_relevant_feedback(question)
-        feedback_end_time = time.perf_counter()
-        feedback_time = feedback_end_time - feedback_start_time
-
-        if not feedback_texts.strip():
-            logging.warning("⚠️ No feedback found for this query.")
-
-        # Step 3: Generate the answer using the updated prompt format
-        response_start_time = time.perf_counter()
-        response = self.rag_chain.invoke({
-            "question": question,
-            "documents": doc_texts,
-            "feedback": feedback_texts,
-            "stream": True
-        })
-        response_end_time = time.perf_counter()
-        response_time = response_end_time - response_start_time
-
-        total_end_time = time.perf_counter()
-        total_execution_time = total_end_time - total_start_time
-
-        # Logging detailed runtime analysis
-        logging.info(f"🕒 RAG Execution Time Breakdown:")
-        logging.info(f"   - Document Retrieval Time: {retrieval_time:.4f} seconds")
-        logging.info(f"   - Feedback Extraction Time: {feedback_time:.4f} seconds")
-        logging.info(f"   - Response Generation Time: {response_time:.4f} seconds")
-        logging.info(f"   - Total Execution Time: {total_execution_time:.4f} seconds")
-
+        response = self.rag_chain.invoke({"question": question, "documents": doc_texts})
         return response
 
 def load_feedback_dataset():
@@ -466,427 +358,152 @@ def extract_text(soup):
         r'contact\s+us', r'click\s+(here|for)', r'guidance', r'help', r'support', r'assistance',
         r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more'
     ]
-    
     navigation_pattern = re.compile(r"|".join(navigation_keywords), re.IGNORECASE)
 
-    # Remove navigation-related text
+    # Remove navigation-related <p> tags
     for tag in soup.find_all("p"):
-        if navigation_pattern.search(tag.text):
+        if navigation_pattern.search(tag.get_text()):
             tag.decompose()
 
-    # Extract only meaningful paragraph text (excluding very short ones)
-    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if len(p.get_text(strip=True)) > 20]
-    
-    clean_text = "\n\n".join(paragraphs)
-    
+    # Add line breaks after key block-level tags to improve text separation
+    for tag in soup.find_all(['p', 'div', 'br', 'h1', 'h2', 'h3', 'h4', 'li']):
+        tag.append("\n")
+
+    # Extract raw text with inline spacing
+    raw_text = soup.get_text(separator=" ")
+
+    # Normalize all whitespace to single spaces
+    normalized_text = re.sub(r'\s+', ' ', raw_text).strip()
+
+    # Remove any occurrence of filler phrases (not just entire lines)
+    filler_patterns = [
+        r'GEO Help 8\.09\s*%',         # e.g. "GEO Help 8.09 %"
+        r'GEO Help 8\.09',             # e.g. "GEO Help 8.09"
+        r'End of search results\.?',   # e.g. "End of search results." or "End of search results"
+    ]
+    filler_regex = re.compile(r"|".join(filler_patterns), re.IGNORECASE)
+    normalized_text = filler_regex.sub('', normalized_text)
+
+    # Split into lines and filter short ones
+    lines = [
+        line.strip()
+        for line in normalized_text.splitlines()
+        if len(line.strip()) > 20
+    ]
+
+    clean_text = "\n\n".join(lines)
+
     return clean_text
 
 def extract_list(soup):
-    # Extract lists properly
     lists = []
-    for ul in soup.find_all("ul"):
-        items = [li.get_text(strip=True) for li in ul.find_all("li")]
-        lists.append(items)
-    return lists
+    for ul in soup.find_all(['ul', 'ol']):
+        items = [li.get_text(strip=True) for li in ul.find_all('li')]
+        if any(items):  # at least one item has content
+            lists.append(items)
+    return "\n".join(["• " + item for sublist in lists for item in sublist]) if lists else ""
 
 def extract_table_as_text_block(soup, file_path):
-    """
-    Extract tables from HTML as a single formatted text block for inclusion into page_text.
-    Skips navigation tables and handles no-table cases.
+    tables = soup.find_all("table")
+    output = []
+    for table in tables:
+        rows = []
+        for tr in table.find_all("tr"):
+            cols = [td.get_text(strip=True) for td in tr.find_all(['td', 'th'])]
+            row_text = " | ".join(cols).strip()
+            # Skip rows that are:
+            # 1. Completely empty
+            # 2. Only contain 'back' and/or 'forward'
+            # 3. Visually empty (like " | ")
+            if row_text and not all(cell.lower() in ("back", "forward") for cell in cols) and not re.fullmatch(r"(\s*\|\s*)+", row_text):
+                rows.append(row_text)
+        if rows:
+            output.append("\n".join(rows))
 
-    Args:
-        soup (BeautifulSoup): Parsed HTML.
-        file_path (str): Path to the file (for metadata).
+    combined_output = "\n\n".join(output)
+    
+    # Replace multiple blank lines with a single blank line
+    cleaned_output = re.sub(r'\n\s*\n+', '\n\n', combined_output)
 
-    Returns:
-        str: Formatted block of all tables from this file, or a message if no tables are found.
-    """
-    try:
-        tables = pd.read_html(file_path)
-
-        def is_navigation_table(table):
-            """Detect if table is a 'navigation-only' table with just 'back' and 'forward'."""
-            flattened = [str(cell).strip().lower() for cell in table.to_numpy().flatten()]
-            navigation_keywords = {"back", "forward"}
-            return set(flattened).issubset(navigation_keywords)
-        
-        def is_nan_only_table(table):
-            """Detect if the entire table only contains NaN values."""
-            return table.isna().all().all()
-
-        table_texts = []
-        table_count = 0
-
-        for idx, table in enumerate(tables):
-            if is_navigation_table(table) or is_nan_only_table(table):
-                continue
-            
-            if table.shape[1] == 2:
-                # Drop rows where both the second and third columns are NaN
-                table = table.dropna(how='all')
-
-                last_col = table.columns[-1]
-
-                table.loc[:, last_col] = table[last_col].fillna("")
-
-            table_count += 1
-            formatted_table = tabulate(table, headers="keys", tablefmt="grid")
-
-            beautified_table = f"""
-╔════════════════════════════════════════════════════╗
-║            📊 Table {table_count} from {file_path}              ║
-╚════════════════════════════════════════════════════╝
-
-{formatted_table}
-
-╔════════════════════════════════════════════════════╗
-║            🔚 End of Table {table_count}                       ║
-╚════════════════════════════════════════════════════╝
-"""
-            table_texts.append(beautified_table)
-
-        if not table_texts:
-            return ""
-
-        return "\n".join(table_texts)
-
-    except ValueError:
-        # No tables found case
-        return ""
-
+    return cleaned_output.strip() if cleaned_output else ""
 
 class OllamaBot:
     def __init__(self):
-        """
-        Initialize the OllamaBot with the specified model.
-        
-        Args:
-            model_name (str): Name of the Ollama model.
-            base_directory (str): Path to the base directory containing .htm files.
-        """
-        global valid_model_names
-        # API Key initialisation##################
-        self.api_key = os.getenv("OPENAI_API_KEY")
-        ##########################################
-        # Storage Processing
-        # Data Directory initialisation
-        self.base_directory = "Data"
-        self.web_documents = [] # stores the web documents for free tier models.
-        self._load_content() 
-        ####################
-        # Pipeline initialisation.
+        self.base_directory = DATA_DIR
+        self.web_documents = []
+        self._load_content()
         self.llm_model = ChatOllama(
             model=selected_model_name,
             temperature=0,
             num_predict=150
-        ) # initialises a free-tier model.
-        # Initialize RAG application globally
-        self._initialize_rag_application() # Generalised rag pipeline initialisation.
-        
-    def _initialize_rag_application(self):
-        """
-        Initializes the RAGApplication globally using LangChain components only.
-        """
-        global rag_application
-
-        # Step 1: Split web documents into manageable chunks
-        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=500,
-            chunk_overlap=20,
         )
+        self._initialize_rag_application()
+
+    def _initialize_rag_application(self):
+        global rag_application
+        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=500, chunk_overlap=20)
         doc_splits = text_splitter.split_documents(self.web_documents)
+        embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+        vectorstore = FAISS.from_documents(doc_splits, embedding_model)
 
-        # Step 2: Load the offline embedding model
-        embedding_model = HuggingFaceEmbeddings(model_name="./local_models/offline_model")
+        retriever = vectorstore.as_retriever(k=3)
+        prompt = PromptTemplate(
+            template="""
+            You are an AI assistant for the GEO application.
+            Use only the **Documents** below to help you answer the **Question** directly, concisely, and factually.
 
-        # Step 3: Create or load persistent vector store
-        if os.path.exists(FAISS_INDEX_PATH):
-            vectorstore = FAISS.load_local(
-                FAISS_INDEX_PATH,
-                embeddings=embedding_model,
-                allow_dangerous_deserialization=True,
-            )
-        else:
-            vectorstore = FAISS.from_documents(doc_splits, embedding_model)
-            vectorstore.save_local(FAISS_INDEX_PATH)
+            ---
+            **Documents:**
+            {documents}
+            ---
 
-        retriever = vectorstore.as_retriever(k=4)
+            **Question:** {question}
+            
+            **Answer:**
+            """,
+            input_variables=["question", "documents"]
+        )
+        rag_chain = prompt | self.llm_model | StrOutputParser()
+        rag_application = RAGApplication(retriever, rag_chain)
 
-        # Step 4: Define prompt template for supported models
-        if selected_model_name in valid_model_names:
-            prompt = PromptTemplate(
-                template="""
-                You are an AI assistant designed to help users navigate the GEO application.
-
-                **Context:**  
-                GEO is a well log authoring, analysis, and reporting system for petroleum geologists, geoscientists, and engineers.  
-                Answer the user's question using **only** the provided documents.  
-
-                **Instructions:**  
-                - Use information from the **Documents** section to generate your response.  
-                - Provide a **direct**, **concise**, and **factual** answer. 
-                - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
-                - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
-                - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.  
-
-                **Feedback Guidelines:**  
-                - Review past user feedback under the **Feedback** section.  
-                - If feedback suggests improvements, apply them before finalizing your response.  
-                - Adjust your wording, structure, or level of detail based on feedback.  
-
-                ---
-                **Documents:**  
-                {documents}  
-                ---
-
-                **Feedback:**  
-                {feedback}  
-                ---
-
-                **Question:** {question}  
-
-                **Your Optimized Answer:**  
-                """,
-                input_variables=["question", "documents", "feedback"]
-            )
-
-            # Save prompt visualisation for debugging or manual review
-            prompt_text = prompt.format(
-                question="<QUESTION_PLACEHOLDER>", 
-                documents="<DOCUMENTS_PLACEHOLDER>", 
-                feedback="<FEEDBACK_PLACEHOLDER>"
-            )
-            with open(PROMPT_VISUALISATION_FILE, "w", encoding="utf-8") as file:
-                file.write(prompt_text)
-
-            # Save second-to-last document for verification
-            if len(self.web_documents) > 1:
-                second_to_last_document = self.web_documents[-2].page_content
-                with open(UPLOADED_FILE, "w", encoding="utf-8") as file:
-                    file.write(second_to_last_document)
-
-            # Create the RAG chain
-            rag_chain = prompt | self.llm_model | StrOutputParser()
-
-            # Set the global application object
-            rag_application = RAGApplication(retriever, rag_chain, self.web_documents)
-
-        else:
-            raise ValueError(f"Model '{selected_model_name}' is not supported in this configuration.")
-
-    def _list_htm_files(self):
-        """
-        Recursively finds all .htm files in the base directory and its subdirectories.
-        
-        Returns:
-            list: A list of file paths relative to the base directory.
-        """
-        htm_files = []
-        for root, _, files in os.walk(self.base_directory):
-            for file in files:
-                if file.endswith(".htm"):
-                    relative_path = os.path.relpath(os.path.join(root, file), start=self.base_directory)
-                    htm_files.append(self.base_directory + "/" + relative_path)
-        return htm_files
-    
-    def _load_feedback_into_documents_and_file(self, page_texts):
-        """
-        Loads feedback from feedback_dataset.json, formats it, and appends it to documents and processed_content.txt.
-        This ensures feedback is properly separated with '---Feedback---' for easy retrieval during RAG training.
-        """
-
-        feedback_data = load_feedback_dataset()
-        feedback_heading = "---Feedback---"
-
-        # Collect formatted feedback for processed_content.txt
-        formatted_feedback_blocks = []
-
-        for feedback_entry in feedback_data:
-            # Convert feedback entry to pretty JSON
-            json_feedback = json.dumps(feedback_entry, indent=4)
-
-            # Create full feedback block with header
-            formatted_feedback = f"{feedback_heading}\n{json_feedback}\n"
-            formatted_feedback_blocks.append(formatted_feedback)
-
-            # Insert into document store (Langchain or Haystack) depending on model
-            if self.web_documents:
-                last_document = self.web_documents[-1]
-
-                if last_document.page_content.startswith(feedback_heading):
-                    # Append to the existing feedback document
-                    last_document.page_content += f"\n{json_feedback}\n"
-                else:
-                    # Create new feedback document if none exists
-                    new_document = LangchainDocument(page_content=formatted_feedback)
-                    self.web_documents.append(new_document)
-            else:
-                # Handle case where no documents exist (first-time load)
-                new_document = LangchainDocument(page_content=formatted_feedback)
-                self.web_documents.append(new_document)
-
-            # For processed_content.txt, add just the JSON feedback (without header)
-            page_texts.append(formatted_feedback)
-
-        # Combine all page texts into final output and write to processed_content.txt
-        temp_page_texts = "\n\n".join(page_texts)
-
-        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as file:
-            file.write(temp_page_texts)
-
-        logging.info(f"Processed content (including feedback) saved to {PROCESSED_CONTENT_FILE}")
-        
-    def _load_content(self, selectedOptions=None):
-        """
-        Load and process all .htm files from the base directory.
-        """
-        htm_files = self._list_htm_files()
-        logging.info(f"Found {len(htm_files)} .htm files.")
-        
-        if selectedOptions is None:
-            selectedOptions = ["text", "table", "list"]
-        
-        # initialise empty training web documents.
-        self.web_documents = []
-        
-        page_texts = []
-
+    def _load_content(self):
+        htm_files = [os.path.join(dp, f) for dp, _, filenames in os.walk(self.base_directory) for f in filenames if f.endswith(".htm")]
         for file_path in htm_files:
             try:
                 with open(file_path, encoding="utf-8") as file:
                     content = file.read()
-                    
-                    # ignore the redundant header section from content
-                    content = content[content.find("<body>")+6:content.find("</body>")]
-                    
                     soup = BeautifulSoup(content, "html.parser")
                     
-                    page_links = [a['href'] for a in soup.find_all('a', href=True)]
-                                                
-                    if "text" in selectedOptions:
-                        clean_text = extract_text(soup)
-                    else:
-                        clean_text = "" # when the text, table, or list is empty. 
-                    
-                    if "table" in selectedOptions:
-                        formatted_table = extract_table_as_text_block(soup, file_path)
-                    else:
-                        formatted_table = ""    
-                    
-                    if list in selectedOptions:    
-                        lists = extract_list(soup)
-                    else:
-                        lists = ""
+                    page_links = [a['href'] for a in soup.find_all('a', href=True)]                    
+                    clean_text = extract_text(soup)
+                    formatted_table = extract_table_as_text_block(soup, file_path)   
+                    lists = extract_list(soup)
                         
-                    page_text = ""
-                    
-                    if clean_text != "":
-                        page_text += f"\n{clean_text}\n"
-                    
-                    if formatted_table != "":
-                        page_text += f"\n{formatted_table}\n"
-                        
-                    if lists != "":
-                        page_text += f"\n{lists}\n"
-                    
-                    page_texts.append(page_text)
-                    
-                    page_data = {
-                        'text': page_text,
-                        'link': page_links
-                    }
-                    
-                    document = LangchainDocument(
-                        page_content=page_data['text'],
-                        metadata={
-                            'links': page_data['link'],
-                        }
-                    )
-                    self.web_documents.append(document)
+                    # Collect non-empty content parts
+                    page_text_parts = []
+                    for part in [clean_text, formatted_table, lists]:
+                        if part and part.strip():
+                            page_text_parts.append(part.strip())
+
+                    if page_text_parts:
+                        # Add file name header for debugging
+                        file_header = f"===== FILE: {file_path} ====="
+                        page_text = "\n\n".join([file_header] + page_text_parts)
+
+                        document = LangchainDocument(
+                            page_content=page_text,
+                            metadata={'links': page_links}
+                        )
+                        self.web_documents.append(document)
                     
             except UnicodeDecodeError:
-                logging.error(f"Could not read the file {file_path}. Check the file encoding.")
+                logging.warning(f"Could not read {file_path} due to encoding issues.")
 
-        self._load_feedback_into_documents_and_file(page_texts)
-
-        logging.info(f"Processed content saved to {PROCESSED_CONTENT_FILE}")
-
-    def add(self, content):
-        """
-        Add new content to the bot's memory.
-        
-        Args:
-            content (str): Content to add.
-        """
-        feedback_heading = "---Feedback---"
-        
-        new_document = LangchainDocument(page_content=content)
-        temp_documents = self.web_documents
-        
-        if temp_documents:
-            last_document = temp_documents[-1]
-            
-            if last_document.page_content.startswith(feedback_heading):
-                # Ensure there is at least one more document before inserting
-                if len(temp_documents) > 1:
-                    temp_documents.insert(len(temp_documents) - 1, new_document)
-                else:
-                    temp_documents.insert(0, new_document)
-            else:
-                temp_documents.append(new_document)
-            logging.info("New content added.")
-            
-            self.web_documents = temp_documents
-            
-        self._initialize_rag_application() # resets the initialisation to retrain model on updated information. 
-            
-    def get_model_type(self, model):
-        return model.model_name
+        with open(PROCESSED_CONTENT_FILE, "w", encoding="utf-8") as f:
+            f.write("\n\n".join([doc.page_content for doc in self.web_documents]))
 
     def query(self, question):
-        """
-        Query the bot and get a response.
-
-        Args:
-            question (str): The user's question.
-
-        Returns:
-            str: The response generated by the Ollama model.
-        """
-        global rag_application, EXCEL_FILE, selected_model_name  # Access the global variable
-
-        if rag_application is None:
-            logging.error("RAG application is not initialized.")
-            return "Error: RAG application is not initialized."
-
-        logging.info(f"Processing question: {question}")
-
-        # Step 1: Run the appropriate RAG process
-        rag_start_time = time.time()  # Start timing RAG application run
-        response = rag_application.run(question)  # Actual function execution
-        rag_execution_time = time.time() - rag_start_time  # Measure RAG execution time
-            
-        print(f"⏱️ The time taken to implement the `run` function of the RAG application is {rag_execution_time:.4f} seconds.")
-
-        # Step 2: Prepare new entry DataFrame
-        new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
-
-        # Step 3: Append to Excel (consolidated I/O operations)
-        if os.path.exists(EXCEL_FILE):
-            # Load once and append
-            existing_data = pd.read_excel(EXCEL_FILE, engine='openpyxl')
-            updated_data = pd.concat([existing_data, new_entry], ignore_index=True)
-        else:
-            # Just use the new entry if no file exists
-            updated_data = new_entry
-
-        # Write to Excel once (consolidated)
-        with pd.ExcelWriter(EXCEL_FILE, engine='openpyxl', mode='w') as writer:
-            updated_data.to_excel(writer, index=False)
-            auto_adjust_column_width(writer, updated_data)  # Optional - can be removed if speed is critical
-
-        return response
-
+        return rag_application.run(question)
 
 ai_bot = OllamaBot()
 pending_responses = {}

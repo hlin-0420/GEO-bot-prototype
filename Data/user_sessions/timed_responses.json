@@ -412,5 +412,53 @@
         "question": "Define a Canadian Well Log ASCII (CWLAS) file",
         "response_time": 27.71,
         "timestamp": "2025-06-04T12:55:00.682Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What is a GeoGraph Database file?",
+        "response_time": 23.4,
+        "timestamp": "2025-06-04T13:40:22.661Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What is a GeoGraph Database file?",
+        "response_time": 24.22,
+        "timestamp": "2025-06-04T13:50:44.522Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What is a GeoGraph Database file?",
+        "response_time": 28.01,
+        "timestamp": "2025-06-04T14:04:22.704Z"
+    },
+    {
+        "question_number": "2",
+        "question": "What is an ODF interval file?",
+        "response_time": 11.29,
+        "timestamp": "2025-06-04T14:06:09.282Z"
+    },
+    {
+        "question_number": "3",
+        "question": "What is the extension of ODF interval files?",
+        "response_time": 9.91,
+        "timestamp": "2025-06-04T14:06:51.603Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What is an ODF interval file?",
+        "response_time": 18.45,
+        "timestamp": "2025-06-04T14:14:04.715Z"
+    },
+    {
+        "question_number": "1",
+        "question": "List the extensions for ASCII type files",
+        "response_time": 11.27,
+        "timestamp": "2025-06-04T15:14:51.338Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What are the comments on the \"LAS\" type files?",
+        "response_time": 24.4,
+        "timestamp": "2025-06-04T15:15:55.337Z"
     }
 ]

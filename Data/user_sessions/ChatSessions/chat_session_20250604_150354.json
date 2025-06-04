@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What is an ODF interval file?",
+        "timestamp": "2025-06-04T15:14:04.682578Z"
+    },
+    {
+        "role": "assistant",
+        "content": "An OIF (Open File Interface) file contains a subset of the information found in an ODF (Open Document Format) file. Specifically, it includes:\n\n*   The 7000-8000ft depth range\n*   A compact database file that can be saved as an ODF file",
+        "timestamp": "2025-06-04T15:14:04.682578Z"
+    }
+]
