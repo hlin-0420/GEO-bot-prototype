@@ -6,7 +6,8 @@ from app.config import (
     PROCESSED_CONTENT_FILE,
     EXCEL_FILE,
     selected_model_name,
-    valid_model_names
+    valid_model_names,
+    FAISS_INDEX_PATH,
 )
 from app.services.ollama_bot_helpers import (
     list_htm_files,
@@ -18,7 +19,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import SKLearnVectorStore
+from langchain_community.vectorstores import FAISS
 import pandas as pd
 import os
 import logging
@@ -74,7 +75,8 @@ class OllamaBot:
             print("✂️ Splitting documents...")
             split_start = time.time()
             text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-                chunk_size=250, chunk_overlap=20
+                chunk_size=500,
+                chunk_overlap=20,
             )
             doc_splits = text_splitter.split_documents(self.web_documents)
             print(f"✅ Document split into {len(doc_splits)} chunks in {time.time() - split_start:.2f} seconds.")
@@ -89,15 +91,20 @@ class OllamaBot:
             print(f"✅ Embedding model initialized in {time.time() - embed_start:.2f} seconds.")
 
             # Step 3: Build vector store
-            print("📦 Creating vector store from document chunks...")
+            print("📦 Creating or loading vector store...")
             vector_start = time.time()
-            vectorstore = SKLearnVectorStore.from_documents(
-                documents=doc_splits,
-                embedding=embedding_model,
-            )
-            print(f"✅ Vector store created in {time.time() - vector_start:.2f} seconds.")
+            if os.path.exists(FAISS_INDEX_PATH):
+                vectorstore = FAISS.load_local(
+                    FAISS_INDEX_PATH,
+                    embeddings=embedding_model,
+                    allow_dangerous_deserialization=True,
+                )
+            else:
+                vectorstore = FAISS.from_documents(doc_splits, embedding_model)
+                vectorstore.save_local(FAISS_INDEX_PATH)
+            print(f"✅ Vector store ready in {time.time() - vector_start:.2f} seconds.")
 
-            retriever = vectorstore.as_retriever(k=3)
+            retriever = vectorstore.as_retriever(k=4)
 
             # Step 4: Build prompt
             if selected_model_name in valid_model_names:

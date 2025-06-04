@@ -9,7 +9,7 @@ import pandas as pd
 from langchain.prompts import PromptTemplate
 from langchain.schema import Document as LangchainDocument
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import SKLearnVectorStore
+from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
@@ -91,6 +91,7 @@ FEEDBACK_FILE = os.path.join(DATA_DIR, "feedback", "feedback_dataset.json")
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "model_files", "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "model_files", "uploaded_document.txt")
+FAISS_INDEX_PATH = os.path.join(DATA_DIR, "model_files", "faiss_index")
 
 # User session files
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "user_sessions", "ChatSessions")
@@ -590,19 +591,26 @@ class OllamaBot:
 
         # Step 1: Split web documents into manageable chunks
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=250, chunk_overlap=0
+            chunk_size=500,
+            chunk_overlap=20,
         )
         doc_splits = text_splitter.split_documents(self.web_documents)
 
         # Step 2: Load the offline embedding model
         embedding_model = HuggingFaceEmbeddings(model_name="./local_models/offline_model")
 
-        # Step 3: Create vector store and retriever
-        vectorstore = SKLearnVectorStore.from_documents(
-            documents=doc_splits,
-            embedding=embedding_model,
-        )
-        retriever = vectorstore.as_retriever(k=2)
+        # Step 3: Create or load persistent vector store
+        if os.path.exists(FAISS_INDEX_PATH):
+            vectorstore = FAISS.load_local(
+                FAISS_INDEX_PATH,
+                embeddings=embedding_model,
+                allow_dangerous_deserialization=True,
+            )
+        else:
+            vectorstore = FAISS.from_documents(doc_splits, embedding_model)
+            vectorstore.save_local(FAISS_INDEX_PATH)
+
+        retriever = vectorstore.as_retriever(k=4)
 
         # Step 4: Define prompt template for supported models
         if selected_model_name in valid_model_names:

@@ -25,6 +25,7 @@ EXPECTED_RESULTS_FILE = os.path.join(DATA_DIR, "evaluation", "expected_query_res
 PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visualisation.txt")
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "model_files", "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "model_files", "uploaded_document.txt")
+FAISS_INDEX_PATH = os.path.join(DATA_DIR, "model_files", "faiss_index")
 
 # Model Settings
 DEFAULT_MODEL_NAME = "llama3.2:latest"
