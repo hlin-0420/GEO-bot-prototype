@@ -44,7 +44,7 @@ current_session_messages = []
 
 valid_model_names = {
     "deepseek1.5",
-    "llama3.2:latest",
+    "llama3.2:1b",
     "tinyllama:latest",
     "gemma3:1b"
 }
@@ -72,7 +72,7 @@ def add_csp_headers(response):
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # initialise a default name for the models. 
-selected_model_name = "llama3.2:latest"
+selected_model_name = "llama3.2:1b"
 # initialise a variable to store the length of time taken to answer a question.
 answer_time = 0 # default time taken to answer a question.
 # Declare global variable
@@ -1610,7 +1610,7 @@ def generate_chat_title():
 
     # ✅ Modified prompt to enforce conciseness
     ollama_request = {
-        "model": "llama3.2:latest",
+        "model": "llama3.2:1b",
         "prompt": (
             "Generate a **very short, clear, and concise** title for this conversation."
             " Keep it **under 8 words** and make it **informative**:"

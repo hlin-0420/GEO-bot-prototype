@@ -400,5 +400,17 @@
         "question": "How many curves can you plot in GEO?",
         "response_time": 33.57,
         "timestamp": "2025-06-03T13:52:15.858Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What is a GeoGraph Database file and can it be exported?",
+        "response_time": 32.31,
+        "timestamp": "2025-06-04T12:53:36.909Z"
+    },
+    {
+        "question_number": "2",
+        "question": "Define a Canadian Well Log ASCII (CWLAS) file",
+        "response_time": 27.71,
+        "timestamp": "2025-06-04T12:55:00.682Z"
     }
 ]
