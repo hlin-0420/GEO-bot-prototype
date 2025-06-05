@@ -356,7 +356,8 @@ def extract_text(soup):
     # Define navigation-related keyword patterns
     navigation_keywords = [
         r'contact\s+us', r'click\s+(here|for)', r'guidance', r'help', r'support', r'assistance',
-        r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more'
+        r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more',
+        r'Click\s+here\s+to\s+see\s+this\s+page\s+in\s+full\s+context'
     ]
     navigation_pattern = re.compile(r"|".join(navigation_keywords), re.IGNORECASE)
 
@@ -375,19 +376,29 @@ def extract_text(soup):
     # Normalize all whitespace to single spaces
     normalized_text = re.sub(r'\s+', ' ', raw_text).strip()
 
+    # Remove consecutive duplicate multi-word phrases (e.g., "Contact Us Contact Us")
+    deduped_text = re.sub(
+        r'\b((?:\w+\s+){1,5}?\w+)\s+\1\b',
+        r'\1',
+        normalized_text,
+        flags=re.IGNORECASE
+    )
+
     # Remove any occurrence of filler phrases (not just entire lines)
     filler_patterns = [
         r'GEO Help 8\.09\s*%',         # e.g. "GEO Help 8.09 %"
         r'GEO Help 8\.09',             # e.g. "GEO Help 8.09"
         r'End of search results\.?',   # e.g. "End of search results." or "End of search results"
+        r'Click\s+here\s+to\s+see\s+this\s+page\s+in\s+full\s+context'
     ]
     filler_regex = re.compile(r"|".join(filler_patterns), re.IGNORECASE)
-    normalized_text = filler_regex.sub('', normalized_text)
+    
+    deduped_text = filler_regex.sub('', deduped_text)
 
     # Split into lines and filter short ones
     lines = [
         line.strip()
-        for line in normalized_text.splitlines()
+        for line in deduped_text.splitlines()
         if len(line.strip()) > 20
     ]
 
