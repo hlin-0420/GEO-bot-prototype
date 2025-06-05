@@ -434,19 +434,33 @@ def extract_text(soup):
 def extract_list(soup):
     lists = []
     for ul in soup.find_all(['ul', 'ol']):
-        items = [li.get_text(" ", strip=True) for li in ul.find_all('li')]
-        if any(items):
+        items = [
+            fix_run_together_entities(li.get_text(" ", strip=True))
+            for li in ul.find_all('li')
+            if li.get_text(strip=True) and len(li.get_text(strip=True).strip()) > 2
+        ]
+        if items:
             lists.extend(items)
 
-    # Fallback for standalone <li> items
+    # Fallback for stray <li> not in <ul>/<ol>
     if not lists:
-        items = [li.get_text(" ", strip=True) for li in soup.find_all('li')]
+        items = [
+            fix_run_together_entities(li.get_text(" ", strip=True))
+            for li in soup.find_all('li')
+            if li.get_text(strip=True) and len(li.get_text(strip=True).strip()) > 2
+        ]
         lists.extend(items)
 
     if lists:
-        bullets = ["• " + fix_run_together_entities(item) for item in lists]
-        text = "\n".join(bullets)
-        return fix_spacing_and_punctuation(text)
+        seen = set()
+        bullets = []
+        for item in lists:
+            key = item.lower().strip()
+            if key and key not in seen:
+                bullets.append("• " + item)
+                seen.add(key)
+        return "\n".join(bullets)
+
     return ""
 
 def extract_table_as_text_block(soup, file_path):
