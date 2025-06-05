@@ -383,6 +383,30 @@ def clean_bullet_lists(text):
         cleaned.append("• " + item)
     return "\n".join(cleaned)
 
+def full_cleaning_pipeline(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        html_content = file.read()
+    soup = BeautifulSoup(html_content, "html.parser")
+
+    # Clean main text
+    text = extract_text(soup)
+    text = fix_spacing_issues(text)
+    text = fix_run_together_entities(text)
+    text = fix_spacing_and_punctuation(text)
+    text = remove_short_filler_sentences(text)
+
+    # Clean bullet points
+    bullets = extract_list(soup)
+
+    # Extract formatted tables
+    tables = extract_table_as_text_block(soup, file_path)
+
+    # Combine all parts if they exist
+    parts = [part.strip() for part in [text, bullets, tables] if part and part.strip()]
+    cleaned_content = "\n\n".join(parts)
+
+    return cleaned_content
+
 def extract_text(soup):
     # Define navigation-related keyword patterns
     navigation_keywords = [
@@ -436,13 +460,26 @@ def extract_text(soup):
     deduped_text = re.sub(r'please accept our apologies\.?', '', deduped_text, flags=re.IGNORECASE)
 
     # Split into lines and filter short ones
-    lines = [
-        line.strip()
-        for line in deduped_text.splitlines()
-        if len(line.strip()) > 20
-    ]
+    # Force split on punctuation + line breaks
+    sentences = re.split(r'(?<=[.?!])\s+', deduped_text)
 
-    clean_text = "\n\n".join(lines)
+    # Create paragraphs if sentences are too disjointed
+    paragraphs = []
+    para = []
+    for sent in sentences:
+        sent = sent.strip()
+        if not sent:
+            continue
+        para.append(sent)
+        if len(sent.split()) < 8 or sent.endswith(('.', '!', '?')):
+            paragraphs.append(" ".join(para))
+            para = []
+
+    if para:
+        paragraphs.append(" ".join(para))
+
+    clean_text = "\n\n".join(paragraphs)
+
     return clean_text
 
 def fix_spacing_issues(text):
@@ -554,26 +591,16 @@ class OllamaBot:
                 with open(file_path, encoding="utf-8") as file:
                     content = file.read()
                     soup = BeautifulSoup(content, "html.parser")
-                    
-                    page_links = [a['href'] for a in soup.find_all('a', href=True)]                    
-                    clean_text = extract_text(soup)
-                    formatted_table = extract_table_as_text_block(soup, file_path)   
-                    lists = extract_list(soup)
+                                     
+                    cleaned_content = full_cleaning_pipeline(file_path)
                         
-                    # Collect non-empty content parts
-                    page_text_parts = []
-                    for part in [clean_text, formatted_table, lists]:
-                        if part and part.strip():
-                            page_text_parts.append(part.strip())
-
-                    if page_text_parts:
-                        # Add file name header for debugging
+                    if cleaned_content.strip():
                         file_header = f"===== FILE: {file_path} ====="
-                        page_text = "\n\n".join([file_header] + page_text_parts)
-
+                        page_text = "\n\n".join([file_header, cleaned_content.strip()])
+                        
                         document = LangchainDocument(
                             page_content=page_text,
-                            metadata={'links': page_links}
+                            metadata={'links': [a['href'] for a in soup.find_all('a', href=True)]}
                         )
                         self.web_documents.append(document)
                     
