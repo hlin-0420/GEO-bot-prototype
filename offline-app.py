@@ -384,6 +384,7 @@ def clean_bullet_lists(text):
     return "\n".join(cleaned)
 
 def extract_text(soup):
+    # Define navigation-related keyword patterns
     navigation_keywords = [
         r'contact\s+us', r'click\s+(here|for)', r'guidance', r'help', r'support', r'assistance',
         r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more',
@@ -391,16 +392,22 @@ def extract_text(soup):
     ]
     navigation_pattern = re.compile(r"|".join(navigation_keywords), re.IGNORECASE)
 
+    # Remove navigation-related <p> tags
     for tag in soup.find_all("p"):
         if navigation_pattern.search(tag.get_text()):
             tag.decompose()
 
+    # Add line breaks after block-level tags to improve separation
     for tag in soup.find_all(['p', 'div', 'br', 'h1', 'h2', 'h3', 'h4', 'li']):
         tag.append("\n")
 
+    # Extract raw text
     raw_text = soup.get_text(separator=" ")
+
+    # Normalize whitespace
     normalized_text = re.sub(r'\s+', ' ', raw_text).strip()
 
+    # Remove duplicate phrases (case-insensitive, 1–5 words)
     deduped_text = re.sub(
         r'\b((?:\w+\s+){1,5}?\w+)\s+\1\b',
         r'\1',
@@ -408,20 +415,27 @@ def extract_text(soup):
         flags=re.IGNORECASE
     )
 
+    # Remove filler phrases
     filler_patterns = [
-        r'GEO Help 8\.09\s*%',
-        r'GEO Help 8\.09',
-        r'End of search results\.?',
+        r'GEO Help 8\.09\s*%', r'GEO Help 8\.09', r'End of search results\.?',
         r'Click\s+here\s+to\s+see\s+this\s+page\s+in\s+full\s+context'
     ]
     filler_regex = re.compile(r"|".join(filler_patterns), re.IGNORECASE)
     deduped_text = filler_regex.sub('', deduped_text)
 
-    # NLP-powered cleaning
-    deduped_text = fix_run_together_entities(deduped_text)
-    deduped_text = remove_short_filler_sentences(deduped_text)
-    deduped_text = fix_spacing_and_punctuation(deduped_text)
+    # Remove navigation and label clutter
+    navigation_fillers = [
+        r'\bBack Forward\b', r'\bGEO Help\b', r'\bApplication Look\b',
+        r'\bGEO License and Version Number\b'
+    ]
+    nav_regex = re.compile(r"|".join(navigation_fillers), re.IGNORECASE)
+    deduped_text = nav_regex.sub('', deduped_text)
 
+    # Fix overused ellipses and apologies
+    deduped_text = re.sub(r'\.{2,}', '.', deduped_text)
+    deduped_text = re.sub(r'please accept our apologies\.?', '', deduped_text, flags=re.IGNORECASE)
+
+    # Split into lines and filter short ones
     lines = [
         line.strip()
         for line in deduped_text.splitlines()
@@ -431,23 +445,30 @@ def extract_text(soup):
     clean_text = "\n\n".join(lines)
     return clean_text
 
+def fix_spacing_issues(text):
+    # Add space between words and URLs
+    text = re.sub(r'([a-z])(?=https?://)', r'\1 ', text)
+    text = re.sub(r'([a-z])(?=www\.)', r'\1 ', text)
+    return text
+
 def extract_list(soup):
     lists = []
+
     for ul in soup.find_all(['ul', 'ol']):
         items = [
-            fix_run_together_entities(li.get_text(" ", strip=True))
+            fix_spacing_issues(li.get_text(" ", strip=True))
             for li in ul.find_all('li')
-            if li.get_text(strip=True) and len(li.get_text(strip=True).strip()) > 2
+            if li.get_text(strip=True) and len(li.get_text(strip=True)) > 2
         ]
         if items:
             lists.extend(items)
 
-    # Fallback for stray <li> not in <ul>/<ol>
+    # Fallback for stray <li> outside lists
     if not lists:
         items = [
-            fix_run_together_entities(li.get_text(" ", strip=True))
+            fix_spacing_issues(li.get_text(" ", strip=True))
             for li in soup.find_all('li')
-            if li.get_text(strip=True) and len(li.get_text(strip=True).strip()) > 2
+            if li.get_text(strip=True) and len(li.get_text(strip=True)) > 2
         ]
         lists.extend(items)
 
@@ -456,7 +477,7 @@ def extract_list(soup):
         bullets = []
         for item in lists:
             key = item.lower().strip()
-            if key and key not in seen:
+            if key and key not in seen and len(key) > 2:
                 bullets.append("• " + item)
                 seen.add(key)
         return "\n".join(bullets)
