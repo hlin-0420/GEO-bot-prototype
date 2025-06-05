@@ -16,6 +16,7 @@ from langchain_core.output_parsers import StrOutputParser
 import json
 from tabulate import tabulate
 import re
+import spacy
 from sentence_transformers import SentenceTransformer, util
 import numpy as np
 from rapidfuzz import process
@@ -36,6 +37,7 @@ import logging
 logging.getLogger("faiss").setLevel(logging.ERROR)
 
 nltk.data.path.append('/local_models/nltk_data')
+nlp = spacy.load("en_core_web_sm")
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
@@ -352,8 +354,36 @@ def extract_table(soup):
     
     return formatted_tables
 
+def fix_run_together_entities(text):
+    doc = nlp(text)
+    for ent in doc.ents:
+        if ent.label_ in ["ORG", "GPE", "URL"]:
+            text = text.replace(ent.text, " " + ent.text + " ")
+    return re.sub(r'\s+', ' ', text)
+
+def fix_spacing_and_punctuation(text):
+    text = re.sub(r'\s+([.,!?])', r'\1', text)  # Remove space before punctuation
+    text = re.sub(r'([.,!?])(?=\w)', r'\1 ', text)  # Add space after punctuation if missing
+    return text
+
+def remove_short_filler_sentences(text, min_words=5):
+    doc = nlp(text)
+    return "\n".join([
+        sent.text.strip()
+        for sent in doc.sents
+        if len(sent.text.strip().split()) >= min_words and not sent.text.lower().startswith("did you know")
+    ])
+
+def clean_bullet_lists(text):
+    bullets = re.findall(r'(•.*?)((?=•)|$)', text, flags=re.DOTALL)
+    cleaned = []
+    for item, _ in bullets:
+        item = fix_run_together_entities(item)
+        item = re.sub(r'\s+', ' ', item).strip()
+        cleaned.append("• " + item)
+    return "\n".join(cleaned)
+
 def extract_text(soup):
-    # Define navigation-related keyword patterns
     navigation_keywords = [
         r'contact\s+us', r'click\s+(here|for)', r'guidance', r'help', r'support', r'assistance',
         r'maximize\s+screen', r'view\s+details', r'read\s+more', r'convert.*file', r'FAQ', r'learn\s+more',
@@ -361,22 +391,16 @@ def extract_text(soup):
     ]
     navigation_pattern = re.compile(r"|".join(navigation_keywords), re.IGNORECASE)
 
-    # Remove navigation-related <p> tags
     for tag in soup.find_all("p"):
         if navigation_pattern.search(tag.get_text()):
             tag.decompose()
 
-    # Add line breaks after key block-level tags to improve text separation
     for tag in soup.find_all(['p', 'div', 'br', 'h1', 'h2', 'h3', 'h4', 'li']):
         tag.append("\n")
 
-    # Extract raw text with inline spacing
     raw_text = soup.get_text(separator=" ")
-
-    # Normalize all whitespace to single spaces
     normalized_text = re.sub(r'\s+', ' ', raw_text).strip()
 
-    # Remove consecutive duplicate multi-word phrases (e.g., "Contact Us Contact Us")
     deduped_text = re.sub(
         r'\b((?:\w+\s+){1,5}?\w+)\s+\1\b',
         r'\1',
@@ -384,18 +408,20 @@ def extract_text(soup):
         flags=re.IGNORECASE
     )
 
-    # Remove any occurrence of filler phrases (not just entire lines)
     filler_patterns = [
-        r'GEO Help 8\.09\s*%',         # e.g. "GEO Help 8.09 %"
-        r'GEO Help 8\.09',             # e.g. "GEO Help 8.09"
-        r'End of search results\.?',   # e.g. "End of search results." or "End of search results"
+        r'GEO Help 8\.09\s*%',
+        r'GEO Help 8\.09',
+        r'End of search results\.?',
         r'Click\s+here\s+to\s+see\s+this\s+page\s+in\s+full\s+context'
     ]
     filler_regex = re.compile(r"|".join(filler_patterns), re.IGNORECASE)
-    
     deduped_text = filler_regex.sub('', deduped_text)
 
-    # Split into lines and filter short ones
+    # NLP-powered cleaning
+    deduped_text = fix_run_together_entities(deduped_text)
+    deduped_text = remove_short_filler_sentences(deduped_text)
+    deduped_text = fix_spacing_and_punctuation(deduped_text)
+
     lines = [
         line.strip()
         for line in deduped_text.splitlines()
@@ -403,16 +429,25 @@ def extract_text(soup):
     ]
 
     clean_text = "\n\n".join(lines)
-
     return clean_text
 
 def extract_list(soup):
     lists = []
     for ul in soup.find_all(['ul', 'ol']):
-        items = [li.get_text(strip=True) for li in ul.find_all('li')]
-        if any(items):  # at least one item has content
-            lists.append(items)
-    return "\n".join(["• " + item for sublist in lists for item in sublist]) if lists else ""
+        items = [li.get_text(" ", strip=True) for li in ul.find_all('li')]
+        if any(items):
+            lists.extend(items)
+
+    # Fallback for standalone <li> items
+    if not lists:
+        items = [li.get_text(" ", strip=True) for li in soup.find_all('li')]
+        lists.extend(items)
+
+    if lists:
+        bullets = ["• " + fix_run_together_entities(item) for item in lists]
+        text = "\n".join(bullets)
+        return fix_spacing_and_punctuation(text)
+    return ""
 
 def extract_table_as_text_block(soup, file_path):
     tables = soup.find_all("table")
