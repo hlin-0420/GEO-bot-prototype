@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What type of limits are there in GEO?",
+        "timestamp": "2025-06-19T12:18:55.054753Z"
+    },
+    {
+        "role": "assistant",
+        "content": "There are two types of limits mentioned in the documents:\n\n1. Limits (CGM): These are used to restrict the range of values that can be displayed on a graph or chart.\n2. Curve Limits (GEO Graphs): These are used to limit the number and size of curves that can be plotted on a graph.\n\nThese two types of limits are mentioned in the documents as being part of the GEO software suite, with specific settings and configurations available for each type.",
+        "timestamp": "2025-06-19T12:18:55.054753Z"
+    }
+]
