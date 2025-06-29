@@ -1,23 +1,16 @@
 flask
-beautifulsoup4
+bs4
 pandas
 langchain
 langchain-community
 langchain-huggingface
 langchain-ollama
-langchain-core
-sentence-transformers>=3.0.0
-tabulate
-json5
-scikit-learn
-tiktoken
-openpyxl
+sentence-transformers
+spacy
+nltk
 numpy
 rapidfuzz
-nltk
+rouge-score
+scikit-learn
+tabulate
 requests
-re  # stdlib, but often mentioned for clarity
-textwrap  # stdlib
-python-dotenv
-faiss-cpu
-
