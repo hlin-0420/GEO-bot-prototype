@@ -521,6 +521,14 @@
 
 /* Custom integrated styles */
 @layer components {
+  .chat-disclaimer {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
   .inline-edit-textarea {
     flex-grow: 1; /* Take as much space as possible */
     min-width: 0; /* Allow shrinking if necessary */
