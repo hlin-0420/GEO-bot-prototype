@@ -466,5 +466,59 @@
         "question": "What type of limits are there in GEO?",
         "response_time": 32.56,
         "timestamp": "2025-06-19T11:18:55.095Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What's the maximum number of lithology types in an log?",
+        "response_time": 13.99,
+        "timestamp": "2025-06-29T11:45:41.252Z"
+    },
+    {
+        "question_number": "1",
+        "question": "Unknown Question",
+        "response_time": 0.01,
+        "timestamp": "2025-06-29T11:51:34.267Z"
+    },
+    {
+        "question_number": "2",
+        "question": "Unknown Question",
+        "response_time": 0.01,
+        "timestamp": "2025-06-29T11:51:47.833Z"
+    },
+    {
+        "question_number": "3",
+        "question": "Unknown Question",
+        "response_time": 0.0,
+        "timestamp": "2025-06-29T11:52:07.062Z"
+    },
+    {
+        "question_number": "4",
+        "question": "Unknown Question",
+        "response_time": 0.01,
+        "timestamp": "2025-06-29T11:52:25.118Z"
+    },
+    {
+        "question_number": "5",
+        "question": "Unknown Question",
+        "response_time": 0.0,
+        "timestamp": "2025-06-29T11:52:40.390Z"
+    },
+    {
+        "question_number": "6",
+        "question": "Unknown Question",
+        "response_time": 0.0,
+        "timestamp": "2025-06-29T11:52:58.375Z"
+    },
+    {
+        "question_number": "7",
+        "question": "Unknown Question",
+        "response_time": 0.01,
+        "timestamp": "2025-06-29T11:53:17.411Z"
+    },
+    {
+        "question_number": "8",
+        "question": "Unknown Question",
+        "response_time": 0.01,
+        "timestamp": "2025-06-29T11:53:26.686Z"
     }
 ]
