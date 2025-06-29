@@ -47,7 +47,7 @@ current_session_messages = []
 
 valid_model_names = {
     "deepseek1.5",
-    "llama3.2:1b",
+    "llama3.2:latest",
     "tinyllama:latest",
     "gemma3:1b"
 }
@@ -947,11 +947,12 @@ def update_model_name():
 
 @app.route('/feedback')
 def feedback():
-    return render_template('feedback.html')
+    return render_template('feedback.html', nonce=g.nonce)
 
 @app.route('/feedback_dataset.json')
 def feedback_data():
-    return send_from_directory(DATA_DIR, "feedback_dataset.json")
+    feedback_path = os.path.join(DATA_DIR, "Feedback")  # Capital 'F'
+    return send_from_directory(feedback_path, "feedback_dataset.json")
 
 @app.route("/view-file", methods=["GET"])
 def view_file():

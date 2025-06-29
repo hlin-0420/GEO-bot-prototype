@@ -63,10 +63,10 @@
             background-color: #218838;
         }
     </style>
-    <script>
+    <script nonce="{{ nonce }}">
         async function loadFeedbackData() {
             try {
-                const response = await fetch('feedback_dataset.json'); // Fetch the JSON data
+                const response = await fetch('/feedback_dataset.json'); // Fetch the JSON data
                 const feedbackData = await response.json();
                 renderTable(feedbackData);
             } catch (error) {
