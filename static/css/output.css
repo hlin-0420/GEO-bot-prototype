@@ -1078,7 +1078,7 @@
 
   /* Chat Messages */
   .chat-message {
-      display: flex;
+      display: block !important;
       align-items: flex-start;
       margin-bottom: 15px;
   }

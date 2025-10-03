@@ -295,6 +295,35 @@
             console.log(`✅ Restored question counter to: ${questionCounter}`);
         }
 
+        function formatText(rawText) {
+            if (typeof rawText !== "string") return "";
+
+            // Step 1: Escape HTML
+            const escapeHTML = (str) =>
+                str.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            let text = escapeHTML(rawText.trim());
+
+            // Step 2: Convert numbered lines to list items
+            text = text.replace(/^(\d+)\.\s+(.*)$/gm, "<li><strong>$1.</strong> $2</li>");
+
+            // Step 3: Wrap list items in <ol>
+            text = text.replace(/(<li>[\s\S]*?<\/li>)/gm, "<ol>$1</ol>");
+            text = text.replace(/<\/ol>\s*<ol>/g, ""); // merge consecutive lists
+
+            // Step 4: Convert double line breaks to paragraphs
+            text = text.replace(/\n\s*\n/g, "</p><p>");
+            text = `<p>${text}</p>`;
+
+            // Step 5: Remove <p> that wraps <ol>
+            text = text.replace(/<p>\s*(<ol>[\s\S]*?<\/ol>)\s*<\/p>/g, "$1");
+
+            return text;
+        }
+
+
         async function loadSessionMessages(sessionId) {
             console.log(`🔎 Loading session messages for sessionId: ${sessionId}`);
 
@@ -357,7 +386,10 @@
                         aiMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
-                        aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${msg.content}`;
+                        console.log(msg.content);
+                        formattedHTML = formatText(msg.content);
+                        console.log(formattedHTML);
+                        aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${formattedHTML}`;
                         
                         // Append answer to the wrapper
                         answerFeedbackWrapper.appendChild(aiMessageDiv);
