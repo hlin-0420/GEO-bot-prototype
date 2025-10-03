@@ -386,9 +386,7 @@
                         aiMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
-                        console.log(msg.content);
                         formattedHTML = formatText(msg.content);
-                        console.log(formattedHTML);
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${formattedHTML}`;
                         
                         // Append answer to the wrapper
