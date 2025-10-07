@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What are the steps taken to import qualitative data?",
+        "timestamp": "2025-10-07T14:11:09.250305Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To import qualitative data into GEO, follow these steps:\n\n1. Open Track Settings by selecting \"Edit\" > \"Track Settings\".\n2. Select the qualitative track and click on \"Details\".\n3. In the Qualitative Track Information dialog box, select \"Import from File\".\n4. Browse to the .txt file containing the qualitative data and select it.\n5. Click \"OK\" to exit the Qualitative Track Information and then \"OK\" again to exit Track Settings.\n\nAlternatively, you can also import qualitative data by:\n\n1. Opening Track Settings by selecting \"Edit\" > \"Track Settings\".\n2. Selecting the qualitative track and clicking on \"Details\".\n3. In the Qualitative Track Information dialog box, select \"Import from File\".\n",
+        "timestamp": "2025-10-07T14:11:09.250305Z"
+    }
+]

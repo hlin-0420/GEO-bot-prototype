@@ -75,17 +75,17 @@ def add_csp_headers(response):
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Global Numeric Constants 
-CHUNK_SIZE = 500
-CHUNK_OVERLAP = 20
-RETRIEVER_TOP_K = 3
+CHUNK_SIZE = 250
+CHUNK_OVERLAP = 10
+RETRIEVER_TOP_K = 1
 DEFAULT_TEMPERATURE = 0 
 NUM_PREDICT = 150
-SIMILARITY_THRESHOLD = 0.75 
+SIMILARITY_THRESHOLD = 0.92
 MAX_CLUSTER_COUNT = 6 
 MAX_KEYWORDS = 3
 
 # initialise a default name for the models. 
-selected_model_name = "llama3.2:1b"
+selected_model_name = "llama3.2"
 # initialise a variable to store the length of time taken to answer a question.
 answer_time = 0 # default time taken to answer a question.
 # Declare global variable
@@ -110,6 +110,18 @@ FAISS_INDEX_PATH = os.path.join(DATA_DIR, "model_files", "faiss_index")
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "user_sessions", "ChatSessions")
 SESSION_METADATA_FILE = os.path.join(DATA_DIR, "user_sessions", "session_metadata.json")
 TIMED_RESPONSES_FILE = os.path.join(DATA_DIR, "user_sessions", "timed_responses.json")
+
+def deduplicate_semantic(docs, threshold=0.93):
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    embeddings = model.encode([d.page_content for d in docs], convert_to_tensor=True)
+    keep = [True] * len(docs)
+    for i in range(len(docs)):
+        if not keep[i]:
+            continue
+        for j in range(i + 1, len(docs)):
+            if util.cos_sim(embeddings[i], embeddings[j]) > threshold:
+                keep[j] = False
+    return [doc for i, doc in enumerate(docs) if keep[i]]
 
 @app.route("/store-response-time", methods=["POST"])
 def store_response_time():
@@ -576,6 +588,37 @@ def extract_table_as_text_block(soup, file_path):
 
     return cleaned_output.strip() if cleaned_output else ""
 
+def consolidate_context(docs, threshold=0.95):
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    texts = [d.page_content for d in docs]
+    embeddings = model.encode(texts, convert_to_tensor=True)
+    keep = []
+    for i, text in enumerate(texts):
+        if not any(util.cos_sim(embeddings[i], embeddings[j]) > threshold for j in keep):
+            keep.append(i)
+    merged = "\n".join(texts[i] for i in keep)
+    return merged
+
+def clean_duplicate_steps(text: str) -> str:
+    lines = text.split("\n")
+    unique_lines = []
+    seen = set()
+    for line in lines:
+        stripped = re.sub(r'[^a-zA-Z0-9 ]', '', line).strip().lower()
+        if stripped and stripped not in seen:
+            seen.add(stripped)
+            unique_lines.append(line)
+    return "\n".join(unique_lines)
+
+def filter_by_query_keywords(docs, question, min_overlap=1):
+    q_terms = {w.lower() for w in question.split() if len(w) > 3}
+    filtered = []
+    for d in docs:
+        overlap = sum(1 for w in q_terms if w in d.page_content.lower())
+        if overlap >= min_overlap:
+            filtered.append(d)
+    return filtered
+
 class OllamaBot:
     def __init__(self):
         self.base_directory = DATA_DIR
@@ -592,14 +635,16 @@ class OllamaBot:
         global rag_application
         text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         doc_splits = text_splitter.split_documents(self.web_documents)
+        unique_docs = deduplicate_semantic(doc_splits)
         embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-        vectorstore = FAISS.from_documents(doc_splits, embedding_model)
+        vectorstore = FAISS.from_documents(unique_docs, embedding_model)
 
-        retriever = vectorstore.as_retriever(k=RETRIEVER_TOP_K)
+        retriever = vectorstore.as_retriever(search_kwargs={"k": RETRIEVER_TOP_K, "fetch_k": 8, "score_threshold": SIMILARITY_THRESHOLD})
         prompt = PromptTemplate(
             template="""
             You are an AI assistant for the GEO application.
             Use only the **Documents** below to help you answer the **Question** directly, concisely, and factually.
+            If you noticed duplicated or overlapping information, merge or summarise it clearly without repeating identical steps.  
 
             ---
             **Documents:**
@@ -627,10 +672,12 @@ class OllamaBot:
                         
                     if cleaned_content.strip():
                         file_header = f"===== FILE: {file_path} ====="
-                        page_text = "\n\n".join([file_header, cleaned_content.strip()])
+
+                        display_text = "\n\n".join([file_header, cleaned_content.strip()])
+                        embed_text = cleaned_content.strip()
                         
                         document = LangchainDocument(
-                            page_content=page_text,
+                            page_content=embed_text,
                             metadata={'links': [a['href'] for a in soup.find_all('a', href=True)]}
                         )
                         self.web_documents.append(document)
@@ -642,7 +689,44 @@ class OllamaBot:
             f.write("\n\n".join([doc.page_content for doc in self.web_documents]))
 
     def query(self, question):
-        return rag_application.run(question)
+        # Retrieve top chunks
+        retrieved_docs = rag_application.retriever.invoke(question)
+        retrieved_docs = filter_by_query_keywords(retrieved_docs, question)
+
+        print("\n" + "=" * 80)
+        print(f"[DEBUG] Retrieved {len(retrieved_docs)} chunks for question:")
+        print(f"Q: {question}")
+        print("=" * 80)
+
+        for i, doc in enumerate(retrieved_docs, 1):
+            print(f"\n--- Retrieved Chunk {i} ---")
+            print(doc.page_content[:800])  # print first 800 chars for readability
+            if len(doc.page_content) > 800:
+                print("... [truncated]")
+            print(f"\n[Metadata]: {doc.metadata}\n")
+        print("=" * 80 + "\n")
+
+        # Optional: consolidate similar chunks before prompting
+        context = consolidate_context(retrieved_docs, threshold=0.95)
+
+        # Display the final merged context that will be passed to the LLM
+        print("[DEBUG] Final consolidated context (after deduplication):")
+        print(context[:1200])  # limit for readability
+        print("=" * 80 + "\n")
+
+        # Run the final generation
+        raw_answer = rag_application.rag_chain.invoke({
+            "question": question,
+            "documents": context
+        })
+
+        # Optional cleanup pass
+        cleaned_answer = clean_duplicate_steps(raw_answer)
+
+        print("[DEBUG] Final Model Output:\n", cleaned_answer)
+        print("=" * 80)
+
+        return cleaned_answer
 
 ai_bot = OllamaBot()
 pending_responses = {}

@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What are the steps taken to import qualitative data?",
+        "timestamp": "2025-10-07T15:23:32.365868Z"
+    },
+    {
+        "role": "assistant",
+        "content": "To import qualitative data, follow these steps:\n1. Open the Track Settings dialog box by selecting \"Track Settings\" from the Edit menu.\n2. Select the qualitative track and click on \"Details\".\n3. In the Qualitative Track Information dialog box, select \"Import from File\".\n4. Browse to the location of your .txt file and select it.\n5. Click \"Open\" to import the data.\n6. Click \"OK\" to exit both the Qualitative Track Information and Track Settings dialog boxes.\nNote: The steps are identical in both documents, so I have merged them for clarity.",
+        "timestamp": "2025-10-07T15:23:32.365868Z"
+    }
+]
