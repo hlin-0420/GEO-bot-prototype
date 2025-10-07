@@ -299,6 +299,10 @@ def load_chat_history():
 def get_chat_history():
     return jsonify(load_chat_history())
 
+@app.route("/llm_settings")
+def llm_settings():
+    return render_template("llm_settings.html")
+
 @app.route("/chathistory")
 def chathistory():
     global current_session_id, current_session_messages

@@ -61,6 +61,7 @@
                         <button id="chatOptionsButton" class="chat-icon-button">➕</button>
                         <button id="searchQueryButton" class="chat-action-button">🌍 Search</button>
                         <button id="deepResearchButton" class="chat-action-button">🚀 Deep research</button>
+                        <button id="customizeLLMButton" class="chat-action-button">⚙️ Parameters</button>
                         <button id="toggleDarkModeButton" class="chat-icon-button">🌙</button>
                         <button id="moreOptionsButton" class="chat-action-button">⋯</button>
                         <button id="startVoiceInputButton" class="voice-button">🎙️</button>
@@ -76,6 +77,10 @@
     </div>
     
     <script nonce="{{ g.nonce }}">
+        document.getElementById("customizeLLMButton").addEventListener("click", function() {
+            window.location.href = "{{ url_for('llm_settings') }}";
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
             const questionNumber = element.id.split("-")[1];

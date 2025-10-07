@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Parameter Settings</title>
+    <link href="static/css/output.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 30px;
+            background-color: #f5f7fa;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .settings-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .param-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        input[type="range"], input[type="number"] {
+            width: 100%;
+        }
+        .value-display {
+            font-weight: 500;
+            color: #007acc;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        button {
+            background: #007acc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Adjust LLM Parameters</h2>
+    <div class="settings-container">
+
+        <!-- Model Behaviour -->
+        <div class="param-group">
+            <label for="temperature">Model Temperature: <span id="temperatureValue" class="value-display">0</span></label>
+            <input type="range" id="temperature" min="0" max="1" step="0.05" value="0">
+        </div>
+
+        <div class="param-group">
+            <label for="numPredict">Tokens to Predict:</label>
+            <input type="number" id="numPredict" min="50" max="2000" step="10" value="150">
+        </div>
+
+        <!-- Document Chunking -->
+        <div class="param-group">
+            <label for="chunkSize">Chunk Size:</label>
+            <input type="number" id="chunkSize" min="100" max="2000" step="50" value="500">
+        </div>
+
+        <div class="param-group">
+            <label for="chunkOverlap">Chunk Overlap:</label>
+            <input type="range" id="chunkOverlap" min="0" max="200" step="5" value="20">
+        </div>
+
+        <!-- Retrieval and Similarity -->
+        <div class="param-group">
+            <label for="retrieverTopK">Retriever Top K:</label>
+            <input type="range" id="retrieverTopK" min="1" max="10" step="1" value="3">
+        </div>
+
+        <div class="param-group">
+            <label for="similarityThreshold">Similarity Threshold: <span id="similarityValue" class="value-display">0.75</span></label>
+            <input type="range" id="similarityThreshold" min="0.5" max="1" step="0.01" value="0.75">
+        </div>
+
+        <!-- Clustering & Keywords -->
+        <div class="param-group">
+            <label for="maxClusterCount">Max Cluster Count:</label>
+            <input type="number" id="maxClusterCount" min="2" max="20" step="1" value="6">
+        </div>
+
+        <div class="param-group">
+            <label for="maxKeywords">Max Keywords:</label>
+            <input type="range" id="maxKeywords" min="1" max="10" step="1" value="3">
+        </div>
+
+        <div class="button-row">
+            <button id="saveSettingsButton">💾 Save Settings</button>
+            <button id="backToChatButton">⬅️ Back to Chat</button>
+        </div>
+    </div>
+
+    <script nonce="{{ g.nonce }}">
+        document.getElementById("backToChatButton").addEventListener("click", function() {
+            window.location.href = "{{ url_for('chathistory') }}";
+        });
+
+        // Display live slider values
+        const sliders = [
+            {id: 'temperature', display: 'temperatureValue'},
+            {id: 'similarityThreshold', display: 'similarityValue'}
+        ];
+
+        sliders.forEach(item => {
+            const input = document.getElementById(item.id);
+            const display = document.getElementById(item.display);
+            input.oninput = () => display.textContent = input.value;
+        });
+
+        // Save settings (future Flask endpoint integration)
+        document.getElementById("saveSettingsButton").addEventListener("click", async () => {
+            const params = {
+                CHUNK_SIZE: parseInt(document.getElementById("chunkSize").value),
+                CHUNK_OVERLAP: parseInt(document.getElementById("chunkOverlap").value),
+                RETRIEVER_TOP_K: parseInt(document.getElementById("retrieverTopK").value),
+                DEFAULT_TEMPERATURE: parseFloat(document.getElementById("temperature").value),
+                NUM_PREDICT: parseInt(document.getElementById("numPredict").value),
+                SIMILARITY_THRESHOLD: parseFloat(document.getElementById("similarityThreshold").value),
+                MAX_CLUSTER_COUNT: parseInt(document.getElementById("maxClusterCount").value),
+                MAX_KEYWORDS: parseInt(document.getElementById("maxKeywords").value)
+            };
+
+            console.log("Saving settings:", params);
+
+            const response = await fetch("/update_params", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(params)
+            });
+
+            if (response.ok) {
+                alert("✅ Settings saved successfully!");
+            } else {
+                alert("⚠️ Failed to save settings.");
+            }
+        });
+    </script>
+</body>
+</html>
