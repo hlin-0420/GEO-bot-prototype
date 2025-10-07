@@ -74,6 +74,16 @@ def add_csp_headers(response):
 # Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+# Global Numeric Constants 
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 20
+RETRIEVER_TOP_K = 3
+DEFAULT_TEMPERATURE = 0 
+NUM_PREDICT = 150
+SIMILARITY_THRESHOLD = 0.75 
+MAX_CLUSTER_COUNT = 6 
+MAX_KEYWORDS = 3
+
 # initialise a default name for the models. 
 selected_model_name = "llama3.2:1b"
 # initialise a variable to store the length of time taken to answer a question.
@@ -143,7 +153,7 @@ def store_response_time():
         return jsonify({"error": str(e)}), 500
 
 
-def extract_keywords(text, top_n=3):
+def extract_keywords(text, top_n=MAX_KEYWORDS):
     """Extracts top N keywords from text using TF-IDF."""
     words = word_tokenize(text.lower())  # Tokenize and lowercase
     filtered_words = [word for word in words if word.isalnum() and word not in stopwords.words("english")]
@@ -171,7 +181,7 @@ def knowledge_tree():
     feature_names = vectorizer.get_feature_names_out()  # Get words corresponding to features
 
     # Cluster similar topics
-    num_clusters = min(6, len(questions))  # Avoid exceeding available questions
+    num_clusters = min(MAX_CLUSTER_COUNT, len(questions))  # Avoid exceeding available questions
     kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
     labels = kmeans.fit_predict(X)
 
@@ -552,19 +562,19 @@ class OllamaBot:
         self._load_content()
         self.llm_model = ChatOllama(
             model=selected_model_name,
-            temperature=0,
-            num_predict=150
+            temperature=DEFAULT_TEMPERATURE,
+            num_predict=NUM_PREDICT
         )
         self._initialize_rag_application()
 
     def _initialize_rag_application(self):
         global rag_application
-        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=500, chunk_overlap=20)
+        text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
         doc_splits = text_splitter.split_documents(self.web_documents)
         embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         vectorstore = FAISS.from_documents(doc_splits, embedding_model)
 
-        retriever = vectorstore.as_retriever(k=3)
+        retriever = vectorstore.as_retriever(k=RETRIEVER_TOP_K)
         prompt = PromptTemplate(
             template="""
             You are an AI assistant for the GEO application.
@@ -1041,9 +1051,7 @@ def find_best_match(question, expected_answers_dict):
     best_match_idx = similarities.argmax().item()
     best_match_score = similarities[best_match_idx].item()
 
-    # Set a similarity threshold (adjust if needed)
-    threshold = 0.75  
-    if best_match_score < threshold:
+    if best_match_score < SIMILARITY_THRESHOLD:
         return ""  # No match found above the threshold
 
     return expected_answers_dict[expected_questions[best_match_idx]]
