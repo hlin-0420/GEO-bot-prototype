@@ -66,45 +66,45 @@
         <!-- Model Behaviour -->
         <div class="param-group">
             <label for="temperature">Model Temperature: <span id="temperatureValue" class="value-display">0</span></label>
-            <input type="range" id="temperature" min="0" max="1" step="0.05" value="0">
+            <input type="range" id="temperature" min="0" max="1" step="0.05" value="{{ DEFAULT_TEMPERATURE }}">
         </div>
 
         <div class="param-group">
             <label for="numPredict">Tokens to Predict:</label>
-            <input type="number" id="numPredict" min="50" max="2000" step="10" value="150">
+            <input type="number" id="numPredict" min="50" max="2000" step="10" value="{{ NUM_PREDICT }}">
         </div>
 
         <!-- Document Chunking -->
         <div class="param-group">
             <label for="chunkSize">Chunk Size:</label>
-            <input type="number" id="chunkSize" min="100" max="2000" step="50" value="500">
+            <input type="number" id="chunkSize" min="100" max="2000" step="50" value="{{ CHUNK_SIZE }}">
         </div>
 
         <div class="param-group">
             <label for="chunkOverlap">Chunk Overlap:</label>
-            <input type="range" id="chunkOverlap" min="0" max="200" step="5" value="20">
+            <input type="range" id="chunkOverlap" min="0" max="200" step="5" value="{{ CHUNK_OVERLAP }}">
         </div>
 
         <!-- Retrieval and Similarity -->
         <div class="param-group">
             <label for="retrieverTopK">Retriever Top K:</label>
-            <input type="range" id="retrieverTopK" min="1" max="10" step="1" value="3">
+            <input type="range" id="retrieverTopK" min="1" max="10" step="1" value="{{ RETRIEVER_TOP_K }}">
         </div>
 
         <div class="param-group">
-            <label for="similarityThreshold">Similarity Threshold: <span id="similarityValue" class="value-display">0.75</span></label>
-            <input type="range" id="similarityThreshold" min="0.5" max="1" step="0.01" value="0.75">
+            <label for="similarityThreshold">Similarity Threshold: <span id="similarityValue" class="value-display">{{ SIMILARITY_THRESHOLD }}</span></label>
+            <input type="range" id="similarityThreshold" min="0.5" max="1" step="0.01" value="{{ SIMILARITY_THRESHOLD }}">
         </div>
 
         <!-- Clustering & Keywords -->
         <div class="param-group">
             <label for="maxClusterCount">Max Cluster Count:</label>
-            <input type="number" id="maxClusterCount" min="2" max="20" step="1" value="6">
+            <input type="number" id="maxClusterCount" min="2" max="20" step="1" value="{{ MAX_CLUSTER_COUNT }}">
         </div>
 
         <div class="param-group">
             <label for="maxKeywords">Max Keywords:</label>
-            <input type="range" id="maxKeywords" min="1" max="10" step="1" value="3">
+            <input type="range" id="maxKeywords" min="1" max="10" step="1" value="{{ MAX_KEYWORDS }}">
         </div>
 
         <div class="button-row">

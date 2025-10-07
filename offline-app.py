@@ -299,9 +299,26 @@ def load_chat_history():
 def get_chat_history():
     return jsonify(load_chat_history())
 
+@app.route("/update_params", methods=["POST"])
+def update_params():
+    data = request.get_json()
+    for key, value in data.items():
+        globals()[key] = value
+    logging.info(f"Updated parameters: {data}")
+    return jsonify({"status": "success", "updated": data})
+
 @app.route("/llm_settings")
 def llm_settings():
-    return render_template("llm_settings.html")
+    return render_template("llm_settings.html", 
+        CHUNK_SIZE=CHUNK_SIZE,
+        CHUNK_OVERLAP=CHUNK_OVERLAP,
+        RETRIEVER_TOP_K=RETRIEVER_TOP_K,
+        DEFAULT_TEMPERATURE=DEFAULT_TEMPERATURE,
+        NUM_PREDICT=NUM_PREDICT,
+        SIMILARITY_THRESHOLD=SIMILARITY_THRESHOLD,
+        MAX_CLUSTER_COUNT=MAX_CLUSTER_COUNT,
+        MAX_KEYWORDS=MAX_KEYWORDS
+    )
 
 @app.route("/chathistory")
 def chathistory():
