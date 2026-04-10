@@ -115,7 +115,7 @@
 
     <script nonce="{{ g.nonce }}">
         document.getElementById("backToChatButton").addEventListener("click", function() {
-            window.location.href = "{{ url_for('chathistory') }}";
+            window.location.href = "{{ url_for('ui.chathistory') }}";
         });
 
         // Display live slider values

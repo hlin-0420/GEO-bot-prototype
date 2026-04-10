@@ -47,66 +47,66 @@
                     </div>
                 </div>
                 <div class="resizer" id="sidebarResizer"></div>
-            
+
                 <!-- The rest of your chat-main and chat messages content would be here -->
                 <div class="chat-main">
                     <div class="chat-messages" id="chatMessages"></div>
                 </div>
             </div>
-                <div class="chat-input-bar">
-                    <div class="chat-input-row">
-                        <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
-                    </div>
-                    <div class="chat-actions-row">
-                        <button id="chatOptionsButton" class="chat-icon-button">➕</button>
-                        <button id="searchQueryButton" class="chat-action-button">🌍 Search</button>
-                        <button id="deepResearchButton" class="chat-action-button">🚀 Deep research</button>
-                        <button id="customizeLLMButton" class="chat-action-button">⚙️ Parameters</button>
-                        <button id="toggleDarkModeButton" class="chat-icon-button">🌙</button>
-                        <button id="moreOptionsButton" class="chat-action-button">⋯</button>
-                        <button id="startVoiceInputButton" class="voice-button">🎙️</button>
-                    </div>
+            <div class="chat-input-bar">
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything">
                 </div>
-                
-                <div class="chat-disclaimer">
-                    ⚠️ GEO help chatbot can make mistakes – make sure to verify with experts.
+                <div class="chat-actions-row">
+                    <button id="chatOptionsButton" class="chat-icon-button">➕</button>
+                    <button id="searchQueryButton" class="chat-action-button">🌍 Search</button>
+                    <button id="deepResearchButton" class="chat-action-button">🚀 Deep research</button>
+                    <button id="customizeLLMButton" class="chat-action-button">⚙️ Parameters</button>
+                    <button id="toggleDarkModeButton" class="chat-icon-button">🌙</button>
+                    <button id="moreOptionsButton" class="chat-action-button">⋯</button>
+                    <button id="startVoiceInputButton" class="voice-button">🎙️</button>
                 </div>
-
             </div>
+
+            <div class="chat-disclaimer">
+                ⚠️ GEO help chatbot can make mistakes – make sure to verify with experts.
+            </div>
+
         </div>
     </div>
-    
+    </div>
+
     <script nonce="{{ g.nonce }}">
-        document.getElementById("customizeLLMButton").addEventListener("click", function() {
-            window.location.href = "{{ url_for('llm_settings') }}";
+        document.getElementById("customizeLLMButton").addEventListener("click", function () {
+            window.location.href = "{{ url_for('ui.llm_settings') }}";
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
-            const questionNumber = element.id.split("-")[1];
-            element.addEventListener("click", () => toggleFeedbackComment(questionNumber));
-        });
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
+                const questionNumber = element.id.split("-")[1];
+                element.addEventListener("click", () => toggleFeedbackComment(questionNumber));
+            });
 
-        document.querySelectorAll("[id^='star-']").forEach(star => {
-            const [_, questionNumber, rating] = star.id.split("-");
-            star.addEventListener("click", () => setRating(questionNumber, rating));
-            star.addEventListener("mouseover", () => highlightStars(questionNumber, rating));
-            star.addEventListener("mouseleave", () => resetStars(questionNumber));
-        });
+            document.querySelectorAll("[id^='star-']").forEach(star => {
+                const [_, questionNumber, rating] = star.id.split("-");
+                star.addEventListener("click", () => setRating(questionNumber, rating));
+                star.addEventListener("mouseover", () => highlightStars(questionNumber, rating));
+                star.addEventListener("mouseleave", () => resetStars(questionNumber));
+            });
 
-        document.querySelectorAll("[id^='submitFeedback-']").forEach(button => {
-            const questionNumber = button.id.split("-")[1];
-            button.addEventListener("click", () => submitCompleteFeedback(questionNumber));
-        });
+            document.querySelectorAll("[id^='submitFeedback-']").forEach(button => {
+                const questionNumber = button.id.split("-")[1];
+                button.addEventListener("click", () => submitCompleteFeedback(questionNumber));
+            });
 
             // Navbar Buttons
             document.getElementById("sidebarToggleBtn").addEventListener("click", openSidebar);
             document.getElementById("closeSidebarBtn").addEventListener("click", closeSidebar);
-            
+
             // Sidebar Header Buttons
             document.getElementById("startNewChatBtn").addEventListener("click", startNewConversation);
             document.getElementById("searchModalBtn").addEventListener("click", openSearchModal);
-            
+
             // Chat Actions Row Buttons
             document.getElementById("chatOptionsButton").addEventListener("click", openOptions);
             document.getElementById("searchQueryButton").addEventListener("click", searchQuery);
@@ -306,8 +306,8 @@
             // Step 1: Escape HTML
             const escapeHTML = (str) =>
                 str.replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
 
             let text = escapeHTML(rawText.trim());
 
@@ -333,7 +333,7 @@
             console.log(`🔎 Loading session messages for sessionId: ${sessionId}`);
 
             const chatMessages = document.getElementById("chatMessages");
-            
+
             // Clear existing messages
             chatMessages.innerHTML = "";
 
@@ -378,7 +378,7 @@
                         questionWrapper.appendChild(userMessageDiv);
                         questionWrapper.appendChild(optionsButton);
                         chatMessages.appendChild(questionWrapper);
-                    } 
+                    }
                     else if (msg.role === "assistant") {
                         // Wrapper for answer and feedback section
                         const answerFeedbackWrapper = document.createElement("div");
@@ -393,7 +393,7 @@
                         aiMessageDiv.style.borderRadius = "5px";
                         formattedHTML = formatText(msg.content);
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${formattedHTML}`;
-                        
+
                         // Append answer to the wrapper
                         answerFeedbackWrapper.appendChild(aiMessageDiv);
                         chatMessages.appendChild(answerFeedbackWrapper);
@@ -429,18 +429,18 @@
                     question: questionText         // The question that triggers deletion of both
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert("Failed to delete the question-answer pair: " + data.error);
-                }
-            })
-            .catch(error => {
-                console.error("Error deleting question-answer pair:", error);
-                alert("An error occurred while deleting the question-answer pair.");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert("Failed to delete the question-answer pair: " + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting question-answer pair:", error);
+                    alert("An error occurred while deleting the question-answer pair.");
+                });
         }
 
         function toggleOptionsMenu(button) {
@@ -466,53 +466,53 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(requestBody)
                 })
-                .then(response => response.json())
-                .then(async data => {
-                    if (data.session_id && data.question_id) {
-                        // Find the correct AI message div to pass to the timing function.
-                        const questionNumber = questionCounter + 1;
+                    .then(response => response.json())
+                    .then(async data => {
+                        if (data.session_id && data.question_id) {
+                            // Find the correct AI message div to pass to the timing function.
+                            const questionNumber = questionCounter + 1;
 
-                        // Create a new message block since this is an edit
-                        const chatMessages = document.getElementById("chatMessages");
+                            // Create a new message block since this is an edit
+                            const chatMessages = document.getElementById("chatMessages");
 
-                        const questionContainer = document.createElement("div");
-                        questionContainer.classList.add("question-container");
+                            const questionContainer = document.createElement("div");
+                            questionContainer.classList.add("question-container");
 
-                        const userMessageDiv = document.createElement("div");
-                        userMessageDiv.classList.add("chat-message", "user-message");
-                        userMessageDiv.dataset.questionNumber = questionNumber;
-                        userMessageDiv.style.padding = "10px";
-                        userMessageDiv.style.borderRadius = "5px";
-                        userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
-                        questionContainer.appendChild(userMessageDiv);
+                            const userMessageDiv = document.createElement("div");
+                            userMessageDiv.classList.add("chat-message", "user-message");
+                            userMessageDiv.dataset.questionNumber = questionNumber;
+                            userMessageDiv.style.padding = "10px";
+                            userMessageDiv.style.borderRadius = "5px";
+                            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
+                            questionContainer.appendChild(userMessageDiv);
 
-                        const answerFeedbackWrapper = document.createElement("div");
-                        answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
+                            const answerFeedbackWrapper = document.createElement("div");
+                            answerFeedbackWrapper.classList.add("answer-feedback-wrapper");
 
-                        const aiMessageDiv = document.createElement("div");
-                        aiMessageDiv.classList.add("chat-message", "ai-message");
-                        aiMessageDiv.dataset.questionNumber = questionNumber;
-                        aiMessageDiv.style.backgroundColor = "#f8d7da";
-                        aiMessageDiv.style.padding = "10px";
-                        aiMessageDiv.style.borderRadius = "5px";
-                        aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
-                        answerFeedbackWrapper.appendChild(aiMessageDiv);
-                        questionContainer.appendChild(answerFeedbackWrapper);
+                            const aiMessageDiv = document.createElement("div");
+                            aiMessageDiv.classList.add("chat-message", "ai-message");
+                            aiMessageDiv.dataset.questionNumber = questionNumber;
+                            aiMessageDiv.style.backgroundColor = "#f8d7da";
+                            aiMessageDiv.style.padding = "10px";
+                            aiMessageDiv.style.borderRadius = "5px";
+                            aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
+                            answerFeedbackWrapper.appendChild(aiMessageDiv);
+                            questionContainer.appendChild(answerFeedbackWrapper);
 
-                        chatMessages.appendChild(questionContainer);
+                            chatMessages.appendChild(questionContainer);
 
-                        // Increment question counter for tracking
-                        questionCounter++;
+                            // Increment question counter for tracking
+                            questionCounter++;
 
-                        await waitForModelResponseWithNumbering(data.question_id, questionNumber, aiMessageDiv);
+                            await waitForModelResponseWithNumbering(data.question_id, questionNumber, aiMessageDiv);
 
-                        // Reload chat history to refresh sidebar
-                        await loadChatHistory();
-                    } else {
-                        alert("Failed to submit the edited question.");
-                    }
-                })
-                .catch(error => console.error("Error submitting edited question:", error));
+                            // Reload chat history to refresh sidebar
+                            await loadChatHistory();
+                        } else {
+                            alert("Failed to submit the edited question.");
+                        }
+                    })
+                    .catch(error => console.error("Error submitting edited question:", error));
             }
         }
 
@@ -524,7 +524,7 @@
             }
 
             const reader = new FileReader();
-            reader.onload = async function(e) {
+            reader.onload = async function (e) {
                 const fileContent = e.target.result;
                 const questions = fileContent.split('\n').filter(line => line.trim() !== '');
 
@@ -603,7 +603,7 @@
 
                 let fullAnswer = "";  // Accumulate full response here
 
-                eventSource.onmessage = function(event) {
+                eventSource.onmessage = function (event) {
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
@@ -621,7 +621,7 @@
                     }
                 };
 
-                eventSource.onerror = function() {
+                eventSource.onerror = function () {
                     console.error(`Error receiving response for Question ${questionNumber}`);
                     if (fullAnswer.trim() === "") {
                         // Only show error if no content was received
@@ -634,11 +634,11 @@
                     resolve();  // Continue to the next question
                 };
 
-                eventSource.onopen = function() {
+                eventSource.onopen = function () {
                     console.log(`Connection opened for Question ${questionNumber}`);
                 };
 
-                eventSource.onclose = function() {
+                eventSource.onclose = function () {
                     finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
 
                     resolve();  // Continue to the next question
@@ -667,9 +667,9 @@
             fetch("/store-response-time", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    questionNumber: questionNumber, 
-                    question: questionText, 
+                body: JSON.stringify({
+                    questionNumber: questionNumber,
+                    question: questionText,
                     duration: duration,
                     timestamp: new Date().toISOString() // Sending timestamp
                 })
@@ -901,10 +901,10 @@
             if (sessionItem) {
                 sessionItem.innerHTML = `💬 ${originalName}`;
                 sessionItem.addEventListener('click', () => {
-    currentSessionId = sessionId;
-    sessionStorage.setItem('currentSessionId', sessionId);
-    loadSessionMessages(sessionId);
-});
+                    currentSessionId = sessionId;
+                    sessionStorage.setItem('currentSessionId', sessionId);
+                    loadSessionMessages(sessionId);
+                });
             }
         }
 
@@ -936,16 +936,16 @@
             recognition.lang = "en-US";
             recognition.start();
 
-            recognition.onresult = function(event) {
+            recognition.onresult = function (event) {
                 document.getElementById("chatInput").value = event.results[0][0].transcript;
             };
 
-            recognition.onerror = function(event) {
+            recognition.onerror = function (event) {
                 console.error("Voice recognition error:", event.error);
             };
         }
 
-        document.getElementById("chatInput").addEventListener("keydown", function(event) {
+        document.getElementById("chatInput").addEventListener("keydown", function (event) {
             if (event.key === "Enter") {
                 removeDynamicSpacer();
                 sendMessage();
@@ -955,7 +955,7 @@
 
         function attachContextMenuListeners() {
             document.querySelectorAll(".chat-options").forEach(button => {
-                button.addEventListener("click", function(event) {
+                button.addEventListener("click", function (event) {
                     const sessionId = this.getAttribute("data-session-id");
                     toggleContextMenu(event, sessionId);
                 });
@@ -999,9 +999,9 @@
                             title = await generateChatTitle(session.session_id);  // Ensure title is fetched before rendering
 
                             await fetch("/rename-session", {
-                                method: "POST", 
-                                headers: {"Content-Type": "application/json"},
-                                body: JSON.stringify({session_id: session.session_id, new_name: title})
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ session_id: session.session_id, new_name: title })
                             });
                         }
 
@@ -1019,8 +1019,8 @@
                             currentSessionId = session.session_id;
                             sessionStorage.setItem("currentSessionId", currentSessionId);
                             await loadSessionMessages(currentSessionId);  // Ensure messages load before next step
-                            
-                            setTimeout(() => {  
+
+                            setTimeout(() => {
                                 console.log(`Checking messages in UI for session: ${currentSessionId}`);
                                 const messages = getChatMessagesFromBackend(currentSessionId);
                                 console.log("Retrieved messages from UI:", messages);
@@ -1108,7 +1108,7 @@
             return grouped;
         }
 
-        document.addEventListener("click", function(event) {
+        document.addEventListener("click", function (event) {
             // Check if the clicked element is a Rename button
             if (event.target.classList.contains("rename-session")) {
                 const sessionId = event.target.getAttribute("data-session-id");
@@ -1550,7 +1550,7 @@
 
                 let fullResponse = "";
 
-                eventSource.onmessage = function(event) {
+                eventSource.onmessage = function (event) {
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
@@ -1563,7 +1563,7 @@
                     }
                 };
 
-                eventSource.onerror = function() {
+                eventSource.onerror = function () {
                     finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
 
                     if (!fullResponse.trim()) {
@@ -1573,7 +1573,7 @@
                     resolve();
                 };
 
-                eventSource.onmessage = function(event) {
+                eventSource.onmessage = function (event) {
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
@@ -1586,7 +1586,7 @@
                     }
                 };
 
-                eventSource.onclose = function() {
+                eventSource.onclose = function () {
                     finalizeResponseTime(startTime, aiMessageDiv, questionNumber)
 
                     resolve();
@@ -1722,20 +1722,20 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(feedbackData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    alert(`Feedback submitted for Question ${questionNumber}`);
-                } else {
-                    alert(`Failed to submit feedback: ${data.error}`);
-                }
-            })
-            .catch(error => {
-                console.error("Error submitting feedback:", error);
-                alert("An error occurred while submitting feedback.");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(`Feedback submitted for Question ${questionNumber}`);
+                    } else {
+                        alert(`Failed to submit feedback: ${data.error}`);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error submitting feedback:", error);
+                    alert("An error occurred while submitting feedback.");
+                });
         }
-        
+
         function submitFeedback(questionNumber, rating) {
             selectedRatings[questionNumber] = rating;  // Store rating selection
             resetStars(questionNumber);  // Update star visuals
@@ -1765,7 +1765,7 @@
 
         function showInitialPlaceholder() {
             const chatMessages = document.getElementById("chatMessages");
-            
+
             if (!chatMessages.innerHTML.trim()) {
                 chatMessages.innerHTML = "<p style='text-align:center; color:gray;'>Select a chat from history.</p>";
             }
@@ -1779,7 +1779,7 @@
             addDynamicSpacer();
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll("[id^='feedbackToggle-']").forEach(element => {
                 const questionNumber = element.id.split("-")[1];
                 element.addEventListener("click", () => toggleFeedbackComment(questionNumber));

@@ -3,8 +3,8 @@
 import os
 import json
 import logging
-from langchain.prompts import PromptTemplate
-from langchain.schema import Document as LangchainDocument
+from langchain_core.prompts import PromptTemplate
+from langchain_core.documents import Document as LangchainDocument
 from app.utils.feedback import load_feedback_dataset
 from app.config import PROCESSED_CONTENT_FILE
 
@@ -28,10 +28,17 @@ def get_prompt_template():
 
         **Instructions:**  
         - Use information from the **Documents** section to generate your response.  
-        - Provide a **direct**, **concise**, and **factual** answer. 
+        - Generate **up to 3 alternative answer options** for the same question.
+        - Provide a **direct**, **concise**, and **factual** answer for each option.
         - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
         - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
-        - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.  
+        - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.
+        - Return output in this exact structure:
+          Option 1: <answer>
+          Option 2: <answer>
+          Option 3: <answer>
+        - If you can only provide one strong answer, still return:
+          Option 1: <answer>
 
         **Feedback Guidelines:**  
         - Review past user feedback under the **Feedback** section.  
@@ -45,7 +52,7 @@ def get_prompt_template():
 
         **Question:** {question}  
 
-        **Your Optimized Answer:**  
+        **Your Optimized Answers:**  
         """,
         input_variables=["question", "documents"]
     )
