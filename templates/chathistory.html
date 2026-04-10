@@ -78,7 +78,7 @@
     
     <script nonce="{{ g.nonce }}">
         document.getElementById("customizeLLMButton").addEventListener("click", function() {
-            window.location.href = "{{ url_for('llm_settings') }}";
+            window.location.href = "{{ url_for('ui.llm_settings') }}";
         });
 
         document.addEventListener("DOMContentLoaded", function() {
