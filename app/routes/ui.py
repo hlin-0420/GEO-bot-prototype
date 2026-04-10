@@ -7,6 +7,17 @@ from app.utils.file_helpers import process_file
 
 ui_blueprint = Blueprint('ui', __name__)
 
+LLM_PARAM_DEFAULTS = {
+    "CHUNK_SIZE": 250,
+    "CHUNK_OVERLAP": 120,
+    "RETRIEVER_TOP_K": 1,
+    "DEFAULT_TEMPERATURE": 0,
+    "NUM_PREDICT": 150,
+    "SIMILARITY_THRESHOLD": 0.92,
+    "MAX_CLUSTER_COUNT": 6,
+    "MAX_KEYWORDS": 3,
+}
+
 def get_ai_bot():
     from app.services.ollama_bot import get_bot
     return get_bot()
@@ -22,6 +33,20 @@ def feedback():
 @ui_blueprint.route('/chathistory')
 def chathistory():
     return render_template("chathistory.html")
+
+
+@ui_blueprint.route("/llm_settings")
+def llm_settings():
+    return render_template("llm_settings.html", **LLM_PARAM_DEFAULTS)
+
+
+@ui_blueprint.route("/update_params", methods=["POST"])
+def update_params():
+    payload = request.get_json(silent=True) or {}
+    for key in LLM_PARAM_DEFAULTS:
+        if key in payload:
+            LLM_PARAM_DEFAULTS[key] = payload[key]
+    return jsonify({"message": "Parameters updated", "params": LLM_PARAM_DEFAULTS})
 
 @ui_blueprint.route("/submit-feedback", methods=["POST"])
 def submit_feedback():
