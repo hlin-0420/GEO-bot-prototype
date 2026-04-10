@@ -17,8 +17,8 @@ from app.services.ollama_bot_helpers import (
 from langchain_ollama import ChatOllama
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.output_parsers import StrOutputParser
-from langchain.schema import Document as LangchainDocument
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document as LangchainDocument
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 import pandas as pd
 import os
