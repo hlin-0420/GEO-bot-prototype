@@ -151,15 +151,9 @@
 
         function formatAnswerContainer(questionNumber) {
             return `
-                <div style="background-color: #f8d7da; color: #721c24; padding: 10px; 
-                            border-radius: 5px; border: 1px solid #f5c6cb; 
-                            font-weight: 500; font-size: 14px;">
-                    💡 <strong>Answer ${questionNumber}:</strong> 
-                    <span id="answerPlaceholder-${questionNumber}" 
-                        style="font-style: italic; color: grey; display: inline-block; 
-                                margin-left: 5px; animation: blink 1.5s infinite;">
-                        Processing your question...
-                    </span>
+                <div class="message-title">💡 <strong>Answer ${questionNumber}:</strong></div>
+                <div id="answerPlaceholder-${questionNumber}" class="answer-placeholder">
+                    Processing your question...
                 </div>
             `;
         }
@@ -224,7 +218,7 @@
                     const aiMessageDiv = document.createElement("div");
                     aiMessageDiv.classList.add("chat-message", "ai-message");
                     aiMessageDiv.dataset.questionNumber = tempQuestionNumber;
-                    aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${answer}`;
+                    aiMessageDiv.innerHTML = `💡 <strong>Answer ${tempQuestionNumber}:</strong> ${formatAssistantResponse(answer)}`;
                     answerWrapper.appendChild(aiMessageDiv);
 
                     chatMessages.appendChild(answerWrapper);
@@ -356,6 +350,7 @@
                     `;
                 }).join("");
 
+                return `<div class="response-option-list">${cards}</div>`;
             }
 
             return formatText(rawText);
@@ -525,7 +520,6 @@
                             const aiMessageDiv = document.createElement("div");
                             aiMessageDiv.classList.add("chat-message", "ai-message");
                             aiMessageDiv.dataset.questionNumber = questionNumber;
-                            aiMessageDiv.style.backgroundColor = "#f8d7da";
                             aiMessageDiv.style.padding = "10px";
                             aiMessageDiv.style.borderRadius = "5px";
                             aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
@@ -595,7 +589,6 @@
             aiMessageDiv.classList.add("chat-message");
             const aiMessage = document.createElement("div");
             aiMessage.classList.add("ai-message");
-            aiMessage.style.backgroundColor = "#f8d7da";
             aiMessage.style.padding = "10px";
             aiMessage.style.borderRadius = "5px";
             aiMessage.innerHTML = formatAnswerContainer(questionCounter);
@@ -1519,7 +1512,6 @@
             const aiMessageDiv = document.createElement("div");
             aiMessageDiv.classList.add("chat-message", "ai-message");
             aiMessageDiv.dataset.questionNumber = questionNumber;
-            aiMessageDiv.style.backgroundColor = "#f8d7da";
             aiMessageDiv.style.padding = "10px";
             aiMessageDiv.style.borderRadius = "5px";
             aiMessageDiv.innerHTML = formatAnswerContainer(questionNumber);
