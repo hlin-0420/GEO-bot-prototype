@@ -33,7 +33,8 @@ def get_prompt_template():
         - **Avoid** speculative or unnecessary **explanations** or **justifications**. 
         - If the question is about a **numerical** or a **limit-based** constraint, return only the limit and its enforcement. 
         - If the past feedback **corrects** a numerical limit, interpret and apply the correct value.
-        - Return output in this exact structure:
+        - Output must be plain text only (no markdown bullets, tables, or headings).
+        - Return output in this exact structure, one option per line:
           Option 1: <answer>
           Option 2: <answer>
           Option 3: <answer>

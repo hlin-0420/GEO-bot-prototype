@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "What are the steps taken to import qualitative data?",
+        "timestamp": "2026-04-11T18:28:11.641836Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Option 1: SelectTrackSettings from the Edit menu, then select Import from File, browse to the .txt file, select it and Open, and click OK to exit Qualitative Track Information.\n\nOption 2: SelectTrackSettings from the Edit menu, then select Details on the qualitative track, select Import from File, browse to the .txt file, select it and Open, and click OK to exit Qualitative Track Information.\n\nOption 3: SelectTrackSettings from the Edit menu, then select Export to File or Export to Clipboard, select the desired export option, browse to the location or external application, enter a file name if exporting to file, and paste the contents of the clipboard if exporting to clipboard.",
+        "timestamp": "2026-04-11T18:28:11.641836Z"
+    }
+]

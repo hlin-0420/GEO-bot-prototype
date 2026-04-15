@@ -884,10 +884,8 @@ def process_question(question_id, question, ai_bot, selectedOptions):
     answer_time = end_time - start_time
     
     print(f"⏱️ The time taken to implement `query` function is {answer_time:.4f} seconds.")
-    
-    formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
 
-    stored_responses[question_id] = formatted_response
+    stored_responses[question_id] = response
     
     # Append assistant's response to current session
     current_session_messages.append({"role": "assistant", "content": response})
@@ -995,8 +993,7 @@ def get_response(question_id):
             if response == "Processing" or response is None:
                 yield "data: Processing your question...\n\n"
             elif response:
-                formatted_response = response.replace("\n", "<br>")
-                yield f"data: {formatted_response}\n\n"
+                yield f"data: {response}\n\n"
                 break
             else:
                 yield "data: Error: Invalid question ID\n\n"
