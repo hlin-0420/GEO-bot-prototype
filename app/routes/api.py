@@ -20,8 +20,7 @@ def get_response(question_id):
             if response == "Processing" or response is None:
                 yield "data: Processing your question...\n\n"
             elif response:
-                formatted_response = response.replace("\n", "<br>")
-                yield f"data: {formatted_response}\n\n"
+                yield f"data: {response}\n\n"
                 break
             else:
                 yield "data: Error: Invalid question ID\n\n"

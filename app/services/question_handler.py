@@ -1,5 +1,4 @@
 import time
-import re
 from app.services.session_manager import save_chat_session
 
 def process_question(question_id, question, ai_bot, current_session_id, current_session_messages, stored_responses):
@@ -24,15 +23,9 @@ def process_question(question_id, question, ai_bot, current_session_id, current_
         response = "An error occurred while querying the model."
     
     print("[📨] Raw response:", response)
-    
-    # Step 2: Format the response
-    format_start = time.time()
-    formatted_response = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', response)
-    format_time = time.time() - format_start
-    print(f"[🎨] Response formatting took {format_time:.4f} seconds.")
 
     # Step 3: Update shared state
-    stored_responses[question_id] = formatted_response
+    stored_responses[question_id] = response
     current_session_messages.append({"role": "assistant", "content": response})
     print("[🗂️] Stored response in state and updated message history.")
 

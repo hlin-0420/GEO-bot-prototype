@@ -300,32 +300,65 @@
             console.log(`✅ Restored question counter to: ${questionCounter}`);
         }
 
+        function escapeHTML(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
         function formatText(rawText) {
             if (typeof rawText !== "string") return "";
 
-            // Step 1: Escape HTML
-            const escapeHTML = (str) =>
-                str.replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;");
-
             let text = escapeHTML(rawText.trim());
 
-            // Step 2: Convert numbered lines to list items
-            text = text.replace(/^(\d+)\.\s+(.*)$/gm, "<li><strong>$1.</strong> $2</li>");
-
-            // Step 3: Wrap list items in <ol>
-            text = text.replace(/(<li>[\s\S]*?<\/li>)/gm, "<ol>$1</ol>");
-            text = text.replace(/<\/ol>\s*<ol>/g, ""); // merge consecutive lists
-
-            // Step 4: Convert double line breaks to paragraphs
             text = text.replace(/\n\s*\n/g, "</p><p>");
-            text = `<p>${text}</p>`;
+            text = text.replace(/\n/g, "<br>");
+            return `<p>${text}</p>`;
+        }
 
-            // Step 5: Remove <p> that wraps <ol>
-            text = text.replace(/<p>\s*(<ol>[\s\S]*?<\/ol>)\s*<\/p>/g, "$1");
+        function parseOptionBlocks(rawText) {
+            if (typeof rawText !== "string") return [];
 
-            return text;
+            const lines = rawText.split(/\r?\n/);
+            const options = [];
+            let current = null;
+
+            for (const line of lines) {
+                const match = line.match(/^\s*Option\s*(\d+)\s*:\s*(.*)$/i);
+                if (match) {
+                    if (current) options.push(current);
+                    current = { number: match[1], text: match[2] || "" };
+                } else if (current) {
+                    const continuation = line.trim();
+                    if (continuation) {
+                        current.text += `${current.text ? "\n" : ""}${continuation}`;
+                    }
+                }
+            }
+
+            if (current) options.push(current);
+            return options;
+        }
+
+        function formatAssistantResponse(rawText) {
+            if (typeof rawText !== "string") return "";
+
+            const options = parseOptionBlocks(rawText);
+            if (options.length > 0) {
+                const cards = options.map((opt) => {
+                    const safeText = escapeHTML(opt.text || "").replace(/\n/g, "<br>");
+                    return `
+                        <div class="response-option-card">
+                            <div class="response-option-title">Option ${opt.number}</div>
+                            <div class="response-option-text">${safeText || "No answer provided."}</div>
+                        </div>
+                    `;
+                }).join("");
+
+            }
+
+            return formatText(rawText);
         }
 
 
@@ -391,7 +424,7 @@
                         aiMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
-                        formattedHTML = formatText(msg.content);
+                        formattedHTML = formatAssistantResponse(msg.content);
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${formattedHTML}`;
 
                         // Append answer to the wrapper
@@ -1434,7 +1467,7 @@
                     temp_question_number = temp_question_number + 1;
                     messageDiv.innerHTML = `<div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">❓ Question ${temp_question_number}: ${msg.content}</div>`;
                 } else if (msg.role === "assistant") {
-                    messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${msg.content}</div>`;
+                    messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${formatAssistantResponse(msg.content)}</div>`;
                 }
 
                 chatMessages.appendChild(messageDiv);
@@ -1554,12 +1587,19 @@
                     const data = event.data;
 
                     if (data.startsWith("Error:")) {
-                        placeholder.innerHTML = `<span style="color: red;">${data}</span>`;
+                        placeholder.innerHTML = `<span style="color: red;">${escapeHTML(data)}</span>`;
                         eventSource.close();
                         resolve();
-                    } else if (data !== "Processing your question...") {
+                        return;
+                    }
+
+                    if (data !== "Processing your question...") {
                         fullResponse += data;
-                        placeholder.innerHTML = fullResponse;
+                        placeholder.innerHTML = escapeHTML(fullResponse).replace(/\n/g, "<br>");
+                        aiMessageDiv.innerHTML = `💡 <strong>Answer ${questionNumber}:</strong> ${formatAssistantResponse(fullResponse)}`;
+                        finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
+                        eventSource.close();
+                        resolve();
                     }
                 };
 
@@ -1570,25 +1610,6 @@
                         placeholder.innerHTML = `<span style="color: red;">⚠️ No response received.</span>`;
                     }
                     eventSource.close();
-                    resolve();
-                };
-
-                eventSource.onmessage = function (event) {
-                    const data = event.data;
-
-                    if (data.startsWith("Error:")) {
-                        placeholder.innerHTML = `<span style="color: red;">${data}</span>`;
-                        eventSource.close();
-                        resolve();
-                    } else if (data !== "Processing your question...") {
-                        fullResponse += data;
-                        placeholder.innerHTML = fullResponse;
-                    }
-                };
-
-                eventSource.onclose = function () {
-                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber)
-
                     resolve();
                 };
             });
