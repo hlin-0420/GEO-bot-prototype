@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify, Response
 import os, json, time, threading
 from app.services.ollama_bot import get_bot
 from app.services.question_handler import process_question
-from app.config import selected_model_name  # import active model setting
+from app.config import selected_model_name, CHAT_SESSIONS_DIR  # import active model setting
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
@@ -69,7 +69,7 @@ def ask():
             if state.current_session_id != incoming_session_id:
                 print("🔄 Session ID changed, loading new session")
                 state.current_session_id = incoming_session_id
-                session_file = os.path.join("data/user_sessions/ChatSessions", f"{state.current_session_id}.json")
+                session_file = os.path.join(CHAT_SESSIONS_DIR, f"{state.current_session_id}.json")
 
                 if os.path.exists(session_file):
                     print("📂 Loading existing session file")
