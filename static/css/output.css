@@ -1281,10 +1281,13 @@
 
   /* User message - Light mode */
   .user-message {
-    background-color: #d1ecf1;
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #cfe8ef;
+    border: 1px solid #b7d8e1;
+    color: #0f172a;
+    padding: 16px 18px;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 1.45;
   }
 
   .question-options {
@@ -1297,23 +1300,35 @@
 
   /* AI message - Light mode */
   .ai-message {
-    background-color: #f8d7da;
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #f1d4da;
+    border: 1px solid #e1b6c0;
+    color: #111827;
+    padding: 16px 18px;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .message-title {
+    margin-bottom: 10px;
+  }
+
+  .answer-placeholder {
+    color: #6b7280;
+    font-style: italic;
   }
 
   .response-option-list {
     display: grid;
-    gap: 8px;
-    margin-top: 6px;
+    gap: 10px;
+    margin-top: 8px;
   }
 
   .response-option-card {
-    background-color: rgba(255, 255, 255, 0.55);
-    border: 1px solid #f0b8bf;
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 1px solid #e8bac2;
     border-radius: 8px;
-    padding: 8px 10px;
+    padding: 12px 14px;
   }
 
   .response-option-title {
