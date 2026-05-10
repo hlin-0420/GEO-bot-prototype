@@ -99,7 +99,7 @@ def get_results():
                 lambda row: calculate_semantic_similarity(str(row["Expected Answer"]), str(row["Response"])), axis=1
             )
 
-        temp_filtered_file = "Data/temp_filtered_data.xlsx"
+        temp_filtered_file = "data/temp_filtered_data.xlsx"
         filtered_df.drop(columns=["is_question_in_expected"], inplace=True)
         filtered_df.to_excel(temp_filtered_file)
 

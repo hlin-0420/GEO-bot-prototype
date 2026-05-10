@@ -69,7 +69,7 @@ def ask():
             if state.current_session_id != incoming_session_id:
                 print("🔄 Session ID changed, loading new session")
                 state.current_session_id = incoming_session_id
-                session_file = os.path.join("Data/user_sessions/ChatSessions", f"{state.current_session_id}.json")
+                session_file = os.path.join("data/user_sessions/ChatSessions", f"{state.current_session_id}.json")
 
                 if os.path.exists(session_file):
                     print("📂 Loading existing session file")

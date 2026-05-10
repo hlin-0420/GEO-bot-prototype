@@ -106,7 +106,7 @@ def upload():
     file = request.files["file"]
     if file.filename == "":
         return jsonify({"error": "No selected file"}), 400
-    file_path = f"./Data/{file.filename}"
+    file_path = f"./data/{file.filename}"
     file.save(file_path)
     result = process_file(file_path)
     return jsonify({"message": result})
