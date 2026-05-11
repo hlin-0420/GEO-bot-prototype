@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify, Response
 import os, json, time, threading
 from app.services.ollama_bot import get_bot
 from app.services.question_handler import process_question
-from app.config import selected_model_name, CHAT_SESSIONS_DIR  # import active model setting
+from app import config  # import active model setting
 from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
@@ -17,7 +17,7 @@ def get_response(question_id):
         while True:
             response = state.pending_responses.get(question_id)
 
-            if response == "Processing" or response is None:
+            if str(response).startswith("Processing") or response is None:
                 yield "data: Processing your question...\n\n"
             elif response:
                 yield f"data: {response}\n\n"
@@ -31,15 +31,14 @@ def get_response(question_id):
 
 @api_blueprint.route("/selection", methods=["GET"])
 def update_model_name():
-    global selected_model_name
 
     model_name = request.args.get("model")  # Retrieve model name from URL parameters
 
     if not model_name:
         return jsonify({"error": "No model selected"}), 400
 
-    selected_model_name = model_name
-    print(f"Selected model name: \"{selected_model_name}\".")
+    config.selected_model_name = model_name
+    print(f"Selected model name: \"{config.selected_model_name}\".")
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
 
@@ -69,7 +68,7 @@ def ask():
             if state.current_session_id != incoming_session_id:
                 print("🔄 Session ID changed, loading new session")
                 state.current_session_id = incoming_session_id
-                session_file = os.path.join(CHAT_SESSIONS_DIR, f"{state.current_session_id}.json")
+                session_file = os.path.join(config.CHAT_SESSIONS_DIR, f"{state.current_session_id}.json")
 
                 if os.path.exists(session_file):
                     print("📂 Loading existing session file")
