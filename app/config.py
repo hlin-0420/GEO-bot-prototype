@@ -7,7 +7,7 @@ APP_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(APP_DIR, ".."))
 
 # Data Directory at the root level
-DATA_DIR = os.path.join(ROOT_DIR, "Data")
+DATA_DIR = os.path.join(ROOT_DIR, "data")
 
 # Session Directories
 CHAT_SESSIONS_DIR = os.path.join(DATA_DIR, "user_sessions", "ChatSessions")

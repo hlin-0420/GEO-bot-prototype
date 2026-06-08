@@ -3,6 +3,7 @@ from app.utils.file_helpers import auto_adjust_column_width
 from app.utils.html_file_loader import process_single_file
 # from app.services.document_processor.DocumentProcessor import extract_text, extract_list, extract_table_as_text_block
 from app.config import (
+    DATA_DIR,
     PROCESSED_CONTENT_FILE,
     EXCEL_FILE,
     selected_model_name,
@@ -39,7 +40,7 @@ class OllamaBot:
             init_start = time.time()
 
             # Step 1: Resolve base directory
-            self.base_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "Data"))
+            self.base_directory = DATA_DIR
             print(f"📁 [OllamaBot] Base directory set to: {self.base_directory}")
 
             # Step 2: Create document cache

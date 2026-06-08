@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import os, logging, json
 import pandas as pd
 import numpy as np
-from app.config import EXCEL_FILE, EXPECTED_RESULTS_FILE, TIMED_RESPONSES_FILE
+from app.config import EXCEL_FILE, EXPECTED_RESULTS_FILE, TIMED_RESPONSES_FILE, DATA_DIR
 from app.utils.analysis_helpers import is_similar_question, find_best_match, calculate_semantic_similarity, clean_dataframe  # Assuming these exist
 
 timing_routes = Blueprint('timing', __name__)
@@ -99,7 +99,7 @@ def get_results():
                 lambda row: calculate_semantic_similarity(str(row["Expected Answer"]), str(row["Response"])), axis=1
             )
 
-        temp_filtered_file = "Data/temp_filtered_data.xlsx"
+        temp_filtered_file = os.path.join(DATA_DIR, "temp_filtered_data.xlsx")
         filtered_df.drop(columns=["is_question_in_expected"], inplace=True)
         filtered_df.to_excel(temp_filtered_file)
 

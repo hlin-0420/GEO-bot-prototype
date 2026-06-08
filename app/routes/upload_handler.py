@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from app.utils.file_helpers import process_file
 from app.services.ollama_bot import get_bot
+from app.config import DATA_DIR
+from werkzeug.utils import secure_filename
 import os
 
 upload_routes = Blueprint('upload', __name__)
@@ -14,7 +16,7 @@ def upload():
     if file.filename == "":
         return jsonify({"error": "No selected file"}), 400
 
-    file_path = f"./Data/{file.filename}"
+    file_path = os.path.join(DATA_DIR, secure_filename(file.filename))
     file.save(file_path)
     result = process_file(file_path)
     return jsonify({"message": result})
