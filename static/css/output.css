@@ -2142,4 +2142,100 @@
   .response-option-card.selected-response-option .response-option-text {
     color: #1f2937;
   }
+
+  .response-option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .response-option-card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px 16px;
+    border: 1px solid #d6a7b1;
+    border-radius: 8px;
+    background-color: #fff7f9;
+    color: #222222;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .response-option-card:hover {
+    border-color: #9b5f70;
+    background-color: #ffffff;
+  }
+
+  .response-option-title {
+    font-weight: 700;
+    color: #7b1f32;
+    margin-bottom: 6px;
+  }
+
+  .response-option-text {
+    color: #222222;
+    line-height: 1.45;
+  }
+
+  .selected-response-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .selected-response-label {
+    font-weight: 700;
+    color: #0056b3;
+    font-size: 14px;
+  }
+
+  .response-option-card.selected-response-option {
+    border: 2px solid #007bff;
+    background-color: #eef6ff;
+    color: #1f2937;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  }
+
+  .response-option-card.selected-response-option .response-option-title {
+    color: #0056b3;
+  }
+
+  .response-option-card.selected-response-option .response-option-text {
+    color: #1f2937;
+  }
+
+  .unused-response-block {
+    margin-top: 8px;
+    border-top: 1px solid #e5c3cb;
+    padding-top: 10px;
+  }
+
+  .unused-response-block summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .unused-response-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .response-option-card.unused-response-option {
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .response-option-card.unused-response-option .response-option-title {
+    color: #555;
+  }
+
+  .response-option-card.unused-response-option .response-option-text {
+    color: #333333;
+  }
 }

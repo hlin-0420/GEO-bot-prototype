@@ -345,9 +345,8 @@
             const options = parseOptionBlocks(rawText);
 
             if (options.length > 0) {
-                const cards = options.map((opt) => {
+                const cards = options.map((opt, index) => {
                     const safeText = escapeHTML(opt.text || "").replace(/\n/g, "<br>");
-                    const optionTextAttr = escapeHTML(opt.text || "");
 
                     return `
                 <button
@@ -355,9 +354,8 @@
                     class="response-option-card"
                     data-question-number="${questionNumber || ""}"
                     data-option-number="${opt.number}"
-                    data-option-text="${optionTextAttr}"
+                    data-original-index="${index}"
                     aria-pressed="false"
-                    title="Select Option ${opt.number}"
                 >
                     <div class="response-option-title">Option ${opt.number}</div>
                     <div class="response-option-text">${safeText || "No answer provided."}</div>
@@ -374,7 +372,6 @@
 
             return formatText(rawText);
         }
-
 
         async function loadSessionMessages(sessionId) {
             console.log(`🔎 Loading session messages for sessionId: ${sessionId}`);
@@ -1696,12 +1693,21 @@
             document.getElementById(`submitFeedback-${questionNumber}`).addEventListener("click", () => submitCompleteFeedback(questionNumber));
         }
 
+        const selectedRatings = {};
         const selectedResponseOptions = {};
 
+        function getOptionTextFromCard(card) {
+            const textElement = card.querySelector(".response-option-text");
+            return textElement ? textElement.innerText.trim() : "";
+        }
+
         function selectResponseOption(card) {
-            const questionNumber = card.dataset.questionNumber;
+            const optionList = card.closest(".response-option-list");
+            if (!optionList) return;
+
+            const questionNumber = card.dataset.questionNumber || optionList.dataset.questionNumber;
             const optionNumber = card.dataset.optionNumber;
-            const optionText = card.dataset.optionText || "";
+            const optionText = getOptionTextFromCard(card);
 
             if (!questionNumber || !optionNumber) return;
 
@@ -1710,18 +1716,56 @@
                 option_text: optionText
             };
 
-            const optionList = card.closest(".response-option-list");
-            if (optionList) {
-                optionList.querySelectorAll(".response-option-card").forEach(optionCard => {
-                    optionCard.classList.remove("selected-response-option");
-                    optionCard.setAttribute("aria-pressed", "false");
+            const allCards = Array.from(optionList.querySelectorAll(".response-option-card"));
+            const selectedCard = card;
+            const unusedCards = allCards.filter(optionCard => optionCard !== selectedCard);
+
+            allCards.forEach(optionCard => {
+                optionCard.classList.remove("selected-response-option", "unused-response-option");
+                optionCard.setAttribute("aria-pressed", "false");
+            });
+
+            selectedCard.classList.add("selected-response-option");
+            selectedCard.setAttribute("aria-pressed", "true");
+
+            unusedCards.forEach(optionCard => {
+                optionCard.classList.add("unused-response-option");
+            });
+
+            optionList.replaceChildren();
+
+            const selectedBlock = document.createElement("div");
+            selectedBlock.classList.add("selected-response-block");
+
+            const selectedLabel = document.createElement("div");
+            selectedLabel.classList.add("selected-response-label");
+            selectedLabel.textContent = "✅ Selected response";
+
+            selectedBlock.appendChild(selectedLabel);
+            selectedBlock.appendChild(selectedCard);
+            optionList.appendChild(selectedBlock);
+
+            if (unusedCards.length > 0) {
+                const unusedBlock = document.createElement("details");
+                unusedBlock.classList.add("unused-response-block");
+                unusedBlock.open = true;
+
+                const summary = document.createElement("summary");
+                summary.textContent = "Other responses";
+
+                const unusedList = document.createElement("div");
+                unusedList.classList.add("unused-response-list");
+
+                unusedCards.forEach(optionCard => {
+                    unusedList.appendChild(optionCard);
                 });
+
+                unusedBlock.appendChild(summary);
+                unusedBlock.appendChild(unusedList);
+                optionList.appendChild(unusedBlock);
             }
 
-            card.classList.add("selected-response-option");
-            card.setAttribute("aria-pressed", "true");
-
-            console.log(`✅ Selected Option ${optionNumber} for Question ${questionNumber}`);
+            console.log(`✅ Question ${questionNumber}: selected Option ${optionNumber}`);
         }
 
         document.addEventListener("click", function (event) {
@@ -1763,6 +1807,9 @@
 
             const rating = selectedRatings[questionNumber] || 0;  // Rating defaults to 0 if no stars selected.
 
+            const selectedOption = selectedResponseOptions[questionNumber] || null;
+            const finalResponseText = selectedOption ? selectedOption.option_text : responseText;
+
             if (rating === 0 && !comment) {
                 alert("Please provide either a rating or a comment before submitting.");
                 return;
@@ -1779,9 +1826,12 @@
                 question_number: questionNumber,
                 rating: rating,
                 comment: comment,
+
                 selected_option: selectedOption,
-                question: questionText,
-                response: responseText
+                response: finalResponseText,
+                full_response: responseText,
+
+                question: questionText
             };
 
             fetch('/submit-feedback', {
