@@ -18,7 +18,7 @@
             <!-- Dropdown for selecting model -->
             <select id="modelSelector" class="navbar-dropdown">
                 {% for model in model_options %}
-                <option value="{{ model.value }}" {% if model.value == selected_model %}selected{% endif %}>
+                <option value="{{ model.value }}" {% if model.value==selected_model %}selected{% endif %}>
                     {{ model.label }}
                 </option>
                 {% endfor %}
@@ -222,7 +222,7 @@
                     const aiMessageDiv = document.createElement("div");
                     aiMessageDiv.classList.add("chat-message", "ai-message");
                     aiMessageDiv.dataset.questionNumber = tempQuestionNumber;
-                    aiMessageDiv.innerHTML = `💡 <strong>Answer ${tempQuestionNumber}:</strong> ${formatAssistantResponse(answer)}`;
+                    aiMessageDiv.innerHTML = `💡 <strong>Answer ${tempQuestionNumber}:</strong> ${formatAssistantResponse(answer, tempQuestionNumber)}`;
                     answerWrapper.appendChild(aiMessageDiv);
 
                     chatMessages.appendChild(answerWrapper);
@@ -339,22 +339,37 @@
             return options;
         }
 
-        function formatAssistantResponse(rawText) {
+        function formatAssistantResponse(rawText, questionNumber = null) {
             if (typeof rawText !== "string") return "";
 
             const options = parseOptionBlocks(rawText);
+
             if (options.length > 0) {
                 const cards = options.map((opt) => {
                     const safeText = escapeHTML(opt.text || "").replace(/\n/g, "<br>");
+                    const optionTextAttr = escapeHTML(opt.text || "");
+
                     return `
-                        <div class="response-option-card">
-                            <div class="response-option-title">Option ${opt.number}</div>
-                            <div class="response-option-text">${safeText || "No answer provided."}</div>
-                        </div>
-                    `;
+                <button
+                    type="button"
+                    class="response-option-card"
+                    data-question-number="${questionNumber || ""}"
+                    data-option-number="${opt.number}"
+                    data-option-text="${optionTextAttr}"
+                    aria-pressed="false"
+                    title="Select Option ${opt.number}"
+                >
+                    <div class="response-option-title">Option ${opt.number}</div>
+                    <div class="response-option-text">${safeText || "No answer provided."}</div>
+                </button>
+            `;
                 }).join("");
 
-                return `<div class="response-option-list">${cards}</div>`;
+                return `
+            <div class="response-option-list" data-question-number="${questionNumber || ""}">
+                ${cards}
+            </div>
+        `;
             }
 
             return formatText(rawText);
@@ -423,7 +438,7 @@
                         aiMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         aiMessageDiv.style.padding = "10px";
                         aiMessageDiv.style.borderRadius = "5px";
-                        formattedHTML = formatAssistantResponse(msg.content);
+                        formattedHTML = formatAssistantResponse(msg.content, tempQuestionNumber);
                         aiMessageDiv.innerHTML = `💡 Answer ${tempQuestionNumber}: ${formattedHTML}`;
 
                         // Append answer to the wrapper
@@ -1464,7 +1479,7 @@
                     temp_question_number = temp_question_number + 1;
                     messageDiv.innerHTML = `<div class="user-message" style="background-color: #d1ecf1; padding: 10px; border-radius: 5px;">❓ Question ${temp_question_number}: ${msg.content}</div>`;
                 } else if (msg.role === "assistant") {
-                    messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${formatAssistantResponse(msg.content)}</div>`;
+                    messageDiv.innerHTML = `<div class="ai-message" style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">💡 Answer ${temp_question_number}: ${formatAssistantResponse(msg.content, temp_question_number)}</div>`;
                 }
 
                 chatMessages.appendChild(messageDiv);
@@ -1592,7 +1607,7 @@
                     if (data !== "Processing your question...") {
                         fullResponse += data;
                         placeholder.innerHTML = escapeHTML(fullResponse).replace(/\n/g, "<br>");
-                        aiMessageDiv.innerHTML = `💡 <strong>Answer ${questionNumber}:</strong> ${formatAssistantResponse(fullResponse)}`;
+                        aiMessageDiv.innerHTML = `💡 <strong>Answer ${questionNumber}:</strong> ${formatAssistantResponse(fullResponse, questionNumber)}`;
                         finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
                         eventSource.close();
                         resolve();
@@ -1681,7 +1696,40 @@
             document.getElementById(`submitFeedback-${questionNumber}`).addEventListener("click", () => submitCompleteFeedback(questionNumber));
         }
 
-        const selectedRatings = {};  // To store the selected rating for each question
+        const selectedResponseOptions = {};
+
+        function selectResponseOption(card) {
+            const questionNumber = card.dataset.questionNumber;
+            const optionNumber = card.dataset.optionNumber;
+            const optionText = card.dataset.optionText || "";
+
+            if (!questionNumber || !optionNumber) return;
+
+            selectedResponseOptions[questionNumber] = {
+                option_number: optionNumber,
+                option_text: optionText
+            };
+
+            const optionList = card.closest(".response-option-list");
+            if (optionList) {
+                optionList.querySelectorAll(".response-option-card").forEach(optionCard => {
+                    optionCard.classList.remove("selected-response-option");
+                    optionCard.setAttribute("aria-pressed", "false");
+                });
+            }
+
+            card.classList.add("selected-response-option");
+            card.setAttribute("aria-pressed", "true");
+
+            console.log(`✅ Selected Option ${optionNumber} for Question ${questionNumber}`);
+        }
+
+        document.addEventListener("click", function (event) {
+            const optionCard = event.target.closest(".response-option-card");
+            if (!optionCard) return;
+
+            selectResponseOption(optionCard);
+        });
 
         function setRating(questionNumber, rating) {
             selectedRatings[questionNumber] = rating;
@@ -1700,6 +1748,7 @@
         function resetStars(questionNumber) {
             const stars = document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`);
             const selectedRating = selectedRatings[questionNumber] || 0;
+            const selectedOption = selectedResponseOptions[questionNumber] || null;
 
             stars.forEach(star => {
                 const starValue = parseInt(star.getAttribute('data-rating'), 10);
@@ -1730,6 +1779,7 @@
                 question_number: questionNumber,
                 rating: rating,
                 comment: comment,
+                selected_option: selectedOption,
                 question: questionText,
                 response: responseText
             };
