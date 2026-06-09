@@ -1,127 +1,188 @@
-# app/routes/api.py
-from flask import Blueprint, request, jsonify, Response
-import os, json, time, threading
+import json
+import os
+import re
+import threading
+import time
+import uuid
+
+from flask import Blueprint, Response, jsonify, request
+
+from app import config, state
 from app.services.ollama_bot import get_bot
 from app.services.question_handler import process_question
-from app import config  # import active model setting
-from app import state  # import shared state
 
-api_blueprint = Blueprint('api', __name__)
+api_blueprint = Blueprint("api", __name__)
+
+SESSION_ID_PATTERN = re.compile(r"^[A-Za-z0-9_.-]+$")
+RESPONSE_TIMEOUT_SECONDS = 300
+
+
+def _is_valid_session_id(session_id):
+    return bool(session_id and SESSION_ID_PATTERN.fullmatch(session_id))
+
+
+def _new_session_id():
+    return f"chat_session_{time.strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:8]}"
+
+
+def _load_session_messages(session_id):
+    if session_id in state.session_messages:
+        return state.session_messages[session_id]
+
+    session_file = os.path.join(config.CHAT_SESSIONS_DIR, f"{session_id}.json")
+    if os.path.exists(session_file):
+        with open(session_file, "r", encoding="utf-8") as f:
+            messages = json.load(f)
+    else:
+        messages = []
+
+    state.session_messages[session_id] = messages
+    return messages
+
+
+def _format_sse(data):
+    lines = str(data).splitlines() or [""]
+    return "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
+def _set_selected_model(model_name):
+    if not model_name:
+        return None
+
+    if model_name not in config.VALID_MODEL_NAMES:
+        return jsonify({
+            "error": f"Unsupported model '{model_name}'",
+            "valid_models": sorted(config.VALID_MODEL_NAMES),
+        }), 400
+
+    if config.selected_model_name != model_name:
+        config.selected_model_name = model_name
+        get_bot(force_refresh=True)
+
+    return None
+
+
+def _cleanup_old_responses():
+    cutoff = time.time() - RESPONSE_TIMEOUT_SECONDS
+    expired_question_ids = [
+        question_id
+        for question_id, created_at in state.pending_response_created_at.items()
+        if created_at < cutoff
+    ]
+    for question_id in expired_question_ids:
+        state.clear_pending_response(question_id)
+
 
 @api_blueprint.route("/response/<question_id>", methods=["GET"])
 def get_response(question_id):
-    """
-    SSE endpoint for EventSource to fetch the response.
-    """
-    def generate_response():
-        while True:
-            response = state.pending_responses.get(question_id)
+    """SSE endpoint used by EventSource to fetch a completed answer."""
 
-            if str(response).startswith("Processing") or response is None:
-                yield "data: Processing your question...\n\n"
-            elif response:
-                yield f"data: {response}\n\n"
-                break
-            else:
-                yield "data: Error: Invalid question ID\n\n"
-                break
-            time.sleep(1)
+    def generate_response():
+        start_time = time.monotonic()
+        timed_out = False
+        try:
+            while True:
+                with state.lock:
+                    response = state.pending_responses.get(question_id)
+
+                if response == state.PROCESSING_STATUS:
+                    yield _format_sse("Processing your question...")
+                elif response is None:
+                    yield _format_sse("Error: Invalid question ID")
+                    break
+                else:
+                    yield _format_sse(response)
+                    break
+
+                if time.monotonic() - start_time > RESPONSE_TIMEOUT_SECONDS:
+                    timed_out = True
+                    yield _format_sse("Error: Timed out waiting for a response")
+                    break
+
+                time.sleep(1)
+        finally:
+            with state.lock:
+                response = state.pending_responses.get(question_id)
+                if timed_out or response != state.PROCESSING_STATUS:
+                    state.clear_pending_response(question_id)
 
     return Response(generate_response(), content_type="text/event-stream")
 
+
 @api_blueprint.route("/selection", methods=["GET"])
 def update_model_name():
-
-    model_name = request.args.get("model")  # Retrieve model name from URL parameters
+    model_name = request.args.get("model")
 
     if not model_name:
         return jsonify({"error": "No model selected"}), 400
 
-    config.selected_model_name = model_name
-    print(f"Selected model name: \"{config.selected_model_name}\".")
+    validation_error = _set_selected_model(model_name)
+    if validation_error:
+        return validation_error
 
     return jsonify({"message": f"Model updated to {model_name}"}), 200
+
 
 @api_blueprint.route("/ask", methods=["POST"])
 def ask():
     try:
-        print("📥 Received a POST request to /ask")
-        data = request.json
+        data = request.get_json(silent=True)
         if not data:
-            print("⚠️ No JSON payload received")
             return jsonify({"error": "No JSON payload received"}), 400
 
         question = data.get("question", "").strip()
-        selectedOptions = data.get("selectedOptions", "")
+        selected_options = data.get("selectedOptions", "")
         incoming_session_id = data.get("session_id")
+        model_name = data.get("model")
 
         if not question:
-            print("⚠️ Question is empty")
             return jsonify({"error": "Question cannot be empty"}), 400
 
-        print(f"💬 User question: {question}")
-        print(f"🧾 Selected options: {selectedOptions}")
-        print(f"🔑 Incoming session ID: {incoming_session_id}")
+        validation_error = _set_selected_model(model_name)
+        if validation_error:
+            return validation_error
 
-        # Manage session ID and messages
         if incoming_session_id:
-            if state.current_session_id != incoming_session_id:
-                print("🔄 Session ID changed, loading new session")
-                state.current_session_id = incoming_session_id
-                session_file = os.path.join(config.CHAT_SESSIONS_DIR, f"{state.current_session_id}.json")
-
-                if os.path.exists(session_file):
-                    print("📂 Loading existing session file")
-                    with open(session_file, "r", encoding="utf-8") as f:
-                        state.current_session_messages = json.load(f)
-                else:
-                    print("📁 No session file found, starting new session")
-                    state.current_session_messages = []
-        elif state.current_session_id is None:
-            state.current_session_id = f"chat_session_{time.strftime('%Y%m%d_%H%M%S')}"
-            print(f"🆕 Created new session ID: {state.current_session_id}")
-            state.current_session_messages = []
-
-        state.current_session_messages.append({"role": "user", "content": question})
-
-        def process_question_wrapper(*args):
-            try:
-                start_time = time.time()
-                print("🚀 Starting question processing thread")
-                question_id, question, selectedOptions = args
-                print("📦 Calling get_bot()...")
-                bot = get_bot()
-                print("✅ get_bot() returned.")
-                process_question(question_id, question, bot, state.current_session_id, state.current_session_messages, state.stored_responses)
-                state.execution_time = time.time() - start_time
-                print(f"✅ Finished processing question in {state.execution_time:.4f} seconds")
-            except Exception as e:
-                print(f"❌ Error in thread: {str(e)}")
+            if not _is_valid_session_id(incoming_session_id):
+                return jsonify({"error": "Invalid session ID"}), 400
+            session_id = incoming_session_id
+        else:
+            session_id = _new_session_id()
 
         with state.lock:
-            current_id = str(state.question_id)
-            state.question_id += 1
+            _cleanup_old_responses()
+            question_id = uuid.uuid4().hex
+            session_messages = _load_session_messages(session_id)
+            session_messages.append({"role": "user", "content": question})
+            state.pending_responses[question_id] = state.PROCESSING_STATUS
+            state.pending_response_created_at[question_id] = time.time()
 
-        state.pending_responses[current_id] = "Processing..."
+        def process_question_wrapper():
+            try:
+                start_time = time.time()
+                bot = get_bot()
+                process_question(
+                    question_id,
+                    question,
+                    bot,
+                    session_id,
+                    session_messages,
+                    state.pending_responses,
+                    response_lock=state.lock,
+                )
+                state.execution_time = time.time() - start_time
+            except Exception as exc:
+                with state.lock:
+                    if question_id in state.pending_responses:
+                        state.pending_responses[question_id] = f"Error: {exc}"
 
-        print(f"🆔 Assigned question ID: {current_id}")
-        print("🧠 Spawning background thread for processing...")
-
-        process_question_start_time = time.time()
-        thread = threading.Thread(
-            target=process_question_wrapper,
-            args=(current_id, question, selectedOptions)
-        )
+        thread = threading.Thread(target=process_question_wrapper, daemon=True)
         thread.start()
-        process_time = time.time() - process_question_start_time
-
-        print(f"⏱️ Returned response immediately after starting thread in {process_time:.4f} seconds")
 
         return jsonify({
-            "question_id": current_id,
-            "session_id": state.current_session_id
+            "question_id": question_id,
+            "session_id": session_id,
         }), 200
 
-    except Exception as e:
-        print(f"❌ Error in /ask: {str(e)}")
+    except Exception:
         return jsonify({"error": "Internal Server Error"}), 500

@@ -2,12 +2,11 @@ from app.services.rag_application import RAGApplication
 from app.utils.file_helpers import auto_adjust_column_width
 from app.utils.html_file_loader import process_single_file
 # from app.services.document_processor.DocumentProcessor import extract_text, extract_list, extract_table_as_text_block
+from app import config
 from app.config import (
     DATA_DIR,
     PROCESSED_CONTENT_FILE,
     EXCEL_FILE,
-    selected_model_name,
-    valid_model_names,
     FAISS_INDEX_PATH,
 )
 from app.services.ollama_bot_helpers import (
@@ -50,11 +49,11 @@ class OllamaBot:
             # Step 3: Initialize LLM
             model_init_start = time.time()
             self.llm_model = ChatOllama(
-                model=selected_model_name,
+                model=config.selected_model_name,
                 temperature=0,
                 num_predict=150
             )
-            print(f"🤖 [OllamaBot] LLM model '{selected_model_name}' loaded in {time.time() - model_init_start:.2f} seconds.")
+            print(f"🤖 [OllamaBot] LLM model '{config.selected_model_name}' loaded in {time.time() - model_init_start:.2f} seconds.")
 
             # Step 4: Initialize RAG pipeline
             rag_init_start = time.time()
@@ -108,14 +107,14 @@ class OllamaBot:
             retriever = vectorstore.as_retriever(k=4)
 
             # Step 4: Build prompt
-            if selected_model_name in valid_model_names:
+            if config.selected_model_name in config.valid_model_names:
                 print("📜 Creating prompt template and RAG chain...")
                 prompt = get_prompt_template()
                 rag_chain = prompt | self.llm_model | StrOutputParser()
                 self.rag_application = RAGApplication(retriever, rag_chain, self.web_documents)
                 print("✅ RAG application initialized successfully.")
             else:
-                raise ValueError(f"Model '{selected_model_name}' is not supported in this configuration.")
+                raise ValueError(f"Model '{config.selected_model_name}' is not supported in this configuration.")
         except Exception as e:
             print(f"❌ [_initialize_rag_application] Failed: {str(e)}")
             raise
@@ -195,7 +194,7 @@ class OllamaBot:
         print(f"⏱️ The time taken to implement the `run` function of the RAG application is {rag_execution_time:.4f} seconds.")
 
         # Step 2: Prepare new entry DataFrame
-        new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
+        new_entry = pd.DataFrame([[question, config.selected_model_name, response]], columns=["Question", "Model Name", "Response"])
 
         # Step 3: Append to Excel (consolidated I/O operations)
         if os.path.exists(EXCEL_FILE):

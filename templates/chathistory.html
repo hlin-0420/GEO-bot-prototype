@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-    <link href="static/css/output.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO Chat History</title>
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -14,10 +17,11 @@
             </a>
             <!-- Dropdown for selecting model -->
             <select id="modelSelector" class="navbar-dropdown">
-                <option value="deepseek1.5">DeepSeek 1.5</option>
-                <option value="llama3.2:latest" selected>Llama 3.2</option>
-                <option value="tinyllama:latest">Tiny Llama</option>
-                <option value="gemma3:1b">Gemma 3</option>
+                {% for model in model_options %}
+                <option value="{{ model.value }}" {% if model.value == selected_model %}selected{% endif %}>
+                    {{ model.label }}
+                </option>
+                {% endfor %}
             </select>
             <nav class="navbar-links">
                 <a href="/">Home Page</a>
@@ -1770,7 +1774,7 @@
 
         function updateModel() {
             const selectedModel = document.getElementById("modelSelector").value;
-            fetch(`/selection?model=${selectedModel}`)
+            fetch(`/selection?model=${encodeURIComponent(selectedModel)}`)
                 .then(response => response.json())
                 .then(data => console.log("Model updated:", data))
                 .catch(error => console.error("Error updating model:", error));

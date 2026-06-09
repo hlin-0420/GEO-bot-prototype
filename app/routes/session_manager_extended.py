@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 import os
+from app import state
 from app.config import DATA_DIR, CHAT_SESSIONS_DIR
 from app.services.session_manager import load_session_metadata, save_session_metadata, load_chat_history
 import json
@@ -29,6 +30,8 @@ def clear_chat_sessions():
             for filename in os.listdir(session_dir):
                 os.remove(os.path.join(session_dir, filename))
         save_session_metadata({})
+        with state.lock:
+            state.session_messages.clear()
         return jsonify({"success": True, "message": "All chat sessions cleared."}), 200
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
@@ -40,6 +43,8 @@ def delete_session(session_id):
         if not os.path.exists(session_file):
             return jsonify({"error": "Session not found"}), 404
         os.remove(session_file)
+        with state.lock:
+            state.session_messages.pop(session_id, None)
         metadata = load_session_metadata()
         if session_id in metadata:
             del metadata[session_id]

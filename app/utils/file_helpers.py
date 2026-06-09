@@ -2,7 +2,8 @@ import os
 import json
 import pandas as pd
 import logging
-from app.config import selected_model_name, EXCEL_FILE
+from app import config
+from app.config import EXCEL_FILE
 
 # Process uploaded file
 def process_file(file_path):
@@ -53,7 +54,7 @@ def load_json(filepath):
         
 def append_to_excel(question, response):
     """Append question and response to the Excel file."""
-    new_entry = pd.DataFrame([[question, selected_model_name, response]], columns=["Question", "Model Name", "Response"])
+    new_entry = pd.DataFrame([[question, config.selected_model_name, response]], columns=["Question", "Model Name", "Response"])
 
     if not os.path.exists(EXCEL_FILE):
         with pd.ExcelWriter(EXCEL_FILE, engine="openpyxl") as writer:
