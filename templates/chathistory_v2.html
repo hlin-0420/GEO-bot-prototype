@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO Help Chat</title>
+    <link href="{{ url_for('static', filename='css/chathistory-v2.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <header class="geo-navbar">
+        <div class="geo-navbar-inner">
+            <button id="sidebarToggleBtn" class="sidebar-toggle-btn" title="Open chat history">☰</button>
+            <a href="/" class="geo-logo-link" aria-label="GEO home">
+                <img src="/static/images/logo/geologix-logo.png" alt="Geologix Logo" class="geo-logo">
+                <span class="geo-product-title">
+                    <span>GEO Help Chat</span>
+                    <small>Conversation workspace</small>
+                </span>
+            </a>
+
+            <select id="modelSelector" class="model-picker" title="Select model">
+                <option value="deepseek1.5">DeepSeek 1.5</option>
+                <option value="llama3.2:latest" selected>Llama 3.2</option>
+                <option value="tinyllama:latest">Tiny Llama</option>
+                <option value="gemma3:1b">Gemma 3</option>
+            </select>
+
+            <nav class="geo-nav-links">
+                <a href="/">Home</a>
+                <a href="/feedback">Feedback</a>
+                <button id="customizeLLMButton" type="button">Parameters</button>
+                <button id="toggleDarkModeButton" class="nav-icon-btn" type="button" title="Toggle dark mode">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="geo-page">
+        <section class="geo-shell">
+            <aside class="history-panel" id="historyPanel">
+                <div class="history-header">
+                    <div class="history-title-row">
+                        <h1>Chat history</h1>
+                        <div class="header-actions">
+                            <button id="startNewChatBtn" class="round-btn" type="button" title="New chat">✦</button>
+                            <button id="refreshHistoryBtn" class="round-btn" type="button" title="Refresh history">↻</button>
+                            <button id="closeSidebarBtn" class="round-btn" type="button" title="Close history">←</button>
+                        </div>
+                    </div>
+                    <p class="history-subtitle">Browse saved GEO conversations, rename useful sessions, and continue from previous answers.</p>
+                    <label class="history-search">
+                        <span>⌕</span>
+                        <input id="historySearchInput" type="search" placeholder="Search chat titles or messages">
+                    </label>
+                    <div class="history-stats" aria-label="Chat history summary">
+                        <div class="stat-pill"><strong id="totalChatsStat">0</strong><span>Chats</span></div>
+                        <div class="stat-pill"><strong id="todayChatsStat">0</strong><span>Today</span></div>
+                        <div class="stat-pill"><strong id="totalTurnsStat">0</strong><span>Turns</span></div>
+                    </div>
+                </div>
+                <div id="chatHistoryList" class="history-list">
+                    <p class="history-subtitle">Loading history...</p>
+                </div>
+            </aside>
+
+            <section class="main-panel">
+                <div class="conversation-header">
+                    <div>
+                        <div class="conversation-kicker">Current workspace</div>
+                        <div id="conversationTitle" class="conversation-title">New GEO conversation</div>
+                    </div>
+                    <div class="conversation-meta">
+                        <span class="meta-chip" id="activeModelChip">🧠 Llama 3.2</span>
+                        <span class="meta-chip" id="activeSessionChip">🗂 No session selected</span>
+                        <span class="meta-chip" id="activeTurnChip">0 turns</span>
+                    </div>
+                </div>
+
+                <div id="chatMessages" class="messages"></div>
+
+                <div class="composer">
+                    <div class="composer-inner">
+                        <textarea id="chatInput" placeholder="Ask anything about GEO, files, logs, workflows, or previous conversations..."></textarea>
+                        <div class="composer-actions">
+                            <button id="startVoiceInputButton" class="secondary-btn" type="button" title="Voice input">🎙️</button>
+                            <button id="searchQueryButton" class="secondary-btn" type="button" title="Search the web">🌍</button>
+                            <button id="sendMessageBtn" class="primary-btn send-btn" type="button">Send</button>
+                        </div>
+                    </div>
+                    <div class="action-strip">
+                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="How do I import qualitative data into GEO?">Import qualitative data</button>
+                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="Explain the GIS limits in GEO.">GIS limits</button>
+                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="How should I structure log data in GEO?">Log structures</button>
+                        <button id="clearChatHistoryBtn" class="secondary-btn" type="button">Clear history</button>
+                    </div>
+                </div>
+
+                <div class="status-line">⚠️ GEO help chatbot can make mistakes — verify critical technical guidance with experts.</div>
+            </section>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script nonce="{{ g.nonce }}">
+        let currentSessionId = null;
+        let allChats = [];
+        let questionCounter = 0;
+        const selectedRatings = {};
+        let toastTimer = null;
+
+        const els = {
+            body: document.body,
+            historyPanel: document.getElementById("historyPanel"),
+            chatHistoryList: document.getElementById("chatHistoryList"),
+            chatMessages: document.getElementById("chatMessages"),
+            chatInput: document.getElementById("chatInput"),
+            modelSelector: document.getElementById("modelSelector"),
+            conversationTitle: document.getElementById("conversationTitle"),
+            activeModelChip: document.getElementById("activeModelChip"),
+            activeSessionChip: document.getElementById("activeSessionChip"),
+            activeTurnChip: document.getElementById("activeTurnChip"),
+            totalChatsStat: document.getElementById("totalChatsStat"),
+            todayChatsStat: document.getElementById("todayChatsStat"),
+            totalTurnsStat: document.getElementById("totalTurnsStat"),
+            historySearchInput: document.getElementById("historySearchInput"),
+            toast: document.getElementById("toast")
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            bindEvents();
+            restorePreferences();
+            loadChatHistory().then(() => loadLatestSessionIfAvailable());
+            renderWelcomeState();
+        });
+
+        function bindEvents() {
+            document.getElementById("sidebarToggleBtn").addEventListener("click", () => document.body.classList.toggle("sidebar-open"));
+            document.getElementById("closeSidebarBtn").addEventListener("click", () => document.body.classList.remove("sidebar-open"));
+            document.getElementById("startNewChatBtn").addEventListener("click", startNewConversation);
+            document.getElementById("refreshHistoryBtn").addEventListener("click", () => loadChatHistory(true));
+            document.getElementById("sendMessageBtn").addEventListener("click", () => sendMessage());
+            document.getElementById("searchQueryButton").addEventListener("click", searchQuery);
+            document.getElementById("startVoiceInputButton").addEventListener("click", startVoiceInput);
+            document.getElementById("toggleDarkModeButton").addEventListener("click", toggleDarkMode);
+            document.getElementById("clearChatHistoryBtn").addEventListener("click", clearChatHistory);
+            document.getElementById("customizeLLMButton").addEventListener("click", () => window.location.href = "{{ url_for('ui.llm_settings') }}");
+            els.modelSelector.addEventListener("change", updateModel);
+            els.historySearchInput.addEventListener("input", () => renderChatHistory(els.historySearchInput.value.trim().toLowerCase()));
+
+            els.chatInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.querySelectorAll(".suggestion-fill").forEach(button => {
+                button.addEventListener("click", () => {
+                    els.chatInput.value = button.dataset.prompt || "";
+                    els.chatInput.focus();
+                });
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!event.target.closest(".context-menu") && !event.target.closest(".menu-btn")) {
+                    closeContextMenu();
+                }
+            });
+        }
+
+        function restorePreferences() {
+            if (localStorage.getItem("geoDarkMode") === "enabled") {
+                document.body.classList.add("dark-mode");
+            }
+            updateModelChip();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("geoDarkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+        }
+
+        function showToast(message) {
+            els.toast.textContent = message;
+            els.toast.classList.add("visible");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => els.toast.classList.remove("visible"), 2600);
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function normaliseDate(value) {
+            const date = value ? new Date(value) : new Date();
+            return Number.isNaN(date.getTime()) ? new Date() : date;
+        }
+
+        function formatDateLabel(value) {
+            const date = normaliseDate(value);
+            const today = new Date();
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+            if (date.toDateString() === today.toDateString()) return "Today";
+            if (date.toDateString() === yesterday.toDateString()) return "Yesterday";
+            return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+        }
+
+        function getLastTimestamp(chat) {
+            const messages = chat.messages || [];
+            const last = messages[messages.length - 1];
+            return normaliseDate(last?.timestamp);
+        }
+
+        function getChatTitle(chat) {
+            if (chat.session_name && !chat.session_name.startsWith("chat_session")) return chat.session_name;
+            const firstUserMessage = (chat.messages || []).find(msg => msg.role === "user")?.content;
+            if (firstUserMessage) return firstUserMessage.length > 58 ? firstUserMessage.slice(0, 58) + "..." : firstUserMessage;
+            return "Untitled GEO chat";
+        }
+
+        function getTurnCount(chat) {
+            return (chat.messages || []).filter(msg => msg.role === "user").length;
+        }
+
+        function updateHistoryStats() {
+            const today = new Date().toDateString();
+            const todayChats = allChats.filter(chat => getLastTimestamp(chat).toDateString() === today).length;
+            const totalTurns = allChats.reduce((sum, chat) => sum + getTurnCount(chat), 0);
+            els.totalChatsStat.textContent = allChats.length;
+            els.todayChatsStat.textContent = todayChats;
+            els.totalTurnsStat.textContent = totalTurns;
+        }
+
+        async function loadChatHistory(silent = false) {
+            try {
+                const response = await fetch("/chat-history");
+                const data = await response.json();
+                if (!response.ok || data.error) throw new Error(data.error || "Failed to load chat history.");
+
+                allChats = Array.isArray(data) ? data.sort((a, b) => getLastTimestamp(b) - getLastTimestamp(a)) : [];
+                updateHistoryStats();
+                renderChatHistory(els.historySearchInput.value.trim().toLowerCase());
+                if (!silent) return;
+                showToast("Chat history refreshed.");
+            } catch (error) {
+                console.error(error);
+                els.chatHistoryList.innerHTML = `<p class="history-subtitle">⚠️ ${escapeHTML(error.message)}</p>`;
+            }
+        }
+
+        function renderChatHistory(query = "") {
+            els.chatHistoryList.innerHTML = "";
+            const filtered = allChats.filter(chat => {
+                const haystack = `${getChatTitle(chat)} ${(chat.messages || []).map(msg => msg.content).join(" ")}`.toLowerCase();
+                return !query || haystack.includes(query);
+            });
+
+            if (!filtered.length) {
+                els.chatHistoryList.innerHTML = `<p class="history-subtitle">No matching conversations yet.</p>`;
+                return;
+            }
+
+            const grouped = new Map();
+            filtered.forEach(chat => {
+                const label = formatDateLabel(getLastTimestamp(chat));
+                if (!grouped.has(label)) grouped.set(label, []);
+                grouped.get(label).push(chat);
+            });
+
+            grouped.forEach((chats, label) => {
+                const dateHeader = document.createElement("div");
+                dateHeader.className = "date-header";
+                dateHeader.textContent = label;
+                els.chatHistoryList.appendChild(dateHeader);
+
+                chats.forEach(chat => {
+                    const card = document.createElement("button");
+                    card.type = "button";
+                    card.className = `chat-card ${chat.session_id === currentSessionId ? "active" : ""}`;
+                    card.innerHTML = `
+                        <div>
+                            <div class="chat-card-title">💬 ${escapeHTML(getChatTitle(chat))}</div>
+                            <div class="chat-card-meta">
+                                <span>${getTurnCount(chat)} turns</span>
+                                <span>${getLastTimestamp(chat).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                            </div>
+                        </div>
+                        <button class="menu-btn" type="button" title="Conversation options" data-session-id="${escapeHTML(chat.session_id)}">⋯</button>
+                    `;
+                    card.addEventListener("click", (event) => {
+                        if (event.target.closest(".menu-btn")) return;
+                        loadSessionMessages(chat.session_id, getChatTitle(chat));
+                    });
+                    card.querySelector(".menu-btn").addEventListener("click", (event) => openSessionMenu(event, chat));
+                    els.chatHistoryList.appendChild(card);
+                });
+            });
+        }
+
+        function renderWelcomeState() {
+            questionCounter = 0;
+            els.conversationTitle.textContent = "New GEO conversation";
+            els.activeSessionChip.textContent = "🗂 No session selected";
+            els.activeTurnChip.textContent = "0 turns";
+            els.chatMessages.innerHTML = `
+                <div class="welcome-state">
+                    <div class="welcome-icon">🧭</div>
+                    <h2>Ask GEO with a clearer workspace.</h2>
+                    <p>Select a previous conversation from the left, or begin a new session below. The layout now keeps history, conversation context, feedback, and model controls visually separated.</p>
+                    <div class="suggestion-grid">
+                        <button class="suggestion-card" type="button" data-prompt="How do I import qualitative data into GEO?">
+                            <strong>Import support</strong><span>Step-by-step help for GEO import workflows.</span>
+                        </button>
+                        <button class="suggestion-card" type="button" data-prompt="What are the main GEO limits I should know?">
+                            <strong>Limits overview</strong><span>Ask about field, GIS, ASCII, ODF, or log constraints.</span>
+                        </button>
+                        <button class="suggestion-card" type="button" data-prompt="Summarise this conversation and list the key next actions.">
+                            <strong>Conversation summary</strong><span>Turn past chats into concise action points.</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            els.chatMessages.querySelectorAll(".suggestion-card").forEach(button => {
+                button.addEventListener("click", () => {
+                    els.chatInput.value = button.dataset.prompt || "";
+                    els.chatInput.focus();
+                });
+            });
+        }
+
+        function formatText(rawText) {
+            const safe = escapeHTML(rawText).trim();
+            if (!safe) return "<p>No answer provided.</p>";
+            return `<p>${safe.replace(/\n\s*\n/g, "</p><p>").replace(/\n/g, "<br>")}</p>`;
+        }
+
+        function parseOptionBlocks(rawText) {
+            const lines = String(rawText || "").split(/\r?\n/);
+            const options = [];
+            let current = null;
+            lines.forEach(line => {
+                const match = line.match(/^\s*Option\s*(\d+)\s*:\s*(.*)$/i);
+                if (match) {
+                    if (current) options.push(current);
+                    current = { number: match[1], text: match[2] || "" };
+                } else if (current && line.trim()) {
+                    current.text += `${current.text ? "\n" : ""}${line.trim()}`;
+                }
+            });
+            if (current) options.push(current);
+            return options;
+        }
+
+        function formatAssistantResponse(rawText) {
+            const options = parseOptionBlocks(rawText);
+            if (!options.length) return formatText(rawText);
+            return `<div class="response-option-list">${options.map(option => `
+                <div class="response-option-card">
+                    <div class="response-option-title">Option ${escapeHTML(option.number)}</div>
+                    <div class="response-option-text">${escapeHTML(option.text).replace(/\n/g, "<br>") || "No answer provided."}</div>
+                </div>
+            `).join("")}</div>`;
+        }
+
+        async function loadSessionMessages(sessionId, title = null) {
+            try {
+                currentSessionId = sessionId;
+                sessionStorage.setItem("currentSessionId", sessionId);
+                document.body.classList.remove("sidebar-open");
+
+                const response = await fetch(`/chat-history/${encodeURIComponent(sessionId)}`);
+                const session = await response.json();
+                if (!response.ok) throw new Error(session.error || "Session not found.");
+
+                const knownChat = allChats.find(chat => chat.session_id === sessionId);
+                const sessionTitle = title || (knownChat ? getChatTitle(knownChat) : "Selected GEO conversation");
+                els.conversationTitle.textContent = sessionTitle;
+                els.activeSessionChip.textContent = `🗂 ${sessionId.replace("chat_session_", "")}`;
+                renderMessages(session.messages || []);
+                renderChatHistory(els.historySearchInput.value.trim().toLowerCase());
+            } catch (error) {
+                console.error(error);
+                showToast(error.message);
+            }
+        }
+
+        function renderMessages(messages) {
+            questionCounter = 0;
+            let latestQuestion = "";
+            const stack = document.createElement("div");
+            stack.className = "message-stack";
+
+            messages.forEach(msg => {
+                if (msg.role === "user") {
+                    questionCounter += 1;
+                    latestQuestion = msg.content || "";
+                    stack.appendChild(createMessageRow("user", questionCounter, latestQuestion));
+                } else if (msg.role === "assistant") {
+                    stack.appendChild(createMessageRow("assistant", questionCounter, msg.content || "", latestQuestion));
+                    stack.appendChild(createFeedbackCard(questionCounter, latestQuestion, msg.content || ""));
+                }
+            });
+
+            els.activeTurnChip.textContent = `${questionCounter} turn${questionCounter === 1 ? "" : "s"}`;
+            els.chatMessages.innerHTML = "";
+            els.chatMessages.appendChild(stack);
+            els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+        }
+
+        function createMessageRow(role, number, content, question = "") {
+            const row = document.createElement("div");
+            row.className = `message-row ${role}`;
+            const label = role === "user" ? `Question ${number}` : `Answer ${number}`;
+            const htmlContent = role === "assistant" ? formatAssistantResponse(content) : formatText(content);
+            row.innerHTML = `
+                <article class="message-bubble" data-question-number="${number}" data-role="${role}" data-question="${escapeHTML(question)}" data-response="${escapeHTML(content)}">
+                    <span class="message-label">${role === "user" ? "❓" : "💡"} ${label}</span>
+                    ${htmlContent}
+                </article>
+            `;
+            return row;
+        }
+
+        function createFeedbackCard(number, question, response) {
+            selectedRatings[number] = selectedRatings[number] || 0;
+            const details = document.createElement("details");
+            details.className = "feedback-card";
+            details.dataset.questionNumber = number;
+            details.dataset.question = question;
+            details.dataset.response = response;
+            details.innerHTML = `
+                <summary>Rate this answer or add feedback</summary>
+                <div class="feedback-body">
+                    <div class="star-row">
+                        ${[1, 2, 3, 4, 5].map(star => `<button class="star" type="button" data-rating="${star}" data-question-number="${number}">★</button>`).join("")}
+                    </div>
+                    <textarea id="feedbackComment-${number}" placeholder="Optional feedback for future retrieval and model improvement..."></textarea>
+                    <button class="primary-btn" type="button" data-submit-feedback="${number}">Submit feedback</button>
+                </div>
+            `;
+            details.querySelectorAll(".star").forEach(star => {
+                star.addEventListener("click", () => setRating(number, Number(star.dataset.rating)));
+            });
+            details.querySelector("[data-submit-feedback]").addEventListener("click", () => submitCompleteFeedback(number));
+            return details;
+        }
+
+        function setRating(questionNumber, rating) {
+            selectedRatings[questionNumber] = rating;
+            document.querySelectorAll(`.star[data-question-number="${questionNumber}"]`).forEach(star => {
+                star.classList.toggle("selected", Number(star.dataset.rating) <= rating);
+            });
+        }
+
+        async function submitCompleteFeedback(questionNumber) {
+            const card = document.querySelector(`.feedback-card[data-question-number="${questionNumber}"]`);
+            if (!card) return;
+            const comment = document.getElementById(`feedbackComment-${questionNumber}`)?.value.trim() || "";
+            const rating = selectedRatings[questionNumber] || 0;
+            if (!rating && !comment) {
+                showToast("Please select a rating or add a feedback comment first.");
+                return;
+            }
+
+            try {
+                const response = await fetch("/submit-feedback", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        session_id: currentSessionId,
+                        question_number: questionNumber,
+                        rating,
+                        comment,
+                        question: card.dataset.question || "",
+                        response: card.dataset.response || ""
+                    })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || "Feedback submission failed.");
+                showToast(data.message || "Feedback submitted.");
+                card.open = false;
+            } catch (error) {
+                console.error(error);
+                showToast(error.message);
+            }
+        }
+
+        async function sendMessage() {
+            const userMessage = els.chatInput.value.trim();
+            if (!userMessage) return;
+
+            if (!currentSessionId && questionCounter === 0) {
+                els.chatMessages.innerHTML = `<div class="message-stack"></div>`;
+                els.conversationTitle.textContent = userMessage.length > 58 ? userMessage.slice(0, 58) + "..." : userMessage;
+            }
+
+            const stack = els.chatMessages.querySelector(".message-stack") || (() => {
+                const div = document.createElement("div");
+                div.className = "message-stack";
+                els.chatMessages.innerHTML = "";
+                els.chatMessages.appendChild(div);
+                return div;
+            })();
+
+            questionCounter += 1;
+            const questionNumber = questionCounter;
+            stack.appendChild(createMessageRow("user", questionNumber, userMessage));
+            const loadingRow = createMessageRow("assistant", questionNumber, "Processing your question...", userMessage);
+            stack.appendChild(loadingRow);
+            els.activeTurnChip.textContent = `${questionCounter} turn${questionCounter === 1 ? "" : "s"}`;
+            els.chatInput.value = "";
+            els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+
+            try {
+                const selectedModel = els.modelSelector.value;
+                const body = { question: userMessage, model: selectedModel, selectedOptions: ["text", "table", "list"] };
+                if (currentSessionId) body.session_id = currentSessionId;
+
+                const startTime = Date.now();
+                const response = await fetch("/ask", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || "Failed to submit question.");
+
+                if (!currentSessionId) {
+                    currentSessionId = data.session_id;
+                    sessionStorage.setItem("currentSessionId", currentSessionId);
+                    els.activeSessionChip.textContent = `🗂 ${currentSessionId.replace("chat_session_", "")}`;
+                }
+
+                await streamModelResponse(data.question_id, questionNumber, loadingRow, userMessage, startTime);
+                await loadChatHistory();
+            } catch (error) {
+                console.error(error);
+                loadingRow.querySelector(".message-bubble").innerHTML = `<span class="message-label">⚠️ Error</span>${formatText(error.message)}`;
+            }
+        }
+
+        function streamModelResponse(questionId, questionNumber, loadingRow, question, startTime) {
+            return new Promise((resolve) => {
+                const source = new EventSource(`/response/${encodeURIComponent(questionId)}`);
+                let completed = false;
+
+                source.onmessage = (event) => {
+                    const data = event.data;
+                    if (data === "Processing your question...") return;
+                    completed = true;
+                    source.close();
+                    const bubble = loadingRow.querySelector(".message-bubble");
+                    bubble.dataset.response = data;
+                    bubble.dataset.question = question;
+                    bubble.innerHTML = `<span class="message-label">💡 Answer ${questionNumber}</span>${formatAssistantResponse(data)}`;
+                    loadingRow.insertAdjacentElement("afterend", createFeedbackCard(questionNumber, question, data));
+                    finalizeResponseTime(startTime, questionNumber, question);
+                    els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+                    resolve();
+                };
+
+                source.onerror = () => {
+                    source.close();
+                    if (!completed) {
+                        const bubble = loadingRow.querySelector(".message-bubble");
+                        bubble.innerHTML = `<span class="message-label">⚠️ Error</span>${formatText("No response received from the model.")}`;
+                    }
+                    resolve();
+                };
+            });
+        }
+
+        function finalizeResponseTime(startTime, questionNumber, questionText) {
+            const duration = Number(((Date.now() - startTime) / 1000).toFixed(2));
+            fetch("/store-response-time", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ questionNumber, question: questionText, duration, timestamp: new Date().toISOString() })
+            }).catch(error => console.warn("Response timing not stored:", error));
+        }
+
+        function startNewConversation() {
+            currentSessionId = null;
+            sessionStorage.removeItem("currentSessionId");
+            renderWelcomeState();
+            renderChatHistory(els.historySearchInput.value.trim().toLowerCase());
+            els.chatInput.focus();
+        }
+
+        async function clearChatHistory() {
+            if (!confirm("Clear all saved chat sessions?")) return;
+            try {
+                const response = await fetch("/clear-chat-sessions", { method: "POST" });
+                const data = await response.json();
+                if (!response.ok || data.success === false) throw new Error(data.error || "Failed to clear history.");
+                allChats = [];
+                currentSessionId = null;
+                sessionStorage.removeItem("currentSessionId");
+                updateHistoryStats();
+                renderChatHistory();
+                renderWelcomeState();
+                showToast("All chat sessions cleared.");
+            } catch (error) {
+                showToast(error.message);
+            }
+        }
+
+        function openSessionMenu(event, chat) {
+            event.stopPropagation();
+            closeContextMenu();
+            const menu = document.createElement("div");
+            menu.id = "contextMenu";
+            menu.className = "context-menu";
+            menu.style.left = `${Math.min(event.clientX, window.innerWidth - 170)}px`;
+            menu.style.top = `${Math.min(event.clientY, window.innerHeight - 120)}px`;
+            menu.innerHTML = `
+                <button type="button" data-action="rename">✏️ Rename</button>
+                <button type="button" data-action="delete">🗑️ Delete</button>
+            `;
+            menu.querySelector("[data-action='rename']").addEventListener("click", () => renameSession(chat));
+            menu.querySelector("[data-action='delete']").addEventListener("click", () => deleteSession(chat));
+            document.body.appendChild(menu);
+        }
+
+        function closeContextMenu() {
+            document.getElementById("contextMenu")?.remove();
+        }
+
+        async function renameSession(chat) {
+            closeContextMenu();
+            const newName = prompt("Rename this conversation:", getChatTitle(chat));
+            if (!newName || !newName.trim()) return;
+            await fetch("/rename-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ session_id: chat.session_id, new_name: newName.trim() })
+            });
+            await loadChatHistory(true);
+            if (chat.session_id === currentSessionId) els.conversationTitle.textContent = newName.trim();
+        }
+
+        async function deleteSession(chat) {
+            closeContextMenu();
+            if (!confirm(`Delete "${getChatTitle(chat)}"?`)) return;
+            await fetch(`/delete-session/${encodeURIComponent(chat.session_id)}`, { method: "DELETE" });
+            if (chat.session_id === currentSessionId) startNewConversation();
+            await loadChatHistory(true);
+        }
+
+        function loadLatestSessionIfAvailable() {
+            const savedSessionId = sessionStorage.getItem("currentSessionId");
+            const savedChat = allChats.find(chat => chat.session_id === savedSessionId);
+            if (savedChat) loadSessionMessages(savedChat.session_id, getChatTitle(savedChat));
+        }
+
+        function updateModelChip() {
+            const text = els.modelSelector.options[els.modelSelector.selectedIndex]?.text || els.modelSelector.value;
+            els.activeModelChip.textContent = `🧠 ${text}`;
+        }
+
+        async function updateModel() {
+            updateModelChip();
+            try {
+                await fetch(`/selection?model=${encodeURIComponent(els.modelSelector.value)}`);
+                showToast(`Model changed to ${els.modelSelector.options[els.modelSelector.selectedIndex].text}.`);
+            } catch (error) {
+                console.error(error);
+                showToast("Failed to update model selection.");
+            }
+        }
+
+        function searchQuery() {
+            const query = els.chatInput.value.trim();
+            if (!query) {
+                showToast("Enter a query before opening web search.");
+                return;
+            }
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
+        }
+
+        function startVoiceInput() {
+            const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!Recognition) {
+                showToast("Speech recognition is not available in this browser.");
+                return;
+            }
+            const recognition = new Recognition();
+            recognition.lang = "en-US";
+            recognition.start();
+            recognition.onresult = (event) => {
+                els.chatInput.value = event.results[0][0].transcript;
+                els.chatInput.focus();
+            };
+            recognition.onerror = (event) => showToast(`Voice recognition error: ${event.error}`);
+        }
+    </script>
+</body>
+
+</html>
