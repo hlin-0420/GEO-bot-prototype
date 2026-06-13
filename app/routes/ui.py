@@ -32,6 +32,10 @@ def feedback():
 
 @ui_blueprint.route('/chathistory')
 def chathistory():
+    return render_template("chathistory_v2.html")
+
+@ui_blueprint.route('/chathistory-classic')
+def chathistory_classic():
     return render_template("chathistory.html")
 
 
