@@ -652,5 +652,11 @@
         "question": "What are the steps taken to import qualitative data?",
         "response_time": 0.02,
         "timestamp": "2026-04-15T16:39:14.550Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What are the limits of GIS fields in GEO?",
+        "response_time": 60.08,
+        "timestamp": "2026-06-13T10:30:13.595Z"
     }
 ]
