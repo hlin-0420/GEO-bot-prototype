@@ -1688,7 +1688,9 @@
 
   .navbar {
     background-color: #333;
-    padding: 10px 30px;
+    padding: 0px 28px !important;
+    background: linear-gradient(90deg, #252b2f, #30383d);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
     display: flex;
     justify-content: space-between;
     /* Ensures left and right alignment */
@@ -1703,7 +1705,8 @@
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: none !important;
+    gap: 18px;
     justify-content: space-between;
   }
 
@@ -1715,7 +1718,9 @@
   .navbar-logo {
     height: 45px;
     margin-right: 10px;
-    /* Adjust spacing between logo and nav links */
+    border-radius: 8px;
+    background: white;
+    padding: 3px;
   }
 
   .navbar-links {
@@ -1995,11 +2000,13 @@
   .navbar-dropdown {
     background-color: white;
     color: black;
-    border: 1px solid #ccc;
-    padding: 6px 10px;
+    border: 10px solid #cfd8dc !important;
+    padding: 9px 12px !important;
+    background: #ffffff !important;
     border-radius: 5px;
     font-size: 14px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: 160px;
   }
 
   /* Optional: style the options too */
@@ -2237,5 +2244,102 @@
 
   .response-option-card.unused-response-option .response-option-text {
     color: #333333;
+  }
+
+  /* GEO UI polish layer */
+  :root {
+    --geo-bg: #f4f6f8;
+    --geo-panel: #ffffff;
+    --geo-border: #dfe5ea;
+    --geo-text: #17202a;
+    --geo-muted: #6b7280;
+    --geo-brand: #2f7d32;
+    --geo-brand-dark: #245f27;
+    --geo-accent: #d24b2a;
+    --geo-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    --geo-radius: 16px;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    min-height: 100%;
+    background: var(--geo-bg);
+    color: var(--geo-text);
+  }
+
+  .content {
+    margin-top: 72px !important;
+    height: calc(100vh - 72px);
+    padding: 16px 20px 20px;
+    box-sizing: border-box;
+  }
+
+  .chat-container {
+    height: 100%;
+    background: var(--geo-panel);
+    border: 1px solid var(--geo-border);
+    border-radius: var(--geo-radius);
+    box-shadow: var(--geo-shadow);
+    overflow: hidden;
+  }
+
+  #chatMessages {
+    background:
+      radial-gradient(circle at top, rgba(47, 125, 50, 0.08), transparent 34%),
+      #ffffff;
+    padding: 24px !important;
+  }
+
+  .geo-empty-state {
+    max-width: 620px;
+    margin: 12vh auto 0;
+    text-align: center;
+    color: var(--geo-text);
+  }
+
+  .geo-empty-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+    background: #eef7ee;
+    font-size: 34px;
+  }
+
+  .geo-empty-state h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .geo-empty-state p {
+    color: var(--geo-muted);
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .geo-suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .geo-suggestion-grid button {
+    background: #ffffff;
+    color: var(--geo-text);
+    border: 1px solid var(--geo-border);
+    border-radius: 14px;
+    padding: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  }
+
+  .geo-suggestion-grid button:hover {
+    border-color: var(--geo-brand);
+    background: #f4fbf4;
   }
 }

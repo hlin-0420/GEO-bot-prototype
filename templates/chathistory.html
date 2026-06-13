@@ -1884,7 +1884,25 @@
             const chatMessages = document.getElementById("chatMessages");
 
             if (!chatMessages.innerHTML.trim()) {
-                chatMessages.innerHTML = "<p style='text-align:center; color:gray;'>Select a chat from history.</p>";
+                chatMessages.classList.add("empty-state");
+                chatMessages.innerHTML = `
+            <div class="geo-empty-state">
+                <div class="geo-empty-icon">🧭</div>
+                <h2>Welcome to GEO Help Chat</h2>
+                <p>Select a previous chat from the left, or start a new technical question below.</p>
+                <div class="geo-suggestion-grid">
+                    <button onclick="document.getElementById('chatInput').value='How do I import qualitative data into GEO?'">
+                        Import qualitative data
+                    </button>
+                    <button onclick="document.getElementById('chatInput').value='What are the limits of GIS fields in GEO?'">
+                        Check GEO limits
+                    </button>
+                    <button onclick="document.getElementById('chatInput').value='Explain log structure settings in GEO.'">
+                        Log structure help
+                    </button>
+                </div>
+            </div>
+        `;
             }
         }
 
