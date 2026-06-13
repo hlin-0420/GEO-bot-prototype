@@ -2,167 +2,545 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO Feedback Dashboard</title>
     <style>
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
+        :root {
+            --bg: #f3f6f4;
+            --surface: #ffffff;
+            --surface-soft: #f8faf9;
+            --line: #dce6df;
+            --text: #17211b;
+            --muted: #6d7a72;
+            --brand: #2f7d32;
+            --accent: #d8552a;
+            --brand-soft: #eaf6eb;
+            --shadow: 0 18px 50px rgba(18, 38, 24, 0.10);
+            --radius: 22px;
         }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, rgba(47, 125, 50, 0.12), transparent 32vw), linear-gradient(135deg, #f7faf8, #eef4ef);
+            color: var(--text);
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 28px;
+            background: linear-gradient(90deg, #202722, #303a33);
+            color: white;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 850;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-badge {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
         .navbar a {
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
-            display: inline-block;
+            padding: 9px 13px;
+            border-radius: 999px;
+            font-weight: 750;
         }
+
         .navbar a:hover {
-            background-color: #575757;
+            background: rgba(255, 255, 255, 0.12);
         }
-        .content {
-            margin-top: 60px;
-            padding: 20px;
-            text-align: center; /* Center-align the content */
+
+        .page {
+            width: min(1440px, calc(100% - 36px));
+            margin: 24px auto 40px;
         }
-        table {
-            border-collapse: collapse;
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 18px;
+            align-items: stretch;
+            margin-bottom: 18px;
+        }
+
+        .hero-card,
+        .panel {
+            border: 1px solid rgba(47, 125, 50, 0.12);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-card {
+            padding: 28px;
+        }
+
+        .hero-kicker {
+            color: var(--brand);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        h1 {
+            margin: 8px 0 10px;
+            font-size: clamp(30px, 5vw, 48px);
+            line-height: 1.05;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-card p {
+            max-width: 780px;
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .summary-card {
+            padding: 22px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .summary-row:last-child { border-bottom: 0; }
+
+        .summary-row span { color: var(--muted); font-weight: 750; }
+        .summary-row strong { font-size: 20px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .stat-card {
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--surface);
+            box-shadow: 0 6px 18px rgba(18, 38, 24, 0.06);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 30px;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-card span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .toolbar {
+            display: grid;
+            grid-template-columns: 1fr 180px 160px auto;
+            gap: 12px;
+            padding: 16px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        input,
+        select {
             width: 100%;
-            margin-top: 20px;
+            padding: 12px 13px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: white;
+            color: var(--text);
+            outline: none;
         }
-        table, th, td {
-            border: 1px solid #ddd;
+
+        input:focus,
+        select:focus {
+            border-color: rgba(47, 125, 50, 0.55);
+            box-shadow: 0 0 0 4px rgba(47, 125, 50, 0.10);
         }
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-            cursor: pointer;
-        }
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-        .button-container {
-            margin-top: 20px;
-            text-align: center; /* Ensures the button is centered */
-        }
-        .save-button {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: white;
+
+        .button-group { display: flex; gap: 8px; }
+
+        button {
             border: none;
+            border-radius: 999px;
+            padding: 11px 14px;
+            font-weight: 850;
             cursor: pointer;
-            font-size: 16px;
-            display: inline-block;
+            white-space: nowrap;
         }
-        .save-button:hover {
-            background-color: #218838;
+
+        .primary {
+            background: linear-gradient(135deg, var(--brand), #3b9440);
+            color: white;
+            box-shadow: 0 8px 18px rgba(47, 125, 50, 0.22);
+        }
+
+        .secondary {
+            border: 1px solid var(--line);
+            background: white;
+            color: var(--text);
+        }
+
+        .table-wrap {
+            max-height: 66vh;
+            overflow: auto;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 1100px;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            padding: 13px 14px;
+            border-bottom: 1px solid var(--line);
+            background: #f7faf8;
+            color: #39463f;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+        }
+
+        tbody td {
+            vertical-align: top;
+            padding: 14px;
+            border-bottom: 1px solid #edf2ee;
+            background: rgba(255, 255, 255, 0.82);
+            line-height: 1.5;
+        }
+
+        tbody tr:hover td { background: #fbfdfb; }
+
+        .cell-text {
+            max-width: 360px;
+            max-height: 150px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+
+        .rating-badge,
+        .model-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: var(--brand-soft);
+            color: var(--brand);
+            font-weight: 900;
+        }
+
+        .model-badge {
+            min-width: unset;
+            color: #a43b20;
+            background: #fff3ed;
+        }
+
+        .empty-state {
+            padding: 36px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .stats-grid,
+            .toolbar {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group { flex-wrap: wrap; }
         }
     </style>
-    <script nonce="{{ nonce }}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="brand"><span class="brand-badge">📝</span><span>GEO Feedback Dashboard</span></div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/chathistory">Chat History</a>
+            <a href="/chathistory-classic">Classic Chat</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="hero">
+            <div class="hero-card">
+                <div class="hero-kicker">Feedback analytics</div>
+                <h1>Conversation feedback, cleaned up.</h1>
+                <p>Review saved model feedback, identify low-rated responses, inspect user comments, and export the curated dataset for retrieval and evaluation improvements.</p>
+            </div>
+            <div class="hero-card summary-card">
+                <div class="summary-row"><span>Best model</span><strong id="bestModel">—</strong></div>
+                <div class="summary-row"><span>Most reviewed</span><strong id="mostReviewedModel">—</strong></div>
+                <div class="summary-row"><span>Visible rows</span><strong id="visibleRows">0</strong></div>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card"><strong id="totalFeedback">0</strong><span>Total feedback</span></div>
+            <div class="stat-card"><strong id="averageRating">0</strong><span>Average rating</span></div>
+            <div class="stat-card"><strong id="lowRatingCount">0</strong><span>Low-rating items</span></div>
+            <div class="stat-card"><strong id="commentCount">0</strong><span>With comments</span></div>
+        </section>
+
+        <section class="panel">
+            <div class="toolbar">
+                <input id="searchInput" type="search" placeholder="Search questions, responses, or feedback comments">
+                <select id="modelFilter"><option value="">All models</option></select>
+                <select id="ratingFilter">
+                    <option value="">All ratings</option>
+                    <option value="low">Low ratings</option>
+                    <option value="high">High ratings</option>
+                    <option value="commented">With comments</option>
+                </select>
+                <div class="button-group">
+                    <button class="secondary" type="button" onclick="resetFilters()">Reset</button>
+                    <button class="primary" type="button" onclick="saveVisibleRowsAsJSON()">Export JSON</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table id="feedback-table">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">#</th>
+                            <th onclick="sortTable(1)">Model</th>
+                            <th onclick="sortTable(2)">Question</th>
+                            <th onclick="sortTable(3)">Response</th>
+                            <th onclick="sortTable(4)">Feedback</th>
+                            <th onclick="sortTable(5)">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedback-table-body">
+                        <tr><td colspan="6" class="empty-state">Loading feedback data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script nonce="{{ g.nonce }}">
+        let feedbackRows = [];
+        let visibleRowsData = [];
+        let sortDirections = {};
+
+        window.addEventListener('load', loadFeedbackData);
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('modelFilter').addEventListener('change', applyFilters);
+        document.getElementById('ratingFilter').addEventListener('change', applyFilters);
+
         async function loadFeedbackData() {
             try {
-                const response = await fetch('/feedback_dataset.json'); // Fetch the JSON data
-                const feedbackData = await response.json();
-                renderTable(feedbackData);
+                const response = await fetch('/feedback_dataset.json');
+                feedbackRows = await response.json();
+                if (!Array.isArray(feedbackRows)) feedbackRows = [];
+                populateModelFilter(feedbackRows);
+                updateStats(feedbackRows);
+                applyFilters();
             } catch (error) {
                 console.error('Error loading feedback data:', error);
+                document.getElementById('feedback-table-body').innerHTML = '<tr><td colspan="6" class="empty-state">Failed to load feedback data.</td></tr>';
             }
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function getRating(entry) {
+            const rating = Number(entry['rating-score'] ?? entry.rating ?? 0);
+            return Number.isFinite(rating) ? rating : 0;
+        }
+
+        function getModel(entry) {
+            return entry['model-name'] || entry.model || 'Unknown model';
+        }
+
+        function isLowRating(entry) {
+            const rating = getRating(entry);
+            const maxRating = Math.max(...feedbackRows.map(row => getRating(row)), 5);
+            return maxRating > 5 ? rating > 0 && rating <= 4 : rating > 0 && rating <= 2;
+        }
+
+        function isHighRating(entry) {
+            const rating = getRating(entry);
+            const maxRating = Math.max(...feedbackRows.map(row => getRating(row)), 5);
+            return maxRating > 5 ? rating >= 8 : rating >= 4;
+        }
+
+        function populateModelFilter(data) {
+            const select = document.getElementById('modelFilter');
+            const models = [...new Set(data.map(getModel).filter(Boolean))].sort();
+            select.innerHTML = '<option value="">All models</option>' + models.map(model => `<option value="${escapeHTML(model)}">${escapeHTML(model)}</option>`).join('');
+        }
+
+        function updateStats(data) {
+            const ratings = data.map(getRating).filter(rating => rating > 0);
+            const avg = ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '0';
+            const comments = data.filter(entry => String(entry.feedback || entry.comment || '').trim()).length;
+            const low = data.filter(isLowRating).length;
+            const modelBuckets = {};
+            data.forEach(entry => {
+                const model = getModel(entry);
+                modelBuckets[model] = modelBuckets[model] || { count: 0, total: 0 };
+                modelBuckets[model].count += 1;
+                modelBuckets[model].total += getRating(entry);
+            });
+            const ranked = Object.entries(modelBuckets).sort((a, b) => (b[1].total / Math.max(b[1].count, 1)) - (a[1].total / Math.max(a[1].count, 1)));
+            const mostReviewed = Object.entries(modelBuckets).sort((a, b) => b[1].count - a[1].count)[0]?.[0] || '—';
+
+            document.getElementById('totalFeedback').textContent = data.length;
+            document.getElementById('averageRating').textContent = avg;
+            document.getElementById('lowRatingCount').textContent = low;
+            document.getElementById('commentCount').textContent = comments;
+            document.getElementById('bestModel').textContent = ranked[0]?.[0] || '—';
+            document.getElementById('mostReviewedModel').textContent = mostReviewed;
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const model = document.getElementById('modelFilter').value;
+            const ratingFilter = document.getElementById('ratingFilter').value;
+
+            visibleRowsData = feedbackRows.filter(entry => {
+                const haystack = [entry.question, entry.response, entry.feedback, getModel(entry)].join(' ').toLowerCase();
+                if (query && !haystack.includes(query)) return false;
+                if (model && getModel(entry) !== model) return false;
+                if (ratingFilter === 'low' && !isLowRating(entry)) return false;
+                if (ratingFilter === 'high' && !isHighRating(entry)) return false;
+                if (ratingFilter === 'commented' && !String(entry.feedback || entry.comment || '').trim()) return false;
+                return true;
+            });
+
+            renderTable(visibleRowsData);
         }
 
         function renderTable(data) {
             const tableBody = document.getElementById('feedback-table-body');
-            tableBody.innerHTML = '';
-            
-            data.forEach((entry, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
+            document.getElementById('visibleRows').textContent = data.length;
+
+            if (!data.length) {
+                tableBody.innerHTML = '<tr><td colspan="6" class="empty-state">No feedback rows match the current filters.</td></tr>';
+                return;
+            }
+
+            tableBody.innerHTML = data.map((entry, index) => `
+                <tr>
                     <td>${index + 1}</td>
-                    <td>${entry["model-name"]}</td>
-                    <td>${entry.question}</td>
-                    <td>${entry.response}</td>
-                    <td>${entry.feedback}</td>
-                    <td>${entry["rating-score"]}</td>
-                `;
-                tableBody.appendChild(row);
-            });
+                    <td><span class="model-badge">${escapeHTML(getModel(entry))}</span></td>
+                    <td><div class="cell-text">${escapeHTML(entry.question || '')}</div></td>
+                    <td><div class="cell-text">${escapeHTML(entry.response || '')}</div></td>
+                    <td><div class="cell-text">${escapeHTML(entry.feedback || entry.comment || '')}</div></td>
+                    <td><span class="rating-badge">${escapeHTML(getRating(entry))}</span></td>
+                </tr>
+            `).join('');
         }
 
         function sortTable(columnIndex) {
-            const table = document.getElementById('feedback-table');
-            let rows = Array.from(table.rows).slice(1);
-            
-            let sortedRows = rows.sort((a, b) => {
-                let valA = a.cells[columnIndex].innerText.toLowerCase();
-                let valB = b.cells[columnIndex].innerText.toLowerCase();
-                return valA.localeCompare(valB);
-            });
-            
-            sortedRows.forEach(row => table.appendChild(row));
-        }
+            const keys = ['index', 'model', 'question', 'response', 'feedback', 'rating'];
+            const key = keys[columnIndex];
+            const direction = sortDirections[key] === 'asc' ? 'desc' : 'asc';
+            sortDirections[key] = direction;
 
-        function saveTableAsJSON() {
-            const table = document.getElementById("feedback-table");
-            let rows = table.getElementsByTagName("tr");
-            let jsonData = [];
-
-            for (let i = 1; i < rows.length; i++) {
-                let cells = rows[i].getElementsByTagName("td");
-                if (cells.length > 0) {
-                    let rowData = {
-                        "question-number": cells[0].innerText,
-                        "model-name": cells[1].innerText,
-                        "question": cells[2].innerText,
-                        "response": cells[3].innerText,
-                        "feedback": cells[4].innerText,
-                        "rating-score": cells[5].innerText
-                    };
-                    jsonData.push(rowData);
+            visibleRowsData.sort((a, b) => {
+                let valA;
+                let valB;
+                if (key === 'rating') {
+                    valA = getRating(a);
+                    valB = getRating(b);
+                    return direction === 'asc' ? valA - valB : valB - valA;
                 }
-            }
+                if (key === 'model') {
+                    valA = getModel(a);
+                    valB = getModel(b);
+                } else {
+                    valA = String(a[key] || a.feedback || '').toLowerCase();
+                    valB = String(b[key] || b.feedback || '').toLowerCase();
+                }
+                return direction === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+            });
 
-            let blob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "feedback_results.json";
-            link.click();
+            renderTable(visibleRowsData);
         }
 
-        window.onload = loadFeedbackData;
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('modelFilter').value = '';
+            document.getElementById('ratingFilter').value = '';
+            applyFilters();
+        }
+
+        function saveVisibleRowsAsJSON() {
+            const blob = new Blob([JSON.stringify(visibleRowsData, null, 2)], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'feedback_results_filtered.json';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
     </script>
-</head>
-<body>
-
-    <div class="navbar">
-        <a href="/">Home Page</a>
-    </div>
-
-    <div class="content">
-        <h1>Feedback Data</h1>
-        <table id="feedback-table">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Question Number</th>
-                    <th onclick="sortTable(1)">Model Type</th>
-                    <th onclick="sortTable(2)">Question</th>
-                    <th onclick="sortTable(3)">Response</th>
-                    <th onclick="sortTable(4)">Feedback</th>
-                    <th onclick="sortTable(5)">Rating Score</th>
-                </tr>
-            </thead>
-            <tbody id="feedback-table-body">
-                <!-- Data will be dynamically inserted here -->
-            </tbody>
-        </table>
-
-        <div class="button-container">
-            <button class="save-button" onclick="saveTableAsJSON()">Save as JSON</button>
-        </div>
-    </div>
-
 </body>
+
 </html>

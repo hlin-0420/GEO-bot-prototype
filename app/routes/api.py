@@ -73,6 +73,13 @@ def _cleanup_old_responses():
         state.clear_pending_response(question_id)
 
 
+
+def format_sse_data(message):
+    """Format multiline text safely for Server-Sent Events."""
+    lines = str(message).splitlines() or [""]
+    return "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
 @api_blueprint.route("/response/<question_id>", methods=["GET"])
 def get_response(question_id):
     """SSE endpoint used by EventSource to fetch a completed answer."""
