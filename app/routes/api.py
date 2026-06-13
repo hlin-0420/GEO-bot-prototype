@@ -8,6 +8,13 @@ from app import state  # import shared state
 
 api_blueprint = Blueprint('api', __name__)
 
+
+def format_sse_data(message):
+    """Format multiline text safely for Server-Sent Events."""
+    lines = str(message).splitlines() or [""]
+    return "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
 @api_blueprint.route("/response/<question_id>", methods=["GET"])
 def get_response(question_id):
     """
@@ -18,12 +25,12 @@ def get_response(question_id):
             response = state.pending_responses.get(question_id)
 
             if str(response).startswith("Processing") or response is None:
-                yield "data: Processing your question...\n\n"
+                yield format_sse_data("Processing your question...")
             elif response:
-                yield f"data: {response}\n\n"
+                yield format_sse_data(response)
                 break
             else:
-                yield "data: Error: Invalid question ID\n\n"
+                yield format_sse_data("Error: Invalid question ID")
                 break
             time.sleep(1)
 
