@@ -658,5 +658,17 @@
         "question": "What are the limits of GIS fields in GEO?",
         "response_time": 60.08,
         "timestamp": "2026-06-13T10:30:13.595Z"
+    },
+    {
+        "question_number": "1",
+        "question": "How do I import qualitative data into GEO?",
+        "response_time": 27.49,
+        "timestamp": "2026-06-15T10:00:27.590Z"
+    },
+    {
+        "question_number": "1",
+        "question": "What are the limits of GIS fields in GEO?",
+        "response_time": 13.04,
+        "timestamp": "2026-06-15T10:08:20.134Z"
     }
 ]

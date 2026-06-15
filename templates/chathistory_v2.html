@@ -6,6 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GEO Help Chat</title>
     <link href="{{ url_for('static', filename='css/chathistory-v2.css') }}" rel="stylesheet">
+
+    <style>
+        /* Streaming/layout stability patch: keeps the composer fixed in the layout flow and updates assistant text in place. */
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .geo-page,
+        .geo-shell,
+        .main-panel {
+            min-height: 0;
+        }
+
+        .geo-shell {
+            height: calc(100vh - var(--geo-navbar-height, 72px));
+            overflow: hidden;
+        }
+
+        .main-panel {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #chatMessages.messages {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 18px;
+        }
+
+        .composer,
+        .status-line,
+        .conversation-header {
+            flex: 0 0 auto;
+        }
+
+        .message-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .message-row,
+        .feedback-card {
+            position: relative;
+            clear: both;
+        }
+
+        .message-bubble,
+        .message-content {
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        .message-row.streaming .message-bubble {
+            transition: min-height 160ms ease, opacity 160ms ease;
+        }
+
+        .message-row.streaming .message-content {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .response-time {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: -8px;
+            padding-left: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,7 +110,8 @@
                 <a href="/">Home</a>
                 <a href="/feedback">Feedback</a>
                 <button id="customizeLLMButton" type="button">Parameters</button>
-                <button id="toggleDarkModeButton" class="nav-icon-btn" type="button" title="Toggle dark mode">🌙</button>
+                <button id="toggleDarkModeButton" class="nav-icon-btn" type="button"
+                    title="Toggle dark mode">🌙</button>
             </nav>
         </div>
     </header>
@@ -44,11 +124,14 @@
                         <h1>Chat history</h1>
                         <div class="header-actions">
                             <button id="startNewChatBtn" class="round-btn" type="button" title="New chat">✦</button>
-                            <button id="refreshHistoryBtn" class="round-btn" type="button" title="Refresh history">↻</button>
-                            <button id="closeSidebarBtn" class="round-btn" type="button" title="Close history">←</button>
+                            <button id="refreshHistoryBtn" class="round-btn" type="button"
+                                title="Refresh history">↻</button>
+                            <button id="closeSidebarBtn" class="round-btn" type="button"
+                                title="Close history">←</button>
                         </div>
                     </div>
-                    <p class="history-subtitle">Browse saved GEO conversations, rename useful sessions, and continue from previous answers.</p>
+                    <p class="history-subtitle">Browse saved GEO conversations, rename useful sessions, and continue
+                        from previous answers.</p>
                     <label class="history-search">
                         <span>⌕</span>
                         <input id="historySearchInput" type="search" placeholder="Search chat titles or messages">
@@ -81,22 +164,29 @@
 
                 <div class="composer">
                     <div class="composer-inner">
-                        <textarea id="chatInput" placeholder="Ask anything about GEO, files, logs, workflows, or previous conversations..."></textarea>
+                        <textarea id="chatInput"
+                            placeholder="Ask anything about GEO, files, logs, workflows, or previous conversations..."></textarea>
                         <div class="composer-actions">
-                            <button id="startVoiceInputButton" class="secondary-btn" type="button" title="Voice input">🎙️</button>
-                            <button id="searchQueryButton" class="secondary-btn" type="button" title="Search the web">🌍</button>
+                            <button id="startVoiceInputButton" class="secondary-btn" type="button"
+                                title="Voice input">🎙️</button>
+                            <button id="searchQueryButton" class="secondary-btn" type="button"
+                                title="Search the web">🌍</button>
                             <button id="sendMessageBtn" class="primary-btn send-btn" type="button">Send</button>
                         </div>
                     </div>
                     <div class="action-strip">
-                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="How do I import qualitative data into GEO?">Import qualitative data</button>
-                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="Explain the GIS limits in GEO.">GIS limits</button>
-                        <button class="secondary-btn suggestion-fill" type="button" data-prompt="How should I structure log data in GEO?">Log structures</button>
+                        <button class="secondary-btn suggestion-fill" type="button"
+                            data-prompt="How do I import qualitative data into GEO?">Import qualitative data</button>
+                        <button class="secondary-btn suggestion-fill" type="button"
+                            data-prompt="Explain the GIS limits in GEO.">GIS limits</button>
+                        <button class="secondary-btn suggestion-fill" type="button"
+                            data-prompt="How should I structure log data in GEO?">Log structures</button>
                         <button id="clearChatHistoryBtn" class="secondary-btn" type="button">Clear history</button>
                     </div>
                 </div>
 
-                <div class="status-line">⚠️ GEO help chatbot can make mistakes — verify critical technical guidance with experts.</div>
+                <div class="status-line">⚠️ GEO help chatbot can make mistakes — verify critical technical guidance with
+                    experts.</div>
             </section>
         </section>
     </main>
@@ -109,6 +199,27 @@
         let questionCounter = 0;
         const selectedRatings = {};
         let toastTimer = null;
+        const STREAM_IDLE_FINALIZE_MS = 1200;
+
+        function isStreamStatusMessage(data) {
+            return data === "Processing your question..." || data === "Processing your question.";
+        }
+
+        function isStreamDoneMessage(data) {
+            return ["[DONE]", "DONE", "__DONE__", "<END>", "END"].includes(String(data || "").trim());
+        }
+
+        function isNearMessagesBottom() {
+            return els.chatMessages.scrollHeight - els.chatMessages.scrollTop - els.chatMessages.clientHeight < 160;
+        }
+
+        function scrollMessagesToBottom(force = false) {
+            if (force || isNearMessagesBottom()) {
+                requestAnimationFrame(() => {
+                    els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+                });
+            }
+        }
 
         const els = {
             body: document.body,
@@ -116,6 +227,7 @@
             chatHistoryList: document.getElementById("chatHistoryList"),
             chatMessages: document.getElementById("chatMessages"),
             chatInput: document.getElementById("chatInput"),
+            sendMessageBtn: document.getElementById("sendMessageBtn"),
             modelSelector: document.getElementById("modelSelector"),
             conversationTitle: document.getElementById("conversationTitle"),
             activeModelChip: document.getElementById("activeModelChip"),
@@ -412,7 +524,7 @@
             els.activeTurnChip.textContent = `${questionCounter} turn${questionCounter === 1 ? "" : "s"}`;
             els.chatMessages.innerHTML = "";
             els.chatMessages.appendChild(stack);
-            els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+            scrollMessagesToBottom(true);
         }
 
         function createMessageRow(role, number, content, question = "") {
@@ -423,7 +535,7 @@
             row.innerHTML = `
                 <article class="message-bubble" data-question-number="${number}" data-role="${role}" data-question="${escapeHTML(question)}" data-response="${escapeHTML(content)}">
                     <span class="message-label">${role === "user" ? "❓" : "💡"} ${label}</span>
-                    ${htmlContent}
+                    <div class="message-content">${htmlContent}</div>
                 </article>
             `;
             return row;
@@ -514,10 +626,13 @@
             const questionNumber = questionCounter;
             stack.appendChild(createMessageRow("user", questionNumber, userMessage));
             const loadingRow = createMessageRow("assistant", questionNumber, "Processing your question...", userMessage);
+            loadingRow.classList.add("streaming");
             stack.appendChild(loadingRow);
             els.activeTurnChip.textContent = `${questionCounter} turn${questionCounter === 1 ? "" : "s"}`;
             els.chatInput.value = "";
-            els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+            els.sendMessageBtn.disabled = true;
+            els.sendMessageBtn.textContent = "Generating...";
+            scrollMessagesToBottom(true);
 
             try {
                 const selectedModel = els.modelSelector.value;
@@ -543,43 +658,100 @@
                 await loadChatHistory();
             } catch (error) {
                 console.error(error);
-                loadingRow.querySelector(".message-bubble").innerHTML = `<span class="message-label">⚠️ Error</span>${formatText(error.message)}`;
+                const bubble = loadingRow.querySelector(".message-bubble");
+                bubble.innerHTML = `<span class="message-label">⚠️ Error</span><div class="message-content">${formatText(error.message)}</div>`;
+                loadingRow.classList.remove("streaming");
+            } finally {
+                els.sendMessageBtn.disabled = false;
+                els.sendMessageBtn.textContent = "Send";
+                scrollMessagesToBottom(true);
             }
         }
 
         function streamModelResponse(questionId, questionNumber, loadingRow, question, startTime) {
             return new Promise((resolve) => {
                 const source = new EventSource(`/response/${encodeURIComponent(questionId)}`);
+                const bubble = loadingRow.querySelector(".message-bubble");
+                const content = bubble.querySelector(".message-content");
+                let fullResponse = "";
                 let completed = false;
+                let idleTimer = null;
+
+                const finish = (errorMessage = null) => {
+                    if (completed) return;
+                    completed = true;
+                    clearTimeout(idleTimer);
+                    source.close();
+                    loadingRow.classList.remove("streaming");
+
+                    const finalText = fullResponse.trim();
+                    bubble.dataset.response = finalText;
+                    bubble.dataset.question = question;
+
+                    if (errorMessage && !finalText) {
+                        bubble.innerHTML = `<span class="message-label">⚠️ Error</span><div class="message-content">${formatText(errorMessage)}</div>`;
+                    } else {
+                        content.innerHTML = formatAssistantResponse(finalText || "No response received from the model.");
+                        if (!document.querySelector(`.feedback-card[data-question-number="${questionNumber}"]`)) {
+                            loadingRow.insertAdjacentElement("afterend", createFeedbackCard(questionNumber, question, finalText));
+                        }
+                        finalizeResponseTime(startTime, questionNumber, question);
+                    }
+
+                    scrollMessagesToBottom(true);
+                    resolve(finalText);
+                };
+
+                const scheduleFinish = () => {
+                    clearTimeout(idleTimer);
+                    idleTimer = setTimeout(() => finish(), STREAM_IDLE_FINALIZE_MS);
+                };
 
                 source.onmessage = (event) => {
-                    const data = event.data;
-                    if (data === "Processing your question...") return;
-                    completed = true;
-                    source.close();
-                    const bubble = loadingRow.querySelector(".message-bubble");
-                    bubble.dataset.response = data;
-                    bubble.dataset.question = question;
-                    bubble.innerHTML = `<span class="message-label">💡 Answer ${questionNumber}</span>${formatAssistantResponse(data)}`;
-                    loadingRow.insertAdjacentElement("afterend", createFeedbackCard(questionNumber, question, data));
-                    finalizeResponseTime(startTime, questionNumber, question);
-                    els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
-                    resolve();
+                    const data = event.data || "";
+                    if (isStreamStatusMessage(data)) return;
+
+                    if (data.startsWith("Error:")) {
+                        finish(data);
+                        return;
+                    }
+
+                    if (isStreamDoneMessage(data)) {
+                        finish();
+                        return;
+                    }
+
+                    fullResponse += data;
+                    content.innerHTML = formatAssistantResponse(fullResponse);
+                    bubble.dataset.response = fullResponse;
+                    scrollMessagesToBottom();
+                    scheduleFinish();
                 };
 
                 source.onerror = () => {
-                    source.close();
-                    if (!completed) {
-                        const bubble = loadingRow.querySelector(".message-bubble");
-                        bubble.innerHTML = `<span class="message-label">⚠️ Error</span>${formatText("No response received from the model.")}`;
+                    if (fullResponse.trim()) {
+                        finish();
+                    } else {
+                        finish("No response received from the model.");
                     }
-                    resolve();
                 };
+
+                source.addEventListener("done", () => finish());
             });
         }
 
         function finalizeResponseTime(startTime, questionNumber, questionText) {
             const duration = Number(((Date.now() - startTime) / 1000).toFixed(2));
+            if (!document.getElementById(`responseTime-${questionNumber}`)) {
+                const answerRow = document.querySelector(`.message-bubble[data-role="assistant"][data-question-number="${questionNumber}"]`)?.closest(".message-row");
+                if (answerRow) {
+                    const timing = document.createElement("div");
+                    timing.id = `responseTime-${questionNumber}`;
+                    timing.className = "response-time";
+                    timing.textContent = `⏱️ Response generated in ${duration} seconds`;
+                    answerRow.insertAdjacentElement("afterend", timing);
+                }
+            }
             fetch("/store-response-time", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

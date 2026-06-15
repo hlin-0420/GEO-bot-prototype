@@ -6,6 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GEO Chat History</title>
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+
+    <style>
+        /* UI stability patch: prevents the welcome panel, streamed answer, feedback, and input bar from occupying the same visual space. */
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .content {
+            height: calc(100vh - var(--navbar-height, 64px));
+            min-height: 0;
+        }
+
+        .chat-container {
+            height: 100%;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resizable-container {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .chat-main {
+            flex: 1 1 auto;
+            min-width: 0;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatMessages.chat-messages {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .chat-input-bar,
+        .chat-disclaimer {
+            flex: 0 0 auto;
+        }
+
+        .question-container,
+        .chat-message-wrapper,
+        .answer-feedback-wrapper,
+        .feedback-container {
+            position: relative;
+            clear: both;
+        }
+
+        .question-container {
+            display: block;
+            margin: 0 0 16px;
+        }
+
+        .answer-feedback-wrapper {
+            margin-top: 10px;
+        }
+
+        .chat-message {
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        .answer-placeholder {
+            min-height: 44px;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            transition: opacity 160ms ease, transform 160ms ease;
+        }
+
+        .answer-placeholder.is-loading {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .geo-empty-state {
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .response-time {
+            margin: 6px 0 0;
+            font-size: 12px;
+            color: grey;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,7 +174,6 @@
             </div>
 
         </div>
-    </div>
     </div>
 
     <script nonce="{{ g.nonce }}">
@@ -156,7 +252,7 @@
         function formatAnswerContainer(questionNumber) {
             return `
                 <div class="message-title">💡 <strong>Answer ${questionNumber}:</strong></div>
-                <div id="answerPlaceholder-${questionNumber}" class="answer-placeholder">
+                <div id="answerPlaceholder-${questionNumber}" class="answer-placeholder is-loading" aria-live="polite">
                     Processing your question...
                 </div>
             `;
@@ -281,6 +377,53 @@
             chatMessages.appendChild(spacer);
 
             console.log(`✅ Dynamic spacer added with height: ${spacer.style.height}`);
+        }
+
+        const STREAM_IDLE_FINALIZE_MS = 1200;
+
+        function isStreamStatusMessage(data) {
+            return data === "Processing your question..." || data === "Processing your question.";
+        }
+
+        function isStreamDoneMessage(data) {
+            return ["[DONE]", "DONE", "__DONE__", "<END>", "END"].includes(String(data || "").trim());
+        }
+
+        function isNearChatBottom(container) {
+            if (!container) return true;
+            return container.scrollHeight - container.scrollTop - container.clientHeight < 160;
+        }
+
+        function scrollChatToBottom(force = false) {
+            const chatMessages = document.getElementById("chatMessages");
+            if (!chatMessages) return;
+            if (force || isNearChatBottom(chatMessages)) {
+                requestAnimationFrame(() => {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                });
+            }
+        }
+
+        function clearInitialPlaceholderForChat() {
+            const chatMessages = document.getElementById("chatMessages");
+            if (!chatMessages) return;
+
+            const hasWelcomeState = chatMessages.classList.contains("empty-state") || Boolean(chatMessages.querySelector(".geo-empty-state"));
+            if (hasWelcomeState) {
+                chatMessages.classList.remove("empty-state");
+                chatMessages.innerHTML = "";
+            }
+        }
+
+        function updateAnswerPlaceholder(questionNumber, fullText, fallbackText = "No response received.") {
+            const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
+            if (!placeholder) return;
+
+            placeholder.classList.remove("is-loading");
+            const safeText = String(fullText || "").trim();
+            placeholder.innerHTML = safeText
+                ? formatAssistantResponse(safeText, questionNumber)
+                : formatText(fallbackText);
         }
 
         function loadLatestSessionIfAvailable() {
@@ -410,7 +553,7 @@
                         userMessageDiv.dataset.sessionId = sessionId;  // Ensure correct session mapping
                         userMessageDiv.style.padding = "10px";
                         userMessageDiv.style.borderRadius = "5px";
-                        userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${msg.content}`;
+                        userMessageDiv.innerHTML = `❓ Question ${tempQuestionNumber}: ${escapeHTML(msg.content)}`;
 
                         // Create the 3-dot options button
                         const optionsButton = document.createElement("button");
@@ -527,7 +670,7 @@
                             userMessageDiv.dataset.questionNumber = questionNumber;
                             userMessageDiv.style.padding = "10px";
                             userMessageDiv.style.borderRadius = "5px";
-                            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
+                            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${escapeHTML(newText)}`;
                             questionContainer.appendChild(userMessageDiv);
 
                             const answerFeedbackWrapper = document.createElement("div");
@@ -584,6 +727,7 @@
         let questionCounter = 0;  // Global counter to number questions
 
         async function sendQuestionToModelSequentially(question) {
+            clearInitialPlaceholderForChat();
             questionCounter++;
 
             removeDynamicSpacer();
@@ -613,6 +757,7 @@
 
             // Append to chatMessages
             chatMessages.appendChild(questionContainer);
+            scrollChatToBottom(true);
 
             try {
                 const response = await fetch("/ask", {
@@ -637,54 +782,68 @@
         }
 
         function waitForModelResponseWithNumbering(question_id, questionNumber, aiMessageDiv) {
-            const startTime = Date.now();  // Capture the start time when the stream begins
+            const startTime = Date.now();
 
             return new Promise((resolve) => {
-                const eventSource = new EventSource(`/response/${question_id}`);
-                const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
+                const eventSource = new EventSource(`/response/${encodeURIComponent(question_id)}`);
+                let fullAnswer = "";
+                let settled = false;
+                let idleTimer = null;
 
-                let fullAnswer = "";  // Accumulate full response here
+                const finish = (errorMessage = null) => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(idleTimer);
+                    eventSource.close();
+
+                    if (errorMessage && !fullAnswer.trim()) {
+                        updateAnswerPlaceholder(questionNumber, `⚠️ ${errorMessage}`);
+                    } else {
+                        updateAnswerPlaceholder(questionNumber, fullAnswer);
+                    }
+
+                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
+                    scrollChatToBottom(true);
+                    resolve(fullAnswer);
+                };
+
+                const scheduleFinish = () => {
+                    clearTimeout(idleTimer);
+                    idleTimer = setTimeout(() => finish(), STREAM_IDLE_FINALIZE_MS);
+                };
 
                 eventSource.onmessage = function (event) {
-                    const data = event.data;
+                    const data = event.data || "";
 
                     if (data.startsWith("Error:")) {
-                        // Handle actual error message from server
-                        placeholder.innerHTML = `<span style="color: red;">⚠️ ${data}</span>`;
-                        eventSource.close();
-                        resolve();  // Continue to next question
-                    } else if (data === "Processing your question...") {
-                        // Optional status message (already displayed initially)
-                        console.log(`Status update received for Question ${questionNumber}: ${data}`);
-                    } else {
-                        // Append the received chunk to the full answer
-                        fullAnswer += data;
-                        placeholder.innerHTML = fullAnswer;  // Display the accumulated answer
+                        finish(data);
+                        return;
                     }
+
+                    if (isStreamStatusMessage(data)) {
+                        return;
+                    }
+
+                    if (isStreamDoneMessage(data)) {
+                        finish();
+                        return;
+                    }
+
+                    fullAnswer += data;
+                    updateAnswerPlaceholder(questionNumber, fullAnswer);
+                    scrollChatToBottom();
+                    scheduleFinish();
                 };
 
                 eventSource.onerror = function () {
-                    console.error(`Error receiving response for Question ${questionNumber}`);
-                    if (fullAnswer.trim() === "") {
-                        // Only show error if no content was received
-                        placeholder.innerHTML = `<span style="color: red;">⚠️ Error receiving response for Question ${questionNumber}</span>`;
+                    if (fullAnswer.trim()) {
+                        finish();
+                    } else {
+                        finish(`Error receiving response for Question ${questionNumber}`);
                     }
-                    eventSource.close();
-
-                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
-
-                    resolve();  // Continue to the next question
                 };
 
-                eventSource.onopen = function () {
-                    console.log(`Connection opened for Question ${questionNumber}`);
-                };
-
-                eventSource.onclose = function () {
-                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
-
-                    resolve();  // Continue to the next question
-                };
+                eventSource.addEventListener("done", () => finish());
             });
         }
 
@@ -692,20 +851,21 @@
             const endTime = Date.now();
             const duration = ((endTime - startTime) / 1000).toFixed(2);
 
-            // Get the question text
             const questionElement = document.querySelector(`.user-message[data-question-number="${questionNumber}"]`);
             const questionText = questionElement ? questionElement.textContent.replace(`❓ Question ${questionNumber}: `, '').trim() : "Unknown Question";
 
-            // Append timing message to UI
-            const timingDiv = document.createElement("div");
-            timingDiv.style.fontSize = "12px";
-            timingDiv.style.color = "grey";
+            let timingDiv = document.getElementById(`responseTime-${questionNumber}`);
+            if (!timingDiv) {
+                timingDiv = document.createElement("div");
+                timingDiv.id = `responseTime-${questionNumber}`;
+                timingDiv.className = "response-time";
+                const target = aiMessageDiv?.closest?.(".answer-feedback-wrapper") || aiMessageDiv?.parentElement || aiMessageDiv;
+                target?.appendChild(timingDiv);
+            }
             timingDiv.innerText = `⏱️ Response generated in ${duration} seconds`;
-            aiMessageDiv.parentElement.appendChild(timingDiv);
 
             console.log(`Stored response time for Question ${questionNumber}: ${duration} seconds`);
 
-            // Send to backend with timestamp and question text
             fetch("/store-response-time", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -713,7 +873,7 @@
                     questionNumber: questionNumber,
                     question: questionText,
                     duration: duration,
-                    timestamp: new Date().toISOString() // Sending timestamp
+                    timestamp: new Date().toISOString()
                 })
             }).catch(error => console.error("Error storing response time:", error));
         }
@@ -1305,7 +1465,7 @@
             const questionElement = document.querySelector(questionSelector);
 
             if (questionElement) {
-                questionElement.innerHTML = `❓ Question ${questionNumber}: ${newText}`;
+                questionElement.innerHTML = `❓ Question ${questionNumber}: ${escapeHTML(newText)}`;
             }
 
             // Send message to model with new question text
@@ -1500,8 +1660,13 @@
             }
 
             const chatMessages = document.getElementById("chatMessages");
+            const isNewQuestion = questionNumber === null || questionNumber === undefined;
 
-            if (!questionNumber) {
+            if (isNewQuestion && questionCounter === 0) {
+                clearInitialPlaceholderForChat();
+            }
+
+            if (isNewQuestion) {
                 questionCounter++;
                 questionNumber = questionCounter;  // New question
             }
@@ -1518,7 +1683,7 @@
             userMessageDiv.dataset.questionNumber = questionNumber;
             userMessageDiv.style.padding = "10px";
             userMessageDiv.style.borderRadius = "5px";
-            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${userMessage}`;
+            userMessageDiv.innerHTML = `❓ Question ${questionNumber}: ${escapeHTML(userMessage)}`;
             questionContainer.appendChild(userMessageDiv);
 
             // AI answer placeholder
@@ -1536,9 +1701,10 @@
             questionContainer.appendChild(answerFeedbackWrapper);
             chatMessages.appendChild(questionContainer);
 
-            if (!questionNumber) {
+            if (isNewQuestion) {
                 document.getElementById("chatInput").value = "";
             }
+            scrollChatToBottom(true);
 
             try {
                 const selectedModel = document.getElementById("modelSelector").value;
@@ -1584,46 +1750,71 @@
         }
 
         function streamModelResponse(question_id, questionNumber, aiMessageDiv, startTime) {
-
             return new Promise((resolve) => {
-                const eventSource = new EventSource(`/response/${question_id}`);
-                const placeholder = document.getElementById(`answerPlaceholder-${questionNumber}`);
-
+                const eventSource = new EventSource(`/response/${encodeURIComponent(question_id)}`);
                 let fullResponse = "";
+                let settled = false;
+                let idleTimer = null;
+
+                const finish = (errorMessage = null) => {
+                    if (settled) return;
+                    settled = true;
+                    clearTimeout(idleTimer);
+                    eventSource.close();
+
+                    if (errorMessage && !fullResponse.trim()) {
+                        updateAnswerPlaceholder(questionNumber, `⚠️ ${errorMessage}`);
+                    } else {
+                        updateAnswerPlaceholder(questionNumber, fullResponse);
+                    }
+
+                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
+                    scrollChatToBottom(true);
+                    resolve(fullResponse);
+                };
+
+                const scheduleFinish = () => {
+                    clearTimeout(idleTimer);
+                    idleTimer = setTimeout(() => finish(), STREAM_IDLE_FINALIZE_MS);
+                };
 
                 eventSource.onmessage = function (event) {
-                    const data = event.data;
+                    const data = event.data || "";
 
                     if (data.startsWith("Error:")) {
-                        placeholder.innerHTML = `<span style="color: red;">${escapeHTML(data)}</span>`;
-                        eventSource.close();
-                        resolve();
+                        finish(data);
                         return;
                     }
 
-                    if (data !== "Processing your question...") {
-                        fullResponse += data;
-                        placeholder.innerHTML = escapeHTML(fullResponse).replace(/\n/g, "<br>");
-                        aiMessageDiv.innerHTML = `💡 <strong>Answer ${questionNumber}:</strong> ${formatAssistantResponse(fullResponse, questionNumber)}`;
-                        finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
-                        eventSource.close();
-                        resolve();
+                    if (isStreamStatusMessage(data)) {
+                        return;
                     }
+
+                    if (isStreamDoneMessage(data)) {
+                        finish();
+                        return;
+                    }
+
+                    fullResponse += data;
+                    updateAnswerPlaceholder(questionNumber, fullResponse);
+                    scrollChatToBottom();
+                    scheduleFinish();
                 };
 
                 eventSource.onerror = function () {
-                    finalizeResponseTime(startTime, aiMessageDiv, questionNumber);
-
-                    if (!fullResponse.trim()) {
-                        placeholder.innerHTML = `<span style="color: red;">⚠️ No response received.</span>`;
+                    if (fullResponse.trim()) {
+                        finish();
+                    } else {
+                        finish("No response received.");
                     }
-                    eventSource.close();
-                    resolve();
                 };
+
+                eventSource.addEventListener("done", () => finish());
             });
         }
 
         function addFeedbackSection(aiMessageDiv, questionNumber) {
+            if (document.getElementById(`feedbackContainer-${questionNumber}`)) return;
             const feedbackContainer = document.createElement("div");
             feedbackContainer.id = `feedbackContainer-${questionNumber}`;
             feedbackContainer.classList.add("feedback-container"); // Uses CSS instead of inline styles
@@ -1884,6 +2075,7 @@
             const chatMessages = document.getElementById("chatMessages");
 
             if (!chatMessages.innerHTML.trim()) {
+                removeDynamicSpacer();
                 chatMessages.classList.add("empty-state");
                 chatMessages.innerHTML = `
             <div class="geo-empty-state">
@@ -1909,9 +2101,12 @@
         // Load chat history on page load
         document.addEventListener("DOMContentLoaded", () => {
             loadChatHistory();
-            loadLatestSessionIfAvailable();
-            showInitialPlaceholder();  // Add this line
-            addDynamicSpacer();
+            if (sessionStorage.getItem("currentSessionId")) {
+                loadLatestSessionIfAvailable();
+            } else {
+                showInitialPlaceholder();
+                addDynamicSpacer();
+            }
         });
 
         document.addEventListener("DOMContentLoaded", function () {

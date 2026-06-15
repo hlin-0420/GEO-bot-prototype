@@ -1,0 +1,12 @@
+[
+    {
+        "role": "user",
+        "content": "How do I import qualitative data into GEO?",
+        "timestamp": "2026-06-15T11:00:26.711599Z"
+    },
+    {
+        "role": "assistant",
+        "content": "Option 1: Export to File; select Export to File, browse to a location, enter a file name, and select Save.\nOption 2: Export to Clipboard; select Export to Clipboard, open an external application (i.e. Excel), paste the contents of your clipboard.\nOption 3: Import from File; select Import from File, browse to the .txt file, select it, and Open.",
+        "timestamp": "2026-06-15T11:00:26.711599Z"
+    }
+]
