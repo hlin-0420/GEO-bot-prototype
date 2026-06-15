@@ -26,10 +26,22 @@ PROMPT_VISUALISATION_FILE = os.path.join(DATA_DIR, "model_files", "prompt_visual
 PROCESSED_CONTENT_FILE = os.path.join(DATA_DIR, "model_files", "processed_content.txt")
 UPLOADED_FILE = os.path.join(DATA_DIR, "model_files", "uploaded_document.txt")
 FAISS_INDEX_PATH = os.path.join(DATA_DIR, "model_files", "faiss_index")
+UPLOADS_DIR = os.path.join(DATA_DIR, "uploads")
 
 # Model Settings
 DEFAULT_MODEL_NAME = "llama3.2:latest"
-VALID_MODEL_NAMES = {"deepseek1.5", "llama3.2:latest", "openai"}
+MODEL_OPTIONS = [
+    {"value": "deepseek1.5", "label": "DeepSeek 1.5"},
+    {"value": "llama3.2:latest", "label": "Llama 3.2"},
+    {"value": "tinyllama:latest", "label": "Tiny Llama"},
+    {"value": "gemma3:1b", "label": "Gemma 3"},
+    {"value": "openai", "label": "OpenAI"},
+]
+VALID_MODEL_NAMES = {model["value"] for model in MODEL_OPTIONS}
+
+# Upload Settings
+ALLOWED_UPLOAD_EXTENSIONS = {"csv", "htm", "html", "json", "md", "txt"}
+MAX_UPLOAD_SIZE = 10 * 1024 * 1024
 
 # Optional: Flask Settings
 DEBUG_MODE = True

@@ -1,39 +1,27 @@
+import logging
 import os
-import time
+
 from flask import Flask
 
-print("[DEBUG] main.py loaded")
+from app import config
+from app.routes import register_blueprints
 
-try:
-    print("[DEBUG] Importing register_blueprints...")
-    from app.routes import register_blueprints
-    print("[DEBUG] register_blueprints imported")
-except Exception as e:
-    print(f"[ERROR] Failed to import register_blueprints: {e}")
-    raise
+logger = logging.getLogger(__name__)
+
 
 def create_app():
-    print("[DEBUG] Creating Flask app...")
-    
-    # Define paths
-    TEMPLATE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates"))
-    STATIC_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
+    template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates"))
+    static_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
 
-    app = Flask(__name__, template_folder=TEMPLATE_PATH, static_folder=STATIC_PATH)
+    app = Flask(__name__, template_folder=template_path, static_folder=static_path)
+    app.config["MAX_CONTENT_LENGTH"] = config.MAX_UPLOAD_SIZE
 
-    # Register blueprints
     register_blueprints(app)
-
-    # Simulated component loading block (e.g. models, DBs)
-    print("[DEBUG] Starting heavy component loading")
-    start = time.time()
-    # Load models, DB, etc. here
-    print(f"[DEBUG] Component load complete in {time.time() - start:.2f} seconds")
+    logger.debug("Flask app created")
 
     return app
 
 
 if __name__ == "__main__":
-    app = create_app()
-    print("[DEBUG] Starting Flask app via main.py")
-    app.run(debug=True)
+    logging.basicConfig(level=logging.DEBUG if config.DEBUG_MODE else logging.INFO)
+    create_app().run(debug=config.DEBUG_MODE, port=config.PORT)

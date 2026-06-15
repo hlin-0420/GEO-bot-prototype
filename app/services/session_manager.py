@@ -1,7 +1,11 @@
-import os, json
+import json
+import logging
+import os
 from datetime import datetime
 
 from app.config import CHAT_SESSIONS_DIR, SESSION_METADATA_FILE
+
+logger = logging.getLogger(__name__)
 
 def save_chat_session(session_id, messages):
     # Use a module-level constant or ensure directory creation happens once (outside the function) if possible
@@ -38,7 +42,7 @@ def load_chat_history():
                 with open(file_path, "r", encoding="utf-8") as f:
                     session_data = json.load(f)
                     session_id = filename.replace(".json", "")
-                    print(f"Session id: {session_id}")
+                    logger.debug("Loaded chat session %s", session_id)
                     chat_history.append({
                         "session_id": session_id,
                         "session_name": metadata.get(session_id, session_id),

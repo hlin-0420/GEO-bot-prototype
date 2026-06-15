@@ -1,16 +1,11 @@
-import os
-import platform
+import logging
 
-print("[DEBUG] run.py started")
-print(f"[DEBUG] Python version: {platform.python_version()} ({platform.python_implementation()})")
-print(f"[DEBUG] Working directory: {os.getcwd()}")
-
+from app import config
 from app.main import create_app
-print("[DEBUG] main.py loaded")
+
+logging.basicConfig(level=logging.DEBUG if config.DEBUG_MODE else logging.INFO)
 
 app = create_app()
-print("[DEBUG] Flask app created")
 
 if __name__ == "__main__":
-    print("[DEBUG] Starting Flask app...")
-    app.run(debug=True)
+    app.run(debug=config.DEBUG_MODE, port=config.PORT)

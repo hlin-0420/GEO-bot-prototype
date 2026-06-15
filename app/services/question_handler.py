@@ -1,41 +1,40 @@
 import time
+
 from app.services.session_manager import save_chat_session
 
-def process_question(question_id, question, ai_bot, current_session_id, current_session_messages, stored_responses):
+
+def process_question(
+    question_id,
+    question,
+    ai_bot,
+    current_session_id,
+    current_session_messages,
+    response_store,
+    response_lock=None,
+):
     """
-    Process the question using the AI bot, format the response, and store it.
-    Includes timing logs to diagnose delays.
+    Process a question with the AI bot, store the completed answer, and persist
+    the session transcript.
     """
-    print(f"[🔍 process_question] Start processing question ID: {question_id}")
-    print(f"[🧠 Question] {question}")
-    
     start_time = time.time()
-    
-    # Step 1: Query the bot
-    print("[⏳] Calling ai_bot.query()...")
+
     try:
-        query_start = time.time()
         response = ai_bot.query(question)
-        query_time = time.time() - query_start
-        print(f"[✅] Response received from AI model in {query_time:.4f} seconds.")
-    except Exception as e:
-        print(f"[❌ ERROR] ai_bot.query failed: {str(e)}")
+    except Exception:
         response = "An error occurred while querying the model."
-    
-    print("[📨] Raw response:", response)
 
-    # Step 3: Update shared state
-    stored_responses[question_id] = response
-    current_session_messages.append({"role": "assistant", "content": response})
-    print("[🗂️] Stored response in state and updated message history.")
+    if response_lock:
+        with response_lock:
+            if question_id in response_store:
+                response_store[question_id] = response
+            current_session_messages.append({"role": "assistant", "content": response})
+            messages_snapshot = list(current_session_messages)
+    else:
+        if question_id in response_store:
+            response_store[question_id] = response
+        current_session_messages.append({"role": "assistant", "content": response})
+        messages_snapshot = list(current_session_messages)
 
-    # Step 4: Save session
-    save_start = time.time()
-    save_chat_session(current_session_id, current_session_messages)
-    save_time = time.time() - save_start
-    print(f"[💾] Session saved in {save_time:.4f} seconds.")
-    
-    total_time = time.time() - start_time
-    print(f"[🏁 process_question] Total processing time: {total_time:.4f} seconds.\n")
+    save_chat_session(current_session_id, messages_snapshot)
 
-    return total_time
+    return time.time() - start_time

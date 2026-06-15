@@ -1,11 +1,20 @@
-from flask import Blueprint, request, jsonify
-from app.utils.file_helpers import process_file
-from app.services.ollama_bot import get_bot
-from app.config import DATA_DIR
-from werkzeug.utils import secure_filename
 import os
+import uuid
 
-upload_routes = Blueprint('upload', __name__)
+from flask import Blueprint, jsonify, request
+from werkzeug.utils import secure_filename
+
+from app import config
+from app.services.ollama_bot import get_bot
+from app.services.ollama_bot_helpers import list_htm_files
+from app.utils.file_helpers import append_to_excel, process_file
+
+upload_routes = Blueprint("upload", __name__)
+
+
+def _allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in config.ALLOWED_UPLOAD_EXTENSIONS
+
 
 @upload_routes.route("/upload", methods=["POST"])
 def upload():
@@ -16,10 +25,19 @@ def upload():
     if file.filename == "":
         return jsonify({"error": "No selected file"}), 400
 
-    file_path = os.path.join(DATA_DIR, secure_filename(file.filename))
+    filename = secure_filename(file.filename)
+    if not filename or not _allowed_file(filename):
+        allowed = ", ".join(sorted(config.ALLOWED_UPLOAD_EXTENSIONS))
+        return jsonify({"error": f"Unsupported file type. Allowed extensions: {allowed}"}), 400
+
+    os.makedirs(config.UPLOADS_DIR, exist_ok=True)
+    unique_filename = f"{uuid.uuid4().hex}_{filename}"
+    file_path = os.path.join(config.UPLOADS_DIR, unique_filename)
     file.save(file_path)
+
     result = process_file(file_path)
-    return jsonify({"message": result})
+    return jsonify({"message": result, "filename": unique_filename})
+
 
 @upload_routes.route("/view-file", methods=["GET"])
 def view_file():
@@ -28,13 +46,9 @@ def view_file():
     if not filename:
         return jsonify({"error": "Filename is required"}), 400
 
-    ai_bot = get_bot()  # Lazy load AI bot
-
-    htm_filepaths = ai_bot._list_htm_files()
-    current_directory = os.getcwd()
-    temp_directories = [os.path.join(current_directory, htm_filepath) for htm_filepath in htm_filepaths]
-    
-    file_path = next((path for path in temp_directories if path.endswith(filename)), None)
+    requested_filename = os.path.basename(filename)
+    htm_filepaths = list_htm_files(config.DATA_DIR)
+    file_path = next((path for path in htm_filepaths if os.path.basename(path) == requested_filename), None)
 
     if not file_path or not os.path.exists(file_path):
         return jsonify({"error": "File not found"}), 404
@@ -43,13 +57,14 @@ def view_file():
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
         return jsonify({"content": content})
-    except Exception as e:
-        return jsonify({"error": f"Could not read file: {str(e)}"}), 500
-    
+    except Exception as exc:
+        return jsonify({"error": f"Could not read file: {exc}"}), 500
+
+
 @upload_routes.route("/ask-file", methods=["POST"])
 def ask_file():
     """Process a question from the uploaded file and store the answer."""
-    data = request.json
+    data = request.get_json(silent=True) or {}
     question = data.get("question", "").strip()
 
     if not question:
